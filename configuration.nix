@@ -52,7 +52,7 @@
 
   # Configure keymap in X11
   services.xserver.layout = "us";
-  services.xserver.xkbOptions = "eurosign:e,caps:escape";
+  #services.xserver.xkbOptions = "eurosign:e,caps:escape";
 
   # Nvidia Drivers
   hardware.opengl = {
