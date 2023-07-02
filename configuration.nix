@@ -152,6 +152,9 @@
       package = pkgs.gitFull;
       config.credential.helper = "libsecret";
   };
+  
+  # there is no secret service just gnome keyring :(
+  services.gnome.gnome-keyring.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -169,6 +172,7 @@
   # programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
+    pinentryFlavor = "gtk2";
   #   enableSSHSupport = true;
   };
 
