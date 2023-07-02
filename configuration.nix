@@ -44,6 +44,7 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
+  #TODO(sako):: butthis in that curly bracket
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   # enable bspwm
@@ -162,6 +163,7 @@
     pulseaudio
     pamixer
     gh
+    feh
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
