@@ -3,11 +3,11 @@
 # and in the NixOS manual (accessible by running `nixos-help`).
 
 { config, pkgs, lib, ... }:
-
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      <home-manager/nixos>
     ];
 
   # grub (mount efi partition to /boot/efi
@@ -44,7 +44,7 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  #TODO(sako):: butthis in that curly bracket
+  #TODO(sako):: put this in that curly bracket
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   # enable bspwm
@@ -135,12 +135,35 @@
       alacritty
       polybar
       steam
-      wine-staging
+      winetricks
+      wineWowPackages.staging
       lutris
       discord
       networkmanagerapplet
     ];
   };
+
+  home-manager.useUserPackages = true;
+  home-manager.users.sako = { pkgs, ...}: {
+      # CHANGE THIS WHEN THE SYSTEM VERSION CHANGES TOO!!!
+      home.stateVersion = "23.05";
+      home.packages = [ pkgs.kitty ];
+      home.username = "sako";
+      home.homeDirectory = "/home/sako";
+      programs.bash.enable = true;
+      programs.home-manager.enable = true;
+      programs.git = {
+      enable = true;
+      package = pkgs.gitFull;
+      userName = "Sakooooo";
+      userEmail = "78461130+Sakooooo@users.noreply.github.com";
+      };
+      programs.neovim = {
+	enable = true;
+	extraConfig = builtins.readFile config/neovim/init.lua;
+  	};
+
+    };
 
   fonts.fonts = with pkgs;[
       jetbrains-mono
@@ -148,10 +171,12 @@
 
   # git crediental manager is in gitFull package
   # config options happen to be here too
-  programs.git = {
-      enable = true;
-      package = pkgs.gitFull;
-  };
+  #programs.git = {
+  #    enable = true;
+  #    package = pkgs.gitFull;
+  #    userName = "Sakooooo";
+  #    userEmail = "78461130+Sakooooo@users.noreply.github.com";
+  #};
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
