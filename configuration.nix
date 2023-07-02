@@ -140,6 +140,8 @@
       lutris
       discord
       networkmanagerapplet
+      gcc
+      python3
     ];
   };
 
@@ -158,10 +160,13 @@
       userName = "Sakooooo";
       userEmail = "78461130+Sakooooo@users.noreply.github.com";
       };
-      programs.neovim = {
-	enable = true;
-	extraConfig = builtins.readFile config/neovim/init.lua;
-  	};
+       xdg.configFile = {
+	   nvim = {
+	        source = config/neovim;
+		recursive = true;
+	   };
+
+       };
 
     };
 
