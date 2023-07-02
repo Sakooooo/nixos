@@ -150,11 +150,7 @@
   programs.git = {
       enable = true;
       package = pkgs.gitFull;
-      config.credential.helper = "libsecret";
   };
-  
-  # there is no secret service just gnome keyring :(
-  services.gnome.gnome-keyring.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -165,6 +161,7 @@
     alsa-utils
     pulseaudio
     pamixer
+    gh
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
