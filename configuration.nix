@@ -10,7 +10,11 @@
       <home-manager/nixos>
     ];
 
-  # grub (mount efi partition to /boot/efi
+  # grub (mount efi partition to /boot/efi)
+  # why /boot/efi? instead of /efi?
+  # 1. when dualbooting, windows makes the efi partition 100mb instead of 512mb+ (we need this for generations
+  # and intel microcode)
+  # 2. nixos does not like /efi :(
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
@@ -46,12 +50,18 @@
 
   #TODO(sako):: put this in that curly bracket
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  #services.xserver.enable = true;
   # enable bspwm
-  services.xserver.windowManager.bspwm.enable = true;
+  #services.xserver.windowManager.bspwm.enable = true;
+
+  services.xserver = {
+      enable = true;
+      windowManager.bspwm.enable = true;
+      layout = "us";
+  };
 
   # Configure keymap in X11
-  services.xserver.layout = "us";
+  #services.xserver.layout = "us";
   #services.xserver.xkbOptions = "eurosign:e,caps:escape";
 
   # Nvidia Drivers
@@ -107,7 +117,7 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
+  # for some reason this needs to be disabled
   sound.enable = false;
   # dont like pulseaudio
   #hardware.pulseaudio.enable = true;
@@ -122,6 +132,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
+  # TODO(sako):: put this in different files
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sako= {
     isNormalUser = true;
@@ -168,13 +179,17 @@
 	        source = config/neovim;
 		recursive = true;
 	   };
+     alacritty = {
+       source = config/alacritty;
+     };
 
        };
 
     };
 
   fonts.fonts = with pkgs;[
-      jetbrains-mono
+    jetbrains-mono
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
   # git crediental manager is in gitFull package
