@@ -29,6 +29,12 @@ mason_null_ls.setup({
 })
 
 -- funny lsp config stuff
+require('lspconfig').rnix.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+
 require("lspconfig").lua_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,

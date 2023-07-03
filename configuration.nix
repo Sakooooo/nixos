@@ -142,6 +142,9 @@
       networkmanagerapplet
       gcc
       python3
+      python310Packages.pip
+      rustup
+      cargo
     ];
   };
 
