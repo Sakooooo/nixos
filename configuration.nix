@@ -156,7 +156,6 @@
       python310Packages.pip
       rustup
       cargo
-      gh
       nodejs
     ];
   };
@@ -214,6 +213,7 @@
     pamixer
     feh
     unzip
+    gh
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
