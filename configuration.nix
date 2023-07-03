@@ -37,7 +37,7 @@
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
-  time.timeZone = "Asia/Dubai";
+  time.timeZone = "Africa/Cairo";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -106,11 +106,10 @@
 			enable = true;
 			enableOffloadCmd = true;
 		};
-	
 	  intelBusId = "PCI:0:2:0";
 	  nvidiaBusId = "PCI:1:0:0";
 
-	};
+	 };
   };
 
   # Bluetooth
@@ -143,6 +142,7 @@
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       firefox
+      qutebrowser
       keepassxc
       tree
       dmenu
