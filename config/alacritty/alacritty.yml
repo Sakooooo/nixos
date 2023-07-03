@@ -77,14 +77,14 @@ font:
 
   # The bold font face
   bold:
-    family: "JetBrainsMono NF" 
+    family: "JetBrainsMono NF"
     style: Bold
     # family: "Fira Code"
     # family: "Source Code Pro"
 
   # The italic font face
   italic:
-    family: "JetbrainsMono NF" 
+    family: "JetbrainsMono NF"
     style: Italic
     # style: "Light Oblique"
     # family: "Fira Code"
@@ -432,7 +432,7 @@ debug:
 # Entries in shell.args are passed unmodified as arguments to the shell.
 shell:
   program:
-    bash
+    zsh
     #  args:
     #- --command=tmux
 # vim: nospell

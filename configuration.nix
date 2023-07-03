@@ -138,6 +138,7 @@
   # TODO(sako):: put this in different files
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sako= {
+    shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
@@ -182,16 +183,27 @@
       };
        xdg.configFile = {
 	   nvim = {
-	        source = config/neovim;
+	        source = config/nvim;
 		recursive = true;
 	   };
-     alacritty = {
-       source = config/alacritty;
-     };
-
-       };
-
+     	alacritty = {
+       		source = config/alacritty;
+     	};
+     	polybar = {
+        	source = config/polybar;
+        	recursive = true;
+     	};
+     	bspwm = {
+        	source = config/bspwm;
+     	};
     };
+  };
+
+  programs.zsh = {
+    enable = true;
+    # TODO(sako):: make my own zsh config
+    promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+  };
 
   fonts.fonts = with pkgs;[
     jetbrains-mono
