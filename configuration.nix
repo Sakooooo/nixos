@@ -160,6 +160,7 @@
       rustup
       cargo
       nodejs
+      yarn
     ];
   };
 

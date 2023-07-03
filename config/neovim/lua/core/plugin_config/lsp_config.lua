@@ -23,7 +23,6 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 mason_null_ls.setup({
 	ensure_installed = {
 		"stylua",
-		"csharpier",
 		"prettier",
 	},
 })
