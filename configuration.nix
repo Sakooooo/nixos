@@ -161,6 +161,7 @@
       cargo
       nodejs
       yarn
+      newsboat
     ];
   };
 
