@@ -156,6 +156,8 @@
       python310Packages.pip
       rustup
       cargo
+      gh
+      nodejs
     ];
   };
 
@@ -210,8 +212,8 @@
     alsa-utils
     pulseaudio
     pamixer
-    gh
     feh
+    unzip
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
