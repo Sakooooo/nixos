@@ -189,10 +189,6 @@
      	alacritty = {
        		source = config/alacritty;
      	};
-     	polybar = {
-        	source = config/polybar;
-        	recursive = true;
-     	};
      	bspwm = {
         	source = config/bspwm;
      	};
