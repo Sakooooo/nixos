@@ -146,4 +146,4 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # dark mode
-config.set('colors.webpage.darkmode.enabled', True)
+config.set('colors.webpage.preferred_color_scheme', 'dark')
