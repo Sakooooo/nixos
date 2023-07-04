@@ -147,7 +147,6 @@
       tree
       dmenu
       rofi
-      alacritty
       kitty
       polybar
       steam
@@ -194,9 +193,6 @@
 	        source = config/nvim;
 		recursive = true;
 	   };
-     	alacritty = {
-       		source = config/alacritty;
-     	};
      	bspwm = {
         	source = config/bspwm;
      	};
