@@ -166,6 +166,13 @@
     ];
   };
 
+  # garbage collection
+  nix.gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+  };
+
   home-manager.useUserPackages = true;
   home-manager.users.sako = { pkgs, ...}: {
       # CHANGE THIS WHEN THE SYSTEM VERSION CHANGES TOO!!!
