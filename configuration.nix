@@ -171,11 +171,17 @@
 
   # TODO(sako):: replace this with mopidy for jellyifn support
   services.mpd = {
+    # pipewire fix
     user = "sako";
     enable = true;
     musicDirectory = "/home/sako/music";
     extraConfig = builtins.readFile config/mpd/mpd.conf;
     startWhenNeeded = true;
+  };
+
+  # mpd fix
+  systemd.services.mpd.environment = {
+    XDG_RUNTIME_DIR = "/run/user/1000";
   };
 
   # garbage collection
