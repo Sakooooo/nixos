@@ -166,7 +166,16 @@
       nodejs
       yarn
       newsboat
+      ncmpcpp
     ];
+  };
+
+  # TODO(sako):: replace this with mopidy for jellyifn support
+  services.mpd = {
+    enable = true;
+    musicDirectory = "/home/sako/music";
+    extraConfig = builtins.readFile config/mpd/mpd.conf;
+    startWhenNeeded = true;
   };
 
   # garbage collection
