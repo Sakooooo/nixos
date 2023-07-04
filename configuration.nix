@@ -31,6 +31,9 @@
   # TODO(sako):: figure out plymouth and why my system is too fast
   #boot.plymouth.enable = true;
 
+  # for later when i setup flakes 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
