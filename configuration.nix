@@ -198,14 +198,16 @@
       programs.git = {
       enable = true;
       package = pkgs.gitFull;
-      userName = "Sakooooo";
-      userEmail = "78461130+Sakooooo@users.noreply.github.com";
       };
        xdg.configFile = {
-	   nvim = {
+       git = {
+          source = config/git;
+       };
+
+	    nvim = {
 	        source = config/nvim;
-		recursive = true;
-	   };
+		      recursive = true;
+	    };
      	bspwm = {
         	source = config/bspwm;
      	};
