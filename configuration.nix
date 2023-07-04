@@ -172,6 +172,7 @@
 
   # TODO(sako):: replace this with mopidy for jellyifn support
   services.mpd = {
+    user = "sako";
     enable = true;
     musicDirectory = "/home/sako/music";
     extraConfig = builtins.readFile config/mpd/mpd.conf;
