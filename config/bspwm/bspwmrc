@@ -17,7 +17,7 @@ bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
-feh --bg-scale /home/sako/background.png &
+feh --bg-scale /home/sako/.config/bspwm/background.png &
 
 /home/sako/.config/polybar/startpolybar &
 
