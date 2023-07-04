@@ -148,6 +148,7 @@
       dmenu
       rofi
       alacritty
+      kitty
       polybar
       steam
       winetricks
@@ -177,7 +178,7 @@
   home-manager.users.sako = { pkgs, ...}: {
       # CHANGE THIS WHEN THE SYSTEM VERSION CHANGES TOO!!!
       home.stateVersion = "23.05";
-      home.packages = [ pkgs.kitty ];
+      home.packages = [];
       home.username = "sako";
       home.homeDirectory = "/home/sako";
       programs.bash.enable = true;
@@ -199,6 +200,12 @@
      	bspwm = {
         	source = config/bspwm;
      	};
+      sxhkd = {
+          source = config/sxhkd;
+      };
+      kitty = {
+          source = config/kitty;
+      };
     };
   };
 
