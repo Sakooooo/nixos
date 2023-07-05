@@ -81,41 +81,11 @@
   # packages that are unfree because they want to or need to  
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
-      "nvidia-x11"
-      "nvidia-settings"
       "steam"
       "steam-original"
       "discord"
       "widevine-cdm"
     ];
-
-  services.xserver.videoDrivers = ["nvidia"];
-
-  hardware.nvidia = {
-  	# wayland
-	modesetting.enable = true;
-
-	# im not on an rtx graphics card so we cant use the open
-	# source version
-	open = false;
-
-	# settings
-	nvidiaSettings = true;
-
-	# Package
-	package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-	# prime
-	prime = {
-		offload = {
-			enable = true;
-			enableOffloadCmd = true;
-		};
-	  intelBusId = "PCI:0:2:0";
-	  nvidiaBusId = "PCI:1:0:0";
-
-	 };
-  };
 
   # Bluetooth
   hardware.bluetooth = {

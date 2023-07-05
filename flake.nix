@@ -17,8 +17,6 @@
         specialArgs = attrs;
         modules = [ ./hosts/sakotop ];
       };
-
     };
-
   };
 }
