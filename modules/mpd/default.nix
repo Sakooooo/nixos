@@ -6,6 +6,7 @@
     user = "sako";
     musicDirectory = "/home/sako/music";
     extraConfig = builtins.readFile ../../config/mpd/mpd.conf;
+    startWhenNeeded = true;
   };
 
   # systemd fix pipewire
