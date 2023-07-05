@@ -232,6 +232,10 @@
           source = config/qutebrowser/greasemonkey;
           recursive = true;
       };
+      ncmpcpp = {
+          source = config/ncmpcpp;
+          recursive = true;
+      };
     };
   };
 
