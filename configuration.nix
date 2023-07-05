@@ -157,6 +157,8 @@
       qutebrowser-qt6
       # qute-keepassxc
       python310Packages.pynacl
+      # adblock
+      python310Packages.adblock
       # end qutebrowser
       keepassxc
       tree
