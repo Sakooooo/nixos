@@ -154,7 +154,8 @@
     packages = with pkgs; [
       firefox
       # qutebrowser
-      qutebrowser
+      qutebrowser-qt6
+      # qute-keepassxc
       python310Packages.pynacl
       # end qutebrowser
       keepassxc
