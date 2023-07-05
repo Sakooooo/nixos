@@ -84,6 +84,7 @@
       "steam"
       "steam-original"
       "discord"
+      "widevine-cdm"
     ];
 
   services.xserver.videoDrivers = ["nvidia"];
@@ -171,6 +172,11 @@
       ncmpcpp
     ];
   };
+
+  # TODO(sako):: make overlays in different folder
+  nixpkgs.overlays = [
+    (final: prev: { qutebrowser = prev.qutebrowser.override { enableWideVine = true; }; })
+  ];
 
   # TODO(sako):: replace this with mopidy for jellyifn support
   services.mpd = {
