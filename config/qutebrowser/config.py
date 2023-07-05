@@ -163,6 +163,5 @@ config.set('content.blocking.adblock.lists', [
     "https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt",
     "https://easylist.to/easylist/easylist.txt",
     "https://easylist.to/easylist/easyprivacy.txt",
-    "https://malware-filter.gitlab.io/malware-filter/urlhaus-filter.txt",
     "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=1&mimetype=plaintext"
 ])
