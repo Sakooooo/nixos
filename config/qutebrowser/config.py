@@ -102,7 +102,8 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:90.0) Gecko
 # SEarch Engine
 c.url.searchengines = {
     'DEFAULT':       'https://duckduckgo.com/?ia=web&q={}',
-    'nixpkgs':      'https://search.nixos.org/packages?query={}'
+    'nixpkgs':      'https://search.nixos.org/packages?query={}',
+    'nixopts':      'https://search.nixos.org/options?query={}'
 }
 
 # User agent to send.  The following placeholders are defined:  *
