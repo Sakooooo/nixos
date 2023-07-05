@@ -12,7 +12,7 @@
   outputs = { self, nixpkgs, ...}@attrs: {
     nixosConfigurations = {
       # TODO(sako)::rename this
-      nixos = nixpkgs.lib.nixosSystem {
+      sakotop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = attrs;
         modules = [ ./configuration.nix ];

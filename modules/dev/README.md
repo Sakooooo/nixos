@@ -8,3 +8,7 @@ seperate nix file.
 - copy project-template.nix
 - add package dependencies to it
   - when you dont maintain that project anymore you can delete the file and rebuild
+
+# Add language?
+
+- just make a nix file and add that yeah
