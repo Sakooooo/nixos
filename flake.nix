@@ -8,11 +8,12 @@
       home-manager.url = "github:nix-community/home-manager/release-23.05";
   };
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs, ...}@attrs: {
     nixosConfigurations = {
       # TODO(sako)::rename this
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = attrs;
         modules = [ ./configuration.nix ];
       };
 
