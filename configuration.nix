@@ -144,7 +144,10 @@
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       firefox
+      # qutebrowser
       qutebrowser
+      python310Packages.pynacl
+      # end qutebrowser
       keepassxc
       tree
       dmenu

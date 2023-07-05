@@ -147,3 +147,8 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # dark mode
 config.set('colors.webpage.preferred_color_scheme', 'dark')
+
+# kee pass x c
+# anyone who uses pass is NOT real
+config.bind('pw', 'spawn --userscript qute-keepassxc --insecure', mode='normal')
+config.bind('pt', 'spawn --userscript qute-keepassxc --totp --insecure', mode='normal')
