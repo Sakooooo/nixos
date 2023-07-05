@@ -177,6 +177,7 @@
   # TODO(sako):: make overlays in different folder
   nixpkgs.overlays = [
     (final: prev: { qutebrowser = prev.qutebrowser.override { enableWideVine = true; }; })
+    (final: prev: { polybar = prev.polybar.override { pulseSupport = true;}; })
   ];
 
   # garbage collection
