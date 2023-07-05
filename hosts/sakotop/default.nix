@@ -79,13 +79,17 @@
   };
 
   # packages that are unfree because they want to or need to  
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "steam"
-      "steam-original"
-      "discord"
-      "widevine-cdm"
-    ];
+  #nixpkgs.config.allowUnfreePredicate = pkg:
+  #  builtins.elem (lib.getName pkg) [
+  #    "steam"
+  #    "steam-original"
+  #    "discord"
+  #    "widevine-cdm"
+  #  ];
+
+  # we already sold our souls to corporations why
+  # bother at this point
+  nixpkgs.config.allowUnfree = true;
 
   # Bluetooth
   hardware.bluetooth = {
