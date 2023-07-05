@@ -213,31 +213,31 @@
       };
        xdg.configFile = {
        git = {
-          source = config/git;
+          source = ../../config/git;
        };
 
 	    nvim = {
-	        source = config/nvim;
+	        source = ../../config/nvim;
 		      recursive = true;
 	    };
      	bspwm = {
-        	source = config/bspwm;
+        	source = ../../config/bspwm;
      	};
       sxhkd = {
-          source = config/sxhkd;
+          source = ../../config/sxhkd;
       };
       kitty = {
-          source = config/kitty;
+          source = ../../config/kitty;
       };
       "qutebrowser/config.py" = {
-          source = config/qutebrowser/config.py;
+          source = ../../config/qutebrowser/config.py;
       };
       "qutebrowser/greasemonkey" = {
-          source = config/qutebrowser/greasemonkey;
+          source = ../../config/qutebrowser/greasemonkey;
           recursive = true;
       };
       ncmpcpp = {
-          source = config/ncmpcpp;
+          source = ../../config/ncmpcpp;
           recursive = true;
       };
     };
