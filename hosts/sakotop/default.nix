@@ -7,7 +7,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       home-manager.nixosModules.default
-      ./modules
+      # TODO(sako):: make this better
+      ../../modules
     ];
 
   # grub (mount efi partition to /boot/efi)
