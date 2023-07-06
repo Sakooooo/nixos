@@ -55,14 +55,10 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  #TODO(sako):: put this in that curly bracket
   # Enable the X11 windowing system.
-  #services.xserver.enable = true;
-  # enable bspwm
-  #services.xserver.windowManager.bspwm.enable = true;
-
   services.xserver = {
       enable = true;
+      # bspwm
       windowManager.bspwm.enable = true;
       layout = "us";
   };
