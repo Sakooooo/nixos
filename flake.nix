@@ -9,7 +9,7 @@
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ...}@attrs: 
+  outputs = { self, nixpkgs, home-manager, ...}@inputs: 
   let
     inherit (self) outputs;
     forAllSystems = nixpkgs.lib.genAttrs [
@@ -17,11 +17,10 @@
     ];
     in
     rec {
-
     # custom packages
     packages = forAllSystems (system:
       let pkgs = nixpkgs.legacyPackages.${system};
-      in import ./packages {inherit pkgs; }
+      in import ./packages { inherit pkgs; }
     );
     # dev shell for bootstrap
     devShells = forAllSystems (system:
