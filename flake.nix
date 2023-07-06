@@ -9,14 +9,48 @@
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, ...}@attrs: {
+  outputs = { self, nixpkgs, home-manager, ...}@attrs: 
+  let
+    inherit (self) outputs;
+    forAllSystems = nixpkgs.lib.genAttrs [
+      "x86_64-linux"
+    ];
+    in
+    rec {
+
+    # custom packages
+    packages = forAllSystems (system:
+      let pkgs = nixpkgs.legacyPackages.${system};
+      in import ./packages {inherit pkgs; }
+    );
+    # dev shell for bootstrap
+    devShells = forAllSystems (system:
+      let pkgs = nixpkgs.legacyPackages.${system};
+      in import ./shell.nix { inherit pkgs; }
+      );
+    
+    # overlays here
+    overlays = import ./overlays { inherit inputs; };
+
+    # modules :D
+    nixosModules = import ./modules;
+
     nixosConfigurations = {
-      # TODO(sako)::rename this
       sakotop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = attrs;
-        modules = [ ./hosts/sakotop ];
+        specialArgs = { inherit inputs outputs; };
+        modules = [
+          ./hosts/sakotop/configuration.nix
+        ];
       };
     };
+    
+    #nixosConfigurations = {
+      # TODO(sako)::rename this
+    #  sakotop = nixpkgs.lib.nixosSystem {
+    #   system = "x86_64-linux";
+    #    specialArgs = attrs;
+    #    modules = [ ./hosts/sakotop ];
+    #  };
+    #};
   };
 }
