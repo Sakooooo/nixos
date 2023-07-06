@@ -99,6 +99,8 @@
         ControllerMode = "bredr";
       };
     };
+    # i barely use bluetooth so keep it on demand
+    powerOnBoot = false;
   };
   services.blueman.enable = true;
 
