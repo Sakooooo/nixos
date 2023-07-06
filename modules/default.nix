@@ -1,7 +1,7 @@
 { config, pkgs, lib, ...}:
 {
   imports = [
-    ./mpd
+    ./media/mpd
     ./hardware
   ];
 }
