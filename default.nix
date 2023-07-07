@@ -1,8 +1,8 @@
-{ config, pkgs, lib, home-manager, ...}:
+{ config, pkgs, lib, inputs, outputs, ...}:
 {
   imports = [
     # home manager
-    home-manager.nixosModules.default
+    inputs.home-manager.nixosModules.default
     # modules
     #i dont think this is right
     ./modules
@@ -36,7 +36,7 @@
 
   time.timeZone = "Africa/Cairo";
 
-  il8n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
     # keyMap = "us";
