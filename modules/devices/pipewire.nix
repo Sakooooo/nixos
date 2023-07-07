@@ -3,7 +3,10 @@ with lib;
 let cfg = config.modules.devices.pipewire;
 in {
   options.modules.devices.pipewire= {
-    enable = mkBoolOpt false;
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {

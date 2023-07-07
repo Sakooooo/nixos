@@ -3,7 +3,10 @@ with lib;
 let cfg = config.modules.desktop.chat.discord;
 in {
   options.modules.desktop.chat.discord = {
-    enable = mkBoolOpt false;
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {

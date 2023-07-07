@@ -3,7 +3,10 @@ with lib;
 let cfg = config.modules.media.ncmpcpp;
 in {
   options.modules.media.ncmpcpp = {
-    enable = mkBoolOpt false;
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {

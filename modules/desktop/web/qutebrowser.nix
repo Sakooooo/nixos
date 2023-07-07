@@ -3,7 +3,10 @@ with lib;
 let cfg = config.modules.web.qutebrowser;
 in {
   options.modules.web.qutebrowser = {
-    enable = mkBoolOpt false;
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {

@@ -3,7 +3,10 @@ with lib;
 let cfg = config.modules.media.mpd;
 in {
   options.modules.media.mpd = {
-    enable = mkBoolOpt false;
+    enable = mkOption {
+     type = types.bool;
+     default = false;
+    };
   };
   config = mkIf cfg.enable {
   services.mpd = {

@@ -3,7 +3,10 @@ with lib;
 let cfg = config.modules.desktop.game.lutris;
 in {
   options.modules.desktop.game.lutris = {
-    enable = mkBoolOpt false;
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {

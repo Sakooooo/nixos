@@ -3,7 +3,10 @@ with lib;
 let cfg = config.modules.desktop.bspwm;
 in {
   options.modules.desktop.bspwm = {
-    enable = mkBoolOpt false;
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {

@@ -3,7 +3,10 @@ with lib;
 let cfg = config.modules.dev.cpp;
 in {
   options.modules.dev.cpp = {
-    enable = mkBoolOpt false;
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {

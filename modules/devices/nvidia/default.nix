@@ -3,7 +3,10 @@ with lib;
 let cfg = config.modules.devices.nvidia;
 in {
   options.modules.devices.nvidia = {
-    enable = mkBoolOpt false;
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {
