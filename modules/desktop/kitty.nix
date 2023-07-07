@@ -16,5 +16,10 @@ in {
         "JetBrainsMono"
       ];}) 
     ];
+    xdg.configFile = {
+     kitty = {
+      source = ../../config/kitty;
+     }; 
+    };
   };
 }

@@ -1,5 +1,11 @@
 { config, pkgs, lib, ...}:
-{
+with lib;
+let cfg = config.modules.media.mpd;
+in {
+  options.modules.media.mpd = {
+    enable = mkBoolOpt false;
+  };
+  config = mkIf cfg.enable {
   services.mpd = {
     enable = true;
     # pipewire fix
@@ -12,6 +18,7 @@
   # systemd fix pipewire
   systemd.services.mpd.environment = {
     XDG_RUNTIME_DIR = "/run/user/1000";
+  };
   };
 
 }

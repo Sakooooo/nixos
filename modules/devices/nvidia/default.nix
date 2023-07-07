@@ -1,5 +1,12 @@
 { config, pkgs, lib, ...}:
-{
+with lib;
+let cfg = config.modules.devices.nvidia;
+in {
+  options.modules.devices.nvidia = {
+    enable = mkBoolOpt false;
+  };
+
+  config = mkIf cfg.enable {
 
   hardware.opengl = {
     enable = true;
@@ -31,6 +38,6 @@
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
     };
+   };
   };
-
 }
