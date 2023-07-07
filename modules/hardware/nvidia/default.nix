@@ -1,12 +1,6 @@
 { config, pkgs, lib, ...}:
 {
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
   # tell xserver i want this driver
   services.xserver.videoDrivers = ["nvidia"];
 
