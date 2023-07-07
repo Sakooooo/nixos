@@ -139,6 +139,7 @@
       rofi
       kitty
       polybar
+      xorg.xbacklight
       steam
       winetricks
       wineWowPackages.staging

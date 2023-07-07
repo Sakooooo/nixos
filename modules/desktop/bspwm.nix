@@ -25,6 +25,7 @@ in {
       (polybar.override {
         pulseSupport = true;
        })
+      xorg.xbacklight
     ];
   };
 }
