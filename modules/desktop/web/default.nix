@@ -1,3 +1,0 @@
-{
-  qutebrowser = ./qutebrowser.nix;
-}

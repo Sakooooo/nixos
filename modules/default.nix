@@ -1,3 +1,7 @@
+{ config, pkgs, lib, ...}:
 {
-  desktop = import ./desktop;
+  imports = [
+    ./media/mpd
+    ./hardware
+  ];
 }
