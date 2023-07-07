@@ -6,6 +6,32 @@
     # modules
     #i dont think this is right
     #./modules
+    outputs.nixosModules.desktop
+    outputs.nixosModules.desktop.bspwm
+    outputs.nixosModules.desktop.kitty
+    outputs.nixosModules.desktop.keepassxc
+    outputs.nixosModules.desktop.web.qutebrowser
+    outputs.nixosModules.desktop.game.steam
+    outputs.nixosModules.desktop.game.wine
+    outputs.nixosModules.desktop.game.lutris
+    outputs.nixosModules.desktop.chat.discord
+    outputs.nixosModules.dev
+    outputs.nixosModules.dev.editors
+    outputs.nixosModules.dev.editors.nvim
+    outputs.nixosModules.dev.cpp
+    outputs.nixosModules.dev.javascript
+    outputs.nixosModules.dev.python
+    outputs.nixosModules.dev.rust
+    outputs.nixosModules.devices
+    outputs.nixosModules.devices.nvidia
+    outputs.nixosModules.devices.pipewire
+    outputs.nixosModules.devices.bluetooth
+    outputs.nixosModules.media
+    outputs.nixosModules.media.mpd
+    outputs.nixosModules.media.ncmpcpp
+    outputs.nixosModules.shell
+    outputs.nixosModules.shell.newsboat
+    outputs.nixosModules.shell.zsh
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes"];
