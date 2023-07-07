@@ -121,20 +121,11 @@ super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 #
-## audio 
+## audio and backlight
 #
-
 XF86AudioRaiseVolume
 	pactl set-sink-volume 0 +5%
 XF86AudioLowerVolume
 	pactl set-sink-volume 0 -5%
 XF86AudioMute
 	pactl set-sink-mute 0 toggle
-
-#
-## backlight
-#
-
-XF86MonBrightness{Up,Down}
- xbacklight -{inc,dec} 5 &
-
