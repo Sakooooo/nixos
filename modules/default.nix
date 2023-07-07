@@ -1,6 +1,7 @@
 {
   # List your module files here
   # my-module = import ./my-module.nix;
+  #desktop = ./desktop;
   desktop = import ./desktop;
   dev = import ./dev;
   # name conflict :(

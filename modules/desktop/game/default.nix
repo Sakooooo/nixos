@@ -1,5 +1,5 @@
 {
-  lutris = import ./lutris.nix;
-  steam = import ./steam.nix;
-  wine = import ./wine.nix;
+  lutris = ./lutris.nix;
+  steam = ./steam.nix;
+  wine = ./wine.nix;
 }

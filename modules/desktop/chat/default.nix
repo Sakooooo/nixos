@@ -1,3 +1,3 @@
 {
-  discord = import ./discord.nix;
+  discord = ./discord.nix;
 }

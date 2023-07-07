@@ -5,7 +5,7 @@
     inputs.home-manager.nixosModules.default
     # modules
     #i dont think this is right
-    #./modules
+    ./modules
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes"];

@@ -1,4 +1,4 @@
 {
-  zsh = import ./zsh.nix;
-  newsboat = import ./newsboat.nix;
+  zsh = ./zsh.nix;
+  newsboat = ./newsboat.nix;
 }

@@ -1,4 +1,4 @@
 {
-  mpd = import ./mpd;
-  ncmpcpp = import ./ncmpcpp;
+  mpd = ./mpd;
+  ncmpcpp = ./ncmpcpp;
 }
