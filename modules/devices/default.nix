@@ -1,5 +1,5 @@
 {
-  nvidia = ./nvidia;
-  bluetooth = ./bluetooth.nix;
-  pipewire = ./pipewire.nix;
+  nvidia = import ./nvidia;
+  bluetooth = import ./bluetooth.nix;
+  pipewire = import ./pipewire.nix;
 }

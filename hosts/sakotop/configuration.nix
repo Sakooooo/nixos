@@ -9,7 +9,7 @@
       ../../default.nix
     ];
 
-  config = {
+  modules = {
     desktop = {
       bspwm.enable = true;
       kitty.enable = true;

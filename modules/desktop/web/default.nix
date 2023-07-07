@@ -1,3 +1,3 @@
 {
-  qutebrowser = ./qutebrowser.nix;
+  qutebrowser = import ./qutebrowser.nix;
 }

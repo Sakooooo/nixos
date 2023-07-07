@@ -1,7 +1,7 @@
 {
-  editors = ./editors/default.nix;
-  cpp = ./cpp.nix;
-  javascript = ./javascript.nix;
-  python = ./python.nix;
-  rust = ./rust.nix;
+  editors = import ./editors/default.nix;
+  cpp = import ./cpp.nix;
+  javascript = import ./javascript.nix;
+  python = import ./python.nix;
+  rust = import ./rust.nix;
 }
