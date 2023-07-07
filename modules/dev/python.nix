@@ -3,10 +3,7 @@ with lib;
 let cfg = config.modules.dev.python;
 in {
   options.modules.dev.python= {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-    };
+    enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {

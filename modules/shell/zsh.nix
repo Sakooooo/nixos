@@ -3,10 +3,7 @@ with lib;
 let cfg = config.modules.shell.zsh;
 in {
   options.modules.shell.zsh = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-    };
+    enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {

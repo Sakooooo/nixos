@@ -3,10 +3,7 @@ with lib;
 let cfg = config.modules.desktop.keepassxc;
 in {
   options.modules.desktop.keepassxc = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-    };
+    enable = mkBoolOpt false;
   };
   config = mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [

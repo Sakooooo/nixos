@@ -3,10 +3,7 @@ with lib;
 let cfg = config.modules.dev.editors.nvim;
 in {
   options.modules.dev.editors.nvim = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-    };
+    enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {

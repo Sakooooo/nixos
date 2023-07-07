@@ -3,10 +3,7 @@ with lib;
 let cfg = config.modules.dev.rust;
 in {
   options.modules.dev.rust = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-    };
+    enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {

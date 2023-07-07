@@ -3,10 +3,7 @@ with lib;
 let cfg = config.modules.devices.bluetooth;
 in {
   options.modules.devices.bluetooth = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-    };
+    enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {

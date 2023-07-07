@@ -3,10 +3,7 @@ with lib;
 let cfg = config.modules.desktop.game.steam;
 in {
   options.modules.desktop.game.steam = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-    };
+    enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
