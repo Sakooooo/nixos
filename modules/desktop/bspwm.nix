@@ -10,7 +10,7 @@ in {
     services.xserver = {
       enable = true;
       windowManager.bspwm.enable = true;
-      libinput.enable = true;
+      layout = "us";
     }; 
     xdg.configFile = {
       bspwm = {
@@ -26,7 +26,6 @@ in {
         pulseSupport = true;
        })
       xorg.xbacklight
-      networkmanagerapplet
     ];
   };
 }

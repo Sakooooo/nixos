@@ -1,4 +1,0 @@
-{
-  mpd = ./mpd;
-  ncmpcpp = ./ncmpcpp;
-}

@@ -10,7 +10,6 @@ in {
     users.users.sako.packages = with pkgs; [
       cmake
       gcc
-      gnumake
     ]; 
   };
 }

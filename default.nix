@@ -32,7 +32,6 @@
   };
 
   # this shouldnt cause any issues right?
-  networking.hostName = "sakotop";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Africa/Cairo";
@@ -46,76 +45,4 @@
   # already sold soul to corporations \_O_/
   nixpkgs.config.allowUnfree = true;
   
-  services.xserver = {
-    layout = "us";
-  };
-
-  # nix makes alot of garbage so remove it :)
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
-
-  # 100% need this everyone probably knows gpg
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryFlavor = "gtk2";
-    # enableSSHSupport = true;
-  };
-
-  # i dont care what ANYONE says git is always
-  # a requirement for a nixos system so it is
-  # also bare minimum
-  programs.git = {
-    enable = true;
-    package = pkgs.gitFull;
-  };
-
-  # bare minimum
-  # :)
-  environment.systemPackages = with pkgs; [
-    neovim
-    wget
-    killall
-    alsa-utils
-    pulseaudio
-    pamixer
-    feh
-    unzip
-    gh
-    htop
-    tree
-  ];
-
-  users.users.sako = {
-    shell = pkgs.zsh;
-    isNormalUser = true;
-    # sudo and networkmanager
-    extraGroups = [ "wheel" "networkmanager" ];
-  };
-  
-  home-manager.useUserPackages = true;
-  home-manager.users.sako = { pkgs, ...}:{
-  # CHANGE THIS WHEN THE SYSTEM VERSION
-  # CHANGES TOO !!!!!! 
-  home.stateVersion = "23.05";
-  home.packages = [];
-  home.username = "sako";
-  home.homeDirectory = "/home/sako";
-  programs.bash.enable = true;
-  programs.home-manager.enable = true;
-  # git
-  xdg.configFile = {
-    git = {
-      source = ../../config/git;
-    };
-   };
-  };
-
-
-  # change this when nixos update blah blah blah
-  # something read the docs haha
-  # ok
-  system.stateVersion = "23.05"; # read the comment
 }
