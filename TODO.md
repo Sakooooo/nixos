@@ -1,3 +1,4 @@
-read this
-https://nixos.wiki/wiki/NixOS_modules
-this would help probably
+# TODO
+
+- change grub splash or theme
+- make [Nullpomino](https://github.com/nullpomino/nullpomino) package
