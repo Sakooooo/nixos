@@ -1,11 +1,11 @@
-{ config, inputs, pkgs, lib, home-manager, ...}:
+{ config, inputs, outputs, pkgs, lib, home-manager, ...}:
 {
   imports = [
     # home manager
     inputs.home-manager.nixosModules.default
     # modules
     #i dont think this is right
-    ./modules
+    outputs.nixosModules.desktop
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes"];

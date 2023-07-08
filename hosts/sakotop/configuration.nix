@@ -19,6 +19,12 @@
       layout = "us";
   };
 
+  modules = {
+    desktop = {
+      kitty.enable = true;
+    };
+  };
+
   # Nvidia Drivers
   hardware.opengl = {
 	  enable = true;
@@ -150,6 +156,7 @@
       options = "--delete-older-than 7d";
   };
 
+
   home-manager.useUserPackages = true;
   home-manager.users.sako = { pkgs, ...}: {
       # CHANGE THIS WHEN THE SYSTEM VERSION CHANGES TOO!!!
@@ -177,9 +184,6 @@
      	};
       sxhkd = {
           source = ../../config/sxhkd;
-      };
-      kitty = {
-          source = ../../config/kitty;
       };
       "qutebrowser/config.py" = {
           source = ../../config/qutebrowser/config.py;
