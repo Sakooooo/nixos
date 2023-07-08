@@ -63,7 +63,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      networkmanagerapplet
       gcc
       python3
       python310Packages.pip
@@ -72,7 +71,6 @@
       nodejs
       yarn
       newsboat
-      ncmpcpp
     ];
   };
 
