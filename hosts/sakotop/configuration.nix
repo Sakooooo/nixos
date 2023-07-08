@@ -27,6 +27,11 @@
       pipewire.enable = true;
       bluetooth.enable = true;
     };
+    dev = {
+      editors = {
+        nvim.enable = true;
+      };
+    };
     shell = {
       nix = {
         # makes nix search nixpkgs <example>
