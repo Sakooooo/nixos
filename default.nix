@@ -12,6 +12,7 @@
     outputs.nixosModules.shell
     outputs.nixosModules.hardware
     outputs.nixosModules.dev
+    outputs.nixosModules.media
   ];
   
   # flakes
