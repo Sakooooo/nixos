@@ -15,8 +15,11 @@
     desktop = {
       kitty.enable = true;
       bspwm.enable = true;
-      apps = {
+      browsers = {
         qutebrowser.enable = true;
+      };
+      apps = {
+        keepassxc.enable = true;
       };
     };
     hardware = {
@@ -37,22 +40,13 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-
   # TODO(sako):: put this in different files
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sako= {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      firefox
-      keepassxc
       tree
-      dmenu
-      #rofi
-      #kitty
-      #polybar
       steam
       winetricks
       wineWowPackages.staging
@@ -96,70 +90,16 @@
 
   home-manager.useUserPackages = true;
   home-manager.users.sako = { pkgs, ...}: {
-      # CHANGE THIS WHEN THE SYSTEM VERSION CHANGES TOO!!!
-      home.stateVersion = "23.05";
-      home.packages = [];
-      home.username = "sako";
-      home.homeDirectory = "/home/sako";
-      programs.bash.enable = true;
-      programs.home-manager.enable = true;
-      programs.git = {
-      enable = true;
-      package = pkgs.gitFull;
-      };
-       xdg.configFile = {
-       git = {
-          source = ../../config/git;
-       };
-
+  xdg.configFile = {
 	    nvim = {
 	        source = ../../config/nvim;
 		      recursive = true;
 	    };
-     	bspwm = {
-        	source = ../../config/bspwm;
-     	};
-      sxhkd = {
-          source = ../../config/sxhkd;
-      };
       ncmpcpp = {
           source = ../../config/ncmpcpp;
           recursive = true;
       };
     };
-  };
-
-  # git crediental manager is in gitFull package
-  # config options happen to be here too
-  #programs.git = {
-  #    enable = true;
-  #    package = pkgs.gitFull;
-  #    userName = "Sakooooo";
-  #    userEmail = "78461130+Sakooooo@users.noreply.github.com";
-  #};
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    killall
-    alsa-utils
-    pulseaudio
-    pamixer
-    feh
-    unzip
-    gh
-    htop
-  ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryFlavor = "gtk2";
-  #   enableSSHSupport = true;
   };
 
   # List services that you want to enable:
@@ -172,19 +112,6 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It's perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
 
 }
 

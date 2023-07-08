@@ -62,5 +62,55 @@
   };
   # already sold soul to corporations \_O_/
   nixpkgs.config.allowUnfree = true;
-  
+
+  home-manager.useUserPackages = true;
+  home-manager.users.sako = { pkgs, ...}: {
+      # CHANGE THIS WHEN THE SYSTEM VERSION CHANGES TOO!!!
+      home.stateVersion = "23.05";
+      home.packages = [];
+      home.username = "sako";
+      home.homeDirectory = "/home/sako";
+      programs.bash.enable = true;
+      programs.home-manager.enable = true;
+      xdg.configFile.git = {
+        source = ./config/git;
+      };
+  };
+  # bare minimum
+  environment.systemPackages = with pkgs; [
+    neovim #editor 
+    wget #double u get
+    killall # die processes
+    alsa-utils # unsupported application
+    pulseaudio # unsupported application
+    pamixer # unsupported application
+    feh # im different
+    unzip # zip file
+    gh # get hub
+    htop # h top
+    tree # trees
+  ]; 
+  # you phisiclally cannot live without this
+  # litearlly!  ! ! ! ! ! 
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "gtk2";
+    # enableSSHSupport = true;
+  };
+
+  programs.git = {
+      enable = true;
+      package = pkgs.gitFull;
+  };
+
+
+  # something nixos release
+  # something use ful in for mat ion
+  # blah blah blah
+  # nixos packages type shit
+  # change this on every update idiot
+  # dont name it to string beans or some shit
+  # you idiot
+  system.stateVersion = "23.05"; 
+  # read comment you read the comment?
 }
