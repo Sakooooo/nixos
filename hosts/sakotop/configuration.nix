@@ -30,6 +30,7 @@
         # ALOT faster
         search.enable = true;
       };
+      zsh.enable = true;
     };
   };
 
@@ -42,7 +43,6 @@
   # TODO(sako):: put this in different files
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sako= {
-    shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
@@ -128,17 +128,6 @@
       };
     };
   };
-
-  programs.zsh = {
-    enable = true;
-    # TODO(sako):: make my own zsh config
-    promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-  };
-
-  fonts.fonts = with pkgs;[
-    jetbrains-mono
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  ];
 
   # git crediental manager is in gitFull package
   # config options happen to be here too
