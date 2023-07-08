@@ -21,6 +21,14 @@
       apps = {
         keepassxc.enable = true;
       };
+      chat = {
+        discord.enable = true;
+      };
+      game = {
+        wine.enable = true;
+        lutris.enable = true;
+        steam.enable = true;
+      };
     };
     hardware = {
       nvidia.enable = true;
@@ -51,12 +59,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      tree
-      steam
-      winetricks
-      wineWowPackages.staging
-      lutris
-      discord
       networkmanagerapplet
       gcc
       python3
