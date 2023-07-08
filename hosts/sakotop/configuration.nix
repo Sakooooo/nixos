@@ -48,6 +48,10 @@
       };
       zsh.enable = true;
     };
+    media = {
+      mpd.enable = true;
+      ncmpcpp.enable = true;
+    };
   };
 
   # Enable CUPS to print documents.
@@ -72,40 +76,12 @@
     ];
   };
 
-# mpd
-  services.mpd = {
-    enable = true;
-    # pipewire fix
-    user = "sako";
-    musicDirectory = "/home/sako/music";
-    extraConfig = builtins.readFile ../../config/mpd/mpd.conf;
-    startWhenNeeded = true;
-  };
-
-  # systemd fix pipewire
-  systemd.services.mpd.environment = {
-    XDG_RUNTIME_DIR = "/run/user/1000";
-  };
-
   # garbage collection
   nix.gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
   };
-
-
-  home-manager.useUserPackages = true;
-  home-manager.users.sako = { pkgs, ...}: {
-  xdg.configFile = {
-      ncmpcpp = {
-          source = ../../config/ncmpcpp;
-          recursive = true;
-      };
-    };
-  };
-
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
