@@ -17,6 +17,7 @@ in
     users.users.sako.packages = with pkgs; [
       polybar
       rofi
+      networkmanagerapplet
     ];
 
     home-manager.users.sako = { pkgs , ...}: {
