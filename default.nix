@@ -4,11 +4,24 @@
     # home manager
     inputs.home-manager.nixosModules.default
     # modules
-    #i dont think this is right
+    # import for each folder
+    # modules/desktop IMPORT
+    # modules/desktop/example DO NOT IMPORT, 
+    # add entry to module's default.nix
     outputs.nixosModules.desktop
+    outputs.nixosModules.shell
   ];
-
+  
+  # flakes
   nix.settings.experimental-features = [ "nix-command" "flakes"];
+
+  # import the overlays
+  nixpkgs = {
+     overlays = [
+       outputs.overlays.additions
+       outputs.overlays.modifications
+     ];
+  }; 
 
   # grub (mount efi partition to /boot/efi)
   # why /boot/efi? instead of /efi?

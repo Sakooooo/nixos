@@ -12,16 +12,17 @@
   networking.hostName = "sakotop"; # Define your hostname.
 
   # Enable the X11 windowing system.
-  services.xserver = {
-      enable = true;
-      # bspwm
-      windowManager.bspwm.enable = true;
-      layout = "us";
-  };
+  #services.xserver = {
+  #    enable = true;
+  #    # bspwm
+  #    windowManager.bspwm.enable = true;
+  #    layout = "us";
+  #};
 
   modules = {
     desktop = {
       kitty.enable = true;
+      bspwm.enable = true;
     };
   };
 
@@ -107,9 +108,9 @@
       keepassxc
       tree
       dmenu
-      rofi
-      kitty
-      polybar
+      #rofi
+      #kitty
+      #polybar
       steam
       winetricks
       wineWowPackages.staging
@@ -142,12 +143,6 @@
   systemd.services.mpd.environment = {
     XDG_RUNTIME_DIR = "/run/user/1000";
   };
-
-  # TODO(sako):: make overlays in different folder
-  nixpkgs.overlays = [
-    (final: prev: { qutebrowser = prev.qutebrowser.override { enableWideVine = true; }; })
-    (final: prev: { polybar = prev.polybar.override { pulseSupport = true;}; })
-  ];
 
   # garbage collection
   nix.gc = {
