@@ -10,6 +10,7 @@
     # add entry to module's default.nix
     outputs.nixosModules.desktop
     outputs.nixosModules.shell
+    outputs.nixosModules.hardware
   ];
   
   # flakes
