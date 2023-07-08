@@ -1,4 +1,7 @@
-{ options, config, lib, pkgs, ...}:
+{ inputs, options, config, lib, pkgs, ...}:
+# this makes 
+# nix search nixpkgs <package>
+# ALOT faster
 with lib;
 let cfg = config.modules.shell.nix.search;
 in
@@ -10,8 +13,7 @@ in
   config = mkIf cfg.enable { 
     nix = {
      registry = {
-      nixpkgs.flake = nixpkgs;
-      nixos-hardware.flake = nixos-hw;
+      nixpkgs.flake = inputs.nixpkgs;
      };
    };
   };

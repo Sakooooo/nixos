@@ -24,6 +24,13 @@
       kitty.enable = true;
       bspwm.enable = true;
     };
+    shell = {
+      nix = {
+        # makes nix search nixpkgs <example>
+        # ALOT faster
+        search.enable = true;
+      };
+    };
   };
 
   # Nvidia Drivers
