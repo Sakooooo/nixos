@@ -11,14 +11,6 @@
   # required for hostname specific configurations
   networking.hostName = "sakotop"; # Define your hostname.
 
-  # Enable the X11 windowing system.
-  #services.xserver = {
-  #    enable = true;
-  #    # bspwm
-  #    windowManager.bspwm.enable = true;
-  #    layout = "us";
-  #};
-
   modules = {
     desktop = {
       kitty.enable = true;
@@ -26,6 +18,7 @@
     };
     hardware = {
       nvidia.enable = true;
+      pipewire.enable = true;
     };
     shell = {
       nix = {
@@ -51,18 +44,6 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  # for some reason this needs to be disabled
-  sound.enable = false;
-  # dont like pulseaudio
-  #hardware.pulseaudio.enable = true;
-  security.rtkit.enable = true;
-  services.pipewire = {
-	enable = true;
-	alsa.enable = true;
-	alsa.support32Bit = true;
-	pulse.enable = true;
-  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
