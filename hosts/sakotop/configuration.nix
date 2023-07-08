@@ -15,10 +15,14 @@
     desktop = {
       kitty.enable = true;
       bspwm.enable = true;
+      apps = {
+        qutebrowser.enable = true;
+      };
     };
     hardware = {
       nvidia.enable = true;
       pipewire.enable = true;
+      bluetooth.enable = true;
     };
     shell = {
       nix = {
@@ -28,19 +32,6 @@
       };
     };
   };
-
-  # Bluetooth
-  hardware.bluetooth = {
-    enable = true;
-    settings = {
-      General = {
-        ControllerMode = "bredr";
-      };
-    };
-    # i barely use bluetooth so keep it on demand
-    powerOnBoot = false;
-  };
-  services.blueman.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -56,13 +47,6 @@
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       firefox
-      # qutebrowser
-      qutebrowser-qt6
-      # qute-keepassxc
-      python310Packages.pynacl
-      # adblock
-      python310Packages.adblock
-      # end qutebrowser
       keepassxc
       tree
       dmenu

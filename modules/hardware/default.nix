@@ -2,5 +2,6 @@
   imports = [
     ./nvidia
     ./pipewire
+    ./bluetooth
   ];
 }

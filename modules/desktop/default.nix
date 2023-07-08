@@ -2,5 +2,6 @@
   imports = [
     ./kitty
     ./bspwm
+    ./apps
   ];
 }
