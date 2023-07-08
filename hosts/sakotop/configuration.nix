@@ -122,13 +122,6 @@
       sxhkd = {
           source = ../../config/sxhkd;
       };
-      "qutebrowser/config.py" = {
-          source = ../../config/qutebrowser/config.py;
-      };
-      "qutebrowser/greasemonkey" = {
-          source = ../../config/qutebrowser/greasemonkey;
-          recursive = true;
-      };
       ncmpcpp = {
           source = ../../config/ncmpcpp;
           recursive = true;

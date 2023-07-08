@@ -18,10 +18,10 @@ in
     home-manager.users.sako = { pkgs , ...}: {
     xdg.configFile = {
       "qutebrowser/config.py" = {
-        source = ../../../config/qutebrowser/config.py;
+        source = ../../../../config/qutebrowser/config.py;
         };
       "qutebrowser/greasemonkey" = {
-        source = ../../../config/qutebrowser/greasemonkey;
+        source = ../../../../config/qutebrowser/greasemonkey;
         recursive = true;
       };
       }; 
