@@ -91,10 +91,6 @@
   home-manager.useUserPackages = true;
   home-manager.users.sako = { pkgs, ...}: {
   xdg.configFile = {
-	    nvim = {
-	        source = ../../config/nvim;
-		      recursive = true;
-	    };
       ncmpcpp = {
           source = ../../config/ncmpcpp;
           recursive = true;
