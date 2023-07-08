@@ -1,8 +1,8 @@
-{ config, pkgs, lib, home-manager, ...}:
+{ config, inputs, pkgs, lib, home-manager, ...}:
 {
   imports = [
     # home manager
-    home-manager.nixosModules.default
+    inputs.home-manager.nixosModules.default
     # modules
     #i dont think this is right
     ./modules
@@ -31,12 +31,16 @@
     };
   };
 
+  # TODO(sako):: figure out plymouth and why my system is too fast
+  #boot.plymouth.enable = true;
+
+
   # this shouldnt cause any issues right?
   networking.networkmanager.enable = true;
 
   time.timeZone = "Africa/Cairo";
 
-  il8n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
     # keyMap = "us";

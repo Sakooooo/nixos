@@ -6,53 +6,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.home-manager
-      # TODO(sako):: make this better
+      ../../default.nix
     ];
-
-  # grub (mount efi partition to /boot/efi)
-  # why /boot/efi? instead of /efi?
-  # 1. when dualbooting, windows makes the efi partition 100mb instead of 512mb+ (we need this for generations
-  # and intel microcode)
-  # 2. nixos does not like /efi :(
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
-    };
-    grub = {
-      devices = [ "nodev" ];
-      efiSupport = true;
-      enable = true;
-      useOSProber = true;
-    };
-  };
-
-  # TODO(sako):: figure out plymouth and why my system is too fast
-  #boot.plymouth.enable = true;
-
-  # for later when i setup flakes 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  # required for hostname specific configurations
   networking.hostName = "sakotop"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
-  # Set your time zone.
-  time.timeZone = "Africa/Cairo";
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-  #   keyMap = "us";
-    useXkbConfig = true; # use xkbOptions in tty.
-  };
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -62,15 +19,11 @@
       layout = "us";
   };
 
-  # Configure keymap in X11
-  #services.xserver.layout = "us";
-  #services.xserver.xkbOptions = "eurosign:e,caps:escape";
-
   # Nvidia Drivers
   hardware.opengl = {
-	enable = true;
-	driSupport = true;
-	driSupport32Bit = true;
+	  enable = true;
+	  driSupport = true;
+	  driSupport32Bit = true;
   };
 
     # tell xserver i want this driver
@@ -98,20 +51,7 @@
       nvidiaBusId = "PCI:1:0:0";
     };
   };
-
-  # packages that are unfree because they want to or need to  
-  #nixpkgs.config.allowUnfreePredicate = pkg:
-  #  builtins.elem (lib.getName pkg) [
-  #    "steam"
-  #    "steam-original"
-  #    "discord"
-  #    "widevine-cdm"
-  #  ];
-
-  # we already sold our souls to corporations why
-  # bother at this point
-  nixpkgs.config.allowUnfree = true;
-
+  
   # Bluetooth
   hardware.bluetooth = {
     enable = true;
