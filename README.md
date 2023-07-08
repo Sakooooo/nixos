@@ -5,7 +5,7 @@
 
 ## Templates/Resources used
 
-[Misterio77/nix-starter-configs2](https://github.com/Misterio77/nix-starter-configs)<br></br>
-[pull request for a bug](https://github.com/Misterio77/nix-starter-configs/pull/34/commits/2a5f3ca3dde606b83ea30b5507347bf989819301)
-[doom emacs guy -> hlissner/dotfiles](https://github.com/hlissner/dotfiles)
+[Misterio77/nix-starter-configs2](https://github.com/Misterio77/nix-starter-configs)
+[pull request for a bug](https://github.com/Misterio77/nix-starter-configs/pull/34/commits/2a5f3ca3dde606b83ea30b5507347bf989819301)<br></br>
+[doom emacs guy -> hlissner/dotfiles](https://github.com/hlissner/dotfiles)<br></br>
 [nixos.wiki (unofficial)](https://nixos.wiki/)
