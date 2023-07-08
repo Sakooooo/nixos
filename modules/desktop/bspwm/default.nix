@@ -12,6 +12,7 @@ in
     services.xserver = {
       enable = true;
       windowManager.bspwm.enable = true;
+      libinput.enable = true;
     };  
     users.users.sako.packages = with pkgs; [
       polybar

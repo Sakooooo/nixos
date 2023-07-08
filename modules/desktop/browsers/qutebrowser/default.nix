@@ -1,10 +1,10 @@
 { options, config, lib, pkgs, ...}:
 with lib;
 let
-  cfg = config.modules.desktop.apps.qutebrowser;
+  cfg = config.modules.desktop.browsers.qutebrowser;
 in
 {
-  options.modules.desktop.apps.qutebrowser = {
+  options.modules.desktop.browsers.qutebrowser = {
     enable = mkEnableOption false;
   };
 
