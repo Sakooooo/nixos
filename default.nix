@@ -80,7 +80,7 @@
   };
   # bare minimum
   environment.systemPackages = with pkgs; [
-    neovim #editor 
+    vim # backup
     wget #double u get
     killall # die processes
     alsa-utils # unsupported application

@@ -13,6 +13,14 @@ in
       SDL2
       SDL2_image
       xorg.libX11
+      xorg.libX11.dev
+      xorg.libXcursor
+      xorg.libXcursor.dev
+      xorg.libXrandr
+      xorg.libXrandr.dev
+      xorg.libXi
+      xorg.libXi.dev
+      zlib
     ];
   };
 }

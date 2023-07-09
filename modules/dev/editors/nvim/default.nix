@@ -10,8 +10,12 @@ in
 
   config = mkIf cfg.enable {
     # because yes 
-    environment.systemPackages = with pkgs; [
+    users.users.sako.packages = with pkgs; [
       neovim
+      # lsp
+      clang-tools
+      # lint
+      cpplint
     ];
     home-manager.users.sako.xdg.configFile.nvim = {
       source = ../../../../config/nvim;
