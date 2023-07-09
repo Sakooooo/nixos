@@ -12,5 +12,9 @@ in
     users.users.sako.packages = with pkgs; [
       davinci-resolve
     ];
+
+    nixpkgs.config.permittedInsecurePackages = [
+      "python-2.7.18.6"
+    ];
   };
 }
