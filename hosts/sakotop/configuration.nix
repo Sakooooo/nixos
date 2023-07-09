@@ -8,6 +8,7 @@
       ./hardware-configuration.nix
       ../../default.nix
     ];
+
   # required for hostname specific configurations
   networking.hostName = "sakotop"; # Define your hostname.
 
@@ -39,6 +40,10 @@
       editors = {
         nvim.enable = true;
       };
+      cc.enable = true;
+      javascript.enable = true;
+      python.enable = true;
+      rust.enable = true;
     };
     shell = {
       nix = {
@@ -63,13 +68,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      gcc
-      python3
-      python310Packages.pip
-      rustup
-      cargo
-      nodejs
-      yarn
       newsboat
     ];
   };
