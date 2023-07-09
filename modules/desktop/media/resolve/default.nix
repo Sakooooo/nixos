@@ -1,5 +1,6 @@
 { outputs, options, config, lib, pkgs, ...}:
 with lib;
+# lmao this is broken
 let
   cfg = config.modules.desktop.media.resolve;
 in

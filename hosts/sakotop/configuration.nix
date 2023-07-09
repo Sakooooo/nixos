@@ -35,7 +35,8 @@
       };
       media = {
         gimp.enable = true;
-        resolve.enable = true;
+        # this is broken
+        #resolve.enable = true;
       };
     };
     hardware = {
