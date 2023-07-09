@@ -33,6 +33,10 @@
         lutris.enable = true;
         steam.enable = true;
       };
+      media = {
+        gimp.enable = true;
+        resolve.enable = true;
+      };
     };
     hardware = {
       nvidia.enable = true;

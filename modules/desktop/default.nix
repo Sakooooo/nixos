@@ -6,5 +6,6 @@
     ./apps
     ./game
     ./chat
+    ./media
   ];
 }
