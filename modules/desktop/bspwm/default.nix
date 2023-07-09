@@ -12,7 +12,19 @@ in
     services.xserver = {
       enable = true;
       windowManager.bspwm.enable = true;
-      libinput.enable = true;
+      libinput = {
+        enable = true;
+
+        # no mouse accel
+        mouse = {
+          accelProfile = "flat";
+        };
+
+        # no touchpad accel
+        touchpad = {
+          accelProfile = "flat";
+        };
+      };
     };  
     users.users.sako.packages = with pkgs; [
       polybar

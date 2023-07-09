@@ -12,6 +12,7 @@ in
     users.users.sako.packages = with pkgs; [
       SDL2
       SDL2_image
+      xorg.libX11
     ];
   };
 }
