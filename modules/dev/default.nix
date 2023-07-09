@@ -5,5 +5,6 @@
     ./javascript.nix
     ./python.nix
     ./rust.nix
+    ./projects
   ];
 }

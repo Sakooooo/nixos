@@ -18,6 +18,8 @@
       bspwm.enable = true;
       browsers = {
         qutebrowser.enable = true;
+        # for those quick thinsg where i dont know how to do it on qutebrowser
+        firefox.enable = true;
       };
       apps = {
         keepassxc.enable = true;
@@ -44,6 +46,9 @@
       javascript.enable = true;
       python.enable = true;
       rust.enable = true;
+      projects = {
+        sakoEngine.enable = true;
+      };
     };
     shell = {
       nix = {
