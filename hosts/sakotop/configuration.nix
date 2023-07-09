@@ -23,6 +23,7 @@
       };
       apps = {
         keepassxc.enable = true;
+        nicotineplus.enable = true;
       };
       chat = {
         discord.enable = true;
