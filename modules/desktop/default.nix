@@ -2,6 +2,7 @@
   imports = [
     ./kitty
     ./bspwm
+    ./kde
     ./browsers
     ./apps
     ./game

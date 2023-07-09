@@ -16,6 +16,7 @@
     desktop = {
       kitty.enable = true;
       bspwm.enable = true;
+      kde.enable = true;
       browsers = {
         qutebrowser.enable = true;
         # for those quick thinsg where i dont know how to do it on qutebrowser
