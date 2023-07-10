@@ -15,6 +15,7 @@ in
       displayManager.lightdm = {
         enable = true;
         greeters.slick.enable = true;
+        background = ../../../config/bspwm/background.png;
       };
       libinput = {
         enable = true;
