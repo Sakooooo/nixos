@@ -14,7 +14,7 @@ in
       windowManager.bspwm.enable = true;
       displayManager.lightdm = {
         enable = true;
-        slick.enable = true;
+        greeters.slick.enable = true;
       };
       libinput = {
         enable = true;
