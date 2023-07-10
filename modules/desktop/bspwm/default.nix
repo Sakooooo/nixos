@@ -13,10 +13,10 @@ in
       enable = true;
       windowManager = {
         bspwm.enable = true;
-        defaultSession = "bspwm"; 
       };
       displayManager.lightdm = {
         enable = true;
+        defaultSession = "bspwm"; 
         greeters.mini = {
           enable = true;
           user = "sako";
