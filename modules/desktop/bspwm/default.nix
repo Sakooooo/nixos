@@ -15,7 +15,7 @@ in
         bspwm.enable = true;
       };
       displayManager = {
-       defaultSession = "bspwm"; 
+       defaultSession = "none+bspwm"; 
        lightdm = {
         enable = true;
         greeters.mini = {
