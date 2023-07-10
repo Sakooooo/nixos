@@ -47,12 +47,6 @@
     };
   };
 
-  # TODO(sako):: figure out plymouth and why my system is too fast
-  boot.plymouth = {
-    enable = true;
-  };
-
-
   # this shouldnt cause any issues right?
   networking.networkmanager.enable = true;
 
