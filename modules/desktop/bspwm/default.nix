@@ -14,7 +14,10 @@ in
       windowManager.bspwm.enable = true;
       displayManager.lightdm = {
         enable = true;
-        greeters.slick.enable = true;
+        greeters.slick = {
+          enable = true;
+          draw-user-backgrounds = true;
+        };
         background = ../../../config/bspwm/background.png;
       };
       libinput = {
