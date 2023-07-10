@@ -13,7 +13,7 @@ in
       enable = true;
       windowManager = {
         bspwm.enable = true;
-        default = "none+bspwm"; 
+        defaultSession = "bspwm"; 
       };
       displayManager.lightdm = {
         enable = true;
