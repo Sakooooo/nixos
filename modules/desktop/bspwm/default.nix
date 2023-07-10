@@ -11,14 +11,22 @@ in
   config = mkIf cfg.enable {
     services.xserver = {
       enable = true;
-      windowManager.bspwm.enable = true;
+      windowManager = {
+        bspwm.enable = true;
+        default = "bspwm"; 
+      };
       displayManager.lightdm = {
         enable = true;
-        greeters.slick = {
+        greeters.mini = {
           enable = true;
-          draw-user-backgrounds = true;
+          user = "sako";
+          extraConfig = ''
+            [greeter]
+            show-password-label = true
+            [greeter-theme]
+            background-image = "/home/sako/background.png"
+          '';
         };
-        background = ../../../config/bspwm/background.png;
       };
       libinput = {
         enable = true;
