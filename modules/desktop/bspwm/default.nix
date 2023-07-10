@@ -14,9 +14,10 @@ in
       windowManager = {
         bspwm.enable = true;
       };
-      displayManager.lightdm = {
+      displayManager = {
+       defaultSession = "bspwm"; 
+       lightdm = {
         enable = true;
-        defaultSession = "bspwm"; 
         greeters.mini = {
           enable = true;
           user = "sako";
@@ -27,6 +28,7 @@ in
             background-image = "/home/sako/background.png"
           '';
         };
+       };
       };
       libinput = {
         enable = true;
