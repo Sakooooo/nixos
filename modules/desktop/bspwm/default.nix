@@ -25,6 +25,10 @@ in
           extraConfig = ''
             [greeter]
             show-password-label = true 
+            password-label-text = whats the magic word?
+            [greeter-theme]
+            password-border-color = "#08090e"
+            password-border-width = 1px
           '';
         };
        };
