@@ -14,11 +14,8 @@ in
       gnumake
       cmake
       clang
-      # lsp
-      clang-tools
-      # lint
-      cpplint
       gdb
+      pkg-config
     ];
   };
 }

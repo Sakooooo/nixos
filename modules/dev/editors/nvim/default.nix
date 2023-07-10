@@ -14,6 +14,7 @@ in
       neovim
       # lsp
       clang-tools
+      cmake-language-server
       # lint
       cpplint
     ];
