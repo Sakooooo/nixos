@@ -19,12 +19,13 @@ in
        lightdm = {
         enable = true;
         background = ../../../config/bspwm/background.png;
-        greeters.tiny = {
+        greeters.mini = {
           enable = true;
-          label = {
-            user = "whatever you named yourself";
-            pass = "whats the magic word?";
-          };
+          user = "sako";
+          extraConfig = ''
+            [greeter]
+            show-password-label = true 
+          '';
         };
        };
       };
