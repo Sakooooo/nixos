@@ -18,15 +18,13 @@ in
        defaultSession = "none+bspwm"; 
        lightdm = {
         enable = true;
-        greeters.mini = {
+        background = ../../../config/bspwm/background.png;
+        greeters.tiny = {
           enable = true;
-          user = "sako";
-          extraConfig = ''
-            [greeter]
-            show-password-label = true
-            [greeter-theme]
-            background-image = "/home/sako/background.png"
-          '';
+          label = {
+            user = "whatever you named yourself";
+            pass = "whats the magic word?";
+          };
         };
        };
       };
