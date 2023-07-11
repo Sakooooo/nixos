@@ -11,6 +11,8 @@ in
   config = mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
       kdenlive 
+      mediainfo
+      glaxnimate
     ];
   };
 }
