@@ -16,6 +16,9 @@
     qutebrowser = prev.qutebrowser.override {
       enableWideVine = true;
     };
+    vimix-gtk-themes = prev.vimix-gtk-themes.override {
+      themeVariants = "ruby";
+    };
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
