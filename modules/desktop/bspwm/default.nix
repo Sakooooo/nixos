@@ -54,16 +54,12 @@ in
       networkmanagerapplet
       # brightness
       brightnessctl
+      # gee tee k
+      vimix-gtk-themes
+      lxappearance
     ];
 
     home-manager.users.sako = { pkgs , ...}: {
-      #gtk = {
-      #  enable = true;
-      #  theme = {
-      #    name = "Vimix-dark";
-      #    package = pkgs.vimix-gtk-themes;
-      #  };
-      #};
       xdg.configFile = {
         bspwm = {
           source = ../../../config/bspwm;
