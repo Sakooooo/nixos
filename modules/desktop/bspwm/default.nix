@@ -72,6 +72,10 @@ in
         sxhkd = {
           source = ../../../config/sxhkd;
         };
+        polybar = {
+          source = ../../../config/polybar;
+          recursive = true;
+        };
      }; 
     };
   };
