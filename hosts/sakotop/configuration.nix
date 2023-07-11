@@ -24,7 +24,6 @@
       apps = {
         keepassxc.enable = true;
         nicotineplus.enable = true;
-        kdeconnect.enable = true;
       };
       chat = {
         discord.enable = true;
