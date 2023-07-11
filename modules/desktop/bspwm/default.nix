@@ -56,6 +56,7 @@ in
       brightnessctl
       # gee tee k
       vimix-gtk-themes
+      vimix-icon-theme
       lxappearance
     ];
 
