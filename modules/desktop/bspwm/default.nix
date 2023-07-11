@@ -61,6 +61,10 @@ in
     ];
 
     home-manager.users.sako = { pkgs , ...}: {
+      gtk = {
+        theme.name = "vmix-dark-ruby";
+        iconTheme.name = "Vimix Ruby Dark";
+      };
       xdg.configFile = {
         bspwm = {
           source = ../../../config/bspwm;

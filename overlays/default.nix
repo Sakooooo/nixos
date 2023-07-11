@@ -17,7 +17,7 @@
       enableWideVine = true;
     };
     vimix-gtk-themes = prev.vimix-gtk-themes.override {
-      themeVariants = "ruby";
+      themeVariants = [ "ruby" ];
     };
   };
 
