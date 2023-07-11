@@ -4,5 +4,6 @@
     ./gimp
     ./blender
     ./kdenlive
+    ./lmms
   ];
 }
