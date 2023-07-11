@@ -50,7 +50,10 @@ in
     users.users.sako.packages = with pkgs; [
       polybar
       rofi
+      # network
       networkmanagerapplet
+      # brightness
+      brightnessctl
     ];
 
     home-manager.users.sako = { pkgs , ...}: {
