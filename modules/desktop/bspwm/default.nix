@@ -58,6 +58,8 @@ in
       vimix-gtk-themes
       vimix-icon-theme
       lxappearance
+      # screen shot (s)
+      flameshot
     ];
 
     home-manager.users.sako = { pkgs , ...}: {
