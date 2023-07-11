@@ -65,18 +65,16 @@ in
         theme.name = "vmix-dark-ruby";
         iconTheme.name = "Vimix Ruby Dark";
       };
-      home.file = {
-        ".config/polybar" = {
-          source = ../../../config/polybar;
-          recursive = true;
-        };
-      };
       xdg.configFile = {
         bspwm = {
           source = ../../../config/bspwm;
         };
         sxhkd = {
           source = ../../../config/sxhkd;
+        };
+        polybar = {
+          source = ../../../config/polybar;
+          recursive = true;
         };
      }; 
     };
