@@ -9,8 +9,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    users.users.sako.packages = with pkgs; [
-      kdeconnect
-    ];
+    #users.users.sako.packages = with pkgs; [
+    #  kdeconnect
+    #];
+    programs.kdeconnect.enable = true;
   };
 }
