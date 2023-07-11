@@ -57,13 +57,20 @@ in
     ];
 
     home-manager.users.sako = { pkgs , ...}: {
-    xdg.configFile = {
-      bspwm = {
-        source = ../../../config/bspwm;
+      gtk = {
+        enable = true;
+        theme = {
+          name = "Vimix-dark";
+          package = pkgs.vimix-gtk-themes;
         };
-      sxhkd = {
-        source = ../../../config/sxhkd;
       };
+      xdg.configFile = {
+        bspwm = {
+          source = ../../../config/bspwm;
+        };
+        sxhkd = {
+          source = ../../../config/sxhkd;
+        };
      }; 
     };
   };
