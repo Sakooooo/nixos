@@ -37,6 +37,8 @@
         gimp.enable = true;
         # this is broken
         #resolve.enable = true;
+        blender.enable = true;
+        kdenlive.enable = true;
       };
     };
     hardware = {
