@@ -15,7 +15,7 @@ in
     home-manager.users.sako = { pkgs, ...}: {
       xdg.configFile = {
         polybar = {
-          source = ../../../config/polybar;
+          source = ../../../../config/polybar;
           recursive = true;
         };
       };

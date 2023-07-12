@@ -15,7 +15,7 @@ in
     home-manager.users.sako = { pkgs, ...}: {
       xdg.configFile = {
         lemonbar = {
-          source = ../../../config/lemonbar;
+          source = ../../../../config/lemonbar;
           recursive = true;
         };
       };
