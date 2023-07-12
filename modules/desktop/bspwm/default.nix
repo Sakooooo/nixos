@@ -4,6 +4,10 @@ let
   cfg = config.modules.desktop.bspwm;
 in
 {
+  imports = [
+    ./polybar
+    ./lemonbar
+  ];
   options.modules.desktop.bspwm = {
     enable = mkEnableOption false;
   };
@@ -48,7 +52,6 @@ in
       };
     };  
     users.users.sako.packages = with pkgs; [
-      polybar
       rofi
       # network
       networkmanagerapplet
@@ -73,10 +76,6 @@ in
         };
         sxhkd = {
           source = ../../../config/sxhkd;
-        };
-        polybar = {
-          source = ../../../config/polybar;
-          recursive = true;
         };
      }; 
     };

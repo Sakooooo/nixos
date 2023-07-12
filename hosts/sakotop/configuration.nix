@@ -15,7 +15,10 @@
   modules = {
     desktop = {
       kitty.enable = true;
-      bspwm.enable = true;
+      bspwm = {
+        enable = true;
+        polybar.enable = true;
+      };
       dunst.enable = true;
       browsers = {
         qutebrowser.enable = true;
