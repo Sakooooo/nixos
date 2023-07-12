@@ -8,5 +8,6 @@
     ./game
     ./chat
     ./media
+    ./dunst
   ];
 }
