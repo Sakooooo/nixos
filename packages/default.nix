@@ -3,4 +3,5 @@
 
 { pkgs ? (import ../nixpkgs.nix) { } }: {
   # example = pkgs.callPackage ./example { };
+  davinci-resolve = pkgs.callPackage ./davinci-resolve.nix {};
 }
