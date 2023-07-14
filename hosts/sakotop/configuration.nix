@@ -90,6 +90,8 @@
     ];
   };
 
+    services.xserver.videoDrivers = [ "intel" "nvidia" ];
+
   # garbage collection
   nix.gc = {
       automatic = true;
