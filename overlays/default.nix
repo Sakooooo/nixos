@@ -19,6 +19,10 @@
     vimix-gtk-themes = prev.vimix-gtk-themes.override {
       themeVariants = [ "ruby" ];
     };
+    catppuccin-cursors = prev.catppuccin-cursors.override {
+      palette = [ "Mocha" ];
+      color = [ "Dark" ];
+    };
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will

@@ -61,6 +61,7 @@ in
       vimix-gtk-themes
       vimix-icon-theme
       lxappearance
+      catppuccin-cursors
       # screen shot (s)
       flameshot
     ];
