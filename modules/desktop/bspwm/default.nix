@@ -70,12 +70,6 @@ in
       gtk = {
         theme.name = "vmix-dark-ruby";
         iconTheme.name = "Vimix Ruby Dark";
-        pointerCursor = {
-          name = "Catppuccin-Mocha-Dark-Cursors";
-
-          size = 16;
-        };
-
       };
       xdg.configFile = {
         bspwm = {
