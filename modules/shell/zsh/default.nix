@@ -13,14 +13,12 @@ in
     
     programs.zsh = {
       enable = true;
-    #  enableCompletion = true;
-    #  promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      enableCompletion = true;
+      promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     };
 
     home-manager.users.sako = { pkgs, ...}: {
     programs.zsh = {
-      enable = true;
-      enableCompletion = true;
       plugins = [
       {
         name = "zsh-nix-shell";
@@ -32,18 +30,7 @@ in
           sha256 = "oQpYKBt0gmOSBgay2HgbXiDoZo5FoUKwyHSlUrOAP5E=";
         };
       }
-      {
-        file = "powerlevel10k.zsh-theme";
-        name = "powerlevel10k";
-        src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k";
-      }
-      {
-        file = "p10k.zsh";
-        name = "powerlevel10k-config";
-        src = ../../../config/zsh/p10k.zsh; # Some directory containing your p10k.zsh file
-      }
      ];
-     #initExtra = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     };
    };
 
