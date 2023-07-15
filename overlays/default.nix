@@ -20,8 +20,10 @@
       themeVariants = [ "ruby" ];
     };
     catppuccin-cursors = prev.catppuccin-cursors.override {
-      palette = [ "Mocha" ];
-      color = [ "Dark" ];
+      dimensions = {
+        palette = [ "Mocha" ];
+        color = [ "Dark" ];
+      };
     };
   };
 
