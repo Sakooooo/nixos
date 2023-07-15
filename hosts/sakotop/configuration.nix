@@ -28,7 +28,6 @@
       apps = {
         nemo.enable = true;
         keepassxc.enable = true;
-        kdeconnect.enable = true;
         nicotineplus.enable = true;
       };
       chat = {
