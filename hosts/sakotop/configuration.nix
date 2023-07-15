@@ -41,7 +41,7 @@
       media = {
         gimp.enable = true;
         # this is broken
-        #resolve.enable = true;
+        resolve.enable = true;
         blender.enable = true;
         kdenlive.enable = true;
         lmms.enable = true;
