@@ -13,24 +13,21 @@ in
     
     programs.zsh = {
       enable = true;
-      enableCompletion = true;
-      promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+    #  enableCompletion = true;
+    #  promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     };
 
-    home-manager.users.sako.programs.zsh = {
-      plugins = [
-        {
-          name = "zsh-nix-shell";
-          file = "nix-shell.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "chisui";
-            repo = "zsh-nix-shell";
-            rev = "v0.7.0";
-            sha256 = "0za4aiwwrlawnia4f29msk822rj9bgcygw6a8a6iikiwzjjz0g91";
-          };
-        }
-      ]; 
+    home-manager.users.sako = { pkgs, ...}: {
+    programs.zsh = {
+      enable = true;
+      enableCompletion = true;
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" "powerlevel10k" ];
+        theme = "powerlevel10k";
+      };
     };
+   };
 
     # for theme
     fonts.fonts = with pkgs;[
