@@ -26,6 +26,7 @@
         firefox.enable = true;
       };
       apps = {
+        nemo.enable = true;
         keepassxc.enable = true;
         kdeconnect.enable = true;
         nicotineplus.enable = true;

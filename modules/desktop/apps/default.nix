@@ -3,5 +3,6 @@
     ./keepassxc
     ./nicotineplus
     ./kdeconnect
+    ./nemo
   ];
 }
