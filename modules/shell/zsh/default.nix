@@ -19,14 +19,6 @@ in
 
     home-manager.users.sako = { pkgs, ...}: {
     home.file = {
-      ".zshrc" = {
-        enable = true;
-        source = ../../../config/zsh/zshrc.zsh;
-      };
-      ".p10k.zsh" = {
-        enable = true;
-        source = ../../../config/zsh/p10k.zsh;
-      };
     };
     programs.zsh = {
       enable = true;
@@ -38,10 +30,20 @@ in
         src = pkgs.fetchFromGitHub {
           owner = "chisui";
           repo = "zsh-nix-shell";
-          rev = "v0.7.0";
-          sha256 = "oQpYKBt0gmOSBgay2HgbXiDoZo5FoUKwyHSlUrOAP5E=";
+          rev = "v0.5.0";
+          sha256 = "0za4aiwwrlawnia4f29msk822rj9bgcygw6a8a6iikiwzjjz0g91";
         };
-      }
+        }
+        {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        }
+        {
+        name = "powerlevel10k-config";
+        src = ../../../config/zsh;
+        file = "p10k.zsh";
+       }
      ];
     };
    };
