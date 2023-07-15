@@ -61,7 +61,7 @@ in
       vimix-gtk-themes
       vimix-icon-theme
       lxappearance
-      catppuccin-cursors
+      catppuccin-cursors.mochaDark
       # screen shot (s)
       flameshot
     ];
