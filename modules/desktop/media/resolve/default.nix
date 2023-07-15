@@ -11,7 +11,7 @@ in
 
   config = mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
-      davinci-resolve
+      sako.davinci-resolve
     ];
 
     nixpkgs.config.permittedInsecurePackages = [
