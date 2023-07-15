@@ -14,11 +14,23 @@ in
     programs.zsh = {
       enable = true;
       enableCompletion = true;
-      promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+#      promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     };
 
     home-manager.users.sako = { pkgs, ...}: {
+    home.file = {
+      ".zshrc" = {
+        enable = true;
+        source = ../../../config/zsh/zshrc.zsh;
+      };
+      ".p10k.zsh" = {
+        enable = true;
+        source = ../../../config/zsh/p10k.zsh;
+      };
+    };
     programs.zsh = {
+      enable = true;
+      enableCompletion = true;
       plugins = [
       {
         name = "zsh-nix-shell";
