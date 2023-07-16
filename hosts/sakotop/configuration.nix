@@ -60,7 +60,6 @@
       javascript.enable = true;
       python.enable = true;
       rust.enable = true;
-      unity.enable = true;
       projects = {
         sakoEngine.enable = true;
       };
