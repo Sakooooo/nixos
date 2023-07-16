@@ -23,6 +23,10 @@ in
     programs.zsh = {
       enable = true;
       enableCompletion = true;
+      shellAliases = {
+        ll = "ls -l";
+        update = "sudo nixos-rebuild switch";
+      };
       plugins = [
       {
         name = "zsh-nix-shell";
