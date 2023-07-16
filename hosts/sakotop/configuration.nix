@@ -40,7 +40,7 @@
       };
       media = {
         gimp.enable = true;
-        # this is broken
+        # fixed via local package
         resolve.enable = true;
         blender.enable = true;
         kdenlive.enable = true;
@@ -60,6 +60,8 @@
       javascript.enable = true;
       python.enable = true;
       rust.enable = true;
+      # too heavy
+      unity.enable = false;
       projects = {
         sakoEngine.enable = true;
       };
