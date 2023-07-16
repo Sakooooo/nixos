@@ -6,5 +6,6 @@
     ./python.nix
     ./rust.nix
     ./projects
+    ./unityhub.nix
   ];
 }
