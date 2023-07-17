@@ -93,7 +93,7 @@
     ];
   };
 
-    services.xserver.videoDrivers = [ "intel" ];
+    services.xserver.videoDrivers = [ "nvidia" ];
 
   # garbage collection
   nix.gc = {
