@@ -23,18 +23,22 @@ in
        lightdm = {
         enable = true;
         background = ../../../config/bspwm/background.png;
-        greeters.mini = {
+        greeters.gtk = {
           enable = true;
-          user = "sako";
-          extraConfig = ''
-            [greeter]
-            show-password-label = true 
-            password-label-text = whats the magic word?
-            [greeter-theme]
-            password-border-color = "#08090e"
-            password-border-width = 1px
-          '';
+          theme = {
+            package = pkgs.vimix-gtk-themes;
+            name = "vimix-dark-ruby";
+          };
+          iconTheme = {
+            package = pkgs.vimix-icon-theme;
+            name = "Vimix Ruby dark";
+          };
+          cursorTheme = {
+            package = pkgs.catppuccin-cursors.mochaDark;
+            name = "Catppuccin-Mocha-Dark";
+          };
         };
+
        };
       };
       libinput = {
@@ -69,7 +73,10 @@ in
     home-manager.users.sako = { pkgs , ...}: {
       home.pointerCursor = {
         name = "Catppuccin-Mocha-Dark"; 
-        x11.enable = true;
+        size = 16;
+        x11 = {
+          enable = true;
+        };
         gtk.enable = true;
         package = pkgs.catppuccin-cursors.mochaDark;
       };
