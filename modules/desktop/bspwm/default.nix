@@ -31,7 +31,7 @@ in
           };
           iconTheme = {
             package = pkgs.vimix-icon-theme;
-            name = "Vimix Ruby dark";
+            name = "Vimix Ruby Dark";
           };
           cursorTheme = {
             package = pkgs.catppuccin-cursors.mochaDark;
@@ -81,7 +81,7 @@ in
         package = pkgs.catppuccin-cursors.mochaDark;
       };
       gtk = {
-        theme.name = "vmix-dark-ruby";
+        theme.name = "vimix-dark-ruby";
         iconTheme.name = "Vimix Ruby Dark";
       };
       xdg.configFile = {
