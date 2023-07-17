@@ -67,6 +67,12 @@ in
     ];
 
     home-manager.users.sako = { pkgs , ...}: {
+      home.pointerCursor = {
+        name = "Catppuccin-Mocha-Dark"; 
+        x11.enable = true;
+        gtk.enable = true;
+        package = pkgs.catppuccin-cursors.mochaDark;
+      };
       gtk = {
         theme.name = "vmix-dark-ruby";
         iconTheme.name = "Vimix Ruby Dark";
