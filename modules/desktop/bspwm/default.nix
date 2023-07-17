@@ -26,15 +26,12 @@ in
         greeters.gtk = {
           enable = true;
           theme = {
-            package = pkgs.vimix-gtk-themes;
             name = "vimix-dark-ruby";
           };
           iconTheme = {
-            package = pkgs.vimix-icon-theme;
             name = "Vimix Ruby Dark";
           };
           cursorTheme = {
-            package = pkgs.catppuccin-cursors.mochaDark;
             name = "Catppuccin-Mocha-Dark";
           };
         };
