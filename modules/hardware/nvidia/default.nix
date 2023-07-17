@@ -15,7 +15,9 @@ in
       driSupport32Bit = true;
     }; 
 
-    #  TODO(sako) make this an option
+    # regardless of if you have intel/nvidia 
+    # or amd/nvidia this HAS to be nvidia only
+    # or else it will not work
     services.xserver.videoDrivers = [ "nvidia" ];
 
     hardware.nvidia = {
