@@ -3,5 +3,6 @@
     ./nvidia
     ./pipewire
     ./bluetooth
+    ./intel
   ];
 }

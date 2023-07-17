@@ -49,6 +49,7 @@
     };
     hardware = {
       nvidia.enable = true;
+      intelgputools.enable = true;
       pipewire.enable = true;
       bluetooth.enable = true;
     };
