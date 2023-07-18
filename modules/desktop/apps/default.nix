@@ -4,5 +4,6 @@
     ./nicotineplus
     ./kdeconnect
     ./nemo
+    ./transmission
   ];
 }
