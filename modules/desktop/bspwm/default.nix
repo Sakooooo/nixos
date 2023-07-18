@@ -29,14 +29,6 @@ in
             name = "vimix-dark-ruby";
             package = pkgs.vimix-gtk-themes;
           };
-          iconTheme = {
-            name = "Vimix Ruby Dark";
-            package = pkgs.vimix-icon-theme;
-          };
-          cursorTheme = {
-            name = "Catppuccin-Mocha-Dark";
-            package = pkgs.catppuccin-cursors.mochaDark;
-          };
         };
 
        };
