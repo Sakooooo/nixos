@@ -5,5 +5,6 @@
     ./blender
     ./kdenlive
     ./lmms
+    ./mpv
   ];
 }
