@@ -1,10 +1,10 @@
 { outputs, options, config, lib, pkgs, ...}:
 with lib;
 let
-  cfg = config.modules.example;
+  cfg = config.modules.desktop.apps.transmission;
 in
 {
-  options.modules.example = {
+  options.modules.desktop.apps.transmission = {
     enable = mkEnableOption false;
   };
 
