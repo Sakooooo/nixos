@@ -35,6 +35,7 @@ in
         accelProfile = "flat";
       };
     };
+   };
     users.users.sako.packages = with pkgs; [
       rofi
       # network
@@ -49,7 +50,6 @@ in
       # screen shot (s)
       flameshot
     ];
-   };
     home-manager.users.sako = { pkgs , ...}: {
       home.pointerCursor = {
         name = "Catppuccin-Mocha-Dark"; 
