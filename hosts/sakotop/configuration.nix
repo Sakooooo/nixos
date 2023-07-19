@@ -19,6 +19,7 @@
         enable = true;
         polybar.enable = true;
       };
+      kde.enable = true;
       dunst.enable = true;
       browsers = {
         qutebrowser.enable = true;
