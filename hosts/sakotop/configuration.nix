@@ -16,10 +16,10 @@
     desktop = {
       kitty.enable = true;
       bspwm = {
-        enable = true;
-        polybar.enable = true;
+        enable = false;
+        polybar.enable = false;
       };
-      dwm.enable = false;
+      dwm.enable = true;
       kde.enable = false;
       dunst.enable = true;
       browsers = {
