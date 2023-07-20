@@ -135,3 +135,11 @@ XF86AudioMute
 #
 XF86MonBrightness{Up,Down}
 	brightnessctl {s +100,s 100-}
+
+#
+## screenshots
+#
+#
+# Take a screenshot with gui selection
+super + Print
+flameshot gui
