@@ -33,11 +33,6 @@ static const char *const autostart[] = {
     NULL /* terminate */
 };
 
-static const char *const autostart[] = {
-	"st", NULL,
-	NULL /* terminate */
-};
-
 /* tagging */
 static const char *tags[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
