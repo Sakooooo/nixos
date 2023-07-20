@@ -19,7 +19,18 @@ static const char *colors[][3] = {
 };
 
 static const char *const autostart[] = {
-    "keepassxc", NULL, NULL /* terminate */
+    "feh",
+    "--bg-scale",
+    "/home/sako/background.png",
+    NULL "xsetroot",
+    "-cursor_name",
+    "left_ptr",
+    NULL,
+    "keepassxc",
+    NULL,
+    "flameshot",
+    NULL,
+    NULL /* terminate */
 };
 
 /* tagging */
