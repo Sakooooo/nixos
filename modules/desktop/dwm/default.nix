@@ -21,7 +21,7 @@ in
             enable = true;
             theme = {
               name = "vimix-dark-ruby";
-              package = pkgs.vimix.gtk.themes;
+              package = pkgs.vimix-gtk-themes;
             };
           };
         };
