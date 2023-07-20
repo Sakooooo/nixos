@@ -19,8 +19,7 @@ static const char *colors[][3] = {
 };
 
 static const char *const autostart[] = {
-	"st", NULL,
-	NULL /* terminate */
+    "keepassxc", NULL, NULL /* terminate */
 };
 
 /* tagging */
