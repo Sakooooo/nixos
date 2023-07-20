@@ -1688,25 +1688,22 @@ showhide(Client *c)
  {
 	pid_t pid;
 
- 	if (signal(SIGCHLD, sigchld) == SIG_ERR)
- 		die("can't install SIGCHLD handler:");
-	while (0 < (pid = waitpid(-1, NULL, WNOHANG))) {
-		pid_t *p, *lim;
+ if (signal(SIGCHLD, sigchld) == SIG_ERR)
+		die("can't install SIGCHLD handler:");
+  while (0 < (pid = waitpid(-1, NULL, WNOHANG))) {
+	  pid_t *p, *lim;
 
-		if (!(p = autostart_pids))
-			continue;
-		lim = &p[autostart_len];
+	  if (!(p = autostart_pids))
+		continue;
+	lim = &p[autostart_len];
 
-		for (; p < lim; p++) {
-			if (*p == pid) {
-				*p = -1;
-				break;
-			}
+	for (; p < lim; p++) {
+		if (*p == pid) {
+			*p = -1;
+			break;
 		}
-
 	}
- }
-
+}
 
 void
 spawn(const Arg *arg)
