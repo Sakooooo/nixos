@@ -21,7 +21,7 @@
     };
     dwm = prev.dwm.overrideAttrs (old: {
        src = ../config/dwm;
-       nativeBuildInputs = with pkgs; [ 
+       nativeBuildInputs = with inputs.nixpkgs; [ 
         xorg.libX11.dev
         xorg.libXft
         imlib2
@@ -30,7 +30,7 @@
     });
     dwmblocks = prev.dwm.overrideAttrs (old: {
        src = ../config/dwmblocks;
-       nativeBuildInputs = with pkgs; [ 
+       nativeBuildInputs = with inputs.nixpkgs; [ 
           xorg.libX11.dev
           xorg.libXft
           imlib2
