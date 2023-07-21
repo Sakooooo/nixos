@@ -19,7 +19,10 @@
         enable = false;
         polybar.enable = false;
       };
-      dwm.enable = true;
+      dwm = {
+        enable = true;
+        dwmblocks.enable = true;
+      };
       kde.enable = false;
       dunst.enable = true;
       browsers = {

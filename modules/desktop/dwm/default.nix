@@ -4,6 +4,9 @@ let
   cfg = config.modules.desktop.dwm;
 in
 {
+  imports = [
+    ./dwmblocks.nix
+  ];
   options.modules.desktop.dwm = {
     enable = mkEnableOption false;
   };
