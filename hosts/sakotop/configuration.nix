@@ -78,6 +78,7 @@
         search.enable = true;
       };
       zsh.enable = true;
+      newsboat.enable = true;
     };
     media = {
       mpd.enable = true;
@@ -93,9 +94,6 @@
   users.users.sako= {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      newsboat
-    ];
   };
 
     services.xserver.videoDrivers = [ "nvidia" ];
