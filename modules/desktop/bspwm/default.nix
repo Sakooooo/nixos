@@ -76,6 +76,12 @@ in
         theme.name = "vimix-dark-ruby";
         iconTheme.name = "Vimix Ruby Dark";
       };
+      home.file = {
+        "background.png" = {
+          enable = true;
+          source = ../../../config/background.png;
+        };
+      };
       xdg.configFile = {
         bspwm = {
           source = ../../../config/bspwm;
