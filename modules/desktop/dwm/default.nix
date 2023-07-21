@@ -19,6 +19,7 @@ in
           enable = true;
           greeters.gtk = {
             enable = true;
+            background = ../../../config/background.png;
             theme = {
               name = "vimix-dark-ruby";
               package = pkgs.vimix-gtk-themes;
@@ -51,6 +52,12 @@ in
       flameshot
     ];
     home-manager.users.sako = { pkgs , ...}: {
+      home.file = {
+        "background.png" = {
+          enable = true;
+          source = ../../../config/background.png;
+        };
+      };
       home.pointerCursor = {
         name = "Catppuccin-Mocha-Dark"; 
         size = 16;
