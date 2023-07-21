@@ -28,7 +28,7 @@
       );
     
     # overlays here
-    overlays = import ./overlays { inherit nixpkgs inputs; };
+    overlays = import ./overlays { inherit inputs outputs; };
 
     # modules :D
     nixosModules = import ./modules;

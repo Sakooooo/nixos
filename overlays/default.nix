@@ -1,4 +1,4 @@
-{ pkgs, inputs, ...}:
+{ inputs, ...}:
 {
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../packages { pkgs = final; };
@@ -21,7 +21,7 @@
     };
     dwm = prev.dwm.overrideAttrs (old: {
        src = ../config/dwm;
-       nativeBuildInputs = with inputs.nixpkgs; [ 
+       nativeBuildInputs = with pkgs; [ 
         xorg.libX11.dev
         xorg.libXft
         imlib2
@@ -30,7 +30,7 @@
     });
     dwmblocks = prev.dwm.overrideAttrs (old: {
        src = ../config/dwmblocks;
-       nativeBuildInputs = with inputs.nixpkgs; [ 
+       nativeBuildInputs = with pkgs; [ 
           xorg.libX11.dev
           xorg.libXft
           imlib2
