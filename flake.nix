@@ -29,7 +29,7 @@
       );
     
     # overlays here
-    overlays = import ./overlays { inherit inputs; };
+    overlays = import ./overlays { inherit pkgs inputs; };
 
     # modules :D
     nixosModules = import ./modules;
