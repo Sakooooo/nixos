@@ -24,7 +24,12 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"st", NULL,
+  "xsetroot", "-cursor_name", "left_ptr", NULL,
+  "feh", "--bg-scale", "/home/sako/.config/bspwm/background.png", NULL,
+  "nm-applet", NULL,
+  "blueman-applet", NULL,
+  "keepassxc", NULL,
+  "flameshot", NULL,
 	NULL /* terminate */
 };
 
