@@ -1,5 +1,4 @@
 # load stuff
-
 {
   description = "horrible dotfiles for amazing distro";
 
@@ -29,7 +28,7 @@
       );
     
     # overlays here
-    overlays = import ./overlays { inherit pkgs inputs; };
+    overlays = import ./overlays { inherit nixpkgs inputs; };
 
     # modules :D
     nixosModules = import ./modules;
