@@ -22,6 +22,9 @@
     dwm = prev.dwm.overrideAttrs (old: {
        src = ../config/dwm;
     });
+    dwmblocks = prev.dwmblocks.overrideAttrs (old: {
+        src = ../config/dwmblocks;
+    });
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
