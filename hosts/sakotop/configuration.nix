@@ -19,7 +19,6 @@
         enable = true;
         polybar.enable = true;
       };
-      dwm.enable = false;
       kde.enable = false;
       dunst.enable = true;
       browsers = {
