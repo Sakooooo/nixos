@@ -12,5 +12,6 @@ in
     users.users.sako.packages = with pkgs; [
       dwmblocks
     ];
+    pkgs.dwmblocks.configfile = ../../../config/dwmblocks/blocks.def.h;
   };
 }
