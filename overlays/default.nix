@@ -21,21 +21,9 @@
     };
     dwm = prev.dwm.overrideAttrs (old: {
        src = ../config/dwm;
-       nativeBuildInputs = with pkgs; [ 
-        xorg.libX11.dev
-        xorg.libXft
-        imlib2
-        xorg.libXinerama
-      ];
     });
     dwmblocks = prev.dwm.overrideAttrs (old: {
        src = ../config/dwmblocks;
-       nativeBuildInputs = with pkgs; [ 
-          xorg.libX11.dev
-          xorg.libXft
-          imlib2
-          xorg.libXinerama
-      ];
     });
   };
 
