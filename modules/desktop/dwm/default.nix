@@ -17,9 +17,9 @@ in
       displayManager = {
         lightdm = {
           enable = true;
+          background = ../../../config/background.png;
           greeters.gtk = {
             enable = true;
-            background = ../../../config/background.png;
             theme = {
               name = "vimix-dark-ruby";
               package = pkgs.vimix-gtk-themes;
