@@ -20,10 +20,10 @@
       themeVariants = [ "ruby" ];
     };
     dwm = prev.dwm.overrideAttrs (old: {
-      src = ../config/dwm;
+       src = ../config/dwm;
     });
     dwmblocks = prev.dwm.overrideAttrs (old: {
-          src = ../config/dwmblocks;
+       src = ../config/dwmblocks;
     });
   };
 
