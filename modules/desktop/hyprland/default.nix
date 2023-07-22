@@ -9,10 +9,83 @@ in
   };
 
   config = mkIf cfg.enable {
+    services.xserver = {
+      enable = true;
+      # we have hyprland enabled so no need
+      # for declaring it here
+      displayManager = {
+        lightdm = {
+          enable = true;
+          background = ../../../config/background.png;
+          greeters.gtk = {
+            enable = true;
+            theme = {
+              name = "vimix-dark-ruby";
+              package = pkgs.vimix-gtk-themes;
+            };
+          };
+        }; 
+      };
+      libinput = {
+        enable = true;
+
+        # no mouse accel
+        mouse = {
+          accelProfile = "flat";
+        };
+
+        # no touchpad accel
+        touchpad = {
+          accelProfile = "flat";
+        };
+      }; 
+    };
+
+    users.users.sako.packages = with pkgs; [
+      # use wayland counterparts
+      wofi
+      # network
+      networkmanagerapplet
+      # brightness
+      # TODO(sako):: find one for wayland
+      # gtk
+      vimix-gtk-themes
+      vimix-icon-theme
+      lxappearance
+      catppuccin-cursors.mochaDark
+      # i wonder if this works
+      flameshot
+    ];
     programs.hyprland = {
       enable = true;
       nvidiaPatches = true;
       xwayland = true;
     }; 
+    home-manager.users.sako = { pkgs , ...}: {
+      home.pointerCursor = {
+        name = "Catppuccin-Mocha-Dark"; 
+        size = 16;
+        x11 = {
+          enable = true;
+        };
+        gtk.enable = true;
+        package = pkgs.catppuccin-cursors.mochaDark;
+      };
+      gtk = {
+        theme.name = "vimix-dark-ruby";
+        iconTheme.name = "Vimix Ruby Dark";
+      };
+      home.file = {
+        "background.png" = {
+          enable = true;
+          source = ../../../config/background.png;
+        };
+      };
+      xdg.configFile = {
+        hypr = {
+          source = ../../../config/hyprland; 
+        };
+     }; 
+    };
   };
 }
