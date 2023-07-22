@@ -25,7 +25,7 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-  "xsetroot", "-cursor_name", "left_ptr", NULL,
+  "xsetroot", "-cursor_name", "Catppuccin-Mocha-Dark", NULL,
   "feh", "--bg-scale", "/home/sako/.config/bspwm/background.png", NULL,
   "dwmblocks", NULL,
   "nm-applet", NULL,
