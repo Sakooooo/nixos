@@ -53,13 +53,13 @@ in
       catppuccin-cursors.mochaDark
       # i wonder if this works
       flameshot
-      # bar
-      waybar
     ];
     environment.systemPackages = with pkgs; [
       # hyprland no looky findy for packages so 
       # bg
       hyprpaper
+      # bar
+      waybar
     ];
 
     programs.hyprland = {
@@ -89,6 +89,10 @@ in
       xdg.configFile = {
         hypr = {
           source = ../../../config/hyprland; 
+          recursive = true;
+        };
+        waybar = {
+          source = ../../../config/waybar;
           recursive = true;
         };
      }; 
