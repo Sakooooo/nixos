@@ -55,9 +55,13 @@ in
       flameshot
       # bar
       waybar
-      # background
+    ];
+    evironment.systemPackages = with pkgs; [
+      # hyprland no looky findy for packages so 
+      # bg
       hyprpaper
     ];
+
     programs.hyprland = {
       enable = true;
       nvidiaPatches = true;
