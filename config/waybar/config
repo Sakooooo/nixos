@@ -22,7 +22,15 @@
 	"wlr/workspaces": {
     "all-outputs": true,
 		"disable-scroll": true,
-		"format": "{name}"
+		"format": "{name}",
+    "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+    }
 	},
 
 	"clock#1": {
