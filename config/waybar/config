@@ -5,12 +5,11 @@
 	"position": "top",
 
 	"modules-left": [
-		"wlr/workspaces",
-		"custom/right-arrow-dark"
+		"clock#2",
+    "clock#3",
 	],
 	"modules-center": [
-		"clock#2",
-		"clock#3",
+    "wlr/workspaces",
 	],
 	"modules-right": [
 		"pulseaudio",
