@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CONFIG_FILES="/home/sako/.config/waybar/config /home/sako/.config/waybar/style.css"
+CONFIG_FILES="/home/sako/.config/waybar"
 
 trap "killall waybar" EXIT
 
