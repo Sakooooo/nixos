@@ -6,6 +6,7 @@ trap "killall waybar" EXIT
 
 while true; do
     waybar &
+    export APP_PID=$!
     inotifywait -e create,modify $CONFIG_FILES
-    killall waybar
+    kill $APP_PID
 done
