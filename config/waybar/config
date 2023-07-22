@@ -75,7 +75,7 @@
 			"warning": 30,
 			"critical": 15
 		},
-		"format": "{icon} {capacity}%",
+		"format": "{icon}  {capacity}%",
 		"format-icons": [
 			"",
 			"",
@@ -90,6 +90,6 @@
 		"path": "/"
 	},
 	"tray": {
-		"icon-size": 20
+		"icon-size": 15
 	}
 }
