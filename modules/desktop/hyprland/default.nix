@@ -56,7 +56,7 @@ in
       # bar
       waybar
     ];
-    evironment.systemPackages = with pkgs; [
+    environment.systemPackages = with pkgs; [
       # hyprland no looky findy for packages so 
       # bg
       hyprpaper
