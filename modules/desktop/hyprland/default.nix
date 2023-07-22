@@ -12,8 +12,16 @@ in
     services.xserver = {
       enable = true;
       displayManager = {
-        sddm = {
+        lightdm = {
           enable = true;
+          background = ../../../config/background.png;
+          greeters.gtk = {
+            enable = true;
+            theme = {
+              name = "vimix-dark-ruby";
+              package = pkgs.vimix-gtk-themes;
+            };
+          };
         };
       };
       libinput = {
