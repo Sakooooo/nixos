@@ -2,7 +2,7 @@
 
 {
 	"layer": "top",
-	"position": "bottom",
+	"position": "top",
 
 	"modules-left": [
 		"wlr/workspaces",
