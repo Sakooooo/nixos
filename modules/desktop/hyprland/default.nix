@@ -11,8 +11,6 @@ in
   config = mkIf cfg.enable {
     services.xserver = {
       enable = true;
-      # we have hyprland enabled so no need
-      # for declaring it here
       displayManager = {
         lightdm = {
           enable = true;
