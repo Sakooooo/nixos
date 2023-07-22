@@ -59,7 +59,8 @@ in
       # bg
       hyprpaper
       # bar
-      waybar
+      # this is just for hyprland lmao
+      (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true "]; }))
     ];
 
     programs.hyprland = {
