@@ -5,7 +5,7 @@
 	"position": "bottom",
 
 	"modules-left": [
-		"hyprland/workspaces",
+		"wlr/workspaces",
 		"custom/right-arrow-dark"
 	],
 	"modules-center": [
