@@ -53,6 +53,10 @@ in
       catppuccin-cursors.mochaDark
       # i wonder if this works
       flameshot
+      # bar
+      waybar
+      # background
+      hyprpaper
     ];
     programs.hyprland = {
       enable = true;
@@ -81,6 +85,7 @@ in
       xdg.configFile = {
         hypr = {
           source = ../../../config/hyprland; 
+          recursive = true;
         };
      }; 
     };
