@@ -20,7 +20,8 @@
 		"tray"
 	],
 
-	"sway/workspaces": {
+	"wlr/workspaces": {
+    "all-outputs": true,
 		"disable-scroll": true,
 		"format": "{name}"
 	},
