@@ -61,6 +61,7 @@ in
       # bar
       # this is just for hyprland lmao
       (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true "]; }))
+      inotify-tools
     ];
 
     programs.hyprland = {
