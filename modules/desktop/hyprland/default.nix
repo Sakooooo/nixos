@@ -83,10 +83,10 @@ in
         };
       };
       xdg.configFile = {
-        #hypr = {
-        #  source = ../../../config/hyprland; 
-        #  recursive = true;
-        #};
+        hypr = {
+          source = ../../../config/hyprland; 
+          recursive = true;
+        };
      }; 
     };
   };
