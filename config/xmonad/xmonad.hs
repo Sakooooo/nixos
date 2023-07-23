@@ -249,7 +249,9 @@ myStartupHook = do
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad defaults
+main = do 
+  xmproc <- spawnPipe "xmobar"
+  xmonad defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
@@ -258,8 +260,6 @@ main = xmonad defaults
 -- No need to modify this.
 --
 defaults = def {
-      -- xmobar
-        xmproc <- spawnPipe "xmobar"
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
