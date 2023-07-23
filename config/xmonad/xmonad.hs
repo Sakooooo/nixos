@@ -11,6 +11,7 @@
 import XMonad
 import Data.Monoid
 import System.Exit
+import System.IO
 
 -- Extras
 import XMonad.Hooks.DynamicLog
