@@ -79,7 +79,7 @@ Config {
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
-        , Run XPropertyLog "_XMONAD_TRAYPAD",
+        , Run XPropertyLog   "_XMONAD_TRAYPAD"
 
         -- battery monitor
         , Run Battery        [ "--template" , "Batt: <acstatus>"
