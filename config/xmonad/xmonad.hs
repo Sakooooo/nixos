@@ -78,7 +78,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_space     ), spawn "rofi -show-icons -show drun")
 
     -- close focused window
-    , ((modm,               xK_w     ), kill)
+    , ((modm .|. shiftMask, xK_c     ), kill)
 
      -- Rotate through the available layout algorithms
     , ((modm,               xK_p     ), sendMessage NextLayout)
