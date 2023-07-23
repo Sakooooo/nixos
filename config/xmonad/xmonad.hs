@@ -22,7 +22,7 @@ import XMonad.Hooks.ManageDocks -- manage dock thingy xmobar hHAUISHFOAUISHDFUOI
 import XMonad.Hooks.DynamicLog -- supposed to be for xmobar 
 import XMonad.Util.SpawnOnce -- for startup items
 import XMonad.Util.Run -- for xmobar startup
-import XMonad.Util.Hacks -- tray
+import XMonad.Util.Hacks as Hacks -- tray
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
