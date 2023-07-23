@@ -7,7 +7,7 @@ Config {
    , position =     Bottom 
    , border =       BottomB
    , borderColor =  "#646464"
-   , borderWidth =  "0"
+   , borderWidth =  0
 
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
