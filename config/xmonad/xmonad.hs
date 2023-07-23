@@ -14,9 +14,9 @@ import System.Exit
 import System.IO
 
 -- Extras
-import XMonad.Hooks.DynamicLog
-import XMonad.Util.SpawnOnce
-import XMonad.Util.Run
+import XMonad.Hooks.DynamicLog -- forgot what this was for lmao
+import XMonad.Util.SpawnOnce -- for startup items
+import XMonad.Util.Run -- for xmobar startup
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
