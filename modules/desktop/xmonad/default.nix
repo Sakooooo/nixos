@@ -47,6 +47,7 @@ in
           accelProfile = "flat";
         };
       };
+    };
 
     users.users.sako.packages = with pkgs; [
       rofi
@@ -85,5 +86,4 @@ in
      }; 
     };
     };
-  };
 }
