@@ -65,7 +65,10 @@ in
     ];
 
     environment.systemPackages = with pkgs; [
+      # bar
       xmobar
+      # tray
+      stalonetray
     ];
 
     home-manager.users.sako = { pkgs , ...}: {
