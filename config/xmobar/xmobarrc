@@ -1,7 +1,7 @@
 Config { 
 
    -- appearance
-     font =         "JetBrainsMono NF 12"
+     font =         "JetBrainsMono NF 10"
    , bgColor =      "black"
    , fgColor =      "#646464"
    , position =     Top
