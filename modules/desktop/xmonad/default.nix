@@ -64,6 +64,10 @@ in
       flameshot
     ];
 
+    environment.systemPackages = with pkgs; [
+      xmobar
+    ];
+
     home-manager.users.sako = { pkgs , ...}: {
       home.pointerCursor = {
         name = "Catppuccin-Mocha-Dark"; 
@@ -78,9 +82,19 @@ in
         theme.name = "vimix-dark-ruby";
         iconTheme.name = "Vimix Ruby Dark";
       };
+      home.file = {
+        "background.png" = {
+          enable = true;
+          source = ../../../config/background.png;
+        };
+      };
       xdg.configFile = {
         xmonad = {
           source = ../../../config/xmonad;
+          recursive = true;
+        };
+        xmobar = {
+          source = ../../../config/xmobar;
           recursive = true;
         };
      }; 
