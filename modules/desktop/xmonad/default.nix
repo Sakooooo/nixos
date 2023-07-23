@@ -80,6 +80,7 @@ in
       xdg.configFile = {
         xmonad = {
           source = ../../../config/xmonad;
+          recursive = true;
         };
      }; 
     };
