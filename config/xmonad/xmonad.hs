@@ -136,7 +136,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
 
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "xmonad --recompile; killall trayer; killall xmobar ; xmonad --restart")
+    , ((modm              , xK_q     ), spawn "xmonad --recompile; killall xmobar ; xmonad --restart")
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm .|. shiftMask, xK_slash ), xmessage help)
