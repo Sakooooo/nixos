@@ -64,13 +64,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "rofi -show-icons -show drun")
+    , ((modm,               xK_space     ), spawn "rofi -show-icons -show drun")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
 
      -- Rotate through the available layout algorithms
-    , ((modm,               xK_space ), sendMessage NextLayout)
+    , ((modm,               xK_p     ), sendMessage NextLayout)
 
     --  Reset the layouts on the current workspace to default
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
