@@ -8,6 +8,7 @@
 --
 
 import XMonad
+import XMonad.Util.SpawnOnce
 import Data.Monoid
 import System.Exit
 
@@ -240,7 +241,8 @@ myLogHook = return ()
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook = return ()
+myStartupHook = do
+  spawnOnce "keepassxc"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
