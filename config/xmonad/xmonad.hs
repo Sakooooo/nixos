@@ -266,7 +266,7 @@ main = do
   xmonad $ xmobarProp $ defaults {
      layoutHook = avoidStruts $ layoutHOok def,
       
-     logHook = myLogHook h
+     logHook = myLogHook h,
 
      manageHook = manageDocks <+> manageHook def
   }
