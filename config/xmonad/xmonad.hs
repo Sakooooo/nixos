@@ -286,7 +286,7 @@ defaults = def {
         layoutHook         = myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
-        logHook            = myLogHook,
+        logHook            = return (),
         startupHook        = myStartupHook
     }
 
