@@ -16,6 +16,7 @@ import System.IO
 -- Extras
 import XMonad.Hooks.DynamicLog
 import XMonad.Util.SpawnOnce
+import XMonad.Util.Run
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
