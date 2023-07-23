@@ -78,11 +78,8 @@ in
         iconTheme.name = "Vimix Ruby Dark";
       };
       xdg.configFile = {
-        bspwm = {
-          source = ../../../config/bspwm;
-        };
-        sxhkd = {
-          source = ../../../config/sxhkd;
+        xmonad = {
+          source = ../../../config/xmonad;
         };
      }; 
     };
