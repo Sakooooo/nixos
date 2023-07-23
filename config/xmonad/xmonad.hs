@@ -15,6 +15,7 @@ import System.IO
 
 -- Extras
 import XMonad.Hooks.DynamicLog -- forgot what this was for lmao
+import XMonad.Hooks.ManageDocks -- manage dock thingy xmobar hHAUISHFOAUISHDFUOIAS
 import XMonad.Util.SpawnOnce -- for startup items
 import XMonad.Util.Run -- for xmobar startup
 
