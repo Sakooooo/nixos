@@ -4,7 +4,7 @@ let
   cfg = config.modules.desktop.xmonad;
 in
 {
-  options.modules.desktop.xmoad = {
+  options.modules.desktop.xmonad = {
     enable = mkEnableOption false;
   };
 
