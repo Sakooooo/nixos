@@ -285,12 +285,12 @@ defaults = def {
         mouseBindings      = myMouseBindings,
 
       -- hooks, layouts
-      --  layoutHook         = myLayout,
-      --  manageHook         = myManageHook,
-        manageHook         = manageDocks <+> manageHook defaultConfig
-        layoutHook         = avoidStruts  $ layoutHook defaultConfig
-        --handleEventHook    = myEventHook,
-        handleEventHook    = handleEventHook defaults <+> docksEventHook,
+        layoutHook         = myLayout,
+        manageHook         = myManageHook,
+      --  manageHook         = manageDocks <+> manageHook defaultConfig
+      --  layoutHook         = avoidStruts  $ layoutHook defaultConfig
+        handleEventHook    = myEventHook,
+      --  handleEventHook    = handleEventHook defaults <+> docksEventHook,
         logHook            = return (),
         startupHook        = myStartupHook
     }
