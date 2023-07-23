@@ -286,7 +286,8 @@ defaults = def {
       -- hooks, layouts
         layoutHook         = myLayout,
         manageHook         = myManageHook,
-        handleEventHook    = myEventHook,
+        --handleEventHook    = myEventHook,
+        handleEventHook    = handleEventHook defaults <+> docksEventHook
         logHook            = return (),
         startupHook        = myStartupHook
     }
