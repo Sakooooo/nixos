@@ -19,7 +19,7 @@ import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.ManageDocks -- manage dock thingy xmobar hHAUISHFOAUISHDFUOIAS
 
 -- Extras
-import XMonad.Hooks.DynamicLog -- forgot what this was for lmao
+import XMonad.Hooks.DynamicLog -- supposed to be for xmobar 
 import XMonad.Util.SpawnOnce -- for startup items
 import XMonad.Util.Run -- for xmobar startup
 
@@ -264,7 +264,11 @@ myStartupHook = do
 main = do 
   h <- spawnPipe "xmobar"
   xmonad $ xmobarProp $ defaults {
+     layoutHook = avoidStruts $ layoutHOok def,
+      
      logHook = myLogHook h
+
+     manageHook = manageDocks <+> manageHook def
   }
 
 -- A structure containing your configuration settings, overriding
