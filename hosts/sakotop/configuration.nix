@@ -23,7 +23,8 @@
         enable = false;
         dwmblocks.enable = false;
       };
-      hyprland.enable = true;
+      hyprland.enable = false;
+      xmonad.enable = true;
       kde.enable = false;
       dunst.enable = true;
       browsers = {

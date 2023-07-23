@@ -5,6 +5,7 @@
     ./bspwm
     ./dwm
     ./hyprland
+    ./xmonad
     # desktop environ men t s s  s s 
     ./kde
     ./browsers
