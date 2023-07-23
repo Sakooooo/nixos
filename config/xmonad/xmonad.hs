@@ -258,7 +258,7 @@ myStartupHook = do
 main = do 
   h <- spawnPipe "xmobar"
   xmonad defaults {
-      logHook = myLogHook h
+     logHook = myLogHook h
   }
 
 -- A structure containing your configuration settings, overriding
