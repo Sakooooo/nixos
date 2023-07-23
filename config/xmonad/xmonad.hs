@@ -7,10 +7,14 @@
 -- Normally, you'd only override those defaults you care about.
 --
 
+-- Main
 import XMonad
-import XMonad.Util.SpawnOnce
 import Data.Monoid
 import System.Exit
+
+-- Extras
+import XMonad.Hooks.DynamicLog
+import XMonad.Util.SpawnOnce
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
