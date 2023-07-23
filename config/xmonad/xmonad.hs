@@ -258,6 +258,8 @@ main = xmonad defaults
 -- No need to modify this.
 --
 defaults = def {
+      -- xmobar
+        xmproc <- spawnPipe "xmobar"
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
