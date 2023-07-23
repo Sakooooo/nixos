@@ -224,7 +224,8 @@ myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore ]
+    , resource  =? "kdesktop"       --> doIgnore
+    , className =? "trayer"         --> doIgnore ]
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -255,7 +256,7 @@ myLogHook h = dynamicLogWithPP $ def { ppOutput = hPutStrLn h }
 --
 -- By default, do nothing.
 myStartupHook = do
-  spawnOnce "keepassxc",
+  spawnOnce "keepassxc"
   spawn "trayer --edge bottom --align right --SetDockType true --SetPartialStrut true --height 30 --transparent true --alpha 0 --tint #000000 --widthtype request"
 
 ------------------------------------------------------------------------
