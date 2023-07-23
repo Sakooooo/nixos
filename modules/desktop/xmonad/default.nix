@@ -68,7 +68,7 @@ in
       # bar
       xmobar
       # tray
-      stalonetray
+      trayer
     ];
 
     home-manager.users.sako = { pkgs , ...}: {

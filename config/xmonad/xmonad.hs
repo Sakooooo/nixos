@@ -22,6 +22,7 @@ import XMonad.Hooks.ManageDocks -- manage dock thingy xmobar hHAUISHFOAUISHDFUOI
 import XMonad.Hooks.DynamicLog -- supposed to be for xmobar 
 import XMonad.Util.SpawnOnce -- for startup items
 import XMonad.Util.Run -- for xmobar startup
+import XMonad.Util.Hacks -- tray
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -135,7 +136,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
 
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "xmonad --recompile; killall xmobar; xmonad --restart")
+    , ((modm              , xK_q     ), spawn "xmonad --recompile; killall stalonetray; killall xmobar; xmonad --restart")
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm .|. shiftMask, xK_slash ), xmessage help)
@@ -268,7 +269,10 @@ main = do
       
      logHook = myLogHook h,
 
-     manageHook = manageDocks <+> manageHook def
+     manageHook = manageDocks <+> manageHook def,
+
+     handleEventHook = handleEventHook def
+               <> Hacks.trayerPaddingXmobarEventHook
   }
 
 -- A structure containing your configuration settings, overriding
