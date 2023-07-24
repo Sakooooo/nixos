@@ -285,7 +285,6 @@ myStartupHook = do
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do 
-  h <- spawnPipe "xmobar"
   xmonad $ withEasySB myStatusBar $ defaults {
      layoutHook = avoidStruts $ layoutHook def,
       
