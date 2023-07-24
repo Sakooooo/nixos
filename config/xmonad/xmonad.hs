@@ -245,7 +245,11 @@ myEventHook = mempty
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
 myLogHook :: Handle -> X ()
-myLogHook h = dynamicLogWithPP $ def { ppOutput = hPutStrLn h }
+myLogHook h = dynamicLogWithPP $ def { 
+                                    ppOutput = hPutStrLn h,
+                                    ppExtras = [],
+                                    ppOrder = \(ws:_) -> [ws]
+                                  }
 
 ------------------------------------------------------------------------
 -- Startup hook
