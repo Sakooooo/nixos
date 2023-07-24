@@ -134,9 +134,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     --
     -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
     -- Audio
-    , ((0, XF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume 0 +5%")
-    , ((0, XF86XK_AudioLowerVolume), spawn "pactl set-sink-volume0 -5%")
-    , ((o, XF86XK_AudioMute), spawn "pactl set-sink-mute 0 toggle")
+    , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume 0 +5%")
+    , ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume0 -5%")
+    , ((0, xF86XK_AudioMute), spawn "pactl set-sink-mute 0 toggle")
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
