@@ -263,7 +263,7 @@ myXmobarFormat = def {
             ppOrder = \(ws:_) -> [ws]
 }
 
-myStatusBar= statusBarProp "xmobar" (pure myXmobarFormat)
+myStatusBar = statusBarProp "xmobar" (pure myXmobarFormat)
 ------------------------------------------------------------------------
 -- Startup hook
 
@@ -284,14 +284,17 @@ myStartupHook = do
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad . withEasySB myStatusBar $ defaults {
+main = xmonad . withEasySB myStatusBar defToggleStrutsKey $ myConfig 
+
+myConfig = defaults {
      layoutHook = avoidStruts $ layoutHook def,
 
      manageHook = manageDocks <+> manageHook def,
 
      handleEventHook = handleEventHook def
                <> Hacks.trayerPaddingXmobarEventHook
-  }
+ 
+}
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
