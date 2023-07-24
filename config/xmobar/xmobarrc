@@ -62,7 +62,7 @@ Config {
                              , "--high"     , "darkred"
                              ] 10
 
-        , Run Com "/home/sako/.config/xmobar/scripts/get-volume.sh" [] "vol",
+        , Run Com "/home/sako/.config/xmobar/scripts/get-volume.sh" [] "vol"
 
         -- cpu core temperature monitor
         , Run CoreTemp       [ "--template" , "Temp: <core0>°C|<core1>°C"
