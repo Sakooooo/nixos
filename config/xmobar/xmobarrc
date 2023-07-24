@@ -80,7 +80,7 @@ Config {
                              ] 10
         , Run XPropertyLog   "_XMONAD_TRAYPAD" 
         
-        , Run CommandReader "/home/sako/.config/xmobar/scripts/volume.sh" "vol" 
+        , Run Com "/home/sako/.config/xmobar/scripts/volume.sh" [] "vol" 30 
 
         -- battery monitor
         , Run Battery        [ "--template" , "Batt: <acstatus>"
