@@ -2,16 +2,16 @@
 
 {
 	"layer": "top",
-	"position": "bottom",
+	"position": "top",
 
 	"modules-left": [
-		"clock#2",
-    "clock#3",
-	],
-	"modules-center": [
     "wlr/workspaces",
 	],
+	"modules-center": [
+	],
 	"modules-right": [
+  	"clock#2",
+    "clock#3",
 		"pulseaudio",
 		"memory",
 		"cpu",
