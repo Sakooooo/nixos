@@ -20,10 +20,10 @@
         polybar.enable = false;
       };
       dwm = {
-        enable = false;
-        dwmblocks.enable = false;
+        enable = true;
+        dwmblocks.enable = true;
       };
-      hyprland.enable = true;
+      hyprland.enable = false;
       xmonad.enable = false;
       kde.enable = false;
       dunst.enable = true;
