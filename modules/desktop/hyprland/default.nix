@@ -56,6 +56,8 @@ in
       catppuccin-cursors.mochaDark
       # i wonder if this works
       flameshot
+      # IMPORTANT FOR GAMES
+      gamescope
     ];
     environment.systemPackages = with pkgs; [
       # hyprland no looky findy for packages so 
