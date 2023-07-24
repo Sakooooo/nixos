@@ -257,14 +257,14 @@ myLogHook h = dynamicLogWithPP $ def {
                                     ppOrder = \(ws:_) -> [ws]
                                   }
 
-xmobarFormat = def {
+myXmobarFormat = def {
             ppCurrent = xmobarColor "black" "white",
             ppOutput = hPutStrLn h,
             ppExtras = [],
             ppOrder = \(ws:_) -> [ws]
 }
 
-statusBar = statusBarProp "xmobar" (pure xmobarFormat)
+myStatusBar= statusBarProp "xmobar" (pure myXmobarFormat)
 ------------------------------------------------------------------------
 -- Startup hook
 
@@ -287,7 +287,7 @@ myStartupHook = do
 --
 main = do 
   h <- spawnPipe "xmobar"
-  xmonad $ withEasySB statusBar $ defaults {
+  xmonad $ withEasySB myStatusBar $ defaults {
      layoutHook = avoidStruts $ layoutHook def,
       
      logHook = myLogHook h,
