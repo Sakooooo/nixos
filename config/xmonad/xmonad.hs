@@ -257,7 +257,6 @@ myLogHook h = dynamicLogWithPP $ def { ppOutput = hPutStrLn h }
 -- By default, do nothing.
 myStartupHook = do
   spawnOnce "keepassxc"
-  spawn "/home/sako/.config/xmonad/scripts/trayer.sh"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
