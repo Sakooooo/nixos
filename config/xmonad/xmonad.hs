@@ -274,7 +274,7 @@ myStartupHook = do
 --
 main = do 
   h <- spawnPipe "xmobar"
-  xmonad $ xmobarProp $ defaults {
+  xmonad $ defaults {
      layoutHook = avoidStruts $ layoutHook def,
       
      logHook = myLogHook h,
