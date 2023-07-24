@@ -12,7 +12,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%StdinReader% | %battery% | %multicpu% | %memory% | %dynnetwork% }{ %date% | %kbd% %_XMONAD_TRAYPAD%" 
+   , template = "%StdinReader% | %battery% | %multicpu% | %memory% }{ %date% | %kbd% %_XMONAD_TRAYPAD%" 
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
