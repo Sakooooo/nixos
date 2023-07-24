@@ -23,6 +23,7 @@ import XMonad.Hooks.DynamicLog -- supposed to be for xmobar
 import XMonad.Util.SpawnOnce -- for startup items
 import XMonad.Util.Run -- for xmobar startup
 import XMonad.Util.Hacks as Hacks -- tray
+import Graphics.X11.ExtraTypes.XF86 -- for keys
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -132,6 +133,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- See also the statusBar function from Hooks.DynamicLog.
     --
     -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
+    -- Audio
+    , ((0, XF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume 0 +5%")
+    , ((0, XF86XK_AudioLowerVolume), spawn "pactl set-sink-volume0 -5%")
+    , ((o, XF86XK_AudioMute), spawn "pactl set-sink-mute 0 toggle")
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
