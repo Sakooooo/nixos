@@ -261,6 +261,8 @@ myLogHook h = dynamicLogWithPP $ def {
 -- By default, do nothing.
 myStartupHook = do
   spawnOnce "keepassxc"
+  spawnOnce "nm-applet"
+  spawnOnce "blueman-applet"
   spawn "trayer --edge bottom --align right --heighttype request --widthtype request --alpha 0 --transparent true --tint '#000000'"
 
 ------------------------------------------------------------------------
