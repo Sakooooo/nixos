@@ -62,7 +62,7 @@ myModMask       = mod4Mask
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
 -- myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
-myWorkspaces    = ["web","irc","dev","4","5","6"]
+myWorkspaces    = ["web","dev","irc","4","5","6"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -257,6 +257,15 @@ myLogHook h = dynamicLogWithPP $ def {
                                     ppOrder = \(ws:_) -> [ws]
                                   }
 
+xmobarFormat = def {
+            ppCurrent = xmobarColor "black" "white"
+            ppOutput = hPutStrLn h,
+            ppExtras = [],
+            ppOrder = \(ws:_) -> [ws]
+             
+}
+
+xmobarProp = statusBarProp "xmobar" (pure xmobarFormat)
 ------------------------------------------------------------------------
 -- Startup hook
 
