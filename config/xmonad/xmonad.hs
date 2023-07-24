@@ -258,11 +258,10 @@ myLogHook h = dynamicLogWithPP $ def {
                                   }
 
 xmobarFormat = def {
-            ppCurrent = xmobarColor "black" "white"
+            ppCurrent = xmobarColor "black" "white",
             ppOutput = hPutStrLn h,
             ppExtras = [],
             ppOrder = \(ws:_) -> [ws]
-             
 }
 
 statusBar = statusBarProp "xmobar" (pure xmobarFormat)
