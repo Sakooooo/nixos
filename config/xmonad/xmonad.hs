@@ -287,8 +287,6 @@ myStartupHook = do
 main = do 
   xmonad $ withEasySB myStatusBar $ defaults {
      layoutHook = avoidStruts $ layoutHook def,
-      
-     logHook = myLogHook h,
 
      manageHook = manageDocks <+> manageHook def,
 
