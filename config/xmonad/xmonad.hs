@@ -265,7 +265,7 @@ xmobarFormat = def {
              
 }
 
-xmobarProp = statusBarProp "xmobar" (pure xmobarFormat)
+statusBar = statusBarProp "xmobar" (pure xmobarFormat)
 ------------------------------------------------------------------------
 -- Startup hook
 
@@ -288,7 +288,7 @@ myStartupHook = do
 --
 main = do 
   h <- spawnPipe "xmobar"
-  xmonad $ xmobarProp $ defaults {
+  xmonad $ withEasySB statusBar $ defaults {
      layoutHook = avoidStruts $ layoutHook def,
       
      logHook = myLogHook h,
