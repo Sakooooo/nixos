@@ -257,7 +257,7 @@ myLogHook h = dynamicLogWithPP $ def { ppOutput = hPutStrLn h }
 -- By default, do nothing.
 myStartupHook = do
   spawnOnce "keepassxc"
-  spawn "trayer --edge bottom --align right --heighttype request --widthtype request --transparent true --tint #000000"
+  spawn "trayer --edge bottom --align right --heighttype request --widthtype request --transparent true --tint '#000000'"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
