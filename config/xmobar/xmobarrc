@@ -12,7 +12,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = " <icon=nixos-logo.xpm/> %XMonadLog% | %battery% | %multicpu% | %memory% }{ %Volume% | %date% | %kbd% %_XMONAD_TRAYPAD%" 
+   , template = " <icon=nixos-logo.xpm/> %XMonadLog% | %battery% | %multicpu% | %memory% }{ %vol% | %date% | %kbd% %_XMONAD_TRAYPAD%" 
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -82,8 +82,6 @@ Config {
                              , "--high"     , "darkred"
                              ] 10
         , Run XPropertyLog   "_XMONAD_TRAYPAD" 
-        
-        , Run Com "/home/sako/.config/xmobar/scripts/volume.sh" [] "vol" 30 
 
         -- battery monitor
         , Run Battery        [ "--template" , "Batt: <acstatus>"
@@ -101,7 +99,7 @@ Config {
                                        -- charged status
                                        , "-i"	, "<fc=#006000>Charged</fc>"
                              ] 50
-        , Run Volume "default" "Master" [] 10
+        , Run Com "/home/sako/.config/xmobar/scripts/pulsevol.sh" [] "vol" 10
 
         -- time and date indicator 
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
