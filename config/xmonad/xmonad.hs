@@ -26,8 +26,6 @@ import XMonad.Util.Run -- for xmobar startup
 import XMonad.Util.Hacks as Hacks -- tray
 import Graphics.X11.ExtraTypes.XF86 -- for keys
 import XMonad.Util.Loggers -- smth
-import XMonad.Layout.MultiToggle -- fulllscreen
-import XMonad.Layout.MultiToggle.Instances
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -141,9 +139,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_AudioMute), spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
     , ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
     , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
-    
-    -- Fullscreen
-    , ((modm, xK_f), sendMessage (Toggle "Full"))
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
