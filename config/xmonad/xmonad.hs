@@ -258,8 +258,9 @@ myLogHook h = dynamicLogWithPP $ def {
                                   }
 
 myXmobarFormat = def {
-            ppCurrent = xmobarColor "black" "white",
+            ppCurrent = xmobarColor "black", 
             ppExtras = [],
+            ppHidden = xmobarColor "white" . wrap " " "",
             ppOrder = \(ws:_) -> [ws]
 }
 
