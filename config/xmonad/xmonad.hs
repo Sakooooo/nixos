@@ -260,9 +260,25 @@ myLogHook h = dynamicLogWithPP $ def {
 myXmobarFormat = def {
             ppCurrent = xmobarColor "black", 
             ppExtras = [],
-            ppHidden = xmobarColor "white" . wrap " " "",
+            ppHidden = white . wrap " " "",
             ppOrder = \(ws:_) -> [ws]
 }
+where
+    formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
+    formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
+
+    -- | Windows should have *some* title, which should not not exceed a
+    -- sane length.
+    ppWindow :: String -> String
+    ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
+
+    blue, lowWhite, magenta, red, white, yellow :: String -> String
+    magenta  = xmobarColor "#ff79c6" ""
+    blue     = xmobarColor "#bd93f9" ""
+    white    = xmobarColor "#f8f8f2" ""
+    yellow   = xmobarColor "#f1fa8c" ""
+    red      = xmobarColor "#ff5555" ""
+    lowWhite = xmobarColor "#bbbbbb" ""
 
 myStatusBar = statusBarProp "xmobar" (pure myXmobarFormat)
 ------------------------------------------------------------------------
