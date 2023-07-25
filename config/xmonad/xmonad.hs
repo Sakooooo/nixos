@@ -143,7 +143,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
     
     -- Fullscreen
-    , ((modm, xK_f), sendMessage (Toggle Full))
+    , ((modm, xK_f), sendMessage (Toggle "Full"))
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
