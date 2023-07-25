@@ -101,10 +101,7 @@ Config {
                                        -- charged status
                                        , "-i"	, "<fc=#006000>Charged</fc>"
                              ] 50
-        , Run Volume "default" "Master" [ "-t", "<volume>%<status>"
-                                , "--", "-O", "", "-o", " (mute)"
-                                , "-c", "#fb4934"
-                                ] 10
+        , Run Volume "default" "Master" [] 10
 
         -- time and date indicator 
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
