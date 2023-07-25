@@ -258,10 +258,15 @@ myLogHook h = dynamicLogWithPP $ def {
                                   }
 
 myXmobarFormat = def {
-            ppCurrent = xmobarColor "black" "white", 
-            ppExtras = [],
+            --ppCurrent = xmobarColor "black" "white", 
+            ppTitleSanitize = xmobarStrip
+            ppCurrent = wrap " " "" . xmobarBorder "Top" "#8be9fd" 2
             ppHidden = white . wrap " " "",
-            ppOrder = \(ws:_) -> [ws]
+            ppHiddenNoWindows = lowWhite . wrap " " "",
+            ppUrgent = red . wrap (yellow "!") (yellow "!")
+            --ppOrder = \(ws:_) -> [ws]
+            ppOrder = \[ws, l, _, wins] -> [ws, l, wins]
+            ppExtras = [logTitles formatFocused formatUnfocused]
 }
   where
     formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
