@@ -263,7 +263,7 @@ myXmobarFormat = def {
             ppHidden = white . wrap " " "",
             ppOrder = \(ws:_) -> [ws]
 }
-where
+  where
     formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
     formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
 
