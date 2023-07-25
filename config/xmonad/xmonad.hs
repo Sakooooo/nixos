@@ -265,8 +265,8 @@ myXmobarFormat = def {
             ppHidden = white . wrap " " "",
             ppHiddenNoWindows = lowWhite . wrap " " "",
             ppUrgent = red . wrap (yellow "!") (yellow "!"),
-            --ppOrder = \(ws:_) -> [ws]
-            ppOrder = \[ws, l, _ ] -> [ws, l ],
+            ppOrder = \(ws:_) -> [ws],
+            --ppOrder = \[ws l, _ ] -> [ws, l ],
             ppExtras = [logTitles formatFocused formatUnfocused]
 }
   where
