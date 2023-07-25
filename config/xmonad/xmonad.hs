@@ -28,7 +28,6 @@ import Graphics.X11.ExtraTypes.XF86 -- for keys
 import XMonad.Util.Loggers -- smth
 import XMonad.Layout.MultiToggle -- fulllscreen
 import XMonad.Layout.MultiToggle.Instances
-import XMonad.Layout.NoBorders (noBorders)
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
