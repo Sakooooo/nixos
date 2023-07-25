@@ -20,6 +20,8 @@ import XMonad.Hooks.ManageDocks -- manage dock thingy xmobar hHAUISHFOAUISHDFUOI
 
 -- Extras
 import XMonad.Hooks.DynamicLog -- supposed to be for xmobar 
+import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.EwmhFullscreen
 import XMonad.Util.SpawnOnce -- for startup items
 import XMonad.Util.Run -- for xmobar startup
 import XMonad.Util.Hacks as Hacks -- tray
@@ -307,7 +309,7 @@ myStartupHook = do
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad . withEasySB myStatusBar defToggleStrutsKey $ myConfig 
+main = xmonad . ewmhFullscreen . ewmh . withEasySB myStatusBar defToggleStrutsKey $ myConfig 
 
 myConfig = defaults {
      layoutHook = avoidStruts $ layoutHook def,
