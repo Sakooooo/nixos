@@ -40,6 +40,12 @@
           ./hosts/sakotop/configuration.nix
         ];
       };
+      sakopc = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs outputs; };
+        modules = [
+          ./hosts/sakopc/configuration.nix
+        ];
+      };
     };
     
     #nixosConfigurations = {
