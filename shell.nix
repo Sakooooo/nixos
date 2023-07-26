@@ -7,4 +7,14 @@
     NIX_CONFIG = "experimental-features = nix-command flakes";
     nativeBuildInputs = with pkgs; [ nix home-manager git ];
   };
+  xmonad = pkgs.mkShell {
+    nativeBuildInputs = with pkgs; [
+      haskell-language-server
+      ghc
+    ];
+    buildInputs = with pkgs; [
+      haskellPackages.xmonad
+      haskellPackages.xmonad-contrib
+    ];
+  };
 }
