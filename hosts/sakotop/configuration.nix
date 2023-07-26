@@ -15,10 +15,6 @@
   modules = {
     desktop = {
       kitty.enable = true;
-      bspwm = {
-        enable = false;
-        polybar.enable = false;
-      };
       dwm = {
         enable = false;
         dwmblocks.enable = false;
