@@ -37,12 +37,14 @@
       sakotop = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs outputs; };
         modules = [
+          ./default.nix
           ./hosts/sakotop/configuration.nix
         ];
       };
       sakopc = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs outputs; };
         modules = [
+          ./default.nix
           ./hosts/sakopc/configuration.nix
         ];
       };

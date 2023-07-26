@@ -58,7 +58,7 @@
     # keyMap = "us";
     useXkbConfig = true;
   };
-  # already sold soul to corporations \_O_/
+  # already sold soul to corporations \_o_/
   nixpkgs.config.allowUnfree = true;
 
   home-manager.useUserPackages = true;
@@ -84,8 +84,8 @@
     pamixer # unsupported application
     feh # im different
     unzip # zip file
-    gh # get hub
-    htop # h top
+    gh # github
+    htop # htop
     tree # trees
   ]; 
   # you phisiclally cannot live without this
