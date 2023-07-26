@@ -50,13 +50,5 @@
       };
     };
     
-    #nixosConfigurations = {
-      # TODO(sako)::rename this
-    #  sakotop = nixpkgs.lib.nixosSystem {
-    #   system = "x86_64-linux";
-    #    specialArgs = attrs;
-    #    modules = [ ./hosts/sakotop ];
-    #  };
-    #};
   };
 }
