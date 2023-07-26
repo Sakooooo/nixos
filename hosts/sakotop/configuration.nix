@@ -15,9 +15,7 @@
   modules = {
     desktop = {
       kitty.enable = true;
-      hyprland.enable = false;
       xmonad.enable = true;
-      kde.enable = false;
       dunst.enable = true;
       browsers = {
         qutebrowser.enable = true;
