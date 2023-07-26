@@ -1,7 +1,7 @@
 Config { 
 
    -- appearance
-     font =         "JetBrainsMono NF 10"
+     font =         "JetBrainsMono NF 9"
    , bgColor =      "black"
    , fgColor =      "#646464"
    , position =     TopH 30 
@@ -12,7 +12,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = " <icon=nixos-logo.xpm/> %XMonadLog% | %battery% | %multicpu% | %memory% }{ %vol% | %date% | %kbd% %_XMONAD_TRAYPAD%" 
+   , template = " <icon=nixos-logo.xpm/> %XMonadLog% | %multicpu% | %memory% }{ %vol% | %date% | %battery | %_XMONAD_TRAYPAD%" 
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
