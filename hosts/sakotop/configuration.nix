@@ -40,7 +40,6 @@
         gimp.enable = true;
         blender.enable = true;
         kdenlive.enable = true;
-        lmms.enable = true;
         mpv.enable = true;
       };
     };
