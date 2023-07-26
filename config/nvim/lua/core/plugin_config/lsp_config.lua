@@ -1,8 +1,9 @@
 require("cmp")
 require("mason").setup()
-require("mason-lspconfig").setup({
+--require("mason-lspconfig").setup({
 --	ensure_installed = { "lua_ls", "omnisharp", "pyright", "clangd" },
-})
+--})
+require("mason-lspconfig").setup()
 local mason_null_ls = require("mason-null-ls")
 
 -- vscode
@@ -20,12 +21,13 @@ end
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 --format thing
-mason_null_ls.setup({
+--mason_null_ls.setup({
 --	ensure_installed = {
 --		"stylua",
 --		"prettier",
-	},
-})
+--	},
+--})
+mason_null_ls.setup()
 
 -- funny lsp config stuff
 require('lspconfig').rnix.setup({
