@@ -297,6 +297,7 @@ myStatusBar = statusBarProp "xmobar" (pure myXmobarFormat)
 --
 -- By default, do nothing.
 myStartupHook = do
+  spawnOnce "feh --bg-scale /home/sako/background.png"
   spawnOnce "keepassxc"
   spawnOnce "nm-applet"
   spawnOnce "blueman-applet"
