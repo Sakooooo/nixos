@@ -38,8 +38,6 @@
       };
       media = {
         gimp.enable = true;
-        # fixed via local package
-        resolve.enable = true;
         blender.enable = true;
         kdenlive.enable = true;
         lmms.enable = true;
