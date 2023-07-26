@@ -15,10 +15,6 @@
   modules = {
     desktop = {
       kitty.enable = true;
-      dwm = {
-        enable = false;
-        dwmblocks.enable = false;
-      };
       hyprland.enable = false;
       xmonad.enable = true;
       kde.enable = false;
