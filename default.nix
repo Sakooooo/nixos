@@ -44,6 +44,7 @@
       efiSupport = true;
       enable = true;
       useOSProber = true;
+      configurationLimit = 10;
     };
   };
 
