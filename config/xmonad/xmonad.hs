@@ -240,7 +240,7 @@ myManageHook = composeAll
 -- return (All True) if the default handler is to be run afterwards. To
 -- combine event hooks use mappend or mconcat from Data.Monoid.
 --
-myEventHook = mempty
+myEventHook = ewmhDesktopsEventHook 
 
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -314,7 +314,6 @@ myConfig = defaults {
 
      handleEventHook = handleEventHook def
                <> Hacks.trayerPaddingXmobarEventHook
-               <> ewmhFullscreen 
  
 }
 
