@@ -11,9 +11,9 @@
   outputs = { self, nixpkgs, home-manager, ...}@inputs: 
   let
     inherit (self) outputs;
-    forAllSystems = nixpkgs.lib.genAttrs [
-      "x86_64-linux"
-    ];
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+      ];
     in
     rec {
     # custom packages
@@ -25,7 +25,7 @@
     devShells = forAllSystems (system:
       let pkgs = nixpkgs.legacyPackages.${system};
       in import ./shell.nix { inherit pkgs; }
-      );
+    );
     
     # overlays here
     overlays = import ./overlays { inherit inputs; };

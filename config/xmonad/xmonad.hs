@@ -314,6 +314,7 @@ myConfig = defaults {
 
      handleEventHook = handleEventHook def
                <> Hacks.trayerPaddingXmobarEventHook
+               <> fullscreenEventHook
  
 }
 
