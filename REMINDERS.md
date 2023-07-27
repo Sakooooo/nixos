@@ -11,5 +11,5 @@ nix flake update
 - Run this
 
 ```bash
-nix store gc --debug
+nix store gc --debug && sudo nix store gc --debug
 ```
