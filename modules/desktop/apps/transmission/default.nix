@@ -4,6 +4,9 @@ let
   cfg = config.modules.desktop.apps.transmission;
 in
 {
+  imports = [
+    ./daemon.nix
+  ];
   options.modules.desktop.apps.transmission = {
     enable = mkEnableOption false;
   };
