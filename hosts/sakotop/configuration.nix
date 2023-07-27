@@ -66,6 +66,8 @@
         # makes nix search nixpkgs <example>
         # ALOT faster
         search.enable = true;
+        # optimize store 
+        optimize.enable = true;
       };
       zsh.enable = true;
       newsboat.enable = true;
@@ -87,13 +89,6 @@
   };
 
     services.xserver.videoDrivers = [ "nvidia" ];
-
-  # garbage collection
-  nix.gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-  };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
