@@ -1,3 +1,3 @@
 [submodule "config/dwm"]
 	path = config/dwm
-	url = git://git.suckless.org/dwm
+	url = https://github.com/Sakooooo/dwm.git 
