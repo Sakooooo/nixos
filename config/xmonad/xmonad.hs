@@ -299,7 +299,7 @@ myStartupHook = do
   spawnOnce "nm-applet"
   spawnOnce "blueman-applet"
   spawnOnce "flameshot"
-  spawn "trayer --edge top --align right --iconspacing 1 --height 40 --widthtype request --alpha 0 --transparent true --tint '#661919'"
+  spawn "trayer --edge top --align right --iconspacing 1 --height 20 --widthtype request --alpha 0 --transparent true --tint '#661919'"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
