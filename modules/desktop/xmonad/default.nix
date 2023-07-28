@@ -93,7 +93,7 @@ in
         };
         ".stalonetrayrc" = {
           enable = true;
-          source = ../../../config/stalonetray;
+          source = ../../../config/stalonetray/stalonetrayrc;
         };
       };
       xdg.configFile = {
