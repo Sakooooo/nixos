@@ -69,6 +69,7 @@ in
       xmobar
       # tray
       trayer
+      stalonetray
     ];
 
     home-manager.users.sako = { pkgs , ...}: {
@@ -89,6 +90,10 @@ in
         "background.png" = {
           enable = true;
           source = ../../../config/background.png;
+        };
+        ".stalonetrayrc" = {
+          enable = true;
+          source = ../../../config/stalonetray;
         };
       };
       xdg.configFile = {
