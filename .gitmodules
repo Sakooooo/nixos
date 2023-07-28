@@ -1,4 +1,0 @@
-[submodule "config/dwm"]
-	path = config/dwm
-	url = https://github.com/Sakooooo/dwm.git 
-  branch = sako_dwm
