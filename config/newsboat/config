@@ -1,0 +1,1 @@
+macro i set pager "./kitty-img-pager.sh"; open; set pager internal
