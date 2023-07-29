@@ -28,6 +28,7 @@ return require("packer").startup(function(use)
 
 	-- syntax highlighting apparently
 	use("nvim-treesitter/nvim-treesitter")
+  use("windwp/nvim-ts-autotag")
 
 	-- like fzf but goofier
 	use({
