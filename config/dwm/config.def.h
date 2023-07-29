@@ -2,7 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx = 20; /* gaps between windows */
+static const unsigned int gappx = 15; /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;    /* 0: systray in the right corner, >0: systray on left of status text */
@@ -38,7 +38,7 @@ static const char *const autostart[] = {
 
 /* tagging */
 // static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
+static const char *tags[] = { "web", "2", "3", "4", "5", "6" };
 
 static const Rule rules[] = {
 	/* xprop(1):
