@@ -33,7 +33,6 @@ static const char *const autostart[] = {
   "blueman-applet", NULL,
   "keepassxc", NULL,
   "flameshot", NULL,
-  "discord", NULL,
 	NULL /* terminate */
 };
 
