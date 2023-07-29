@@ -9,6 +9,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    
+    services.transmission = {
+      enable = true;
+    };
   };
 }
