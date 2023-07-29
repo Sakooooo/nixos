@@ -1,1 +1,1 @@
-macro i set pager "./kitty-img-pager.sh"; open; set pager internal
+macro i set pager "/home/sako/.config/newsboat/kitty-img-pager.sh"; open; set pager internal
