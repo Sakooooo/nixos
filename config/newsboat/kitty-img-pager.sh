@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # Shows images, scaled to terminal dimensions, via kitty's icat.
 # Designed for image-feeds like xkcd.com.
 # by Timm Heuss (https://github.com/heussd/) - CC-BY 4.0
