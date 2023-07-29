@@ -17,3 +17,7 @@ bind-key j down
 bind-key k up
 bind-key l open
 bind-key h quit
+
+# categories
+highlight feedlist "---.*---" red default bold
+highlight feedlist ".*0/0.." default default invis
