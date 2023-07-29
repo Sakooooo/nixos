@@ -13,7 +13,7 @@ set -o pipefail
 set -o nounset
 
 
-image=$(grep -E -o "https?://[a-zA-Z0-9./?=_%:-]*" < "${1}" | tail -1)
+image=$(grep -E -o "https?://[a-zA-Z0-9./?=_%:-]*" < "${#}" | tail -1)
 
 # Detect terminal dimensions
 dims="$(tput cols)x$(tput lines)@0x0"
