@@ -23,7 +23,7 @@ vim.opt.splitright = true
 -- :terminal shell
 if (vim.loop.os_uname().sysname == "Linux")
 then
-  vim.opt.shell = "bash"
+  vim.opt.shell = "zsh"
 else 
   vim.opt.shell = "pwsh"
 end
@@ -52,3 +52,7 @@ vim.keymap.set("n", "<leader>t", ":split<CR> <BAR> :terminal<CR>")
 
 -- exit terminal with esc
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)
+
+-- color picker
+vim.keymap.set("n", "<C-c>", "<cmd>PickColor<cr>", opts)
+vim.keymap.set("i", "<C-c>", "<cmd>PickColorInsert<cr>", opts)
