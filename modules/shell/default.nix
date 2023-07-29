@@ -3,5 +3,6 @@
     ./nix
     ./zsh
     ./newsboat
+    ./ranger
   ];
 }

@@ -75,6 +75,7 @@
       };
       zsh.enable = true;
       newsboat.enable = true;
+      ranger.enable = true;
     };
     media = {
       mpd.enable = true;
