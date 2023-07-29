@@ -34,6 +34,7 @@ static const char *const autostart[] = {
   "keepassxc", NULL,
   "flameshot", NULL,
   "discord", NULL,
+  "transmission-gtk", "-m", NULL,
 	NULL /* terminate */
 };
 
