@@ -29,7 +29,10 @@
         nemo.enable = true;
         keepassxc.enable = true;
         nicotineplus.enable = true;
-        transmission.enable = true;
+        transmission = {
+          enable = true;
+          tui = true;
+        };
       };
       chat = {
         discord.enable = true;
