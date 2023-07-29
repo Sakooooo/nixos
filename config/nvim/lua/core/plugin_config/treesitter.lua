@@ -6,11 +6,15 @@ require'nvim-treesitter.configs'.setup{
   "c_sharp",
   "lua",
   "python",
-  "vim"},
+  "nix"
+  },
   
   -- Install parsers synchronously (only applied to 'ensure_installed)
   sync_install = false,
   auto_install = true,
+  autotag = {
+    enable = true,
+  },
   highlight = {
     enable = true,
   },
