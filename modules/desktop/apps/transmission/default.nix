@@ -6,6 +6,7 @@ in
 {
   imports = [
     ./remote-tui.nix
+    ./daemon.nix
   ];
   options.modules.desktop.apps.transmission = {
     enable = mkEnableOption false;
@@ -14,17 +15,7 @@ in
   config = mkIf cfg.enable {
     #TODO(sako):: figure out service
     users.users.sako.packages = with pkgs; [
-      transmission
+      transmission-gtk
     ];
-
-    home-manager.users.sako = { pkgs, ...}: {
-      xdg.configFile = {
-        transmission-daemon = {
-          source = ../../../../config/transmission-daemon;
-          recursive = true;
-        };
-      };
-    };
-
   };
 }
