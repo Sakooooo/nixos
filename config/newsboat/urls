@@ -1,5 +1,4 @@
----IMAGES---
-https://xkcd.com/rss.xml
----LINUX---
-https://news.itsfoss.com/latest/rss/
-https://nixos.org/blog/announcements-rss.xml
+https://xkcd.com/rss.xml images
+
+https://news.itsfoss.com/latest/rss/ linux
+https://nixos.org/blog/announcements-rss.xml linux
