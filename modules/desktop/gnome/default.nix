@@ -24,6 +24,8 @@ in
         };
       };
     };
+    # somethings wrong with gnome i think
+    sound.enable = true;
     # gnome extensions
     environment.systemPackages = with pkgs; [ 
       gnomeExtensions.appindicator 
