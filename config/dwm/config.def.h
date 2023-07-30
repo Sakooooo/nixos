@@ -87,9 +87,9 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *roficmd[] = { "rofi", "-show-icons", "-show", "drun", NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 // audio
-static const char *upvol[]      = { "/usr/bin/pactl",   "set-sink-volume", "0",      "+5%",      NULL };
-static const char *downvol[]    = { "/usr/bin/pactl",   "set-sink-volume", "0",      "-5%",      NULL };
-static const char *mutevol[]    = { "/usr/bin/pactl",   "set-sink-mute",   "0",      "toggle",   NULL }; 
+static const char *upvol[]      = { "pactl",   "set-sink-volume", "0",      "+5%",      NULL };
+static const char *downvol[]    = { "pactl",   "set-sink-volume", "0",      "-5%",      NULL };
+static const char *mutevol[]    = { "pactl",   "set-sink-mute",   "0",      "toggle",   NULL }; 
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
