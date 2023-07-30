@@ -19,7 +19,6 @@
         enable = true;
         dwmblocks.enable = true;
       };
-      gnome.enable = false;
       dunst.enable = true;
       browsers = {
         qutebrowser.enable = true;
