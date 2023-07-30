@@ -16,11 +16,11 @@
       kitty.enable = true;
       xmonad.enable = false;
       dwm = {
-        enable = false;
-        dwmblocks.enable = false;
+        enable = true;
+        dwmblocks.enable = true;
       };
-      gnome.enable = true;
-      dunst.enable = false;
+      gnome.enable = false;
+      dunst.enable = true;
       browsers = {
         qutebrowser.enable = true;
         # for those quick thinsg where i dont know how to do it on qutebrowser
