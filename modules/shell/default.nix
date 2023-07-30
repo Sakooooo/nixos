@@ -4,6 +4,5 @@
     ./zsh
     ./newsboat
     ./ranger
-    ./pipe-viewer
   ];
 }

@@ -76,7 +76,6 @@
       zsh.enable = true;
       newsboat.enable = true;
       ranger.enable = true;
-      pipe-viewer.enable = true;
     };
     media = {
       mpd.enable = true;
