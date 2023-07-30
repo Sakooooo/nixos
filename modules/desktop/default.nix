@@ -1,6 +1,5 @@
 {
   imports = [
-    ./kitty
     # window managers
     ./bspwm
     ./dwm
@@ -8,6 +7,9 @@
     ./xmonad
     # desktop environ men t s s  s s 
     ./kde
+    ./gnome
+    # stuffs
+    ./kitty
     ./browsers
     ./apps
     ./game
