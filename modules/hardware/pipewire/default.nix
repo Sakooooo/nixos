@@ -11,7 +11,7 @@ in
   config = mkIf cfg.enable {
     # resolve racial conflict between 
     # pulseaudio and pipewire
-    sound.enable = false;
+    sound.enable = lib.mkDefault false;
 
     # what is this for will source games
     # still work what
