@@ -13,6 +13,8 @@ in
     # pulseaudio and pipewire
     sound.enable = lib.mkDefault false;
 
+    hardware.pulseaudio.enable = false;
+
     # what is this for will source games
     # still work what
     security.rtkit.enable = true;
