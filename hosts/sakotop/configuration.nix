@@ -29,7 +29,7 @@
         keepassxc.enable = true;
         nicotineplus.enable = true;
         transmission.enable = true;
-        kindle-comic-converter.enable = false;
+        calirbe.enable = true;
       };
       chat = {
         discord.enable = true;
