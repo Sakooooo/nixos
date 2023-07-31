@@ -12,8 +12,8 @@ in
     programs.firefox = {
       enable = true;
       preferences = {
-        toolkit.legacyUserProfileCustomizations.stylesheets = true;
-        browser.compactmode.show = true;
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "browser.compactmode.show" = true;
       };
     };
   };
