@@ -169,3 +169,7 @@ config.set('content.blocking.adblock.lists', [
     "https://www.i-dont-care-about-cookies.eu/abp/",
     "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt"
 ])
+
+# fonts
+config.set('fonts.defaultFamily', 'JetBrainsMono')
+config.set('fonts.defaultSize', '9pt')
