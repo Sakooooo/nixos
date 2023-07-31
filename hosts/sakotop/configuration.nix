@@ -22,7 +22,7 @@
       dunst.enable = true;
       browsers = {
         qutebrowser.enable = true;
-        firefox.enable = false;
+        firefox.enable = true;
       };
       apps = {
         nemo.enable = true;
