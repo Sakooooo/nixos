@@ -29,7 +29,7 @@
         keepassxc.enable = true;
         nicotineplus.enable = true;
         transmission.enable = true;
-        calirbe.enable = true;
+        calibre.enable = true;
       };
       chat = {
         discord.enable = true;
