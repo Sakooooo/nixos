@@ -9,8 +9,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    users.users.sako.packages = with pkgs; [
-      firefox
-    ];
+    programs.firefox = {
+      enable = true;
+      preferences = {
+        toolkit.legacyUserProfileCustomizations.stylesheets = true;
+        browser.compactmode.show = true;
+      };
+    };
   };
 }
