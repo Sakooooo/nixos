@@ -8,6 +8,9 @@ in
     enable = mkEnableOption false;
   };
 
+  # TODO add this
+  # https://github.com/Dook97/firefox-qutebrowser-userchrome
+  
   config = mkIf cfg.enable {
     programs.firefox = {
       enable = true;
