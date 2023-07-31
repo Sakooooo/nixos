@@ -54,6 +54,7 @@
     dev = {
       editors = {
         nvim.enable = true;
+        vscode.enable = true;
       };
       cc.enable = true;
       javascript.enable = true;
