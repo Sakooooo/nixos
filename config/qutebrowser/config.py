@@ -171,5 +171,5 @@ config.set('content.blocking.adblock.lists', [
 ])
 
 # fonts
-config.set('fonts.defaultFamily', 'JetBrainsMono')
-config.set('fonts.defaultSize', '9pt')
+config.set('fonts.default_Family', 'JetBrainsMono')
+config.set('fonts.default_Size', '9pt')
