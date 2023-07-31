@@ -12,11 +12,6 @@ in
     # because yes 
     users.users.sako.packages = with pkgs; [
       neovim
-      # lsp
-      clang-tools
-      cmake-language-server
-      # lint
-      cpplint
     ];
     home-manager.users.sako.xdg.configFile.nvim = {
       source = ../../../../config/nvim;

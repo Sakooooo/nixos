@@ -16,6 +16,11 @@ in
       clang
       gdb
       pkg-config
+      # lsp
+      clang-tools
+      cmake-language-server
+      # lint
+      cpplint
     ];
   };
 }
