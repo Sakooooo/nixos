@@ -5,5 +5,7 @@
     ./kdeconnect
     ./nemo
     ./transmission
+    ./kcc
+    ./calibre
   ];
 }
