@@ -21,8 +21,7 @@
       };
       dunst.enable = true;
       browsers = {
-        qutebrowser.enable = true;
-        # for those quick thinsg where i dont know how to do it on qutebrowser
+        qutebrowser.enable = false;
         firefox.enable = true;
       };
       apps = {
