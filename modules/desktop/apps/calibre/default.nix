@@ -12,5 +12,7 @@ in
     users.users.sako.packages = with pkgs; [
       calibre
     ];
+
+    networking.firewall.allowedTCPPorts = [ 8080 ];
   };
 }
