@@ -12,9 +12,5 @@
       haskell-language-server
       ghc
     ];
-    pkgs.haskellPackages.ghcWithPackages = with pkgs.haskellPackages; [
-      xmonad
-      xmonad-contrib
-    ]; 
   };
 }
