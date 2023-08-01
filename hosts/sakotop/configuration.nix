@@ -14,10 +14,10 @@
   modules = {
     desktop = {
       kitty.enable = true;
-      xmonad.enable = false;
+      xmonad.enable = true;
       dwm = {
-        enable = true;
-        dwmblocks.enable = true;
+        enable = false;
+        dwmblocks.enable = false;
       };
       dunst.enable = true;
       browsers = {
