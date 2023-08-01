@@ -12,9 +12,9 @@
       haskell-language-server
       ghc
     ];
-    buildInputs = with pkgs; [
-      haskellPackages.xmonad
-      haskellPackages.xmonad-contrib
+    pkgs.haskellPackages.ghcWithPackages = with pkgs.haskellPackages; [
+      xmonad
+      xmonad-contrib
     ]; 
   };
 }
