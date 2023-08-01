@@ -14,6 +14,7 @@
     ];
     buildInputs = with pkgs; [
       haskellPackages.xmonad
+      haskellPackages.xmonad-contrib
     ]; 
   };
 }
