@@ -62,9 +62,6 @@
       rust.enable = true;
       # too heavy
       unity.enable = false;
-      projects = {
-        sakoEngine.enable = true;
-      };
     };
     shell = {
       nix = {
