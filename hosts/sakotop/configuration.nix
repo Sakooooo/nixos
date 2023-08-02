@@ -72,6 +72,7 @@
         optimize.enable = true;
       };
       zsh.enable = true;
+      tmux.enable = true;
       newsboat.enable = true;
       ranger.enable = true;
     };
