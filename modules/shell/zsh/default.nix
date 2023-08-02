@@ -25,7 +25,7 @@ in
       enableCompletion = true;
       shellAliases = {
         ll = "ls -l";
-        update = "sudo nixos-rebuild switch";
+        update = "sudo nixos-rebuild switch -v";
       };
       plugins = [
       {
