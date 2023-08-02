@@ -7,5 +7,6 @@
     ./transmission
     ./kcc
     ./calibre
+    ./mangal
   ];
 }

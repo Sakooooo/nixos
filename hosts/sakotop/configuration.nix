@@ -31,6 +31,8 @@
         nicotineplus.enable = true;
         transmission.enable = true;
         calibre.enable = true;
+        kindle-comic-converter.enable = true;
+        mangal.enable = true;
       };
       chat = {
         discord.enable = true;
