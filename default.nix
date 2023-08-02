@@ -57,8 +57,15 @@
   console = {
     font = "Lat2-Terminus16";
     # keyMap = "us";
+    # use xorg layout option 
+    # TODO(sako):: add arabic locale
     useXkbConfig = true;
   };
+
+  # xorg layout
+  # change to needed
+  services.xserver.layout = "us";
+
   # already sold soul to corporations \_o_/
   nixpkgs.config.allowUnfree = true;
 
