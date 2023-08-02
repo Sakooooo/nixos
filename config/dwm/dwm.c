@@ -207,8 +207,6 @@ static void maprequest(XEvent *e);
 static void monocle(Monitor *m);
 static void motionnotify(XEvent *e);
 static void movemouse(const Arg *arg);
-static void movekeyboard_x(const Arg *arg);
-static void movekeyboard_y(const Arg *arg);
 static Client *nexttiled(Client *c);
 static void pop(Client *c);
 static void propertynotify(XEvent *e);
@@ -1358,92 +1356,6 @@ movemouse(const Arg *arg)
 		}
 	} while (ev.type != ButtonRelease);
 	XUngrabPointer(dpy, CurrentTime);
-	if ((m = recttomon(c->x, c->y, c->w, c->h)) != selmon) {
-		sendmon(c, m);
-		selmon = m;
-		focus(NULL);
-	}
-}
-
-void
-movekeyboard_x(const Arg *arg){
-	int ocx, ocy, nx, ny;
-	Client *c;
-	Monitor *m;
-
-	if (!(c = selmon->sel))
-		return;
-
-	if (c->isfullscreen) /* no support moving fullscreen windows by mouse */
-		return;
-
-	restack(selmon);
-
-	ocx = c->x;
-	ocy = c->y;
-
-	nx = ocx + arg->i;
-	ny = ocy;
-
-	if (abs(selmon->wx - nx) < snap)
-		nx = selmon->wx;
-	else if (abs((selmon->wx + selmon->ww) - (nx + WIDTH(c))) < snap)
-		nx = selmon->wx + selmon->ww - WIDTH(c);
-
-	if (abs(selmon->wy - ny) < snap)
-		ny = selmon->wy;
-	else if (abs((selmon->wy + selmon->wh) - (ny + HEIGHT(c))) < snap)
-		ny = selmon->wy + selmon->wh - HEIGHT(c);
-
-	if (!c->isfloating)
-		togglefloating(NULL);
-
-	if (!selmon->lt[selmon->sellt]->arrange || c->isfloating)
-		resize(c, nx, ny, c->w, c->h, 1);
-
-	if ((m = recttomon(c->x, c->y, c->w, c->h)) != selmon) {
-		sendmon(c, m);
-		selmon = m;
-		focus(NULL);
-	}
-}
-
-void
-movekeyboard_y(const Arg *arg){
-	int ocx, ocy, nx, ny;
-	Client *c;
-	Monitor *m;
-
-	if (!(c = selmon->sel))
-		return;
-
-	if (c->isfullscreen) /* no support moving fullscreen windows by mouse */
-		return;
-
-	restack(selmon);
-
-	ocx = c->x;
-	ocy = c->y;
-
-	nx = ocx;
-	ny = ocy + arg->i;
-
-	if (abs(selmon->wx - nx) < snap)
-		nx = selmon->wx;
-	else if (abs((selmon->wx + selmon->ww) - (nx + WIDTH(c))) < snap)
-		nx = selmon->wx + selmon->ww - WIDTH(c);
-
-	if (abs(selmon->wy - ny) < snap)
-		ny = selmon->wy;
-	else if (abs((selmon->wy + selmon->wh) - (ny + HEIGHT(c))) < snap)
-		ny = selmon->wy + selmon->wh - HEIGHT(c);
-
-	if (!c->isfloating)
-		togglefloating(NULL);
-
-	if (!selmon->lt[selmon->sellt]->arrange || c->isfloating)
-		resize(c, nx, ny, c->w, c->h, 1);
-
 	if ((m = recttomon(c->x, c->y, c->w, c->h)) != selmon) {
 		sendmon(c, m);
 		selmon = m;
