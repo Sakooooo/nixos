@@ -1,6 +1,7 @@
 {
   imports = [
     # window managers
+    ./awesome
     ./bspwm
     ./dwm
     ./hyprland
