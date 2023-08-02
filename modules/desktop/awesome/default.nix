@@ -22,7 +22,7 @@ in
        defaultSession = "none+awesome"; 
        lightdm = {
         enable = true;
-        background = ../../../config/bspwm/background.png;
+        background = ../../../config/background.png;
         greeters.gtk = {
           enable = true;
           theme = {
@@ -83,6 +83,11 @@ in
         };
       };
       xdg.configFile = {
+        awesome = {
+          enable = true;
+          source = ../../../config/awesome;
+          recursive = true;
+        };
      }; 
     };
   };
