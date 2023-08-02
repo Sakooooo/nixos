@@ -2,7 +2,7 @@ Config {
 
    -- appearance
      font =         "JetBrainsMono NF 9"
-   , bgColor =      black
+   , bgColor =      "black"
    , fgColor =      "#646464"
    , position =     BottomH 40 
    , border =       NoBorder 
