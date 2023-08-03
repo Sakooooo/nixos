@@ -6,7 +6,7 @@
 interval=0
 
 # load colors
-. ~/.dwmscripts/themes/onedark
+. ~/.dwmscripts/themes/onedark.sh
 
 cpu() {
   cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)
