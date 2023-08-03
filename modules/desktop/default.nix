@@ -17,5 +17,6 @@
     ./chat
     ./media
     ./dunst
+    ./picom
   ];
 }

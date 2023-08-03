@@ -16,10 +16,8 @@
       kitty.enable = true;
       xmonad.enable = false;
       awesome.enable = false;
-      dwm = {
-        enable = true;
-        dwmblocks.enable = false;
-      };
+      dwm.enable = true;
+      picom.enable = true;
       gnome.enable =  false;
       dunst.enable = true;
       browsers = {
