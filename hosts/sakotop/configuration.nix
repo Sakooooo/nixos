@@ -17,8 +17,8 @@
       xmonad.enable = false;
       awesome.enable = true;
       dwm = {
-        enable = false;
-        dwmblocks.enable = false;
+        enable = true;
+        dwmblocks.enable = true;
       };
       gnome.enable =  false;
       dunst.enable = true;
