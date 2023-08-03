@@ -14,13 +14,14 @@
   modules = {
     desktop = {
       kitty.enable = true;
-      xmonad.enable = true;
+      xmonad.enable = false;
       awesome.enable = false;
       dwm = {
         enable = false;
         dwmblocks.enable = false;
       };
-      dunst.enable = true;
+      gnome.enable = true;
+      dunst.enable = false;
       browsers = {
         qutebrowser.enable = true;
         firefox.enable = true;
