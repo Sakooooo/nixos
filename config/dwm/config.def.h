@@ -30,7 +30,7 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-  "~/.dwmscripts/bar.sh", NULL,
+  "/home/sako/.dwmscripts/bar.sh", NULL,
   "xsetroot", "-cursor_name", "Catppuccin-Mocha-Dark", NULL,
   "feh", "--bg-scale", "/home/sako/.config/bspwm/background.png", NULL,
   "nm-applet", NULL,
