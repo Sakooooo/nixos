@@ -16,6 +16,7 @@ import XMonad.Hooks.DynamicLog -- supposed to be for xmobar
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Util.SpawnOnce -- for startup items
 import XMonad.Util.Run -- for xmobar startup
+import XMonad.Layout.NoBorders -- fullscreen
 import XMonad.Util.Hacks as Hacks -- tray
 import Graphics.X11.ExtraTypes.XF86 -- for keys
 import XMonad.Util.Loggers -- smth
@@ -195,7 +196,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = tiled ||| Mirror tiled ||| noBorders Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
