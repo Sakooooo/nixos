@@ -18,7 +18,7 @@
       awesome.enable = false;
       dwm = {
         enable = true;
-        dwmblocks.enable = true;
+        dwmblocks.enable = false;
       };
       gnome.enable =  false;
       dunst.enable = true;
