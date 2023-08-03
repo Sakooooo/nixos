@@ -17,6 +17,7 @@ cpu() {
 
 battery() {
   get_capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
+  get_status="$(cat /sys/class/power_supply/BAT1/status)"
   printf "^c$blue^   $get_capacity"
 }
 
