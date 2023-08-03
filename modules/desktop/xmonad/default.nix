@@ -69,7 +69,6 @@ in
       xmobar
       # tray
       trayer
-      stalonetray
     ];
 
     home-manager.users.sako = { pkgs , ...}: {
