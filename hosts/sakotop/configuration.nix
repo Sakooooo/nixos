@@ -15,13 +15,13 @@
     desktop = {
       kitty.enable = true;
       xmonad.enable = false;
-      awesome.enable = false;
+      awesome.enable = true;
       dwm = {
         enable = false;
         dwmblocks.enable = false;
       };
-      gnome.enable = true;
-      dunst.enable = false;
+      gnome.enable =  false;
+      dunst.enable = true;
       browsers = {
         qutebrowser.enable = true;
         firefox.enable = true;
