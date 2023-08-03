@@ -258,7 +258,7 @@ myLogHook h = dynamicLogWithPP $ def {
 myXmobarFormat = def {
             --ppCurrent = xmobarColor "black" "white", 
             ppTitleSanitize = xmobarStrip,
-            ppCurrent = wrap (magenta">")  (magenta "<"), 
+            ppCurrent = wrap (magenta"[")  (magenta "]"), 
             ppHidden = white . wrap " " "",
             ppHiddenNoWindows = lowWhite . wrap " " "",
             ppUrgent = red . wrap (yellow "!") (yellow "!"),
@@ -267,8 +267,8 @@ myXmobarFormat = def {
             ppExtras = [logTitles formatFocused formatUnfocused]
 }
   where
-    formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
-    formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
+--    formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
+--    formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
 
     -- | Windows should have *some* title, which should not not exceed a
     -- sane length.
