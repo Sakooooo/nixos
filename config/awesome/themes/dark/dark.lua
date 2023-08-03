@@ -16,7 +16,8 @@ theme.font_family_mono = theme.font_family .. "Mono"
 
 theme.font = theme.font_family_mono .. "Regular 10"
 
-theme.text_color = theme.mode == "dark" and "#f4feff" or "#1e293d"
+--theme.text_color = theme.mode == "dark" and "#f4feff" or "#1e293d"
+theme.text_color = "#f4feff" or "#1e293d"
 theme.background_color = theme.mode == "dark" and "#1e293d" or "#f4feff"
 
 theme.danger_background = "#db5853"
