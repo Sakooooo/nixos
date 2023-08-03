@@ -4,7 +4,7 @@ Config {
      font =         "JetBrainsMono NF 9"
    , bgColor =      "black"
    , fgColor =      "#646464"
-   , position =     BottomH 40 
+   , position =     TopH 40 
    , border =       NoBorder 
    , borderColor =  "#646464"
    , borderWidth =  0
