@@ -14,8 +14,8 @@
   modules = {
     desktop = {
       kitty.enable = true;
-      xmonad.enable = false;
-      awesome.enable = true;
+      xmonad.enable = true;
+      awesome.enable = false;
       dwm = {
         enable = false;
         dwmblocks.enable = false;
