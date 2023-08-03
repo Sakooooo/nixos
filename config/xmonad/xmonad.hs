@@ -267,8 +267,8 @@ myXmobarFormat = def {
             ppExtras = [logTitles formatFocused formatUnfocused]
 }
   where
---    formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
---    formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
+    formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
+    formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
 
     -- | Windows should have *some* title, which should not not exceed a
     -- sane length.
