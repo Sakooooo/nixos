@@ -15,7 +15,7 @@
     desktop = {
       kitty.enable = true;
       xmonad.enable = false;
-      awesome.enable = true;
+      awesome.enable = false;
       dwm = {
         enable = true;
         dwmblocks.enable = true;
