@@ -15,6 +15,8 @@ cpu() {
   printf "^c$white^ ^b$grey^ $cpu_val"
 }
 
+alias notify-send="sudo -u sako DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send"
+
 battery() {
   get_capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
   get_status="$(cat /sys/class/power_supply/BAT1/status)"
@@ -22,10 +24,8 @@ battery() {
   Charging) printf "^c$blue^ 󰂄 $get_capacity" ;;
   Discharging) if (( $get_capacity <= 20)); then
                   printf "^c$lightred^ 󰂃 $get_capacity"
-                  if [ [$sent_notification = false] ]; then
-                    sudo -u sako \
-                      DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
-                      notify-send -u critical "Battery low" "Please charge battery"
+                  if [ "$sent_notification" = false ]; then
+                    notify-send -u critical "test"
                     sent_notification=true
                   fi
               else
