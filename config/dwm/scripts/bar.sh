@@ -18,7 +18,6 @@ cpu() {
 battery() {
   get_capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
   get_status="$(cat /sys/class/power_supply/BAT1/status)"
-  sent_notification=false
   case "$get_status" in
   Charging) printf "^c$blue^ 󰂄 $get_capacity" ;;
   Discharging) if (( $get_capacity <= 20)); then
@@ -29,6 +28,7 @@ battery() {
                   fi
               else
                   printf "^c$blue^ 󰁹 $get_capacity"
+                  sent_notification=false
               fi ;;
   esac
   #printf "^c$blue^   $get_capacity"
