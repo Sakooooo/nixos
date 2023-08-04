@@ -29,6 +29,15 @@ battery() {
   #printf "^c$blue^   $get_capacity"
 }
 
+audio() {
+  get_vol=$(pamixer --get-volume-human)
+  if (get_vol == "muted") then
+    printf "^c$blue^ 󰝟^"
+  else
+    printf "^c$blue^ 󰕾 $get_vol"
+  fi
+}
+
 brightness() {
   printf "^c$red^   "
   printf "^c$red^%.0f\n" $(cat /sys/class/backlight/*/brightness)
@@ -56,5 +65,5 @@ while true; do
   [ $interval = 0 ] || [ $(($interval % 3600)) = 0 ] 
   interval=$((interval + 1))
 
-  sleep 1 && xsetroot -name "$(battery) $(brightness) $(cpu) $(mem) $(clock)"
+  sleep 1 && xsetroot -name "$(audio) $(battery) $(brightness) $(cpu) $(mem) $(clock)"
 done
