@@ -862,7 +862,7 @@ drawstatusbar(Monitor *m, int bh, char* stext) {
 		isCode = 0;
 	text = p;
 
-	w += horizpadbar; /* padding with status2d */
+	w += 2; /* 1px padding on both sides */
 	ret = m->ww - w;
   x = ret - getsystraywidth();
 
@@ -870,7 +870,7 @@ drawstatusbar(Monitor *m, int bh, char* stext) {
 	drw->scheme[ColFg] = scheme[SchemeNorm][ColFg];
 	drw->scheme[ColBg] = scheme[SchemeNorm][ColBg];
 	drw_rect(drw, x, 0, w, bh, 1, 1);
-	x += horizpadbar / 2; /* padding with status2d */
+	x++;
 
 	/* process status text */
 	i = -1;
@@ -2061,7 +2061,7 @@ setup(void)
 	if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
 		die("no fonts could be loaded.");
 	lrpad = drw->fonts->h;
-	bh = drw->fonts->h + vertpadbar;
+	bh = drw->fonts->h + 2;
 	updategeom();
 	/* init atoms */
 	utf8string = XInternAtom(dpy, "UTF8_STRING", False);
