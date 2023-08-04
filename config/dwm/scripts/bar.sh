@@ -25,7 +25,7 @@ battery() {
                   if [ [$sent_notification = false] ]; then
                     sudo -u sako \
                       DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
-                      dunstify -u critical "Battery low" "Please charge battery"
+                      notify-send -u critical "Battery low" "Please charge battery"
                     sent_notification=true
                   fi
               else
