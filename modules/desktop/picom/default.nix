@@ -10,7 +10,7 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      picom
+      picom-jonaburg
     ];
     home-manager.users.sako = { pkgs, ...}: {
       xdg.configFile = {
