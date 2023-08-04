@@ -21,7 +21,7 @@ battery() {
   case "$get_status" in
   Charging) printf "^c$blue^ Charging $get_capacity" ;;
   Discharging) if (( $get_capacity <= 20)); then
-                  printf "^c$red^ Low! $get_capacity"
+                  printf "^c$lightred^ Low! $get_capacity"
               else
                   printf "^c$blue^   $get_capacity"
               fi ;;
