@@ -18,10 +18,15 @@ cpu() {
 battery() {
   get_capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
   get_status="$(cat /sys/class/power_supply/BAT1/status)"
+  sent_notification=false
   case "$get_status" in
   Charging) printf "^c$blue^ 󰂄 $get_capacity" ;;
   Discharging) if (( $get_capacity <= 20)); then
                   printf "^c$lightred^ 󰂃 $get_capacity"
+                  if [ $sent_notification = false ]; then
+                    dunstify -u critical "Battery low" "Please charge battery"
+                    sent_notification=true
+                  fi
               else
                   printf "^c$blue^ 󰁹 $get_capacity"
               fi ;;

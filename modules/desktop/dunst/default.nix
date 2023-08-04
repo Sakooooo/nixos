@@ -9,7 +9,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    users.users.sako.packages = with pkgs; [
+    environment.systemPackages = with pkgs; [
       dunst
     ];
   };
