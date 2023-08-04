@@ -12,5 +12,13 @@ in
     environment.systemPackages = with pkgs; [
       picom
     ];
+    home-manager.users.sako = { pkgs, ...}: {
+      xdg.configfile = {
+        picom = {
+          source = ../../../config/picom;
+          recursive = true;
+        };
+      };
+    };
   };
 }
