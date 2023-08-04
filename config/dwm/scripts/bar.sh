@@ -24,13 +24,8 @@ battery() {
   Charging) printf "^c$blue^ 󰂄 $get_capacity" ;;
   Discharging) if (( $get_capacity <= 20)); then
                   printf "^c$lightred^ 󰂃 $get_capacity"
-                  if [ "$sent_notification" = false ]; then
-                    notify-send -u critical "test"
-                    sent_notification=true
-                  fi
               else
                   printf "^c$blue^ 󰁹 $get_capacity"
-                  sent_notification=false
               fi ;;
   esac
   #printf "^c$blue^   $get_capacity"
