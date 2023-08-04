@@ -13,7 +13,7 @@ in
       picom
     ];
     home-manager.users.sako = { pkgs, ...}: {
-      xdg.configfile = {
+      xdg.configFile = {
         picom = {
           source = ../../../config/picom;
           recursive = true;
