@@ -22,7 +22,7 @@ battery() {
   Charging) printf "^c$blue^ 󰂄 $get_capacity" ;;
   Discharging) if (( $get_capacity <= 20)); then
                   printf "^c$lightred^ 󰂃 $get_capacity"
-                  if [ $sent_notification = false ]; then
+                  if [ [$sent_notification = false] ]; then
                     sudo -u sako \
                       DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
                       dunstify -u critical "Battery low" "Please charge battery"
