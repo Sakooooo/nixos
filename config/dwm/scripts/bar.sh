@@ -19,11 +19,11 @@ battery() {
   get_capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
   get_status="$(cat /sys/class/power_supply/BAT1/status)"
   case "$get_status" in
-  Charging) printf "^c$blue^ Charging $get_capacity" ;;
+  Charging) printf "^c$blue^ 󰂄 $get_capacity" ;;
   Discharging) if (( $get_capacity <= 20)); then
-                  printf "^c$lightred^ Low! $get_capacity"
+                  printf "^c$lightred^ 󰂃 $get_capacity"
               else
-                  printf "^c$blue^   $get_capacity"
+                  printf "^c$blue^ 󰁹 $get_capacity"
               fi ;;
   esac
   #printf "^c$blue^   $get_capacity"
