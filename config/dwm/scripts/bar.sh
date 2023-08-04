@@ -31,7 +31,12 @@ battery() {
 
 audio() {
   get_vol=$(pamixer --get-volume-human)
-  printf "^c$blue^ 󰕾 $get_vol"
+  if [ $get_vol = 'muted' ]; then
+    printf "^c$blue^ 󰕾 Muted"
+  else
+    printf "^c$blue^ 󰕾 $get_vol"
+  fi
+  #printf "^c$blue^ 󰕾 $get_vol"
 }
 
 brightness() {
