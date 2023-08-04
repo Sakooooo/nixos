@@ -30,8 +30,9 @@ battery() {
 }
 
 audio() {
-  get_vol=$(pamixer --get-volume-human)
-  if (get_vol == "muted") then
+  get_vol=$(pamixer --get-volume)
+  get_mute=$(pamixer --get-mute)
+  if [ get_mute = 'true' ]; then
     printf "^c$blue^ 󰝟^"
   else
     printf "^c$blue^ 󰕾 $get_vol"
