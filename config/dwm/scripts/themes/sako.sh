@@ -3,10 +3,10 @@
 # colors
 
 black=#060606
-green=#7eca9c
+green=#114d1b
 white=#DBDBDB
-grey=#9C8B8C
-blue=#7aa2f7
+grey=#3e4045
+blue=#11144d
 red=#4D1111
 lightred=#BD2D2D
-darkblue=#668ee3
+darkblue=#0a0a2e
