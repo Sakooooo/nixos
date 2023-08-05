@@ -11,7 +11,7 @@ interval=0
 cpu() {
   cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)
 
-  printf "^c$black^ ^b$red^ CPU"
+  printf "^c$white^ ^b$red^ CPU"
   printf "^c$white^ ^b$grey^ $cpu_val"
 }
 
@@ -34,9 +34,9 @@ battery() {
 audio() {
   get_vol=$(pamixer --get-volume-human)
   if [ $get_vol = 'muted' ]; then
-    printf "^c$blue^ 󰕾 Muted"
+    printf "^c$white^  Muted"
   else
-    printf "^c$blue^ 󰕾 $get_vol"
+    printf "^c$blue^  $get_vol"
   fi
   #printf "^c$blue^ 󰕾 $get_vol"
 }

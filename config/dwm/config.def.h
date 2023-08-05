@@ -93,6 +93,9 @@ static const char *termcmd[]  = { "kitty", NULL };
 static const char *upvol[]      = { "pactl",   "set-sink-volume", "0",      "+5%",      NULL };
 static const char *downvol[]    = { "pactl",   "set-sink-volume", "0",      "-5%",      NULL };
 static const char *mutevol[]    = { "pactl",   "set-sink-mute",   "0",      "toggle",   NULL }; 
+// brightness
+static const char *brightnessup[] = { "brightnessctl", "s", "+100", NULL };
+static const char *brightnessdown[] = { "brightnessctl", "s", "-100", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -142,12 +145,15 @@ static const Key keys[] = {
   { 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
 	{ 0,                       XF86XK_AudioMute,        spawn, {.v = mutevol } },
 	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
+  // brightness
+  { 0,                       XF86XK_MonBrightnessUp,  spawn, {.v = brightnessup} },
+  { 0,                       XF86XK_MonBrightnessDown,  spawn, {.v = brightnessdown} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
+	// TAGKEYS(                        XK_6,                      5)
 //	TAGKEYS(                        XK_7,                      6)
 //	TAGKEYS(                        XK_8,                      7)
 //	TAGKEYS(                        XK_9,                      8)
