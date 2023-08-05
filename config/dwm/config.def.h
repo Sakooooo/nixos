@@ -34,6 +34,7 @@ static const char *colors[][3]      = {
 static const char *const autostart[] = {
   "/home/sako/.dwmscripts/bar.sh", NULL,
   "feh", "--bg-scale", "/home/sako/.config/bspwm/background.png", NULL,
+  "picom", NULL,
   "nm-applet", NULL,
   "blueman-applet", NULL,
   "keepassxc", NULL,
