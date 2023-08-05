@@ -57,8 +57,8 @@
       editors = {
         nvim.enable = true;
         vscode.enable = true;
-        nixd.enable = true;
       };
+      nixd.enable = true;
       cc.enable = true;
       javascript.enable = true;
       python.enable = true;
