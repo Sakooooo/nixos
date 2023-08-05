@@ -10,6 +10,8 @@ in
     enable = mkEnableOption false;
   };
 
+  # TODO(sako):: figure out how .nixd.json works
+
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       unstable.nixd
