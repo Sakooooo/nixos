@@ -1,6 +1,6 @@
 # nixd nix lsp using nix and nixpkgs
 # where has this been my whole life
-{ inputs, outputs, options, config, lib, pkgs, ...}:
+{ outputs, options, config, lib, pkgs, ...}:
 with lib;
 let
   cfg = config.modules.dev.nixd;
