@@ -95,7 +95,7 @@ static const char *downvol[]    = { "pactl",   "set-sink-volume", "0",      "-5%
 static const char *mutevol[]    = { "pactl",   "set-sink-mute",   "0",      "toggle",   NULL }; 
 // brightness
 static const char *brightnessup[] = { "brightnessctl", "s", "+100", NULL };
-static const char *brightnessdown[] = { "brightnessctl", "s", "-100", NULL };
+static const char *brightnessdown[] = { "brightnessctl", "s", "100-", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
