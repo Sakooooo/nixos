@@ -3,7 +3,10 @@
   description = "horrible dotfiles for amazing distro";
 
   inputs = {
+      # nixpkgs 
       nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+      # unstable for a few packages
+      nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
       home-manager.url = "github:nix-community/home-manager/release-23.05";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
       # TODO(sako):: add agenix or sops-nix
