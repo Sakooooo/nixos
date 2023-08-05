@@ -43,6 +43,8 @@ in
       networkmanagerapplet
       # brightness
       brightnessctl
+      # playerctl
+      playerctl
       # gee tee k
       vimix-gtk-themes
       vimix-icon-theme
