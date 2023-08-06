@@ -7,9 +7,6 @@
     "depth": 0,
     "workers": 3
   },
-  "formatting": {
-    "command": "nixpkgs-fmt"
-  },
   "options": {
     "enable": true,
     "target": {

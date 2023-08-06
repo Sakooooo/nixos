@@ -10,6 +10,7 @@ null_ls.setup({
 		formatting.prettier,
 		formatting.stylua,
 		formatting.csharpier,
+    formatting.alejandra
 		diagnostics.cpplint,
 	},
 	on_attach = function(client, bufnr)
