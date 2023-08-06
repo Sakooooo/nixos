@@ -20,7 +20,10 @@ in
     home-manager.users.sako = { pkgs, ...}: {
     home.file = {
     };
-    programs.direnv.enableZshIntegration = true;
+    programs.direnv = {
+      enableZshIntegration = true; 
+      enable = true;
+    };
     programs.zsh = {
       enable = true;
       enableCompletion = true;
