@@ -591,7 +591,7 @@ startupapps = {
   "keepassxc",
 }
 
-if startup and !startupfinished then
+if startup and not startupfinished then
   for app = 1, #startupapps do
     awful.util.spawn(startupApps[app])
   end
