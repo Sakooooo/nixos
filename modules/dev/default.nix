@@ -7,5 +7,6 @@
     ./rust.nix
     ./unityhub.nix
     ./nixd.nix
+    ./nil.nix
   ];
 }
