@@ -8,5 +8,6 @@
     ./kcc
     ./calibre
     ./mangal
+    ./obs
   ];
 }

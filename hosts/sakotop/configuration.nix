@@ -37,6 +37,7 @@
         calibre.enable = true;
         kindle-comic-converter.enable = true;
         mangal.enable = true;
+        obs.enable = true;
       };
       chat = {
         discord.enable = true;
