@@ -21,8 +21,8 @@
       kitty.enable = true;
       xmonad.enable = false;
       awesome.enable = false;
-      dwm.enable = false;
-      hyprland.enable = true;
+      dwm.enable = true;
+      hyprland.enable = false;
       picom.enable = false;
       gnome.enable = false;
       dunst.enable = true;
