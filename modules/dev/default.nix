@@ -8,5 +8,6 @@
     ./unityhub.nix
     ./nixd.nix
     ./nil.nix
+    ./lua.nix
   ];
 }

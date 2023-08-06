@@ -71,6 +71,7 @@
       javascript.enable = true;
       python.enable = true;
       rust.enable = true;
+      lua.enable = true;
       # too heavy
       unity.enable = false;
     };
