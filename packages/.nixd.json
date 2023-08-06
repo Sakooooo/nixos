@@ -1,7 +1,10 @@
 {
   "eval": {
     "target": {
-      "args": ["--expr", "with import <nixpkgs> { }; ./default.nix { }"]
+      "args": [
+        "--expr",
+        "with import <nixpkgs> { }; callPackage ./nullpomino.nix { }"
+      ]
     }
   }
 }
