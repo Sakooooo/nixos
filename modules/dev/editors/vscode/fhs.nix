@@ -9,9 +9,6 @@
 with lib; let
   cfg = config.modules.dev.editors.vscode.fhs;
 in {
-  imports = [
-    ./fhs.nix
-  ];
   options.modules.dev.editors.vscode.fhs = {
     enable = mkEnableOption false;
   };
