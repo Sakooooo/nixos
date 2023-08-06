@@ -33,6 +33,14 @@ mason_null_ls.setup()
 require('lspconfig').nil_ls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
+  settings = {
+    ['nil'] = {
+       testSetting = 42,
+       formatting = {
+          command = { "nixpkgs-fmt" },
+       },
+     },
+   },
 })
 
 
