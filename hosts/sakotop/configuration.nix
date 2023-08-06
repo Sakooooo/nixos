@@ -17,7 +17,7 @@
       xmonad.enable = false;
       awesome.enable = false;
       dwm.enable = true;
-      picom.enable = true;
+      picom.enable = false;
       gnome.enable =  false;
       dunst.enable = true;
       browsers = {
