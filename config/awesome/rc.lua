@@ -14,8 +14,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
--- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
+-- Enable hotkeys help widget for VIM and other apps when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
 -- {{{ Error handling
@@ -585,6 +584,15 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Gaps for dopamine
 beautiful.useless_gap = 5
 
--- Autostart for bloatware
-awful.spawn.with_shell("feh --bg-scale /home/sako/background.png")
-awful.spawn.with_shell("keepassxc")
+-- autostart
+startup = true
+startupfinished = false
+startupapps = {
+  "keepassxc",
+}
+
+if startup and !startupfinished then
+  for app = 1, #startupapps do
+    awful.util.spawn(startupApps[app])
+  end
+end
