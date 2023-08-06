@@ -585,14 +585,15 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 beautiful.useless_gap = 5
 
 -- autostart
-startup = true
-startupfinished = false
-startupapps = {
+autorun = true
+autorundone = false
+autorunApps = {
   "keepassxc",
+  "flameshot",
 }
 
-if startup and not startupfinished then
-  for app = 1, #startupapps do
-    awful.util.spawn(startupApps[app])
+if autorun and not autorundone then
+  for app = 1, #autorunApps do
+    awful.util.spawn(autorunApps[app])
   end
 end
