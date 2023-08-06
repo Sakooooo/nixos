@@ -1,0 +1,20 @@
+{
+  "eval": {
+    "target": {
+      "args": [],
+      "installable": ""
+    },
+    "depth": 0,
+    "workers": 3
+  },
+  "formatting": {
+    "command": "nixpkgs-fmt"
+  },
+  "options": {
+    "enable": true,
+    "target": {
+      "args": [],
+      "installable": ""
+    }
+  }
+}
