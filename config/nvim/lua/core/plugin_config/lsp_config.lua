@@ -29,23 +29,9 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 mason_null_ls.setup()
 
 -- funny lsp config stuff
-require('lspconfig').nil_ls.setup({
+require('lspconfig').nixd.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  settings = {
-    ['nil'] = {
-       testSetting = 42,
-       formatting = {
-          command = { "nixpkgs-fmt" },
-       },
-      nix = {
-        binary = { "nix" },
-        maxMemoryMB = { "1024" },
-        autoEvalInputs = { true },
-        nixpkgsInputName = { "nixpkgs" },
-      },
-     },
-   },
 })
 
 
