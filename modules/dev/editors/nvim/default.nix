@@ -12,6 +12,7 @@ in
     # because yes 
     users.users.sako.packages = with pkgs; [
       neovim
+      direnv
     ];
     home-manager.users.sako.xdg.configFile.nvim = {
       source = ../../../../config/nvim;
