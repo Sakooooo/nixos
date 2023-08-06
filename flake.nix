@@ -10,10 +10,10 @@
       home-manager.url = "github:nix-community/home-manager/release-23.05";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
       # flake-compat for nixd
-      flake-compat = {
-        url = "github:edolstra/flake-compat";
-        flake = false;
-      };
+      #flake-compat = {
+      #  url = "github:edolstra/flake-compat";
+      #  flake = false;
+      #};
       # TODO(sako):: add agenix or sops-nix
       # https://github.com/ryantm/agenix#install-via-flakes
       # https://github.com/Mic92/sops-nix
@@ -48,14 +48,14 @@
       sakotop = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs outputs; };
         modules = [
-          ./default-options.nix
+          ./default.nix
           ./hosts/sakotop/configuration.nix
         ];
       };
       sakopc = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs outputs; };
         modules = [
-          ./default-options.nix
+          ./default.nix
           ./hosts/sakopc/configuration.nix
         ];
       };
