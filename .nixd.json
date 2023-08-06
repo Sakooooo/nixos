@@ -1,8 +1,8 @@
 {
   "eval": {
     "target": {
-      "args": [],
-      "installable": ""
+      "args": ["-f", "default.nix"],
+      "installable": "nixosConfigurations.sakotop.config.system.build.toplevel"
     },
     "depth": 0,
     "workers": 3
@@ -14,7 +14,7 @@
     "enable": true,
     "target": {
       "args": [],
-      "installable": ""
+      "installable": ".#nixosConfigurations.sakotop.options"
     }
   }
 }
