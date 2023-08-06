@@ -1,25 +1,30 @@
-{ outputs, options, config, lib, pkgs, ...}:
-with lib;
-let
-  cfg = config.modules.desktop.xmonad;
-in
 {
+  outputs,
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.desktop.xmonad;
+in {
   options.modules.desktop.xmonad = {
     enable = mkEnableOption false;
   };
 
   config = mkIf cfg.enable {
-  # https://nixos.wiki/wiki/XMonad
+    # https://nixos.wiki/wiki/XMonad
     services.xserver = {
       enable = true;
       windowManager.xmonad = {
         enable = true;
         enableContribAndExtras = true;
-         ghcArgs = [
-              "-hidir /tmp" # place interface files in /tmp, otherwise ghc tries to write them to the nix store
-              "-odir /tmp" # place object files in /tmp, otherwise ghc tries to write them to the nix store
-#              "-i${xmonad-contexts}" # tell ghc to search in the respective nix store path for the module
-         ];
+        ghcArgs = [
+          "-hidir /tmp" # place interface files in /tmp, otherwise ghc tries to write them to the nix store
+          "-odir /tmp" # place object files in /tmp, otherwise ghc tries to write them to the nix store
+          #              "-i${xmonad-contexts}" # tell ghc to search in the respective nix store path for the module
+        ];
       };
       displayManager = {
         lightdm = {
@@ -42,7 +47,7 @@ in
           accelProfile = "flat";
         };
 
-        # touchpad 
+        # touchpad
         touchpad = {
           accelProfile = "flat";
         };
@@ -71,9 +76,9 @@ in
       trayer
     ];
 
-    home-manager.users.sako = { pkgs , ...}: {
+    home-manager.users.sako = {pkgs, ...}: {
       home.pointerCursor = {
-        name = "Catppuccin-Mocha-Dark"; 
+        name = "Catppuccin-Mocha-Dark";
         size = 16;
         x11 = {
           enable = true;
@@ -100,7 +105,7 @@ in
           source = ../../../config/xmobar;
           recursive = true;
         };
-     }; 
+      };
     };
-    };
+  };
 }

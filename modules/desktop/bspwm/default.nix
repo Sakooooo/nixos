@@ -1,9 +1,14 @@
-{ outputs, options, config, lib, pkgs, ...}:
-with lib;
-let
-  cfg = config.modules.desktop.bspwm;
-in
 {
+  outputs,
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.desktop.bspwm;
+in {
   imports = [
     ./polybar
     ./lemonbar
@@ -19,19 +24,18 @@ in
         bspwm.enable = true;
       };
       displayManager = {
-       defaultSession = "none+bspwm"; 
-       lightdm = {
-        enable = true;
-        background = ../../../config/bspwm/background.png;
-        greeters.gtk = {
+        defaultSession = "none+bspwm";
+        lightdm = {
           enable = true;
-          theme = {
-            name = "vimix-dark-ruby";
-            package = pkgs.vimix-gtk-themes;
+          background = ../../../config/bspwm/background.png;
+          greeters.gtk = {
+            enable = true;
+            theme = {
+              name = "vimix-dark-ruby";
+              package = pkgs.vimix-gtk-themes;
+            };
           };
         };
-
-       };
       };
       libinput = {
         enable = true;
@@ -46,7 +50,7 @@ in
           accelProfile = "flat";
         };
       };
-    };  
+    };
     users.users.sako.packages = with pkgs; [
       rofi
       # network
@@ -62,9 +66,9 @@ in
       flameshot
     ];
 
-    home-manager.users.sako = { pkgs , ...}: {
+    home-manager.users.sako = {pkgs, ...}: {
       home.pointerCursor = {
-        name = "Catppuccin-Mocha-Dark"; 
+        name = "Catppuccin-Mocha-Dark";
         size = 16;
         x11 = {
           enable = true;
@@ -89,7 +93,7 @@ in
         sxhkd = {
           source = ../../../config/sxhkd;
         };
-     }; 
+      };
     };
   };
 }

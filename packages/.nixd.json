@@ -1,0 +1,7 @@
+{
+  "eval": {
+    "target": {
+      "args": ["--expr", "with import <nixpkgs> { }; ./default.nix { }"]
+    }
+  }
+}

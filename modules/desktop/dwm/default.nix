@@ -1,9 +1,14 @@
-{ outputs, options, config, lib, pkgs, ...}:
-with lib;
-let
-  cfg = config.modules.desktop.dwm;
-in
 {
+  outputs,
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.desktop.dwm;
+in {
   options.modules.desktop.dwm = {
     enable = mkEnableOption false;
   };
@@ -27,16 +32,16 @@ in
           };
         };
       };
-    libinput = {
-      mouse = {
-        accelProfile = "flat";
-      };
+      libinput = {
+        mouse = {
+          accelProfile = "flat";
+        };
 
-      touchpad = {
-        accelProfile = "flat";
+        touchpad = {
+          accelProfile = "flat";
+        };
       };
     };
-   };
     users.users.sako.packages = with pkgs; [
       rofi
       # network
@@ -51,7 +56,7 @@ in
       # screen shot (s)
       flameshot
     ];
-    home-manager.users.sako = { pkgs , ...}: {
+    home-manager.users.sako = {pkgs, ...}: {
       home.file = {
         "background.png" = {
           enable = true;
@@ -64,7 +69,7 @@ in
         };
       };
       home.pointerCursor = {
-        name = "Catppuccin-Mocha-Dark"; 
+        name = "Catppuccin-Mocha-Dark";
         size = 16;
         x11 = {
           enable = true;

@@ -1,12 +1,17 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page and in the NixOS manual (accessible by running `nixos-help`).
-
-{ config, pkgs, lib, inputs, outputs, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  lib,
+  inputs,
+  outputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # required for hostname specific configurations
   networking.hostName = "sakotop"; # Define your hostname.
@@ -18,7 +23,7 @@
       awesome.enable = false;
       dwm.enable = true;
       picom.enable = false;
-      gnome.enable =  false;
+      gnome.enable = false;
       dunst.enable = true;
       browsers = {
         qutebrowser.enable = true;
@@ -72,7 +77,7 @@
         # makes nix search nixpkgs <example>
         # ALOT faster
         search.enable = true;
-        # optimize store 
+        # optimize store
         optimize.enable = true;
       };
       zsh.enable = true;
@@ -91,12 +96,12 @@
 
   # TODO(sako):: put this in different files
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.sako= {
+  users.users.sako = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
   };
 
-    services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -106,6 +111,4 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
 }
-
