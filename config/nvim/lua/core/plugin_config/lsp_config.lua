@@ -6,8 +6,7 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 local mason_null_ls = require("mason-null-ls")
 
--- vscode
-local on_attach = function(client, bufnr)
+-- vscode local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 
@@ -39,6 +38,12 @@ require('lspconfig').nil_ls.setup({
        formatting = {
           command = { "nixpkgs-fmt" },
        },
+      nix = {
+        binary = { "nix" },
+        maxMemoryMB = { "1024" },
+        autoEvalInputs = { true },
+        nixpkgsInputName = { "nixpkgs" },
+      },
      },
    },
 })
