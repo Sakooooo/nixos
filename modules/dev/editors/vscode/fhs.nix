@@ -7,21 +7,18 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.dev.editors.vscode;
+  cfg = config.modules.dev.editors.vscode.fhs;
 in {
   imports = [
     ./fhs.nix
   ];
-  options.modules.dev.editors.vscode = {
+  options.modules.dev.editors.vscode.fhs = {
     enable = mkEnableOption false;
   };
 
   config = mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
-      (vscode-with-extensions.override {
-        vscodeExtensions = with vscode-extensions; [
-        ];
-      })
+      vscode.fhs
     ];
   };
 }
