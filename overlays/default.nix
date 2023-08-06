@@ -1,7 +1,6 @@
-{ inputs, ...}:
-{
+{inputs, ...}: {
   # This one brings our custom packages from the 'pkgs' directory
-  additions = final: _prev: import ../packages { pkgs = final; };
+  additions = final: _prev: import ../packages {pkgs = final;};
 
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.
@@ -17,10 +16,10 @@
       enableWideVine = true;
     };
     vimix-gtk-themes = prev.vimix-gtk-themes.override {
-      themeVariants = [ "ruby" ];
+      themeVariants = ["ruby"];
     };
     dwm = prev.dwm.overrideAttrs (old: {
-       src = ../config/dwm;
+      src = ../config/dwm;
     });
   };
 

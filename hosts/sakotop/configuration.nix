@@ -41,6 +41,7 @@
       };
       chat = {
         discord.enable = true;
+        weechat.enable = true;
       };
       game = {
         wine.enable = true;
