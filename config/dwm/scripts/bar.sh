@@ -15,8 +15,6 @@ cpu() {
   printf "^c$white^ ^b$grey^ $cpu_val"
 }
 
-alias notify-send="sudo -u sako DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send"
-
 battery() {
   get_capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
   get_status="$(cat /sys/class/power_supply/BAT1/status)"
@@ -25,7 +23,7 @@ battery() {
   Discharging) if (( $get_capacity <= 20)); then
                   printf "^c$lightred^ 󰂃 $get_capacity"
               else
-                  printf "^c$blue^ 󰁹 $get_capacity"
+                  printf "^c$white^ 󰁹 $get_capacity"
               fi ;;
   esac
   #printf "^c$blue^   $get_capacity"
@@ -36,7 +34,7 @@ audio() {
   if [ $get_vol = 'muted' ]; then
     printf "^c$white^  Muted"
   else
-    printf "^c$blue^  $get_vol"
+    printf "^c$white^  $get_vol"
   fi
   #printf "^c$blue^ 󰕾 $get_vol"
 }
