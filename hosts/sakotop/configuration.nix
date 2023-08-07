@@ -19,7 +19,7 @@
   modules = {
     desktop = {
       kitty.enable = true;
-      dwm.enable = true;
+      dwm.enable = false;
       bspwm.enable = true;
       picom.enable = false;
       gnome.enable = false;
