@@ -19,8 +19,10 @@
   modules = {
     desktop = {
       kitty.enable = true;
-      dwm.enable = false;
-      bspwm.enable = true;
+      bspwm = {
+        enable = true;
+        polybar.enable = true;
+      };
       picom.enable = false;
       gnome.enable = false;
       dunst.enable = true;
