@@ -27,7 +27,7 @@ in {
         defaultSession = "none+bspwm";
         lightdm = {
           enable = true;
-          background = ../../../config/bspwm/background.png;
+          background = ../../../config/background.png;
           greeters.gtk = {
             enable = true;
             theme = {
