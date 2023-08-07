@@ -6,7 +6,7 @@
     ./dwm
     ./hyprland
     ./xmonad
-    # desktop environ men t s s  s s 
+    # desktop environ men t s s  s s
     ./kde
     ./gnome
     # stuffs
@@ -18,5 +18,7 @@
     ./media
     ./dunst
     ./picom
+    # boot
+    ./plymouth
   ];
 }
