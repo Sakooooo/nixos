@@ -1,9 +1,6 @@
 name: Flake Check
 
 on:
-  push:
-    branches:
-      - master
   schedule:
     - cron: "30 12 * * *"
   workflow_dispatch:
