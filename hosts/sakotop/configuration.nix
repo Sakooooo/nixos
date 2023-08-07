@@ -19,10 +19,8 @@
   modules = {
     desktop = {
       kitty.enable = true;
-      xmonad.enable = false;
-      awesome.enable = false;
       dwm.enable = true;
-      hyprland.enable = false;
+      bspwm.enable = true;
       picom.enable = false;
       gnome.enable = false;
       dunst.enable = true;
