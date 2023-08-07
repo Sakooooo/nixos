@@ -29,7 +29,10 @@ in {
             user = "sako";
             extraConfig = ''
               [greeter]
-              show-password-label = false
+              show-password-label = true
+              password-label-text = "magic word"
+              invalid-password-text = "skull issue"
+
             '';
           };
         };
