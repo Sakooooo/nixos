@@ -19,7 +19,7 @@
   modules = {
     desktop = {
       # plymouth
-      plymouth.enable = true;
+      plymouth.enable = false;
       kitty.enable = true;
       dwm.enable = true;
       xmonad.enable = false;
