@@ -1,76 +1,73 @@
-local ensure_packer = function()
-	local fn = vim.fn
-	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-	if fn.empty(fn.glob(install_path)) > 0 then
-		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-		vim.cmd([[packadd packer.nvim]])
-		return true
-	end
-	return false
+-- bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
+vim.g.mapleader = ' '
 
--- plugins go here
-return require("packer").startup(function(use)
-	-- the package manager
-	use("wbthomason/packer.nvim")
+local plugins = {
 
-	-- whats an ide without a file explorer
-	use("nvim-tree/nvim-tree.lua")
-	use("nvim-tree/nvim-web-devicons")
+  -- whats an ide without a file explorer
+  "nvim-tree/nvim-tree.lua",
+  "nvim-tree/nvim-web-devicons",
 
-	-- default bar only looks good on linux
-	use("nvim-lualine/lualine.nvim")
+  -- default bar only looks good on linux
+  "nvim-lualine/lualine.nvim",
 
-	-- colorschemes
-	use("rebelot/kanagawa.nvim")
+  -- colorschemes
+  "rebelot/kanagawa.nvim",
 
-	-- syntax highlighting apparently
-	use("nvim-treesitter/nvim-treesitter")
-  use("windwp/nvim-ts-autotag")
+  -- syntax highlighting apparently
+  "nvim-treesitter/nvim-treesitter",
+  "windwp/nvim-ts-autotag",
 
-	-- like fzf but goofier
-	use({
-		"nvim-telescope/telescope.nvim",
-		tag = "0.1.1",
-		requires = { { "nvim-lua/plenary.nvim" } },
-	})
-	-- lsp stuff
-	use({
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		"neovim/nvim-lspconfig",
-	})
-	-- le completion
-	use("hrsh7th/nvim-cmp")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-path")
-	use("hrsh7th/cmp-nvim-lsp")
-	use("onsails/lspkind.nvim")
+  -- like fzf but goofier
+  {
+    "nvim-telescope/telescope.nvim",
+    version = "0.1.1",
+    dependencies = { { "nvim-lua/plenary.nvim" } },
+  },
+  -- lsp stuff
+  {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+  },
+  -- le completion
+  "hrsh7th/nvim-cmp",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-path",
+  "hrsh7th/cmp-nvim-lsp",
+  "onsails/lspkind.nvim",
 
-	-- snippet
-	use("L3MON4D3/LuaSnip")
-	use("saadparwaiz1/cmp_luasnip")
+  -- snippet
+  "L3MON4D3/LuaSnip",
+  "saadparwaiz1/cmp_luasnip",
 
-	-- auto close to prevent carpal tunnel :)
-	use("windwp/nvim-autopairs")
+  -- auto close to prevent carpal tunnel :
+  "windwp/nvim-autopairs",
 
-	-- git stuff lol
-	use("lewis6991/gitsigns.nvim")
+  -- git stuff lol
+  "lewis6991/gitsigns.nvim",
 
-	-- linting
-	use("jose-elias-alvarez/null-ls.nvim")
-	use("jayp0521/mason-null-ls.nvim")
+  -- linting
+  "jose-elias-alvarez/null-ls.nvim",
+  "jayp0521/mason-null-ls.nvim",
 
-	-- flex
-	use("andweeb/presence.nvim")
+  -- flex
+  "andweeb/presence.nvim",
 
   -- color picker
-  use ("ziontee113/color-picker.nvim")
+  "ziontee113/color-picker.nvim",
+}
 
-	-- auto update just like vscode
-	if packer_bootstrap then
-		require("packer").sync()
-	end
-end)
+require("lazy").setup(plugins, {})
