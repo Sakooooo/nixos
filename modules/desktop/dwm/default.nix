@@ -30,8 +30,8 @@ in {
             extraConfig = ''
               [greeter]
               show-password-label = true
-              password-label-text = "magic word"
-              invalid-password-text = "skull issue"
+              password-label-text = magic word
+              invalid-password-text = skull issue
 
             '';
           };
