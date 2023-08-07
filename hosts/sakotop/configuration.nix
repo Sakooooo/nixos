@@ -20,9 +20,10 @@
     desktop = {
       kitty.enable = true;
       bspwm = {
-        enable = true;
-        polybar.enable = true;
+        enable = false;
+        polybar.enable = false;
       };
+      xmonad.enable = true;
       picom.enable = false;
       gnome.enable = false;
       dunst.enable = true;
