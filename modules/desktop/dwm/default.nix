@@ -20,15 +20,17 @@ in {
         dwm.enable = true;
       };
       displayManager = {
+        defaultSession = "none+dwm";
         lightdm = {
           enable = true;
           background = ../../../config/background.png;
-          greeters.gtk = {
+          greeters.mini = {
             enable = true;
-            theme = {
-              name = "vimix-dark-ruby";
-              package = pkgs.vimix-gtk-themes;
-            };
+            user = "sako";
+            extraConfig = ''
+              [greeter]
+              show-password-label = false
+            '';
           };
         };
       };
