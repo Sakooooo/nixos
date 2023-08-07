@@ -65,8 +65,8 @@
         nvim.enable = true;
         vscode.fhs.enable = true;
       };
-      nixd.enable = true;
-      nil.enable = false;
+      nixd.enable = false;
+      nil.enable = true;
       cc.enable = true;
       javascript.enable = true;
       python.enable = true;
