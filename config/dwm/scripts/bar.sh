@@ -50,7 +50,7 @@ mem() {
 }
 
 keyboard() {
-  layout=${xset -q | grep LED | awk '{ print $10 }'}
+  layout=$(xset -q | grep LED | awk '{ print $10 }')
   case "$layout" in
     "00000000") printf "^c$white^ us" ;;
     "00001000") printf "^c$white^ ar" ;;
