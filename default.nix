@@ -73,6 +73,7 @@
   # xorg layout
   # change to needed
   services.xserver.layout = "us,ar";
+  services.xserver.xkbOptions = "grp:alt_shift_toggle";
 
   # already sold soul to corporations \_o_/
   nixpkgs.config.allowUnfree = true;
