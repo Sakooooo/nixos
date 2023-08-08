@@ -49,6 +49,14 @@ mem() {
   printf "^c$blue^ $(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g)"
 }
 
+keyboard() {
+  layout=${xset -q | grep LED | awk '{ print $10 }'}
+  case "$layout" in
+    "00000000") printf "^c$white^ us" ;;
+    "00001000") printf "^c$white^ ar" ;;
+  esac
+}
+
 wlan() {
 	case "$(cat /sys/class/net/wl*/operstate 2>/dev/null)" in
 	up) printf "^c$black^ ^b$blue^ 󰤨  ^d^%s" " ^c$blue^Connected" ;;
@@ -66,5 +74,5 @@ while true; do
   [ $interval = 0 ] || [ $(($interval % 3600)) = 0 ] 
   interval=$((interval + 1))
 
-  sleep 1 && xsetroot -name "$(audio) $(battery) $(brightness) $(cpu) $(mem) $(clock)"
+  sleep 1 && xsetroot -name "$(audio) $(battery) $(brightness) $(cpu) $(keyboard) $(mem) $(clock)"
 done
