@@ -23,9 +23,6 @@ local plugins = {
   -- default bar only looks good on linux
   "nvim-lualine/lualine.nvim",
 
-  -- colorschemes
-  "rebelot/kanagawa.nvim",
-
   -- syntax highlighting apparently
   "nvim-treesitter/nvim-treesitter",
   "windwp/nvim-ts-autotag",
