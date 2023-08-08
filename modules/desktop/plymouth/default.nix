@@ -18,7 +18,7 @@ in {
       enable = true;
     };
     systemd.services.plymouth-quit = {
-      preStart = "${pkgs.coreutils}/bin/sleep 3";
+      preStart = "${pkgs.coreutils}/bin/sleep 5";
     };
   };
 }
