@@ -21,7 +21,7 @@ local plugins = {
   "nvim-tree/nvim-web-devicons",
 
   -- colorscheme
-  "catppuccin/nvim",
+  { "catppuccin/nvim", name = "catppuccin" },
 
   -- default bar only looks good on linux
   "nvim-lualine/lualine.nvim",
