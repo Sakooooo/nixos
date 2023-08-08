@@ -16,10 +16,9 @@ in {
   config = mkIf cfg.enable {
     boot.plymouth = {
       enable = true;
-      extraConfig = ''
-        [Daemon]
-        ShowDelay=5
-      '';
+    };
+    systemd.services.plymouth-quit = {
+      preStart = "${pkgs.coreutils}/bin/sleep 3";
     };
   };
 }
