@@ -97,13 +97,6 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # TODO(sako):: put this in different files
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.sako = {
-    isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
-  };
-
   services.xserver.videoDrivers = ["nvidia"];
 
   # Enable the OpenSSH daemon.

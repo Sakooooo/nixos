@@ -78,6 +78,11 @@
   # already sold soul to corporations \_o_/
   nixpkgs.config.allowUnfree = true;
 
+  users.users.sako = {
+    isNormalUser = true;
+    extraGroups = ["wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
+  };
+
   home-manager.useUserPackages = true;
   home-manager.users.sako = {pkgs, ...}: {
     # CHANGE THIS WHEN THE SYSTEM VERSION CHANGES TOO!!!
