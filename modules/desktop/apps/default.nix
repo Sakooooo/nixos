@@ -1,6 +1,7 @@
 {
   imports = [
     ./keepassxc
+    ./pass
     ./nicotineplus
     ./kdeconnect
     ./nemo
