@@ -18,12 +18,9 @@
 
   modules = {
     desktop = {
-      # plymouth
-      plymouth.enable = false;
       kitty.enable = true;
       dwm.enable = true;
       picom.enable = true;
-      gnome.enable = false;
       dunst.enable = true;
       browsers = {
         qutebrowser.enable = true;
