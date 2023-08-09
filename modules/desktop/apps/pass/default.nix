@@ -13,7 +13,9 @@ in {
     enable = mkEnableOption false;
   };
 
-  config =
-    mkIf cfg.enable {
-    };
+  config = mkIf cfg.enable {
+    users.users.sako.packages = with pkgs; [
+      pass
+    ];
+  };
 }
