@@ -60,6 +60,8 @@ in {
       catppuccin-cursors.mochaDark
       # screen shot (s)
       flameshot
+      # clipboard
+      xclip
     ];
     home-manager.users.sako = {pkgs, ...}: {
       home.file = {
