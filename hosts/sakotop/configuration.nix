@@ -22,7 +22,6 @@
       plymouth.enable = false;
       kitty.enable = true;
       dwm.enable = true;
-      xmonad.enable = false;
       picom.enable = true;
       gnome.enable = false;
       dunst.enable = true;
