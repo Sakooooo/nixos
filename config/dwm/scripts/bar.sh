@@ -52,8 +52,8 @@ mem() {
 keyboard() {
   layout=$(xset -q | grep LED | awk '{ print $10 }')
   case "$layout" in
-    "00000000") printf "^c$white^ us" ;;
-    "00001000") printf "^c$white^ ar" ;;
+    "00000000"|"00000001") printf "^c$white^ us" ;;
+    "00001000"|"00001001") printf "^c$white^ ar" ;;
   esac
 }
 
