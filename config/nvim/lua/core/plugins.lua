@@ -68,6 +68,18 @@ local plugins = {
 
   -- color picker
   "ziontee113/color-picker.nvim",
+
+  -- startup
+  {
+    'glepnir/dashboard-nvim',
+    event = 'VimEnter',
+    config = function()
+      require('dashboard').setup {
+        -- config
+      }
+    end,
+    dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+  }
 }
 
 require("lazy").setup(plugins, {})
