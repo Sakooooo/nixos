@@ -101,9 +101,6 @@ local plugins = {
             '',
           }, --your header
           config = {
-            week_header = {
-              enable = true,
-            },
             shortcut = {
               { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
               {
