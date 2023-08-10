@@ -24,7 +24,7 @@ vim.opt.splitright = true
 if (vim.loop.os_uname().sysname == "Linux")
 then
   vim.opt.shell = "zsh"
-else 
+else
   vim.opt.shell = "pwsh"
 end
 
@@ -48,7 +48,8 @@ vim.keymap.set("n", "nsv", ":vsplit<CR>", opts)
 vim.keymap.set("n", "nsh", ":split<CR>", opts)
 
 -- terminal
-vim.keymap.set("n", "<leader>t", ":split<CR> <BAR> :terminal<CR>")
+--vim.keymap.set("n", "<leader>t", ":split<CR> <BAR> :terminal<CR>")
+vim.keymap.set("n", "<leader>t", ":FloatermToggle<CR>")
 
 -- exit terminal with esc
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)

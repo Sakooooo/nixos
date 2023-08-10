@@ -130,7 +130,11 @@ local plugins = {
     end,
     event = 'VimEnter',
     dependencies = { { 'nvim-tree/nvim-web-devicons' } }
-  }
+  },
+
+  -- floating terminal, useful to mimic/be better than vscode
+  'voldikss/vim-floaterm',
+
 }
 
 require("lazy").setup(plugins, {})
