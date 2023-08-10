@@ -50,6 +50,7 @@ vim.keymap.set("n", "nsh", ":split<CR>", opts)
 -- terminal
 --vim.keymap.set("n", "<leader>t", ":split<CR> <BAR> :terminal<CR>")
 vim.keymap.set("n", "<leader>t", ":FloatermToggle<CR>")
+vim.keymap.set("n", "<leader>g", ":FloatermNew --height=29 --width=120 lazygit<CR>")
 
 -- exit terminal with esc
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)
