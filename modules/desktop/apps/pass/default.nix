@@ -15,7 +15,7 @@ in {
 
   config = mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
-      pass
+      (pass.withExtensions (pkgs: with pkgs; [pass-otp]))
     ];
   };
 }
