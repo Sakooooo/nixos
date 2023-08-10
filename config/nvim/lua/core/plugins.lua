@@ -75,15 +75,18 @@ local plugins = {
     config = function()
       require('dashboard').setup {
         theme = 'doom', --  theme is doom and hyper default is hyper
-        {
-          icon = '',
-          icon_hl = 'group',
-          desc = 'description',
-          desc_hl = 'group',
-          key = 'shortcut key in dashboard buffer not keymap !!',
-          key_hl = 'group',
-          action = '',
+        center = {
+          {
+            icon = '',
+            icon_hl = 'group',
+            desc = 'description',
+            desc_hl = 'group',
+            key = 'shortcut key in dashboard buffer not keymap !!',
+            key_hl = 'group',
+            action = '',
+          },
         },
+        footer = {},
       }
     end,
     event = 'VimEnter',
