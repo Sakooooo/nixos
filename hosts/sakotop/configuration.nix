@@ -28,7 +28,7 @@
       };
       apps = {
         nemo.enable = true;
-        pass.enable = true;
+        pass.enable = false;
         keepassxc.enable = true;
         nicotineplus.enable = true;
         transmission.enable = true;
@@ -60,7 +60,7 @@
     dev = {
       editors = {
         nvim.enable = true;
-        vscode.fhs.enable = false;
+        vscode.fhs.enable = true;
       };
       nixd.enable = false;
       nil.enable = true;
