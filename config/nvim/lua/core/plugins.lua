@@ -76,7 +76,8 @@ local plugins = {
       require('dashboard').setup {
         theme = 'doom', --  theme is doom and hyper default is hyper
         config = {
-          header = {},  --your header
+          -- todo https://github.com/nvimdev/dashboard-nvim
+          header = {}, --your header
           center = {
             {
               icon = ' ',
