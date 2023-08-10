@@ -35,7 +35,7 @@ config.load_autoconfig(False)
 #   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
 #   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
 #   - never: Don't accept cookies at all.
-config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
+config.set("content.cookies.accept", "all", "chrome-devtools://*")
 
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
@@ -59,12 +59,12 @@ config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
 #   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
 #   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
 #   - never: Don't accept cookies at all.
-config.set('content.cookies.accept', 'all', 'devtools://*')
+config.set("content.cookies.accept", "all", "devtools://*")
 
 # Value to send in the `Accept-Language` header. Note that the value
 # read from JavaScript is always the global value.
 # Type: String
-config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io/*')
+config.set("content.headers.accept_language", "", "https://matchmaker.krunker.io/*")
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -80,7 +80,11 @@ config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io
 # between 5.12 and 5.14 (inclusive), changing the value exposed to
 # JavaScript requires a restart.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}",
+    "https://web.whatsapp.com/",
+)
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -96,14 +100,18 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{w
 # between 5.12 and 5.14 (inclusive), changing the value exposed to
 # JavaScript requires a restart.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0', 'https://accounts.google.com/*')
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0",
+    "https://accounts.google.com/*",
+)
 
 
 # SEarch Engine
 c.url.searchengines = {
-    'DEFAULT':       'https://duckduckgo.com/?ia=web&q={}',
-    'nixpkgs':      'https://search.nixos.org/packages?query={}',
-    'nixopts':      'https://search.nixos.org/options?query={}'
+    "DEFAULT": "https://duckduckgo.com/?ia=web&q={}",
+    "nixpkgs": "https://search.nixos.org/packages?query={}",
+    "nixopts": "https://search.nixos.org/options?query={}",
 }
 
 # User agent to send.  The following placeholders are defined:  *
@@ -120,62 +128,69 @@ c.url.searchengines = {
 # between 5.12 and 5.14 (inclusive), changing the value exposed to
 # JavaScript requires a restart.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36",
+    "https://*.slack.com/*",
+)
 
 # Load images automatically in web pages.
 # Type: Bool
-config.set('content.images', True, 'chrome-devtools://*')
+config.set("content.images", True, "chrome-devtools://*")
 
 # Load images automatically in web pages.
 # Type: Bool
-config.set('content.images', True, 'devtools://*')
+config.set("content.images", True, "devtools://*")
 
 # Enable JavaScript.
 # Type: Bool
-config.set('content.javascript.enabled', True, 'chrome-devtools://*')
+config.set("content.javascript.enabled", True, "chrome-devtools://*")
 
 # Enable JavaScript.
 # Type: Bool
-config.set('content.javascript.enabled', True, 'devtools://*')
+config.set("content.javascript.enabled", True, "devtools://*")
 
 # Enable JavaScript.
 # Type: Bool
-config.set('content.javascript.enabled', True, 'chrome://*/*')
+config.set("content.javascript.enabled", True, "chrome://*/*")
 
 # Enable JavaScript.
 # Type: Bool
-config.set('content.javascript.enabled', True, 'qute://*/*')
+config.set("content.javascript.enabled", True, "qute://*/*")
 
 # dark mode
-config.set('colors.webpage.preferred_color_scheme', 'dark')
+config.set("colors.webpage.preferred_color_scheme", "dark")
 
 # kee pass x c
 # anyone who uses pass is NOT real
-config.bind('pw', 'spawn --userscript qute-keepassxc --insecure', mode='normal')
-config.bind('pt', 'spawn --userscript qute-keepassxc --totp --insecure', mode='normal')
+config.bind("pw", "spawn --userscript qute-keepassxc --insecure", mode="normal")
+config.bind("pt", "spawn --userscript qute-keepassxc --totp --insecure", mode="normal")
 
 # lmao i use pass now
-    config.bind('<z><l>', 'spawn --userscript qute-pass')
-    config.bind('<z><u><l>', 'spawn --userscript qute-pass --username-only')
-    config.bind('<z><p><l>', 'spawn --userscript qute-pass --password-only')
-    config.bind('<z><o><l>', 'spawn --userscript qute-pass --otp-only')
+config.bind("<z><l>", "spawn --userscript qute-pass")
+config.bind("<z><u><l>", "spawn --userscript qute-pass --username-only")
+config.bind("<z><p><l>", "spawn --userscript qute-pass --password-only")
+config.bind("<z><o><l>", "spawn --userscript qute-pass --otp-only")
 
 # adblock lists
-config.set('content.blocking.adblock.lists', [
-    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt",
-    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badware.txt",
-    # im paranoid ok?
-    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/lan-block.txt",
-    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt",
-    "https://easylist.to/easylist/easylist.txt",
-    "https://easylist.to/easylist/easyprivacy.txt",
-    "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=1&mimetype=plaintext",
-    "https://easylist-downloads.adblockplus.org/easylistdutch.txt",
-    "https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt",
-    "https://www.i-dont-care-about-cookies.eu/abp/",
-    "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt"
-])
+config.set(
+    "content.blocking.adblock.lists",
+    [
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badware.txt",
+        # im paranoid ok?
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/lan-block.txt",
+        "https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt",
+        "https://easylist.to/easylist/easylist.txt",
+        "https://easylist.to/easylist/easyprivacy.txt",
+        "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=1&mimetype=plaintext",
+        "https://easylist-downloads.adblockplus.org/easylistdutch.txt",
+        "https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt",
+        "https://www.i-dont-care-about-cookies.eu/abp/",
+        "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
+    ],
+)
 
 # fonts
-config.set('fonts.default_family', 'JetBrainsMono')
-config.set('fonts.default_size', '9pt')
+config.set("fonts.default_family", "JetBrainsMono")
+config.set("fonts.default_size", "9pt")
