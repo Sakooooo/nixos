@@ -1,7 +1,7 @@
 require("presence").setup({
 	-- options
 	auto_update = true,
-	neovim_image_text = "mama mia",
+	neovim_image_text = "IM DIFFERENT, LOOK AT ME",
 	main_image = "neovim",
 	client_id = "793271441293967371",
 	log_level = nil,
