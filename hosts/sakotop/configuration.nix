@@ -28,7 +28,7 @@
       };
       apps = {
         nemo.enable = true;
-        pass.enable = true;
+        pass.enable = false;
         keepassxc.enable = true;
         nicotineplus.enable = true;
         transmission.enable = true;
