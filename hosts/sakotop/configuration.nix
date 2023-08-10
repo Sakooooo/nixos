@@ -61,17 +61,13 @@
     dev = {
       editors = {
         nvim.enable = true;
-        vscode.fhs.enable = false;
       };
-      nixd.enable = false;
       nil.enable = true;
       cc.enable = true;
       javascript.enable = true;
       python.enable = true;
       rust.enable = true;
       lua.enable = true;
-      # too heavy
-      unity.enable = false;
     };
     shell = {
       nix = {
