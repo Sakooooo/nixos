@@ -20,6 +20,10 @@ in {
     users.users.sako.packages = with pkgs; [
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions; [
+          mkhl.direnv
+          vscodevim.vim
+          ms-python.vscode-pylance
+          ms-vscode.cmake-tools
         ];
       })
     ];
