@@ -23,7 +23,7 @@
       picom.enable = true;
       dunst.enable = true;
       browsers = {
-        qutebrowser.enable = true;
+        qutebrowser.enable = false;
         firefox.enable = true;
       };
       apps = {
