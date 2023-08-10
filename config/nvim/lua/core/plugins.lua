@@ -74,7 +74,7 @@ local plugins = {
     'glepnir/dashboard-nvim',
     config = function()
       require('dashboard').setup {
-        theme = 'doom', --  theme is doom and hyper default is hyper
+        theme = 'hyper', --  theme is doom and hyper default is hyper
         config = {
           -- todo https://github.com/nvimdev/dashboard-nvim
           header = {
@@ -100,26 +100,17 @@ local plugins = {
             '',
             '',
           }, --your header
-          center = {
-            {
-              icon = ' ',
-              icon_hl = 'Title',
-              desc = 'Find File           ',
-              desc_hl = 'String',
-              key = 'b',
-              keymap = 'SPC f f',
-              key_hl = 'Number',
-              action = 'lua print(2)'
-            },
-            {
-              icon = ' ',
-              desc = 'Find Dotfiles',
-              key = 'f',
-              keymap = 'SPC f d',
-              action = 'lua print(3)'
-            },
+          shortcut = {
+            -- action can be a function type
+            { desc = string, group = 'highlight group', key = 'shortcut key', action = 'action when you press key' },
           },
-          footer = {} --your footer
+          packages = { enable = true }, -- show how many plugins neovim loaded
+          -- limit how many projects list, action when you press key or enter it will run this action.
+          -- action can be a functino type, e.g.
+          -- action = func(path) vim.cmd('Telescope find_files cwd=' .. path) end
+          project = { enable = true, limit = 8, icon = 'your icon', label = '', action = 'Telescope find_files cwd=' },
+          mru = { limit = 10, icon = 'your icon', label = '', },
+          footer = {}, -- footer
         }
       }
     end,
