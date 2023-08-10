@@ -48,6 +48,7 @@
       media = {
         gimp.enable = true;
         blender.enable = true;
+        kdenlive.enable = true;
         mpv.enable = true;
       };
     };
