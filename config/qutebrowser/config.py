@@ -154,6 +154,12 @@ config.set('colors.webpage.preferred_color_scheme', 'dark')
 config.bind('pw', 'spawn --userscript qute-keepassxc --insecure', mode='normal')
 config.bind('pt', 'spawn --userscript qute-keepassxc --totp --insecure', mode='normal')
 
+# lmao i use pass now
+    config.bind('<z><l>', 'spawn --userscript qute-pass')
+    config.bind('<z><u><l>', 'spawn --userscript qute-pass --username-only')
+    config.bind('<z><p><l>', 'spawn --userscript qute-pass --password-only')
+    config.bind('<z><o><l>', 'spawn --userscript qute-pass --otp-only')
+
 # adblock lists
 config.set('content.blocking.adblock.lists', [
     "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt",
