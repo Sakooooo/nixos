@@ -75,18 +75,29 @@ local plugins = {
     config = function()
       require('dashboard').setup {
         theme = 'doom', --  theme is doom and hyper default is hyper
-        center = {
-          {
-            icon = '',
-            icon_hl = 'group',
-            desc = 'description',
-            desc_hl = 'group',
-            key = 'shortcut key in dashboard buffer not keymap !!',
-            key_hl = 'group',
-            action = '',
+        config = {
+          header = {},  --your header
+          center = {
+            {
+              icon = ' ',
+              icon_hl = 'Title',
+              desc = 'Find File           ',
+              desc_hl = 'String',
+              key = 'b',
+              keymap = 'SPC f f',
+              key_hl = 'Number',
+              action = 'lua print(2)'
+            },
+            {
+              icon = ' ',
+              desc = 'Find Dotfiles',
+              key = 'f',
+              keymap = 'SPC f d',
+              action = 'lua print(3)'
+            },
           },
-        },
-        footer = {},
+          footer = {} --your footer
+        }
       }
     end,
     event = 'VimEnter',
