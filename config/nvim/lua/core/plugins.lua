@@ -107,17 +107,9 @@ local plugins = {
               icon_hl = 'Title',
               desc = 'Find File           ',
               desc_hl = 'String',
-              key = 'b',
-              keymap = 'SPC f f',
+              keymap = 'SPC SPC',
               key_hl = 'Number',
               action = 'lua print(2)'
-            },
-            {
-              icon = ' ',
-              desc = 'Find Dotfiles',
-              key = 'f',
-              keymap = 'SPC f d',
-              action = 'lua print(3)'
             },
           }
         }
