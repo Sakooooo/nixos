@@ -74,7 +74,7 @@ local plugins = {
     'glepnir/dashboard-nvim',
     config = function()
       require('dashboard').setup {
-        theme = 'hyper', --  theme is doom and hyper default is hyper
+        theme = 'doom', --  theme is doom and hyper default is hyper
         config = {
           -- todo https://github.com/nvimdev/dashboard-nvim
           header = {
