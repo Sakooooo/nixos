@@ -1,4 +1,5 @@
 -- bootstrap lazy.nvim
+local dashboard_configuration = require "core.plugin_config.dashboard"
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -72,7 +73,7 @@ local plugins = {
   -- startup
   {
     'glepnir/dashboard-nvim',
-    config = require("dashboard").setup({}),
+    config = dashboard_configuration.get_sections(),
     event = 'VimEnter',
     dependencies = { { 'nvim-tree/nvim-web-devicons' } }
   },
