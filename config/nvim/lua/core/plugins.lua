@@ -72,7 +72,7 @@ local plugins = {
   -- startup
   {
     'glepnir/dashboard-nvim',
-    config = require("dashboard").setup({}),
+    config = nil, 
     event = 'VimEnter',
     dependencies = { { 'nvim-tree/nvim-web-devicons' } }
   },
