@@ -65,9 +65,6 @@ in {
       # screen shot (s)
       flameshot
     ];
-    environment.systemPackages = with pkgs; [
-      nm-applet
-    ];
 
     home-manager.users.sako = {pkgs, ...}: {
       home.pointerCursor = {

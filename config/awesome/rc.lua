@@ -589,9 +589,9 @@ awful.spawn.with_shell(
 -- use xrdb to keep info about autostart
   'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' ..
   'xrdb -merge <<< "awesome.started:true";' ..
-  -- add programs here as string and end with ..
+  -- list each of your autostart commands, followed by ; inside single quotes, followed by ..
   'keepassxc;' ..
   'flameshot;' ..
   'nm-applet;' ..
-  'blueman-applet;'
+  'blueman-applet'
 )
