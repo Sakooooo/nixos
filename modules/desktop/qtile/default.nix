@@ -1,9 +1,14 @@
-{ outputs, options, config, lib, pkgs, ...}:
-with lib;
-let
-  cfg = config.modules.desktop.qtile;
-in
 {
+  outputs,
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.desktop.qtile;
+in {
   options.modules.desktop.qtile = {
     enable = mkEnableOption false;
   };
@@ -17,19 +22,18 @@ in
         enable = true;
       };
       displayManager = {
-       defaultSession = "none+qtile"; 
-       lightdm = {
-        enable = true;
-        background = ../../../config/background.png;
-        greeters.gtk = {
+        defaultSession = "none+qtile";
+        lightdm = {
           enable = true;
-          theme = {
-            name = "vimix-dark-ruby";
-            package = pkgs.vimix-gtk-themes;
+          background = ../../../config/background.png;
+          greeters.gtk = {
+            enable = true;
+            theme = {
+              name = "vimix-dark-ruby";
+              package = pkgs.vimix-gtk-themes;
+            };
           };
         };
-
-       };
       };
       libinput = {
         enable = true;
@@ -44,7 +48,7 @@ in
           accelProfile = "flat";
         };
       };
-    };  
+    };
     users.users.sako.packages = with pkgs; [
       rofi
       # network
@@ -60,9 +64,9 @@ in
       flameshot
     ];
 
-    home-manager.users.sako = { pkgs , ...}: {
+    home-manager.users.sako = {pkgs, ...}: {
       home.pointerCursor = {
-        name = "Catppuccin-Mocha-Dark"; 
+        name = "Catppuccin-Mocha-Dark";
         size = 16;
         x11 = {
           enable = true;
@@ -80,13 +84,13 @@ in
           source = ../../../config/background.png;
         };
       };
-      xdg.configFile = {
-        awesome = {
-          enable = true;
-          source = ../../../config/awesome;
-          recursive = true;
-        };
-     }; 
+      #xdg.configFile = {
+      #  qtile = {
+      #    enable = true;
+      #    source = ../../../config/qtile;
+      #    recursive = true;
+      #  };
+      #};
     };
   };
 }
