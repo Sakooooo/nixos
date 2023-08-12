@@ -584,9 +584,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Gaps for dopamine
 beautiful.useless_gap = 5
 
--- Autorun
-awful.spawn.once("nm-applet")
-awful.spawn.once("blueman-applet")
-awful.spawn.once("keepassxc")
-awful.spawn.once("flameshot")
-awful.spawn.once("transmission-gtk -m")
+-- TODO find good autostart
