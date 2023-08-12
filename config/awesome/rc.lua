@@ -584,14 +584,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Gaps for dopamine
 beautiful.useless_gap = 5
 
--- better autostart
-awful.spawn.with_shell(
--- use xrdb to keep info about autostart
-  'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' ..
-  'xrdb -merge <<< "awesome.started:true";' ..
-  -- list each of your autostart commands, followed by ; inside single quotes, followed by ..
-  'keepassxc;' ..
-  'flameshot;' ..
-  'nm-applet;' ..
-  'blueman-applet'
-)
+--autostart
+awful.spawn.once("keepassxc")
