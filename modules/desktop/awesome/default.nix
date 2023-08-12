@@ -1,9 +1,14 @@
-{ outputs, options, config, lib, pkgs, ...}:
-with lib;
-let
-  cfg = config.modules.desktop.awesome;
-in
 {
+  outputs,
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.desktop.awesome;
+in {
   options.modules.desktop.awesome = {
     enable = mkEnableOption false;
   };
@@ -19,19 +24,18 @@ in
         ];
       };
       displayManager = {
-       defaultSession = "none+awesome"; 
-       lightdm = {
-        enable = true;
-        background = ../../../config/background.png;
-        greeters.gtk = {
+        defaultSession = "none+awesome";
+        lightdm = {
           enable = true;
-          theme = {
-            name = "vimix-dark-ruby";
-            package = pkgs.vimix-gtk-themes;
+          background = ../../../config/background.png;
+          greeters.gtk = {
+            enable = true;
+            theme = {
+              name = "vimix-dark-ruby";
+              package = pkgs.vimix-gtk-themes;
+            };
           };
         };
-
-       };
       };
       libinput = {
         enable = true;
@@ -46,7 +50,7 @@ in
           accelProfile = "flat";
         };
       };
-    };  
+    };
     users.users.sako.packages = with pkgs; [
       rofi
       # network
@@ -61,10 +65,13 @@ in
       # screen shot (s)
       flameshot
     ];
+    environment.systemPackages = with pkgs; [
+      nm-applet
+    ];
 
-    home-manager.users.sako = { pkgs , ...}: {
+    home-manager.users.sako = {pkgs, ...}: {
       home.pointerCursor = {
-        name = "Catppuccin-Mocha-Dark"; 
+        name = "Catppuccin-Mocha-Dark";
         size = 16;
         x11 = {
           enable = true;
@@ -88,7 +95,7 @@ in
           source = ../../../config/awesome;
           recursive = true;
         };
-     }; 
+      };
     };
   };
 }
