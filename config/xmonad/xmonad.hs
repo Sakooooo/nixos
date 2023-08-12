@@ -199,7 +199,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
 -- which denotes layout choice.
 --
 -- myLayout = tiled ||| Mirror tiled ||| noBorders Full
-myLayout = smartSpacing 4
+myLayout = smartSpacing 10 
   $fullscreenFull
   $avoidStruts(tiled ||| Full ||| Mirror tiled)
   where
