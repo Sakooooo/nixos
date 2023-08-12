@@ -590,6 +590,5 @@ awful.spawn.with_shell(
   'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' ..
   'xrdb -merge <<< "awesome.started:true";' ..
   -- add programs here as string and end with ..
-  'keepassxc' ..
-  'flameshot'
+  'keepassxc'
 )
