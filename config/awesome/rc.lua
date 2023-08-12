@@ -596,4 +596,5 @@ if autorun and not autorundone then
   for app = 1, #autorunApps do
     awful.util.spawn(autorunApps[app])
   end
+  autorundone = true
 end
