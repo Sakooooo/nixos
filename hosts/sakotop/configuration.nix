@@ -19,7 +19,8 @@
   modules = {
     desktop = {
       kitty.enable = true;
-      dwm.enable = true;
+      dwm.enable = false;
+      awesome.enable = true;
       picom.enable = true;
       dunst.enable = true;
       browsers = {
