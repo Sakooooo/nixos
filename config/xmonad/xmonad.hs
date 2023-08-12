@@ -16,6 +16,8 @@ import XMonad.Hooks.DynamicLog -- supposed to be for xmobar
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Util.SpawnOnce -- for startup items
 import XMonad.Util.Run -- for xmobar startup
+import XMonad.Layout.Spacing  -- gaps
+import XMonad.Layout.Fullscreen -- fullscreen
 import XMonad.Layout.NoBorders -- fullscreen
 import XMonad.Util.Hacks as Hacks -- tray
 import Graphics.X11.ExtraTypes.XF86 -- for keys
@@ -196,7 +198,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| noBorders Full
+-- myLayout = tiled ||| Mirror tiled ||| noBorders Full
+myLayout = smartSpacing 4
+  $fullscreenFull
+  $avoidStruts(tiled ||| Full ||| Grid ||| spiral (6/7) ||| Mirror tiled)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
