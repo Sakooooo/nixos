@@ -201,7 +201,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList
 -- myLayout = tiled ||| Mirror tiled ||| noBorders Full
 myLayout = smartSpacing 4
   $fullscreenFull
-  $avoidStruts(tiled ||| Full ||| Grid ||| spiral (6/7) ||| Mirror tiled)
+  $avoidStruts(tiled ||| Full ||| Mirror tiled)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
