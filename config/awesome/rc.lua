@@ -584,17 +584,9 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Gaps for dopamine
 beautiful.useless_gap = 5
 
--- autostart
-autorun = true
-autorundone = false
-autorunApps = {
-  "keepassxc",
-  "flameshot",
-}
-
-if autorun and not autorundone then
-  for app = 1, #autorunApps do
-    awful.util.spawn(autorunApps[app])
-  end
-  autorundone = true
-end
+-- better autostart
+awful.spawn.with_shell(
+  'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' ..
+  'xrdb -merge <<< "awesome.started:true";' ..
+  'keepassxc'
+)
