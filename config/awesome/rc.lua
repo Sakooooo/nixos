@@ -300,9 +300,9 @@ globalkeys = gears.table.join(
     { description = "increase the number of columns", group = "layout" }),
   awful.key({ modkey, "Control" }, "l", function() awful.tag.incncol(-1, nil, true) end,
     { description = "decrease the number of columns", group = "layout" }),
-  awful.key({ modkey, }, "space", function() awful.layout.inc(1) end,
+  awful.key({ modkey, }, "p", function() awful.layout.inc(1) end,
     { description = "select next", group = "layout" }),
-  awful.key({ modkey, "Shift" }, "space", function() awful.layout.inc(-1) end,
+  awful.key({ modkey, "Shift" }, "p", function() awful.layout.inc(-1) end,
     { description = "select previous", group = "layout" }),
 
   awful.key({ modkey, "Control" }, "n",
@@ -332,7 +332,7 @@ globalkeys = gears.table.join(
     end,
     { description = "lua execute prompt", group = "awesome" }),
   -- Menubar
-  awful.key({ modkey }, "p", function() menubar.show() end,
+  awful.key({ modkey }, "space", function() menubar.show() end,
     { description = "show the menubar", group = "launcher" })
 )
 
@@ -345,7 +345,7 @@ clientkeys = gears.table.join(
     { description = "toggle fullscreen", group = "client" }),
   awful.key({ modkey, }, "w", function(c) c:kill() end,
     { description = "close", group = "client" }),
-  awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle,
+  awful.key({ modkey, "Control" }, "p", awful.client.floating.toggle,
     { description = "toggle floating", group = "client" }),
   awful.key({ modkey, "Control" }, "Return", function(c) c:swap(awful.client.getmaster()) end,
     { description = "move to master", group = "client" }),
@@ -586,7 +586,10 @@ beautiful.useless_gap = 5
 
 -- better autostart
 awful.spawn.with_shell(
+-- use xrdb to keep info about autostart
   'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' ..
   'xrdb -merge <<< "awesome.started:true";' ..
-  'keepassxc'
+  -- add programs here as string and end with ..
+  'keepassxc' ..
+  'flameshot'
 )
