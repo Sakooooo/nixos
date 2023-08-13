@@ -588,7 +588,3 @@ beautiful.useless_gap = 10
 local startupApps = {
   'keepassxc',
 }
-
-for app = 1, startupApps do
-  awful.spawn.once(startupApps[app])
-end
