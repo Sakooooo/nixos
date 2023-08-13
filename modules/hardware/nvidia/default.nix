@@ -8,17 +8,18 @@
 }:
 with lib; let
   cfg = config.modules.hardware.nvidia;
+  busIDType = lib.types.strMatching "([[:print:]]+[\:\@][0-9]{1,3}\:[0-9]{1,2}\:[0-9])?";
 in {
   options.modules.hardware.nvidia = {
     enable = mkEnableOption false;
     prime.enable = mkEnableOption false;
     prime.intelBusID = mkOption {
-      type = types.str;
-      default = null;
+      type = busIDType;
+      default = "";
     };
     prime.nvidiaBusId = mkOption {
-      type = types.str;
-      default = null;
+      type = busIDType;
+      default = "";
     };
   };
 
