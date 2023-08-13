@@ -635,6 +635,8 @@ gears.timer {
             title = "Battery Warning\n",
             text = "Battery is lower than 15%.\nStatus is " .. tonumber(stdout) .. "%.",
             timeout = 3,
+            bg = "#ff0000",
+            fg = "#ffffff",
           }
         end
       end
