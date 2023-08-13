@@ -592,13 +592,26 @@ local run_on_start_up = {
   'keepassxc',
   'flameshot',
 }
+local startupDone
+do
+  local restart_detected
+  startupDone = function()
+    -- If we already did restart detection: Just return the result
+    if restart_detected ~= nil then
+      return restart_detected
+    end
 
-for _, app in ipairs(run_on_start_up) do
-  local findme = app
-  local firstspace = app:find(" ")
-  if firstspace then
-    findme = app:sub(0, firstspace - 1)
+    -- Register a new boolean
+    awesome.register_xproperty("awesome_startup", "boolean")
+    -- Check if this boolean is already set
+    restart_detected = awesome.get_xproperty("awesome_startup") ~= nil
+    -- Set it to true
+    awesome.set_xproperty("awesome_startup", true)
+    -- Return the result
+    return restart_detected
   end
-  -- pipe commands to bash to allow command to be shell agnostic
-  awful.spawn.with_shell(string.format("echo 'pgrep -u $USER -x %s > /dev/null || (%s)' | bash -", findme, app), false)
+end
+
+if not startupDone() then
+  awful.spawn('keepassxc')
 end
