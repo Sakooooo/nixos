@@ -16,6 +16,8 @@ local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+-- widgets
+local battery_widget = require("widgets.battery")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -222,6 +224,29 @@ awful.screen.connect_for_each_screen(function(s)
       wibox.widget.systray(),
       mytextclock,
       s.mylayoutbox,
+      battery_widget {
+        ac = "AC",
+        adapter = "BAT1",
+        ac_prefix = "AC: ",
+        battery_prefix = "Bat: ",
+        percent_colors = {
+          { 25,  "red" },
+          { 50,  "orange" },
+          { 999, "green" },
+        },
+        listen = true,
+        timeout = 10,
+        widget_text = "${AC_BAT}${color_on}${percent}%${color_off}",
+        widget_font = "Jetbrains Mono 16",
+        tooltip_text = "Battery ${state}${time_est}\nCapacity: ${capacity_percent}%",
+        alert_threshold = 5,
+        alert_timeout = 0,
+        alert_title = "Low battery !",
+        alert_text = "${AC_BAT}${time_est}",
+        --alert_icon = "~/Downloads/low_battery_icon.png",
+        warn_full_battery = true,
+        --full_battery_icon = "~/Downloads/full_battery_icon.png",
+      },
     },
   }
 end)
