@@ -10,6 +10,9 @@ with lib; let
   cfg = config.modules.hardware.nvidia;
   busIDType = lib.types.strMatching "([[:print:]]+[\:\@][0-9]{1,3}\:[0-9]{1,2}\:[0-9])?";
 in {
+  imports = [
+    ./prime.nix
+  ];
   options.modules.hardware.nvidia = {
     enable = mkEnableOption false;
     prime.enable = mkEnableOption false;
