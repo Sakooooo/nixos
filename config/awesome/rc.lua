@@ -621,3 +621,23 @@ if not startupDone() then
     awful.spawn(app)
   end
 end
+
+-- low battery notification
+gears.timer {
+  timeout   = 60,
+  call_now  = true,
+  autostart = true,
+  callback  = function()
+    awful.spawn.easy_async_with_shell([[bash -c "cat /sys/class/power_supply/BAT1/capacity"]],
+      function(stdout)
+        if tonumber(stdout) <= 15 then
+          batterynotification = naughty.notify {
+            title = "Battery Warning\n",
+            text = "Battery is lower than 15%.\nStatus is " .. tonumber(stdout) .. "%.",
+            timeout = 3,
+          }
+        end
+      end
+    )
+  end
+}
