@@ -584,9 +584,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Gaps for dopamine
 beautiful.useless_gap = 10
 
--- making better autostart
-local startupApps = {
-  'keepassxc',
-}
-
-awful.spawn.single_instance(startupApps)
+-- autostart
+awful.util.spawn_with_shell("~/.config/awesome/autostart.sh")
