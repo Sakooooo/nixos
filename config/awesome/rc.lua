@@ -454,8 +454,7 @@ awful.rules.rules = {
   -- All clients will match this rule.
   {
     rule = {
-      { class = "discord" },
-      properties = { tag = "3" }
+      { class = "discord", properties = { tag = '3' } },
     },
     properties = {
       border_width = beautiful.border_width,
