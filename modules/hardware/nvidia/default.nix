@@ -11,6 +11,15 @@ with lib; let
 in {
   options.modules.hardware.nvidia = {
     enable = mkEnableOption false;
+    prime.enable = mkEnableOption false;
+    prime.intelBusID = mkOption {
+      type = types.str;
+      default = null;
+    };
+    prime.nvidiaBusId = mkOption {
+      type = types.str;
+      default = null;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -38,7 +47,7 @@ in {
       nvidiaSettings = true;
 
       # screen tearing fix
-      # might break a few things, don't really know
+      # might consume more power?? dont know, shouldnt be an issue hopefully
       forceFullCompositionPipeline = true;
 
       # Package
@@ -47,11 +56,13 @@ in {
       # TODO(sako) ALSO add these as a cfg option
       prime = {
         offload = {
-          enable = true;
-          enableOffloadCmd = true;
+          enable = cfg.prime;
+          enableOffloadCmd = cfg.prime;
         };
-        intelBusId = "PCI:0:2:0";
-        nvidiaBusId = "PCI:1:0:0";
+        #intelBusId = "PCI:0:2:0";
+        #nvidiaBusId = "PCI:1:0:0";
+        intelBusId = cfg.intelBusId;
+        nvidiaBusId = cfg.nvidiaBusId;
       };
     };
   };
