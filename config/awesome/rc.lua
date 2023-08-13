@@ -589,12 +589,12 @@ beautiful.useless_gap = 10
 --awful.util.spawn_with_shell("~/.config/awesome/autostart.sh")
 
 local startupApps = {
-  "keepassxc",
-  "flameshot",
-  "nm-applet",
-  "blueman-applet",
-  "picom",
-  "'discord', { tag = '3'}"
+  'keepassxc',
+  'flameshot',
+  'nm-applet',
+  'blueman-applet',
+  'picom',
+  { 'discord', { tag = '3' } },
 }
 
 local startupDone
