@@ -1,9 +1,14 @@
-{ outputs, options, config, lib, pkgs, ...}:
-with lib;
-let 
-  cfg = config.modules.hardware.nvidia;
-in
 {
+  outputs,
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.hardware.nvidia;
+in {
   options.modules.hardware.nvidia = {
     enable = mkEnableOption false;
   };
@@ -13,12 +18,12 @@ in
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-    }; 
+    };
 
-    # regardless of if you have intel/nvidia 
+    # regardless of if you have intel/nvidia
     # or amd/nvidia this HAS to be nvidia only
     # or else it will not work
-    services.xserver.videoDrivers = [ "nvidia" ];
+    services.xserver.videoDrivers = ["nvidia"];
 
     hardware.nvidia = {
       # wayland support
@@ -31,6 +36,10 @@ in
 
       # settings
       nvidiaSettings = true;
+
+      # screen tearing fix
+      # might break a few things, don't really know
+      forceFullCompositionPipeline = true;
 
       # Package
       package = config.boot.kernelPackages.nvidiaPackages.stable;
