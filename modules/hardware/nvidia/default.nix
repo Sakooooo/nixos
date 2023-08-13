@@ -13,7 +13,7 @@ in {
   options.modules.hardware.nvidia = {
     enable = mkEnableOption false;
     prime.enable = mkEnableOption false;
-    prime.intelBusID = mkOption {
+    prime.intelBusId = mkOption {
       type = busIDType;
       default = "";
     };
