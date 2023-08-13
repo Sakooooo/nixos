@@ -588,10 +588,14 @@ beautiful.useless_gap = 10
 -- autostart
 --awful.util.spawn_with_shell("~/.config/awesome/autostart.sh")
 
-local run_on_start_up = {
+local startupApps = {
   'keepassxc',
   'flameshot',
+  'nm-applet',
+  'blueman-applet',
+  'picom',
 }
+
 local startupDone
 do
   local restart_detected
@@ -613,5 +617,7 @@ do
 end
 
 if not startupDone() then
-  awful.spawn('keepassxc')
+  for i, app in ipairs(startupApps) do
+    awful.spawn(app)
+  end
 end
