@@ -589,4 +589,4 @@ local startupApps = {
   'keepassxc',
 }
 
-awful.spawn.once(startupApps)
+awful.spawn.single_instance(startupApps)
