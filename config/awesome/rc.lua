@@ -584,4 +584,11 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Gaps for dopamine
 beautiful.useless_gap = 10
 
--- TODO find good autostart
+-- making better autostart
+local startupApps = {
+  'keepassxc',
+}
+
+for app in startupApps do
+  awful.spawn.once(app)
+end
