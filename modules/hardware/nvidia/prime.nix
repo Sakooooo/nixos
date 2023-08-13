@@ -7,11 +7,14 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.hardware.nvidia;
+  cfg = config.modules.hardware.nvidia.prime;
   busIDType = lib.types.strMatching "([[:print:]]+[\:\@][0-9]{1,3}\:[0-9]{1,2}\:[0-9])?";
 in {
   options.modules.hardware.nvidia.prime = {
-    enable = mkEnableOption false;
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
     intelBusId = mkOption {
       type = busIDType;
       default = "";
@@ -26,8 +29,8 @@ in {
     hardware.nvidia = {
       prime = {
         offload = {
-          enable = cfg.prime;
-          enableOffloadCmd = cfg.prime;
+          enable = cfg.enable;
+          enableOffloadCmd = cfg.enable;
         };
         #intelBusId = "PCI:0:2:0";
         #nvidiaBusId = "PCI:1:0:0";

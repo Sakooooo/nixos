@@ -15,15 +15,6 @@ in {
   ];
   options.modules.hardware.nvidia = {
     enable = mkEnableOption false;
-    prime.enable = mkEnableOption false;
-    prime.intelBusId = mkOption {
-      type = busIDType;
-      default = "";
-    };
-    prime.nvidiaBusId = mkOption {
-      type = busIDType;
-      default = "";
-    };
   };
 
   config = mkIf cfg.enable {
@@ -56,18 +47,6 @@ in {
 
       # Package
       package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-      # TODO(sako) ALSO add these as a cfg option
-      prime = {
-        offload = {
-          enable = cfg.prime;
-          enableOffloadCmd = cfg.prime;
-        };
-        #intelBusId = "PCI:0:2:0";
-        #nvidiaBusId = "PCI:1:0:0";
-        intelBusId = cfg.intelBusId;
-        nvidiaBusId = cfg.nvidiaBusId;
-      };
     };
   };
 }
