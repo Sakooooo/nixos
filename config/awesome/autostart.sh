@@ -7,4 +7,9 @@ function run {
     fi
 }
 
+run picom
+run nm-applet
+run blueman-applet
 run keepassxc 
+run flameshot
+run discord
