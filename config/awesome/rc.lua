@@ -454,7 +454,6 @@ awful.rules.rules = {
   -- All clients will match this rule.
   {
     rule = {
-      { class = "discord", properties = { tag = '3' } },
     },
     properties = {
       border_width = beautiful.border_width,
@@ -595,7 +594,6 @@ local startupApps = {
   'nm-applet',
   'blueman-applet',
   'picom',
-  'discord',
 }
 
 local startupDone
