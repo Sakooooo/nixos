@@ -24,6 +24,14 @@ in {
           vscodevim.vim
           ms-python.vscode-pylance
           ms-vscode.cmake-tools
+          ms-dotnettools.csharp
+        ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "better-comments";
+            publisher = "aaron-bond";
+            version = "3.0.2";
+            sha256 = "";
+          }
         ];
       })
     ];
