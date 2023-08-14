@@ -19,6 +19,8 @@ bspc rule -a Screenkey manage=off
 
 xsetroot -cursor_name left_ptr
 
+picom &
+
 feh --bg-scale /home/sako/background.png &
 
 /home/sako/.config/polybar/startpolybar &
