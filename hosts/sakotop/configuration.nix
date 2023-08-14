@@ -67,7 +67,7 @@
     dev = {
       editors = {
         nvim.enable = true;
-        vscode.fhs.enable = true;
+        vscode.enable = true;
       };
       nil.enable = true;
       cc.enable = true;
