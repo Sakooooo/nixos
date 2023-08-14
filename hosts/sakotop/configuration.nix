@@ -19,14 +19,10 @@
   modules = {
     desktop = {
       kitty.enable = true;
-      dwm.enable = false;
-      qtile.enable = false;
       awesome.enable = true;
-      xmonad.enable = false;
       picom.enable = true;
       dunst.enable = true;
       browsers = {
-        qutebrowser.enable = false;
         firefox.enable = true;
       };
       apps = {
@@ -71,6 +67,7 @@
     dev = {
       editors = {
         nvim.enable = true;
+        vscode.fhs.enable = true;
       };
       nil.enable = true;
       cc.enable = true;
