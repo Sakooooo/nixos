@@ -28,12 +28,16 @@ in {
         lightdm = {
           enable = true;
           background = ../../../config/background.png;
-          greeters.gtk = {
+          greeters.mini = {
             enable = true;
-            theme = {
-              name = "vimix-dark-ruby";
-              package = pkgs.vimix-gtk-themes;
-            };
+            user = "sako";
+            extraConfig = ''
+              [greeter]
+              show-password-label = true
+              password-label-text = magic word
+              invalid-password-text = skull issue
+
+            '';
           };
         };
       };
