@@ -5,7 +5,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 #bspc monitor -d 1 2 3 4 5 6 
 bspc monitor -d web dev irc media game 
 
-bspc config border_width         2
+bspc config border_width         3
 bspc config window_gap          15
 
 bspc config split_ratio          0.52
