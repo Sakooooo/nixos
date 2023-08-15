@@ -7,6 +7,7 @@ bspc monitor -d web dev irc media game
 
 bspc config border_width         3
 bspc config window_gap          15
+bspc config top_padding 40
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
