@@ -28,8 +28,7 @@ xsetroot -cursor_name left_ptr
 # background
 feh --bg-scale /home/sako/background.png &
 
-# todo put this script in here because
-# this is just bash
+# polybar
 /home/sako/.config/polybar/startpolybar &
 
 # applets
