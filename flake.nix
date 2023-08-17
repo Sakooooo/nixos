@@ -73,8 +73,11 @@
         ];
       };
       sakowsl = nixpkgs.lib.nixosSystem {
+      	# because theres no hardware-configuration.nix
+      	system = "x86_64-linux";
       	specialArgs = {inherit inputs outputs;};
 	modules = [
+    { nix.registry.nixpkgs.flake = nixpkgs;}
 	  ./hosts/sakowsl/configuration.nix
 	  NixOS-WSL.nixosModules.wsl
 	];
