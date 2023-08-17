@@ -9,6 +9,11 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # nixos wsl
+    NixOS-WSL = {
+    	url = "github:nix-community/NixOS-WSL";
+	inputs.nixpkgs.follows = "nixpkgs";
+    };
     # flake-compat for nixd
     #flake-compat = {
     #  url = "github:edolstra/flake-compat";
@@ -23,6 +28,7 @@
     self,
     nixpkgs,
     home-manager,
+    NixOS-WSL,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -65,6 +71,14 @@
           ./default.nix
           ./hosts/sakopc/configuration.nix
         ];
+      };
+      sakowsl = nixpkgs.lib.nixosSystem {
+      	specialArgs = {inherit inputs outputs;};
+	modules = [
+	  ./hosts/sakowsl/configuration.nix
+	  NixOS-WSL.nixosModules.wsl
+	];
+      	
       };
     };
   };
