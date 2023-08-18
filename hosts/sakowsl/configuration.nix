@@ -50,6 +50,9 @@
     home.packages = [];
     home.username = "sako";
     home.homeDirectory = "/home/sako";
+    xdg.configFile.git = {
+      source = ../../config/git;
+    };
   };
 
   # bare minimum
