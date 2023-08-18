@@ -69,7 +69,7 @@
   # litearlly!  ! ! ! ! !
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "tty";
+    pinentryFlavor = "curses";
     # enableSSHSupport = true;
   };
 
