@@ -1,13 +1,19 @@
-{ lib, pkgs, config, modulesPath, inputs, outputs, ... }:
-
 {
+  lib,
+  pkgs,
+  config,
+  modulesPath,
+  inputs,
+  outputs,
+  ...
+}: {
   imports = [
-  	inputs.home-manager.nixosModules.default
-	"${modulesPath}/profiles/minimal.nix"
-	outputs.nixosModules.shell
-	outputs.nixosModules.hardware
-	outputs.nixosModules.dev
-	outputs.nixosModules.media
+    inputs.home-manager.nixosModules.default
+    "${modulesPath}/profiles/minimal.nix"
+    outputs.nixosModules.shell
+    outputs.nixosModules.hardware
+    outputs.nixosModules.dev
+    outputs.nixosModules.media
   ];
 
   wsl = {
@@ -24,7 +30,6 @@
 
     # Enable integration with Docker Desktop (needs to be installed)
     # docker-desktop.enable = true;
-
   };
 
   users.users.sako.isNormalUser = true;
@@ -36,19 +41,16 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Home manager setup
   home-manager.useUserPackages = true;
-  home-manager.users.sako = { pkgs, ... }: {
-	home.stateVersion = "22.05";
-	home.packages = [];
-	home.username = "sako";
-	home.homeDirectory = "/home/sako";
-	xdg.configFile.git = {
-		source = ../../config/git;
-	};
-};
+  home-manager.users.sako = {pkgs, ...}: {
+    home.stateVersion = "22.05";
+    home.packages = [];
+    home.username = "sako";
+    home.homeDirectory = "/home/sako";
+  };
 
   # bare minimum
   environment.systemPackages = with pkgs; [
@@ -77,15 +79,15 @@
 
   modules = {
     dev = {
-    editors = {
-    	nvim.enable = true;
-    	};
-    cc.enable = true;
-    nil.enable = true;
-    python.enable = true;
-    rust.enable = true;
-    javascript.enable = true;
-	};
+      editors = {
+        nvim.enable = true;
+      };
+      cc.enable = true;
+      nil.enable = true;
+      python.enable = true;
+      rust.enable = true;
+      javascript.enable = true;
+    };
     shell = {
       zsh.enable = true;
       tmux.enable = true;
