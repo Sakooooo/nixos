@@ -81,9 +81,19 @@
     	nvim.enable = true;
     	};
     cc.enable = true;
+    nil.enable = true;
+    python.enable = true;
+    rust.enable = true;
+    javascript.enable = true;
 	};
     shell = {
       zsh.enable = true;
+      tmux.enable = true;
+      ranger.enable = true;
+      nix = {
+        optimize.enable = true;
+        search.enable = true;
+      };
     };
   };
 
