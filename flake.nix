@@ -11,8 +11,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # nixos wsl
     NixOS-WSL = {
-    	url = "github:nix-community/NixOS-WSL";
-	inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # flake-compat for nixd
     #flake-compat = {
@@ -73,15 +73,14 @@
         ];
       };
       sakowsl = nixpkgs.lib.nixosSystem {
-      	# because theres no hardware-configuration.nix
-      	system = "x86_64-linux";
-      	specialArgs = {inherit inputs outputs;};
-	modules = [
-    { nix.registry.nixpkgs.flake = nixpkgs;}
-	  ./hosts/sakowsl/configuration.nix
-	  NixOS-WSL.nixosModules.wsl
-	];
-      	
+        # because theres no hardware-configuration.nix
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          {nix.registry.nixpkgs.flake = nixpkgs;}
+          ./hosts/sakowsl/configuration.nix
+          NixOS-WSL.nixosModules.wsl
+        ];
       };
     };
   };

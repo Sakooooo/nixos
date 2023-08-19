@@ -55,6 +55,7 @@
     };
     services.gpg-agent = {
       enable = true;
+      pinentryFlavor = null;
       extraConfig = ''
         pinentry-program "/mnt/c/Program Files (x86)/Gpg4win/bin/pinentry.exe"
       '';
