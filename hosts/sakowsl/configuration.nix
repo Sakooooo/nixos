@@ -53,6 +53,13 @@
     xdg.configFile.git = {
       source = ../../config/git;
     };
+    home.file = {
+      # pinentry needs to point to gpg4win's qt pinentry to work
+      ".gnupg/gpg-agent.conf" = {
+        enable = true;
+        source = ./config/gpg-agent.conf;
+      };
+    };
   };
 
   # bare minimum
@@ -69,8 +76,6 @@
   # litearlly!  ! ! ! ! !
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "gnome3";
-    # enableSSHSupport = true;
   };
 
   environment.noXlibs = lib.mkForce false;
