@@ -5,23 +5,21 @@
   inputs = {
     # nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
-    # unstable for a few packages
+    # nixpkgs unstable
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    # nixos wsl
+    # home-manager
+    home-manager = {
+      url = "github:nix-community/home-manager/release-23.05";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # wsl support
     NixOS-WSL = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # flake-compat for nixd
-    #flake-compat = {
-    #  url = "github:edolstra/flake-compat";
-    #  flake = false;
-    #};
-    # TODO(sako):: add agenix or sops-nix
-    # https://github.com/ryantm/agenix#install-via-flakes
-    # https://github.com/Mic92/sops-nix
+    # todo figure this out
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = {
