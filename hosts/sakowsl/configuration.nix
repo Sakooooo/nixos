@@ -53,7 +53,7 @@
     xdg.configFile.git = {
       source = ../../config/git;
     };
-    programs.gnupg.agent.extraconfig = ''
+    services.gpg-agent.extraconfig = ''
       pinentry-program "/mnt/c/Program Files (x86)/Gpg4win/bin/pinentry.exe"
     '';
     home.file = {
