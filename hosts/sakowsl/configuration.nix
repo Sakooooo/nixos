@@ -56,13 +56,6 @@
     services.gpg-agent.extraConfig = ''
       pinentry-program "/mnt/c/Program Files (x86)/Gpg4win/bin/pinentry.exe"
     '';
-    home.file = {
-      # pinentry needs to point to gpg4win's qt pinentry to work
-      "gpg-agent.conf" = {
-        enable = true;
-        source = ./config/gpg-agent.conf;
-      };
-    };
   };
 
   # bare minimum
