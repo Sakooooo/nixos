@@ -72,11 +72,6 @@
     htop # htop
     tree # trees
   ];
-  # you phisiclally cannot live without this
-  # litearlly!  ! ! ! ! !
-  programs.gnupg.agent = {
-    enable = true;
-  };
 
   environment.noXlibs = lib.mkForce false;
 
