@@ -19,6 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # todo figure this out
+    # https://github.com/Mic92/sops-nix
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
