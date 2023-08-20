@@ -55,10 +55,7 @@
     };
     services.gpg-agent = {
       enable = true;
-      pinentryFlavor = null;
-      extraConfig = ''
-        pinentry-program "/mnt/c/Program Files (x86)/Gpg4win/bin/pinentry.exe"
-      '';
+      pinentryFlavor = "tty";
     };
   };
 
@@ -92,6 +89,7 @@
       };
       cc.enable = true;
       nil.enable = true;
+      lua.enable = true;
       python.enable = true;
       rust.enable = true;
       javascript.enable = true;
