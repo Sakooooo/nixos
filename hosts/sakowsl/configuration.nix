@@ -107,7 +107,7 @@
     };
   };
 
-  security.sudo.wheelNeedsPassword = true
+  security.sudo.wheelNeedsPassword = true;
 
   system.stateVersion = "22.05";
 }
