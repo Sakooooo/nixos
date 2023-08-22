@@ -21,6 +21,9 @@ in {
       lua
       # luarocks
       luarocks
+      # format and lint
+      stylua
+      selene
     ];
   };
 }
