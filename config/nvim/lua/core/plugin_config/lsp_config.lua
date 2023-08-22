@@ -4,7 +4,6 @@ require("mason").setup()
 --	ensure_installed = { "lua_ls", "omnisharp", "pyright", "clangd" },
 --})
 require("mason-lspconfig").setup()
-local mason_null_ls = require("mason-null-ls")
 
 local on_attach = function(client, bufnr)
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
@@ -18,15 +17,6 @@ end
 
 -- enable autocomplete
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
---format thing
---mason_null_ls.setup({
---	ensure_installed = {
---		"stylua",
---		"prettier",
---	},
---})
-mason_null_ls.setup()
 
 -- funny lsp config stuff
 require('lspconfig').nil_ls.setup({
