@@ -59,10 +59,6 @@ local plugins = {
   -- git stuff lol
   "lewis6991/gitsigns.nvim",
 
-  -- linting
-  "jose-elias-alvarez/null-ls.nvim",
-  "jayp0521/mason-null-ls.nvim",
-
   -- flex
   "andweeb/presence.nvim",
 
