@@ -28,6 +28,7 @@
     nixpkgs,
     home-manager,
     NixOS-WSL,
+    sops-nix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -79,6 +80,7 @@
           {nix.registry.nixpkgs.flake = nixpkgs;}
           ./hosts/sakowsl/configuration.nix
           NixOS-WSL.nixosModules.wsl
+          sops-nix.nixosModules.sops
         ];
       };
     };
