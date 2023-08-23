@@ -42,12 +42,16 @@ local plugins = {
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   },
-  -- le completion
+
+  -- completion
   "hrsh7th/nvim-cmp",
   "hrsh7th/cmp-buffer",
   "hrsh7th/cmp-path",
   "hrsh7th/cmp-nvim-lsp",
   "onsails/lspkind.nvim",
+
+  -- lint and formatting
+  "mhartington/formatter.nvim",
 
   -- snippet
   "L3MON4D3/LuaSnip",
