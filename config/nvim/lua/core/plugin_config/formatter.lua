@@ -41,7 +41,8 @@ require("formatter").setup({
 	},
 })
 
-vim.api.nvim_command("augroup FormatAutogroup")
-vim.api.nvim_command("autocmd!")
-vim.api.nvim_command("autocmd BufWritePost * FormatWrite")
-vim.api.nvim_command("augroup END")
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+	callback = function()
+		vim.api.nvim_command("FormatWrite")
+	end,
+})
