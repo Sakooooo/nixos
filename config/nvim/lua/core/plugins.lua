@@ -50,9 +50,6 @@ local plugins = {
 	"hrsh7th/cmp-nvim-lsp",
 	"onsails/lspkind.nvim",
 
-	-- formatting
-	"mhartington/formatter.nvim",
-
 	-- snippet
 	"L3MON4D3/LuaSnip",
 	"saadparwaiz1/cmp_luasnip",
