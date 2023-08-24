@@ -3,5 +3,6 @@
     ./steam
     ./lutris
     ./wine
+    ./grapejuice
   ];
 }
