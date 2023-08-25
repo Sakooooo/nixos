@@ -24,7 +24,7 @@ bspc rule -a Screenkey manage=off
 xsetroot -cursor_name left_ptr
 
 # picom :D
-/home/sako/.config/picom/startpicom &
+#/home/sako/.config/picom/startpicom &
 
 # background
 feh --bg-scale /home/sako/background.png &
