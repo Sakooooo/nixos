@@ -18,7 +18,11 @@
 
   wsl = {
     enable = true;
-    wslConf.automount.root = "/mnt";
+    wslConf = {
+      automount.root = "/mnt";
+    # Allows writing to linux network section in Explorer
+    options = "metadata,uid=1000,gid=100,umask=22,fmask=11";
+    };
     defaultUser = "sako";
     startMenuLaunchers = true;
 
@@ -30,9 +34,6 @@
 
     # Enable integration with Docker Desktop (needs to be installed)
     # docker-desktop.enable = true;
-
-    # Allows writing to linux network section in Explorer
-    options = "metadata,uid=1000,gid=100,umask=22,fmask=11";
 
   };
 
