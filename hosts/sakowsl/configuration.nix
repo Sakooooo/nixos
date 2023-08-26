@@ -20,8 +20,8 @@
     enable = true;
     wslConf = {
       automount.root = "/mnt";
-    # Allows writing to linux network section in Explorer
-    options = "metadata,uid=1000,gid=100,umask=22,fmask=11";
+     # Allows writing to linux network section in Explorer
+     options = "metadata,uid=1000,gid=100,umask=22,fmask=11";
     };
     defaultUser = "sako";
     startMenuLaunchers = true;
