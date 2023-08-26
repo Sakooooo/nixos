@@ -30,6 +30,10 @@
 
     # Enable integration with Docker Desktop (needs to be installed)
     # docker-desktop.enable = true;
+
+    # Allows writing to linux network section in Explorer
+    options = "metadata,uid=1000,gid=100,umask=22,fmask=11";
+
   };
 
   users.users.sako.isNormalUser = true;
