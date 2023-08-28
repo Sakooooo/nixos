@@ -19,11 +19,11 @@
   modules = {
     desktop = {
       kitty.enable = true;
-      awesome.enable = false;
       bspwm = {
-        enable = true;
-        polybar.enable = true;
+        enable = false;
+        polybar.enable = false;
       };
+      hyprland.enable = true;
       picom.enable = true;
       dunst.enable = true;
       browsers = {
