@@ -15,13 +15,9 @@ in {
 
   config = mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
-      # lua language server
       lua-language-server
-      # lua
       lua
-      # luarocks
       luarocks
-      # format and lint
       stylua
       selene
     ];

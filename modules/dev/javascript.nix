@@ -12,6 +12,7 @@ in
     users.users.sako.packages = with pkgs; [
       nodejs
       yarn
+      nodePackages.typescript-language-server
     ];
   };
 }

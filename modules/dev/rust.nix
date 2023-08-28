@@ -12,6 +12,7 @@ in
     users.users.sako.packages = with pkgs; [
       rustup
       cargo
+      rust-analyzer
     ];
   };
 }
