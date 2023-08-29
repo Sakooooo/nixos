@@ -56,15 +56,13 @@ in
       catppuccin-cursors.mochaDark
       # i wonder if this works
       flameshot
-      # IMPORTANT FOR GAMES
+      # todo figure this out
       gamescope
     ];
     environment.systemPackages = with pkgs; [
-      # hyprland no looky findy for packages so 
       # bg
       hyprpaper
       # bar
-      # this is just for hyprland lmao
       (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true "]; }))
       inotify-tools
     ];
@@ -84,6 +82,7 @@ in
         package = pkgs.catppuccin-cursors.mochaDark;
       };
       gtk = {
+        enable = true;
         theme.name = "vimix-dark-ruby";
         iconTheme.name = "Vimix Ruby Dark";
       };
