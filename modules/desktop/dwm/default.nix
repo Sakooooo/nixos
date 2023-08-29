@@ -85,6 +85,7 @@ in {
         package = pkgs.catppuccin-cursors.mochaDark;
       };
       gtk = {
+        enable = true;
         theme.name = "vimix-dark-ruby";
         iconTheme.name = "Vimix Ruby Dark";
       };
