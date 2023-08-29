@@ -28,6 +28,7 @@
       dunst.enable = true;
       browsers = {
         firefox.enable = true;
+        qutebrowser.enable = true;
       };
       apps = {
         nemo.enable = true;
