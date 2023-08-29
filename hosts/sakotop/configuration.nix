@@ -40,6 +40,7 @@
         kindle-comic-converter.enable = true;
         mangal.enable = true;
         obs.enable = true;
+        nextcloud.enable = true;
       };
       chat = {
         discord.enable = true;

@@ -10,5 +10,6 @@
     ./calibre
     ./mangal
     ./obs
+    ./nextcloud
   ];
 }
