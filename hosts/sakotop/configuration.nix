@@ -39,7 +39,6 @@
         nextcloud.enable = true;
       };
       chat = {
-        discord.enable = true;
       };
       game = {
         wine.enable = true;
