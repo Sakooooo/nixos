@@ -19,16 +19,12 @@
   modules = {
     desktop = {
       kitty.enable = true;
-      bspwm = {
-        enable = false;
-        polybar.enable = false;
-      };
       hyprland.enable = true;
       picom.enable = true;
       dunst.enable = true;
       browsers = {
         firefox.enable = true;
-        qutebrowser.enable = true;
+        qutebrowser.enable = false;
       };
       apps = {
         nemo.enable = true;
