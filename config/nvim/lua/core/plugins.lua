@@ -97,13 +97,6 @@ local plugins = {
             "  n::::n    n::::n      v:::::v         i::::::im::::m   m::::m   m::::m",                                                                        
             "  n::::n    n::::n       v:::v          i::::::im::::m   m::::m   m::::m",                                                                        
             "  nnnnnn    nnnnnn        vvv           iiiiiiiimmmmmm   mmmmmm   mmmmmm",                                                                        
-            "",                                                                        
-            "",                                                                        
-            "",                                                                        
-            "",                                                                        
-            "",                                                                        
-            "",                                                                        
-            "",
 					}, --your header
 					center = {
 						{
