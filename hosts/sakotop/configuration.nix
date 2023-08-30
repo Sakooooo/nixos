@@ -38,8 +38,6 @@
         obs.enable = true;
         nextcloud.enable = true;
       };
-      chat = {
-      };
       game = {
         wine.enable = true;
         lutris.enable = true;
