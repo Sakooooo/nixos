@@ -40,7 +40,6 @@
       };
       chat = {
         discord.enable = true;
-        teams.enable = true;
       };
       game = {
         wine.enable = true;
