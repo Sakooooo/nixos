@@ -1,5 +1,6 @@
 {
   imports = [
     ./discord
+    ./teams
   ];
 }
