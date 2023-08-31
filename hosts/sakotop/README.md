@@ -1,3 +1,3 @@
-# Sakotop
+# sakotop
 
-My portable workstation (probably)
+laptop i still have i use for portability
