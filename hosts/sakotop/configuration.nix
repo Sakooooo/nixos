@@ -93,6 +93,9 @@
       mpd.enable = true;
       ncmpcpp.enable = true;
     };
+    security = {
+      age.enable = true;
+    };
   };
 
   # Enable CUPS to print documents.
