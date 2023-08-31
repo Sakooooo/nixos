@@ -58,14 +58,13 @@ in
       flameshot
       # todo figure this out
       gamescope
-      # brightness
-      brightnessctl
     ];
     environment.systemPackages = with pkgs; [
       # bg
       hyprpaper
       # bar
       (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true "]; }))
+      brightnessctl
       inotify-tools
     ];
 
