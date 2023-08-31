@@ -54,7 +54,8 @@ in
       vimix-icon-theme
       lxappearance
       catppuccin-cursors.mochaDark
-      # i wonder if this works
+      # screenshot
+      grim
       flameshot
       # todo figure this out
       gamescope
