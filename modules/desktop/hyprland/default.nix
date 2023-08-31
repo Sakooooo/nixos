@@ -58,6 +58,8 @@ in
       flameshot
       # todo figure this out
       gamescope
+      # brightness
+      brightnessctl
     ];
     environment.systemPackages = with pkgs; [
       # bg
