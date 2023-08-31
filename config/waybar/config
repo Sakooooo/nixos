@@ -10,8 +10,7 @@
 	"modules-center": [
 	],
 	"modules-right": [
-  	"clock#2",
-    "clock#3",
+  	"clock",
 		"pulseaudio",
 		"memory",
 		"cpu",
@@ -33,16 +32,8 @@
     }
 	},
 
-	"clock#1": {
-		"format": "{:%a}",
-		"tooltip": false
-	},
-	"clock#2": {
-		"format": "{:%H:%M}",
-		"tooltip": false
-	},
-	"clock#3": {
-		"format": "{:%m-%d}",
+	"clock": {
+		"format": "{:%H:%M}, {:%m-%d}",
 		"tooltip": false
 	},
 
