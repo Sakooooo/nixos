@@ -11,6 +11,6 @@
     ./mangal
     ./obs
     ./nextcloud
-    ./fluentreader
+    ./rssguard
   ];
 }
