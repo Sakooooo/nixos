@@ -30,6 +30,7 @@
         nemo.enable = true;
         pass.enable = true;
         keepassxc.enable = true;
+        fluentreader.enable = true;
         nicotineplus.enable = true;
         transmission.enable = true;
         calibre.enable = true;
