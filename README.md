@@ -10,3 +10,4 @@
 [doom emacs guy -> hlissner/dotfiles](https://github.com/hlissner/dotfiles)<br></br>
 ^ reason i found out about nixos <br></br>
 [nixos.wiki (unofficial)](https://nixos.wiki/)
+[colemickens/nixcfg](https://github.com/colemickens/nixcfg)
