@@ -12,6 +12,7 @@
 	"modules-right": [
   	"clock",
 		"pulseaudio",
+    "backlight",
 		"memory",
 		"cpu",
 		"battery",
@@ -60,6 +61,11 @@
 		"interval": 5,
 		"format": "CPU {usage:2}%"
 	},
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}% {icon}",
+    "format-icons": ["", ""]
+  }
 	"battery": {
 		"states": {
 			"good": 95,
