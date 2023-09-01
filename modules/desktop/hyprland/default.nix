@@ -65,6 +65,7 @@ in
       hyprpaper
       # bar
       (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true "]; }))
+      eww-wayland
       brightnessctl
       inotify-tools
     ];
