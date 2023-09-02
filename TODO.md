@@ -1,6 +1,5 @@
 # TODO
 
 - make [Nullpomino](https://github.com/nullpomino/nullpomino) package
-- setup vscode
-- add sops-nix or agenix for encryption before installing nixos on main machine
+- encrypt secrets with sops or switch to age
 - figure out pass
