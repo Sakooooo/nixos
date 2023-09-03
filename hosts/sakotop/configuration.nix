@@ -26,6 +26,7 @@
       browsers = {
         firefox.enable = true;
         qutebrowser.enable = false;
+        ungoogled-chromium = true;
       };
       apps = {
         nemo.enable = true;
