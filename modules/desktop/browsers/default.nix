@@ -2,6 +2,5 @@
   imports = [
     ./qutebrowser    
     ./firefox
-    ./chromium
   ];
 }
