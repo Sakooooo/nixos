@@ -89,8 +89,10 @@ python3Packages.buildPythonApplication rec  {
   '';
 
   postInstall = ''
-    mkdir -p "$out/share/icons" "$out/share/applications" "$out/share/mime/packages"
+    mkdir -p "$out/share/icons" "$out/share/applications" "$out/share/mime/packages" "$out/bin"
     cp -r src/grapejuice_common/assets/desktop/* $out/share/applications/
+    cp -r src/grapejuice_packaging/packaging_resources/bin/* $out/bin
+    chmod +x $out/bin/*
     cp -r src/grapejuice_common/assets/icons $out/share/
     cp src/grapejuice_common/assets/mime_xml/*.xml $out/share/mime/packages/
 
