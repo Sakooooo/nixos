@@ -1,10 +1,10 @@
 { outputs, options, config, lib, pkgs, ...}:
 with lib;
 let
-  cfg = config.modules.desktop.browsers.ungoogled-chromium;
+  cfg = config.modules.desktop.browsers.chromium;
 in
 {
-  options.modules.desktop.browsers.ungoogled-chromium = {
+  options.modules.desktop.browsers.chromium= {
     enable = mkEnableOption false;
   };
 
