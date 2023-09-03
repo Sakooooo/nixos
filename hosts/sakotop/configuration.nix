@@ -44,7 +44,7 @@
         wine.enable = true;
         lutris.enable = true;
         steam.enable = true;
-        grapejuice.enable = true;
+        grapejuice.enable = false;
       };
       media = {
         gimp.enable = true;
