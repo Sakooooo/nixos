@@ -110,3 +110,6 @@
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 0))
+
+;; video
+;; https://youtu.be/IspAZtNTslY?list=PLEoMzSkcN8oPH1au7H6B7bBJ4ZO7BXjSZ&t=2112
