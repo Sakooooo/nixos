@@ -13,7 +13,7 @@
 (setq visible-bell t)
 
 ;; Font
-(set-face-attribute `default nil :font "JetBrains Mono" :height 175)
+(set-face-attribute `default nil :font "JetBrainsMono NF" :height 150)
 
 (load-theme 'wombat)
 
@@ -69,8 +69,8 @@
 ;; better statusbar
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1))
-  :custom ((doom-modeline-height 15))
+  :init (doom-modeline-mode 1)
+  :custom ((doom-modeline-height 15)))
 
 ;; continue configuring from here
 ;; https://youtu.be/74zOY-vgkyw?t=3125
