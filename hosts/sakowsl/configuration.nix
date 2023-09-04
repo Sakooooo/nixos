@@ -93,6 +93,7 @@
     dev = {
       editors = {
         nvim.enable = true;
+        emacs.enable = true;
       };
       cc.enable = true;
       nil.enable = true;
