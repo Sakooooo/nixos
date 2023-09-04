@@ -9,6 +9,15 @@
 
 (menu-bar-mode -1)
 
+;; Line Numbers
+(column-number-mode)
+(global-display-line-numbers-mode t)
+
+(dolist (mode '(org-mode-hook
+		term-mode-hook
+		eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
 ;; Bell
 (setq visible-bell t)
 
@@ -74,3 +83,7 @@
 
 ;; continue configuring from here
 ;; https://youtu.be/74zOY-vgkyw?t=3125
+
+;; rainbow delimiters for lisp (TODO find this for javascript, c++ etc)
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
