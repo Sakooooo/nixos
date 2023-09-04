@@ -27,6 +27,9 @@
         firefox.enable = true;
         qutebrowser.enable = false;
       };
+      chat = {
+        teams.enable = true;
+      };
       apps = {
         nemo.enable = true;
         pass.enable = true;
