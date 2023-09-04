@@ -26,6 +26,7 @@
       browsers = {
         firefox.enable = true;
         qutebrowser.enable = false;
+        chromium.enable = true;
       };
       chat = {
         teams.enable = true;
