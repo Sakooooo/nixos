@@ -34,4 +34,4 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(use-package command-log-buffer)
+(use-package command-log-mode)
