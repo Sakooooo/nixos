@@ -1,4 +1,4 @@
-(setq inhibit-startup-message t)
+q(setq inhibit-startup-message t)
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -27,7 +27,7 @@
   (package-refresh-contents))
 
 ;; Init package for non-linux
-(unless (package-installed-p `use-package)
+(unless (package-installed-p `use-package)qui
   (package-install `use-package))
 
 (require 'use-package)
