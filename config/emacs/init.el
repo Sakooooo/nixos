@@ -1,5 +1,6 @@
 (setq inhibit-startup-message t)
 
+;; go away bars, you look ugly
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
@@ -32,3 +33,5 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+(use-package command-log-buffer)
