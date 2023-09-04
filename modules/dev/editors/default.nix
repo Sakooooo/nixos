@@ -2,5 +2,6 @@
   imports = [
     ./nvim
     ./vscode
+    ./emacs
   ];
 }
