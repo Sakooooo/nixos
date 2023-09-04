@@ -16,7 +16,7 @@ in
       emacs
     ];
     home-manager.users.sako.home.file.".emacs.d" = {
-      enabled = true;
+      enable = true;
       source = ../../../../config/emacs;
       recursive = true;
     };
