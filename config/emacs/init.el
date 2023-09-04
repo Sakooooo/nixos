@@ -11,4 +11,6 @@
 (setq visible-bell t)
 
 ;; font
-(set-face-attribute `default nil :font "JetBrains Mono" :height 200)
+(set-face-attribute `default nil :font "JetBrains Mono" :height 150)
+
+(load-theme 'tango-dark)
