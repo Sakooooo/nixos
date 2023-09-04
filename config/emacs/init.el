@@ -4,7 +4,7 @@
 ;; make it look like neovim a little
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
-(tooltip-mode -1
+(tooltip-mode -1)
 (set-fringe-mode 10)
 
 (menu-bar-mode -1)
@@ -22,7 +22,7 @@
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-;; Package related stuff
+;; Package related stuqff
 (require `package)
 
 (setq package-archives `(("mepla" . "https://melpa.org/packages/")
@@ -40,9 +40,14 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; for showing commands
 (use-package command-log-mode)
 
-
+;; better search
+(use-package swiper)
+;; better commands
+(use-package counsel)
+;; autocompletion on commands (?)
 (use-package ivy
   :diminish
   :bind (("C-s" . swiper)
@@ -57,6 +62,15 @@
          ("C-d" . ivy-switch-buffer-kill)
          :map ivy-reverse-i-search-map
          ("C-k" . ivy-previous-line)
-         ("C-d" . ivy-reverse-i-search-kill))
+	 ("C-d" . ivy-reverse-i-search-kill))
+  :demand
   :config
   (ivy-mode 1))
+;; better statusbar
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+  :custom ((doom-modeline-height 15))
+
+;; continue configuring from here
+;; https://youtu.be/74zOY-vgkyw?t=3125
