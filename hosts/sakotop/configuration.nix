@@ -29,7 +29,6 @@
         chromium.enable = true;
       };
       chat = {
-        teams.enable = true;
       };
       apps = {
         nemo.enable = true;
