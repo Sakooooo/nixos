@@ -87,3 +87,10 @@
 ;; rainbow delimiters for lisp (TODO find this for javascript, c++ etc)
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
+
+;; which-key because i dont know what emacs is
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 0.3))
