@@ -22,7 +22,7 @@
 (setq visible-bell t)
 
 ;; Font
-(set-face-attribute `default nil :font "JetBrainsMono NF" :height 150)
+(set-face-attribute `default nil :font "JetBrains Mono" :height 150)
 
 ;; Keymaps
 (global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
@@ -117,7 +117,11 @@
   :custom ((doom-modeline-height 35)))
 
 ;; all the icons
-(use-package all-the-icons)
+(when (display-graphic-p)
+  (require 'all-the-icons))
+;; or
+(use-package all-the-icons
+  :if (display-graphic-p))
 
 ;; continue configuring from here
 ;; https://youtu.be/74zOY-vgkyw?t=3125
