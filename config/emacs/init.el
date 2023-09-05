@@ -160,22 +160,6 @@
     "t" `(:ignore t :which-key "toggles")
     "tt" `(counsel-load-theme :which-key "choose theme")))
 
-;; EVIL !!!! ITS EVIL I TELL YOU !!!!!!!!!!!!
-;; vim like because nothing beats vim keybindings
-(use-package evil
-  :init
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-i-jump nil)
-  (evil-mode 1)
-  :hook (evil-mode . sakomacs.evil-hook)
-  :ensure t)
-
-(define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-(evil-global-set-key 'motion "j" 'evil-next-visual-line)
-(evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-
 ;; list thing with function
 ;; idk i dont know lisp im actually sane
 ;; most of these are copy pasted so i dont know what they do
@@ -190,6 +174,29 @@
 		  sauron-mode
 		  term-mode))
     (add-to-list `evil-emacs-state-modes mode)))
+
+;; EVIL !!!! ITS EVIL I TELL YOU !!!!!!!!!!!!
+;; vim like because nothing beats vim keybindings
+(use-package evil
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
+  :hook (evil-mode . sakomacs/evil-hook)
+  :ensure t
+  :demand
+  :config
+  (evil-mode 1)
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  (define-key evil-insert-state-map (kbd "C-h") `evil-delete-backward-char-and-join)
+
+  ;; visual line motion
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+  (evil-set-inital-state 'messages-buffer-mode 'normal)
+  (evil-set-inital-state 'dashboard-mode 'normal))
 
 
 ;; video
