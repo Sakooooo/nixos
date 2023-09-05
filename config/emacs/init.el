@@ -117,11 +117,7 @@
   :custom ((doom-modeline-height 35)))
 
 ;; all the icons
-(require 'font-lock)
-(require 'font-lock+)
 (use-package all-the-icons)
-(use-package all-the-icons-dired
-  :hook (dired-mode . all-the-icons-dired-mode))
 
 ;; continue configuring from here
 ;; https://youtu.be/74zOY-vgkyw?t=3125
