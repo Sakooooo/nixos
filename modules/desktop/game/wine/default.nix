@@ -16,6 +16,7 @@ in
     nixpkgs.config = {
       wine = {
         release = "unstable";
+        build = "wineWow";
       };
     };
   };
