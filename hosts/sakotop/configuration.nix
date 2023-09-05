@@ -98,6 +98,9 @@
       mpd.enable = true;
       ncmpcpp.enable = true;
     };
+    work = {
+      libreoffice.enable = true;
+    };
     security = {
       age.enable = true;
     };
