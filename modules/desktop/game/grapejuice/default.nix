@@ -9,8 +9,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    # TODO update package
     users.users.sako.packages = with pkgs; [
+      unstable.grapejuice
     ];
   };
 }
