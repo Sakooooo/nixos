@@ -25,6 +25,7 @@
 (set-face-attribute `default nil :font "JetBrainsMono NF" :height 150)
 
 ;; Keymaps
+(global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -143,6 +144,16 @@
   ([remap describe-command] . helpful-command)
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
+
+;; general emacs
+(use-package general
+  :config
+  ;:(general-evil-setup t)
+  (general-create-definer rune/leader-keys
+			  :keymaps
+			  :prefix "SPC"
+			  :global-prefix "C-SPC"))
+
 
 ;; video
 ;; https://youtu.be/IspAZtNTslY?t=3070
