@@ -5,4 +5,5 @@
   dev = import ./dev;
   media = import ./media;
   security = import ./security;
+  work = import ./work;
 }

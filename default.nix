@@ -20,6 +20,7 @@
     outputs.nixosModules.hardware
     outputs.nixosModules.dev
     outputs.nixosModules.media
+    outputs.nixosModules.work
     outputs.nixosModules.security
   ];
 
