@@ -100,6 +100,7 @@
     };
     work = {
       libreoffice.enable = true;
+      onlyoffice.enable = true;
     };
     security = {
       age.enable = true;
