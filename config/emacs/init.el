@@ -110,9 +110,13 @@
   ;; Corrects (and improves) org-mode's native fontification.
   ;;(doom-themes-org-config))
 
-;; all the icons
-(use-package all-the-icons
-  :if (display-graphic-p))
+;; nerd-fonts instead of all-the-icons
+(use-package nerd-icons
+  :custom
+  ;; "Symbols Nerd Font Mono" is the default and is recommended
+  ;; but you can use any other Nerd Font if you want
+  (nerd-icons-font-family "JetBrainsMono NF")
+  )
 
 ;; better statusbar
 (use-package doom-modeline
@@ -195,8 +199,8 @@
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
   (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
-  (evil-set-inital-state 'messages-buffer-mode 'normal)
-  (evil-set-inital-state 'dashboard-mode 'normal))
+  (evil-set-initial-state 'messages-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal))
 
 
 ;; video
