@@ -1,4 +1,4 @@
-;; UI/UX
+;; Ui/UX
 (setq inhibit-startup-message t)
 
 ;; make it look like neovim a little
@@ -89,16 +89,18 @@
   (setq ivy-inital-inputs-alist nil))
 
 ;; doom themes
+
 (use-package doom-themes
   :ensure t
   :config
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  ;; load the theme
   (load-theme 'doom-monokai-pro t)
 
   ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
+  (doom-themes-visual-bell-config))
   ;; Enable custom neotree theme (all-the-icons must be installed!)
   ;;(doom-themes-neotree-config)
   ;; or for treemacs users
@@ -112,6 +114,9 @@
   :ensure t
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 35)))
+
+;; all the icons
+(use-package all-the-icons)
 
 ;; continue configuring from here
 ;; https://youtu.be/74zOY-vgkyw?t=3125

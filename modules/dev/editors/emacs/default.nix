@@ -20,5 +20,8 @@ in
       source = ../../../../config/emacs;
       recursive = true;
     };
+    fonts.fonts = with pkgs; [
+      emacs-all-the-icons-fonts
+    ];
   };
 }
