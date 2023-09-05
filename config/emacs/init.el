@@ -146,13 +146,7 @@
   ([remap describe-key] . helpful-key))
 
 ;; general emacs
-(use-package general
-  :config
-  ;:(general-evil-setup t)
-  (general-create-definer rune/leader-keys
-			  :keymaps
-			  :prefix "SPC"
-			  :global-prefix "C-SPC"))
+(use-package general)
 
 
 ;; video
