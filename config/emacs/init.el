@@ -111,5 +111,14 @@
   :config
   (setq which-key-idle-delay 0))
 
+(use-package helpful
+  :ensure t
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function ] . counsel-describe-function)
+  
+
 ;; video
-;; https://youtu.be/IspAZtNTslY?list=PLEoMzSkcN8oPH1au7H6B7bBJ4ZO7BXjSZ&t=2112
+;; this one https://youtu.be/IspAZtNTslY?t=2146
