@@ -206,3 +206,15 @@
 
 ;; video
 ;; https://youtu.be/xaZMwNELaJY?t=1707
+
+;; for specific projects
+(use-package projectile
+  :diminish projectile-mode
+  :demand
+  :config (projectile-mode)
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  (when (file-directory-p "~/dev")
+    (setq projectile-project-search-path '("~/dev")))
+  (setq projectile-switch-project-action #'projectile-dired))
