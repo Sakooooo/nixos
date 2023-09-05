@@ -13,5 +13,10 @@ in
       winetricks
       wineWowPackages.staging
     ];
+    nixpkgs.config = {
+      wine = {
+        release = "unstable";
+      };
+    };
   };
 }
