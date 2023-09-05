@@ -164,21 +164,6 @@
     "t" `(:ignore t :which-key "toggles")
     "tt" `(counsel-load-theme :which-key "choose theme")))
 
-;; list thing with function
-;; idk i dont know lisp im actually sane
-;; most of these are copy pasted so i dont know what they do
-(defun sakomacs/evil-hook ()
-  (dolist (mode `(custom-mode
-		  eshell-mode
-		  git-rebase-mode
-		  erc-mode
-		  circe-server-mode
-		  circe-chat-mode
-		  circe-query-mode
-		  sauron-mode
-		  term-mode))
-    (add-to-list `evil-emacs-state-modes mode)))
-
 ;; EVIL !!!! ITS EVIL I TELL YOU !!!!!!!!!!!!
 ;; vim like because nothing beats vim keybindings
 (use-package evil
@@ -201,6 +186,11 @@
 
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
 
 
 ;; video
