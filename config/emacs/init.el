@@ -110,6 +110,10 @@
   ;; Corrects (and improves) org-mode's native fontification.
   ;;(doom-themes-org-config))
 
+;; all the icons
+(use-package all-the-icons
+  :if (display-graphic-p))
+
 ;; better statusbar
 (use-package doom-modeline
   :ensure t
