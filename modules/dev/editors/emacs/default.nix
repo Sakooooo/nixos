@@ -13,7 +13,10 @@ in
       # bro
       direnv
       # oh my days
-      emacs
+      emacsWithPackagesFromUsePackage {
+        package = pkgs.emacs;
+	config = ../../../../config/emacs/init.el
+      };
     ];
     home-manager.users.sako.home.file.".emacs.d" = {
       enable = true;
