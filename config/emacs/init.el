@@ -187,11 +187,22 @@
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal))
 
+;; extra things for Evil
 (use-package evil-collection
   :after evil
   :config
   (evil-collection-init))
 
+;; hydra for text scale
+(use-package hydra)
+(defhydra hydra-text-scale (:timeout 4)
+  "scale text"
+  ("j" text-scale-increase "in")
+  ("k" text-scale-decrease "out")
+  ("f" nil "finished" :exit t))
+
+(sakomacs/leader-keys
+  "ts" '(hydra-text-scale/body :which-key "scale text"))
 
 ;; video
 ;; https://youtu.be/xaZMwNELaJY?t=1707
