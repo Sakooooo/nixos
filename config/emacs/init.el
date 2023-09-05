@@ -146,7 +146,50 @@
   ([remap describe-key] . helpful-key))
 
 ;; general emacs
-(use-package general)
+(use-package general
+  :config
+  (general-create-definer sakomacs/leader-keys
+    :keymaps `(normal insert visual emacs)
+    :prefix "SPC"
+    :global-prefix "C-SPC")
+  (sakomacs/leader-keys
+    "t" `(:ignore t :which-key "toggles")
+    "tt" `(counsel-load-theme :which-key "choose theme")))
+
+;; EVIL !!!! ITS EVIL I TELL YOU !!!!!!!!!!!!
+;; vim like because nothing beats vim keybindings
+(use-package evil
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
+  :hook (evil-mode . sakomacs/evil-hook)
+  :config
+  (evil mode 1)
+  (define-key evil-insert-state-map (kbd "C-g") `evil-normal-state)
+  (define-key evil-insert-state-map (kbd "C-h") `evil-delete-backward-char-and-join)
+  ;; visual line motion thingy idk
+  (evil-global-set-key `motion "j" `evil-next-visual-line)
+  (evil-global-set-key `motion "k" `evil-delete-backward-char-and-join)
+
+  (evil-set-initial-state `messages-buffer-mode `normal)
+  (evil-set-initial-state `dashboard-mode `normal))
+
+;; list thing with function
+;; idk i dont know lisp im actually sane
+;; most of these are copy pasted so i dont know what they do
+(defun sakomacs/evil-hook ()
+  (dolist (mode `(custom-mode
+		  eshell-mode
+		  git-rebase-mode
+		  erc-mode
+		  circe-server-mode
+		  circe-chat-mode
+		  circe-query-mode
+		  sauron-mode
+		  term-mode))
+    (add-to-list `evil-emacs-state-modes mode)))
 
 
 ;; video
