@@ -164,17 +164,13 @@
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-i-jump nil)
-  :hook (evil-mode . sakomacs/evil-hook)
-  :config
-  (evil mode 1)
-  (define-key evil-insert-state-map (kbd "C-g") `evil-normal-state)
-  (define-key evil-insert-state-map (kbd "C-h") `evil-delete-backward-char-and-join)
-  ;; visual line motion thingy idk
-  (evil-global-set-key `motion "j" `evil-next-visual-line)
-  (evil-global-set-key `motion "k" `evil-delete-backward-char-and-join)
+  (evil-mode 1)
+  :hook (evil-mode . sakomacs.evil-hook)
+  :ensure t)
 
-  (evil-set-initial-state `messages-buffer-mode `normal)
-  (evil-set-initial-state `dashboard-mode `normal))
+(define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+(evil-global-set-key 'motion "j" 'evil-next-visual-line)
+(evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
 ;; list thing with function
 ;; idk i dont know lisp im actually sane
@@ -193,4 +189,4 @@
 
 
 ;; video
-;; https://youtu.be/IspAZtNTslY?t=3070
+;; https://youtu.be/xaZMwNELaJY?t=1707
