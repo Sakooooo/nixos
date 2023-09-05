@@ -90,12 +90,14 @@
   :config
   (setq ivy-inital-inputs-alist nil))
 
+;; doom themes
+(use-package doom-themes)
 
 ;; better statusbar
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 15)))
+  :custom ((doom-modeline-height 35)))
 
 ;; continue configuring from here
 ;; https://youtu.be/74zOY-vgkyw?t=3125
@@ -111,6 +113,7 @@
   :config
   (setq which-key-idle-delay 0))
 
+;; better help menu
 (use-package helpful
   :ensure t
   :custom
@@ -118,7 +121,9 @@
   (counsel-describe-variable-function #'helpful-variable)
   :bind
   ([remap describe-function ] . counsel-describe-function)
-  
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
 
 ;; video
-;; this one https://youtu.be/IspAZtNTslY?t=2146
+;; https://youtu.be/IspAZtNTslY?t=2636
