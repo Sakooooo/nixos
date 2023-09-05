@@ -204,17 +204,21 @@
 (sakomacs/leader-keys
   "ts" '(hydra-text-scale/body :which-key "scale text"))
 
-;; video
-;; https://youtu.be/xaZMwNELaJY?t=1707
-
 ;; for specific projects
 (use-package projectile
   :diminish projectile-mode
   :demand
   :config (projectile-mode)
+  :custom ((projectile-completion-system 'ivy))
   :bind-keymap
   ("C-c p" . projectile-command-map)
   :init
   (when (file-directory-p "~/dev")
     (setq projectile-project-search-path '("~/dev")))
   (setq projectile-switch-project-action #'projectile-dired))
+
+(use-package counsel-projectile
+  :config (counsel-projectile-mode))
+
+;; video
+;; https://youtu.be/INTu30BHZGk?t=1626
