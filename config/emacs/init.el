@@ -226,9 +226,15 @@
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
 ;; github notifications in my editor my favorite
+;; needs OLD not NEW github token
 (use-package forge
   :after magit)
 (setq auth-sources '("~/.authinfo"))
 
+;; oh god
+(use-package org
+        :custom
+          (setq org-adapt-indentation t))
+
 ;; video
-;; https://youtu.be/INTu30BHZGk?t=3419
+;; Emacs from Scratch #5 Introduction to Org-mode
