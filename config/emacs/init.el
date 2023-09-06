@@ -231,10 +231,22 @@
   :after magit)
 (setq auth-sources '("~/.authinfo"))
 
-;; oh god
+
+;; emacs is good at most things
+;; except editing text ofc
+
+(defun sakomacs/org-mode-setup ()
+  (org-indent-mode)
+  (variable-pitch-mode 1)
+  (auto-fill-mode 0)
+  (visual-line-mode 1)
+  (setq evil-autio-indent nil))
+
 (use-package org
-        :custom
-          (setq org-adapt-indentation t))
+  :hook (org-mode . sakomacs/org-mode-setup)
+  :config
+  (setq org-ellipsis ">"
+	org-hide-emphasis-markers t))
 
 ;; video
 ;; Emacs from Scratch #5 Introduction to Org-mode
