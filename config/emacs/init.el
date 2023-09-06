@@ -245,7 +245,8 @@
 (use-package org
   :hook (org-mode . sakomacs/org-mode-setup)
   :config
-  (setq org-ellipsis ">"))
+  (setq org-ellipsis "▼")
+  (setq org-adapt-indentation t))
 
 ;; i need more bullets, i need more bullets, i need more bullets, bigger weapons, bigger weapons, bigger weapons
 ;; thanks for the protein sir
@@ -256,4 +257,4 @@
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
 ;; video
-;; Emacs from Scratch #5 Introduction to Org-mode
+;; https://youtu.be/VcgjTEa0kU4?t=1884
