@@ -22,7 +22,7 @@
 (setq visible-bell t)
 
 ;; Font
-(set-face-attribute `default nil :font "JetBrains Mono" :height 150)
+(set-face-attribute `default nil :font "JetBrains Mono" :height 125)
 
 ;; Keymaps
 (global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
@@ -139,7 +139,7 @@
   :init (which-key-mode)
   :diminish which-key-mode
   :config
-  (setq which-key-idle-delay 0))
+  (setq which-key-idle-delay 1))
 
 ;; better help menu
 (use-package helpful
@@ -224,9 +224,6 @@
 (use-package magit
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
-
-(use-package evil-magit
-  :after magit)
 
 ;; video
 ;; https://www.youtube.com/watch?v=INTu30BHZGk&t=1626s
