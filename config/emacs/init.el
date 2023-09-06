@@ -220,5 +220,14 @@
 (use-package counsel-projectile
   :config (counsel-projectile-mode))
 
+;; git
+(use-package magit
+  :commands (magit-status magit-get-current-branch)
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+(use-package evil-magit
+  :after magit)
+
 ;; video
 ;; https://youtu.be/INTu30BHZGk?t=1626
