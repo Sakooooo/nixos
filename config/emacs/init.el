@@ -225,5 +225,8 @@
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
+;; todo setup forge
+;; github notifications in my editor my favorite
+
 ;; video
-;; https://www.youtube.com/watch?v=INTu30BHZGk&t=1626s
+;; https://youtu.be/INTu30BHZGk?t=3419
