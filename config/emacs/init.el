@@ -34,7 +34,7 @@
 (require `package)
 
 (setq package-archives `(("mepla" . "https://melpa.org/packages/")
-			 ("org" . "https://orgemode.org/elpa/")
+			 ("org" . "https://orgmode.org/elpa/")
 			 ("elpa" . "https://elpa.gnu.org/packages/")))
 
 (package-initialize)
@@ -225,8 +225,10 @@
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
-;; todo setup forge
 ;; github notifications in my editor my favorite
+(use-package forge
+  :after magit)
+(setq auth-sources '("~/.authinfo"))
 
 ;; video
 ;; https://youtu.be/INTu30BHZGk?t=3419
