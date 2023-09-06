@@ -222,7 +222,6 @@
 
 ;; git
 (use-package magit
-  :commands (magit-status magit-get-current-branch)
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
@@ -230,4 +229,4 @@
   :after magit)
 
 ;; video
-;; https://youtu.be/INTu30BHZGk?t=1626
+;; https://www.youtube.com/watch?v=INTu30BHZGk&t=1626s
