@@ -245,8 +245,15 @@
 (use-package org
   :hook (org-mode . sakomacs/org-mode-setup)
   :config
-  (setq org-ellipsis ">"
-	org-hide-emphasis-markers t))
+  (setq org-ellipsis ">"))
+
+;; i need more bullets, i need more bullets, i need more bullets, bigger weapons, bigger weapons, bigger weapons
+;; thanks for the protein sir
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
 ;; video
 ;; Emacs from Scratch #5 Introduction to Org-mode
