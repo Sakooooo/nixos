@@ -277,6 +277,4 @@
   (lsp-enable-which-key-integration t))
 
 ;; video
-;; actual thing https://youtu.be/E-NAM9U5JYE?t=600
-;; org-mode video https://youtu.be/PNE-mgkZ6HM?t=156
- 
+;; https://youtu.be/PNE-mgkZ6HM?t=1302 
