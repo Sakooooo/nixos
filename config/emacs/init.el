@@ -263,6 +263,15 @@
 (use-package visual-fill-column
   :hook (org-mode . sakomacs/org-mode-visual-fill))
 
+;; lsp finally
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t))
+
 ;; video
 ;; actual thing https://youtu.be/E-NAM9U5JYE?t=454
 ;; org-mode video https://youtu.be/PNE-mgkZ6HM?t=156
+ 
