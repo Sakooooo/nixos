@@ -247,10 +247,72 @@
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
+
+  ;; org habits thing
+  (require 'org-habit)
+  (add-to-list 'org-modules 'org-habit)
+  (setq org-habit-graph-column 60)
+
+  ;; archive thingy i forgot
+  (setq org-refile-targets
+	'(("Archive.org" :maxlevel . 1)))
+
+  ;; save org buffer before refile
+  (advice-add 'org-refile :after 'org-save-all-org-buffers)
+  
+  ;; extra keywords
+  (setq org-todo-keywords
+   '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+    (sequence "PLAN(p)" "READY(r)" "ACTIVE(a)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
+  ;; custom commands for org-agenda
+ (setq org-agenda-custom-commands
+   '(("d" "Dashboard"
+     ((agenda "" ((org-deadline-warning-days 7)))
+      (todo "NEXT"
+        ((org-agenda-overriding-header "Next Tasks")))
+      (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
+
+    ("n" "Next Tasks"
+     ((todo "NEXT"
+        ((org-agenda-overriding-header "Next Tasks")))))
+
+    ("W" "Work Tasks" tags-todo "+work-email")
+
+    ;; Low-effort next actions
+    ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
+     ((org-agenda-overriding-header "Low Effort Tasks")
+      (org-agenda-max-todos 20)
+      (org-agenda-files org-agenda-files)))
+
+    ("w" "Workflow Status"
+      (todo "PLAN"
+            ((org-agenda-overriding-header "In Planning")
+             (org-agenda-todo-list-sublevels nil)
+             (org-agenda-files org-agenda-files)))
+      (todo "READY"
+            ((org-agenda-overriding-header "Ready for Work")
+             (org-agenda-files org-agenda-files)))
+      (todo "ACTIVE"
+            ((org-agenda-overriding-header "Active Projects")
+             (org-agenda-files org-agenda-files)))
+      (todo "COMPLETED"
+            ((org-agenda-overriding-header "Completed Projects")
+             (org-agenda-files org-agenda-files)))
+      (todo "CANC"
+            ((org-agenda-overriding-header "Cancelled Projects")
+             (org-agenda-files org-agenda-files))))))) 
+
   (setq org-agenda-files
 	'("~/org/tasks.org")
 	'("~/org/work.org"))
-  (setq org-adapt-indentation t))
+
+  (setq org-adapt-indentation t)
+
+     (setq org-capture-templates
+    `(("t" "Tasks / Projects")
+      ("tt" "Task" entry (file+olp "~/org/tasks.org" "Inbox")
+           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)))
+
 
 ;; i need more bullets, i need more bullets, i need more bullets, bigger weapons, bigger weapons, bigger weapons
 ;; thanks for the protein sir
@@ -278,4 +340,5 @@
   (lsp-enable-which-key-integration t))
 
 ;; video
-;; https://youtu.be/PNE-mgkZ6HM?t=1302 
+;; oh my god we can configure emacs with org mode what is this
+;; https://www.youtube.com/watch?v=kkqVTDbfYp4
