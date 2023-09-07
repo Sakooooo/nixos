@@ -107,6 +107,12 @@
     };
   };
 
+  # laptop :(
+  services.logind.extraConfig = ''
+    # don’t shutdown when power button is short-pressed
+    HandlePowerKey=ignore
+  '';
+
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
