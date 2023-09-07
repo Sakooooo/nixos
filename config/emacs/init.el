@@ -255,7 +255,7 @@
 
   ;; archive thingy i forgot
   (setq org-refile-targets
-	'(("Archive.org" :maxlevel . 1)))
+      '(("archive.org" :maxlevel . 1)))
 
   ;; save org buffer before refile
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
@@ -270,14 +270,7 @@
   ;; extra keywords
   (setq org-todo-keywords
    '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-    (sequence "PLAN(p)" "READY(r)" "ACTIVE(a)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
-
-  ;; oh my days
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp .t)))
-
-  (setq org-confirm-babel-evaluate nil)
+     (sequence "PLAN(p)" "READY(r)" "ACTIVE(a)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")  )
 
   ;; custom commands for org-agenda
  (setq org-agenda-custom-commands
@@ -326,7 +319,7 @@
      (setq org-capture-templates
     `(("t" "Tasks / Projects")
       ("tt" "Task" entry (file+olp "~/org/tasks.org" "Inbox")
-           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)))
+           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1))))
 
 
 ;; i need more bullets, i need more bullets, i need more bullets, bigger weapons, bigger weapons, bigger weapons

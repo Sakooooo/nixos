@@ -2,7 +2,8 @@
 #+PROPERTY: header-args:emacs-lisp :tangle ./init-new.el
 
 * Emacs from scratch
-where we are right now https://youtu.be/kkqVTDbfYp4?t=1373
+where we are right now https://youtu.be/kkqVTDbfYp4?t=2795
+** TODO move init.el to here
 
 * Usage
 org-bable-tangle
@@ -37,9 +38,43 @@ org-bable-tangle
 
 #+end_src
 
-* Tangle Output
-** TODO make init.el changable for this
+* Package setup
 #+begin_src emacs-lisp
-  (org-babel-tangle)
-(org-babel-tangle-file "~/nixos/config/emacs/emacs.org
+;; Package related stuqff
+(require `package)
+
+(setq package-archives `(("mepla" . "https://melpa.org/packages/")
+			 ("org" . "https://orgmode.org/elpa/")
+			 ("elpa" . "https://elpa.gnu.org/packages/")))
+
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; Init package for non-linux
+(unless (package-installed-p `use-package)
+  (package-install `use-package))
+
+(require 'use-package)
+(setq use-package-always-ensure t)
+#+end_src
+** Packages
+
+* Org Mode Configuration Setup
+** Babel Languages
+#+begin_src emacs-lisp
+   (org-babel-do-load-languages
+  'org-babel-load-languages
+  '((emacs-lisp . t)
+    (python . t)))
+#+end_src
+
+** Auto-tangle Configuration
+#+begin_src emacs-lisp
+  (defun sakomacs/org-babel-tangle-config ()
+    (when (string-equal (buffer-file-name)
+                        (expand-file-name "~/nixos/config/emacs/emacs.org"))
+      (let ((org-confirm-babel-evaluate nil))
+        (org-babel-tangle)))
+    (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'sakomacs/org-babel-tangle-config))))
 #+end_src

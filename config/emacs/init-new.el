@@ -19,3 +19,13 @@
 
 ;; Font
 (set-face-attribute `default nil :font "JetBrains Mono" :height 125)
+
+(org-babel-tangle)
+(org-babel-tangle-file "~/nixos/config/emacs/emacs.org")
+
+(defun sakomacs/org-babel-tangle-config ()
+  (when (string-equal (buffer-file-name)
+                      (expand-file-name "~/nixos/config/emacs/emacs.org"))
+    (let ((org-confirm-babel-evaluate nil))
+      (org-babel-tangle)))
+  (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'sakomacs/org-babel-tangle-config))))
