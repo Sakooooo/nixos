@@ -264,4 +264,5 @@
   :hook (org-mode . sakomacs/org-mode-visual-fill))
 
 ;; video
+;; actual thing https://youtu.be/E-NAM9U5JYE?t=454
 ;; org-mode video https://youtu.be/PNE-mgkZ6HM?t=156
