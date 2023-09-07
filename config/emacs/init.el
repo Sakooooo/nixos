@@ -248,7 +248,8 @@
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
   (setq org-agenda-files
-	'("~/org/tasks.org"))
+	'("~/org/tasks.org")
+	'("~/org/work.org"))
   (setq org-adapt-indentation t))
 
 ;; i need more bullets, i need more bullets, i need more bullets, bigger weapons, bigger weapons, bigger weapons
