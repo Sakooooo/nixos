@@ -244,6 +244,11 @@
   :hook (org-mode . sakomacs/org-mode-setup)
   :config
   (setq org-ellipsis "▼")
+  (setq org-agenda-start-with-log-mode t)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+  (setq org-agenda-files
+	'("~/org/tasks.org"))
   (setq org-adapt-indentation t))
 
 ;; i need more bullets, i need more bullets, i need more bullets, bigger weapons, bigger weapons, bigger weapons
