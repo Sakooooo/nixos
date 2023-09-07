@@ -1,0 +1,45 @@
+#+title Sakomacs configuration
+#+PROPERTY: header-args:emacs-lisp :tangle ./init-new.el
+
+* Emacs from scratch
+where we are right now https://youtu.be/kkqVTDbfYp4?t=1373
+
+* Usage
+org-bable-tangle
+
+* ui configuration
+#+begin_src emacs-lisp
+  ;; UI/UX
+  (setq inhibit-startup-message t)
+  ;; make it look like neovim a little
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (tooltip-mode -1)
+  (set-fringe-mode 10)
+  (menu-bar-mode -1)
+  ;; Line Numbers
+  (column-number-mode)
+  (global-display-line-numbers-mode t)
+  ;; disable line numbers on some modes
+  (dolist (mode '(org-mode-hook
+                  term-mode-hook
+                  eshell-mode-hook))
+    (add-hook mode (lambda () (display-line-numbers-mode 0))))
+  ;; Bell
+  (setq visible-bell t)
+#+end_src
+
+* Fonts
+
+#+begin_src emacs-lisp
+      ;; Font
+      (set-face-attribute `default nil :font "JetBrains Mono" :height 125)
+
+#+end_src
+
+* Tangle Output
+** TODO make init.el changable for this
+#+begin_src emacs-lisp
+  (org-babel-tangle)
+(org-babel-tangle-file "~/nixos/config/emacs/emacs.org
+#+end_src

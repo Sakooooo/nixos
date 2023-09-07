@@ -259,11 +259,26 @@
 
   ;; save org buffer before refile
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
+
+  ;; org mode src thing
+  (require 'org-tempo)
+
+  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("py" . "src python"))
   
   ;; extra keywords
   (setq org-todo-keywords
    '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
     (sequence "PLAN(p)" "READY(r)" "ACTIVE(a)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
+
+  ;; oh my days
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp .t)))
+
+  (setq org-confirm-babel-evaluate nil)
+
   ;; custom commands for org-agenda
  (setq org-agenda-custom-commands
    '(("d" "Dashboard"
