@@ -65,6 +65,8 @@ in
       hyprpaper
       # bar
       (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true "]; }))
+      # lock
+      swaylock
       eww-wayland
       brightnessctl
       inotify-tools
@@ -102,6 +104,10 @@ in
         };
         waybar = {
           source = ../../../config/waybar;
+          recursive = true;
+        };
+        swaylock = {
+          source = ../../../config/swaylock;
           recursive = true;
         };
      }; 

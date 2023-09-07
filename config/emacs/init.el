@@ -238,9 +238,7 @@
 (defun sakomacs/org-mode-setup ()
   (org-indent-mode)
   (variable-pitch-mode 1)
-  (auto-fill-mode 0)
-  (visual-line-mode 1)
-  (setq evil-autio-indent nil))
+  (visual-line-mode 1))
 
 (use-package org
   :hook (org-mode . sakomacs/org-mode-setup)
@@ -256,5 +254,14 @@
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
+;; word
+(defun sakomacs/org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+	visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+(use-package visual-fill-column
+  :hook (org-mode . sakomacs/org-mode-visual-fill))
+
 ;; video
-;; https://youtu.be/VcgjTEa0kU4?t=1884
+;; org-mode video https://youtu.be/PNE-mgkZ6HM?t=156
