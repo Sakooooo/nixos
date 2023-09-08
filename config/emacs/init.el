@@ -124,8 +124,6 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 35)))
 
-;; all the icons
-(use-package all-the-icons)
 
 ;; continue configuring from here
 ;; https://youtu.be/74zOY-vgkyw?t=3125
@@ -316,10 +314,10 @@
 
   (setq org-adapt-indentation t)
 
-     (setq org-capture-templates
-    `(("t" "Tasks / Projects")
-      ("tt" "Task" entry (file+olp "~/org/tasks.org" "Inbox")
-           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1))))
+  (setq org-capture-templates
+  `(("t" "Tasks / Projects")
+    ("tt" "Task" entry (file+olp "~/org/tasks.org" "Inbox")
+    "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1))))
 
 
 ;; i need more bullets, i need more bullets, i need more bullets, bigger weapons, bigger weapons, bigger weapons
