@@ -2,8 +2,12 @@
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el
 
 * Emacs from scratch
-where we are right now https://youtu.be/kkqVTDbfYp4?t=2795
-** TODO move init.el to here
+** DONE move init.el to here
+CLOSED: [2023-09-08 Fri 23:20]
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2023-09-08 Fri 23:20]
+:END:
+video: https://youtu.be/E-NAM9U5JYE?t=453
 
 * Usage
 M-x org-bable-tangle
