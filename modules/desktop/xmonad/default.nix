@@ -13,6 +13,9 @@ in {
   };
 
   config = mkIf cfg.enable {
+
+    # this needs to be enabled for gtk apps
+    programs.dconf.enable = true;
     # https://nixos.wiki/wiki/XMonad
     services.xserver = {
       enable = true;
