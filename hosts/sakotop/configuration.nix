@@ -20,8 +20,8 @@
     desktop = {
       kitty.enable = true;
       xmonad.enable = false;
-      dwm.enable = false;
-      awesome.enable = true;
+      dwm.enable = true;
+      awesome.enable = false;
       picom.enable = false;
       dunst.enable = true;
       browsers = {
