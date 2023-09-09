@@ -17,6 +17,9 @@
 ;; Bell
 (setq visible-bell t)
 
+(global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
 ;; Font
 (set-face-attribute `default nil :font "JetBrains Mono" :height 125)
 
@@ -309,6 +312,10 @@
   (setq lsp-keymap-prefix "C-c l")
   :config
   (lsp-enable-which-key-integration t))
+
+(use-package js2-mode
+:mode "\\.js\\'"
+:hook (js2-mode . lsp-deferred))
 
 (org-babel-do-load-languages
 'org-babel-load-languages

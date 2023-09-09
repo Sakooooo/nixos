@@ -34,6 +34,11 @@ M-x org-bable-tangle
   (setq visible-bell t)
 #+end_src
 
+* Keymaps
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+#+end_src
 * Fonts
 
 #+begin_src emacs-lisp
@@ -362,7 +367,7 @@ make sure to setup authinfo
 (setq auth-sources '("~/.authinfo"))
 #+end_src
 **** Lsp-mode
-***** Inital Setup
+***** Language Servers 
 #+begin_src emacs-lisp
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
@@ -370,6 +375,13 @@ make sure to setup authinfo
   (setq lsp-keymap-prefix "C-c l")
   :config
   (lsp-enable-which-key-integration t))
+#+end_src
+***** Languages
+****** Typescript
+#+begin_src emacs-lisp
+  (use-package js2-mode
+  :mode "\\.js\\'"
+  :hook (js2-mode . lsp-deferred))
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
