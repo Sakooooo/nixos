@@ -14,6 +14,9 @@ in {
   };
 
   config = mkIf cfg.enable {
+    
+    # this needs to be enabled for gtk apps
+    programs.dconf.enable = true;
     services.xserver = {
       enable = true;
       windowManager.awesome = {
