@@ -32,7 +32,6 @@ in {
               show-password-label = true
               password-label-text = magic word
               invalid-password-text = skull issue
-
             '';
           };
         };
@@ -68,11 +67,6 @@ in {
         "background.png" = {
           enable = true;
           source = ../../../config/background.png;
-        };
-        ".dwmscripts" = {
-          enable = true;
-          source = ../../../config/dwm/scripts;
-          recursive = true;
         };
       };
       home.pointerCursor = {
