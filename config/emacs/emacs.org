@@ -7,7 +7,7 @@ CLOSED: [2023-09-08 Fri 23:20]
 :LOGBOOK:
 - State "DONE"       from "TODO"       [2023-09-08 Fri 23:20]
 :END:
-video: https://youtu.be/E-NAM9U5JYE?t=453
+video: https://youtu.be/E-NAM9U5JYE?t=1760
 
 * Usage
 M-x org-bable-tangle
