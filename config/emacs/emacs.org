@@ -347,7 +347,7 @@ M-x org-bable-tangle
 (use-package visual-fill-column
   :hook (org-mode . sakomacs/org-mode-visual-fill))
 #+end_src
-*** Development Specific
+*** Dev Packages
 **** Magit (git in emacs)
 #+begin_src emacs-lisp
 (use-package magit
