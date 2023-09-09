@@ -18,9 +18,7 @@
 
   modules = {
     desktop = {
-      plymouth.enable = false;
       kitty.enable = true;
-      hyprland.enable = false;
       xmonad.enable = true;
       picom.enable = true;
       dunst.enable = true;
