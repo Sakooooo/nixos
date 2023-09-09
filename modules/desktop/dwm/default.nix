@@ -27,16 +27,23 @@ in {
         lightdm = {
           enable = true;
           background = ../../../config/background.png;
-          greeters.mini = {
+          greeters.gtk = {
             enable = true;
-            user = "sako";
-            extraConfig = ''
-              [greeter]
-              show-password-label = true
-              password-label-text = magic word
-              invalid-password-text = skull issue
-            '';
+            theme = {
+              name = "vimix-dark-ruby";
+              package = pkgs.vimix-gtk-themes;
+            };
           };
+        #  greeters.mini = {
+        #    enable = true;
+        #    user = "sako";
+        #    extraConfig = ''
+        #      [greeter]
+        #      show-password-label = true
+        #      password-label-text = magic word
+        #      invalid-password-text = skull issue
+        #    '';
+        #  };
         };
       };
       libinput = {
