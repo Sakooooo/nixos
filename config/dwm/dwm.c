@@ -283,6 +283,8 @@ static size_t autostart_len;
 static void
 autostart_exec() {
 	const char *const *p;
+  // also to comply with ver 6.4
+  struct sigaction sa;
 	size_t i = 0;
 
 	/* count entries */
