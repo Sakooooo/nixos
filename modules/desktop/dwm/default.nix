@@ -33,6 +33,11 @@ in {
               name = "vimix-dark-ruby";
               package = pkgs.vimix-gtk-themes;
             };
+            cursorTheme = {
+              name = "Catppuccin-Mocha-Dark";
+              size = 16;
+              package = pkgs.catppuccin-cursors.mochaDark; 
+            };
           };
         #  greeters.mini = {
         #    enable = true;
