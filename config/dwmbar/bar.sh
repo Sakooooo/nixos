@@ -11,8 +11,8 @@ interval=0
 cpu() {
   cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)
 
-  printf "^c$black^ ^b$red^ CPU"
-  printf "^c$white^ ^b$grey^ $cpu_val"
+  printf "^c$white^ ^b$red^ CPU"
+  printf "^c$white^ ^b$lightred^ $cpu_val"
 }
 
 battery() {
@@ -23,7 +23,8 @@ battery() {
   Discharging) if (( $get_capacity <= 20)); then
                   printf "^c$lightred^ 󰂃 $get_capacity"
               else
-                  printf "^c$blue^ 󰁹 $get_capacity"
+                  printf "^c$white^ ^b$blue 󰁹"
+                  printf "^c$white^ ^b$black^ $get_capacity"
               fi ;;
   esac
 }
