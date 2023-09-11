@@ -83,6 +83,11 @@ in {
           enable = true;
           source = ../../../config/background.png;
         };
+        ".dwmscripts" = {
+          enable = true;
+          recursive = true;
+          source = ../../../config/dwmbar;
+        };
       };
       home.pointerCursor = {
         name = "Catppuccin-Mocha-Dark";

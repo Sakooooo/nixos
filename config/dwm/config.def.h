@@ -27,6 +27,7 @@ static const char *const autostart[] = {
   "feh", "--bg-scale", "/home/sako/background.png", NULL,
   "xsetroot", "-cursor_name", "left_ptr", NULL,
   "picom", NULL,
+  "/home/sako/.dwmscripts/bar.sh", NULL,
 	"keepassxc", NULL,
 	NULL /* terminate */
 };
