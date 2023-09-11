@@ -1,5 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/XF86keysym.h>
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -76,6 +78,15 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", NULL };
 static const char *roficmd[] = { "rofi", "-show-icons", "-show", "drun", NULL};
 static const char *termcmd[]  = { "kitty", NULL };
+// audio
+static const char *upvol[]      = { "pactl",   "set-sink-volume", "0",      "+5%",      NULL };
+static const char *downvol[]    = { "pactl",   "set-sink-volume", "0",      "-5%",      NULL };
+static const char *mutevol[]    = { "pactl",   "set-sink-mute",   "0",      "toggle",   NULL };
+// brightness
+static const char *light_up[]   = { "brightnessctl",   "s", "+100", NULL };
+static const char *light_down[] = { "brightnessctl",   "s", "100-", NULL };
+
+
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -112,6 +123,13 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+  // audio
+  	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
+	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
+	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
+  // brightness
+  	{ 0,				XF86XK_MonBrightnessUp,		spawn,	{.v = light_up} },
+	{ 0,				XF86XK_MonBrightnessDown,	spawn,	{.v = light_down} },
 };
 
 /* button definitions */
