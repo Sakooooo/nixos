@@ -2,5 +2,6 @@
   imports = [
     ./teams
     ./whatsapp
+    ./zoom
   ];
 }
