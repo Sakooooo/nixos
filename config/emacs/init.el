@@ -88,7 +88,7 @@
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
 ;; load the theme
-(load-theme 'doom-monokai-pro t)
+(load-theme 'doom-challenger-deep t)
 
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config))
@@ -229,7 +229,7 @@
   ;; extra keywords
   (setq org-todo-keywords
    '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-     (sequence "PLAN(p)" "READY(r)" "ACTIVE(a)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")  )
+     (sequence "PLAN(p)" "READY(r)" "ACTIVE(a)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)"))
 
   ;; custom commands for org-agenda
  (setq org-agenda-custom-commands
@@ -273,13 +273,7 @@
 	'("~/org/tasks.org")
 	'("~/org/work.org"))
 
-  (setq org-adapt-indentation t)
-
-  (setq org-capture-templates
-  `(("t" "Tasks / Projects")
-    ("tt" "Task" entry (file+olp "~/org/tasks.org" "Inbox")
-    "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1))))
-
+  (setq org-adapt-indentation t))
 
 ;; i need more bullets, i need more bullets, i need more bullets, bigger weapons, bigger weapons, bigger weapons
 ;; thanks for the protein sir
