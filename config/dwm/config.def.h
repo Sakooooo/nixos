@@ -13,7 +13,7 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_black1[]       = "#000000";
-static const char col_white1[]       = "#d0d0d0";
+static const char col_white1[]       = "#ffffff";
 static const char col_red[]       = "#ff0000";
 static const char col_red2[]        = "#830202";
 static const char col_red3[]        = "#aa1212";
