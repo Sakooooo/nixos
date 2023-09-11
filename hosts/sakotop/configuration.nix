@@ -29,6 +29,7 @@
       };
       chat = {
         whatsapp.enable = true;
+        zoom.enable = true;
       };
       apps = {
         nemo.enable = true;
