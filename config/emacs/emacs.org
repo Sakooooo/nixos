@@ -368,13 +368,6 @@ make sure to setup authinfo
 (setq auth-sources '("~/.authinfo"))
 #+end_src
 *** Lsp-mode
-**** Lsp-Mode hook
-#+begin_src emacs-lisp
-  (defun efs/lsp-mode-setup ()
-  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-  (lsp-headerline-breadcrumb-mode))
-
-  :hook (lsp-mode . efs/lsp-mode-setup)
 #+end_src
 **** Language Servers 
 #+begin_src emacs-lisp
@@ -391,6 +384,13 @@ make sure to setup authinfo
     (setq lsp-keymap-prefix "C-c l")
     :config
     (lsp-enable-which-key-integration t))
+#+end_src
+**** Better lsp mode ui
+#+begin_src emacs-lisp
+(use-package lsp-ui
+  :hook (lsp-mode . lsp-ui-mode)
+  :custom
+  (lsp-ui-doc-position 'bottom))
 #+end_src
 **** Languages
 ***** Typescript
