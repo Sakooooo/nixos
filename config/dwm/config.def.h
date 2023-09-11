@@ -111,9 +111,9 @@ static const Key keys[] = {
   {0,       XF86XK_MonBrightnessUp, spawn,    {.v=brightness[0]},
   {0,       XF86XK_MonBrightnessDown, spawn, {.v=brightness[1]},
   // audio
-  {0,       XF86XK_MonAudioRaiseVolume, spawn, {.v=audio[0]}},
-  {0,       XF86XK_MonAudioLowerVolume, spawn, {.v=audio[1]}},
-  {0,       XF86XK_MonAudioMute, spawn, {.v=audio[2]}},
+  {0,       XF86XK_MonRaiseVolume, spawn,    {.v=audio[0]},
+  {0,       XF86XK_MonLowerVolume, spawn,    {.v=audio[1]},
+  {0,       XF86XK_MonAudioMute, spawn,    {.v=audio[2]},
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
