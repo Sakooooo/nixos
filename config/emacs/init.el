@@ -88,7 +88,7 @@
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
 ;; load the theme
-(load-theme 'doom-monokai-pro t)
+(load-theme 'doom-challenger-deep t)
 
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config))
@@ -306,8 +306,21 @@
   :after magit)
 (setq auth-sources '("~/.authinfo"))
 
+(defun efs/lsp-mode-setup ()
+(setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+(lsp-headerline-breadcrumb-mode))
+
+:hook (lsp-mode . efs/lsp-mode-setup)
+
+(defun sakomacs/lsp-mode-setup ()
+(setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+(lsp-headerline-breadcrumb-mode))
+
+:hook (lsp-mode . sakomacs/lsp-mode-setup)
+
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
+  :hook (lsp-mode . sakomacs/lsp-mode-setup)
   :init
   (setq lsp-keymap-prefix "C-c l")
   :config
@@ -316,6 +329,20 @@
 (use-package js2-mode
 :mode "\\.js\\'"
 :hook (js2-mode . lsp-deferred))
+
+(use-package company
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
+  :bind (:map company-active-map
+         ("<tab>" . company-complete-selection))
+        (:map lsp-mode-map
+         ("<tab>" . company-indent-or-complete-common))
+  :custom
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0.0))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 
 (org-babel-do-load-languages
 'org-babel-load-languages

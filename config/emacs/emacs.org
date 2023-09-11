@@ -368,14 +368,29 @@ make sure to setup authinfo
 (setq auth-sources '("~/.authinfo"))
 #+end_src
 *** Lsp-mode
+**** Lsp-Mode hook
+#+begin_src emacs-lisp
+  (defun efs/lsp-mode-setup ()
+  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+  (lsp-headerline-breadcrumb-mode))
+
+  :hook (lsp-mode . efs/lsp-mode-setup)
+#+end_src
 **** Language Servers 
 #+begin_src emacs-lisp
-(use-package lsp-mode
-  :commands (lsp lsp-deferred)
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  :config
-  (lsp-enable-which-key-integration t))
+  (defun sakomacs/lsp-mode-setup ()
+  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+  (lsp-headerline-breadcrumb-mode))
+
+  :hook (lsp-mode . sakomacs/lsp-mode-setup)
+
+  (use-package lsp-mode
+    :commands (lsp lsp-deferred)
+    :hook (lsp-mode . sakomacs/lsp-mode-setup)
+    :init
+    (setq lsp-keymap-prefix "C-c l")
+    :config
+    (lsp-enable-which-key-integration t))
 #+end_src
 **** Languages
 ***** Typescript
@@ -383,6 +398,22 @@ make sure to setup authinfo
   (use-package js2-mode
   :mode "\\.js\\'"
   :hook (js2-mode . lsp-deferred))
+#+end_src
+*** Company Mode (Better Autocompletion)
+#+begin_src emacs-lisp
+(use-package company
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
+  :bind (:map company-active-map
+         ("<tab>" . company-complete-selection))
+        (:map lsp-mode-map
+         ("<tab>" . company-indent-or-complete-common))
+  :custom
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0.0))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
