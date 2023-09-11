@@ -16,13 +16,12 @@ cpu() {
 }
 
 battery() {
-  get_capacity="$(cat /sys/class/power_supply/BAT*/capacity)"
-  get_status="$(cat /sys/class/power_supply/BAT*/status)"
+  get_capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
+  get_status="$(cat /sys/class/power_supply/BAT1/status)"
   case "$get_status" in
   Charging) printf "^c$blue^ 󰂄 $get_capacity" ;;
   Discharging) if (( $get_capacity <= 20)); then
-                  printf "^c$white^ ^b$lightred^ 󰂃"
-                  printf "^c$white^ ^b$black^ $get_capacity"
+                  printf "^c$lightred^ 󰂃 $get_capacity"
               else
                   printf "^c$white^ ^b$blue 󰁹"
                   printf "^c$white^ ^b$black^ $get_capacity"
