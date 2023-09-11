@@ -9,7 +9,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    users.users.sako.package = with pkgs; [
+    users.users.sako.packages = with pkgs; [
       zoom-us
     ];
   };
