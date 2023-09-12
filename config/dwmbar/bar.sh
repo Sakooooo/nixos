@@ -7,7 +7,7 @@ battery() {
   get_status="$(cat /sys/class/power_supply/BAT1/status)"
   case "$get_status" in
   Charging) printf "^c$blue^ 󰂄 $get_capacity" ;;
-  Discharging) printf "^c$white^ ^b$blue 󰁹 $get_capacity"
+  Discharging) printf "^c$white^ ^b$blue 󰁹 $get_capacity" ;;
   esac
 }
 
