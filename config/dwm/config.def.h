@@ -30,6 +30,7 @@ static const char *const autostart[] = {
 	"picom", NULL,
 	"keepassxc", NULL,
 	"nm-applet", NULL,
+  "blueman-applet", NULL,
 	NULL /* terminate */
 };
 
