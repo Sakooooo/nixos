@@ -319,7 +319,7 @@
     (lsp-enable-which-key-integration t))
 
 (use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode)
+  :hook (lsp-mode . lsp-ui-mode))
 
 (use-package js2-mode
 :mode "\\.js\\'"
