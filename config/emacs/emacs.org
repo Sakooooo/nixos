@@ -8,8 +8,7 @@ CLOSED: [2023-09-08 Fri 23:20]
 - State "DONE"       from "TODO"       [2023-09-08 Fri 23:20]
 :END:
 ** TODO Finish Video
-video: https://youtu.be/E-NAM9U5JYE?t=1403
-
+video: https://youtu.be/E-NAM9U5JYE?t=2357
 * Usage
 M-x org-bable-tangle
 
@@ -44,7 +43,7 @@ M-x org-bable-tangle
 
 #+begin_src emacs-lisp
       ;; Font
-      (set-face-attribute `default nil :font "JetBrains Mono" :height 100)
+      (set-face-attribute `default nil :font "JetBrains Mono" :height 125)
 #+end_src
 
 * Package setup

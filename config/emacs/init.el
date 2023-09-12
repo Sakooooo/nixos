@@ -21,7 +21,7 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; Font
-(set-face-attribute `default nil :font "JetBrains Mono" :height 100)
+(set-face-attribute `default nil :font "JetBrains Mono" :height 125)
 
 ;; Package related stuqff
 (require `package)
