@@ -21,5 +21,6 @@ audio() {
 }
 
 while true; do
-  sleep 1 && xsetroot -name "$(battery)"
+  xsetroot -name "$(battery)"
+  sleep 1
 done
