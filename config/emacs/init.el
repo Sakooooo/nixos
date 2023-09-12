@@ -21,7 +21,7 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; Font
-(set-face-attribute `default nil :font "JetBrains Mono" :height 125)
+(set-face-attribute `default nil :font "JetBrains Mono" :height 100)
 
 ;; Package related stuqff
 (require `package)
@@ -307,23 +307,19 @@
 (setq auth-sources '("~/.authinfo"))
 
 (defun sakomacs/lsp-mode-setup ()
-(setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-(lsp-headerline-breadcrumb-mode))
+  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+  (lsp-headerline-breadcrumb-mode))
 
-:hook (lsp-mode . sakomacs/lsp-mode-setup)
-
-(use-package lsp-mode
-  :commands (lsp lsp-deferred)
-  :hook (lsp-mode . sakomacs/lsp-mode-setup)
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  :config
-  (lsp-enable-which-key-integration t))
+  (use-package lsp-mode
+    :commands (lsp lsp-deferred)
+    :hook (lsp-mode . sakomacs/lsp-mode-setup)
+    :init
+    (setq lsp-keymap-prefix "C-c l")
+    :config
+    (lsp-enable-which-key-integration t))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
-  :custom
-  (lsp-ui-doc-position 'bottom))
 
 (use-package js2-mode
 :mode "\\.js\\'"
