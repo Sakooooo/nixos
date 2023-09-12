@@ -4,7 +4,11 @@ blue=#0000ff
 
 battery() {
   get_capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
-  printf "$get_capacity"
+  get_status="$(cat /sys/class/power_supply/BAT1/status)"
+  case "$get_status" in
+  Charging) printf "^c$blue^ 󰂄 $get_capacity" ;;
+  Discharging) printf "^b$blue 󰁹 $get_capacity" ;;
+  esac
 }
 
 audio() {
@@ -17,6 +21,6 @@ audio() {
 }
 
 while true; do
-  xsetroot -name "$(battery) $(audio)"
+  xsetroot -name "$(battery)"
   sleep 1
 done
