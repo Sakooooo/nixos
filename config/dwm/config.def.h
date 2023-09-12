@@ -26,7 +26,6 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"/home/sako/.dwmscripts/bar.sh", NULL,
 	"picom", NULL,
 	"keepassxc", NULL,
 	"nm-applet", NULL,
