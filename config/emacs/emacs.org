@@ -383,8 +383,15 @@ make sure to setup authinfo
 #+end_src
 **** Better lsp mode ui
 #+begin_src emacs-lisp
-(use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode))
+  (use-package lsp-ui
+    :hook (lsp-mode . lsp-ui-mode)
+    :custom
+    (lsp-ui-doc-position 'bottom))
+#+end_src
+**** Treemacs Lsp 
+#+begin_src emacs-lisp
+  (use-package lsp-treemacs
+    :after lsp)
 #+end_src
 **** Languages
 ***** Typescript
