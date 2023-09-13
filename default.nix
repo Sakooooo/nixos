@@ -127,13 +127,8 @@
     package = pkgs.gitFull;
   };
 
-  # something nixos release
-  # something use ful in for mat ion
-  # blah blah blah
-  # nixos packages type shit
-  # change this on every update idiot
-  # dont name it to string beans or some shit
-  # you idiot
+  # read stable version patch notes and fix any issues
+  # then you can change this
   system.stateVersion = "23.05";
   # read comment you read the comment?
 }
