@@ -141,6 +141,7 @@
   (sakomacs/leader-keys
     "t" `(:ignore t :which-key "toggles")
     "tt" `(counsel-load-theme :which-key "choose theme")
+    "e" `(:ignore e :which-key "explorer")
     "ee" `(treemacs)))
 
 (use-package evil
