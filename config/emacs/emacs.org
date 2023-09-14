@@ -42,13 +42,11 @@ M-x org-bable-tangle
 * Fonts
 
 #+begin_src emacs-lisp
-      ;; Font
       (set-face-attribute `default nil :font "JetBrains Mono" :height 125)
 #+end_src
 
 * Package setup
 #+begin_src emacs-lisp
-;; Package related stuqff
 (require `package)
 
 (setq package-archives `(("mepla" . "https://melpa.org/packages/")
