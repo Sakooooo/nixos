@@ -427,9 +427,14 @@
 (use-package lsp-treemacs
   :after lsp)
 
+(use-package lsp-ivy)
+
 (use-package js2-mode
 :mode "\\.js\\'"
 :hook (js2-mode . lsp-deferred))
+
+(use-package evil-nerd-commenter
+:bind ("M-/" . evilnc-comment-or-uncomment-lines))
 
 (use-package company
   :after lsp-mode

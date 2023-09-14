@@ -470,7 +470,6 @@ make sure to setup authinfo
 (setq auth-sources '("~/.authinfo"))
 #+end_src
 *** Lsp-mode
-#+end_src
 **** Language Servers 
 #+begin_src emacs-lisp
   (defun sakomacs/lsp-mode-setup ()
@@ -497,12 +496,21 @@ make sure to setup authinfo
   (use-package lsp-treemacs
     :after lsp)
 #+end_src
+**** lsp-ivy
+#+begin_src emacs-lisp
+(use-package lsp-ivy)
+#+end_src
 **** Languages
-***** Typescript
+***** Javascript 
 #+begin_src emacs-lisp
   (use-package js2-mode
   :mode "\\.js\\'"
   :hook (js2-mode . lsp-deferred))
+#+end_src
+*** Commenter
+#+begin_src emacs-lisp
+  (use-package evil-nerd-commenter
+  :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 #+end_src
 *** Company Mode (Better Autocompletion)
 #+begin_src emacs-lisp
