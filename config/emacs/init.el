@@ -12,7 +12,8 @@
 ;; disable line numbers on some modes
 (dolist (mode '(org-mode-hook
                 term-mode-hook
-                eshell-mode-hook))
+                eshell-mode-hook
+                treemacs-mode))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 ;; Bell
 (setq visible-bell t)
@@ -20,10 +21,8 @@
 (global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-;; Font
 (set-face-attribute `default nil :font "JetBrains Mono" :height 125)
 
-;; Package related stuqff
 (require `package)
 
 (setq package-archives `(("mepla" . "https://melpa.org/packages/")
