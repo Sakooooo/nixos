@@ -552,7 +552,7 @@ make sure to setup authinfo
 #+begin_src emacs-lisp
   (use-package term
   :config
-  (setq explicit-shell-file-name "zsh")
+  (setq explicit-shell-file-name "zsh"))
 #+end_src
 ** EShell
 god dammit why are they making my shells in emacs lisp

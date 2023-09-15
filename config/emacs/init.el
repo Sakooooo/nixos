@@ -464,7 +464,7 @@
 
 (use-package term
 :config
-(setq explicit-shell-file-name "zsh")
+(setq explicit-shell-file-name "zsh"))
 
 (defun sakomacs/configure-eshell ()
   ;; Save command history when commands are entered
