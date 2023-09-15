@@ -21,8 +21,7 @@ in
       recursive = true;
     };
     fonts.fonts = with pkgs; [
-      emacs-all-the-icons-fonts
-      material-design-icons
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
   };
 }
