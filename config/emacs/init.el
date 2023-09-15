@@ -434,11 +434,7 @@
 :hook (js2-mode . lsp-deferred))
 
 (use-package nix-mode
-   :mode "\\.nix\\'")
-(use-package nixos-options)
-(use-package ivy-nixos-options)
-(use-package company-nixos-options)
-(add-to-list 'company-backends 'company-nixos-options)
+ :mode "\\.nix\\'")
 
 (use-package evil-nerd-commenter
 :bind ("M-/" . evilnc-comment-or-uncomment-lines))
