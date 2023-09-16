@@ -533,6 +533,11 @@ make sure to setup authinfo
 (use-package company-box
   :hook (company-mode . company-box-mode))
 #+end_src
+*** Formatting
+#+begin_src emacs-lisp
+  (use-package format-all
+    :hook ('prog-mode-hook . 'format-all-mode))
+#+end_src
 ** Dired (quick file management in emacs)
 Dired is a built-in file manager for Emacs that does some pretty amazing things!  Here are some key bindings you should try out:
 *** Key Bindings

@@ -453,6 +453,9 @@
 (use-package company-box
   :hook (company-mode . company-box-mode))
 
+(use-package format-all
+  :hook ('prog-mode-hook . 'format-all-mode))
+
 (use-package dired
   :ensure nil
   :commands (dired dired-jump)
