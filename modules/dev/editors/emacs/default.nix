@@ -1,9 +1,14 @@
-{ outputs, options, config, lib, pkgs, ...}:
-with lib;
-let
-  cfg = config.modules.dev.editors.emacs;
-in
 {
+  outputs,
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.dev.editors.emacs;
+in {
   options.modules.dev.editors.emacs = {
     enable = mkEnableOption false;
   };
@@ -21,7 +26,7 @@ in
       recursive = true;
     };
     fonts.fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      (nerdfonts.override {fonts = ["JetBrainsMono"];})
     ];
   };
 }
