@@ -1,14 +1,9 @@
-{
-  outputs,
-  options,
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-with lib; let
+{ outputs, options, config, lib, pkgs, ...}:
+with lib;
+let
   cfg = config.modules.desktop.game.wine;
-in {
+in
+{
   options.modules.desktop.game.wine = {
     enable = mkEnableOption false;
   };
@@ -16,7 +11,13 @@ in {
   config = mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
       winetricks
-      wineWowPackages.stable
+      wineWowPackages.staging
     ];
+    nixpkgs.config = {
+      wine = {
+        release = "unstable";
+        build = "wineWow";
+      };
+    };
   };
 }
