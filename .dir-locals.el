@@ -1,3 +1,4 @@
 ((nil
   (format-all-formatters
-   ("Nix" alejandra))))
+   ("Nix" alejandra)
+   ("Python" (yapf "--style" "google")))))

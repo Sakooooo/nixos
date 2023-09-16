@@ -456,10 +456,7 @@
 
 (use-package format-all
   :custom
-  ((setq format-all-formatters (("Nix" alejandra))))
-  :hook
-  ((format-all-mode . format-all-ensure-formatter)
-   (prog-mode . format-all-mode)))
+  ((setq format-all-formatters (("Nix" alejandra)))))
 
 (use-package dired
   :ensure nil
