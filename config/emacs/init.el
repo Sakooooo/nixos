@@ -1,3 +1,4 @@
+
 ;; UI/UX
 (setq inhibit-startup-message t)
 ;; make it look like neovim a little
