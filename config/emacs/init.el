@@ -434,6 +434,7 @@
 :hook (js2-mode . lsp-deferred))
 
 (use-package nix-mode
+  :hook (nix-mode . format-all-mode) 
  :mode "\\.nix\\'")
 
 (use-package evil-nerd-commenter
@@ -454,7 +455,8 @@
   :hook (company-mode . company-box-mode))
 
 (use-package format-all
-  :hook ('prog-mode-hook . 'format-all-mode))
+  :config
+  (setq format-all-formatters '(("Nix" . "alejandra"))))
 
 (use-package dired
   :ensure nil
