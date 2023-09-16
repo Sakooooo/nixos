@@ -536,9 +536,12 @@ make sure to setup authinfo
 #+end_src
 *** Formatting
 #+begin_src emacs-lisp
-  (use-package format-all
-    :config
-    (setq format-all-formatters '(("Nix" . "alejandra"))))
+(use-package format-all
+  :custom
+  ((setq format-all-formatters (("Nix" alejandra))))
+  :hook
+  ((format-all-mode . format-all-ensure-formatter)
+   (prog-mode . format-all-mode)))
 #+end_src
 ** Dired (quick file management in emacs)
 Dired is a built-in file manager for Emacs that does some pretty amazing things!  Here are some key bindings you should try out:

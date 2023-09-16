@@ -1,4 +1,3 @@
-
 ;; UI/UX
 (setq inhibit-startup-message t)
 ;; make it look like neovim a little
@@ -456,8 +455,11 @@
   :hook (company-mode . company-box-mode))
 
 (use-package format-all
-  :config
-  (setq format-all-formatters '(("Nix" . "alejandra"))))
+  :custom
+  ((setq format-all-formatters (("Nix" alejandra))))
+  :hook
+  ((format-all-mode . format-all-ensure-formatter)
+   (prog-mode . format-all-mode)))
 
 (use-package dired
   :ensure nil
