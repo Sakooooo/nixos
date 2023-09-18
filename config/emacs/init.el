@@ -21,7 +21,8 @@
 (global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-(set-face-attribute `default nil :font "JetBrains Mono" :height 150)
+(set-face-attribute `default nil :font "JetBrains Mono" :height 125)
+(setq frame-resize-pixelwise t)
 
 (require `package)
 

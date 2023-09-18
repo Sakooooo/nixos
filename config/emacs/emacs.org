@@ -43,7 +43,8 @@ M-x org-bable-tangle
 * Fonts
 
 #+begin_src emacs-lisp
-      (set-face-attribute `default nil :font "JetBrains Mono" :height 150)
+  (set-face-attribute `default nil :font "JetBrains Mono" :height 125)
+  (setq frame-resize-pixelwise t)
 #+end_src
 
 * Package setup
