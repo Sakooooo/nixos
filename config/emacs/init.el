@@ -408,6 +408,10 @@
   :after magit)
 (setq auth-sources '("~/.authinfo"))
 
+(use-package direnv
+ :config
+ (direnv-mode))
+
 (defun sakomacs/lsp-mode-setup ()
   (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
   (lsp-headerline-breadcrumb-mode))
@@ -433,6 +437,9 @@
 (use-package js2-mode
 :mode "\\.js\\'"
 :hook (js2-mode . lsp-deferred))
+
+(add-hook 'c-mode-hook 'lsp)
+(add-hook 'c++-mode-hook 'lsp)
 
 (use-package python-mode
   :mode "\\.py\\'"

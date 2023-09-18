@@ -470,6 +470,12 @@ make sure to setup authinfo
   :after magit)
 (setq auth-sources '("~/.authinfo"))
 #+end_src
+*** Direnv
+#+begin_src emacs-lisp
+(use-package direnv
+ :config
+ (direnv-mode))
+#+end_src
 *** Lsp-mode
 **** Language Servers 
 #+begin_src emacs-lisp
@@ -507,6 +513,11 @@ make sure to setup authinfo
   (use-package js2-mode
   :mode "\\.js\\'"
   :hook (js2-mode . lsp-deferred))
+#+end_src
+***** C/C++
+#+begin_src emacs-lisp
+(add-hook 'c-mode-hook 'lsp)
+(add-hook 'c++-mode-hook 'lsp)
 #+end_src
 ***** Python
 #+begin_src emacs-lisp
