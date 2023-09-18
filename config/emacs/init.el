@@ -434,6 +434,23 @@
 :mode "\\.js\\'"
 :hook (js2-mode . lsp-deferred))
 
+(use-package python-mode
+  :mode "\\.py\\'"
+  :hook (python-mode . lsp-deferred))
+
+(use-package elpy
+:after python-mode
+
+:custom
+(elpy-rpc-python-command "python3")
+
+:config
+(elpy-enable))
+
+(use-package yaml-mode
+  :mode ("\\.yaml\\'"
+         "\\.yml\\'"))
+
 (use-package nix-mode
   :hook (nix-mode . format-all-mode) 
  :mode "\\.nix\\'")

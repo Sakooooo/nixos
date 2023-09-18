@@ -508,6 +508,27 @@ make sure to setup authinfo
   :mode "\\.js\\'"
   :hook (js2-mode . lsp-deferred))
 #+end_src
+***** Python
+#+begin_src emacs-lisp
+  (use-package python-mode
+    :mode "\\.py\\'"
+    :hook (python-mode . lsp-deferred))
+
+  (use-package elpy
+  :after python-mode
+
+  :custom
+  (elpy-rpc-python-command "python3")
+
+  :config
+  (elpy-enable))
+#+end_src
+***** Yaml editing
+#+begin_src emacs-lisp
+      (use-package yaml-mode
+        :mode ("\\.yaml\\'"
+               "\\.yml\\'"))
+#+end_src
 ***** Nix
 #+begin_src emacs-lisp
   (use-package nix-mode
