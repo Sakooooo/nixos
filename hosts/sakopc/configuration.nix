@@ -17,7 +17,7 @@
 
   modules = {
     desktop = {
-      dwm.enable = true;
+      xmonad.enable = true;
       kitty.enable = true;
       picom.enable = true;
       apps = {
