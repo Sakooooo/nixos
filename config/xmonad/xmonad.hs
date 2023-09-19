@@ -302,7 +302,6 @@ myStatusBar = statusBarProp "xmobar" (pure myXmobarFormat)
 myStartupHook = do
   spawnOnce "feh --bg-scale /home/sako/background.png"
   spawnOnce "keepassxc"
-  spawnOnce "transmissoin-gtk"
   spawnOnce "nm-applet"
   spawnOnce "blueman-applet"
   spawnOnce "flameshot"
