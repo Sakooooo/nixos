@@ -534,6 +534,12 @@ make sure to setup authinfo
   :config
   (elpy-enable))
 #+end_src
+***** Haskell
+#+begin_src emacs-lisp
+  (use-package haskell-mode
+    :mode "\\.hs\\'"
+    :hook (python-mode . lsp-deferred))
+#+end_src
 ***** Yaml editing
 #+begin_src emacs-lisp
       (use-package yaml-mode

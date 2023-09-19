@@ -454,6 +454,10 @@
 :config
 (elpy-enable))
 
+(use-package haskell-mode
+  :mode "\\.hs\\'"
+  :hook (python-mode . lsp-deferred))
+
 (use-package yaml-mode
   :mode ("\\.yaml\\'"
          "\\.yml\\'"))
