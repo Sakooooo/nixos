@@ -21,8 +21,7 @@ audio() {
 }
 
 clock() {
-	printf "^c$black^ ^b$darkblue^ "
-	printf "^c$black^^b$blue^ $(date '+%H:%M')  "
+	printf "$(date '+%H:%M')  "
 }
 
 while true; do

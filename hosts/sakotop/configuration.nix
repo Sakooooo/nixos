@@ -19,8 +19,8 @@
   modules = {
     desktop = {
       kitty.enable = true;
-      dwm.enable = true;
-      xmonad.enable = false;
+      dwm.enable = false;
+      xmonad.enable = true;
       picom.enable = true;
       dunst.enable = true;
       browsers = {
