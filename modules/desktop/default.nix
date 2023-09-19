@@ -21,5 +21,7 @@
     ./picom
     # boot
     ./plymouth
+    # vpn
+    ./wireguard
   ];
 }

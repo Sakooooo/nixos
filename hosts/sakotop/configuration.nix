@@ -18,6 +18,7 @@
 
   modules = {
     desktop = {
+      wireguard.enable = true;
       kitty.enable = true;
       dwm.enable = false;
       xmonad.enable = true;
