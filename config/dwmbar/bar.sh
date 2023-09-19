@@ -20,7 +20,12 @@ audio() {
   fi
 }
 
+clock() {
+	printf "^c$black^ ^b$darkblue^ "
+	printf "^c$black^^b$blue^ $(date '+%H:%M')  "
+}
+
 while true; do
-  xsetroot -name " $(audio) $(battery) "
+  xsetroot -name " $(clock) $(audio) $(battery) "
   sleep 1
 done
