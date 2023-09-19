@@ -136,6 +136,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
     , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
 
+    -- Brightness
+    , ((0, xF86XK_MonBrightnessUp), spawn "brightnessctl s +100")
+    , ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl s 100-")
+
     -- Fullscreen
     , ((modm, xK_f), sendMessage $ JumpToLayout "Full"  )
 
