@@ -67,7 +67,7 @@
     };
     shell = {
       nix = {
-        optimization.enable = true;
+        optimize.enable = true;
         search.enable = true;
       };
       zsh.enable = true;
