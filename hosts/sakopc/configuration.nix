@@ -23,6 +23,7 @@
       apps = {
         keepassxc.enable = true;
         obs.enable = true;
+        nextcloud.enable = true;
       };
       browsers = {
         firefox.enable = true;
