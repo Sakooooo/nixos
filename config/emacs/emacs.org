@@ -512,7 +512,7 @@ make sure to setup authinfo
 #+begin_src emacs-lisp
   (use-package js2-mode
   :mode "\\.js\\'"
-  :hook (js2-mode . lsp-deferred))
+  :hook (js2-mode . lsp))
 #+end_src
 ***** C/C++
 #+begin_src emacs-lisp
@@ -523,7 +523,7 @@ make sure to setup authinfo
 #+begin_src emacs-lisp
   (use-package python-mode
     :mode "\\.py\\'"
-    :hook (python-mode . lsp-deferred))
+    :hook (python-mode . lsp))
 
   (use-package elpy
   :after python-mode
@@ -538,7 +538,7 @@ make sure to setup authinfo
 #+begin_src emacs-lisp
   (use-package haskell-mode
     :mode "\\.hs\\'"
-    :hook (python-mode . lsp-deferred))
+    :hook (python-mode . lsp))
 #+end_src
 ***** Yaml editing
 #+begin_src emacs-lisp
