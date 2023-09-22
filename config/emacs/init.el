@@ -1,5 +1,5 @@
 ;; UI/UX
-(setq inhibit-startup-message t)
+(setq inhibit-splash-screen t)
 ;; make it look like neovim a little
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -215,8 +215,9 @@
   (setq org-habit-graph-column 60)
 
   ;; archive thingy i forgot
-  (setq org-refile-targets
-      '(("archive.org" :maxlevel . 1)))
+    (setq org-refile-targets
+  '(("Archive.org" :maxlevel . 1)
+    ("Tasks.org" :maxlevel . 1)))
 
   ;; save org buffer before refile
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
@@ -227,60 +228,105 @@
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
-  
-  ;; extra keywords
-  (setq org-todo-keywords
-   '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-     (sequence "PLAN(p)" "READY(r)" "ACTIVE(a)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")  )
 
-  ;; custom commands for org-agenda
- (setq org-agenda-custom-commands
-   '(("d" "Dashboard"
-     ((agenda "" ((org-deadline-warning-days 7)))
-      (todo "NEXT"
-        ((org-agenda-overriding-header "Next Tasks")))
-      (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
+    (setq org-todo-keywords
+  '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+    (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)")))
 
-    ("n" "Next Tasks"
-     ((todo "NEXT"
-        ((org-agenda-overriding-header "Next Tasks")))))
+(setq org-refile-targets
+  '(("Archive.org" :maxlevel . 1)
+    ("Tasks.org" :maxlevel . 1)))
 
-    ("W" "Work Tasks" tags-todo "+work-email")
+;; Save Org buffers after refiling!
+(advice-add 'org-refile :after 'org-save-all-org-buffers)
 
-    ;; Low-effort next actions
-    ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
-     ((org-agenda-overriding-header "Low Effort Tasks")
-      (org-agenda-max-todos 20)
-      (org-agenda-files org-agenda-files)))
+(setq org-tag-alist
+  '((:startgroup)
+     ; Put mutually exclusive tags here
+     (:endgroup)
+     ("@errand" . ?E)
+     ("@home" . ?H)
+     ("@work" . ?W)
+     ("agenda" . ?a)
+     ("planning" . ?p)
+     ("publish" . ?P)
+     ("batch" . ?b)
+     ("note" . ?n)
+     ("idea" . ?i)))
 
-    ("w" "Workflow Status"
-      (todo "PLAN"
-            ((org-agenda-overriding-header "In Planning")
-             (org-agenda-todo-list-sublevels nil)
-             (org-agenda-files org-agenda-files)))
-      (todo "READY"
-            ((org-agenda-overriding-header "Ready for Work")
-             (org-agenda-files org-agenda-files)))
-      (todo "ACTIVE"
-            ((org-agenda-overriding-header "Active Projects")
-             (org-agenda-files org-agenda-files)))
-      (todo "COMPLETED"
-            ((org-agenda-overriding-header "Completed Projects")
-             (org-agenda-files org-agenda-files)))
-      (todo "CANC"
-            ((org-agenda-overriding-header "Cancelled Projects")
-             (org-agenda-files org-agenda-files))))))) 
+;; Configure custom agenda views
+(setq org-agenda-custom-commands
+ '(("d" "Dashboard"
+   ((agenda "" ((org-deadline-warning-days 7)))
+    (todo "NEXT"
+      ((org-agenda-overriding-header "Next Tasks")))
+    (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
 
-  (setq org-agenda-files
-	'("~/org/tasks.org")
-	'("~/org/work.org"))
+  ("n" "Next Tasks"
+   ((todo "NEXT"
+      ((org-agenda-overriding-header "Next Tasks")))))
 
-  (setq org-adapt-indentation t)
+  ("W" "Work Tasks" tags-todo "+work-email")
 
-  (setq org-capture-templates
+  ;; Low-effort next actions
+  ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
+   ((org-agenda-overriding-header "Low Effort Tasks")
+    (org-agenda-max-todos 20)
+    (org-agenda-files org-agenda-files)))
+
+  ("w" "Workflow Status"
+   ((todo "WAIT"
+          ((org-agenda-overriding-header "Waiting on External")
+           (org-agenda-files org-agenda-files)))
+    (todo "REVIEW"
+          ((org-agenda-overriding-header "In Review")
+           (org-agenda-files org-agenda-files)))
+    (todo "PLAN"
+          ((org-agenda-overriding-header "In Planning")
+           (org-agenda-todo-list-sublevels nil)
+           (org-agenda-files org-agenda-files)))
+    (todo "BACKLOG"
+          ((org-agenda-overriding-header "Project Backlog")
+           (org-agenda-todo-list-sublevels nil)
+           (org-agenda-files org-agenda-files)))
+    (todo "READY"
+          ((org-agenda-overriding-header "Ready for Work")
+           (org-agenda-files org-agenda-files)))
+    (todo "ACTIVE"
+          ((org-agenda-overriding-header "Active Projects")
+           (org-agenda-files org-agenda-files)))
+    (todo "COMPLETED"
+          ((org-agenda-overriding-header "Completed Projects")
+           (org-agenda-files org-agenda-files)))
+    (todo "CANC"
+          ((org-agenda-overriding-header "Cancelled Projects")
+           (org-agenda-files org-agenda-files)))))))
+
+(setq org-capture-templates
   `(("t" "Tasks / Projects")
-    ("tt" "Task" entry (file+olp "~/org/tasks.org" "Inbox")
-    "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1))))
+    ("tt" "Task" entry (file+olp "~/Projects/Code/emacs-from-scratch/OrgFiles/Tasks.org" "Inbox")
+         "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+
+    ("j" "Journal Entries")
+    ("jj" "Journal" entry
+         (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
+         "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
+         ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
+         :clock-in :clock-resume
+         :empty-lines 1)
+    ("jm" "Meeting" entry
+         (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
+         "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
+         :clock-in :clock-resume
+         :empty-lines 1)
+
+    ("w" "Workflows")
+    ("we" "Checking Email" entry (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
+         "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
+
+    ("m" "Metrics Capture")
+    ("mw" "Weight" table-line (file+headline "~/Projects/Code/emacs-from-scratch/OrgFiles/Metrics.org" "Weight")
+     "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t))))
 
 
 ;; i need more bullets, i need more bullets, i need more bullets, bigger weapons, bigger weapons, bigger weapons
@@ -294,7 +340,7 @@
 ;; word
 (defun sakomacs/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
-	visual-fill-column-center-text t)
+        visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
 
 (use-package visual-fill-column
@@ -436,14 +482,14 @@
 
 (use-package js2-mode
 :mode "\\.js\\'"
-:hook (js2-mode . lsp-deferred))
+:hook (js2-mode . lsp))
 
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
 
 (use-package python-mode
   :mode "\\.py\\'"
-  :hook (python-mode . lsp-deferred))
+  :hook (python-mode . lsp))
 
 (use-package elpy
 :after python-mode
@@ -456,7 +502,7 @@
 
 (use-package haskell-mode
   :mode "\\.hs\\'"
-  :hook (python-mode . lsp-deferred))
+  :hook (python-mode . lsp))
 
 (use-package yaml-mode
   :mode ("\\.yaml\\'"
