@@ -90,6 +90,11 @@
   };
 
   modules = {
+    desktop = {
+      apps = {
+        nextcloud.enable = true;
+      };
+    };
     dev = {
       editors = {
         nvim.enable = true;
