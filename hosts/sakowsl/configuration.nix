@@ -10,6 +10,7 @@
   imports = [
     inputs.home-manager.nixosModules.default
     "${modulesPath}/profiles/minimal.nix"
+    outputs.nixosModules.desktop
     outputs.nixosModules.shell
     outputs.nixosModules.hardware
     outputs.nixosModules.dev
