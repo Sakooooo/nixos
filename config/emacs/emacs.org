@@ -269,11 +269,17 @@ M-x org-bable-tangle
 
     ;; archive thingy i forgot
       (setq org-refile-targets
-    '(("Archive.org" :maxlevel . 1)
-      ("Tasks.org" :maxlevel . 1)))
+    '(("archive.org" :maxlevel . 1)
+      ("tasks.org" :maxlevel . 1)))
 
     ;; save org buffer before refile
     (advice-add 'org-refile :after 'org-save-all-org-buffers)
+
+    ;; org agenda files
+      (setq org-agenda-files
+        '("~/org/tasks.org"
+         "~/org/school.org"
+          "~/org/work.org"))
 
     ;; org mode src thing
     (require 'org-tempo)
@@ -287,8 +293,8 @@ M-x org-bable-tangle
       (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)")))
 
   (setq org-refile-targets
-    '(("Archive.org" :maxlevel . 1)
-      ("Tasks.org" :maxlevel . 1)))
+    '(("archive.org" :maxlevel . 1)
+      ("tasks.org" :maxlevel . 1)))
 
   ;; Save Org buffers after refiling!
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
