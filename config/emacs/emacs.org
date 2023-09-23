@@ -279,6 +279,7 @@ M-x org-bable-tangle
       (setq org-agenda-files
         '("~/org/tasks.org"
          "~/org/school.org"
+         "~/org/daily.org"
           "~/org/work.org"))
 
     ;; org mode src thing
