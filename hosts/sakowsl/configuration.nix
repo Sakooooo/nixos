@@ -24,7 +24,7 @@
         root = "/mnt";
         # Allows writing to linux network section in Explorer
         options = "metadata,uid=1000,gid=100,umask=22,fmask=11";
-     };
+      };
     };
     defaultUser = "sako";
     startMenuLaunchers = true;
@@ -37,7 +37,6 @@
 
     # Enable integration with Docker Desktop (needs to be installed)
     # docker-desktop.enable = true;
-
   };
 
   users.users.sako.isNormalUser = true;
@@ -61,12 +60,11 @@
     xdg.configFile.git = {
       source = ../../config/git;
     };
-    services.gpg-agent = {
-      enable = true;
-      pinentryFlavor = "tty";
-    };
   };
-
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "gtk2";
+  };
   # bare minimum
   environment.systemPackages = with pkgs; [
     vim # backup
@@ -77,11 +75,6 @@
     htop # htop
     tree # trees
   ];
-  # you phisiclally cannot live without this
-  # litearlly!  ! ! ! ! !
-  programs.gnupg.agent = {
-    enable = true;
-  };
 
   environment.noXlibs = lib.mkForce false;
 

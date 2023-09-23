@@ -567,6 +567,10 @@
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
+(use-package elcord
+  :init
+  (elcord-mode))
+
 (org-babel-do-load-languages
 'org-babel-load-languages
 '((emacs-lisp . t)
