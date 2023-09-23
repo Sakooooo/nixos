@@ -280,6 +280,7 @@ M-x org-bable-tangle
         '("~/org/tasks.org"
          "~/org/school.org"
          "~/org/daily.org"
+          "~/org/irl.org"
           "~/org/work.org"))
 
     ;; org mode src thing
