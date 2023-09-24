@@ -24,6 +24,7 @@
         keepassxc.enable = true;
         obs.enable = true;
         nextcloud.enable = true;
+        rssguard.enable = true;
       };
       browsers = {
         firefox.enable = true;
@@ -49,6 +50,7 @@
       editors = {
         nvim.enable = true;
         vscode.enable = true;
+        emacs.enable = true;
       };
       cc.enable = true;
       javascript.enable = true;
