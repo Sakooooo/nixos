@@ -740,12 +740,6 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 #+end_src
-** Rich Precense
-#+begin_src emacs-lisp
-  (use-package elcord
-    :init
-    (elcord-mode))
-#+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
 #+begin_src emacs-lisp
