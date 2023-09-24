@@ -418,33 +418,6 @@ M-x org-bable-tangle
                       :config
                       (org-roam-setup)))
 #+end_src
-** Org-Alert
-#+begin_src emacs-lisp
-  (use-package org-alert
-    :ensure t
-    :custom (alert-default-style 'notification)
-    :config
-    (setq org-alert-interval 300
-           org-alert-notify-cutoff 30
-          org-alert-notification-title "Emacs")
-    (org-alert-enable))
-#+end_src
-*** Windows Fix
-#+begin_src emacs-lisp
-(use-package alert
-  :config
-  ;; Add the windows desktop notifications if on windows
-  (when (eq system-type 'windows-nt)
-    (alert-define-style
-     'windows-desktop-notification-style
-     :title "Windows Desktop Notification style"
-     :notifier
-     (lambda (info)
-       (let ((notif-id (w32-notification-notify :title (plist-get info :title) :body (plist-get info :message))))
-         ;; Close it after 3 seconds (no new notification can be sent if left unclosed)
-         (run-with-timer 3 nil `(lambda() (w32-notification-close ,notif-id))))))
-    (setq alert-default-style 'windows-desktop-notification-style)))
-#+end_src
 ** Treemacs
 #+begin_src emacs-lisp
 (use-package treemacs
