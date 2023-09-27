@@ -216,11 +216,18 @@
 
   ;; archive thingy i forgot
     (setq org-refile-targets
-  '(("Archive.org" :maxlevel . 1)
-    ("Tasks.org" :maxlevel . 1)))
+  '(("archive.org" :maxlevel . 1)))
 
   ;; save org buffer before refile
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
+
+  ;; org agenda files
+    (setq org-agenda-files
+      '("~/org/tasks.org"
+       "~/org/school.org"
+       "~/org/daily.org"
+       "~/org/irl.org"
+        "~/org/work.org"))
 
   ;; org mode src thing
   (require 'org-tempo)
@@ -234,8 +241,8 @@
     (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)")))
 
 (setq org-refile-targets
-  '(("Archive.org" :maxlevel . 1)
-    ("Tasks.org" :maxlevel . 1)))
+  '(("archive.org" :maxlevel . 1)
+    ("tasks.org" :maxlevel . 1)))
 
 ;; Save Org buffers after refiling!
 (advice-add 'org-refile :after 'org-save-all-org-buffers)
@@ -345,6 +352,16 @@
 
 (use-package visual-fill-column
   :hook (org-mode . sakomacs/org-mode-visual-fill))
+
+(use-package org-roam
+:ensure t
+:custom
+(org-roam-directory "~/org"
+                    :bind (("C-c n l" . org-roam-buffer-toggle)
+                           ("C-c n f" . org-roam-node-find)
+                           ("C-c n i" . org-roam-node-insert))
+                    :config
+                    (org-roam-setup)))
 
 (use-package treemacs
   :ensure t
@@ -566,10 +583,6 @@
 ;; auto save files in the same path as it uses for sessions
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-
-(use-package elcord
-  :init
-  (elcord-mode))
 
 (org-babel-do-load-languages
 'org-babel-load-languages
