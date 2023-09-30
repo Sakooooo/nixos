@@ -620,9 +620,11 @@ make sure to setup authinfo
 #+end_src
 ***** Nix
 #+begin_src emacs-lisp
-  (use-package nix-mode
-    :hook (nix-mode . format-all-mode) 
-   :mode "\\.nix\\'")
+    (use-package nix-mode
+      :hook ((nix-mode . lsp) 
+               (nix-mode . format-all-mode)
+               (nix-mode . (lambda () (setq-local format-all-formatters '(("Nix" alejandra))))))
+      :mode "\\.nix\\'")
 #+end_src
 *** Commenter
 #+begin_src emacs-lisp
@@ -647,9 +649,7 @@ make sure to setup authinfo
 #+end_src
 *** Formatting
 #+begin_src emacs-lisp
-(use-package format-all
-  :custom
-  ((setq format-all-formatters (("Nix" alejandra)))))
+(use-package format-all)
 #+end_src
 ** Dired (quick file management in emacs)
 Dired is a built-in file manager for Emacs that does some pretty amazing things!  Here are some key bindings you should try out:
