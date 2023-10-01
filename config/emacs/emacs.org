@@ -581,6 +581,12 @@ make sure to setup authinfo
   :mode "\\.js\\'"
   :hook (js2-mode . lsp))
 #+end_src
+***** HTML/CSS
+#+begin_src emacs-lisp
+    (use-package web-mode
+    :mode ("\\.html\\"
+           "\\.css\\")) 
+#+end_src
 ***** C/C++
 #+begin_src emacs-lisp
 (add-hook 'c-mode-hook 'lsp)
