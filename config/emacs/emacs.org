@@ -487,6 +487,7 @@ M-x org-bable-tangle
 
     (treemacs-follow-mode t)
     (treemacs-tag-follow-mode t)
+    (treemacs-project-follow-mode t)
     (treemacs-filewatch-mode t)
     (treemacs-fringe-indicator-mode 'always)
     (when treemacs-python-executable
