@@ -207,6 +207,29 @@ M-x org-bable-tangle
               "o" `(:ignore o :which-key "org")
               "oa" `(org-agenda :which-key "agenda")))
 #+end_src 
+** Emacs-Dashboard
+#+begin_src emacs-lisp
+    (use-package dashboard
+      :ensure t
+      :config
+      (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+      ;; Configuration of Dashboard
+      (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
+      (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
+      ;; Set the title
+      (setq dashboard-banner-logo-title "Emacs is vscode for nerds")
+      ;; Set the banner
+      (setq dashboard-startup-banner 'official)
+      ;; center everything 
+      (setq dashboard-center-content t)
+      ;; jump thing
+      (setq dashboard-show-shortcuts nil)
+      (setq dashboard-items '((projects . 5)
+                              (agenda . 5)))
+      (setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
+      (setq dashboard-footer-messages '("I think I have Emacs pinky!"))
+      (dashboard-setup-startup-hook))
+#+end_src
 ** Evil Mode (vim)
 #+begin_src emacs-lisp
 (use-package evil
