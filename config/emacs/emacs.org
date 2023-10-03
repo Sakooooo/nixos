@@ -854,3 +854,11 @@ god dammit why are they making my shells in emacs lisp
 
   (eshell-git-prompt-use-theme 'powerline))
 #+end_src
+
+** VTerm
+#+begin_src emacs-lisp
+  (use-package vterm
+  :commands vterm
+  :config
+  (setq vterm-max-scrollback 10000))
+#+end_src
