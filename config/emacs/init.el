@@ -1,3 +1,15 @@
+(setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
+(set-language-environment 'utf-8)
+(set-keyboard-coding-system 'utf-8) ; For old Carbon emacs on OS X only
+(setq locale-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-selection-coding-system
+  (if (eq system-type 'windows-nt)
+      'utf-16-le  ;; https://rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
+    'utf-8))
+(prefer-coding-system 'utf-8)
+
 ;; UI/UX
 (setq inhibit-splash-screen t)
 ;; make it look like neovim a little
@@ -13,7 +25,8 @@
 (dolist (mode '(org-mode-hook
                 term-mode-hook
                 eshell-mode-hook
-                treemacs-mode-hook))
+                treemacs-mode-hook
+                dashboard-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 ;; Bell
 (setq visible-bell t)
@@ -23,6 +36,7 @@
 
 (set-face-attribute `default nil :font "JetBrains Mono" :height 125)
 (setq frame-resize-pixelwise t)
+(setq default-frame-alist '((font . "JetBrains Mono")))
 
 (require `package)
 
@@ -88,7 +102,7 @@
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
 ;; load the theme
-(load-theme 'doom-challenger-deep t)
+(load-theme 'doom-monokai-pro t)
 
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config))
@@ -142,7 +156,32 @@
     "t" `(:ignore t :which-key "toggles")
     "tt" `(counsel-load-theme :which-key "choose theme")
     "e" `(:ignore e :which-key "explorer")
-    "ee" `(treemacs :which-key "treemacs")))
+    "ee" `(treemacs :which-key "treemacs")
+    "p" `(:ignore p :which-key "projects")
+    "pp" `(projectile-switch-project :which-key "open project")
+    "o" `(:ignore o :which-key "org")
+    "oa" `(org-agenda :which-key "agenda")))
+
+(use-package dashboard
+  :ensure t
+  :config
+  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+  ;; Configuration of Dashboard
+  (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
+  (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
+  ;; Set the title
+  (setq dashboard-banner-logo-title "Emacs is vscode for nerds")
+  ;; Set the banner
+  (setq dashboard-startup-banner 'official)
+  ;; center everything 
+  (setq dashboard-center-content t)
+  ;; jump thing
+  (setq dashboard-show-shortcuts nil)
+  (setq dashboard-items '((projects . 5)
+                          (agenda . 5)))
+  (setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
+  (setq dashboard-footer-messages '("I think I have Emacs pinky!"))
+  (dashboard-setup-startup-hook))
 
 (use-package evil
   :init
@@ -429,6 +468,8 @@
     ;;(treemacs-resize-icons 44)
 
     (treemacs-follow-mode t)
+    (treemacs-tag-follow-mode t)
+    (treemacs-project-follow-mode t)
     (treemacs-filewatch-mode t)
     (treemacs-fringe-indicator-mode 'always)
     (when treemacs-python-executable
@@ -497,12 +538,20 @@
 
 (use-package lsp-ivy)
 
+(use-package web-mode
+     :mode ("\\.html\\'"
+             "\\.css\\'"))
+
 (use-package js2-mode
 :mode "\\.js\\'"
 :hook (js2-mode . lsp))
 
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
+
+(use-package cmake-mode
+  :mode "CMakeLists.txt"
+  :hook (cmake-mode . lsp))
 
 (use-package python-mode
   :mode "\\.py\\'"
@@ -526,8 +575,10 @@
          "\\.yml\\'"))
 
 (use-package nix-mode
-  :hook (nix-mode . format-all-mode) 
- :mode "\\.nix\\'")
+  :hook ((nix-mode . lsp) 
+           (nix-mode . format-all-mode)
+           (nix-mode . (lambda () (setq-local format-all-formatters '(("Nix" alejandra))))))
+  :mode "\\.nix\\'")
 
 (use-package evil-nerd-commenter
 :bind ("M-/" . evilnc-comment-or-uncomment-lines))
@@ -546,9 +597,7 @@
 (use-package company-box
   :hook (company-mode . company-box-mode))
 
-(use-package format-all
-  :custom
-  ((setq format-all-formatters (("Nix" alejandra)))))
+(use-package format-all)
 
 (use-package dired
   :ensure nil
@@ -628,3 +677,8 @@
     (setq eshell-visual-commands '("htop" "zsh" "vim")))
 
   (eshell-git-prompt-use-theme 'powerline))
+
+(use-package vterm
+:commands vterm
+:config
+(setq vterm-max-scrollback 10000))
