@@ -16,7 +16,7 @@ in {
   config = mkIf cfg.enable {
     services.emacs = {
       enable = true;
-      package = pkgs.emacs;
+      install = true;
     };
     users.users.sako.packages = with pkgs; [
       # bro
