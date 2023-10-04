@@ -164,7 +164,9 @@
     "p" `(:ignore p :which-key "projects")
     "pp" `(projectile-switch-project :which-key "open project")
     "o" `(:ignore o :which-key "org")
-    "oa" `(org-agenda :which-key "agenda")))
+    "oa" `(org-agenda :which-key "agenda")
+    "g" `(:ignore g :which-key "git")
+    "gs" `(magit-status :which-key "status")))
 
 (use-package dashboard
   :ensure t
