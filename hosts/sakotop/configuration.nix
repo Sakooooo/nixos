@@ -116,7 +116,7 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   # homelab
-  security.pki.certificateFiles = ["/root/homelab.crt"];
+  security.pki.certificateFiles = ["/home/sako/homelab.crt"];
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
