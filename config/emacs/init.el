@@ -10,6 +10,12 @@
     'utf-8))
 (prefer-coding-system 'utf-8)
 
+(setq frame-resize-pixelwise t)
+;; ui settings apparently go below
+(setq default-frame-alist '((font . "JetBrains Mono")
+                            '(vertical-scroll-bars . nil)
+                            '(horizontal-scroll-bars . nil)))
+
 ;; UI/UX
 (setq inhibit-splash-screen t)
 ;; make it look like neovim a little
@@ -30,12 +36,6 @@
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 ;; Bell
 (setq visible-bell t)
-
-(setq frame-resize-pixelwise t)
-;; ui settings apparently go below
-(setq default-frame-alist '((font . "JetBrains Mono")
-                            '(vertical-scroll-bars . nil)
-                            '(horizontal-scroll-bars . nil)))
 
 (global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)

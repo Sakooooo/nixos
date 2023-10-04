@@ -26,6 +26,15 @@ M-x org-bable-tangle
       'utf-8))
   (prefer-coding-system 'utf-8)
 #+end_src
+* EmacsClient UI
+#+begin_src emacs-lisp
+        (setq frame-resize-pixelwise t)
+        ;; ui settings apparently go below
+        (setq default-frame-alist '((font . "JetBrains Mono")
+                                    '(vertical-scroll-bars . nil)
+                                    '(horizontal-scroll-bars . nil)))
+
+#+end_src
 * UI 
 #+begin_src emacs-lisp
     ;; UI/UX
@@ -48,15 +57,6 @@ M-x org-bable-tangle
       (add-hook mode (lambda () (display-line-numbers-mode 0))))
     ;; Bell
     (setq visible-bell t)
-#+end_src
-* EmacsClient UI
-#+begin_src emacs-lisp
-        (setq frame-resize-pixelwise t)
-        ;; ui settings apparently go below
-        (setq default-frame-alist '((font . "JetBrains Mono")
-                                    '(vertical-scroll-bars . nil)
-                                    '(horizontal-scroll-bars . nil)))
-
 #+end_src
 * Keymaps
 #+begin_src emacs-lisp
