@@ -31,6 +31,12 @@
 ;; Bell
 (setq visible-bell t)
 
+(setq frame-resize-pixelwise t)
+;; ui settings apparently go below
+(setq default-frame-alist '((font . "JetBrains Mono")
+                            '(vertical-scroll-bars . nil)
+                            '(horizontal-scroll-bars . nil)))
+
 (global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
