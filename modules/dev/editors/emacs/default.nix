@@ -17,6 +17,7 @@ in {
     services.emacs = {
       enable = true;
       install = true;
+      package = pkgs.emacs;
     };
     users.users.sako.packages = with pkgs; [
       # bro
