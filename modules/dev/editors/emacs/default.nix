@@ -21,8 +21,8 @@ in {
     users.users.sako.packages = with pkgs; [
       # bro
       direnv
-      # oh my days
-      emacs
+      # daemon lmao
+      #emacs
     ];
     home-manager.users.sako.home.file.".emacs.d" = {
       enable = true;
