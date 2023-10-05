@@ -14,16 +14,15 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # ues daemon
     services.emacs = {
       enable = true;
       install = true;
       package = pkgs.emacs;
     };
     users.users.sako.packages = with pkgs; [
-      # bro
+      # direnv
       direnv
-      # daemon lmao
-      #emacs
     ];
     home-manager.users.sako.home.file.".emacs.d" = {
       enable = true;
@@ -32,6 +31,7 @@ in {
     };
     fonts.fonts = with pkgs; [
       (nerdfonts.override {fonts = ["JetBrainsMono"];})
+      jetbrains-mono
     ];
   };
 }
