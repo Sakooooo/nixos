@@ -122,7 +122,7 @@
     secrets."homelab_cert.pem" = {};
   };
 
-  security.pki.certificateFiles = ["/run/secrets/homelab_cert.pem"];
+  security.pki.certificateFiles = [config.sops.secrets."homelab_cert.pem".path];
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
