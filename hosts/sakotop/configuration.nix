@@ -116,7 +116,10 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   # homelab
-  sops.secrets."homelab-cert.pem" = {};
+  sops = {
+    defaultSopsFile = ./secrets/homelab-cert.yaml;
+    sops.secrets."homelab_cert.pem" = {};
+  };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
