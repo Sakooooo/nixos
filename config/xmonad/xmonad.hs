@@ -259,7 +259,7 @@ myLogHook :: Handle -> X ()
 myLogHook h = dynamicLogWithPP $ def { 
                                     ppOutput = hPutStrLn h,
                                     ppExtras = [],
-                                    ppOrder = \[ws, _] -> [ws]
+                                    ppOrder = \[ws, l, _] -> [ws, l]
                                   }
 
 myXmobarFormat = def {
@@ -270,7 +270,7 @@ myXmobarFormat = def {
             ppHiddenNoWindows = lowWhite . wrap " " "",
             ppUrgent = red . wrap (yellow "!") (yellow "!"),
             -- ppOrder = \(ws:_) -> [ws],
-            ppOrder = \[ws, l, _, wins] -> [ws, l, wins],
+            ppOrder = \[ws, l, _ ] -> [ws, l ],
             ppExtras = [logTitles formatFocused formatUnfocused]
 }
   where
