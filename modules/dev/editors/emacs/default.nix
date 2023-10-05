@@ -23,6 +23,8 @@ in {
     users.users.sako.packages = with pkgs; [
       # direnv
       direnv
+      # vtern
+      libvterm
     ];
     home-manager.users.sako.home.file.".emacs.d" = {
       enable = true;
