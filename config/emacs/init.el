@@ -274,6 +274,9 @@
        "~/org/irl.org"
         "~/org/work.org"))
 
+    ;; Following
+    (setq org-return-follows-link  t)
+
   ;; org mode src thing
   (require 'org-tempo)
 
