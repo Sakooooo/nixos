@@ -117,6 +117,7 @@
 
   # homelab
   sops = {
+    age.sshKeyPaths = ["/home/sako/.ssh/id_ed25519"];
     defaultSopsFile = ./secrets/homelab-cert.yaml;
     secrets."homelab_cert.pem" = {};
   };
