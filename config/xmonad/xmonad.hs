@@ -315,7 +315,7 @@ myStartupHook = do
 main = xmonad . ewmhFullscreen . ewmh . withEasySB myStatusBar defToggleStrutsKey $ myConfig 
 
 myConfig = defaults {
-     layoutHook = spacingWithEdge 10 $ avoidStruts $ layoutHook def,
+     layoutHook = spacingWithEdge 5 $ avoidStruts $ layoutHook def,
 
      manageHook = manageDocks <+> manageHook def,
 
