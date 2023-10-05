@@ -118,7 +118,7 @@
   # homelab
   sops = {
     defaultSopsFile = ./secrets/homelab-cert.yaml;
-    sops.secrets."homelab_cert.pem" = {};
+    secrets."homelab_cert.pem" = {};
   };
 
   # Enable the OpenSSH daemon.
