@@ -259,7 +259,7 @@ myLogHook :: Handle -> X ()
 myLogHook h = dynamicLogWithPP $ def { 
                                     ppOutput = hPutStrLn h,
                                     ppExtras = [],
-                                    ppOrder = \[ws, l, _] -> [ws, l]
+                                    ppOrder = \[ws, _] -> [ws]
                                   }
 
 myXmobarFormat = def {
