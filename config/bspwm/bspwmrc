@@ -1,4 +1,4 @@
-#!/nix/store/7q1b1bsmxi91zci6g8714rcljl620y7f-bash-5.2-p15/bin/sh
+#!/bin/sh
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
@@ -23,8 +23,8 @@ bspc rule -a Screenkey manage=off
 # cursor fix
 xsetroot -cursor_name left_ptr
 
-# picom :D
-#/home/sako/.config/picom/startpicom &
+# picom
+picom &
 
 # background
 feh --bg-scale /home/sako/background.png &
