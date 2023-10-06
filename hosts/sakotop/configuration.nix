@@ -107,6 +107,7 @@
     };
     security = {
       age.enable = true;
+      sops.enable = true;
     };
   };
 
@@ -122,6 +123,12 @@
   };
 
   security.pki.certificateFiles = [./trust/homelab.pem];
+
+  networking.wireguard.interfaces = {
+    wg0 = {
+    };
+  };
+
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
