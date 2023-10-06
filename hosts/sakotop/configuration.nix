@@ -117,12 +117,11 @@
 
   # homelab
   sops = {
+    # we need to setup wireguard with this soon
     age.sshKeyPaths = ["/home/sako/.ssh/id_ed25519"];
-    defaultSopsFile = ./secrets/homelab-cert.yaml;
-    secrets."homelab_cert.pem" = {};
   };
 
-  security.pki.certificateFiles = [config.sops.secrets."homelab_cert.pem".path];
+  security.pki.certificateFiles = [./trust/homelab.pem];
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
