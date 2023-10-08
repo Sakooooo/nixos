@@ -3,5 +3,6 @@
     ./teams
     ./whatsapp
     ./zoom
+    ./discord
   ];
 }

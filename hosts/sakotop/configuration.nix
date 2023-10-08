@@ -32,6 +32,8 @@
       chat = {
         whatsapp.enable = true;
         zoom.enable = true;
+        discord.enable = true;
+        teams.enable = true;
       };
       apps = {
         nemo.enable = true;
