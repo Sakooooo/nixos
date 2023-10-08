@@ -305,6 +305,7 @@ myStartupHook = do
   spawnOnce "nm-applet"
   spawnOnce "blueman-applet"
   spawnOnce "flameshot"
+  spawnOnce "nextcloud"
   spawn "picom"
   spawn "trayer --edge bottom --align right --iconspacing 5 --height 25 --widthtype request --alpha 0 --transparent true --tint 'black'"
 ------------------------------------------------------------------------
