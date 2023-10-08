@@ -110,6 +110,7 @@
     security = {
       age.enable = true;
       sops.enable = true;
+      certs.enable = true;
     };
   };
 
@@ -123,8 +124,6 @@
     # we need to setup wireguard with this soon
     age.sshKeyPaths = ["/home/sako/.ssh/id_ed25519"];
   };
-
-  security.pki.certificateFiles = [./trust/homelab.pem];
 
   networking.wireguard.interfaces = {
   };
