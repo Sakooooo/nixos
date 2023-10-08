@@ -34,6 +34,7 @@
       chat = {
         whatsapp.enable = true;
         zoom.enable = true;
+        discord.enable = true;
       };
       game = {
         lutris.enable = true;
@@ -49,7 +50,6 @@
     dev = {
       editors = {
         nvim.enable = true;
-        vscode.enable = true;
         emacs.enable = true;
       };
       cc.enable = true;
@@ -79,6 +79,11 @@
     };
     work = {
       libreoffice.enable = true;
+      onlyoffice.enable = true;
+    };
+    security = {
+      sops.enable = true;
+      certs.enable = true;
     };
   };
 }
