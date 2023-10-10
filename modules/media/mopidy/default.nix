@@ -21,7 +21,6 @@ in {
         [jellyfin]
         hostname = https://jellyfin.sako.box
         username = sako
-        password =
       '';
     };
   };

@@ -100,7 +100,7 @@
       ranger.enable = true;
     };
     media = {
-      mpd.enable = true;
+      mpd.enable = false;
       ncmpcpp.enable = true;
       mopidy.enable = true;
     };
