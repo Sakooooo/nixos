@@ -59,7 +59,6 @@
         blender.enable = true;
         kdenlive.enable = true;
         mpv.enable = true;
-        mopidy.enable = true;
       };
     };
     hardware = {
@@ -103,6 +102,7 @@
     media = {
       mpd.enable = true;
       ncmpcpp.enable = true;
+      mopidy.enable = true;
     };
     work = {
       libreoffice.enable = true;
