@@ -102,7 +102,6 @@
     media = {
       mpd.enable = false;
       ncmpcpp.enable = true;
-      mopidy.enable = false;
     };
     work = {
       libreoffice.enable = true;
