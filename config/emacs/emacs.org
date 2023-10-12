@@ -630,6 +630,7 @@ make sure to setup authinfo
 ***** HTML/CSS
 #+begin_src emacs-lisp
   (use-package web-mode
+       :hook (web-mode . lsp)
        :mode ("\\.html\\'"
                "\\.css\\'"))
 #+end_src
