@@ -180,7 +180,7 @@ M-x org-bable-tangle
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 35)))
+  :custom ((doom-modeline-height 45)))
 #+end_src
 ** Better help menu
 #+begin_src emacs-lisp
