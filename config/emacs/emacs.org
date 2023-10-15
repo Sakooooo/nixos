@@ -26,15 +26,6 @@ M-x org-bable-tangle
       'utf-8))
   (prefer-coding-system 'utf-8)
 #+end_src
-* Windows Fixes
-#+begin_src emacs-lisp
-   (if (eq system-type 'windows-nt)
-  ;; Makes it feel like actual linux!
-      (progn
-        (setenv "HOME" "C:/Users/user")
-       )
-  )
-#+end_src
 * EmacsClient UI
 #+begin_src emacs-lisp
         (setq frame-resize-pixelwise t)
@@ -189,7 +180,7 @@ M-x org-bable-tangle
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 50)))
+  :custom ((doom-modeline-height 30)))
 #+end_src
 ** Better help menu
 #+begin_src emacs-lisp
