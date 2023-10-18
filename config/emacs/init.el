@@ -106,7 +106,7 @@
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
 ;; load the theme
-(load-theme 'doom-monokai-pro t)
+(load-theme 'doom-dark+ t)
 
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config))
@@ -137,7 +137,7 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 35)))
+  :custom ((doom-modeline-height 30)))
 
 (use-package helpful
   :ensure t
@@ -163,6 +163,7 @@
     "ee" `(treemacs :which-key "treemacs")
     "p" `(:ignore p :which-key "projects")
     "pp" `(projectile-switch-project :which-key "open project")
+    "pk" `(projectile-kill-buffers :which-key "close project")
     "o" `(:ignore o :which-key "org")
     "oa" `(org-agenda :which-key "agenda")
     "g" `(:ignore g :which-key "git")
@@ -535,7 +536,8 @@
     :init
     (setq lsp-keymap-prefix "C-c l")
     :config
-    (lsp-enable-which-key-integration t))
+    (lsp-enable-which-key-integration t)
+    (setq lsp-keep-workspace-alive nil))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -548,6 +550,7 @@
 (use-package lsp-ivy)
 
 (use-package web-mode
+     :hook (web-mode . lsp)
      :mode ("\\.html\\'"
              "\\.css\\'"))
 
