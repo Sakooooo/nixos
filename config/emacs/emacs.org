@@ -1,17 +1,8 @@
 #+title: Sakomacs configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el
 
-* Emacs from scratch
-** DONE move init.el to here
-CLOSED: [2023-09-08 Fri 23:20]
-:LOGBOOK:
-- State "DONE"       from "TODO"       [2023-09-08 Fri 23:20]
-:END:
-** TODO Finish Video
-video: https://www.youtube.com/watch?v=wa_wZIuT9Vw 
 * Usage
 M-x org-bable-tangle
-
 * Default Enconding
 #+begin_src emacs-lisp
   (setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
@@ -60,8 +51,12 @@ M-x org-bable-tangle
 #+end_src
 * Keymaps
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+  ;; switch buffers
+  (global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
+  ;; instead of control-g
+  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+  ;; repeat keybinds
+  (repeat-mode)
 #+end_src
 * Fonts
 #+begin_src emacs-lisp
