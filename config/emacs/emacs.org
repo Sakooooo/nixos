@@ -599,17 +599,18 @@ make sure to setup authinfo
 *** Lsp-mode
 **** Language Servers 
 #+begin_src emacs-lisp
-  (defun sakomacs/lsp-mode-setup ()
-    (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-    (lsp-headerline-breadcrumb-mode))
+    (defun sakomacs/lsp-mode-setup ()
+      (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+      (lsp-headerline-breadcrumb-mode))
 
-    (use-package lsp-mode
-      :commands (lsp lsp-deferred)
-      :hook (lsp-mode . sakomacs/lsp-mode-setup)
-      :init
-      (setq lsp-keymap-prefix "C-c l")
-      :config
-      (lsp-enable-which-key-integration t))
+      (use-package lsp-mode
+        :commands (lsp lsp-deferred)
+        :hook (lsp-mode . sakomacs/lsp-mode-setup)
+        :init
+        (setq lsp-keymap-prefix "C-c l")
+        :config
+        (lsp-enable-which-key-integration t)
+        (setq lsp-keep-workspace-alive nil))
 #+end_src
 **** Lsp-ui 
 #+begin_src emacs-lisp
