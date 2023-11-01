@@ -2647,7 +2647,7 @@ make sure to setup authinfo
 #+begin_src emacs-lisp
   (use-package dart-mode
    :hook (dart-mode . lsp)
-  :mode "\\.dart\\" )
+  :mode "\\.dart\\'" )
 #+end_src
 *** Commenter
 #+begin_src emacs-lisp
