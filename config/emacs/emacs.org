@@ -1368,6 +1368,19 @@ make sure to setup authinfo
 #+begin_src emacs-lisp
 (use-package format-all)
 #+end_src
+*** Linting 
+#+begin_src emacs-lisp
+        (use-package flycheck
+          :ensure t
+          :init (global-flycheck-mode)
+          :diminish flycheck-mode
+          :config
+          (setq-default flycheck-disabled-checkers
+                  (append flycheck-disabled-checkers
+                          '(javascript-jshint json-jsonlist)))
+          (flycheck-add-mode 'javascript-eslint 'web-mode)
+          (add-hook 'after-init-hook #'global-flycheck-mode))
+#+end_src
 * Fonts
 #+begin_src emacs-lisp
   (set-face-attribute `default nil :font "JetBrains Mono" :height 125)
