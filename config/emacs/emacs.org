@@ -1894,10 +1894,6 @@ make sure to setup authinfo
     :ensure t)
 
 #+end_src
-** RSS Reader
-#+begin_src emacs-lisp
-  (use-package elfeed)
-#+end_src
 ** Dev Packages
 *** Magit (git in emacs)
 #+begin_src emacs-lisp
@@ -2786,6 +2782,44 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 ;; auto save files in the same path as it uses for sessions
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+#+end_src
+** RSS Reader 
+#+begin_src emacs-lisp
+  (use-package elfeed)
+
+  (use-package elfeed-goodies
+    :after elfeed
+    :ensure t
+    :init
+    (elfeed-goodies/setup)
+    )
+
+  (use-package elfeed-protocol
+    :after elfeed
+    :ensure t
+    :config
+    ;; curl recommend
+    (setq elfeed-use-curl t)
+    (elfeed-set-timeout 36000)
+    (setq elfeed-curl-extra-arguments '("--insecure")) ;necessary for https without a trust certificate
+
+    ;; setup feeds
+    (setq elfeed-protocol-feeds '(("fever+https://sako@rss.sako.box"
+                                   :api-url "https://rss.sako.box/api/fever.php"
+                                   :use-authinfo t)))
+
+    ;; enable elfeed-protocol
+    (setq elfeed-protocol-enabled-protocols '(fever newsblur owncloud ttrss))
+    (elfeed-protocol-enable)
+    )
+
+  (let* ((proto-id "fever+https://user@miniflux-host")
+         (last-id (elfeed-protocol-fever-get-update-mark proto-id 'update)))
+    (elfeed-protocol-fever-set-update-mark  proto-id 'update (- last-id 1000)))
+
+  (run-at-time 300 300
+               (lambda () (when (= elfeed-curl-queue-active 0)
+                            (elfeed-update))))
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
