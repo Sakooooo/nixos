@@ -1894,6 +1894,10 @@ make sure to setup authinfo
     :ensure t)
 
 #+end_src
+** RSS Reader
+#+begin_src emacs-lisp
+  (use-package elfeed)
+#+end_src
 ** Dev Packages
 *** Magit (git in emacs)
 #+begin_src emacs-lisp
