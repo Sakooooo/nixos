@@ -2813,7 +2813,7 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
     (elfeed-protocol-enable)
     )
 
-  (let* ((proto-id "fever+https://user@miniflux-host")
+  (let* ((proto-id "fever+https://sako@https://rss.sako.box")
          (last-id (elfeed-protocol-fever-get-update-mark proto-id 'update)))
     (elfeed-protocol-fever-set-update-mark  proto-id 'update (- last-id 1000)))
 
