@@ -2817,7 +2817,11 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
          (last-id (elfeed-protocol-fever-get-update-mark proto-id 'update)))
     (elfeed-protocol-fever-set-update-mark  proto-id 'update (- last-id 1000)))
 
-  (add-hook 'elfeed-search-mode-hook 'elfeed-update)
+  (run-at-time 300 300
+             (lambda () (when (= elfeed-curl-queue-active 0)
+                          (elfeed-update))))
+
+  (add-hook 'elfeed-search-mode-hook 'elfeed-protocol-fever-reinit "fever+https://sako@https://rss.sako.box")
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
