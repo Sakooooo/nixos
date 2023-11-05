@@ -2635,6 +2635,12 @@ make sure to setup authinfo
 
   :config
   (elpy-enable))
+
+  (use-package lsp-pyright
+    :ensure t
+    :hook (python-mode . (lambda ()
+                           (require 'lsp-pyright)
+                           (lsp))))  ; or lsp-deferred
 #+end_src
 ***** Haskell
 #+begin_src emacs-lisp
