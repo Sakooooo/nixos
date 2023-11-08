@@ -1193,6 +1193,17 @@ kept-old-versions 5)
 
 (use-package format-all)
 
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode)
+  :diminish flycheck-mode
+  :config
+  (setq-default flycheck-disabled-checkers
+          (append flycheck-disabled-checkers
+                  '(javascript-jshint json-jsonlist)))
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (add-hook 'after-init-hook #'global-flycheck-mode))
+
 (set-face-attribute `default nil :font "JetBrains Mono" :height 125)
 
 (require `package)
@@ -2302,6 +2313,12 @@ kept-old-versions 5)
 :config
 (elpy-enable))
 
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (lsp))))  ; or lsp-deferred
+
 (use-package haskell-mode
   :mode "\\.hs\\'"
   :hook (python-mode . lsp))
@@ -2372,6 +2389,47 @@ kept-old-versions 5)
 ;; auto save files in the same path as it uses for sessions
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
+(use-package elfeed)
+
+(use-package elfeed-goodies
+  :after elfeed
+  :ensure t
+  :init
+  (elfeed-goodies/setup)
+  )
+
+(use-package elfeed-protocol
+  :after elfeed
+  :ensure t
+  :config
+  ;; curl recommend
+  (setq elfeed-use-curl t)
+  (elfeed-set-timeout 36000)
+  (setq elfeed-curl-extra-arguments '("--insecure")) ;necessary for https without a trust certificate
+
+  ;; workaround for smth
+  (setq elfeed-protocol-fever-update-unread-only t)
+
+  ;; setup feeds
+  (setq elfeed-protocol-feeds '(("fever+https://sako@rss.sako.box"
+                                 :api-url "https://rss.sako.box/api/fever.php"
+                                 :use-authinfo t)))
+
+  ;; enable elfeed-protocol
+  (setq elfeed-protocol-enabled-protocols '(fever newsblur owncloud ttrss))
+  (elfeed-protocol-enable)
+  )
+
+(let* ((proto-id "fever+https://sako@rss.sako.box")
+       (last-id (elfeed-protocol-fever-get-update-mark proto-id 'update)))
+  (elfeed-protocol-fever-set-update-mark  proto-id 'update (- last-id 1000)))
+
+(run-at-time 300 300
+           (lambda () (when (= elfeed-curl-queue-active 0)
+                        (elfeed-update))))
+
+(add-hook 'emacs-startup-hook (elfeed-update))
 
 (org-babel-do-load-languages
 'org-babel-load-languages
