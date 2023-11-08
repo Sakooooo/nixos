@@ -63,7 +63,7 @@
   };
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "gtk2";
+    pinentryFlavor = "tty";
   };
   # bare minimum
   environment.systemPackages = with pkgs; [
