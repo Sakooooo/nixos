@@ -87,6 +87,7 @@
     desktop = {
       apps = {
         nextcloud.enable = true;
+        pass.enable = true;
       };
     };
     dev = {
