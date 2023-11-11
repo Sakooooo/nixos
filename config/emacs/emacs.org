@@ -77,32 +77,6 @@ Should make startup faster, taken from doom-emacs
 #+begin_src emacs-lisp
   (set-face-attribute `default nil :font "JetBrains Mono" :height 130)
 #+end_src
-* SPEED SPEED SPEED SPEED
-Most of these are taken from Doom-Emacs!
-https://github.com/doomemacs/doomemacs/blob/develop/docs/faq.org#how-does-doom-start-up-so-quickly
-Theres also Centaur Emacs
-https://github.com/seagle0128/.emacs.d
-** Avoid Garbage Collection at startup
-#+begin_src emacs-lisp
-  (use-package gcmh
-    :init
-    (gcmh-mode 1))
-  (add-hook 'emacs-startup-hook (gcmh-mode 1))
-#+end_src
-** Move Garbage collection further back
-#+begin_src emacs-lisp
-(setq gc-cons-threshold most-positive-fixnum)
-#+end_src
-** Unset file-name-handler-alist temporarily
-#+begin_src emacs-lisp
-(defvar sakomacs--file-name-handler-alist file-name-handler-alist)
-(setq file-name-handler-alist nil)
-
-;; Alternatively, restore it even later:
-(add-hook 'emacs-startup-hook
-  (lambda ()
-    (setq file-name-handler-alist sakomacs--file-name-handler-alist)))
-#+end_src
 * Use-Package setup 
 #+begin_src emacs-lisp
 (require `package)
@@ -137,6 +111,33 @@ https://github.com/seagle0128/.emacs.d
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 #+end_src
+* SPEED SPEED SPEED SPEED
+Most of these are taken from Doom-Emacs!
+https://github.com/doomemacs/doomemacs/blob/develop/docs/faq.org#how-does-doom-start-up-so-quickly
+Theres also Centaur Emacs
+https://github.com/seagle0128/.emacs.d
+** Avoid Garbage Collection at startup
+#+begin_src emacs-lisp
+  (use-package gcmh
+    :init
+    (gcmh-mode 1))
+  (add-hook 'emacs-startup-hook (gcmh-mode 1))
+#+end_src
+** Move Garbage collection further back
+#+begin_src emacs-lisp
+(setq gc-cons-threshold most-positive-fixnum)
+#+end_src
+** Unset file-name-handler-alist temporarily
+#+begin_src emacs-lisp
+(defvar sakomacs--file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+
+;; Alternatively, restore it even later:
+(add-hook 'emacs-startup-hook
+  (lambda ()
+    (setq file-name-handler-alist sakomacs--file-name-handler-alist)))
+#+end_src
+
 * Packages
 ** Command Log Mode
 #+begin_src emacs-lisp
