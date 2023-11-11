@@ -3,6 +3,11 @@
 
 * Usage
 M-x org-bable-tangle
+* Lexical Binding
+Should make startup faster, taken from doom-emacs
+#+begin_src emacs-lisp
+;; -*- lexical-binding: t; -*-
+#+end_src
 * Default Enconding
 #+begin_src emacs-lisp
   (setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
@@ -70,9 +75,35 @@ M-x org-bable-tangle
 #+end_src
 * Fonts
 #+begin_src emacs-lisp
-  (set-face-attribute `default nil :font "JetBrains Mono" :height 140)
+  (set-face-attribute `default nil :font "JetBrains Mono" :height 130)
 #+end_src
-* Package setup
+* SPEED SPEED SPEED SPEED
+Most of these are taken from Doom-Emacs!
+https://github.com/doomemacs/doomemacs/blob/develop/docs/faq.org#how-does-doom-start-up-so-quickly
+Theres also Centaur Emacs
+https://github.com/seagle0128/.emacs.d
+** Avoid Garbage Collection at startup
+#+begin_src emacs-lisp
+  (use-package gcmh
+    :init
+    (gcmh-mode 1))
+  (add-hook 'emacs-startup-hook (gcmh-mode 1))
+#+end_src
+** Move Garbage collection further back
+#+begin_src emacs-lisp
+(setq gc-cons-threshold most-positive-fixnum)
+#+end_src
+** Unset file-name-handler-alist temporarily
+#+begin_src emacs-lisp
+(defvar sakomacs--file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+
+;; Alternatively, restore it even later:
+(add-hook 'emacs-startup-hook
+  (lambda ()
+    (setq file-name-handler-alist sakomacs--file-name-handler-alist)))
+#+end_src
+* Use-Package setup 
 #+begin_src emacs-lisp
 (require `package)
 
@@ -91,54 +122,79 @@ M-x org-bable-tangle
 (require 'use-package)
 (setq use-package-always-ensure t)
 #+end_src
+* Straight.el setup
+#+begin_src emacs-lisp
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+#+end_src
 * Packages
 ** Command Log Mode
 #+begin_src emacs-lisp
-  (use-package command-log-mode)
+      (use-package command-log-mode
+        :straight t
+        )
 #+end_src
 ** Command Autocompletion Packages 
 #+begin_src emacs-lisp
-;; better search
-(use-package swiper)
-;; better commands
-(use-package counsel)
-;; autocompletion on commands (?)
-(use-package ivy
-  :diminish
-  :bind (("C-s" . swiper)
-         :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)	
-         ("C-l" . ivy-alt-done)
-         ("C-j" . ivy-next-line)
-         ("C-k" . ivy-previous-line)
-         :map ivy-switch-buffer-map
-         ("C-k" . ivy-previous-line)
-         ("C-l" . ivy-done)
-         ("C-d" . ivy-switch-buffer-kill)
-         :map ivy-reverse-i-search-map
-         ("C-k" . ivy-previous-line)
-	 ("C-d" . ivy-reverse-i-search-kill))
-  :demand
-  :config
-  (ivy-mode 1))
-;; better ivy autocompletion
-(use-package ivy-rich
-  :init
-  (ivy-rich-mode 1))
+  ;; better search
+  (use-package swiper
+        :straight t
+    )
+  ;; better commands
+  (use-package counsel
+      :straight t
+    )
+  ;; autocompletion on commands (?)
+  (use-package ivy
+    :diminish
+    :straight t
+    :bind (("C-s" . swiper)
+           :map ivy-minibuffer-map
+           ("TAB" . ivy-alt-done)	
+           ("C-l" . ivy-alt-done)
+           ("C-j" . ivy-next-line)
+           ("C-k" . ivy-previous-line)
+           :map ivy-switch-buffer-map
+           ("C-k" . ivy-previous-line)
+           ("C-l" . ivy-done)
+           ("C-d" . ivy-switch-buffer-kill)
+           :map ivy-reverse-i-search-map
+           ("C-k" . ivy-previous-line)
+           ("C-d" . ivy-reverse-i-search-kill))
+    :demand
+    :config
+    (ivy-mode 1))
+  ;; better ivy autocompletion
+  (use-package ivy-rich
+    :straight t
+    :init
+    (ivy-rich-mode 1))
 
-;; counsel M+X
-(use-package counsel
-  :bind (("M-x" . counsel-M-x)
-	 ("C-x b" . counsel-ibuffer)
-	 ("C-x C-f" . counsel-find-file)
-	 :map minibuffer-local-map
-	 ("C-r" . 'counsel-minibuffer-history))
-  :config
-  (setq ivy-inital-inputs-alist nil))
+  ;; counsel M+X
+  (use-package counsel
+    :straight t
+    :bind (("M-x" . counsel-M-x)
+           ("C-x b" . counsel-ibuffer)
+           ("C-x C-f" . counsel-find-file)
+           :map minibuffer-local-map
+           ("C-r" . 'counsel-minibuffer-history))
+    :config
+    (setq ivy-inital-inputs-alist nil))
 #+end_src
 ** Custom Themes
 #+begin_src emacs-lisp
   (use-package doom-themes
+  :straight t
   :ensure t
   :config
   ;; Global settings (defaults)
@@ -160,6 +216,7 @@ M-x org-bable-tangle
 ** Nerd-Fonts (All of the Icons doesnt work for me)
 #+begin_src emacs-lisp
 (use-package nerd-icons
+  :straight t
   :custom
   ;; "Symbols Nerd Font Mono" is the default and is recommended
   ;; but you can use any other Nerd Font if you want
@@ -167,30 +224,33 @@ M-x org-bable-tangle
   )
 #+end_src
 ** Rainbow Delimiters
-**** TODO find something like this for other languages
 #+begin_src emacs-lisp
 (use-package rainbow-delimiters
+  :straight t
   :hook (prog-mode . rainbow-delimiters-mode))
 #+end_src
 ** Keybinding autocompletion
 #+begin_src emacs-lisp
-(use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config
-  (setq which-key-idle-delay 1))
+  (use-package which-key
+    :straight t
+    :init (which-key-mode)
+    :diminish which-key-mode
+    :config
+    (setq which-key-idle-delay 1))
 #+end_src
 ** Custom Modeline
 #+begin_src emacs-lisp
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 30)))
+  (use-package doom-modeline
+    :ensure t
+    :straight t
+    :init (doom-modeline-mode 1)
+    :custom ((doom-modeline-height 30)))
 #+end_src
 ** Better help menu
 #+begin_src emacs-lisp
 (use-package helpful
   :ensure t
+  :straight t
   :custom
   (counsel-describe-function-function #'helpful-callable)
   (counsel-describe-variable-function #'helpful-variable)
@@ -203,6 +263,7 @@ M-x org-bable-tangle
 ** General Leader Key
 #+begin_src emacs-lisp
   (use-package general
+    :straight t
     :config
     (general-create-definer sakomacs/leader-keys
       :keymaps `(normal insert visual emacs)
@@ -223,84 +284,91 @@ M-x org-bable-tangle
 #+end_src 
 ** Emacs-Dashboard
 #+begin_src emacs-lisp
-    (use-package dashboard
-      :ensure t
-      :config
-      (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
-      ;; Configuration of Dashboard
-      (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
-      (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
-      ;; Set the title
-      (setq dashboard-banner-logo-title "Emacs is vscode for nerds")
-      ;; Set the banner
-      (setq dashboard-startup-banner 'official)
-      ;; center everything 
-      (setq dashboard-center-content t)
-      ;; jump thing
-      (setq dashboard-show-shortcuts nil)
-      (setq dashboard-items '((projects . 5)
-                              (agenda . 5)))
-      (setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
-      (setq dashboard-footer-messages '("I think I have Emacs pinky!"))
-      (dashboard-setup-startup-hook))
+  (use-package dashboard
+    :ensure t
+    :straight t
+    :config
+    (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+    ;; Configuration of Dashboard
+    (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
+    (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
+    ;; Set the title
+    (setq dashboard-banner-logo-title "Emacs is vscode for nerds")
+    ;; Set the banner
+    (setq dashboard-startup-banner 'official)
+    ;; center everything 
+    (setq dashboard-center-content t)
+    ;; jump thing
+    (setq dashboard-show-shortcuts nil)
+    (setq dashboard-items '((projects . 5)
+                            (agenda . 5)))
+    (setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
+    (setq dashboard-footer-messages '("I think I have Emacs pinky!"))
+    (dashboard-setup-startup-hook))
 #+end_src
 ** Evil Mode (vim)
 #+begin_src emacs-lisp
-(use-package evil
-  :init
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-i-jump nil)
-  :hook (evil-mode . sakomacs/evil-hook)
-  :ensure t
-  :demand
-  :config
-  (evil-mode 1)
-  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-  (define-key evil-insert-state-map (kbd "C-h") `evil-delete-backward-char-and-join)
+  (use-package evil
+    :straight t
+    :init
+    (setq evil-want-integration t)
+    (setq evil-want-keybinding nil)
+    (setq evil-want-C-u-scroll t)
+    (setq evil-want-C-i-jump nil)
+    :hook (evil-mode . sakomacs/evil-hook)
+    :ensure t
+    :demand
+    :config
+    (evil-mode 1)
+    (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+    (define-key evil-insert-state-map (kbd "C-h") `evil-delete-backward-char-and-join)
 
-  ;; visual line motion
-  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+    ;; visual line motion
+    (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+    (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
-  (evil-set-initial-state 'messages-buffer-mode 'normal)
-  (evil-set-initial-state 'dashboard-mode 'normal))
+    (evil-set-initial-state 'messages-buffer-mode 'normal)
+    (evil-set-initial-state 'dashboard-mode 'normal))
 
-;; extra things for Evil
-(use-package evil-collection
-  :after evil
-  :config
-  (evil-collection-init))
+  ;; extra things for Evil
+  (use-package evil-collection
+    :straight t
+    :after evil
+    :config
+    (evil-collection-init))
 #+end_src 
 ** Hydra for scaling text
 #+begin_src emacs-lisp
-(use-package hydra)
-(defhydra hydra-text-scale (:timeout 4)
-  "scale text"
-  ("j" text-scale-increase "in")
-  ("k" text-scale-decrease "out")
-  ("f" nil "finished" :exit t))
+  (use-package hydra
+    :straight t
+    )
+  (defhydra hydra-text-scale (:timeout 4)
+    "scale text"
+    ("j" text-scale-increase "in")
+    ("k" text-scale-decrease "out")
+    ("f" nil "finished" :exit t))
 
-(sakomacs/leader-keys
-  "ts" '(hydra-text-scale/body :which-key "scale text"))
+  (sakomacs/leader-keys
+    "ts" '(hydra-text-scale/body :which-key "scale text"))
 #+end_src
 ** Helpful for projects
 #+begin_src emacs-lisp
-(use-package projectile
-  :diminish projectile-mode
-  :demand
-  :config (projectile-mode)
-  :custom ((projectile-completion-system 'ivy))
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
-  :init
-  (when (file-directory-p "~/dev")
-    (setq projectile-project-search-path '("~/dev")))
-  (setq projectile-switch-project-action #'projectile-dired))
+  (use-package projectile
+    :straight t
+    :diminish projectile-mode
+    :demand
+    :config (projectile-mode)
+    :custom ((projectile-completion-system 'ivy))
+    :bind-keymap
+    ("C-c p" . projectile-command-map)
+    :init
+    (when (file-directory-p "~/dev")
+      (setq projectile-project-search-path '("~/dev")))
+    (setq projectile-switch-project-action #'projectile-dired))
 
-(use-package counsel-projectile
-  :config (counsel-projectile-mode))
+  (use-package counsel-projectile
+    :straight t
+    :config (counsel-projectile-mode))
 #+end_src 
 ** Org-Mode
 #+begin_src emacs-lisp
@@ -310,6 +378,7 @@ M-x org-bable-tangle
     (visual-line-mode 1))
 
   (use-package org
+    :straight t
     :hook (org-mode . sakomacs/org-mode-setup)
     :config
     (setq org-ellipsis "▼")
@@ -461,6 +530,7 @@ M-x org-bable-tangle
 ** Org-Roam
 #+begin_src emacs-lisp
   (use-package org-roam
+  :straight t
   :ensure t
   :custom
   (org-roam-directory "~/org"
@@ -475,6 +545,7 @@ M-x org-bable-tangle
   (use-package treemacs
     :ensure t
     :defer t
+    :straight t
     :init
     (with-eval-after-load 'winum
       (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
@@ -564,14 +635,17 @@ M-x org-bable-tangle
 
   (use-package treemacs-evil
     :after (treemacs evil)
+    :straight t
     :ensure t)
 
   (use-package treemacs-projectile
     :after (treemacs projectile)
+    :straight t
     :ensure t)
 
   (use-package treemacs-magit
     :after (treemacs magit)
+    :straight t
     :ensure t)
 
 #+end_src
@@ -579,6 +653,7 @@ M-x org-bable-tangle
 *** Magit (git in emacs)
 #+begin_src emacs-lisp
   (use-package magit
+    :straight t
     :custom
     (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
     )
@@ -587,51 +662,59 @@ M-x org-bable-tangle
 make sure to setup authinfo
 #+begin_src emacs-lisp
 (use-package forge
+    :straight t
   :after magit)
 (setq auth-sources '("~/.authinfo"))
 #+end_src
 *** Direnv
 #+begin_src emacs-lisp
 (use-package direnv
+    :straight t
  :config
  (direnv-mode))
 #+end_src
 *** Lsp-mode
 **** Language Servers 
 #+begin_src emacs-lisp
-    (defun sakomacs/lsp-mode-setup ()
-      (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-      (lsp-headerline-breadcrumb-mode))
+  (defun sakomacs/lsp-mode-setup ()
+    (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+    (lsp-headerline-breadcrumb-mode))
 
-      (use-package lsp-mode
-        :commands (lsp lsp-deferred)
-        :hook (lsp-mode . sakomacs/lsp-mode-setup)
-        :init
-        (setq lsp-keymap-prefix "C-c l")
-        :config
-        (lsp-enable-which-key-integration t)
-        (setq lsp-keep-workspace-alive nil))
+    (use-package lsp-mode
+      :straight t
+      :commands (lsp lsp-deferred)
+      :hook (lsp-mode . sakomacs/lsp-mode-setup)
+      :init
+      (setq lsp-keymap-prefix "C-c l")
+      :config
+      (lsp-enable-which-key-integration t)
+      (setq lsp-keep-workspace-alive nil))
 #+end_src
 **** Lsp-ui 
 #+begin_src emacs-lisp
   (use-package lsp-ui
     :hook (lsp-mode . lsp-ui-mode)
+    :straight t
     :custom
     (lsp-ui-doc-position 'bottom))
 #+end_src
 **** Treemacs Lsp 
 #+begin_src emacs-lisp
   (use-package lsp-treemacs
+    :straight t
     :after lsp)
 #+end_src
 **** lsp-ivy
 #+begin_src emacs-lisp
-(use-package lsp-ivy)
+  (use-package lsp-ivy
+    :straight t
+    )
 #+end_src
 **** Languages
 ***** HTML/CSS
 #+begin_src emacs-lisp
   (use-package web-mode
+    :straight t
        :hook (web-mode . lsp)
        :mode ("\\.html\\'"
                "\\.css\\'"))
@@ -639,6 +722,7 @@ make sure to setup authinfo
 ***** Javascript 
 #+begin_src emacs-lisp
   (use-package js2-mode
+    :straight t
   :mode "\\.js\\'"
   :hook (js2-mode . lsp))
 #+end_src
@@ -651,16 +735,19 @@ make sure to setup authinfo
 #+begin_src emacs-lisp
   (use-package cmake-mode
     :mode "CMakeLists.txt"
+    :straight t
     :hook (cmake-mode . lsp))
 #+end_src
 ***** Python
 #+begin_src emacs-lisp
   (use-package python-mode
     :mode "\\.py\\'"
+    :straight t
     :hook (python-mode . lsp))
 
   (use-package elpy
   :after python-mode
+    :straight t
 
   :custom
   (elpy-rpc-python-command "python3")
@@ -670,6 +757,7 @@ make sure to setup authinfo
 
   (use-package lsp-pyright
     :ensure t
+    :straight t
     :hook (python-mode . (lambda ()
                            (require 'lsp-pyright)
                            (lsp))))  ; or lsp-deferred
@@ -678,17 +766,20 @@ make sure to setup authinfo
 #+begin_src emacs-lisp
   (use-package haskell-mode
     :mode "\\.hs\\'"
+    :straight t
     :hook (python-mode . lsp))
 #+end_src
 ***** Yaml editing
 #+begin_src emacs-lisp
       (use-package yaml-mode
+    :straight t
         :mode ("\\.yaml\\'"
                "\\.yml\\'"))
 #+end_src
 ***** Nix
 #+begin_src emacs-lisp
     (use-package nix-mode
+    :straight t
       :hook ((nix-mode . lsp) 
                (nix-mode . format-all-mode)
                (nix-mode . (lambda () (setq-local format-all-formatters '(("Nix" alejandra))))))
@@ -697,17 +788,20 @@ make sure to setup authinfo
 ***** Dart 
 #+begin_src emacs-lisp
   (use-package dart-mode
+    :straight t
    :hook (dart-mode . lsp)
   :mode "\\.dart\\'" )
 #+end_src
 *** Commenter
 #+begin_src emacs-lisp
   (use-package evil-nerd-commenter
+    :straight t
   :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 #+end_src
 *** Company Mode (Better Autocompletion)
 #+begin_src emacs-lisp
 (use-package company
+    :straight t
   :after lsp-mode
   :hook (lsp-mode . company-mode)
   :bind (:map company-active-map
@@ -719,11 +813,14 @@ make sure to setup authinfo
   (company-idle-delay 0.0))
 
 (use-package company-box
+    :straight t
   :hook (company-mode . company-box-mode))
 #+end_src
 *** Formatting
 #+begin_src emacs-lisp
-(use-package format-all)
+  (use-package format-all
+    :straight t
+    )
 #+end_src
 ** Dired (quick file management in emacs)
 Dired is a built-in file manager for Emacs that does some pretty amazing things!  Here are some key bindings you should try out:
@@ -787,6 +884,7 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 #+begin_src emacs-lisp
     (use-package dired
     :ensure nil
+    :straight t
     :commands (dired dired-jump)
     :bind (("C-x C-j" . dired-jump))
     :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -810,22 +908,27 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 #+end_src
 ** Folder Cleaning
 #+begin_src emacs-lisp
-;; NOTE: If you want to move everything out of the ~/.emacs.d folder
-;; reliably, set `user-emacs-directory` before loading no-littering!
-;(setq user-emacs-directory "~/.cache/emacs")
+  ;; NOTE: If you want to move everything out of the ~/.emacs.d folder
+  ;; reliably, set `user-emacs-directory` before loading no-littering!
+  ;(setq user-emacs-directory "~/.cache/emacs")
 
-(use-package no-littering)
+  (use-package no-littering
+    :straight t
+    )
 
-;; no-littering doesn't set this by default so we must place
-;; auto save files in the same path as it uses for sessions
-(setq auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+  ;; no-littering doesn't set this by default so we must place
+  ;; auto save files in the same path as it uses for sessions
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 #+end_src
 ** RSS Reader 
 #+begin_src emacs-lisp
-  (use-package elfeed)
+  (use-package elfeed
+    :straight t
+    )
 
   (use-package elfeed-goodies
+    :straight t
     :after elfeed
     :ensure t
     :init
@@ -833,6 +936,7 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
     )
 
   (use-package elfeed-protocol
+    :straight t
     :after elfeed
     :ensure t
     :config
@@ -868,7 +972,9 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 ** Telegram
 only god knows why im doing this 
 #+begin_src emacs-lisp
- (use-package telega)
+   (use-package telega
+     :straight t
+     )
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
@@ -893,6 +999,7 @@ only god knows why im doing this
 ** term-mode
 #+begin_src emacs-lisp
   (use-package term
+    :straight t
   :config
   (setq explicit-shell-file-name "zsh"))
 #+end_src
@@ -919,6 +1026,7 @@ god dammit why are they making my shells in emacs lisp
 (use-package eshell-git-prompt)
 
 (use-package eshell
+    :straight t
   :hook (eshell-first-time-mode . sakomacs/configure-eshell)
   :config
 
@@ -932,6 +1040,7 @@ god dammit why are they making my shells in emacs lisp
 ** VTerm
 #+begin_src emacs-lisp
   (use-package vterm
+    :straight t
   :commands vterm
   :config
   (setq vterm-max-scrollback 10000))
