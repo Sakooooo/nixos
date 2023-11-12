@@ -53,16 +53,15 @@ Should make startup faster, taken from doom-emacs
     (menu-bar-mode -1)
     ;; Line Numbers
     (column-number-mode)
-    (global-display-line-numbers-mode t)
-    ;; disable line numbers on some modes
-    (dolist (mode '(org-mode-hook
-                    term-mode-hook
-                    eshell-mode-hook
-                    treemacs-mode-hook
-                    dashboard-mode-hook))
-      (add-hook mode (lambda () (display-line-numbers-mode 0))))
     ;; Bell
     (setq visible-bell t)
+#+end_src
+* Line Numbers
+#+begin_src emacs-lisp
+    (add-hook 'prog-mode 'display-line-numbers-mode)
+    (add-hook 'yaml-mode 'display-line-numbers-mode)
+    (add-hook 'conf-mode 'display-line-numbers-mode)
+  (setq display-line-numbers-width-start t)
 #+end_src
 * Keymaps
 #+begin_src emacs-lisp
@@ -154,7 +153,7 @@ https://github.com/seagle0128/.emacs.d
   ;; better commands
   (use-package counsel
       :straight t
-    )
+      )
   ;; autocompletion on commands (?)
   (use-package ivy
     :diminish
@@ -244,8 +243,26 @@ https://github.com/seagle0128/.emacs.d
   (use-package doom-modeline
     :ensure t
     :straight t
-    :init (doom-modeline-mode 1)
-    :custom ((doom-modeline-height 30)))
+    :hook (after-init . doom-modeline-mode)
+    :custom ((doom-modeline-height 40)))
+#+end_src
+** Hide Modeline
+#+begin_src emacs-lisp
+  (use-package hide-mode-line
+    :straight t
+    :hook (((treemacs-mode
+             eshell-mode shell-mode
+             term-mode vterm-mode
+             embark-collect-mode
+             lsp-ui-imenu-mode
+             pdf-annot-list-mode) . turn-on-hide-mode-line-mode)
+           (dired-mode . turn-off-hide-mode-line-mode)))
+#+end_src
+** Minor mode menu for modline
+#+begin_src emacs-lisp
+  (use-package minions
+    :straight t
+    :hook (doom-modeline-mode . minions-mode))
 #+end_src
 ** Better help menu
 #+begin_src emacs-lisp
@@ -260,6 +277,13 @@ https://github.com/seagle0128/.emacs.d
   ([remap describe-command] . helpful-command)
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
+#+end_src
+** Modern selection behavior
+#+begin_src emacs-lisp
+  (use-package delsel
+    :straight t
+    :ensure nil
+    :config (delete-selection-mode +1))
 #+end_src
 ** General Leader Key
 #+begin_src emacs-lisp
@@ -337,6 +361,13 @@ https://github.com/seagle0128/.emacs.d
     :after evil
     :config
     (evil-collection-init))
+
+  ;; commenting
+  (use-package evil-commentary
+  :straight t
+  :after evil
+  :diminish
+  :config (evil-commentary-mode +1))
 #+end_src 
 ** Hydra for scaling text
 #+begin_src emacs-lisp
@@ -725,7 +756,12 @@ make sure to setup authinfo
   (use-package js2-mode
     :straight t
   :mode "\\.js\\'"
-  :hook (js2-mode . lsp))
+  :hook (js2-mode . lsp)
+  :config
+  (setq web-mode-markup-indent-offset 2) ; HTML
+  (setq web-mode-css-indent-offset 2)    ; CSS
+  (setq web-mode-code-indent-offset 2)   ; JS/JSX/TS/TSX
+  (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))))
 #+end_src
 ***** C/C++
 #+begin_src emacs-lisp
@@ -793,6 +829,12 @@ make sure to setup authinfo
    :hook (dart-mode . lsp)
   :mode "\\.dart\\'" )
 #+end_src
+***** Markdown
+#+begin_src emacs-lisp
+  (use-package markdown-mode
+    :straight t
+    :hook (markdown-mode . visual-line-mode))
+#+end_src
 *** Commenter
 #+begin_src emacs-lisp
   (use-package evil-nerd-commenter
@@ -801,27 +843,47 @@ make sure to setup authinfo
 #+end_src
 *** Company Mode (Better Autocompletion)
 #+begin_src emacs-lisp
-(use-package company
-    :straight t
-  :after lsp-mode
-  :hook (lsp-mode . company-mode)
-  :bind (:map company-active-map
-         ("<tab>" . company-complete-selection))
-        (:map lsp-mode-map
-         ("<tab>" . company-indent-or-complete-common))
-  :custom
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0))
+  (use-package company
+      :straight t
+      :after lsp-mode
+      :hook (lsp-mode . company-mode)
+      :bind (:map company-active-map
+  		("<tab>" . company-complete-selection))
+      (:map lsp-mode-map
+            ("<tab>" . company-indent-or-complete-common))
+      :custom
+      (company-minimum-prefix-length 1)
+      (company-idle-delay 0.1)
+      (company-selection-wrap-around t)
+      (company-tooltip-align-annotations t))
 
-(use-package company-box
-    :straight t
-  :hook (company-mode . company-box-mode))
+  (use-package company-box
+      :straight t
+      :hook (company-mode . company-box-mode))
+#+end_src
+*** Syntax Checking (Flycheck)
+#+begin_src emacs-lisp
+(use-package flycheck :straight t :config (global-flycheck-mode +1))
 #+end_src
 *** Formatting
 #+begin_src emacs-lisp
   (use-package format-all
     :straight t
     )
+#+end_src
+*** Snippets
+#+begin_src emacs-lisp
+  (use-package yasnippet
+    :straight t
+    :diminish yas-minor-mode
+    :hook (after-init . yas-global-mode))
+
+  (use-package yasnippet-snippets
+    :straight t)
+
+  (use-package yasnippet-capf
+   :straight t
+  :init (add-to-list 'completion-at-point-functions #'yasnippet-capf))
 #+end_src
 ** Dired (quick file management in emacs)
 Dired is a built-in file manager for Emacs that does some pretty amazing things!  Here are some key bindings you should try out:
@@ -885,7 +947,6 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 #+begin_src emacs-lisp
     (use-package dired
     :ensure nil
-    :straight t
     :commands (dired dired-jump)
     :bind (("C-x C-j" . dired-jump))
     :custom ((dired-listing-switches "-agho --group-directories-first"))
