@@ -316,7 +316,8 @@ https://github.com/seagle0128/.emacs.d
       "oa" `(org-agenda :which-key "agenda")
       "g" `(:ignore g :which-key "git")
       "gs" `(magit-status :which-key "status"))
-    "r" `(elfeed :which-key "rss"))
+    "r" `(:ignore r :which-key "replacements")
+      "rr" `(elfeed :which-key "elfeed"))
 #+end_src 
 ** Emacs-Dashboard
 #+begin_src emacs-lisp
