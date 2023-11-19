@@ -323,6 +323,13 @@ https://github.com/seagle0128/.emacs.d
       "p" `(:ignore p :which-key "projects")
       "pp" `(projectile-switch-project :which-key "open project")
       "pk" `(projectile-kill-buffers :which-key "close project")
+      "pa" `(projectile-add-known-project :which-key "add project")
+      "pR" `(projectile-run-project :which-key "run project")
+      "pt" `(magit-todos-list :which-key "list project todos")
+      "ps" `(projectile-save-project-buffers :which-key "save project")
+      "po" `(projectile-find-other-file :which-key "find other file")
+      "pg" `(projectile-configure-project :which-key "configure project")
+      "pc" `(projectile-compile-project :which-key "compile project")
       ;; open
       "o" `(:ignore o :which-key "open")
       "op" `(treemacs :which-key "treemacs")
