@@ -59,6 +59,8 @@ Should make startup faster, taken from doom-emacs
   (fset 'yes-or-no-p 'y-or-n-p)
   ;; Stop Emacs from trying to use dialog boxes.
   (setq use-dialog-box nil)
+  ;; idc emacs just work already 
+  (setq warning-minimum-level :emergency)
 #+end_src
 * Line Numbers
 #+begin_src emacs-lisp
@@ -160,6 +162,13 @@ Should make startup faster, taken from doom-emacs
 
 (add-hook 'minibuffer-setup-hook #'doom-defer-garbage-collection-h)
 (add-hook 'minibuffer-exit-hook #'doom-restore-garbage-collection-h)
+#+end_src
+* Native Compilation
+#+begin_src emacs-lisp
+  (setq package-native-compile t)
+  (setq comp-deferred-compilation t)
+  (setq native-comp-deferred-compilation-deny-list nil)
+  (setq warning-suppress-log-types '((comp)))
 #+end_src
 * Packages
 ** Log state
@@ -1122,7 +1131,41 @@ only god knows why im doing this
 #+end_src
 ** System Packages
 #+begin_src emacs-lisp
-  (use-package system-packages)
+  (use-package system-packages
+    :init
+    (cond
+     ((eq system-type 'windows-nt)
+      (progn
+        (add-to-list 'system-packages-support-package-managers
+  		   '(winget .
+  			    ((default-sudio . nil)
+  			     (install . "winget install")
+  			     (uninstall . "winget uninstall")
+  			     (update . "winget update --all")
+  			     (log . nil)
+  			     (search . "winget search")
+  			     (change-log . nil)
+  			     (clean-cache. nil)
+  			     (get-info . nil)
+  			     (get-info-remote . nil)
+  			     (list-files-provided-by . nil)
+  			     (owning-file . nil)
+  			     (verify-all-dependencies . nil)
+  			     (remove-orphaned . nil)
+  			     (list-installed-packages . "winget list -q")
+  			     (list-installed-packages-all . "winget list")
+  			     (list-installed-packages-all . "winget list")
+  			     (noconfirm . "--accept-source-agreements --accept-package-agreements"))))
+        (setq system-packages-package-manager 'winget)
+        (setq system-packages-noconfirm t))
+     ((eq system-type 'darwin)
+      (progn
+        ;;(message "Mac OS X")))
+        (setq system-packages-package-manager 'brew)
+     ((eq system-type 'gnu/linux)
+      (progn
+        (setq system-packages-package-manager 'nix)
+        )))))))
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
