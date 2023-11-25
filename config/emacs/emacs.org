@@ -43,18 +43,22 @@ Should make startup faster, taken from doom-emacs
 #+end_src
 * UI 
 #+begin_src emacs-lisp
-    ;; UI/UX
-    (setq inhibit-splash-screen t)
-    ;; make it look like neovim a little
-    (scroll-bar-mode -1)
-    (tool-bar-mode -1)
-    (tooltip-mode -1)
-    (set-fringe-mode 10)
-    (menu-bar-mode -1)
-    ;; Line Numbers
-    (column-number-mode)
-    ;; Bell
-    (setq visible-bell t)
+  ;; UI/UX
+  (setq inhibit-splash-screen t)
+  ;; remove useless GUI elements
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (tooltip-mode -1)
+  (set-fringe-mode 10)
+  (menu-bar-mode -1)
+  ;; Line Numbers
+  (column-number-mode)
+  ;; Bell
+  (setq visible-bell t)
+  ;; prefer y/n
+  (fset 'yes-or-no-p 'y-or-n-p)
+  ;; Stop Emacs from trying to use dialog boxes.
+  (setq use-dialog-box nil)
 #+end_src
 * Line Numbers
 #+begin_src emacs-lisp
@@ -78,49 +82,49 @@ Should make startup faster, taken from doom-emacs
 #+end_src
 * Use-Package setup 
 #+begin_src emacs-lisp
-(require `package)
+  (message "setting up use-package")
+  (require `package)
 
-(setq package-archives `(("mepla" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")
-			 ("elpa" . "https://elpa.gnu.org/packages/")))
+  (setq package-archives `(("mepla" . "https://melpa.org/packages/")
+  			 ("org" . "https://orgmode.org/elpa/")
+  			 ("elpa" . "https://elpa.gnu.org/packages/")))
 
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
+  (package-initialize)
+  (unless package-archive-contents
+    (package-refresh-contents))
 
-;; Init package for non-linux
-(unless (package-installed-p `use-package)
-  (package-install `use-package))
+  ;; Init package for non-linux
+  (unless (package-installed-p `use-package)
+    (package-install `use-package))
 
-(require 'use-package)
-(setq use-package-always-ensure t)
+  (require 'use-package)
+  (setq use-package-always-ensure t)
 #+end_src
 * Straight.el setup
 #+begin_src emacs-lisp
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
+  (message "setting up straight.el")
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+        (bootstrap-version 6))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
 #+end_src
 * SPEED SPEED SPEED SPEED
-Most of these are taken from Doom-Emacs!
-https://github.com/doomemacs/doomemacs/blob/develop/docs/faq.org#how-does-doom-start-up-so-quickly
-Theres also Centaur Emacs
-https://github.com/seagle0128/.emacs.d
 ** Avoid Garbage Collection at startup
 #+begin_src emacs-lisp
   (use-package gcmh
     :init
-    (gcmh-mode 1))
-  (add-hook 'emacs-startup-hook (gcmh-mode 1))
+    (setq gcmh-idle-delay 5)
+    (setq gcmh-high-cons-threshold (* 16 1024 1024))
+    :config
+    (gcmh-mode))
 #+end_src
 ** Move Garbage collection further back
 #+begin_src emacs-lisp
@@ -136,8 +140,32 @@ https://github.com/seagle0128/.emacs.d
   (lambda ()
     (setq file-name-handler-alist sakomacs--file-name-handler-alist)))
 #+end_src
+** Go back to normal GC after init
+#+begin_src emacs-lisp
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold 16777216 ; 16mb
+                  gc-cons-percentage 0.1)))
+#+end_src
+** Don't use GC when minibuffer is used 
+#+begin_src emacs-lisp
+(defun doom-defer-garbage-collection-h ()
+  "Disable garbage collection."
+  (setq gc-cons-threshold most-positive-fixnum))
 
+(defun doom-restore-garbage-collection-h ()
+  "Restore garbage collection."
+  (run-at-time
+   1 nil (lambda () (setq gc-cons-threshold 16777216))))
+
+(add-hook 'minibuffer-setup-hook #'doom-defer-garbage-collection-h)
+(add-hook 'minibuffer-exit-hook #'doom-restore-garbage-collection-h)
+#+end_src
 * Packages
+** Log state
+#+begin_src emacs-lisp
+(message "setting up packages")
+#+end_src
 ** Command Log Mode
 #+begin_src emacs-lisp
       (use-package command-log-mode
@@ -1091,6 +1119,10 @@ only god knows why im doing this
    (use-package telega
      :straight t
      )
+#+end_src
+** System Packages
+#+begin_src emacs-lisp
+  (use-package system-packages)
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
