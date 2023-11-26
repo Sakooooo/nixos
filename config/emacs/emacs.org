@@ -498,6 +498,7 @@ Should make startup faster, taken from doom-emacs
 #+begin_src emacs-lisp
   (use-package org
     :straight t
+    :hook (org-mode . org-indent-mode)
     :config
     (setq org-ellipsis "▼")
     (setq org-agenda-start-with-log-mode t)
