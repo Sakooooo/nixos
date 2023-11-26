@@ -619,23 +619,42 @@ Should make startup faster, taken from doom-emacs
              "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
              ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
              :clock-in :clock-resume
-             :empty-lines 1)
+             :empty-lines 1))))
+#+end_src
+** Org Mode Beautifers 
+We have to compete with notion somehow right?
+*** Org-Modern
+#+begin_src emacs-lisp
+  (use-package org-modern
+    :hook
+    (org-mode . global-org-modern-mode)
+    :custom
+    ;; Org styling
+    (org-hide-emphasis-markers t)
+    (org-pretty-entities t)
+    (org-ellipsis " ▾ ")
 
-  	  ("w" "Workflows")
-  	  ("we" "Checking Email" entry (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
-             "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
-
-  	  ("m" "Metrics Capture")
-  	  ("mw" "Weight" table-line (file+headline "~/Projects/Code/emacs-from-scratch/OrgFiles/Metrics.org" "Weight")
-  	   "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t))))
-
-
-  ;; make it look better
+    ;; Agenda styling
+    (org-agenda-tags-column 0)
+    (org-agenda-block-separator ?─)
+    (org-agenda-current-time-string "◀── now ─────────────────────────────────────────────────"))
+#+end_src
+*** Org-Superstar 
+#+begin_src emacs-lisp
   (use-package org-superstar
     :after org
     :hook (org-mode . org-superstar-mode)
     :config
-    (setq org-superstar-headline-bullets-list '("◉" "○" "◈" "◎")))
+    (setq org-superstar-headline-bullets-list '("◯" "◯" "◯" "◯"))
+    (setq org-superstar-remove-leading-stars t)
+    (setq org-superstar-item-bullet-alist
+        '((?+ . ?•)
+          (?* . ?➤)
+          (?- . ?–)))
+    )
+#+end_src
+*** Olivetti
+#+begin_src emacs-lisp
   (use-package olivetti
     :hook (org-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 100))))
 #+end_src
