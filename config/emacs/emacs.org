@@ -295,15 +295,16 @@ Should make startup faster, taken from doom-emacs
 #+end_src
 ** Hide Modeline
 #+begin_src emacs-lisp
-  (use-package hide-mode-line
-    :straight t
-    :hook (((treemacs-mode
-             eshell-mode shell-mode
-             term-mode vterm-mode
-             embark-collect-mode
-             lsp-ui-imenu-mode
-             pdf-annot-list-mode) . turn-on-hide-mode-line-mode)
-           (dired-mode . turn-off-hide-mode-line-mode)))
+    (use-package hide-mode-line
+      :straight t
+      :hook (((treemacs-mode
+               eshell-mode shell-mode
+               term-mode vterm-mode
+               embark-collect-mode
+               lsp-ui-imenu-mode
+               pdf-annot-list-mode
+  	     dashboard-mode) . turn-on-hide-mode-line-mode)
+             (dired-mode . turn-off-hide-mode-line-mode)))
 #+end_src
 ** Minor mode menu for modline
 #+begin_src emacs-lisp
@@ -391,42 +392,36 @@ Should make startup faster, taken from doom-emacs
 #+end_src 
 ** Dashboard
 #+begin_src emacs-lisp
-      (use-package dashboard
-        :ensure t
-        :straight t
-        :config
-        (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
-        ;; Configuration of Dashboard
-        (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
-        (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
-        ;; Set the title
-        (setq dashboard-banner-logo-title "Emacs is vscode for nerds")
-        ;; Set the banner
-        (setq dashboard-startup-banner 'official)
-        ;; center everything 
-        (setq dashboard-center-content t)
-        ;; jump thing
-        (setq dashboard-show-shortcuts nil)
-        (setq dashboard-items '((recent . 3)
-      			  (projects . 3)
-                                (agenda . 5)))
-        (setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
-        (setq dashboard-footer-messages '("I think I have Emacs pinky!"
-      			      "Eating a burger with no honey mustard"
-      			      "why are oranges called oranges?"
-      			     "but an apple is not called red"
-      			     "TODO find a replacement for hands"
-      			     "the best OS it just needs a good text editor"
-      			     "why are we still using one thread"
-      			     "goodness gracious!!!!"
-      			     "kanye west is literally me"
-      			     "i drive"
-      			     "happy waking up day"
-      			     "why are we still using lisp again?"
-      			     "one more ai application i swear to god"))
-        (dashboard-setup-startup-hook)
-        :hook
-        (dashboard-mode . hide-mode-line-mode))
+  (use-package dashboard
+    :straight t
+    :init
+    (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
+    (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
+    (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+    (setq dashboard-center-content t)
+    (setq dashboard-projects-backend 'projectile)
+    (setq dashboard-footer-messages '("i think i have emacs pinky"
+                                      "why are we still using lisp again?"
+                                      "why is this running on 1/16 threads?!?!?"
+                                      "still waiting for multithreaded :)"
+                                      "any day now"
+                                      "make sure to pray today"
+                                      "im literally kanye west"
+                                      "please dont break please dont break"
+                                      "GNU/Linux/Emacs/???"
+                                      "what is a GNU/Linux ?????????????"
+                                      "done!"
+                                      "remove / for faster emacs on linux"
+                                      ""))
+    (setq dashboard-items '((recents  . 3)
+                            (projects . 3)
+                            (agenda . 5)))
+
+    (setq dashboard-image-banner-max-height 250)
+    (setq dashboard-image-banner-max-width 500)
+
+    (setq dashboard-page-separator "\n\n")
+    (dashboard-setup-startup-hook))
 #+end_src
 ** Evil Mode (vim)
 #+begin_src emacs-lisp
@@ -768,11 +763,13 @@ Should make startup faster, taken from doom-emacs
 ** Dev Packages
 *** Magit (git in emacs)
 #+begin_src emacs-lisp
-  (use-package magit
-    :straight t
-    :custom
-    (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
-    )
+    (use-package magit
+      :straight t
+      :custom
+      (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+      )
+    (use-package magit-todos
+      :straight t)
 #+end_src
 *** Forge for Magit (Adds github, gitlab, etc PRs and Issues to magit)
 make sure to setup authinfo
