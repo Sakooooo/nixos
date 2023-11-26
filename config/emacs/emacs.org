@@ -763,13 +763,15 @@ Should make startup faster, taken from doom-emacs
 ** Dev Packages
 *** Magit (git in emacs)
 #+begin_src emacs-lisp
-    (use-package magit
-      :straight t
-      :custom
-      (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
-      )
-    (use-package magit-todos
-      :straight t)
+        (use-package magit
+          :straight t
+          :custom
+          (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+          )
+        (use-package magit-todos
+          :straight t
+          :after magit
+  	:config (magit-todos-mode 1))
 #+end_src
 *** Forge for Magit (Adds github, gitlab, etc PRs and Issues to magit)
 make sure to setup authinfo
