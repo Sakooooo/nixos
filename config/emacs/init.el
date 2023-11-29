@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
 (set-language-environment 'utf-8)
 (set-keyboard-coding-system 'utf-8) ; For old Carbon emacs on OS X only
@@ -25,7 +27,7 @@ kept-old-versions 5)
 
 ;; UI/UX
 (setq inhibit-splash-screen t)
-;; make it look like neovim a little
+;; remove useless GUI elements
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
@@ -33,16 +35,19 @@ kept-old-versions 5)
 (menu-bar-mode -1)
 ;; Line Numbers
 (column-number-mode)
-(global-display-line-numbers-mode t)
-;; disable line numbers on some modes
-(dolist (mode '(org-mode-hook
-                term-mode-hook
-                eshell-mode-hook
-                treemacs-mode-hook
-                dashboard-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 ;; Bell
 (setq visible-bell t)
+;; prefer y/n
+(fset 'yes-or-no-p 'y-or-n-p)
+;; Stop Emacs from trying to use dialog boxes.
+(setq use-dialog-box nil)
+;; idc emacs just work already 
+(setq warning-minimum-level :emergency)
+
+(add-hook 'prog-mode 'display-line-numbers-mode)
+  (add-hook 'yaml-mode 'display-line-numbers-mode)
+  (add-hook 'conf-mode 'display-line-numbers-mode)
+(setq display-line-numbers-width-start t)
 
 ;; switch buffers
 (global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
@@ -51,13 +56,14 @@ kept-old-versions 5)
 ;; repeat keybinds
 (repeat-mode)
 
-(set-face-attribute `default nil :font "JetBrains Mono" :height 125)
+(set-face-attribute `default nil :font "JetBrains Mono" :height 130)
 
+(message "setting up use-package")
 (require `package)
 
 (setq package-archives `(("mepla" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")
-			 ("elpa" . "https://elpa.gnu.org/packages/")))
+  		       ("org" . "https://orgmode.org/elpa/")
+  		       ("elpa" . "https://elpa.gnu.org/packages/")))
 
 (package-initialize)
 (unless package-archive-contents
@@ -70,15 +76,77 @@ kept-old-versions 5)
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(use-package command-log-mode)
+(message "setting up straight.el")
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(use-package gcmh
+  :init
+  (setq gcmh-idle-delay 5)
+  (setq gcmh-high-cons-threshold (* 16 1024 1024))
+  :config
+  (gcmh-mode))
+
+(setq gc-cons-threshold most-positive-fixnum)
+
+(defvar sakomacs--file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+
+;; Alternatively, restore it even later:
+(add-hook 'emacs-startup-hook
+  (lambda ()
+    (setq file-name-handler-alist sakomacs--file-name-handler-alist)))
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold 16777216 ; 16mb
+                  gc-cons-percentage 0.1)))
+
+(defun doom-defer-garbage-collection-h ()
+  "Disable garbage collection."
+  (setq gc-cons-threshold most-positive-fixnum))
+
+(defun doom-restore-garbage-collection-h ()
+  "Restore garbage collection."
+  (run-at-time
+   1 nil (lambda () (setq gc-cons-threshold 16777216))))
+
+(add-hook 'minibuffer-setup-hook #'doom-defer-garbage-collection-h)
+(add-hook 'minibuffer-exit-hook #'doom-restore-garbage-collection-h)
+
+(setq package-native-compile t)
+(setq comp-deferred-compilation t)
+(setq native-comp-deferred-compilation-deny-list nil)
+(setq warning-suppress-log-types '((comp)))
+
+(message "setting up packages")
+
+(use-package command-log-mode
+  :straight t
+  )
 
 ;; better search
-(use-package swiper)
+(use-package swiper
+      :straight t
+  )
 ;; better commands
-(use-package counsel)
+(use-package counsel
+    :straight t
+    )
 ;; autocompletion on commands (?)
 (use-package ivy
   :diminish
+  :straight t
   :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
          ("TAB" . ivy-alt-done)	
@@ -91,33 +159,42 @@ kept-old-versions 5)
          ("C-d" . ivy-switch-buffer-kill)
          :map ivy-reverse-i-search-map
          ("C-k" . ivy-previous-line)
-	 ("C-d" . ivy-reverse-i-search-kill))
+         ("C-d" . ivy-reverse-i-search-kill))
   :demand
   :config
   (ivy-mode 1))
 ;; better ivy autocompletion
 (use-package ivy-rich
+  :straight t
   :init
   (ivy-rich-mode 1))
 
 ;; counsel M+X
 (use-package counsel
+  :straight t
   :bind (("M-x" . counsel-M-x)
-	 ("C-x b" . counsel-ibuffer)
-	 ("C-x C-f" . counsel-find-file)
-	 :map minibuffer-local-map
-	 ("C-r" . 'counsel-minibuffer-history))
+         ("C-x b" . counsel-ibuffer)
+         ("C-x C-f" . counsel-find-file)
+         :map minibuffer-local-map
+         ("C-r" . 'counsel-minibuffer-history))
   :config
   (setq ivy-inital-inputs-alist nil))
 
 (use-package doom-themes
+:straight t
 :ensure t
 :config
 ;; Global settings (defaults)
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
 ;; load the theme
-(load-theme 'doom-dark+ t)
+(load-theme 'doom-monokai-pro t)
+
+(doom-themes-org-config)
+
+(setq doom-themes-treemacs-theme "doom-monokai-pro")
+
+(doom-themes-treemacs-config)
 
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config))
@@ -129,7 +206,10 @@ kept-old-versions 5)
 ;; Corrects (and improves) org-mode's native fontification.
 ;;(doom-themes-org-config))
 
+(use-package all-the-icons)
+
 (use-package nerd-icons
+  :straight t
   :custom
   ;; "Symbols Nerd Font Mono" is the default and is recommended
   ;; but you can use any other Nerd Font if you want
@@ -137,9 +217,11 @@ kept-old-versions 5)
   )
 
 (use-package rainbow-delimiters
+  :straight t
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package which-key
+  :straight t
   :init (which-key-mode)
   :diminish which-key-mode
   :config
@@ -147,11 +229,28 @@ kept-old-versions 5)
 
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 30)))
+  :straight t
+  :hook (after-init . doom-modeline-mode)
+  :custom ((doom-modeline-height 40)))
+
+(use-package hide-mode-line
+  :straight t
+  :hook (((treemacs-mode
+           eshell-mode shell-mode
+           term-mode vterm-mode
+           embark-collect-mode
+           lsp-ui-imenu-mode
+           pdf-annot-list-mode
+  	 dashboard-mode) . turn-on-hide-mode-line-mode)
+         (dired-mode . turn-off-hide-mode-line-mode)))
+
+(use-package minions
+  :straight t
+  :hook (doom-modeline-mode . minions-mode))
 
 (use-package helpful
   :ensure t
+  :straight t
   :custom
   (counsel-describe-function-function #'helpful-callable)
   (counsel-describe-variable-function #'helpful-variable)
@@ -161,47 +260,99 @@ kept-old-versions 5)
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
+(use-package delsel
+  :straight t
+  :ensure nil
+  :config (delete-selection-mode +1))
+
 (use-package general
+  :straight t
   :config
   (general-create-definer sakomacs/leader-keys
     :keymaps `(normal insert visual emacs)
     :prefix "SPC"
     :global-prefix "C-SPC")
   (sakomacs/leader-keys
+    ;; code
+    "c" `(:ignore c :which-key "code")
+    "cc" `(compile :which-key "compile")
+    "cC" `(recompile :which-key "compile")
+    "cX" `(lsp-treeemacs-errors-list :which-ley "list errors")
+    ;; toggles
     "t" `(:ignore t :which-key "toggles")
     "tt" `(counsel-load-theme :which-key "choose theme")
-    "e" `(:ignore e :which-key "explorer")
-    "ee" `(treemacs :which-key "treemacs")
+    ;; search
+    "s" `(:ignore s :which-key "search")
+    "sb" `(swiper :which-key "search buffer")
+    ;; insert
+    "i" `(:ignore i :which-key "insert")
+    "ie" `(emoji-search :which-key "Emoji")
+    ;; project
     "p" `(:ignore p :which-key "projects")
     "pp" `(projectile-switch-project :which-key "open project")
     "pk" `(projectile-kill-buffers :which-key "close project")
-    "o" `(:ignore o :which-key "org")
-    "oa" `(org-agenda :which-key "agenda")
+    "pa" `(projectile-add-known-project :which-key "add project")
+    "pR" `(projectile-run-project :which-key "run project")
+    "pt" `(magit-todos-list :which-key "list project todos")
+    "ps" `(projectile-save-project-buffers :which-key "save project")
+    "po" `(projectile-find-other-file :which-key "find other file")
+    "pg" `(projectile-configure-project :which-key "configure project")
+    "pc" `(projectile-compile-project :which-key "compile project")
+    ;; open
+    "o" `(:ignore o :which-key "open")
+    "op" `(treemacs :which-key "treemacs")
+    "oP" `(treemacs-find-file :which-key "treemacs find file")
+    "oe" `(eshell :which-key "eshell")
+    ;; notes
+    "n" `(:ignore o :which-key "notes")
+    "na" `(org-agenda :which-key "agenda")
+    ;; quit
+    "q" `(:ignore q :which-key "quit")
+    "qq" `(delete-frame :which-key "close emacs")
+    "qK" `(kill-emacs :which-key "quit emacs")
+    ;; git
     "g" `(:ignore g :which-key "git")
-    "gs" `(magit-status :which-key "status")))
+    "gs" `(magit-status :which-key "status")
+    "gc" `(:ignore gc :which-key "create")
+    "gcr" `(magit-init :which-key "init repo")
+    "gcR" `(magit-clone :which-key "clone repo")
+    "gcc" `(magit-commit-create :which-key "commit")
+    "gci" `(forge-create-issue :which-key "issue")
+    "gcp" `(forge-create-pullreq :which-key "pull request")))
 
 (use-package dashboard
-  :ensure t
-  :config
-  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
-  ;; Configuration of Dashboard
+  :straight t
+  :init
   (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
   (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
-  ;; Set the title
-  (setq dashboard-banner-logo-title "Emacs is vscode for nerds")
-  ;; Set the banner
-  (setq dashboard-startup-banner 'official)
-  ;; center everything 
+  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   (setq dashboard-center-content t)
-  ;; jump thing
-  (setq dashboard-show-shortcuts nil)
-  (setq dashboard-items '((projects . 5)
+  (setq dashboard-projects-backend 'projectile)
+  (setq dashboard-footer-messages '("i think i have emacs pinky"
+                                    "why are we still using lisp again?"
+                                    "why is this running on 1/16 threads?!?!?"
+                                    "still waiting for multithreaded :)"
+                                    "any day now"
+                                    "make sure to pray today"
+                                    "im literally kanye west"
+                                    "please dont break please dont break"
+                                    "GNU/Linux/Emacs/???"
+                                    "what is a GNU/Linux ?????????????"
+                                    "done!"
+                                    "remove / for faster emacs on linux"
+                                    ""))
+  (setq dashboard-items '((recents  . 3)
+                          (projects . 3)
                           (agenda . 5)))
-  (setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
-  (setq dashboard-footer-messages '("I think I have Emacs pinky!"))
+
+  (setq dashboard-image-banner-max-height 250)
+  (setq dashboard-image-banner-max-width 500)
+
+  (setq dashboard-page-separator "\n\n")
   (dashboard-setup-startup-hook))
 
 (use-package evil
+  :straight t
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
@@ -224,11 +375,21 @@ kept-old-versions 5)
 
 ;; extra things for Evil
 (use-package evil-collection
+  :straight t
   :after evil
   :config
   (evil-collection-init))
 
-(use-package hydra)
+;; commenting
+(use-package evil-commentary
+:straight t
+:after evil
+:diminish
+:config (evil-commentary-mode +1))
+
+(use-package hydra
+  :straight t
+  )
 (defhydra hydra-text-scale (:timeout 4)
   "scale text"
   ("j" text-scale-increase "in")
@@ -239,6 +400,7 @@ kept-old-versions 5)
   "ts" '(hydra-text-scale/body :which-key "scale text"))
 
 (use-package projectile
+  :straight t
   :diminish projectile-mode
   :demand
   :config (projectile-mode)
@@ -251,15 +413,12 @@ kept-old-versions 5)
   (setq projectile-switch-project-action #'projectile-dired))
 
 (use-package counsel-projectile
+  :straight t
   :config (counsel-projectile-mode))
 
-(defun sakomacs/org-mode-setup ()
-  (org-indent-mode)
-  (variable-pitch-mode 1)
-  (visual-line-mode 1))
-
 (use-package org
-  :hook (org-mode . sakomacs/org-mode-setup)
+  :straight t
+  :hook (org-mode . org-indent-mode)
   :config
   (setq org-ellipsis "▼")
   (setq org-agenda-start-with-log-mode t)
@@ -272,22 +431,22 @@ kept-old-versions 5)
   (setq org-habit-graph-column 60)
 
   ;; archive thingy i forgot
-    (setq org-refile-targets
-  '(("archive.org" :maxlevel . 1)))
+  (setq org-refile-targets
+      '(("archive.org" :maxlevel . 1)))
 
   ;; save org buffer before refile
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
   ;; org agenda files
-    (setq org-agenda-files
-      '("~/org/tasks.org"
-       "~/org/school.org"
-       "~/org/daily.org"
-       "~/org/irl.org"
-        "~/org/work.org"))
+  (setq org-agenda-files
+        '("~/org/tasks.org"
+          "~/org/school.org"
+          "~/org/daily.org"
+          "~/org/irl.org"
+          "~/org/work.org"))
 
-    ;; Following
-    (setq org-return-follows-link  t)
+  ;; Following
+  (setq org-return-follows-link  t)
 
   ;; org mode src thing
   (require 'org-tempo)
@@ -296,124 +455,123 @@ kept-old-versions 5)
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
 
-    (setq org-todo-keywords
-  '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-    (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)")))
+  (setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+  	(sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)")))
 
-(setq org-refile-targets
-  '(("archive.org" :maxlevel . 1)
-    ("tasks.org" :maxlevel . 1)))
+  (setq org-refile-targets
+      '(("archive.org" :maxlevel . 1)
+  	("tasks.org" :maxlevel . 1)))
 
-;; Save Org buffers after refiling!
-(advice-add 'org-refile :after 'org-save-all-org-buffers)
+  ;; Save Org buffers after refiling!
+  (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
-(setq org-tag-alist
-  '((:startgroup)
-     ; Put mutually exclusive tags here
-     (:endgroup)
-     ("@errand" . ?E)
-     ("@home" . ?H)
-     ("@work" . ?W)
-     ("agenda" . ?a)
-     ("planning" . ?p)
-     ("publish" . ?P)
-     ("batch" . ?b)
-     ("note" . ?n)
-     ("idea" . ?i)))
+  (setq org-tag-alist
+      '((:startgroup)
+  				      ; Put mutually exclusive tags here
+  	(:endgroup)
+  	("@errand" . ?E)
+  	("@home" . ?H)
+  	("@work" . ?W)
+  	("agenda" . ?a)
+  	("planning" . ?p)
+  	("publish" . ?P)
+  	("batch" . ?b)
+  	("note" . ?n)
+  	("idea" . ?i)))
 
-;; Configure custom agenda views
-(setq org-agenda-custom-commands
- '(("d" "Dashboard"
-   ((agenda "" ((org-deadline-warning-days 7)))
-    (todo "NEXT"
-      ((org-agenda-overriding-header "Next Tasks")))
-    (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
+  ;; Configure custom agenda views
+  (setq org-agenda-custom-commands
+      '(("d" "Dashboard"
+  	 ((agenda "" ((org-deadline-warning-days 7)))
+  	  (todo "NEXT"
+  		((org-agenda-overriding-header "Next Tasks")))
+  	  (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
 
-  ("n" "Next Tasks"
-   ((todo "NEXT"
-      ((org-agenda-overriding-header "Next Tasks")))))
+  	("n" "Next Tasks"
+  	 ((todo "NEXT"
+  		((org-agenda-overriding-header "Next Tasks")))))
 
-  ("W" "Work Tasks" tags-todo "+work-email")
+  	("W" "Work Tasks" tags-todo "+work-email")
 
-  ;; Low-effort next actions
-  ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
-   ((org-agenda-overriding-header "Low Effort Tasks")
-    (org-agenda-max-todos 20)
-    (org-agenda-files org-agenda-files)))
+  	;; Low-effort next actions
+  	("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
+  	 ((org-agenda-overriding-header "Low Effort Tasks")
+  	  (org-agenda-max-todos 20)
+  	  (org-agenda-files org-agenda-files)))
 
-  ("w" "Workflow Status"
-   ((todo "WAIT"
-          ((org-agenda-overriding-header "Waiting on External")
-           (org-agenda-files org-agenda-files)))
-    (todo "REVIEW"
-          ((org-agenda-overriding-header "In Review")
-           (org-agenda-files org-agenda-files)))
-    (todo "PLAN"
-          ((org-agenda-overriding-header "In Planning")
-           (org-agenda-todo-list-sublevels nil)
-           (org-agenda-files org-agenda-files)))
-    (todo "BACKLOG"
-          ((org-agenda-overriding-header "Project Backlog")
-           (org-agenda-todo-list-sublevels nil)
-           (org-agenda-files org-agenda-files)))
-    (todo "READY"
-          ((org-agenda-overriding-header "Ready for Work")
-           (org-agenda-files org-agenda-files)))
-    (todo "ACTIVE"
-          ((org-agenda-overriding-header "Active Projects")
-           (org-agenda-files org-agenda-files)))
-    (todo "COMPLETED"
-          ((org-agenda-overriding-header "Completed Projects")
-           (org-agenda-files org-agenda-files)))
-    (todo "CANC"
-          ((org-agenda-overriding-header "Cancelled Projects")
-           (org-agenda-files org-agenda-files)))))))
+  	("w" "Workflow Status"
+  	 ((todo "WAIT"
+  		((org-agenda-overriding-header "Waiting on External")
+  		 (org-agenda-files org-agenda-files)))
+  	  (todo "REVIEW"
+  		((org-agenda-overriding-header "In Review")
+  		 (org-agenda-files org-agenda-files)))
+  	  (todo "PLAN"
+  		((org-agenda-overriding-header "In Planning")
+  		 (org-agenda-todo-list-sublevels nil)
+  		 (org-agenda-files org-agenda-files)))
+  	  (todo "BACKLOG"
+  		((org-agenda-overriding-header "Project Backlog")
+  		 (org-agenda-todo-list-sublevels nil)
+  		 (org-agenda-files org-agenda-files)))
+  	  (todo "READY"
+  		((org-agenda-overriding-header "Ready for Work")
+  		 (org-agenda-files org-agenda-files)))
+  	  (todo "ACTIVE"
+  		((org-agenda-overriding-header "Active Projects")
+  		 (org-agenda-files org-agenda-files)))
+  	  (todo "COMPLETED"
+  		((org-agenda-overriding-header "Completed Projects")
+  		 (org-agenda-files org-agenda-files)))
+  	  (todo "CANC"
+  		((org-agenda-overriding-header "Cancelled Projects")
+  		 (org-agenda-files org-agenda-files)))))))
 
-(setq org-capture-templates
-  `(("t" "Tasks / Projects")
-    ("tt" "Task" entry (file+olp "~/Projects/Code/emacs-from-scratch/OrgFiles/Tasks.org" "Inbox")
-         "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+  (setq org-capture-templates
+      `(("t" "Tasks / Projects")
+  	("tt" "Task" entry (file+olp "~/Projects/Code/emacs-from-scratch/OrgFiles/Tasks.org" "Inbox")
+           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
 
-    ("j" "Journal Entries")
-    ("jj" "Journal" entry
-         (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
-         "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
-         ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
-         :clock-in :clock-resume
-         :empty-lines 1)
-    ("jm" "Meeting" entry
-         (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
-         "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
-         :clock-in :clock-resume
-         :empty-lines 1)
+  	("j" "Journal Entries")
+  	("jj" "Journal" entry
+           (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
+           "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
+           ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
+           :clock-in :clock-resume
+           :empty-lines 1))))
 
-    ("w" "Workflows")
-    ("we" "Checking Email" entry (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
-         "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
-
-    ("m" "Metrics Capture")
-    ("mw" "Weight" table-line (file+headline "~/Projects/Code/emacs-from-scratch/OrgFiles/Metrics.org" "Weight")
-     "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t))))
-
-
-;; i need more bullets, i need more bullets, i need more bullets, bigger weapons, bigger weapons, bigger weapons
-;; thanks for the protein sir
-(use-package org-bullets
-  :after org
-  :hook (org-mode . org-bullets-mode)
+(use-package org-modern
+  :hook
+  (org-mode . global-org-modern-mode)
   :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+  ;; Org styling
+  (org-hide-emphasis-markers t)
+  (org-pretty-entities t)
+  (org-ellipsis " ▾ ")
 
-;; word
-(defun sakomacs/org-mode-visual-fill ()
-  (setq visual-fill-column-width 100
-        visual-fill-column-center-text t)
-  (visual-fill-column-mode 1))
+  ;; Agenda styling
+  (org-agenda-tags-column 0)
+  (org-agenda-block-separator ?─)
+  (org-agenda-current-time-string "◀── now ─────────────────────────────────────────────────"))
 
-(use-package visual-fill-column
-  :hook (org-mode . sakomacs/org-mode-visual-fill))
+(use-package org-superstar
+  :after org
+  :hook (org-mode . org-superstar-mode)
+  :config
+  (setq org-superstar-headline-bullets-list '("◯" "◯" "◯" "◯"))
+  (setq org-superstar-remove-leading-stars t)
+  (setq org-superstar-item-bullet-alist
+      '((?+ . ?•)
+        (?* . ?➤)
+        (?- . ?–)))
+  )
+
+(use-package olivetti
+  :hook (org-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 100))))
 
 (use-package org-roam
+:straight t
 :ensure t
 :custom
 (org-roam-directory "~/org"
@@ -426,6 +584,7 @@ kept-old-versions 5)
 (use-package treemacs
   :ensure t
   :defer t
+  :straight t
   :init
   (with-eval-after-load 'winum
     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
@@ -515,25 +674,36 @@ kept-old-versions 5)
 
 (use-package treemacs-evil
   :after (treemacs evil)
+  :straight t
   :ensure t)
 
 (use-package treemacs-projectile
   :after (treemacs projectile)
+  :straight t
   :ensure t)
 
 (use-package treemacs-magit
   :after (treemacs magit)
+  :straight t
   :ensure t)
 
 (use-package magit
+  :straight t
   :custom
-  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+  )
+(use-package magit-todos
+  :straight t
+  :after magit
+:config (magit-todos-mode 1))
 
 (use-package forge
+    :straight t
   :after magit)
 (setq auth-sources '("~/.authinfo"))
 
 (use-package direnv
+    :straight t
  :config
  (direnv-mode))
 
@@ -542,6 +712,7 @@ kept-old-versions 5)
   (lsp-headerline-breadcrumb-mode))
 
   (use-package lsp-mode
+    :straight t
     :commands (lsp lsp-deferred)
     :hook (lsp-mode . sakomacs/lsp-mode-setup)
     :init
@@ -552,1760 +723,50 @@ kept-old-versions 5)
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
+  :straight t
   :custom
   (lsp-ui-doc-position 'bottom))
 
 (use-package lsp-treemacs
+  :straight t
   :after lsp)
 
-(use-package lsp-ivy)
-
-(use-package web-mode
-     :hook (web-mode . lsp)
-     :mode ("\\.html\\'"
-             "\\.css\\'"))
-
-(use-package js2-mode
-:mode "\\.js\\'"
-:hook (js2-mode . lsp))
-
-(add-hook 'c-mode-hook 'lsp)
-(add-hook 'c++-mode-hook 'lsp)
-
-(use-package cmake-mode
-  :mode "CMakeLists.txt"
-  :hook (cmake-mode . lsp))
-
-(use-package python-mode
-  :mode "\\.py\\'"
-  :hook (python-mode . lsp))
-
-(use-package elpy
-:after python-mode
-
-:custom
-(elpy-rpc-python-command "python3")
-
-:config
-(elpy-enable))
-
-(use-package haskell-mode
-  :mode "\\.hs\\'"
-  :hook (python-mode . lsp))
-
-(use-package yaml-mode
-  :mode ("\\.yaml\\'"
-         "\\.yml\\'"))
-
-(use-package nix-mode
-  :hook ((nix-mode . lsp) 
-           (nix-mode . format-all-mode)
-           (nix-mode . (lambda () (setq-local format-all-formatters '(("Nix" alejandra))))))
-  :mode "\\.nix\\'")
-
-(use-package evil-nerd-commenter
-:bind ("M-/" . evilnc-comment-or-uncomment-lines))
-
-(use-package company
-  :after lsp-mode
-  :hook (lsp-mode . company-mode)
-  :bind (:map company-active-map
-         ("<tab>" . company-complete-selection))
-        (:map lsp-mode-map
-         ("<tab>" . company-indent-or-complete-common))
-  :custom
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0))
-
-(use-package company-box
-  :hook (company-mode . company-box-mode))
-
-(use-package format-all)
-
-(set-face-attribute `default nil :font "JetBrains Mono" :height 125)
-
-(require `package)
-
-(setq package-archives `(("mepla" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")
-			 ("elpa" . "https://elpa.gnu.org/packages/")))
-
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
-
-;; Init package for non-linux
-(unless (package-installed-p `use-package)
-  (package-install `use-package))
-
-(require 'use-package)
-(setq use-package-always-ensure t)
-
-(use-package command-log-mode)
-
-;; better search
-(use-package swiper)
-;; better commands
-(use-package counsel)
-;; autocompletion on commands (?)
-(use-package ivy
-  :diminish
-  :bind (("C-s" . swiper)
-         :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)	
-         ("C-l" . ivy-alt-done)
-         ("C-j" . ivy-next-line)
-         ("C-k" . ivy-previous-line)
-         :map ivy-switch-buffer-map
-         ("C-k" . ivy-previous-line)
-         ("C-l" . ivy-done)
-         ("C-d" . ivy-switch-buffer-kill)
-         :map ivy-reverse-i-search-map
-         ("C-k" . ivy-previous-line)
-	 ("C-d" . ivy-reverse-i-search-kill))
-  :demand
-  :config
-  (ivy-mode 1))
-;; better ivy autocompletion
-(use-package ivy-rich
-  :init
-  (ivy-rich-mode 1))
-
-;; counsel M+X
-(use-package counsel
-  :bind (("M-x" . counsel-M-x)
-	 ("C-x b" . counsel-ibuffer)
-	 ("C-x C-f" . counsel-find-file)
-	 :map minibuffer-local-map
-	 ("C-r" . 'counsel-minibuffer-history))
-  :config
-  (setq ivy-inital-inputs-alist nil))
-
-(use-package doom-themes
-:ensure t
-:config
-;; Global settings (defaults)
-(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-      doom-themes-enable-italic t) ; if nil, italics is universally disabled
-;; load the theme
-(load-theme 'doom-dark+ t)
-
-;; Enable flashing mode-line on errors
-(doom-themes-visual-bell-config))
-;; Enable custom neotree theme (all-the-icons must be installed!)
-;;(doom-themes-neotree-config)
-;; or for treemacs users
-;;(setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
-;;(doom-themes-treemacs-config)
-;; Corrects (and improves) org-mode's native fontification.
-;;(doom-themes-org-config))
-
-(use-package nerd-icons
-  :custom
-  ;; "Symbols Nerd Font Mono" is the default and is recommended
-  ;; but you can use any other Nerd Font if you want
-  (nerd-icons-font-family "JetBrainsMono NF")
+(use-package lsp-ivy
+  :straight t
   )
 
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
-
-(use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config
-  (setq which-key-idle-delay 1))
-
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 30)))
-
-(use-package helpful
-  :ensure t
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
-  :bind
-  ([remap describe-function ] . counsel-describe-function)
-  ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . counsel-describe-variable)
-  ([remap describe-key] . helpful-key))
-
-(use-package general
-  :config
-  (general-create-definer sakomacs/leader-keys
-    :keymaps `(normal insert visual emacs)
-    :prefix "SPC"
-    :global-prefix "C-SPC")
-  (sakomacs/leader-keys
-    "t" `(:ignore t :which-key "toggles")
-    "tt" `(counsel-load-theme :which-key "choose theme")
-    "e" `(:ignore e :which-key "explorer")
-    "ee" `(treemacs :which-key "treemacs")
-    "p" `(:ignore p :which-key "projects")
-    "pp" `(projectile-switch-project :which-key "open project")
-    "pk" `(projectile-kill-buffers :which-key "close project")
-    "o" `(:ignore o :which-key "org")
-    "oa" `(org-agenda :which-key "agenda")
-    "g" `(:ignore g :which-key "git")
-    "gs" `(magit-status :which-key "status")))
-
-(use-package dashboard
-  :ensure t
-  :config
-  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
-  ;; Configuration of Dashboard
-  (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
-  (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
-  ;; Set the title
-  (setq dashboard-banner-logo-title "Emacs is vscode for nerds")
-  ;; Set the banner
-  (setq dashboard-startup-banner 'official)
-  ;; center everything 
-  (setq dashboard-center-content t)
-  ;; jump thing
-  (setq dashboard-show-shortcuts nil)
-  (setq dashboard-items '((projects . 5)
-                          (agenda . 5)))
-  (setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
-  (setq dashboard-footer-messages '("I think I have Emacs pinky!"))
-  (dashboard-setup-startup-hook))
-
-(use-package evil
-  :init
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-i-jump nil)
-  :hook (evil-mode . sakomacs/evil-hook)
-  :ensure t
-  :demand
-  :config
-  (evil-mode 1)
-  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-  (define-key evil-insert-state-map (kbd "C-h") `evil-delete-backward-char-and-join)
-
-  ;; visual line motion
-  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-
-  (evil-set-initial-state 'messages-buffer-mode 'normal)
-  (evil-set-initial-state 'dashboard-mode 'normal))
-
-;; extra things for Evil
-(use-package evil-collection
-  :after evil
-  :config
-  (evil-collection-init))
-
-(use-package hydra)
-(defhydra hydra-text-scale (:timeout 4)
-  "scale text"
-  ("j" text-scale-increase "in")
-  ("k" text-scale-decrease "out")
-  ("f" nil "finished" :exit t))
-
-(sakomacs/leader-keys
-  "ts" '(hydra-text-scale/body :which-key "scale text"))
-
-(use-package projectile
-  :diminish projectile-mode
-  :demand
-  :config (projectile-mode)
-  :custom ((projectile-completion-system 'ivy))
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
-  :init
-  (when (file-directory-p "~/dev")
-    (setq projectile-project-search-path '("~/dev")))
-  (setq projectile-switch-project-action #'projectile-dired))
-
-(use-package counsel-projectile
-  :config (counsel-projectile-mode))
-
-(defun sakomacs/org-mode-setup ()
-  (org-indent-mode)
-  (variable-pitch-mode 1)
-  (visual-line-mode 1))
-
-(use-package org
-  :hook (org-mode . sakomacs/org-mode-setup)
-  :config
-  (setq org-ellipsis "▼")
-  (setq org-agenda-start-with-log-mode t)
-  (setq org-log-done 'time)
-  (setq org-log-into-drawer t)
-
-  ;; org habits thing
-  (require 'org-habit)
-  (add-to-list 'org-modules 'org-habit)
-  (setq org-habit-graph-column 60)
-
-  ;; archive thingy i forgot
-    (setq org-refile-targets
-  '(("archive.org" :maxlevel . 1)))
-
-  ;; save org buffer before refile
-  (advice-add 'org-refile :after 'org-save-all-org-buffers)
-
-  ;; org agenda files
-    (setq org-agenda-files
-      '("~/org/tasks.org"
-       "~/org/school.org"
-       "~/org/daily.org"
-       "~/org/irl.org"
-        "~/org/work.org"))
-
-    ;; Following
-    (setq org-return-follows-link  t)
-
-  ;; org mode src thing
-  (require 'org-tempo)
-
-  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
-  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-  (add-to-list 'org-structure-template-alist '("py" . "src python"))
-
-    (setq org-todo-keywords
-  '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-    (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)")))
-
-(setq org-refile-targets
-  '(("archive.org" :maxlevel . 1)
-    ("tasks.org" :maxlevel . 1)))
-
-;; Save Org buffers after refiling!
-(advice-add 'org-refile :after 'org-save-all-org-buffers)
-
-(setq org-tag-alist
-  '((:startgroup)
-     ; Put mutually exclusive tags here
-     (:endgroup)
-     ("@errand" . ?E)
-     ("@home" . ?H)
-     ("@work" . ?W)
-     ("agenda" . ?a)
-     ("planning" . ?p)
-     ("publish" . ?P)
-     ("batch" . ?b)
-     ("note" . ?n)
-     ("idea" . ?i)))
-
-;; Configure custom agenda views
-(setq org-agenda-custom-commands
- '(("d" "Dashboard"
-   ((agenda "" ((org-deadline-warning-days 7)))
-    (todo "NEXT"
-      ((org-agenda-overriding-header "Next Tasks")))
-    (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
-
-  ("n" "Next Tasks"
-   ((todo "NEXT"
-      ((org-agenda-overriding-header "Next Tasks")))))
-
-  ("W" "Work Tasks" tags-todo "+work-email")
-
-  ;; Low-effort next actions
-  ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
-   ((org-agenda-overriding-header "Low Effort Tasks")
-    (org-agenda-max-todos 20)
-    (org-agenda-files org-agenda-files)))
-
-  ("w" "Workflow Status"
-   ((todo "WAIT"
-          ((org-agenda-overriding-header "Waiting on External")
-           (org-agenda-files org-agenda-files)))
-    (todo "REVIEW"
-          ((org-agenda-overriding-header "In Review")
-           (org-agenda-files org-agenda-files)))
-    (todo "PLAN"
-          ((org-agenda-overriding-header "In Planning")
-           (org-agenda-todo-list-sublevels nil)
-           (org-agenda-files org-agenda-files)))
-    (todo "BACKLOG"
-          ((org-agenda-overriding-header "Project Backlog")
-           (org-agenda-todo-list-sublevels nil)
-           (org-agenda-files org-agenda-files)))
-    (todo "READY"
-          ((org-agenda-overriding-header "Ready for Work")
-           (org-agenda-files org-agenda-files)))
-    (todo "ACTIVE"
-          ((org-agenda-overriding-header "Active Projects")
-           (org-agenda-files org-agenda-files)))
-    (todo "COMPLETED"
-          ((org-agenda-overriding-header "Completed Projects")
-           (org-agenda-files org-agenda-files)))
-    (todo "CANC"
-          ((org-agenda-overriding-header "Cancelled Projects")
-           (org-agenda-files org-agenda-files)))))))
-
-(setq org-capture-templates
-  `(("t" "Tasks / Projects")
-    ("tt" "Task" entry (file+olp "~/Projects/Code/emacs-from-scratch/OrgFiles/Tasks.org" "Inbox")
-         "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
-
-    ("j" "Journal Entries")
-    ("jj" "Journal" entry
-         (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
-         "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
-         ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
-         :clock-in :clock-resume
-         :empty-lines 1)
-    ("jm" "Meeting" entry
-         (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
-         "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
-         :clock-in :clock-resume
-         :empty-lines 1)
-
-    ("w" "Workflows")
-    ("we" "Checking Email" entry (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
-         "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
-
-    ("m" "Metrics Capture")
-    ("mw" "Weight" table-line (file+headline "~/Projects/Code/emacs-from-scratch/OrgFiles/Metrics.org" "Weight")
-     "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t))))
-
-
-;; i need more bullets, i need more bullets, i need more bullets, bigger weapons, bigger weapons, bigger weapons
-;; thanks for the protein sir
-(use-package org-bullets
-  :after org
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-
-;; word
-(defun sakomacs/org-mode-visual-fill ()
-  (setq visual-fill-column-width 100
-        visual-fill-column-center-text t)
-  (visual-fill-column-mode 1))
-
-(use-package visual-fill-column
-  :hook (org-mode . sakomacs/org-mode-visual-fill))
-
-(use-package org-roam
-:ensure t
-:custom
-(org-roam-directory "~/org"
-                    :bind (("C-c n l" . org-roam-buffer-toggle)
-                           ("C-c n f" . org-roam-node-find)
-                           ("C-c n i" . org-roam-node-insert))
-                    :config
-                    (org-roam-setup)))
-
-(use-package treemacs
-  :ensure t
-  :defer t
-  :init
-  (with-eval-after-load 'winum
-    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
-  :config
-  (progn
-    (setq treemacs-collapse-dirs                   (if treemacs-python-executable 3 0)
-          treemacs-deferred-git-apply-delay        0.5
-          treemacs-directory-name-transformer      #'identity
-          treemacs-display-in-side-window          t
-          treemacs-eldoc-display                   'simple
-          treemacs-file-event-delay                2000
-          treemacs-file-extension-regex            treemacs-last-period-regex-value
-          treemacs-file-follow-delay               0.2
-          treemacs-file-name-transformer           #'identity
-          treemacs-follow-after-init               t
-          treemacs-expand-after-init               t
-          treemacs-find-workspace-method           'find-for-file-or-pick-first
-          treemacs-git-command-pipe                ""
-          treemacs-goto-tag-strategy               'refetch-index
-          treemacs-header-scroll-indicators        '(nil . "^^^^^^")
-          treemacs-hide-dot-git-directory          t
-          treemacs-indentation                     2
-          treemacs-indentation-string              " "
-          treemacs-is-never-other-window           nil
-          treemacs-max-git-entries                 5000
-          treemacs-missing-project-action          'ask
-          treemacs-move-forward-on-expand          nil
-          treemacs-no-png-images                   nil
-          treemacs-no-delete-other-windows         t
-          treemacs-project-follow-cleanup          nil
-          treemacs-persist-file                    (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
-          treemacs-position                        'left
-          treemacs-read-string-input               'from-child-frame
-          treemacs-recenter-distance               0.1
-          treemacs-recenter-after-file-follow      nil
-          treemacs-recenter-after-tag-follow       nil
-          treemacs-recenter-after-project-jump     'always
-          treemacs-recenter-after-project-expand   'on-distance
-          treemacs-litter-directories              '("/node_modules" "/.venv" "/.cask")
-          treemacs-project-follow-into-home        nil
-          treemacs-show-cursor                     nil
-          treemacs-show-hidden-files               t
-          treemacs-silent-filewatch                nil
-          treemacs-silent-refresh                  nil
-          treemacs-sorting                         'alphabetic-asc
-          treemacs-select-when-already-in-treemacs 'move-back
-          treemacs-space-between-root-nodes        t
-          treemacs-tag-follow-cleanup              t
-          treemacs-tag-follow-delay                1.5
-          treemacs-text-scale                      nil
-          treemacs-user-mode-line-format           nil
-          treemacs-user-header-line-format         nil
-          treemacs-wide-toggle-width               70
-          treemacs-width                           35
-          treemacs-width-increment                 1
-          treemacs-width-is-initially-locked       t
-          treemacs-workspace-switch-cleanup        nil)
-
-    ;; The default width and height of the icons is 22 pixels. If you are
-    ;; using a Hi-DPI display, uncomment this to double the icon size.
-    ;;(treemacs-resize-icons 44)
-
-    (treemacs-follow-mode t)
-    (treemacs-tag-follow-mode t)
-    (treemacs-project-follow-mode t)
-    (treemacs-filewatch-mode t)
-    (treemacs-fringe-indicator-mode 'always)
-    (when treemacs-python-executable
-      (treemacs-git-commit-diff-mode t))
-
-    (pcase (cons (not (null (executable-find "git")))
-                 (not (null treemacs-python-executable)))
-      (`(t . t)
-       (treemacs-git-mode 'deferred))
-      (`(t . _)
-       (treemacs-git-mode 'simple)))
-
-    (treemacs-hide-gitignored-files-mode nil))
-  :bind
-  (:map global-map
-        ("M-0"       . treemacs-select-window)
-        ("C-x t 1"   . treemacs-delete-other-windows)
-        ("C-x t d"   . treemacs-select-directory)
-        ("C-x t B"   . treemacs-bookmark)
-        ("C-x t C-t" . treemacs-find-file)
-        ("C-x t M-t" . treemacs-find-tag)))
-
-(use-package treemacs-evil
-  :after (treemacs evil)
-  :ensure t)
-
-(use-package treemacs-projectile
-  :after (treemacs projectile)
-  :ensure t)
-
-(use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
-
-(use-package magit
-  :custom
-  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
-
-(use-package forge
-  :after magit)
-(setq auth-sources '("~/.authinfo"))
-
-(use-package direnv
- :config
- (direnv-mode))
-
-(defun sakomacs/lsp-mode-setup ()
-  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-  (lsp-headerline-breadcrumb-mode))
-
-  (use-package lsp-mode
-    :commands (lsp lsp-deferred)
-    :hook (lsp-mode . sakomacs/lsp-mode-setup)
-    :init
-    (setq lsp-keymap-prefix "C-c l")
-    :config
-    (lsp-enable-which-key-integration t)
-    (setq lsp-keep-workspace-alive nil))
-
-(use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode)
-  :custom
-  (lsp-ui-doc-position 'bottom))
-
-(use-package lsp-treemacs
-  :after lsp)
-
-(use-package lsp-ivy)
-
 (use-package web-mode
+  :straight t
      :hook (web-mode . lsp)
      :mode ("\\.html\\'"
              "\\.css\\'"))
 
 (use-package js2-mode
+  :straight t
 :mode "\\.js\\'"
-:hook (js2-mode . lsp))
+:hook (js2-mode . lsp)
+:config
+(setq web-mode-markup-indent-offset 2) ; HTML
+(setq web-mode-css-indent-offset 2)    ; CSS
+(setq web-mode-code-indent-offset 2)   ; JS/JSX/TS/TSX
+(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))))
 
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
 
 (use-package cmake-mode
   :mode "CMakeLists.txt"
+  :straight t
   :hook (cmake-mode . lsp))
 
 (use-package python-mode
   :mode "\\.py\\'"
+  :straight t
   :hook (python-mode . lsp))
 
 (use-package elpy
 :after python-mode
-
-:custom
-(elpy-rpc-python-command "python3")
-
-:config
-(elpy-enable))
-
-(use-package haskell-mode
-  :mode "\\.hs\\'"
-  :hook (python-mode . lsp))
-
-(use-package yaml-mode
-  :mode ("\\.yaml\\'"
-         "\\.yml\\'"))
-
-(use-package nix-mode
-  :hook ((nix-mode . lsp) 
-           (nix-mode . format-all-mode)
-           (nix-mode . (lambda () (setq-local format-all-formatters '(("Nix" alejandra))))))
-  :mode "\\.nix\\'")
-
-(use-package evil-nerd-commenter
-:bind ("M-/" . evilnc-comment-or-uncomment-lines))
-
-(use-package company
-  :after lsp-mode
-  :hook (lsp-mode . company-mode)
-  :bind (:map company-active-map
-         ("<tab>" . company-complete-selection))
-        (:map lsp-mode-map
-         ("<tab>" . company-indent-or-complete-common))
-  :custom
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0))
-
-(use-package company-box
-  :hook (company-mode . company-box-mode))
-
-(use-package format-all)
-
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode)
-  :diminish flycheck-mode
-  :config
-  (setq-default flycheck-disabled-checkers
-          (append flycheck-disabled-checkers
-                  '(javascript-jshint json-jsonlist)))
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (add-hook 'after-init-hook #'global-flycheck-mode))
-
-(set-face-attribute `default nil :font "JetBrains Mono" :height 125)
-
-(require `package)
-
-(setq package-archives `(("mepla" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")
-			 ("elpa" . "https://elpa.gnu.org/packages/")))
-
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
-
-;; Init package for non-linux
-(unless (package-installed-p `use-package)
-  (package-install `use-package))
-
-(require 'use-package)
-(setq use-package-always-ensure t)
-
-(use-package command-log-mode)
-
-;; better search
-(use-package swiper)
-;; better commands
-(use-package counsel)
-;; autocompletion on commands (?)
-(use-package ivy
-  :diminish
-  :bind (("C-s" . swiper)
-         :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)	
-         ("C-l" . ivy-alt-done)
-         ("C-j" . ivy-next-line)
-         ("C-k" . ivy-previous-line)
-         :map ivy-switch-buffer-map
-         ("C-k" . ivy-previous-line)
-         ("C-l" . ivy-done)
-         ("C-d" . ivy-switch-buffer-kill)
-         :map ivy-reverse-i-search-map
-         ("C-k" . ivy-previous-line)
-	 ("C-d" . ivy-reverse-i-search-kill))
-  :demand
-  :config
-  (ivy-mode 1))
-;; better ivy autocompletion
-(use-package ivy-rich
-  :init
-  (ivy-rich-mode 1))
-
-;; counsel M+X
-(use-package counsel
-  :bind (("M-x" . counsel-M-x)
-	 ("C-x b" . counsel-ibuffer)
-	 ("C-x C-f" . counsel-find-file)
-	 :map minibuffer-local-map
-	 ("C-r" . 'counsel-minibuffer-history))
-  :config
-  (setq ivy-inital-inputs-alist nil))
-
-(use-package doom-themes
-:ensure t
-:config
-;; Global settings (defaults)
-(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-      doom-themes-enable-italic t) ; if nil, italics is universally disabled
-;; load the theme
-(load-theme 'doom-dark+ t)
-
-;; Enable flashing mode-line on errors
-(doom-themes-visual-bell-config))
-;; Enable custom neotree theme (all-the-icons must be installed!)
-;;(doom-themes-neotree-config)
-;; or for treemacs users
-;;(setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
-;;(doom-themes-treemacs-config)
-;; Corrects (and improves) org-mode's native fontification.
-;;(doom-themes-org-config))
-
-(use-package nerd-icons
-  :custom
-  ;; "Symbols Nerd Font Mono" is the default and is recommended
-  ;; but you can use any other Nerd Font if you want
-  (nerd-icons-font-family "JetBrainsMono NF")
-  )
-
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
-
-(use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config
-  (setq which-key-idle-delay 1))
-
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 30)))
-
-(use-package helpful
-  :ensure t
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
-  :bind
-  ([remap describe-function ] . counsel-describe-function)
-  ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . counsel-describe-variable)
-  ([remap describe-key] . helpful-key))
-
-(use-package general
-  :config
-  (general-create-definer sakomacs/leader-keys
-    :keymaps `(normal insert visual emacs)
-    :prefix "SPC"
-    :global-prefix "C-SPC")
-  (sakomacs/leader-keys
-    "t" `(:ignore t :which-key "toggles")
-    "tt" `(counsel-load-theme :which-key "choose theme")
-    "e" `(:ignore e :which-key "explorer")
-    "ee" `(treemacs :which-key "treemacs")
-    "p" `(:ignore p :which-key "projects")
-    "pp" `(projectile-switch-project :which-key "open project")
-    "pk" `(projectile-kill-buffers :which-key "close project")
-    "o" `(:ignore o :which-key "org")
-    "oa" `(org-agenda :which-key "agenda")
-    "g" `(:ignore g :which-key "git")
-    "gs" `(magit-status :which-key "status")))
-
-(use-package dashboard
-  :ensure t
-  :config
-  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
-  ;; Configuration of Dashboard
-  (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
-  (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
-  ;; Set the title
-  (setq dashboard-banner-logo-title "Emacs is vscode for nerds")
-  ;; Set the banner
-  (setq dashboard-startup-banner 'official)
-  ;; center everything 
-  (setq dashboard-center-content t)
-  ;; jump thing
-  (setq dashboard-show-shortcuts nil)
-  (setq dashboard-items '((projects . 5)
-                          (agenda . 5)))
-  (setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
-  (setq dashboard-footer-messages '("I think I have Emacs pinky!"))
-  (dashboard-setup-startup-hook))
-
-(use-package evil
-  :init
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-i-jump nil)
-  :hook (evil-mode . sakomacs/evil-hook)
-  :ensure t
-  :demand
-  :config
-  (evil-mode 1)
-  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-  (define-key evil-insert-state-map (kbd "C-h") `evil-delete-backward-char-and-join)
-
-  ;; visual line motion
-  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-
-  (evil-set-initial-state 'messages-buffer-mode 'normal)
-  (evil-set-initial-state 'dashboard-mode 'normal))
-
-;; extra things for Evil
-(use-package evil-collection
-  :after evil
-  :config
-  (evil-collection-init))
-
-(use-package hydra)
-(defhydra hydra-text-scale (:timeout 4)
-  "scale text"
-  ("j" text-scale-increase "in")
-  ("k" text-scale-decrease "out")
-  ("f" nil "finished" :exit t))
-
-(sakomacs/leader-keys
-  "ts" '(hydra-text-scale/body :which-key "scale text"))
-
-(use-package projectile
-  :diminish projectile-mode
-  :demand
-  :config (projectile-mode)
-  :custom ((projectile-completion-system 'ivy))
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
-  :init
-  (when (file-directory-p "~/dev")
-    (setq projectile-project-search-path '("~/dev")))
-  (setq projectile-switch-project-action #'projectile-dired))
-
-(use-package counsel-projectile
-  :config (counsel-projectile-mode))
-
-(defun sakomacs/org-mode-setup ()
-  (org-indent-mode)
-  (variable-pitch-mode 1)
-  (visual-line-mode 1))
-
-(use-package org
-  :hook (org-mode . sakomacs/org-mode-setup)
-  :config
-  (setq org-ellipsis "▼")
-  (setq org-agenda-start-with-log-mode t)
-  (setq org-log-done 'time)
-  (setq org-log-into-drawer t)
-
-  ;; org habits thing
-  (require 'org-habit)
-  (add-to-list 'org-modules 'org-habit)
-  (setq org-habit-graph-column 60)
-
-  ;; archive thingy i forgot
-    (setq org-refile-targets
-  '(("archive.org" :maxlevel . 1)))
-
-  ;; save org buffer before refile
-  (advice-add 'org-refile :after 'org-save-all-org-buffers)
-
-  ;; org agenda files
-    (setq org-agenda-files
-      '("~/org/tasks.org"
-       "~/org/school.org"
-       "~/org/daily.org"
-       "~/org/irl.org"
-        "~/org/work.org"))
-
-    ;; Following
-    (setq org-return-follows-link  t)
-
-  ;; org mode src thing
-  (require 'org-tempo)
-
-  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
-  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-  (add-to-list 'org-structure-template-alist '("py" . "src python"))
-
-    (setq org-todo-keywords
-  '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-    (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)")))
-
-(setq org-refile-targets
-  '(("archive.org" :maxlevel . 1)
-    ("tasks.org" :maxlevel . 1)))
-
-;; Save Org buffers after refiling!
-(advice-add 'org-refile :after 'org-save-all-org-buffers)
-
-(setq org-tag-alist
-  '((:startgroup)
-     ; Put mutually exclusive tags here
-     (:endgroup)
-     ("@errand" . ?E)
-     ("@home" . ?H)
-     ("@work" . ?W)
-     ("agenda" . ?a)
-     ("planning" . ?p)
-     ("publish" . ?P)
-     ("batch" . ?b)
-     ("note" . ?n)
-     ("idea" . ?i)))
-
-;; Configure custom agenda views
-(setq org-agenda-custom-commands
- '(("d" "Dashboard"
-   ((agenda "" ((org-deadline-warning-days 7)))
-    (todo "NEXT"
-      ((org-agenda-overriding-header "Next Tasks")))
-    (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
-
-  ("n" "Next Tasks"
-   ((todo "NEXT"
-      ((org-agenda-overriding-header "Next Tasks")))))
-
-  ("W" "Work Tasks" tags-todo "+work-email")
-
-  ;; Low-effort next actions
-  ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
-   ((org-agenda-overriding-header "Low Effort Tasks")
-    (org-agenda-max-todos 20)
-    (org-agenda-files org-agenda-files)))
-
-  ("w" "Workflow Status"
-   ((todo "WAIT"
-          ((org-agenda-overriding-header "Waiting on External")
-           (org-agenda-files org-agenda-files)))
-    (todo "REVIEW"
-          ((org-agenda-overriding-header "In Review")
-           (org-agenda-files org-agenda-files)))
-    (todo "PLAN"
-          ((org-agenda-overriding-header "In Planning")
-           (org-agenda-todo-list-sublevels nil)
-           (org-agenda-files org-agenda-files)))
-    (todo "BACKLOG"
-          ((org-agenda-overriding-header "Project Backlog")
-           (org-agenda-todo-list-sublevels nil)
-           (org-agenda-files org-agenda-files)))
-    (todo "READY"
-          ((org-agenda-overriding-header "Ready for Work")
-           (org-agenda-files org-agenda-files)))
-    (todo "ACTIVE"
-          ((org-agenda-overriding-header "Active Projects")
-           (org-agenda-files org-agenda-files)))
-    (todo "COMPLETED"
-          ((org-agenda-overriding-header "Completed Projects")
-           (org-agenda-files org-agenda-files)))
-    (todo "CANC"
-          ((org-agenda-overriding-header "Cancelled Projects")
-           (org-agenda-files org-agenda-files)))))))
-
-(setq org-capture-templates
-  `(("t" "Tasks / Projects")
-    ("tt" "Task" entry (file+olp "~/Projects/Code/emacs-from-scratch/OrgFiles/Tasks.org" "Inbox")
-         "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
-
-    ("j" "Journal Entries")
-    ("jj" "Journal" entry
-         (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
-         "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
-         ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
-         :clock-in :clock-resume
-         :empty-lines 1)
-    ("jm" "Meeting" entry
-         (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
-         "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
-         :clock-in :clock-resume
-         :empty-lines 1)
-
-    ("w" "Workflows")
-    ("we" "Checking Email" entry (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
-         "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
-
-    ("m" "Metrics Capture")
-    ("mw" "Weight" table-line (file+headline "~/Projects/Code/emacs-from-scratch/OrgFiles/Metrics.org" "Weight")
-     "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t))))
-
-
-;; i need more bullets, i need more bullets, i need more bullets, bigger weapons, bigger weapons, bigger weapons
-;; thanks for the protein sir
-(use-package org-bullets
-  :after org
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-
-;; word
-(defun sakomacs/org-mode-visual-fill ()
-  (setq visual-fill-column-width 100
-        visual-fill-column-center-text t)
-  (visual-fill-column-mode 1))
-
-(use-package visual-fill-column
-  :hook (org-mode . sakomacs/org-mode-visual-fill))
-
-(use-package org-roam
-:ensure t
-:custom
-(org-roam-directory "~/org"
-                    :bind (("C-c n l" . org-roam-buffer-toggle)
-                           ("C-c n f" . org-roam-node-find)
-                           ("C-c n i" . org-roam-node-insert))
-                    :config
-                    (org-roam-setup)))
-
-(use-package treemacs
-  :ensure t
-  :defer t
-  :init
-  (with-eval-after-load 'winum
-    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
-  :config
-  (progn
-    (setq treemacs-collapse-dirs                   (if treemacs-python-executable 3 0)
-          treemacs-deferred-git-apply-delay        0.5
-          treemacs-directory-name-transformer      #'identity
-          treemacs-display-in-side-window          t
-          treemacs-eldoc-display                   'simple
-          treemacs-file-event-delay                2000
-          treemacs-file-extension-regex            treemacs-last-period-regex-value
-          treemacs-file-follow-delay               0.2
-          treemacs-file-name-transformer           #'identity
-          treemacs-follow-after-init               t
-          treemacs-expand-after-init               t
-          treemacs-find-workspace-method           'find-for-file-or-pick-first
-          treemacs-git-command-pipe                ""
-          treemacs-goto-tag-strategy               'refetch-index
-          treemacs-header-scroll-indicators        '(nil . "^^^^^^")
-          treemacs-hide-dot-git-directory          t
-          treemacs-indentation                     2
-          treemacs-indentation-string              " "
-          treemacs-is-never-other-window           nil
-          treemacs-max-git-entries                 5000
-          treemacs-missing-project-action          'ask
-          treemacs-move-forward-on-expand          nil
-          treemacs-no-png-images                   nil
-          treemacs-no-delete-other-windows         t
-          treemacs-project-follow-cleanup          nil
-          treemacs-persist-file                    (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
-          treemacs-position                        'left
-          treemacs-read-string-input               'from-child-frame
-          treemacs-recenter-distance               0.1
-          treemacs-recenter-after-file-follow      nil
-          treemacs-recenter-after-tag-follow       nil
-          treemacs-recenter-after-project-jump     'always
-          treemacs-recenter-after-project-expand   'on-distance
-          treemacs-litter-directories              '("/node_modules" "/.venv" "/.cask")
-          treemacs-project-follow-into-home        nil
-          treemacs-show-cursor                     nil
-          treemacs-show-hidden-files               t
-          treemacs-silent-filewatch                nil
-          treemacs-silent-refresh                  nil
-          treemacs-sorting                         'alphabetic-asc
-          treemacs-select-when-already-in-treemacs 'move-back
-          treemacs-space-between-root-nodes        t
-          treemacs-tag-follow-cleanup              t
-          treemacs-tag-follow-delay                1.5
-          treemacs-text-scale                      nil
-          treemacs-user-mode-line-format           nil
-          treemacs-user-header-line-format         nil
-          treemacs-wide-toggle-width               70
-          treemacs-width                           35
-          treemacs-width-increment                 1
-          treemacs-width-is-initially-locked       t
-          treemacs-workspace-switch-cleanup        nil)
-
-    ;; The default width and height of the icons is 22 pixels. If you are
-    ;; using a Hi-DPI display, uncomment this to double the icon size.
-    ;;(treemacs-resize-icons 44)
-
-    (treemacs-follow-mode t)
-    (treemacs-tag-follow-mode t)
-    (treemacs-project-follow-mode t)
-    (treemacs-filewatch-mode t)
-    (treemacs-fringe-indicator-mode 'always)
-    (when treemacs-python-executable
-      (treemacs-git-commit-diff-mode t))
-
-    (pcase (cons (not (null (executable-find "git")))
-                 (not (null treemacs-python-executable)))
-      (`(t . t)
-       (treemacs-git-mode 'deferred))
-      (`(t . _)
-       (treemacs-git-mode 'simple)))
-
-    (treemacs-hide-gitignored-files-mode nil))
-  :bind
-  (:map global-map
-        ("M-0"       . treemacs-select-window)
-        ("C-x t 1"   . treemacs-delete-other-windows)
-        ("C-x t d"   . treemacs-select-directory)
-        ("C-x t B"   . treemacs-bookmark)
-        ("C-x t C-t" . treemacs-find-file)
-        ("C-x t M-t" . treemacs-find-tag)))
-
-(use-package treemacs-evil
-  :after (treemacs evil)
-  :ensure t)
-
-(use-package treemacs-projectile
-  :after (treemacs projectile)
-  :ensure t)
-
-(use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
-
-(use-package magit
-  :custom
-  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
-
-(use-package forge
-  :after magit)
-(setq auth-sources '("~/.authinfo"))
-
-(use-package direnv
- :config
- (direnv-mode))
-
-(defun sakomacs/lsp-mode-setup ()
-  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-  (lsp-headerline-breadcrumb-mode))
-
-  (use-package lsp-mode
-    :commands (lsp lsp-deferred)
-    :hook (lsp-mode . sakomacs/lsp-mode-setup)
-    :init
-    (setq lsp-keymap-prefix "C-c l")
-    :config
-    (lsp-enable-which-key-integration t)
-    (setq lsp-keep-workspace-alive nil))
-
-(use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode)
-  :custom
-  (lsp-ui-doc-position 'bottom))
-
-(use-package lsp-treemacs
-  :after lsp)
-
-(use-package lsp-ivy)
-
-(use-package web-mode
-     :hook (web-mode . lsp)
-     :mode ("\\.html\\'"
-             "\\.css\\'"))
-
-(use-package js2-mode
-:mode "\\.js\\'"
-:hook (js2-mode . lsp))
-
-(add-hook 'c-mode-hook 'lsp)
-(add-hook 'c++-mode-hook 'lsp)
-
-(use-package cmake-mode
-  :mode "CMakeLists.txt"
-  :hook (cmake-mode . lsp))
-
-(use-package python-mode
-  :mode "\\.py\\'"
-  :hook (python-mode . lsp))
-
-(use-package elpy
-:after python-mode
-
-:custom
-(elpy-rpc-python-command "python3")
-
-:config
-(elpy-enable))
-
-(use-package haskell-mode
-  :mode "\\.hs\\'"
-  :hook (python-mode . lsp))
-
-(use-package yaml-mode
-  :mode ("\\.yaml\\'"
-         "\\.yml\\'"))
-
-(use-package nix-mode
-  :hook ((nix-mode . lsp) 
-           (nix-mode . format-all-mode)
-           (nix-mode . (lambda () (setq-local format-all-formatters '(("Nix" alejandra))))))
-  :mode "\\.nix\\'")
-
-(use-package evil-nerd-commenter
-:bind ("M-/" . evilnc-comment-or-uncomment-lines))
-
-(use-package company
-  :after lsp-mode
-  :hook (lsp-mode . company-mode)
-  :bind (:map company-active-map
-         ("<tab>" . company-complete-selection))
-        (:map lsp-mode-map
-         ("<tab>" . company-indent-or-complete-common))
-  :custom
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0))
-
-(use-package company-box
-  :hook (company-mode . company-box-mode))
-
-(use-package format-all)
-
-(set-face-attribute `default nil :font "JetBrains Mono" :height 125)
-
-(require `package)
-
-(setq package-archives `(("mepla" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")
-			 ("elpa" . "https://elpa.gnu.org/packages/")))
-
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
-
-;; Init package for non-linux
-(unless (package-installed-p `use-package)
-  (package-install `use-package))
-
-(require 'use-package)
-(setq use-package-always-ensure t)
-
-(use-package command-log-mode)
-
-;; better search
-(use-package swiper)
-;; better commands
-(use-package counsel)
-;; autocompletion on commands (?)
-(use-package ivy
-  :diminish
-  :bind (("C-s" . swiper)
-         :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)	
-         ("C-l" . ivy-alt-done)
-         ("C-j" . ivy-next-line)
-         ("C-k" . ivy-previous-line)
-         :map ivy-switch-buffer-map
-         ("C-k" . ivy-previous-line)
-         ("C-l" . ivy-done)
-         ("C-d" . ivy-switch-buffer-kill)
-         :map ivy-reverse-i-search-map
-         ("C-k" . ivy-previous-line)
-	 ("C-d" . ivy-reverse-i-search-kill))
-  :demand
-  :config
-  (ivy-mode 1))
-;; better ivy autocompletion
-(use-package ivy-rich
-  :init
-  (ivy-rich-mode 1))
-
-;; counsel M+X
-(use-package counsel
-  :bind (("M-x" . counsel-M-x)
-	 ("C-x b" . counsel-ibuffer)
-	 ("C-x C-f" . counsel-find-file)
-	 :map minibuffer-local-map
-	 ("C-r" . 'counsel-minibuffer-history))
-  :config
-  (setq ivy-inital-inputs-alist nil))
-
-(use-package doom-themes
-:ensure t
-:config
-;; Global settings (defaults)
-(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-      doom-themes-enable-italic t) ; if nil, italics is universally disabled
-;; load the theme
-(load-theme 'doom-peacock t)
-
-;; Enable flashing mode-line on errors
-(doom-themes-visual-bell-config))
-;; Enable custom neotree theme (all-the-icons must be installed!)
-;;(doom-themes-neotree-config)
-;; or for treemacs users
-;;(setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
-;;(doom-themes-treemacs-config)
-;; Corrects (and improves) org-mode's native fontification.
-;;(doom-themes-org-config))
-
-(use-package nerd-icons
-  :custom
-  ;; "Symbols Nerd Font Mono" is the default and is recommended
-  ;; but you can use any other Nerd Font if you want
-  (nerd-icons-font-family "JetBrainsMono NF")
-  )
-
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
-
-(use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config
-  (setq which-key-idle-delay 1))
-
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 30)))
-
-(use-package helpful
-  :ensure t
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
-  :bind
-  ([remap describe-function ] . counsel-describe-function)
-  ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . counsel-describe-variable)
-  ([remap describe-key] . helpful-key))
-
-(use-package general
-  :config
-  (general-create-definer sakomacs/leader-keys
-    :keymaps `(normal insert visual emacs)
-    :prefix "SPC"
-    :global-prefix "C-SPC")
-  (sakomacs/leader-keys
-    "t" `(:ignore t :which-key "toggles")
-    "tt" `(counsel-load-theme :which-key "choose theme")
-    "e" `(:ignore e :which-key "explorer")
-    "ee" `(treemacs :which-key "treemacs")
-    "p" `(:ignore p :which-key "projects")
-    "pp" `(projectile-switch-project :which-key "open project")
-    "pk" `(projectile-kill-buffers :which-key "close project")
-    "o" `(:ignore o :which-key "org")
-    "oa" `(org-agenda :which-key "agenda")
-    "g" `(:ignore g :which-key "git")
-    "gs" `(magit-status :which-key "status")))
-
-(use-package dashboard
-  :ensure t
-  :config
-  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
-  ;; Configuration of Dashboard
-  (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
-  (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
-  ;; Set the title
-  (setq dashboard-banner-logo-title "Emacs is vscode for nerds")
-  ;; Set the banner
-  (setq dashboard-startup-banner 'official)
-  ;; center everything 
-  (setq dashboard-center-content t)
-  ;; jump thing
-  (setq dashboard-show-shortcuts nil)
-  (setq dashboard-items '((projects . 5)
-                          (agenda . 5)))
-  (setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
-  (setq dashboard-footer-messages '("I think I have Emacs pinky!"))
-  (dashboard-setup-startup-hook))
-
-(use-package evil
-  :init
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-i-jump nil)
-  :hook (evil-mode . sakomacs/evil-hook)
-  :ensure t
-  :demand
-  :config
-  (evil-mode 1)
-  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-  (define-key evil-insert-state-map (kbd "C-h") `evil-delete-backward-char-and-join)
-
-  ;; visual line motion
-  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-
-  (evil-set-initial-state 'messages-buffer-mode 'normal)
-  (evil-set-initial-state 'dashboard-mode 'normal))
-
-;; extra things for Evil
-(use-package evil-collection
-  :after evil
-  :config
-  (evil-collection-init))
-
-(use-package hydra)
-(defhydra hydra-text-scale (:timeout 4)
-  "scale text"
-  ("j" text-scale-increase "in")
-  ("k" text-scale-decrease "out")
-  ("f" nil "finished" :exit t))
-
-(sakomacs/leader-keys
-  "ts" '(hydra-text-scale/body :which-key "scale text"))
-
-(use-package projectile
-  :diminish projectile-mode
-  :demand
-  :config (projectile-mode)
-  :custom ((projectile-completion-system 'ivy))
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
-  :init
-  (when (file-directory-p "~/dev")
-    (setq projectile-project-search-path '("~/dev")))
-  (setq projectile-switch-project-action #'projectile-dired))
-
-(use-package counsel-projectile
-  :config (counsel-projectile-mode))
-
-(defun sakomacs/org-mode-setup ()
-  (org-indent-mode)
-  (variable-pitch-mode 1)
-  (visual-line-mode 1))
-
-(use-package org
-  :hook (org-mode . sakomacs/org-mode-setup)
-  :config
-  (setq org-ellipsis "▼")
-  (setq org-agenda-start-with-log-mode t)
-  (setq org-log-done 'time)
-  (setq org-log-into-drawer t)
-
-  ;; org habits thing
-  (require 'org-habit)
-  (add-to-list 'org-modules 'org-habit)
-  (setq org-habit-graph-column 60)
-
-  ;; archive thingy i forgot
-    (setq org-refile-targets
-  '(("archive.org" :maxlevel . 1)))
-
-  ;; save org buffer before refile
-  (advice-add 'org-refile :after 'org-save-all-org-buffers)
-
-  ;; org agenda files
-    (setq org-agenda-files
-      '("~/org/tasks.org"
-       "~/org/school.org"
-       "~/org/daily.org"
-       "~/org/irl.org"
-        "~/org/work.org"))
-
-    ;; Following
-    (setq org-return-follows-link  t)
-
-  ;; org mode src thing
-  (require 'org-tempo)
-
-  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
-  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-  (add-to-list 'org-structure-template-alist '("py" . "src python"))
-
-    (setq org-todo-keywords
-  '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-    (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)")))
-
-(setq org-refile-targets
-  '(("archive.org" :maxlevel . 1)
-    ("tasks.org" :maxlevel . 1)))
-
-;; Save Org buffers after refiling!
-(advice-add 'org-refile :after 'org-save-all-org-buffers)
-
-(setq org-tag-alist
-  '((:startgroup)
-     ; Put mutually exclusive tags here
-     (:endgroup)
-     ("@errand" . ?E)
-     ("@home" . ?H)
-     ("@work" . ?W)
-     ("agenda" . ?a)
-     ("planning" . ?p)
-     ("publish" . ?P)
-     ("batch" . ?b)
-     ("note" . ?n)
-     ("idea" . ?i)))
-
-;; Configure custom agenda views
-(setq org-agenda-custom-commands
- '(("d" "Dashboard"
-   ((agenda "" ((org-deadline-warning-days 7)))
-    (todo "NEXT"
-      ((org-agenda-overriding-header "Next Tasks")))
-    (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
-
-  ("n" "Next Tasks"
-   ((todo "NEXT"
-      ((org-agenda-overriding-header "Next Tasks")))))
-
-  ("W" "Work Tasks" tags-todo "+work-email")
-
-  ;; Low-effort next actions
-  ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
-   ((org-agenda-overriding-header "Low Effort Tasks")
-    (org-agenda-max-todos 20)
-    (org-agenda-files org-agenda-files)))
-
-  ("w" "Workflow Status"
-   ((todo "WAIT"
-          ((org-agenda-overriding-header "Waiting on External")
-           (org-agenda-files org-agenda-files)))
-    (todo "REVIEW"
-          ((org-agenda-overriding-header "In Review")
-           (org-agenda-files org-agenda-files)))
-    (todo "PLAN"
-          ((org-agenda-overriding-header "In Planning")
-           (org-agenda-todo-list-sublevels nil)
-           (org-agenda-files org-agenda-files)))
-    (todo "BACKLOG"
-          ((org-agenda-overriding-header "Project Backlog")
-           (org-agenda-todo-list-sublevels nil)
-           (org-agenda-files org-agenda-files)))
-    (todo "READY"
-          ((org-agenda-overriding-header "Ready for Work")
-           (org-agenda-files org-agenda-files)))
-    (todo "ACTIVE"
-          ((org-agenda-overriding-header "Active Projects")
-           (org-agenda-files org-agenda-files)))
-    (todo "COMPLETED"
-          ((org-agenda-overriding-header "Completed Projects")
-           (org-agenda-files org-agenda-files)))
-    (todo "CANC"
-          ((org-agenda-overriding-header "Cancelled Projects")
-           (org-agenda-files org-agenda-files)))))))
-
-(setq org-capture-templates
-  `(("t" "Tasks / Projects")
-    ("tt" "Task" entry (file+olp "~/Projects/Code/emacs-from-scratch/OrgFiles/Tasks.org" "Inbox")
-         "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
-
-    ("j" "Journal Entries")
-    ("jj" "Journal" entry
-         (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
-         "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
-         ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
-         :clock-in :clock-resume
-         :empty-lines 1)
-    ("jm" "Meeting" entry
-         (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
-         "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
-         :clock-in :clock-resume
-         :empty-lines 1)
-
-    ("w" "Workflows")
-    ("we" "Checking Email" entry (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
-         "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
-
-    ("m" "Metrics Capture")
-    ("mw" "Weight" table-line (file+headline "~/Projects/Code/emacs-from-scratch/OrgFiles/Metrics.org" "Weight")
-     "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t))))
-
-
-;; i need more bullets, i need more bullets, i need more bullets, bigger weapons, bigger weapons, bigger weapons
-;; thanks for the protein sir
-(use-package org-bullets
-  :after org
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-
-;; word
-(defun sakomacs/org-mode-visual-fill ()
-  (setq visual-fill-column-width 100
-        visual-fill-column-center-text t)
-  (visual-fill-column-mode 1))
-
-(use-package visual-fill-column
-  :hook (org-mode . sakomacs/org-mode-visual-fill))
-
-(use-package org-roam
-:ensure t
-:custom
-(org-roam-directory "~/org"
-                    :bind (("C-c n l" . org-roam-buffer-toggle)
-                           ("C-c n f" . org-roam-node-find)
-                           ("C-c n i" . org-roam-node-insert))
-                    :config
-                    (org-roam-setup)))
-
-(use-package treemacs
-  :ensure t
-  :defer t
-  :init
-  (with-eval-after-load 'winum
-    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
-  :config
-  (progn
-    (setq treemacs-collapse-dirs                   (if treemacs-python-executable 3 0)
-          treemacs-deferred-git-apply-delay        0.5
-          treemacs-directory-name-transformer      #'identity
-          treemacs-display-in-side-window          t
-          treemacs-eldoc-display                   'simple
-          treemacs-file-event-delay                2000
-          treemacs-file-extension-regex            treemacs-last-period-regex-value
-          treemacs-file-follow-delay               0.2
-          treemacs-file-name-transformer           #'identity
-          treemacs-follow-after-init               t
-          treemacs-expand-after-init               t
-          treemacs-find-workspace-method           'find-for-file-or-pick-first
-          treemacs-git-command-pipe                ""
-          treemacs-goto-tag-strategy               'refetch-index
-          treemacs-header-scroll-indicators        '(nil . "^^^^^^")
-          treemacs-hide-dot-git-directory          t
-          treemacs-indentation                     2
-          treemacs-indentation-string              " "
-          treemacs-is-never-other-window           nil
-          treemacs-max-git-entries                 5000
-          treemacs-missing-project-action          'ask
-          treemacs-move-forward-on-expand          nil
-          treemacs-no-png-images                   nil
-          treemacs-no-delete-other-windows         t
-          treemacs-project-follow-cleanup          nil
-          treemacs-persist-file                    (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
-          treemacs-position                        'left
-          treemacs-read-string-input               'from-child-frame
-          treemacs-recenter-distance               0.1
-          treemacs-recenter-after-file-follow      nil
-          treemacs-recenter-after-tag-follow       nil
-          treemacs-recenter-after-project-jump     'always
-          treemacs-recenter-after-project-expand   'on-distance
-          treemacs-litter-directories              '("/node_modules" "/.venv" "/.cask")
-          treemacs-project-follow-into-home        nil
-          treemacs-show-cursor                     nil
-          treemacs-show-hidden-files               t
-          treemacs-silent-filewatch                nil
-          treemacs-silent-refresh                  nil
-          treemacs-sorting                         'alphabetic-asc
-          treemacs-select-when-already-in-treemacs 'move-back
-          treemacs-space-between-root-nodes        t
-          treemacs-tag-follow-cleanup              t
-          treemacs-tag-follow-delay                1.5
-          treemacs-text-scale                      nil
-          treemacs-user-mode-line-format           nil
-          treemacs-user-header-line-format         nil
-          treemacs-wide-toggle-width               70
-          treemacs-width                           35
-          treemacs-width-increment                 1
-          treemacs-width-is-initially-locked       t
-          treemacs-workspace-switch-cleanup        nil)
-
-    ;; The default width and height of the icons is 22 pixels. If you are
-    ;; using a Hi-DPI display, uncomment this to double the icon size.
-    ;;(treemacs-resize-icons 44)
-
-    (treemacs-follow-mode t)
-    (treemacs-tag-follow-mode t)
-    (treemacs-project-follow-mode t)
-    (treemacs-filewatch-mode t)
-    (treemacs-fringe-indicator-mode 'always)
-    (when treemacs-python-executable
-      (treemacs-git-commit-diff-mode t))
-
-    (pcase (cons (not (null (executable-find "git")))
-                 (not (null treemacs-python-executable)))
-      (`(t . t)
-       (treemacs-git-mode 'deferred))
-      (`(t . _)
-       (treemacs-git-mode 'simple)))
-
-    (treemacs-hide-gitignored-files-mode nil))
-  :bind
-  (:map global-map
-        ("M-0"       . treemacs-select-window)
-        ("C-x t 1"   . treemacs-delete-other-windows)
-        ("C-x t d"   . treemacs-select-directory)
-        ("C-x t B"   . treemacs-bookmark)
-        ("C-x t C-t" . treemacs-find-file)
-        ("C-x t M-t" . treemacs-find-tag)))
-
-(use-package treemacs-evil
-  :after (treemacs evil)
-  :ensure t)
-
-(use-package treemacs-projectile
-  :after (treemacs projectile)
-  :ensure t)
-
-(use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
-
-(use-package magit
-  :custom
-  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
-
-(use-package forge
-  :after magit)
-(setq auth-sources '("~/.authinfo"))
-
-(use-package direnv
- :config
- (direnv-mode))
-
-(defun sakomacs/lsp-mode-setup ()
-  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-  (lsp-headerline-breadcrumb-mode))
-
-  (use-package lsp-mode
-    :commands (lsp lsp-deferred)
-    :hook (lsp-mode . sakomacs/lsp-mode-setup)
-    :init
-    (setq lsp-keymap-prefix "C-c l")
-    :config
-    (lsp-enable-which-key-integration t)
-    (setq lsp-keep-workspace-alive nil))
-
-(use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode)
-  :custom
-  (lsp-ui-doc-position 'bottom))
-
-(use-package lsp-treemacs
-  :after lsp)
-
-(use-package lsp-ivy)
-
-(use-package web-mode
-     :hook (web-mode . lsp)
-     :mode ("\\.html\\'"
-             "\\.css\\'"))
-
-(use-package js2-mode
-:mode "\\.js\\'"
-:hook (js2-mode . lsp))
-
-(add-hook 'c-mode-hook 'lsp)
-(add-hook 'c++-mode-hook 'lsp)
-
-(use-package cmake-mode
-  :mode "CMakeLists.txt"
-  :hook (cmake-mode . lsp))
-
-(use-package python-mode
-  :mode "\\.py\\'"
-  :hook (python-mode . lsp))
-
-(use-package elpy
-:after python-mode
+  :straight t
 
 :custom
 (elpy-rpc-python-command "python3")
@@ -2315,46 +776,83 @@ kept-old-versions 5)
 
 (use-package lsp-pyright
   :ensure t
+  :straight t
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp))))  ; or lsp-deferred
 
 (use-package haskell-mode
   :mode "\\.hs\\'"
+  :straight t
   :hook (python-mode . lsp))
 
 (use-package yaml-mode
-  :mode ("\\.yaml\\'"
-         "\\.yml\\'"))
+:straight t
+    :mode ("\\.yaml\\'"
+           "\\.yml\\'"))
 
 (use-package nix-mode
+:straight t
   :hook ((nix-mode . lsp) 
            (nix-mode . format-all-mode)
            (nix-mode . (lambda () (setq-local format-all-formatters '(("Nix" alejandra))))))
   :mode "\\.nix\\'")
 
 (use-package dart-mode
+  :straight t
  :hook (dart-mode . lsp)
 :mode "\\.dart\\'" )
 
+(use-package markdown-mode
+  :straight t
+  :hook (markdown-mode . visual-line-mode))
+
 (use-package evil-nerd-commenter
+  :straight t
 :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 
 (use-package company
-  :after lsp-mode
-  :hook (lsp-mode . company-mode)
-  :bind (:map company-active-map
-         ("<tab>" . company-complete-selection))
-        (:map lsp-mode-map
-         ("<tab>" . company-indent-or-complete-common))
-  :custom
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0))
+    :straight t
+    :after lsp-mode
+    :hook (lsp-mode . company-mode)
+    :bind (:map company-active-map
+  	      ("<tab>" . company-complete-selection))
+    (:map lsp-mode-map
+          ("<tab>" . company-indent-or-complete-common))
+    :custom
+    (company-minimum-prefix-length 1)
+    (company-idle-delay 0)
+    (company-selection-wrap-around t)
+    (company-tooltip-align-annotations t))
 
 (use-package company-box
-  :hook (company-mode . company-box-mode))
+    :straight t
+    :hook (company-mode . company-box-mode))
 
-(use-package format-all)
+(use-package flycheck :straight t :config (global-flycheck-mode +1))
+
+(use-package format-all
+  :straight t
+  )
+
+(use-package fancy-compilation
+  :straight t
+  :commands (fancy-compilation-mode))
+
+(with-eval-after-load 'compile
+  (fancy-compilation-mode))
+
+(use-package yasnippet
+  :straight t
+  :diminish yas-minor-mode
+  :hook (after-init . yas-global-mode))
+
+(use-package yasnippet-snippets
+  :straight t)
+
+(use-package yasnippet-capf
+ :straight t
+:init (add-to-list 'completion-at-point-functions #'yasnippet-capf))
 
 (use-package dired
   :ensure nil
@@ -2383,23 +881,21 @@ kept-old-versions 5)
 ;; reliably, set `user-emacs-directory` before loading no-littering!
 ;(setq user-emacs-directory "~/.cache/emacs")
 
-(use-package no-littering)
+(use-package no-littering
+  :straight t
+  )
 
 ;; no-littering doesn't set this by default so we must place
 ;; auto save files in the same path as it uses for sessions
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
-(use-package elfeed)
-
-(use-package elfeed-goodies
-  :after elfeed
-  :ensure t
-  :init
-  (elfeed-goodies/setup)
+(use-package elfeed
+  :straight t
   )
 
 (use-package elfeed-protocol
+  :straight t
   :after elfeed
   :ensure t
   :config
@@ -2431,6 +927,46 @@ kept-old-versions 5)
 
 (add-hook 'emacs-startup-hook (elfeed-update))
 
+(use-package telega
+  :straight t
+  )
+
+(use-package system-packages
+  :init
+  (cond
+   ((eq system-type 'windows-nt)
+    (progn
+      (add-to-list 'system-packages-support-package-managers
+  		 '(winget .
+  			  ((default-sudio . nil)
+  			   (install . "winget install")
+  			   (uninstall . "winget uninstall")
+  			   (update . "winget update --all")
+  			   (log . nil)
+  			   (search . "winget search")
+  			   (change-log . nil)
+  			   (clean-cache. nil)
+  			   (get-info . nil)
+  			   (get-info-remote . nil)
+  			   (list-files-provided-by . nil)
+  			   (owning-file . nil)
+  			   (verify-all-dependencies . nil)
+  			   (remove-orphaned . nil)
+  			   (list-installed-packages . "winget list -q")
+  			   (list-installed-packages-all . "winget list")
+  			   (list-installed-packages-all . "winget list")
+  			   (noconfirm . "--accept-source-agreements --accept-package-agreements"))))
+      (setq system-packages-package-manager 'winget)
+      (setq system-packages-noconfirm t))
+   ((eq system-type 'darwin)
+    (progn
+      ;;(message "Mac OS X")))
+      (setq system-packages-package-manager 'brew)
+   ((eq system-type 'gnu/linux)
+    (progn
+      (setq system-packages-package-manager 'nix)
+      )))))))
+
 (org-babel-do-load-languages
 'org-babel-load-languages
 '((emacs-lisp . t)
@@ -2442,10 +978,6 @@ kept-old-versions 5)
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle)))
   (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'sakomacs/org-babel-tangle-config))))
-
-(use-package term
-:config
-(setq explicit-shell-file-name "zsh"))
 
 (defun sakomacs/configure-eshell ()
   ;; Save command history when commands are entered
@@ -2467,6 +999,7 @@ kept-old-versions 5)
 (use-package eshell-git-prompt)
 
 (use-package eshell
+    :straight t
   :hook (eshell-first-time-mode . sakomacs/configure-eshell)
   :config
 
@@ -2477,6 +1010,22 @@ kept-old-versions 5)
   (eshell-git-prompt-use-theme 'powerline))
 
 (use-package vterm
+  :straight t
 :commands vterm
 :config
 (setq vterm-max-scrollback 10000))
+
+(require 'notifications)
+
+(if (eq system-type 'windows-nt)
+  (w32-notification-notify
+   :title "Emacs Daemon"
+   :body "The Emacs Daemon has started"))
+
+(if (eq system-type 'gnu/linux)
+    (notifications-notify
+   :title "Emacs Daemon"
+   :body "The Emacs Daemon has started"))
+
+
+(message "Emacs is ready")
