@@ -494,23 +494,6 @@ Should make startup faster, taken from doom-emacs
     :straight t
     :config (counsel-projectile-mode))
 #+end_src 
-** Notifcations
-#+begin_src emacs-lisp
-  (use-package alert
-    :straight t
-    :config
-    ;; Add the windows desktop notifications if on windows
-    (when (eq system-type 'windows-nt)
-      (alert-define-style
-       'windows-desktop-notification-style
-       :title "Windows Desktop Notification style"
-       :notifier
-       (lambda (info)
-         (let ((notif-id (w32-notification-notify :title (plist-get info :title) :body (plist-get info :message))))
-           ;; Close it after 3 seconds (no new notification can be sent if left unclosed)
-           (run-with-timer 3 nil `(lambda() (w32-notification-close ,notif-id))))))
-      (setq alert-default-style 'windows-desktop-notification-style)))
-#+end_src
 ** Org-Mode
 #+begin_src emacs-lisp
   (use-package org
@@ -687,14 +670,6 @@ We have to compete with notion somehow right?
                              ("C-c n i" . org-roam-node-insert))
                       :config
                       (org-roam-setup)))
-#+end_src
-** Org-wild-notifier
-#+begin_src emacs-lisp
-      (use-package org-wild-notifier
-        :straight t
-        :after org
-        :config
-        )
 #+end_src
 ** Treemacs
 #+begin_src emacs-lisp
@@ -1225,13 +1200,6 @@ only god knows why im doing this
 #+end_src
 
 * Terminals
-** term-mode
-#+begin_src emacs-lisp
-  (use-package term
-    :straight t
-  :config
-  (setq explicit-shell-file-name "zsh"))
-#+end_src
 ** EShell
 god dammit why are they making my shells in emacs lisp
 #+begin_src emacs-lisp
@@ -1265,7 +1233,6 @@ god dammit why are they making my shells in emacs lisp
 
   (eshell-git-prompt-use-theme 'powerline))
 #+end_src
-
 ** VTerm
 #+begin_src emacs-lisp
   (use-package vterm
@@ -1273,4 +1240,23 @@ god dammit why are they making my shells in emacs lisp
   :commands vterm
   :config
   (setq vterm-max-scrollback 10000))
+#+end_src
+* End 
+** notify that it has loaded 
+#+begin_src emacs-lisp
+  (require 'notifications)
+
+  (if (eq system-type 'windows-nt)
+    (w32-notification-notify
+     :title "Emacs Daemon"
+     :body "The Emacs Daemon has started"))
+
+  (if (eq system-type 'gnu/linux)
+      (notifications-notify
+     :title "Emacs Daemon"
+     :body "The Emacs Daemon has started"))
+
+
+  (message "Emacs is ready")
+
 #+end_src
