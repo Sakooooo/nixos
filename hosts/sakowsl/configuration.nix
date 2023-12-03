@@ -111,6 +111,9 @@
         search.enable = true;
       };
     };
+    security = {
+      certs.enable = true;
+    };
   };
 
   security.sudo.wheelNeedsPassword = true;
