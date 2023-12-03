@@ -90,7 +90,6 @@
   home-manager.useUserPackages = true;
   home-manager.users.sako = {pkgs, ...}: {
     # CHANGE THIS WHEN THE SYSTEM VERSION CHANGES TOO!!!
-    home.stateVersion = "23.05";
     home.packages = [];
     home.username = "sako";
     home.homeDirectory = "/home/sako";
