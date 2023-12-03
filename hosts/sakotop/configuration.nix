@@ -136,4 +136,9 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  # DO NOT CHANGE THIS!!!!
+  # ONLY CHANGE WHEN FULLY REINSTALLING
+  # OR USING NEW SYSTEMS
+  system.stateVersion = "23.05";
 }

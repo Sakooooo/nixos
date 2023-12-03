@@ -86,4 +86,9 @@
       certs.enable = true;
     };
   };
+
+  # DO NOT CHANGE THIS!!!!
+  # ONLY CHANGE WHEN FULLY REINSTALLING
+  # OR USING NEW SYSTEMS
+  system.stateVersion = "23.11";
 }

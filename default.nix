@@ -129,6 +129,6 @@
 
   # read stable version patch notes and fix any issues
   # then you can change this
-  system.stateVersion = "23.05";
+  #system.stateVersion = "23.05";
   # read comment you read the comment?
 }
