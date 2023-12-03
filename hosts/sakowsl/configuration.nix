@@ -15,6 +15,7 @@
     outputs.nixosModules.hardware
     outputs.nixosModules.dev
     outputs.nixosModules.media
+    outputs.nixosModules.security
   ];
 
   wsl = {
