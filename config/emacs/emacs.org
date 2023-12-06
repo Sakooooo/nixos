@@ -144,10 +144,12 @@ Should make startup faster, taken from doom-emacs
 #+end_src
 ** Go back to normal GC after init
 #+begin_src emacs-lisp
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (setq gc-cons-threshold 16777216 ; 16mb
-                  gc-cons-percentage 0.1)))
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              ;;(setq gc-cons-threshold 16777216 ; 16mb
+  	    ;; this could be really bad idk
+  	    (setq gc-cons-threshold 100000000
+                    gc-cons-percentage 0.1)))
 #+end_src
 ** Don't use GC when minibuffer is used 
 #+begin_src emacs-lisp
@@ -162,6 +164,10 @@ Should make startup faster, taken from doom-emacs
 
 (add-hook 'minibuffer-setup-hook #'doom-defer-garbage-collection-h)
 (add-hook 'minibuffer-exit-hook #'doom-restore-garbage-collection-h)
+#+end_src
+** Make Emacs read more
+#+begin_src emacs-lisp
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
 #+end_src
 * Native Compilation
 #+begin_src emacs-lisp
@@ -216,6 +222,14 @@ Should make startup faster, taken from doom-emacs
     :straight t
     :init
     (ivy-rich-mode 1))
+
+  ;; ivy in the middle
+  (use-package ivy-posframe
+    :straight t
+    :init
+    (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
+    :config
+    (ivy-posframe-mode 1))
 
   ;; counsel M+X
   (use-package counsel
