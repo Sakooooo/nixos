@@ -892,6 +892,13 @@ make sure to setup authinfo
     :straight t
     :hook (cmake-mode . lsp))
 #+end_src
+***** Lua
+#+begin_src emacs-lisp
+  (use-package lua-mode
+    :mode "\\.lua\\'"
+    :straight t
+    :hook (lua-mode . lsp))
+#+end_src
 ***** Python
 #+begin_src emacs-lisp
   (use-package python-mode
