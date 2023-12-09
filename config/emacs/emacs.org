@@ -870,16 +870,37 @@ make sure to setup authinfo
 #+end_src
 ***** Javascript 
 #+begin_src emacs-lisp
-  (use-package js2-mode
-    :straight t
-  :mode "\\.js\\'"
-  :hook (js2-mode . lsp)
-  :config
-  (setq web-mode-markup-indent-offset 2) ; HTML
-  (setq web-mode-css-indent-offset 2)    ; CSS
-  (setq web-mode-code-indent-offset 2)   ; JS/JSX/TS/TSX
-  (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))))
+    (use-package js2-mode
+      :straight t
+    :mode ("\\.js\\'"
+  	 "\\.jsx\\'")
+    :hook (js2-mode . lsp)
+    :config
+    (setq web-mode-markup-indent-offset 2) ; HTML
+    (setq web-mode-css-indent-offset 2)    ; CSS
+    (setq web-mode-code-indent-offset 2)   ; JS/JSX/TS/TSX
+    (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))))
 #+end_src
+***** Typescript
+#+begin_src emacs-lisp
+  (use-package typescript-mode
+    :straight t
+    :mode ("\\.ts\\'"
+  	 "\\.tsx\\'")
+    :hook (typescript-mode . lsp))
+#+end_src
+***** Astro
+  #+begin_src emacs-lisp
+(use-package astro-ts-mode
+:straight t
+:mode "\\.astro\\'"
+:hook (astro-ts-mode . lsp)
+:config
+(setq treesit-language-source-alist
+      '((astro "https://github.com/virchau13/tree-sitter-astro")
+        (css "https://github.com/tree-sitter/tree-sitter-css")
+        (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))))
+  #+end_src>
 ***** C/C++
 #+begin_src emacs-lisp
 (add-hook 'c-mode-hook 'lsp)
