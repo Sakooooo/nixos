@@ -866,19 +866,25 @@ make sure to setup authinfo
 #+end_src
 ***** Astro
 #+begin_src emacs-lisp 
-  (define-derived-mode astro-mode web-mode "astro")
-  (setq auto-mode-alist
-  (append '((".*\\.astro\\'" . astro-mode))
-  auto-mode-alist))
+    (define-derived-mode astro-mode web-mode "astro")
+    (setq auto-mode-alist
+    (append '((".*\\.astro\\'" . astro-mode))
+    auto-mode-alist))
 
-  (add-to-list 'lsp-language-id-configuration
-               '(astro-mode . "astro"))
+    (add-to-list 'lsp-language-id-configuration
+                 '(astro-mode . "astro"))
+
+  (defun astro-get-tsserver ()
+    ""
+    (f-join (lsp-workspace-root) "node_modules/typescript/lib/tsserverlibrary.js"))
 
   (lsp-register-client
    (make-lsp-client :new-connection (lsp-stdio-connection '("astro-ls" "--stdio"))
                     :activation-fn (lsp-activate-on "astro")
+                    :initialization-options (lambda ()
+                                              `(:typescript (:serverPath ,(astro-get-tsserver))))
                     :server-id 'astro-ls))
-  
+    
 #+end_src
 ***** C/C++
 #+begin_src emacs-lisp
