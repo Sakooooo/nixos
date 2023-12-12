@@ -252,7 +252,7 @@ Should make startup faster, taken from doom-emacs
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
   ;; load the theme
-  (load-theme 'doom-homeage-black t)
+  (load-theme 'doom-monokai-pro t)
 
   (doom-themes-org-config)
 
@@ -865,17 +865,21 @@ make sure to setup authinfo
     :hook (typescript-mode . lsp))
 #+end_src
 ***** Astro
-  #+begin_src emacs-lisp
-(use-package astro-ts-mode
-:straight t
-:mode "\\.astro\\'"
-:hook (astro-ts-mode . lsp)
-:config
-(setq treesit-language-source-alist
-      '((astro "https://github.com/virchau13/tree-sitter-astro")
-        (css "https://github.com/tree-sitter/tree-sitter-css")
-        (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))))
-  #+end_src>
+#+begin_src emacs-lisp 
+  (define-derived-mode astro-mode web-mode "astro")
+  (setq auto-mode-alist
+  (append '((".*\\.astro\\'" . astro-mode))
+  auto-mode-alist))
+
+  (add-to-list 'lsp-language-id-configuration
+               '(astro-mode . "astro"))
+
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection '("astro-ls" "--stdio"))
+                    :activation-fn (lsp-activate-on "astro")
+                    :server-id 'astro-ls))
+  
+#+end_src
 ***** C/C++
 #+begin_src emacs-lisp
 (add-hook 'c-mode-hook 'lsp)
