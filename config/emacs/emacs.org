@@ -1207,6 +1207,16 @@ only god knows why im doing this
         (setq system-packages-package-manager 'nix)
         )))))))
 #+end_src
+** pdf-tools 
+Emacs can be everything? Why not turn it into a pdf reader
+#+begin_src emacs-lisp
+          (use-package pdf-tools
+            :straight t
+            :mode ("\\.pdf\\'" . pdf-view-mode)
+            :config
+    	(setq-default pdf-view-display-size 'fit-page)
+  	  (pdf-tools-install))
+#+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
 #+begin_src emacs-lisp
