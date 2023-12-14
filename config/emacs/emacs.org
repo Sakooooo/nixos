@@ -68,6 +68,7 @@ Should make startup faster, taken from doom-emacs
     (add-hook 'yaml-mode 'display-line-numbers-mode)
     (add-hook 'conf-mode 'display-line-numbers-mode)
   (setq display-line-numbers-width-start t)
+  (setq display-line-numbers-type 'relative)
 #+end_src
 * Keymaps
 #+begin_src emacs-lisp
@@ -77,6 +78,8 @@ Should make startup faster, taken from doom-emacs
   (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
   ;; repeat keybinds
   (repeat-mode)
+  ;; electric pairs
+  (electric-pair-mode)
 #+end_src
 * Fonts
 #+begin_src emacs-lisp
@@ -178,17 +181,18 @@ Should make startup faster, taken from doom-emacs
 #+end_src
 * Custom Modeline 
 #+begin_src emacs-lisp
-    (setq-default mode-line-format
-    	      `("%e"
-    		" "
-    		(:eval (cond
-    			((eq evil-state 'visual) "󰰫")
-    			((eq evil-state 'normal) "󰰓")
-    			((eq evil-state 'insert) "󰰄")
-    			((eq evil-state 'emacs) "")
-    			((eq evil-state 'yank) "󰰴")))
-    		"  "
-    		))
+  (setq-default mode-line-format
+  	      `("%e"
+  		" "
+  		(:eval (cond
+  			((eq evil-state 'visual) "󰰫")
+  			((eq evil-state 'normal) "󰰓")
+  			((eq evil-state 'insert) "󰰄")
+  			((eq evil-state 'emacs) "")
+  			((eq evil-state 'yank) "󰰴")))
+  		"  "
+  		(:eval (buffer-name))
+  		  ))
 #+end_src
 * Packages
 ** Log state
