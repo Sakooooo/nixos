@@ -533,6 +533,10 @@ Should make startup faster, taken from doom-emacs
     ;; Following
     (setq org-return-follows-link  t)
 
+      ;; hide stars except for leader star
+    (org-hide-leading-stars t)
+    (org-hide-emphasis-markers nil)
+
     ;; org mode src thing
     (require 'org-tempo)
 
@@ -628,20 +632,6 @@ Should make startup faster, taken from doom-emacs
 #+end_src
 ** Org Mode Beautifers 
 We have to compete with notion somehow right?
-*** Org-Superstar 
-#+begin_src emacs-lisp
-  (use-package org-superstar
-    :after org
-    :hook (org-mode . org-superstar-mode)
-    :config
-    (setq org-superstar-headline-bullets-list '("◯" "◯" "◯" "◯" "◯"))
-    (setq org-superstar-remove-leading-stars t)
-    (setq org-superstar-item-bullet-alist
-        '((?+ . ?•)
-          (?* . ?➤)
-          (?- . ?–)))
-    )
-#+end_src
 *** Olivetti
 #+begin_src emacs-lisp
   (use-package olivetti
