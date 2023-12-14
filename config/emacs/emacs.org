@@ -1169,53 +1169,22 @@ only god knows why im doing this
      :straight t
      )
 #+end_src
-** System Packages
-#+begin_src emacs-lisp
-  (use-package system-packages
-    :init
-    (cond
-     ((eq system-type 'windows-nt)
-      (progn
-        (add-to-list 'system-packages-support-package-managers
-  		   '(winget .
-  			    ((default-sudio . nil)
-  			     (install . "winget install")
-  			     (uninstall . "winget uninstall")
-  			     (update . "winget update --all")
-  			     (log . nil)
-  			     (search . "winget search")
-  			     (change-log . nil)
-  			     (clean-cache. nil)
-  			     (get-info . nil)
-  			     (get-info-remote . nil)
-  			     (list-files-provided-by . nil)
-  			     (owning-file . nil)
-  			     (verify-all-dependencies . nil)
-  			     (remove-orphaned . nil)
-  			     (list-installed-packages . "winget list -q")
-  			     (list-installed-packages-all . "winget list")
-  			     (list-installed-packages-all . "winget list")
-  			     (noconfirm . "--accept-source-agreements --accept-package-agreements"))))
-        (setq system-packages-package-manager 'winget)
-        (setq system-packages-noconfirm t))
-     ((eq system-type 'darwin)
-      (progn
-        ;;(message "Mac OS X")))
-        (setq system-packages-package-manager 'brew)
-     ((eq system-type 'gnu/linux)
-      (progn
-        (setq system-packages-package-manager 'nix)
-        )))))))
-#+end_src
 ** pdf-tools 
 Emacs can be everything? Why not turn it into a pdf reader
 #+begin_src emacs-lisp
-          (use-package pdf-tools
-            :straight t
-            :mode ("\\.pdf\\'" . pdf-view-mode)
-            :config
-    	(setq-default pdf-view-display-size 'fit-page)
-  	  (pdf-tools-install))
+    (use-package pdf-tools
+      :straight t
+      :mode ("\\.pdf\\'" . pdf-view-mode)
+      :config
+      (setq-default pdf-view-display-size 'fit-page)
+      :init
+      (pdf-tools-install))
+#+end_src
+** Matrix Client
+okay this one is a bit more understandable
+#+begin_src emacs-lisp
+  (use-package ement
+    :straight t)
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
