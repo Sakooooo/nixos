@@ -36,7 +36,7 @@ Should make startup faster, taken from doom-emacs
 #+begin_src emacs-lisp
         (setq frame-resize-pixelwise t)
         ;; ui settings apparently go below
-        (setq default-frame-alist '((font . "JetBrains Mono")
+        (setq default-frame-alist '((font . "JetBrainsMono NF")
                                     '(vertical-scroll-bars . nil)
                                     '(horizontal-scroll-bars . nil)))
 
@@ -80,7 +80,7 @@ Should make startup faster, taken from doom-emacs
 #+end_src
 * Fonts
 #+begin_src emacs-lisp
-  (set-face-attribute `default nil :font "JetBrains Mono" :height 130)
+  (set-face-attribute `default nil :font "JetBrainsMono NF" :height 130)
 #+end_src
 * Use-Package setup 
 #+begin_src emacs-lisp
@@ -175,6 +175,20 @@ Should make startup faster, taken from doom-emacs
   (setq comp-deferred-compilation t)
   (setq native-comp-deferred-compilation-deny-list nil)
   (setq warning-suppress-log-types '((comp)))
+#+end_src
+* Custom Modeline 
+#+begin_src emacs-lisp
+    (setq-default mode-line-format
+    	      `("%e"
+    		" "
+    		(:eval (cond
+    			((eq evil-state 'visual) "󰰫")
+    			((eq evil-state 'normal) "󰰓")
+    			((eq evil-state 'insert) "󰰄")
+    			((eq evil-state 'emacs) "")
+    			((eq evil-state 'yank) "󰰴")))
+    		"  "
+    		))
 #+end_src
 * Packages
 ** Log state
@@ -292,11 +306,11 @@ Should make startup faster, taken from doom-emacs
 #+end_src
 ** Custom Modeline
 #+begin_src emacs-lisp
-  (use-package doom-modeline
-    :ensure t
-    :straight t
-    :hook (after-init . doom-modeline-mode)
-    :custom ((doom-modeline-height 40)))
+  ;; (use-package doom-modeline
+  ;;   :ensure t
+  ;;   :straight t
+  ;;   :hook (after-init . doom-modeline-mode)
+  ;;   :custom ((doom-modeline-height 40)))
 #+end_src
 ** Hide Modeline
 #+begin_src emacs-lisp
