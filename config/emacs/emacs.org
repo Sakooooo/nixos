@@ -1211,12 +1211,14 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
   (setq auto-save-file-name-transforms
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 #+end_src
-** RSS Reader 
+** RSS Reader
+*** Elfeed
 #+begin_src emacs-lisp
   (use-package elfeed
-    :straight t
-    )
-
+    :straight t)
+  #+end_src
+*** Elfeed-Protocol 
+#+begin_src emacs-lisp
   (use-package elfeed-protocol
     :straight t
     :after elfeed
@@ -1249,8 +1251,15 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
                           (elfeed-update))))
 
   (add-hook 'emacs-startup-hook (elfeed-update))
-
-  #+end_src
+#+end_src
+*** Elfeed-Goodies
+#+begin_src emacs-lisp
+  (use-package elfeed-goodies
+    :straight t
+    :after (elfeed)
+    :init
+    (elfeed-goodies/setup))
+#+end_src
 ** Telegram
 only god knows why im doing this 
 #+begin_src emacs-lisp
