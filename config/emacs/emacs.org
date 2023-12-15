@@ -183,15 +183,39 @@ Should make startup faster, taken from doom-emacs
 #+begin_src emacs-lisp
   (setq-default mode-line-format
   	      `("%e"
-  		" "
+  		;; begin EVIL state
   		(:eval (cond
-  			((eq evil-state 'visual) "󰰫")
-  			((eq evil-state 'normal) "󰰓")
-  			((eq evil-state 'insert) "󰰄")
-  			((eq evil-state 'emacs) "")
-  			((eq evil-state 'yank) "󰰴")))
-  		"  "
-  		(:eval (buffer-name))
+  			((eq evil-state 'visual) (propertize " VISUAL "
+  							     'face '(:background "#6600cc"
+  										 :foreground "#000000")))
+  			((eq evil-state 'normal) (propertize " NORMAL "
+  							     'face '(:background "#99ff99" :foreground "#000000")))
+  			((eq evil-state 'insert) (propertize " INSERT "
+  							     'face '(:background "#00cc66"
+  										 :foreground "#000000")))
+  			((eq evil-state 'emacs) (propertize " EMACS "
+  							    'face '(:background "#9900ff"
+  										:foreground "#000000")))
+  			((eq evil-state 'yank) (propertize " YANK "
+    							   'face '(:background "#ffff00"
+    									       :foreground "#000000")))
+  			
+  	  		((eq evil-state 'delete) (propertize " DELETE "
+    							   'face '(:background "#ff3300"
+    									       :foreground "#000000")))		
+  			
+  			))
+  		;; end EVIL state
+
+  		;; begin BUFFER name
+  		" "
+
+  		(:eval (propertize (buffer-name)
+  				   'face '(:foreground "#669999")))
+
+  		" "
+  		;; end BUFFER name
+
   		  ))
 #+end_src
 * Packages
