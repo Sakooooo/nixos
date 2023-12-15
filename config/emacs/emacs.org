@@ -196,13 +196,9 @@ Should make startup faster, taken from doom-emacs
   			((eq evil-state 'emacs) (propertize " EMACS "
   							    'face '(:background "#9900ff"
   										:foreground "#000000")))
-  			((eq evil-state 'yank) (propertize " YANK "
-    							   'face '(:background "#ffff00"
-    									       :foreground "#000000")))
-  			
-  	  		((eq evil-state 'delete) (propertize " DELETE "
-    							   'face '(:background "#ff3300"
-    									       :foreground "#000000")))		
+  	  		((eq evil-state 'operator) (propertize " OPERATOR "
+    							       'face '(:background "#ff3300"
+    										   :foreground "#000000")))		
   			
   			))
   		;; end EVIL state
@@ -216,7 +212,20 @@ Should make startup faster, taken from doom-emacs
   		" "
   		;; end BUFFER name
 
-  		  ))
+  		;; begin modified thingy
+
+  		(:eval
+  		 (cond
+  		  (buffer-read-only
+  		   (propertize ">:("
+  			       'face '(:foreground "red" :weight 'bold)
+  			       'help-echo "buffer is read only"))
+  		  ((buffer-modified-p)
+  		   (propertize "!!!"
+  			       'face '(:foreground "orange")))))
+  		;; end modified thingy
+
+  		))
 #+end_src
 * Packages
 ** Log state
