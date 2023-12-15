@@ -476,6 +476,7 @@ Should make startup faster, taken from doom-emacs
       "op" `(treemacs :which-key "treemacs")
       "oP" `(treemacs-find-file :which-key "treemacs find file")
       "oe" `(eshell :which-key "eshell")
+      "or" `(elfeed :which-key "rss")
       ;; notes
       "n" `(:ignore o :which-key "notes")
       "na" `(org-agenda :which-key "agenda")
