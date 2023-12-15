@@ -1215,14 +1215,14 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 #+begin_src emacs-lisp
     (use-package elfeed
     :straight t
+    :config
+    (setq elfeed-use-curl t)
     )
 
   (use-package elfeed-protocol
     :straight t
     :after elfeed
     :config
-    ;; curl recommend
-    (setq elfeed-use-curl t)
     (elfeed-set-timeout 36000)
     (setq elfeed-curl-extra-arguments '("--insecure")) ;necessary for https without a trust certificate
 
