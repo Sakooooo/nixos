@@ -1220,11 +1220,9 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
   (use-package elfeed-protocol
     :straight t
     :after elfeed
-    :ensure t
     :config
     ;; curl recommend
-    ;; crashes emacs
-    ;; (setq elfeed-use-curl t)
+    (setq elfeed-use-curl t)
     (elfeed-set-timeout 36000)
     (setq elfeed-curl-extra-arguments '("--insecure")) ;necessary for https without a trust certificate
 
@@ -1237,9 +1235,17 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
                                    :use-authinfo t)))
 
     ;; enable elfeed-protocol
-    (setq elfeed-protocol-enabled-protocols '(fever newsblur owncloud ttrss))
+    (setq elfeed-protocol-enabled-protocols '(fever))
     (elfeed-protocol-enable)
     )
+
+    (use-package elfeed-goodies
+    :straight t
+    :after (elfeed)
+    :init
+    (elfeed-goodies/setup)
+    :config
+    (setq elfeed-goodies/entry-pane-position 'bottom))
 
   (let* ((proto-id "fever+https://sako@rss.sako.box")
          (last-id (elfeed-protocol-fever-get-update-mark proto-id 'update)))
@@ -1249,13 +1255,7 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
              (lambda () (when (= elfeed-curl-queue-active 0)
                           (elfeed-update))))
 
-  (use-package elfeed-goodies
-    :straight t
-    :after (elfeed)
-    :init
-    (elfeed-goodies/setup)
-    :config
-    (setq elfeed-goodies/entry-pane-position 'bottom))
+  (add-hook 'emacs-startup-hook (elfeed-update))
 
 #+end_src
 ** Telegram
