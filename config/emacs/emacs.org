@@ -633,8 +633,8 @@ Should make startup faster, taken from doom-emacs
     (setq org-return-follows-link  t)
 
       ;; hide stars except for leader star
-    (org-hide-leading-stars t)
-    (org-hide-emphasis-markers nil)
+    (setq org-hide-leading-stars t)
+    (setq org-hide-emphasis-markers nil)
 
     ;; org mode src thing
     (require 'org-tempo)
@@ -1212,55 +1212,50 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 #+end_src
 ** RSS Reader
-*** Elfeed
 #+begin_src emacs-lisp
-  (use-package elfeed
-    :straight t)
-  #+end_src
-*** Elfeed-Protocol 
-#+begin_src emacs-lisp
-  (use-package elfeed-protocol
-    :straight t
-    :after elfeed
-    :ensure t
-    :config
-    ;; curl recommend
-    (setq elfeed-use-curl t)
-    (elfeed-set-timeout 36000)
-    (setq elfeed-curl-extra-arguments '("--insecure")) ;necessary for https without a trust certificate
+      (use-package elfeed
+      :straight t
+      )
 
-    ;; workaround for smth
-    (setq elfeed-protocol-fever-update-unread-only t)
+    (use-package elfeed-protocol
+      :straight t
+      :after elfeed
+      :ensure t
+      :config
+      ;; curl recommend
+      (setq elfeed-use-curl t)
+      (elfeed-set-timeout 36000)
+      (setq elfeed-curl-extra-arguments '("--insecure")) ;necessary for https without a trust certificate
 
-    ;; setup feeds
-    (setq elfeed-protocol-feeds '(("fever+https://sako@rss.sako.box"
-                                   :api-url "https://rss.sako.box/api/fever.php"
-                                   :use-authinfo t)))
+      ;; workaround for smth
+      (setq elfeed-protocol-fever-update-unread-only t)
 
-    ;; enable elfeed-protocol
-    (setq elfeed-protocol-enabled-protocols '(fever newsblur owncloud ttrss))
-    (elfeed-protocol-enable)
-    )
+      ;; setup feeds
+      (setq elfeed-protocol-feeds '(("fever+https://sako@rss.sako.box"
+                                     :api-url "https://rss.sako.box/api/fever.php"
+                                     :use-authinfo t)))
 
-  (let* ((proto-id "fever+https://sako@rss.sako.box")
-         (last-id (elfeed-protocol-fever-get-update-mark proto-id 'update)))
-    (elfeed-protocol-fever-set-update-mark  proto-id 'update (- last-id 1000)))
+      ;; enable elfeed-protocol
+      (setq elfeed-protocol-enabled-protocols '(fever newsblur owncloud ttrss))
+      (elfeed-protocol-enable)
+      )
 
-  (run-at-time 300 300
-             (lambda () (when (= elfeed-curl-queue-active 0)
-                          (elfeed-update))))
+    (let* ((proto-id "fever+https://sako@rss.sako.box")
+           (last-id (elfeed-protocol-fever-get-update-mark proto-id 'update)))
+      (elfeed-protocol-fever-set-update-mark  proto-id 'update (- last-id 1000)))
 
-  (add-hook 'emacs-startup-hook (elfeed-update))
-#+end_src
-*** Elfeed-Goodies
-#+begin_src emacs-lisp
-      (use-package elfeed-goodies
-        :straight t
-        :after (elfeed)
-        :init
-        (elfeed-goodies/setup)
-        :config
-        (setq elfeed-goodies/entry-pane-position 'bottom))
+    (run-at-time 300 300
+               (lambda () (when (= elfeed-curl-queue-active 0)
+                            (elfeed-update))))
+
+    (use-package elfeed-goodies
+      :straight t
+      :after (elfeed)
+      :init
+      (elfeed-goodies/setup)
+      :config
+      (setq elfeed-goodies/entry-pane-position 'bottom))
+
 #+end_src
 ** Telegram
 only god knows why im doing this 
