@@ -873,6 +873,11 @@ We have to compete with notion somehow right?
     :straight t
     :ensure t)
 
+  (use-package treemacs-nerd-icons
+    :straight t
+    :config
+    (treemacs-load-theme "nerd-icons"))
+
 #+end_src
 ** Dev Packages
 *** Magit (git in emacs)
