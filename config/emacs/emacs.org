@@ -181,104 +181,113 @@ Should make startup faster, taken from doom-emacs
 #+end_src
 * Custom Modeline 
 #+begin_src emacs-lisp
-         (setq mode-line-format nil)
+  (setq mode-line-format nil)
 
-         (kill-local-variable 'mode-line-format)
+  (kill-local-variable 'mode-line-format)
 
-         (force-mode-line-update)
+  (force-mode-line-update)
 
-         (setq-default mode-line-format
-               	      `("%e"
-               		sakoline-evil-mode
+  (setq-default mode-line-format
+        	      `("%e"
+        		sakoline-evil-mode
 
-               		;; begin BUFFER name
-               		" "
+        		;; begin BUFFER name
+        		" "
 
-               		sakoline-buffer-name
+        		sakoline-buffer-name
 
-               		" "
-         	            sakoline-buffer-state	
-               		sakoline-major-mode
-               		
-               		))
+        		" "
+  	                sakoline-buffer-state	
+  			" " 
+  			;; everything under here goes to the right
+  			;; make sure to change the padding to make it look good
+  			(:eval (sakoline-padding-right 'mode-line 20))
+        		sakoline-major-mode
 
-         (defvar-local sakoline-buffer-name
-             '(:eval
-               (propertize (buffer-name) 'face '(:foreground "#669999")))
-           "Mode line variable that shows the buffer name.")
+        		))
 
-         (put 'sakoline-buffer-name 'risky-local-variable t)
+  (defvar-local sakoline-buffer-name
+      '(:eval
+        (propertize (buffer-name) 'face '(:foreground "#669999")))
+    "Mode line variable that shows the buffer name.")
 
-         (defface sakoline-major-mode-color
-           '((t :foreground "grey"))
-           "Major Mode color for sakoline.")
+  (put 'sakoline-buffer-name 'risky-local-variable t)
 
-         (defun sakoline--major-mode-name ()
-           "Return Capitalized Major Mode"
-           (capitalize (symbol-name major-mode)))
+  (defface sakoline-major-mode-color
+    '((t :foreground "grey"))
+    "Major Mode color for sakoline.")
 
-         (defvar-local sakoline-major-mode
-             '(:eval
-               (propertize (sakoline--major-mode-name) 'face 'sakoline-major-mode-color)))
+  (defun sakoline--major-mode-name ()
+    "Return Capitalized Major Mode"
+    (capitalize (symbol-name major-mode)))
 
-         (put 'sakoline-major-mode 'risky-local-variable t)
+  (defvar-local sakoline-major-mode
+      '(:eval
+        (propertize (sakoline--major-mode-name) 'face 'sakoline-major-mode-color)))
 
-         (defface sakoline-evil-visual-color
-           '((t :background "#6600cc" :foreground "black"))
-           "Evil Visual Color")
+  (put 'sakoline-major-mode 'risky-local-variable t)
 
-         (defface sakoline-evil-normal-color
-           '((t :background "#99ff99" :foreground "black"))
-           "Evil Visual Color")
+  (defface sakoline-evil-visual-color
+    '((t :background "#6600cc" :foreground "black"))
+    "Evil Visual Color")
 
-         (defface sakoline-evil-insert-color
-           '((t :background "#00cc66" :foreground "black"))
-           "Evil Visual Color")
+  (defface sakoline-evil-normal-color
+    '((t :background "#99ff99" :foreground "black"))
+    "Evil Visual Color")
 
-         (defface sakoline-evil-emacs-color
-           '((t :background "#9900ff" :foreground "black"))
-           "Evil Visual Color")
+  (defface sakoline-evil-insert-color
+    '((t :background "#00cc66" :foreground "black"))
+    "Evil Visual Color")
 
-         (defface sakoline-evil-operator-color
-           '((t :background "#ff3300" :foreground "black"))
-           "Evil Visual Color")
+  (defface sakoline-evil-emacs-color
+    '((t :background "#9900ff" :foreground "black"))
+    "Evil Visual Color")
 
-         (defvar-local sakoline-evil-mode 
-             '(:eval (cond
-                      ((eq evil-state 'visual) (propertize " VISUAL " 'face 'sakoline-evil-visual-color ))
-                      ((eq evil-state 'normal) (propertize " NORMAL " 'face 'sakoline-evil-normal-color ))
-                      ((eq evil-state 'insert) (propertize " INSERT " 'face 'sakoline-evil-insert-color ))
-                      ((eq evil-state 'emacs) (propertize " EMACS " 'face 'sakoline-evil-emacs-color ))
-                      ((eq evil-state 'operator) (propertize " OPERATOR " 'face 'sakoline-evil-operator-color))
-           "Get current evil mode state")))
+  (defface sakoline-evil-operator-color
+    '((t :background "#ff3300" :foreground "black"))
+    "Evil Visual Color")
 
-         (put 'sakoline-evil-mode 'risky-local-variable t)
+  (defvar-local sakoline-evil-mode 
+      '(:eval (cond
+               ((eq evil-state 'visual) (propertize " VISUAL " 'face 'sakoline-evil-visual-color ))
+               ((eq evil-state 'normal) (propertize " NORMAL " 'face 'sakoline-evil-normal-color ))
+               ((eq evil-state 'insert) (propertize " INSERT " 'face 'sakoline-evil-insert-color ))
+               ((eq evil-state 'emacs) (propertize " EMACS " 'face 'sakoline-evil-emacs-color ))
+               ((eq evil-state 'operator) (propertize " OPERATOR " 'face 'sakoline-evil-operator-color))
+    "Get current evil mode state")))
 
-         (defface sakoline-buffer-state-readonly
-           '((t :foreground "red"))
-           "Face for read-only buffer")
-         (defface sakoline-buffer-state-modified
-           '((t :foreground "orange"))
-           "Face for modified buffer")
+  (put 'sakoline-evil-mode 'risky-local-variable t)
 
-         (defvar-local sakoline-buffer-state
-             '(:eval
-               (cond
-                (buffer-read-only
-           	(propertize ">:("
-           		    'face 'sakoline-buffer-state-readonly
-           		    'help-echo "buffer is read only"))
-                ((buffer-modified-p)
-           	(propertize "!!!"
-           		    'face 'sakoline-buffer-state-modified)))))
+  (defface sakoline-buffer-state-readonly
+    '((t :foreground "red"))
+    "Face for read-only buffer")
+  (defface sakoline-buffer-state-modified
+    '((t :foreground "orange"))
+    "Face for modified buffer")
 
-        ;; some weird spacing bullshit
-        ;; weird how its not built in
-         (defun sakoline-line-render (left right)
-         "Return a string of `window-width' length containing LEFT, and RIGHT
-        aligned respectively."
-         (let* ((available-width (- (window-width) (length left) 2)))
-           (format (format " %%s %%%ds " available-width) left right)))
+  (defvar-local sakoline-buffer-state
+      '(:eval
+        (cond
+         (buffer-read-only
+    	(propertize ">:("
+    		    'face 'sakoline-buffer-state-readonly
+    		    'help-echo "buffer is read only"))
+         ((buffer-modified-p)
+    	(propertize "!!!"
+    		    'face 'sakoline-buffer-state-modified)))))
+
+  (put 'sakoline-buffer-state 'risky-local-variable t)
+
+  (defun sakoline-padding-right (face reserve)
+  "Return empty space using FACE and leaving RESERVE space on the right."
+  (unless reserve
+    (setq reserve 20))
+  (when (and window-system (eq 'right (get-scroll-bar-mode)))
+    (setq reserve (- reserve 3)))
+  (propertize " "
+              'display `((space :align-to (- (+ right right-fringe right-margin) ,reserve)))
+              'face face))
+
 #+end_src
 * Packages
 ** Log state
