@@ -1276,14 +1276,6 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
     (elfeed-protocol-enable)
     )
 
-    (use-package elfeed-goodies
-    :straight t
-    :after (elfeed)
-    :init
-    (elfeed-goodies/setup)
-    :config
-    (setq elfeed-goodies/entry-pane-position 'bottom))
-
   (let* ((proto-id "fever+https://sako@rss.sako.box")
          (last-id (elfeed-protocol-fever-get-update-mark proto-id 'update)))
     (elfeed-protocol-fever-set-update-mark  proto-id 'update (- last-id 1000)))
@@ -1294,6 +1286,17 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 
   (add-hook 'emacs-startup-hook (elfeed-update))
 
+  ;; elfeed youtube
+  (use-package elfeed-tube
+  :straight t
+  :after elfeed
+  :config
+  ;; (setq elfeed-tube-auto-save-p nil) ; default value
+  ;; (setq elfeed-tube-auto-fetch-p t)  ; default value
+  (elfeed-tube-setup))
+
+  (use-package elfeed-tube-mpv
+  :straight t)
 #+end_src
 ** Telegram
 only god knows why im doing this 
