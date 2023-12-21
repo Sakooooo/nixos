@@ -1255,6 +1255,7 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
     :config
     (setq elfeed-use-curl t)
     (setq browse-url-browser-function 'eww-browse-url)
+    (setq elfeed-search-title-max-width 100)
     )
 
   (use-package elfeed-protocol
