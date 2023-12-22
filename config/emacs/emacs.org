@@ -369,27 +369,28 @@ Should make startup faster, taken from doom-emacs
 #+end_src
 ** Custom Themes
 #+begin_src emacs-lisp
-        ;; (use-package doom-themes
-        ;; :straight t
-        ;; :ensure t
-        ;; :config
-        ;; ;; Global settings (defaults)
-        ;; (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        ;;       doom-themes-enable-italic t) ; if nil, italics is universally disabled
-        ;; ;; load the theme
-        ;; (load-theme 'doom-monokai-pro t)
+  ;; (use-package doom-themes
+  ;; :straight t
+  ;; :ensure t
+  ;; :config
+  ;; ;; Global settings (defaults)
+  ;; (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+  ;;       doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  ;; ;; load the theme
+  ;; (load-theme 'doom-monokai-pro t)
 
-        ;; (doom-themes-org-config)
+  ;; (doom-themes-org-config)
 
-        ;; (doom-themes-treemacs-config)
+  ;; (doom-themes-treemacs-config)
 
-        ;; ;; Enable flashing mode-line on errors
-        ;; (doom-themes-visual-bell-config))
+  ;; ;; Enable flashing mode-line on errors
+  ;; (doom-themes-visual-bell-config))
 
-        (use-package nano-theme
-          :straight t
-          :config
-  	(load-theme 'nano-dark t))
+  (use-package kanagawa-theme 
+    :straight t
+    :config
+  (load-theme 'kanagawa t))
+
 #+end_src
 ** All the Icons (to make doom-themes happy)
 #+begin_src emacs-lisp
