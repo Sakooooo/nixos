@@ -1,6 +1,5 @@
 #+title: Sakomacs configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el
-
 * Usage
 M-x org-bable-tangle
 * Lexical Binding
@@ -370,22 +369,27 @@ Should make startup faster, taken from doom-emacs
 #+end_src
 ** Custom Themes
 #+begin_src emacs-lisp
-  (use-package doom-themes
-  :straight t
-  :ensure t
-  :config
-  ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  ;; load the theme
-  (load-theme 'doom-monokai-pro t)
+        ;; (use-package doom-themes
+        ;; :straight t
+        ;; :ensure t
+        ;; :config
+        ;; ;; Global settings (defaults)
+        ;; (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        ;;       doom-themes-enable-italic t) ; if nil, italics is universally disabled
+        ;; ;; load the theme
+        ;; (load-theme 'doom-monokai-pro t)
 
-  (doom-themes-org-config)
+        ;; (doom-themes-org-config)
 
-  (doom-themes-treemacs-config)
+        ;; (doom-themes-treemacs-config)
 
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config))
+        ;; ;; Enable flashing mode-line on errors
+        ;; (doom-themes-visual-bell-config))
+
+        (use-package nano-theme
+          :straight t
+          :config
+  	(load-theme 'nano-dark t))
 #+end_src
 ** All the Icons (to make doom-themes happy)
 #+begin_src emacs-lisp
@@ -564,7 +568,6 @@ Should make startup faster, taken from doom-emacs
     (setq evil-want-keybinding nil)
     (setq evil-want-C-u-scroll t)
     (setq evil-want-C-i-jump nil)
-    :hook (evil-mode . sakomacs/evil-hook)
     :ensure t
     :demand
     :config
@@ -1312,6 +1315,17 @@ okay this one is a bit more understandable
 #+begin_src emacs-lisp
   (use-package ement
     :straight t)
+#+end_src
+** Discord RPC
+#+begin_src emacs-lisp
+(use-package elcord
+:straight t)
+#+end_src>
+** Email 
+isnt this like really old??
+#+begin_src emacs-lisp
+    (use-package gnus
+      :config)
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
