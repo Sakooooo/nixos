@@ -21,7 +21,7 @@ kept-old-versions 5)
 
 (setq frame-resize-pixelwise t)
 ;; ui settings apparently go below
-(setq default-frame-alist '((font . "JetBrains Mono")
+(setq default-frame-alist '((font . "JetBrainsMono NF")
                             '(vertical-scroll-bars . nil)
                             '(horizontal-scroll-bars . nil)))
 
@@ -48,6 +48,7 @@ kept-old-versions 5)
   (add-hook 'yaml-mode 'display-line-numbers-mode)
   (add-hook 'conf-mode 'display-line-numbers-mode)
 (setq display-line-numbers-width-start t)
+(setq display-line-numbers-type 'relative)
 
 ;; switch buffers
 (global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
@@ -55,8 +56,10 @@ kept-old-versions 5)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 ;; repeat keybinds
 (repeat-mode)
+;; electric pairs
+(electric-pair-mode)
 
-(set-face-attribute `default nil :font "JetBrains Mono" :height 130)
+(set-face-attribute `default nil :font "JetBrainsMono NF" :height 130)
 
 (message "setting up use-package")
 (require `package)
@@ -109,7 +112,9 @@ kept-old-versions 5)
 
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (setq gc-cons-threshold 16777216 ; 16mb
+            ;;(setq gc-cons-threshold 16777216 ; 16mb
+  	  ;; this could be really bad idk
+  	  (setq gc-cons-threshold 100000000
                   gc-cons-percentage 0.1)))
 
 (defun doom-defer-garbage-collection-h ()
@@ -124,10 +129,132 @@ kept-old-versions 5)
 (add-hook 'minibuffer-setup-hook #'doom-defer-garbage-collection-h)
 (add-hook 'minibuffer-exit-hook #'doom-restore-garbage-collection-h)
 
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+
 (setq package-native-compile t)
 (setq comp-deferred-compilation t)
 (setq native-comp-deferred-compilation-deny-list nil)
 (setq warning-suppress-log-types '((comp)))
+
+(setq mode-line-format nil)
+
+  (kill-local-variable 'mode-line-format)
+
+  (force-mode-line-update)
+
+  ;; (setq-default mode-line-format
+  ;;       	      `("%e"
+  ;;       		sakoline-evil-mode
+
+  ;;       		;; begin BUFFER name
+  ;;       		" "
+
+  ;;       		sakoline-buffer-name
+
+  ;;       		" "
+  ;; 	        sakoline-buffer-state	
+  ;; 		" " 
+  ;; 		   ;; everything under here goes to the right
+  ;;       		sakoline-major-mode
+
+  ;;       		))
+
+  (setq-default mode-line-format
+  '((:eval (sakoline-render
+      	    ;; left
+      	    (quote ("%e"
+      		    sakoline-evil-mode
+      		    " "
+      		    sakoline-buffer-name
+      		    " "
+      		    sakoline-buffer-state))
+      	    ;; right
+      	    (quote (sakoline-major-mode
+  		    )
+    		   )))))
+
+  (defun sakoline-render (left right)
+  "Return a string of `window-width' length.
+Containing LEFT, and RIGHT aligned respectively."
+  (let ((available-width
+         (- (window-total-width)
+            (+ (length (format-mode-line left))
+               (length (format-mode-line right))))))
+    (append left
+            (list (format (format "%%%ds" available-width) ""))
+            right)))
+
+  (defvar-local sakoline-buffer-name
+      '(:eval
+        (propertize (buffer-name) 'face '(:foreground "#669999")))
+    "Mode line variable that shows the buffer name.")
+
+  (put 'sakoline-buffer-name 'risky-local-variable t)
+
+  (defface sakoline-major-mode-color
+    '((t :foreground "grey"))
+    "Major Mode color for sakoline.")
+
+  (defun sakoline--major-mode-name ()
+    "Return Capitalized Major Mode"
+    (capitalize (symbol-name major-mode)))
+
+  (defvar-local sakoline-major-mode
+      '(:eval
+        (propertize (sakoline--major-mode-name) 'face 'sakoline-major-mode-color)))
+
+  (put 'sakoline-major-mode 'risky-local-variable t)
+
+  (defface sakoline-evil-visual-color
+    '((t :background "#6600cc" :foreground "black"))
+    "Evil Visual Color")
+
+  (defface sakoline-evil-normal-color
+    '((t :background "#99ff99" :foreground "black"))
+    "Evil Visual Color")
+
+  (defface sakoline-evil-insert-color
+    '((t :background "#00cc66" :foreground "black"))
+    "Evil Visual Color")
+
+  (defface sakoline-evil-emacs-color
+    '((t :background "#9900ff" :foreground "black"))
+    "Evil Visual Color")
+
+  (defface sakoline-evil-operator-color
+    '((t :background "#ff3300" :foreground "black"))
+    "Evil Visual Color")
+
+  (defvar-local sakoline-evil-mode 
+      '(:eval (cond
+               ((eq evil-state 'visual) (propertize " VISUAL " 'face 'sakoline-evil-visual-color ))
+               ((eq evil-state 'normal) (propertize " NORMAL " 'face 'sakoline-evil-normal-color ))
+               ((eq evil-state 'insert) (propertize " INSERT " 'face 'sakoline-evil-insert-color ))
+               ((eq evil-state 'emacs) (propertize " EMACS " 'face 'sakoline-evil-emacs-color ))
+               ((eq evil-state 'operator) (propertize " OPERATOR " 'face 'sakoline-evil-operator-color))
+               "Get current evil mode state")))
+
+  (put 'sakoline-evil-mode 'risky-local-variable t)
+
+  (defface sakoline-buffer-state-readonly
+    '((t :foreground "red"))
+    "Face for read-only buffer")
+  (defface sakoline-buffer-state-modified
+    '((t :foreground "orange"))
+    "Face for modified buffer")
+
+  (defvar-local sakoline-buffer-state
+      '(:eval
+        (cond
+         (buffer-read-only
+          (propertize ">:("
+          	      'face 'sakoline-buffer-state-readonly
+          	      'help-echo "buffer is read only"))
+         ((buffer-modified-p)
+          (propertize "!!!"
+          	      'face 'sakoline-buffer-state-modified)))))
+
+  (put 'sakoline-buffer-state 'risky-local-variable t)
 
 (message "setting up packages")
 
@@ -169,6 +296,14 @@ kept-old-versions 5)
   :init
   (ivy-rich-mode 1))
 
+;; ivy in the middle
+(use-package ivy-posframe
+  :straight t
+  :init
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+  :config
+  (ivy-posframe-mode 1))
+
 ;; counsel M+X
 (use-package counsel
   :straight t
@@ -192,19 +327,10 @@ kept-old-versions 5)
 
 (doom-themes-org-config)
 
-(setq doom-themes-treemacs-theme "doom-monokai-pro")
-
 (doom-themes-treemacs-config)
 
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config))
-;; Enable custom neotree theme (all-the-icons must be installed!)
-;;(doom-themes-neotree-config)
-;; or for treemacs users
-;;(setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
-;;(doom-themes-treemacs-config)
-;; Corrects (and improves) org-mode's native fontification.
-;;(doom-themes-org-config))
 
 (use-package all-the-icons)
 
@@ -227,11 +353,11 @@ kept-old-versions 5)
   :config
   (setq which-key-idle-delay 1))
 
-(use-package doom-modeline
-  :ensure t
-  :straight t
-  :hook (after-init . doom-modeline-mode)
-  :custom ((doom-modeline-height 40)))
+;; (use-package doom-modeline
+;;   :ensure t
+;;   :straight t
+;;   :hook (after-init . doom-modeline-mode)
+;;   :custom ((doom-modeline-height 40)))
 
 (use-package hide-mode-line
   :straight t
@@ -303,6 +429,7 @@ kept-old-versions 5)
     "op" `(treemacs :which-key "treemacs")
     "oP" `(treemacs-find-file :which-key "treemacs find file")
     "oe" `(eshell :which-key "eshell")
+    "or" `(elfeed :which-key "rss")
     ;; notes
     "n" `(:ignore o :which-key "notes")
     "na" `(org-agenda :which-key "agenda")
@@ -420,7 +547,7 @@ kept-old-versions 5)
   :straight t
   :hook (org-mode . org-indent-mode)
   :config
-  (setq org-ellipsis "▼")
+  (setq org-ellipsis " ↓")
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
@@ -447,6 +574,10 @@ kept-old-versions 5)
 
   ;; Following
   (setq org-return-follows-link  t)
+
+    ;; hide stars except for leader star
+  (setq org-hide-leading-stars t)
+  (setq org-hide-emphasis-markers nil)
 
   ;; org mode src thing
   (require 'org-tempo)
@@ -541,33 +672,8 @@ kept-old-versions 5)
            :clock-in :clock-resume
            :empty-lines 1))))
 
-(use-package org-modern
-  :hook
-  (org-mode . global-org-modern-mode)
-  :custom
-  ;; Org styling
-  (org-hide-emphasis-markers t)
-  (org-pretty-entities t)
-  (org-ellipsis " ▾ ")
-
-  ;; Agenda styling
-  (org-agenda-tags-column 0)
-  (org-agenda-block-separator ?─)
-  (org-agenda-current-time-string "◀── now ─────────────────────────────────────────────────"))
-
-(use-package org-superstar
-  :after org
-  :hook (org-mode . org-superstar-mode)
-  :config
-  (setq org-superstar-headline-bullets-list '("◯" "◯" "◯" "◯"))
-  (setq org-superstar-remove-leading-stars t)
-  (setq org-superstar-item-bullet-alist
-      '((?+ . ?•)
-        (?* . ?➤)
-        (?- . ?–)))
-  )
-
 (use-package olivetti
+  :straight t
   :hook (org-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 100))))
 
 (use-package org-roam
@@ -687,6 +793,11 @@ kept-old-versions 5)
   :straight t
   :ensure t)
 
+(use-package treemacs-nerd-icons
+  :straight t
+  :config
+  (treemacs-load-theme "nerd-icons"))
+
 (use-package magit
   :straight t
   :custom
@@ -743,13 +854,39 @@ kept-old-versions 5)
 
 (use-package js2-mode
   :straight t
-:mode "\\.js\\'"
+:mode ("\\.js\\'"
+     "\\.jsx\\'")
 :hook (js2-mode . lsp)
 :config
 (setq web-mode-markup-indent-offset 2) ; HTML
 (setq web-mode-css-indent-offset 2)    ; CSS
 (setq web-mode-code-indent-offset 2)   ; JS/JSX/TS/TSX
 (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))))
+
+(use-package typescript-mode
+  :straight t
+  :mode ("\\.ts\\'"
+       "\\.tsx\\'")
+  :hook (typescript-mode . lsp))
+
+(define-derived-mode astro-mode web-mode "astro")
+  (setq auto-mode-alist
+  (append '((".*\\.astro\\'" . astro-mode))
+  auto-mode-alist))
+
+  (add-to-list 'lsp-language-id-configuration
+               '(astro-mode . "astro"))
+
+(defun astro-get-tsserver ()
+  ""
+  (f-join (lsp-workspace-root) "node_modules/typescript/lib/tsserverlibrary.js"))
+
+(lsp-register-client
+ (make-lsp-client :new-connection (lsp-stdio-connection '("astro-ls" "--stdio"))
+                  :activation-fn (lsp-activate-on "astro")
+                  :initialization-options (lambda ()
+                                            `(:typescript (:serverPath ,(astro-get-tsserver))))
+                  :server-id 'astro-ls))
 
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
@@ -758,6 +895,11 @@ kept-old-versions 5)
   :mode "CMakeLists.txt"
   :straight t
   :hook (cmake-mode . lsp))
+
+(use-package lua-mode
+  :mode "\\.lua\\'"
+  :straight t
+  :hook (lua-mode . lsp))
 
 (use-package python-mode
   :mode "\\.py\\'"
@@ -806,6 +948,9 @@ kept-old-versions 5)
 (use-package markdown-mode
   :straight t
   :hook (markdown-mode . visual-line-mode))
+
+(use-package markdown-preview-mode
+  :straight t)
 
 (use-package evil-nerd-commenter
   :straight t
@@ -892,15 +1037,16 @@ kept-old-versions 5)
 
 (use-package elfeed
   :straight t
+  :config
+  (setq elfeed-use-curl t)
+  (setq browse-url-browser-function 'eww-browse-url)
+  (setq elfeed-search-title-max-width 100)
   )
 
 (use-package elfeed-protocol
   :straight t
   :after elfeed
-  :ensure t
   :config
-  ;; curl recommend
-  (setq elfeed-use-curl t)
   (elfeed-set-timeout 36000)
   (setq elfeed-curl-extra-arguments '("--insecure")) ;necessary for https without a trust certificate
 
@@ -913,7 +1059,7 @@ kept-old-versions 5)
                                  :use-authinfo t)))
 
   ;; enable elfeed-protocol
-  (setq elfeed-protocol-enabled-protocols '(fever newsblur owncloud ttrss))
+  (setq elfeed-protocol-enabled-protocols '(fever))
   (elfeed-protocol-enable)
   )
 
@@ -931,41 +1077,16 @@ kept-old-versions 5)
   :straight t
   )
 
-(use-package system-packages
+(use-package pdf-tools
+  :straight t
+  :mode ("\\.pdf\\'" . pdf-view-mode)
+  :config
+  (setq-default pdf-view-display-size 'fit-page)
   :init
-  (cond
-   ((eq system-type 'windows-nt)
-    (progn
-      (add-to-list 'system-packages-support-package-managers
-  		 '(winget .
-  			  ((default-sudio . nil)
-  			   (install . "winget install")
-  			   (uninstall . "winget uninstall")
-  			   (update . "winget update --all")
-  			   (log . nil)
-  			   (search . "winget search")
-  			   (change-log . nil)
-  			   (clean-cache. nil)
-  			   (get-info . nil)
-  			   (get-info-remote . nil)
-  			   (list-files-provided-by . nil)
-  			   (owning-file . nil)
-  			   (verify-all-dependencies . nil)
-  			   (remove-orphaned . nil)
-  			   (list-installed-packages . "winget list -q")
-  			   (list-installed-packages-all . "winget list")
-  			   (list-installed-packages-all . "winget list")
-  			   (noconfirm . "--accept-source-agreements --accept-package-agreements"))))
-      (setq system-packages-package-manager 'winget)
-      (setq system-packages-noconfirm t))
-   ((eq system-type 'darwin)
-    (progn
-      ;;(message "Mac OS X")))
-      (setq system-packages-package-manager 'brew)
-   ((eq system-type 'gnu/linux)
-    (progn
-      (setq system-packages-package-manager 'nix)
-      )))))))
+  (pdf-tools-install))
+
+(use-package ement
+  :straight t)
 
 (org-babel-do-load-languages
 'org-babel-load-languages
