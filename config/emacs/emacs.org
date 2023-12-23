@@ -900,6 +900,7 @@ make sure to setup authinfo
   :after magit)
 (setq auth-sources '("~/.authinfo"))
 #+end_src
+
 *** Direnv
 #+begin_src emacs-lisp
 (use-package direnv
@@ -1310,15 +1311,21 @@ This has to be one of the hardest things to configure on windows
 I should just switch to Linux at this point :(
 #+begin_src emacs-lisp
 
-    (if (eq system-type 'windows-nt)
-       (use-package mu4e
-         :load-path "C:/msys64/usr/local/share/emacs/site-lisp/mu4e"
-         :custom
-         (mu4e-mu-binary "C:/msys64/usr/local/bin/mu.exe")))
+  (if (eq system-type 'gnu/linux)
+     (use-package mu4e
+       :load-path "//wsl.localhost/Debian/usr/share/emacs/site-lisp/elpa-src/mu4e-1.8.14"
+       :custom
+       (mu4e-mu-binary "wsl mu")))
 
-    ;; we need this regardless of platform
-    (use-package smtpmail
-      :straight t)
+  ;; global defaults 
+  ;; (use-package mu4e
+    ;; :custom
+    ;; mu4e-update-interval 300
+    ;; )
+
+  ;; we need this regardless of platform
+  (use-package smtpmail
+    :straight t)
 #+end_src
 ** Epg
 #+begin_src emacs-lisp
