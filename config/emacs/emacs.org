@@ -1320,6 +1320,13 @@ I should just switch to Linux at this point :(
     (use-package smtpmail
       :straight t)
 #+end_src
+** Epg
+#+begin_src emacs-lisp
+    (use-package epg
+      :straight t
+      :config 
+      (setq epg-inentry-mode 'loopback))
+#+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
 #+begin_src emacs-lisp
