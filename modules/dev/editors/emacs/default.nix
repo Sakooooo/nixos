@@ -18,7 +18,7 @@ in {
     services.emacs = {
       enable = true;
       install = true;
-      package = pkgs.emacs29-pgtk;
+      package = pkgs.emacs29-gtk3;
     };
     users.users.sako.packages = with pkgs; [
       # direnv
