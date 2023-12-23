@@ -537,6 +537,7 @@ Should make startup faster, taken from doom-emacs
     (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
     (setq dashboard-center-content t)
     (setq dashboard-projects-backend 'projectile)
+    (setq dashboard-startup-banner "~/.emacs.d/dashboard.png")
     (setq dashboard-footer-messages '("i think i have emacs pinky"
                                       "why are we still using lisp again?"
                                       "why is this running on 1/16 threads?!?!?"
@@ -554,7 +555,7 @@ Should make startup faster, taken from doom-emacs
                             (projects . 3)
                             (agenda . 5)))
 
-    (setq dashboard-image-banner-max-height 250)
+    (setq dashboard-image-banner-max-height 200)
     (setq dashboard-image-banner-max-width 500)
 
     (setq dashboard-page-separator "\n\n")
@@ -762,7 +763,6 @@ Should make startup faster, taken from doom-emacs
              :empty-lines 1))))
 #+end_src
 ** Org Mode Beautifers 
-We have to compete with notion somehow right?
 *** Olivetti
 #+begin_src emacs-lisp
   (use-package olivetti
@@ -775,12 +775,12 @@ We have to compete with notion somehow right?
   :straight t
   :ensure t
   :custom
-  (org-roam-directory "~/org"
-                      :bind (("C-c n l" . org-roam-buffer-toggle)
-                             ("C-c n f" . org-roam-node-find)
-                             ("C-c n i" . org-roam-node-insert))
-                      :config
-                      (org-roam-setup)))
+  (org-roam-directory "~/org/notes")
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n i" . org-roam-node-insert))
+  :config
+  (org-roam-setup))
 #+end_src
 ** Treemacs
 #+begin_src emacs-lisp
