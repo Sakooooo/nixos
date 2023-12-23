@@ -1306,10 +1306,19 @@ okay this one is a bit more understandable
 :straight t)
 #+end_src>
 ** Email 
-isnt this like really old??
+This has to be one of the hardest things to configure on windows
+I should just switch to Linux at this point :(
 #+begin_src emacs-lisp
-    (use-package gnus
-      :config)
+
+    (if (eq system-type 'windows-nt)
+       (use-package mu4e
+         :load-path "C:/msys64/usr/local/share/emacs/site-lisp/mu4e"
+         :custom
+         (mu4e-mu-binary "C:/msys64/usr/local/bin/mu.exe")))
+
+    ;; we need this regardless of platform
+    (use-package smtpmail
+      :straight t)
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
