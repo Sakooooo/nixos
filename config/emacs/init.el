@@ -138,44 +138,27 @@ kept-old-versions 5)
 
 (setq mode-line-format nil)
 
-  (kill-local-variable 'mode-line-format)
+(kill-local-variable 'mode-line-format)
 
-  (force-mode-line-update)
+(force-mode-line-update)
 
-  ;; (setq-default mode-line-format
-  ;;       	      `("%e"
-  ;;       		sakoline-evil-mode
+(setq-default mode-line-format
+     	   '((:eval (sakoline-render
+     		     ;; left
+     		     (quote ("%e"
+     			     sakoline-evil-mode
+     			     " "
+     			     sakoline-buffer-name
+     			     " "
+     			     sakoline-buffer-state))
+     		     ;; right
+     		     (quote (sakoline-major-mode
+     			     )
+     			    )))))
 
-  ;;       		;; begin BUFFER name
-  ;;       		" "
-
-  ;;       		sakoline-buffer-name
-
-  ;;       		" "
-  ;; 	        sakoline-buffer-state	
-  ;; 		" " 
-  ;; 		   ;; everything under here goes to the right
-  ;;       		sakoline-major-mode
-
-  ;;       		))
-
-  (setq-default mode-line-format
-  '((:eval (sakoline-render
-      	    ;; left
-      	    (quote ("%e"
-      		    sakoline-evil-mode
-      		    " "
-      		    sakoline-buffer-name
-      		    " "
-      		    sakoline-buffer-state))
-      	    ;; right
-      	    (quote (sakoline-major-mode
-  		    )
-    		   )))))
-
-  (defun sakoline-render (left right)
+(defun sakoline-render (left right)
   "Return a string of `window-width' length.
-Containing LEFT, and RIGHT aligned respectively."
+  Containing LEFT, and RIGHT aligned respectively."
   (let ((available-width
          (- (window-total-width)
             (+ (length (format-mode-line left))
@@ -184,77 +167,77 @@ Containing LEFT, and RIGHT aligned respectively."
             (list (format (format "%%%ds" available-width) ""))
             right)))
 
-  (defvar-local sakoline-buffer-name
-      '(:eval
-        (propertize (buffer-name) 'face '(:foreground "#669999")))
-    "Mode line variable that shows the buffer name.")
+(defvar-local sakoline-buffer-name
+    '(:eval
+      (propertize (buffer-name) 'face '(:foreground "#ffffff")))
+  "Mode line variable that shows the buffer name.")
 
-  (put 'sakoline-buffer-name 'risky-local-variable t)
+(put 'sakoline-buffer-name 'risky-local-variable t)
 
-  (defface sakoline-major-mode-color
-    '((t :foreground "grey"))
-    "Major Mode color for sakoline.")
+(defface sakoline-major-mode-color
+  '((t :foreground "grey"))
+  "Major Mode color for sakoline.")
 
-  (defun sakoline--major-mode-name ()
-    "Return Capitalized Major Mode"
-    (capitalize (symbol-name major-mode)))
+(defun sakoline--major-mode-name ()
+  "Return Capitalized Major Mode"
+  (capitalize (symbol-name major-mode)))
 
-  (defvar-local sakoline-major-mode
-      '(:eval
-        (propertize (sakoline--major-mode-name) 'face 'sakoline-major-mode-color)))
+(defvar-local sakoline-major-mode
+    '(:eval
+      (propertize (sakoline--major-mode-name) 'face 'sakoline-major-mode-color)))
 
-  (put 'sakoline-major-mode 'risky-local-variable t)
+(put 'sakoline-major-mode 'risky-local-variable t)
 
-  (defface sakoline-evil-visual-color
-    '((t :background "#6600cc" :foreground "black"))
-    "Evil Visual Color")
+(defface sakoline-evil-visual-color
+  '((t :background "#6600cc" :foreground "black"))
+  "Evil Visual Color")
 
-  (defface sakoline-evil-normal-color
-    '((t :background "#99ff99" :foreground "black"))
-    "Evil Visual Color")
+(defface sakoline-evil-normal-color
+  '((t :background "#99ff99" :foreground "black"))
+  "Evil Visual Color")
 
-  (defface sakoline-evil-insert-color
-    '((t :background "#00cc66" :foreground "black"))
-    "Evil Visual Color")
+(defface sakoline-evil-insert-color
+  '((t :background "#00cc66" :foreground "black"))
+  "Evil Visual Color")
 
-  (defface sakoline-evil-emacs-color
-    '((t :background "#9900ff" :foreground "black"))
-    "Evil Visual Color")
+(defface sakoline-evil-emacs-color
+  '((t :background "#9900ff" :foreground "black"))
+  "Evil Visual Color")
 
-  (defface sakoline-evil-operator-color
-    '((t :background "#ff3300" :foreground "black"))
-    "Evil Visual Color")
+(defface sakoline-evil-operator-color
+  '((t :background "#ff3300" :foreground "black"))
+  "Evil Visual Color")
 
-  (defvar-local sakoline-evil-mode 
-      '(:eval (cond
-               ((eq evil-state 'visual) (propertize " VISUAL " 'face 'sakoline-evil-visual-color ))
-               ((eq evil-state 'normal) (propertize " NORMAL " 'face 'sakoline-evil-normal-color ))
-               ((eq evil-state 'insert) (propertize " INSERT " 'face 'sakoline-evil-insert-color ))
-               ((eq evil-state 'emacs) (propertize " EMACS " 'face 'sakoline-evil-emacs-color ))
-               ((eq evil-state 'operator) (propertize " OPERATOR " 'face 'sakoline-evil-operator-color))
-               "Get current evil mode state")))
+(defvar-local sakoline-evil-mode 
+    '(:eval (cond
+             ((eq evil-state 'visual) (propertize " VISUAL " 'face 'sakoline-evil-visual-color ))
+             ((eq evil-state 'normal) (propertize " NORMAL " 'face 'sakoline-evil-normal-color ))
+             ((eq evil-state 'insert) (propertize " INSERT " 'face 'sakoline-evil-insert-color ))
+             ((eq evil-state 'emacs) (propertize " EMACS " 'face 'sakoline-evil-emacs-color ))
+             ((eq evil-state 'operator) (propertize " OPERATOR " 'face 'sakoline-evil-operator-color))
+       	  "Get current evil mode state")))
 
-  (put 'sakoline-evil-mode 'risky-local-variable t)
+(put 'sakoline-evil-mode 'risky-local-variable t)
 
-  (defface sakoline-buffer-state-readonly
-    '((t :foreground "red"))
-    "Face for read-only buffer")
-  (defface sakoline-buffer-state-modified
-    '((t :foreground "orange"))
-    "Face for modified buffer")
+(defface sakoline-buffer-state-readonly
+  '((t :foreground "red"))
+  "Face for read-only buffer")
+(defface sakoline-buffer-state-modified
+  '((t :foreground "orange"))
+  "Face for modified buffer")
 
-  (defvar-local sakoline-buffer-state
-      '(:eval
-        (cond
-         (buffer-read-only
-          (propertize ">:("
-          	      'face 'sakoline-buffer-state-readonly
-          	      'help-echo "buffer is read only"))
-         ((buffer-modified-p)
-          (propertize "!!!"
-          	      'face 'sakoline-buffer-state-modified)))))
+(defvar-local sakoline-buffer-state
+    '(:eval
+      (cond
+       (buffer-read-only
+             (propertize ">:("
+         		 'face 'sakoline-buffer-state-readonly
+         		 'help-echo "buffer is read only"))
+       ((buffer-modified-p)
+             (propertize "!!!"
+         		 'face 'sakoline-buffer-state-modified)))))
 
-  (put 'sakoline-buffer-state 'risky-local-variable t)
+(put 'sakoline-buffer-state 'risky-local-variable t)
 
 (message "setting up packages")
 
@@ -315,22 +298,27 @@ Containing LEFT, and RIGHT aligned respectively."
   :config
   (setq ivy-inital-inputs-alist nil))
 
-(use-package doom-themes
-:straight t
-:ensure t
-:config
-;; Global settings (defaults)
-(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-      doom-themes-enable-italic t) ; if nil, italics is universally disabled
-;; load the theme
-(load-theme 'doom-monokai-pro t)
+;; (use-package doom-themes
+;; :straight t
+;; :ensure t
+;; :config
+;; ;; Global settings (defaults)
+;; (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+;;       doom-themes-enable-italic t) ; if nil, italics is universally disabled
+;; ;; load the theme
+;; (load-theme 'doom-monokai-pro t)
 
-(doom-themes-org-config)
+;; (doom-themes-org-config)
 
-(doom-themes-treemacs-config)
+;; (doom-themes-treemacs-config)
 
-;; Enable flashing mode-line on errors
-(doom-themes-visual-bell-config))
+;; ;; Enable flashing mode-line on errors
+;; (doom-themes-visual-bell-config))
+
+(use-package timu-macos-theme 
+  :straight t
+  :config
+(load-theme 'timu-macos t))
 
 (use-package all-the-icons)
 
@@ -455,6 +443,7 @@ Containing LEFT, and RIGHT aligned respectively."
   (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   (setq dashboard-center-content t)
   (setq dashboard-projects-backend 'projectile)
+  (setq dashboard-startup-banner "~/.emacs.d/dashboard.png")
   (setq dashboard-footer-messages '("i think i have emacs pinky"
                                     "why are we still using lisp again?"
                                     "why is this running on 1/16 threads?!?!?"
@@ -472,8 +461,8 @@ Containing LEFT, and RIGHT aligned respectively."
                           (projects . 3)
                           (agenda . 5)))
 
-  (setq dashboard-image-banner-max-height 250)
-  (setq dashboard-image-banner-max-width 500)
+  (setq dashboard-image-banner-max-height 200)
+  (setq dashboard-image-banner-max-width 300)
 
   (setq dashboard-page-separator "\n\n")
   (dashboard-setup-startup-hook))
@@ -485,7 +474,6 @@ Containing LEFT, and RIGHT aligned respectively."
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-i-jump nil)
-  :hook (evil-mode . sakomacs/evil-hook)
   :ensure t
   :demand
   :config
@@ -680,12 +668,12 @@ Containing LEFT, and RIGHT aligned respectively."
 :straight t
 :ensure t
 :custom
-(org-roam-directory "~/org"
-                    :bind (("C-c n l" . org-roam-buffer-toggle)
-                           ("C-c n f" . org-roam-node-find)
-                           ("C-c n i" . org-roam-node-insert))
-                    :config
-                    (org-roam-setup)))
+(org-roam-directory "~/org/notes")
+:bind (("C-c n l" . org-roam-buffer-toggle)
+       ("C-c n f" . org-roam-node-find)
+       ("C-c n i" . org-roam-node-insert))
+:config
+(org-roam-setup))
 
 (use-package treemacs
   :ensure t
@@ -1087,6 +1075,27 @@ Containing LEFT, and RIGHT aligned respectively."
 
 (use-package ement
   :straight t)
+
+(if (eq system-type 'gnu/linux)
+   (use-package mu4e
+     :load-path "//wsl.localhost/Debian/usr/share/emacs/site-lisp/elpa-src/mu4e-1.8.14"
+     :custom
+     (mu4e-mu-binary "wsl mu")))
+
+;; global defaults 
+;; (use-package mu4e
+  ;; :custom
+  ;; mu4e-update-interval 300
+  ;; )
+
+;; we need this regardless of platform
+(use-package smtpmail
+  :straight t)
+
+(use-package epg
+  :straight t
+  :config 
+  (setq epg-inentry-mode 'loopback))
 
 (org-babel-do-load-languages
 'org-babel-load-languages
