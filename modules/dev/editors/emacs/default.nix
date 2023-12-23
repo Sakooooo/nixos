@@ -18,7 +18,7 @@ in {
     services.emacs = {
       enable = true;
       install = true;
-      package = pkgs.emacs;
+      package = pkgs.emacs29-pgtk;
     };
     users.users.sako.packages = with pkgs; [
       # direnv
@@ -29,7 +29,7 @@ in {
       source = ../../../../config/emacs;
       recursive = true;
     };
-    fonts.fonts = with pkgs; [
+    fonts.packages = with pkgs; [
       (nerdfonts.override {fonts = ["JetBrainsMono"];})
       jetbrains-mono
     ];
