@@ -1118,7 +1118,6 @@ make sure to setup authinfo
 *** Better Compile Messages
 #+begin_src emacs-lisp
   (use-package fancy-compilation
-    :straight t
     :commands (fancy-compilation-mode))
 
   (with-eval-after-load 'compile
