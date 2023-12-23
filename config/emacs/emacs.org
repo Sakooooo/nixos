@@ -386,10 +386,10 @@ Should make startup faster, taken from doom-emacs
   ;; ;; Enable flashing mode-line on errors
   ;; (doom-themes-visual-bell-config))
 
-  (use-package kanagawa-theme 
+  (use-package timu-macos-theme 
     :straight t
     :config
-  (load-theme 'kanagawa t))
+  (load-theme 'timu-macos t))
 
 #+end_src
 ** All the Icons (to make doom-themes happy)
