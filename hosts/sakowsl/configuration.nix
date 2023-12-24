@@ -64,7 +64,7 @@
   };
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "tty";
+    pinentryFlavor = "gnome3";
   };
   # bare minimum
   environment.systemPackages = with pkgs; [
@@ -118,7 +118,6 @@
   };
 
   security.sudo.wheelNeedsPassword = true;
-
 
   system.stateVersion = "22.05";
 }
