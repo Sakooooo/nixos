@@ -1096,7 +1096,7 @@ kept-old-versions 5)
 (use-package epg
   :straight t
   :config 
-  (setq epg-inentry-mode 'loopback))
+  (setq epg-pinentry-mode 'loopback))
 
 (org-babel-do-load-languages
 'org-babel-load-languages

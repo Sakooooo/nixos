@@ -1333,7 +1333,7 @@ I should just switch to Linux at this point :(
     (use-package epg
       :straight t
       :config 
-      (setq epg-inentry-mode 'loopback))
+      (setq epg-pinentry-mode 'loopback))
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages

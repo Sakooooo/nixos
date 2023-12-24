@@ -117,6 +117,9 @@
     enable = true;
     pinentryFlavor = "gtk2";
     # enableSSHSupport = true;
+    settings = {
+      allow-loopback-entry = true;
+    };
   };
 
   programs.git = {
