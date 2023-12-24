@@ -36,7 +36,7 @@ kept-old-versions 5)
 ;; Line Numbers
 (column-number-mode)
 ;; Bell
-(setq visible-bell t)
+(setq visible-bell nil)
 ;; prefer y/n
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; Stop Emacs from trying to use dialog boxes.
@@ -1077,12 +1077,6 @@ kept-old-versions 5)
 (use-package ement
   :straight t)
 
-(if (eq system-type 'gnu/linux)
-   (use-package mu4e
-     :load-path "//wsl.localhost/Debian/usr/share/emacs/site-lisp/elpa-src/mu4e-1.8.14"
-     :custom
-     (mu4e-mu-binary "wsl mu")))
-
 ;; global defaults 
 ;; (use-package mu4e
   ;; :custom
@@ -1092,10 +1086,6 @@ kept-old-versions 5)
 ;; we need this regardless of platform
 (use-package smtpmail
   :straight t)
-
-(use-package pinentry
-  :straight t
-  :config (pinentry-start))
 
 (org-babel-do-load-languages
 'org-babel-load-languages

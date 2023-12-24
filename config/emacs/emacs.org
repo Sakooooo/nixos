@@ -53,7 +53,7 @@ Should make startup faster, taken from doom-emacs
   ;; Line Numbers
   (column-number-mode)
   ;; Bell
-  (setq visible-bell t)
+  (setq visible-bell nil)
   ;; prefer y/n
   (fset 'yes-or-no-p 'y-or-n-p)
   ;; Stop Emacs from trying to use dialog boxes.
