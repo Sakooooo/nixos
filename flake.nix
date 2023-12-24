@@ -3,23 +3,26 @@
   description = "horrible dotfiles for amazing distro";
 
   inputs = {
-    # nixpkgs
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    # nixpkgs unstable
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # home-manager
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11"; # nixpkgs stable branch
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # nixpkgs unstable branch
     home-manager = {
+      # this manages your dotfiles for the most part
       url = "github:nix-community/home-manager/release-23.11";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # wsl support
     NixOS-WSL = {
+      # this makes nixos on wsl a thing
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
+      # this manages secrets
       url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
