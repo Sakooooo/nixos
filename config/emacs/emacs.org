@@ -1322,12 +1322,6 @@ I should just switch to Linux at this point :(
   (use-package smtpmail
     :straight t)
 #+end_src
-** Emacs Pinentry
-#+begin_src emacs-lisp
-    (use-package pinentry
-      :straight t
-      :config (pinentry-start))
-#+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
 #+begin_src emacs-lisp
