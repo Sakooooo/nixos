@@ -1328,12 +1328,11 @@ I should just switch to Linux at this point :(
   (use-package smtpmail
     :straight t)
 #+end_src
-** Epg
+** Emacs Pinentry
 #+begin_src emacs-lisp
-    (use-package epg
+    (use-package pinentry
       :straight t
-      :config 
-      (setq epg-pinentry-mode 'loopback))
+      :config (pinentry-start))
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages

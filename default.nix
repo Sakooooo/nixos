@@ -119,6 +119,7 @@
     # enableSSHSupport = true;
     settings = {
       allow-loopback-entry = true;
+      allow-emacs-pinentry = true;
     };
   };
 

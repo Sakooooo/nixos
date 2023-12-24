@@ -1093,10 +1093,9 @@ kept-old-versions 5)
 (use-package smtpmail
   :straight t)
 
-(use-package epg
+(use-package pinentry
   :straight t
-  :config 
-  (setq epg-pinentry-mode 'loopback))
+  :config (pinentry-start))
 
 (org-babel-do-load-languages
 'org-babel-load-languages
