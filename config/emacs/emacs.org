@@ -1279,9 +1279,11 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 ** Telegram
 only god knows why im doing this 
 #+begin_src emacs-lisp
-   (use-package telega
-     :straight t
-     )
+  ;; codeberg thingy
+  (use-package visual-fill-column)
+  (use-package telega
+    :straight t
+    )
 #+end_src
 ** pdf-tools 
 Emacs can be everything? Why not turn it into a pdf reader

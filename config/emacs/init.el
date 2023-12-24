@@ -1060,6 +1060,8 @@ kept-old-versions 5)
 
 (add-hook 'emacs-startup-hook (elfeed-update))
 
+;; codeberg thingy
+(use-package visual-fill-column)
 (use-package telega
   :straight t
   )
