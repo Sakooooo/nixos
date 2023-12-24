@@ -1312,12 +1312,6 @@ This has to be one of the hardest things to configure on windows
 I should just switch to Linux at this point :(
 #+begin_src emacs-lisp
 
-  (if (eq system-type 'gnu/linux)
-     (use-package mu4e
-       :load-path "//wsl.localhost/Debian/usr/share/emacs/site-lisp/elpa-src/mu4e-1.8.14"
-       :custom
-       (mu4e-mu-binary "wsl mu")))
-
   ;; global defaults 
   ;; (use-package mu4e
     ;; :custom
