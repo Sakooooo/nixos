@@ -1281,9 +1281,7 @@ only god knows why im doing this
 #+begin_src emacs-lisp
   ;; codeberg thingy
   (use-package visual-fill-column)
-  (use-package telega
-    :straight t
-    )
+  (use-package telega)
 #+end_src
 ** pdf-tools 
 Emacs can be everything? Why not turn it into a pdf reader

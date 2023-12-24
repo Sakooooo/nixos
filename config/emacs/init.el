@@ -1062,9 +1062,7 @@ kept-old-versions 5)
 
 ;; codeberg thingy
 (use-package visual-fill-column)
-(use-package telega
-  :straight t
-  )
+(use-package telega)
 
 (use-package pdf-tools
   :straight t

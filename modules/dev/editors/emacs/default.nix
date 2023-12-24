@@ -11,12 +11,13 @@ with lib; let
 in {
   options.modules.dev.editors.emacs = {
     enable = mkEnableOption false;
+    daemon = mkEnableOption true;
   };
 
   config = mkIf cfg.enable {
     # ues daemon
     services.emacs = {
-      enable = true;
+      enable = cfg.daemon;
       install = true;
       package = pkgs.emacs29-pgtk;
     };

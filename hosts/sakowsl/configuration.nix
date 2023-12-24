@@ -95,6 +95,7 @@
       editors = {
         nvim.enable = true;
         emacs.enable = true;
+        emacs.daemon = false;
       };
       cc.enable = true;
       nil.enable = true;
