@@ -34,7 +34,7 @@ in {
       direnv
     ];
 
-    home-manager.users.${user} = {lib, ...}: {
+    home-manager.users.sako = {lib, ...}: {
       home.file = {
         ".emacs".source = ../../../../config/emacs;
         "init.el".source = pkgs.runCommand "init.el" {} ''
