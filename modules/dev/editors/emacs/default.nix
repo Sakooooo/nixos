@@ -24,13 +24,12 @@ in {
       enable = cfg.daemon;
       install = true;
       #package = pkgs.emacs29-pgtk;
-      package = (pkgs.emacsWithPackagesFromUsePackage {
-          config = ../../../../config/emacs/init.el;
-          defaultInitFile = true;
-          package = pkgs.emacs-pgtk;
-          alwaysEnsure = true;
-          alwaysTangle = true;
-          });
+      package = pkgs.emacsWithPackagesFromUsePackage {
+        config = ../../../../config/emacs/init.el;
+        package = pkgs.emacs-pgtk;
+        alwaysEnsure = true;
+        alwaysTangle = true;
+      };
     };
     users.users.sako.packages = with pkgs; [
       # direnv
