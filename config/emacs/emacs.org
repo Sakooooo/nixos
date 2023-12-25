@@ -292,7 +292,7 @@ Should make startup faster, taken from doom-emacs
 ** Command Log Mode
 #+begin_src emacs-lisp
       (use-package command-log-mode
-        ;;:straight t
+        :straight t
         )
 #+end_src
 ** Command Autocompletion Packages 
