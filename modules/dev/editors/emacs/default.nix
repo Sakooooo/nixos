@@ -36,7 +36,7 @@ in {
       # direnv
       direnv
     ];
-    home-manager.users.sako.home.file.".emacs.d"."dashboard.png" = {
+    home-manager.users.sako.home.file.".emacs.d/dashboard.png" = {
       enable = true;
       source = ../../../../config/emacs/dashboard.png;
     };
