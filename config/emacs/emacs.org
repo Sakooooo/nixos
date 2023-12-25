@@ -420,7 +420,7 @@ Should make startup faster, taken from doom-emacs
 ** General Leader Key
 #+begin_src emacs-lisp
   (use-package general
-    :demand t
+    :no-require t
     :config
     (general-create-definer sakomacs/leader-keys
       :keymaps '(normal insert visual emacs)

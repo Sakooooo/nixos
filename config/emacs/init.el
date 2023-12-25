@@ -347,7 +347,7 @@ kept-old-versions 5)
   :config (delete-selection-mode +1))
 
 (use-package general
-  :demand t
+  :no-require t
   :config
   (general-create-definer sakomacs/leader-keys
     :keymaps '(normal insert visual emacs)
