@@ -29,9 +29,11 @@ in {
       package = pkgs.emacsWithPackagesFromUsePackage {
         config = ../../../../config/emacs/emacs.org;
 
+        isOrgModeFile = true;
+
         defaultInitFile = true;
 
-        package = pkgs.emacs-pgtk;
+        package = pkgs.emacs29-pgtk;
 
         # alwaysEnsure = true;
 
