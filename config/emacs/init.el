@@ -79,20 +79,6 @@ kept-old-versions 5)
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(message "setting up straight.el")
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
 (use-package gcmh
   :init
   (setq gcmh-idle-delay 5)
@@ -241,22 +227,15 @@ kept-old-versions 5)
 
 (message "setting up packages")
 
-(use-package command-log-mode
-  ;;:straight t
-  )
+(use-package command-log-mode)
 
 ;; better search
-(use-package swiper
-      ;;:straight t
-  )
+(use-package swiper)
 ;; better commands
-(use-package counsel
-    :straight t
-    )
+(use-package counsel)
 ;; autocompletion on commands (?)
 (use-package ivy
   :diminish
-  :straight t
   :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
          ("TAB" . ivy-alt-done)	
@@ -275,13 +254,11 @@ kept-old-versions 5)
   (ivy-mode 1))
 ;; better ivy autocompletion
 (use-package ivy-rich
-  :straight t
   :init
   (ivy-rich-mode 1))
 
 ;; ivy in the middle
 (use-package ivy-posframe
-  :straight t
   :init
   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
   :config
@@ -289,7 +266,6 @@ kept-old-versions 5)
 
 ;; counsel M+X
 (use-package counsel
-  :straight t
   :bind (("M-x" . counsel-M-x)
          ("C-x b" . counsel-ibuffer)
          ("C-x C-f" . counsel-find-file)
@@ -316,14 +292,12 @@ kept-old-versions 5)
 ;; (doom-themes-visual-bell-config))
 
 (use-package timu-macos-theme 
-  :straight t
   :config
 (load-theme 'timu-macos t))
 
 (use-package all-the-icons)
 
 (use-package nerd-icons
-  :straight t
   :custom
   ;; "Symbols Nerd Font Mono" is the default and is recommended
   ;; but you can use any other Nerd Font if you want
@@ -331,11 +305,9 @@ kept-old-versions 5)
   )
 
 (use-package rainbow-delimiters
-  :straight t
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package which-key
-  :straight t
   :init (which-key-mode)
   :diminish which-key-mode
   :config
@@ -348,7 +320,6 @@ kept-old-versions 5)
 ;;   :custom ((doom-modeline-height 40)))
 
 (use-package hide-mode-line
-  :straight t
   :hook (((treemacs-mode
            eshell-mode shell-mode
            term-mode vterm-mode
@@ -359,12 +330,10 @@ kept-old-versions 5)
          (dired-mode . turn-off-hide-mode-line-mode)))
 
 (use-package minions
-  :straight t
   :hook (doom-modeline-mode . minions-mode))
 
 (use-package helpful
   :ensure t
-  :straight t
   :custom
   (counsel-describe-function-function #'helpful-callable)
   (counsel-describe-variable-function #'helpful-variable)
@@ -375,12 +344,10 @@ kept-old-versions 5)
   ([remap describe-key] . helpful-key))
 
 (use-package delsel
-  :straight t
   :ensure nil
   :config (delete-selection-mode +1))
 
 (use-package general
-  :straight t
   :config
   (general-create-definer sakomacs/leader-keys
     :keymaps `(normal insert visual emacs)
@@ -436,7 +403,6 @@ kept-old-versions 5)
     "gcp" `(forge-create-pullreq :which-key "pull request")))
 
 (use-package dashboard
-  :straight t
   :init
   (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
   (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
@@ -468,7 +434,6 @@ kept-old-versions 5)
   (dashboard-setup-startup-hook))
 
 (use-package evil
-  :straight t
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
@@ -490,21 +455,17 @@ kept-old-versions 5)
 
 ;; extra things for Evil
 (use-package evil-collection
-  :straight t
   :after evil
   :config
   (evil-collection-init))
 
 ;; commenting
 (use-package evil-commentary
-:straight t
 :after evil
 :diminish
 :config (evil-commentary-mode +1))
 
-(use-package hydra
-  :straight t
-  )
+(use-package hydra)
 (defhydra hydra-text-scale (:timeout 4)
   "scale text"
   ("j" text-scale-increase "in")
@@ -515,7 +476,6 @@ kept-old-versions 5)
   "ts" '(hydra-text-scale/body :which-key "scale text"))
 
 (use-package projectile
-  :straight t
   :diminish projectile-mode
   :demand
   :config (projectile-mode)
@@ -528,11 +488,9 @@ kept-old-versions 5)
   (setq projectile-switch-project-action #'projectile-dired))
 
 (use-package counsel-projectile
-  :straight t
   :config (counsel-projectile-mode))
 
 (use-package org
-  :straight t
   :hook (org-mode . org-indent-mode)
   :config
   (setq org-ellipsis " ↓")
@@ -661,11 +619,9 @@ kept-old-versions 5)
            :empty-lines 1))))
 
 (use-package olivetti
-  :straight t
   :hook (org-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 100))))
 
 (use-package org-roam
-:straight t
 :ensure t
 :custom
 (org-roam-directory "~/org/notes")
@@ -678,7 +634,6 @@ kept-old-versions 5)
 (use-package treemacs
   :ensure t
   :defer t
-  :straight t
   :init
   (with-eval-after-load 'winum
     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
@@ -768,41 +723,33 @@ kept-old-versions 5)
 
 (use-package treemacs-evil
   :after (treemacs evil)
-  :straight t
   :ensure t)
 
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :straight t
   :ensure t)
 
 (use-package treemacs-magit
   :after (treemacs magit)
-  :straight t
   :ensure t)
 
 (use-package treemacs-nerd-icons
-  :straight t
   :config
   (treemacs-load-theme "nerd-icons"))
 
 (use-package magit
-  :straight t
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
   )
 (use-package magit-todos
-  :straight t
   :after magit
 :config (magit-todos-mode 1))
 
 (use-package forge
-    :straight t
   :after magit)
 (setq auth-sources '("~/.authinfo"))
 
 (use-package direnv
-    :straight t
  :config
  (direnv-mode))
 
@@ -811,7 +758,6 @@ kept-old-versions 5)
   (lsp-headerline-breadcrumb-mode))
 
   (use-package lsp-mode
-    :straight t
     :commands (lsp lsp-deferred)
     :hook (lsp-mode . sakomacs/lsp-mode-setup)
     :init
@@ -822,26 +768,20 @@ kept-old-versions 5)
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
-  :straight t
   :custom
   (lsp-ui-doc-position 'bottom))
 
 (use-package lsp-treemacs
-  :straight t
   :after lsp)
 
-(use-package lsp-ivy
-  :straight t
-  )
+(use-package lsp-ivy)
 
 (use-package web-mode
-  :straight t
      :hook (web-mode . lsp)
      :mode ("\\.html\\'"
              "\\.css\\'"))
 
 (use-package js2-mode
-  :straight t
 :mode ("\\.js\\'"
      "\\.jsx\\'")
 :hook (js2-mode . lsp)
@@ -852,7 +792,6 @@ kept-old-versions 5)
 (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))))
 
 (use-package typescript-mode
-  :straight t
   :mode ("\\.ts\\'"
        "\\.tsx\\'")
   :hook (typescript-mode . lsp))
@@ -881,22 +820,18 @@ kept-old-versions 5)
 
 (use-package cmake-mode
   :mode "CMakeLists.txt"
-  :straight t
   :hook (cmake-mode . lsp))
 
 (use-package lua-mode
   :mode "\\.lua\\'"
-  :straight t
   :hook (lua-mode . lsp))
 
 (use-package python-mode
   :mode "\\.py\\'"
-  :straight t
   :hook (python-mode . lsp))
 
 (use-package elpy
 :after python-mode
-  :straight t
 
 :custom
 (elpy-rpc-python-command "python3")
@@ -906,46 +841,37 @@ kept-old-versions 5)
 
 (use-package lsp-pyright
   :ensure t
-  :straight t
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp))))  ; or lsp-deferred
 
 (use-package haskell-mode
   :mode "\\.hs\\'"
-  :straight t
   :hook (python-mode . lsp))
 
 (use-package yaml-mode
-:straight t
-    :mode ("\\.yaml\\'"
-           "\\.yml\\'"))
+  :mode ("\\.yaml\\'"
+         "\\.yml\\'"))
 
 (use-package nix-mode
-:straight t
   :hook ((nix-mode . lsp) 
            (nix-mode . format-all-mode)
            (nix-mode . (lambda () (setq-local format-all-formatters '(("Nix" alejandra))))))
   :mode "\\.nix\\'")
 
 (use-package dart-mode
-  :straight t
  :hook (dart-mode . lsp)
 :mode "\\.dart\\'" )
 
 (use-package markdown-mode
-  :straight t
   :hook (markdown-mode . visual-line-mode))
 
-(use-package markdown-preview-mode
-  :straight t)
+(use-package markdown-preview-mode)
 
 (use-package evil-nerd-commenter
-  :straight t
 :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 
 (use-package company
-    :straight t
     :after lsp-mode
     :hook (lsp-mode . company-mode)
     :bind (:map company-active-map
@@ -959,14 +885,11 @@ kept-old-versions 5)
     (company-tooltip-align-annotations t))
 
 (use-package company-box
-    :straight t
     :hook (company-mode . company-box-mode))
 
-(use-package flycheck :straight t :config (global-flycheck-mode +1))
+(use-package flycheck :config (global-flycheck-mode +1))
 
-(use-package format-all
-  :straight t
-  )
+(use-package format-all)
 
 (use-package fancy-compilation
   :commands (fancy-compilation-mode))
@@ -975,15 +898,12 @@ kept-old-versions 5)
   (fancy-compilation-mode))
 
 (use-package yasnippet
-  :straight t
   :diminish yas-minor-mode
   :hook (after-init . yas-global-mode))
 
-(use-package yasnippet-snippets
-  :straight t)
+(use-package yasnippet-snippets)
 
 (use-package yasnippet-capf
- :straight t
 :init (add-to-list 'completion-at-point-functions #'yasnippet-capf))
 
 (use-package dired
@@ -1023,7 +943,6 @@ kept-old-versions 5)
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
 (use-package elfeed
-  :straight t
   :config
   (setq elfeed-use-curl t)
   (setq browse-url-browser-function 'eww-browse-url)
@@ -1031,7 +950,6 @@ kept-old-versions 5)
   )
 
 (use-package elfeed-protocol
-  :straight t
   :after elfeed
   :config
   (elfeed-set-timeout 36000)
@@ -1065,15 +983,13 @@ kept-old-versions 5)
 (use-package telega)
 
 (use-package pdf-tools
-  :straight t
   :mode ("\\.pdf\\'" . pdf-view-mode)
   :config
   (setq-default pdf-view-display-size 'fit-page)
   :init
   (pdf-tools-install))
 
-(use-package ement
-  :straight t)
+(use-package ement)
 
 ;; global defaults 
 ;; (use-package mu4e
@@ -1082,8 +998,7 @@ kept-old-versions 5)
   ;; )
 
 ;; we need this regardless of platform
-(use-package smtpmail
-  :straight t)
+(use-package smtpmail)
 
 (org-babel-do-load-languages
 'org-babel-load-languages
@@ -1117,7 +1032,6 @@ kept-old-versions 5)
 (use-package eshell-git-prompt)
 
 (use-package eshell
-    :straight t
   :hook (eshell-first-time-mode . sakomacs/configure-eshell)
   :config
 
@@ -1128,7 +1042,6 @@ kept-old-versions 5)
   (eshell-git-prompt-use-theme 'powerline))
 
 (use-package vterm
-  :straight t
 :commands vterm
 :config
 (setq vterm-max-scrollback 10000))

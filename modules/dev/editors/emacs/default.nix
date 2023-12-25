@@ -27,7 +27,6 @@ in {
       install = true;
       # package = pkgs.emacs29-pgtk;
       package = pkgs.emacsWithPackagesFromUsePackage {
-        # org mode files are borked with this right now
         config = ../../../../config/emacs/init.el;
 
         defaultInitFile = true;
