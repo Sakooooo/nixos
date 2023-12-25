@@ -994,10 +994,10 @@ make sure to setup authinfo
 #+end_src
 ***** Markdown
 #+begin_src emacs-lisp
-    (use-package markdown-mode
-      :hook (markdown-mode . visual-line-mode))
+  (use-package markdown-mode
+    :hook (markdown-mode . visual-line-mode))
 
-    (use-package markdown-preview-mode
+  (use-package markdown-preview-mode)
 #+end_src
 *** Commenter
 #+begin_src emacs-lisp
@@ -1045,7 +1045,7 @@ make sure to setup authinfo
     :diminish yas-minor-mode
     :hook (after-init . yas-global-mode))
 
-  (use-package yasnippet-snippets
+  (use-package yasnippet-snippets)
 
   (use-package yasnippet-capf
   :init (add-to-list 'completion-at-point-functions #'yasnippet-capf))
@@ -1205,12 +1205,12 @@ Emacs can be everything? Why not turn it into a pdf reader
 ** Matrix Client
 okay this one is a bit more understandable
 #+begin_src emacs-lisp
-  (use-package ement
+  (use-package ement)
 #+end_src
 ** Discord RPC
 #+begin_src emacs-lisp
-(use-package elcord
-#+end_src>
+(use-package elcord)
+#+end_src
 ** Email 
 This has to be one of the hardest things to configure on windows
 I should just switch to Linux at this point :(

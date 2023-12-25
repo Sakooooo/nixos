@@ -860,7 +860,7 @@ kept-old-versions 5)
 (use-package markdown-mode
   :hook (markdown-mode . visual-line-mode))
 
-(use-package markdown-preview-mode
+(use-package markdown-preview-mode)
 
 (use-package evil-nerd-commenter
 :bind ("M-/" . evilnc-comment-or-uncomment-lines))
@@ -896,7 +896,7 @@ kept-old-versions 5)
   :diminish yas-minor-mode
   :hook (after-init . yas-global-mode))
 
-(use-package yasnippet-snippets
+(use-package yasnippet-snippets)
 
 (use-package yasnippet-capf
 :init (add-to-list 'completion-at-point-functions #'yasnippet-capf))
@@ -982,7 +982,9 @@ kept-old-versions 5)
   :init
   (pdf-tools-install))
 
-(use-package ement
+(use-package ement)
+
+(use-package elcord)
 
 ;; global defaults 
 ;; (use-package mu4e
