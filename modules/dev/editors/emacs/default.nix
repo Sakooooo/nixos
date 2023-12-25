@@ -36,8 +36,8 @@ in {
 
     home-manager.users.sako = {lib, ...}: {
       home.file = {
-        ".emacs".source = ../../../../config/emacs;
-        "init.el".source = pkgs.runCommand "init.el" {} ''
+        ".emacs.d".source = ../../../../config/emacs;
+        ".emacs.d/init.el".source = pkgs.runCommand "init.el" {} ''
           cp ${../../../../config/emacs/emacs.org} emacs.org
           ${pkgs.emacs}/bin/emacs -Q --batch ./emacs.org -f org-babel-tangle
           mv init.el $out
