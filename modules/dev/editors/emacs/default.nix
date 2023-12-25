@@ -29,7 +29,7 @@ in {
     #    package = pkgs.emacs-pgtk;
     #    defaultInitFile = true;
     #  };
-    };
+    #};
     users.users.sako.packages = with pkgs; [
       # direnv
       direnv
