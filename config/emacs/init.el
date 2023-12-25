@@ -65,8 +65,8 @@ kept-old-versions 5)
 (require `package)
 
 (setq package-archives `(("mepla" . "https://melpa.org/packages/")
-  		       ("org" . "https://orgmode.org/elpa/")
-  		       ("elpa" . "https://elpa.gnu.org/packages/")))
+			 ("org" . "https://orgmode.org/elpa/")
+			 ("elpa" . "https://elpa.gnu.org/packages/")))
 
 (package-initialize)
 (unless package-archive-contents
@@ -78,20 +78,6 @@ kept-old-versions 5)
 
 (require 'use-package)
 (setq use-package-always-ensure t)
-
-(message "setting up straight.el")
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
 
 (use-package gcmh
   :init
@@ -113,8 +99,8 @@ kept-old-versions 5)
 (add-hook 'emacs-startup-hook
           (lambda ()
             ;;(setq gc-cons-threshold 16777216 ; 16mb
-  	  ;; this could be really bad idk
-  	  (setq gc-cons-threshold 100000000
+	    ;; this could be really bad idk
+	    (setq gc-cons-threshold 100000000
                   gc-cons-percentage 0.1)))
 
 (defun doom-defer-garbage-collection-h ()
@@ -143,18 +129,18 @@ kept-old-versions 5)
 (force-mode-line-update)
 
 (setq-default mode-line-format
-     	   '((:eval (sakoline-render
-     		     ;; left
-     		     (quote ("%e"
-     			     sakoline-evil-mode
-     			     " "
-     			     sakoline-buffer-name
-     			     " "
-     			     sakoline-buffer-state))
-     		     ;; right
-     		     (quote (sakoline-major-mode
-     			     )
-     			    )))))
+  	      '((:eval (sakoline-render
+  			;; left
+  			(quote ("%e"
+  				sakoline-evil-mode
+  				" "
+  				sakoline-buffer-name
+  				" "
+  				sakoline-buffer-state))
+  			;; right
+  			(quote (sakoline-major-mode
+  				)
+  			       )))))
 
 (defun sakoline-render (left right)
   "Return a string of `window-width' length.
@@ -215,7 +201,7 @@ kept-old-versions 5)
              ((eq evil-state 'insert) (propertize " INSERT " 'face 'sakoline-evil-insert-color ))
              ((eq evil-state 'emacs) (propertize " EMACS " 'face 'sakoline-evil-emacs-color ))
              ((eq evil-state 'operator) (propertize " OPERATOR " 'face 'sakoline-evil-operator-color))
-       	  "Get current evil mode state")))
+    	     "Get current evil mode state")))
 
 (put 'sakoline-evil-mode 'risky-local-variable t)
 
@@ -230,33 +216,29 @@ kept-old-versions 5)
     '(:eval
       (cond
        (buffer-read-only
-             (propertize ">:("
-         		 'face 'sakoline-buffer-state-readonly
-         		 'help-echo "buffer is read only"))
+      	(propertize ">:("
+      		    'face 'sakoline-buffer-state-readonly
+      		    'help-echo "buffer is read only"))
        ((buffer-modified-p)
-             (propertize "!!!"
-         		 'face 'sakoline-buffer-state-modified)))))
+      	(propertize "!!!"
+      		    'face 'sakoline-buffer-state-modified)))))
 
 (put 'sakoline-buffer-state 'risky-local-variable t)
 
 (message "setting up packages")
 
 (use-package command-log-mode
-  ;;:straight t
   )
 
 ;; better search
 (use-package swiper
-      ;;:straight t
   )
 ;; better commands
 (use-package counsel
-    :straight t
     )
 ;; autocompletion on commands (?)
 (use-package ivy
   :diminish
-  :straight t
   :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
          ("TAB" . ivy-alt-done)	
@@ -275,13 +257,11 @@ kept-old-versions 5)
   (ivy-mode 1))
 ;; better ivy autocompletion
 (use-package ivy-rich
-  :straight t
   :init
   (ivy-rich-mode 1))
 
 ;; ivy in the middle
 (use-package ivy-posframe
-  :straight t
   :init
   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
   :config
@@ -289,7 +269,6 @@ kept-old-versions 5)
 
 ;; counsel M+X
 (use-package counsel
-  :straight t
   :bind (("M-x" . counsel-M-x)
          ("C-x b" . counsel-ibuffer)
          ("C-x C-f" . counsel-find-file)
@@ -299,7 +278,6 @@ kept-old-versions 5)
   (setq ivy-inital-inputs-alist nil))
 
 ;; (use-package doom-themes
-;; :straight t
 ;; :ensure t
 ;; :config
 ;; ;; Global settings (defaults)
@@ -316,14 +294,12 @@ kept-old-versions 5)
 ;; (doom-themes-visual-bell-config))
 
 (use-package timu-macos-theme 
-  :straight t
   :config
 (load-theme 'timu-macos t))
 
 (use-package all-the-icons)
 
 (use-package nerd-icons
-  :straight t
   :custom
   ;; "Symbols Nerd Font Mono" is the default and is recommended
   ;; but you can use any other Nerd Font if you want
@@ -331,11 +307,9 @@ kept-old-versions 5)
   )
 
 (use-package rainbow-delimiters
-  :straight t
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package which-key
-  :straight t
   :init (which-key-mode)
   :diminish which-key-mode
   :config
@@ -343,28 +317,23 @@ kept-old-versions 5)
 
 ;; (use-package doom-modeline
 ;;   :ensure t
-;;   :straight t
 ;;   :hook (after-init . doom-modeline-mode)
 ;;   :custom ((doom-modeline-height 40)))
 
 (use-package hide-mode-line
-  :straight t
   :hook (((treemacs-mode
            eshell-mode shell-mode
            term-mode vterm-mode
            embark-collect-mode
            lsp-ui-imenu-mode
            pdf-annot-list-mode
-  	 dashboard-mode) . turn-on-hide-mode-line-mode)
+	     dashboard-mode) . turn-on-hide-mode-line-mode)
          (dired-mode . turn-off-hide-mode-line-mode)))
 
 (use-package minions
-  :straight t
   :hook (doom-modeline-mode . minions-mode))
 
 (use-package helpful
-  :ensure t
-  :straight t
   :custom
   (counsel-describe-function-function #'helpful-callable)
   (counsel-describe-variable-function #'helpful-variable)
@@ -375,12 +344,9 @@ kept-old-versions 5)
   ([remap describe-key] . helpful-key))
 
 (use-package delsel
-  :straight t
-  :ensure nil
   :config (delete-selection-mode +1))
 
 (use-package general
-  :straight t
   :config
   (general-create-definer sakomacs/leader-keys
     :keymaps `(normal insert visual emacs)
@@ -436,7 +402,6 @@ kept-old-versions 5)
     "gcp" `(forge-create-pullreq :which-key "pull request")))
 
 (use-package dashboard
-  :straight t
   :init
   (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
   (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
@@ -468,13 +433,11 @@ kept-old-versions 5)
   (dashboard-setup-startup-hook))
 
 (use-package evil
-  :straight t
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-i-jump nil)
-  :ensure t
   :demand
   :config
   (evil-mode 1)
@@ -490,20 +453,17 @@ kept-old-versions 5)
 
 ;; extra things for Evil
 (use-package evil-collection
-  :straight t
   :after evil
   :config
   (evil-collection-init))
 
 ;; commenting
 (use-package evil-commentary
-:straight t
 :after evil
 :diminish
 :config (evil-commentary-mode +1))
 
 (use-package hydra
-  :straight t
   )
 (defhydra hydra-text-scale (:timeout 4)
   "scale text"
@@ -515,7 +475,6 @@ kept-old-versions 5)
   "ts" '(hydra-text-scale/body :which-key "scale text"))
 
 (use-package projectile
-  :straight t
   :diminish projectile-mode
   :demand
   :config (projectile-mode)
@@ -528,11 +487,9 @@ kept-old-versions 5)
   (setq projectile-switch-project-action #'projectile-dired))
 
 (use-package counsel-projectile
-  :straight t
   :config (counsel-projectile-mode))
 
 (use-package org
-  :straight t
   :hook (org-mode . org-indent-mode)
   :config
   (setq org-ellipsis " ↓")
@@ -547,7 +504,7 @@ kept-old-versions 5)
 
   ;; archive thingy i forgot
   (setq org-refile-targets
-      '(("archive.org" :maxlevel . 1)))
+	'(("archive.org" :maxlevel . 1)))
 
   ;; save org buffer before refile
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
@@ -575,85 +532,85 @@ kept-old-versions 5)
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
 
   (setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-  	(sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)")))
+	'((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+	  (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)")))
 
   (setq org-refile-targets
-      '(("archive.org" :maxlevel . 1)
-  	("tasks.org" :maxlevel . 1)))
+	'(("archive.org" :maxlevel . 1)
+	  ("tasks.org" :maxlevel . 1)))
 
   ;; Save Org buffers after refiling!
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
   (setq org-tag-alist
-      '((:startgroup)
-  				      ; Put mutually exclusive tags here
-  	(:endgroup)
-  	("@errand" . ?E)
-  	("@home" . ?H)
-  	("@work" . ?W)
-  	("agenda" . ?a)
-  	("planning" . ?p)
-  	("publish" . ?P)
-  	("batch" . ?b)
-  	("note" . ?n)
-  	("idea" . ?i)))
+	'((:startgroup)
+					; Put mutually exclusive tags here
+	  (:endgroup)
+	  ("@errand" . ?E)
+	  ("@home" . ?H)
+	  ("@work" . ?W)
+	  ("agenda" . ?a)
+	  ("planning" . ?p)
+	  ("publish" . ?P)
+	  ("batch" . ?b)
+	  ("note" . ?n)
+	  ("idea" . ?i)))
 
   ;; Configure custom agenda views
   (setq org-agenda-custom-commands
-      '(("d" "Dashboard"
-  	 ((agenda "" ((org-deadline-warning-days 7)))
-  	  (todo "NEXT"
-  		((org-agenda-overriding-header "Next Tasks")))
-  	  (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
+	'(("d" "Dashboard"
+	   ((agenda "" ((org-deadline-warning-days 7)))
+	    (todo "NEXT"
+		  ((org-agenda-overriding-header "Next Tasks")))
+	    (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
 
-  	("n" "Next Tasks"
-  	 ((todo "NEXT"
-  		((org-agenda-overriding-header "Next Tasks")))))
+	  ("n" "Next Tasks"
+	   ((todo "NEXT"
+		  ((org-agenda-overriding-header "Next Tasks")))))
 
-  	("W" "Work Tasks" tags-todo "+work-email")
+	  ("W" "Work Tasks" tags-todo "+work-email")
 
-  	;; Low-effort next actions
-  	("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
-  	 ((org-agenda-overriding-header "Low Effort Tasks")
-  	  (org-agenda-max-todos 20)
-  	  (org-agenda-files org-agenda-files)))
+	  ;; Low-effort next actions
+	  ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
+	   ((org-agenda-overriding-header "Low Effort Tasks")
+	    (org-agenda-max-todos 20)
+	    (org-agenda-files org-agenda-files)))
 
-  	("w" "Workflow Status"
-  	 ((todo "WAIT"
-  		((org-agenda-overriding-header "Waiting on External")
-  		 (org-agenda-files org-agenda-files)))
-  	  (todo "REVIEW"
-  		((org-agenda-overriding-header "In Review")
-  		 (org-agenda-files org-agenda-files)))
-  	  (todo "PLAN"
-  		((org-agenda-overriding-header "In Planning")
-  		 (org-agenda-todo-list-sublevels nil)
-  		 (org-agenda-files org-agenda-files)))
-  	  (todo "BACKLOG"
-  		((org-agenda-overriding-header "Project Backlog")
-  		 (org-agenda-todo-list-sublevels nil)
-  		 (org-agenda-files org-agenda-files)))
-  	  (todo "READY"
-  		((org-agenda-overriding-header "Ready for Work")
-  		 (org-agenda-files org-agenda-files)))
-  	  (todo "ACTIVE"
-  		((org-agenda-overriding-header "Active Projects")
-  		 (org-agenda-files org-agenda-files)))
-  	  (todo "COMPLETED"
-  		((org-agenda-overriding-header "Completed Projects")
-  		 (org-agenda-files org-agenda-files)))
-  	  (todo "CANC"
-  		((org-agenda-overriding-header "Cancelled Projects")
-  		 (org-agenda-files org-agenda-files)))))))
+	  ("w" "Workflow Status"
+	   ((todo "WAIT"
+		  ((org-agenda-overriding-header "Waiting on External")
+		   (org-agenda-files org-agenda-files)))
+	    (todo "REVIEW"
+		  ((org-agenda-overriding-header "In Review")
+		   (org-agenda-files org-agenda-files)))
+	    (todo "PLAN"
+		  ((org-agenda-overriding-header "In Planning")
+		   (org-agenda-todo-list-sublevels nil)
+		   (org-agenda-files org-agenda-files)))
+	    (todo "BACKLOG"
+		  ((org-agenda-overriding-header "Project Backlog")
+		   (org-agenda-todo-list-sublevels nil)
+		   (org-agenda-files org-agenda-files)))
+	    (todo "READY"
+		  ((org-agenda-overriding-header "Ready for Work")
+		   (org-agenda-files org-agenda-files)))
+	    (todo "ACTIVE"
+		  ((org-agenda-overriding-header "Active Projects")
+		   (org-agenda-files org-agenda-files)))
+	    (todo "COMPLETED"
+		  ((org-agenda-overriding-header "Completed Projects")
+		   (org-agenda-files org-agenda-files)))
+	    (todo "CANC"
+		  ((org-agenda-overriding-header "Cancelled Projects")
+		   (org-agenda-files org-agenda-files)))))))
 
   (setq org-capture-templates
-      `(("t" "Tasks / Projects")
-  	("tt" "Task" entry (file+olp "~/Projects/Code/emacs-from-scratch/OrgFiles/Tasks.org" "Inbox")
+	`(("t" "Tasks / Projects")
+	  ("tt" "Task" entry (file+olp "~/Projects/Code/emacs-from-scratch/OrgFiles/Tasks.org" "Inbox")
            "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
 
-  	("j" "Journal Entries")
-  	("jj" "Journal" entry
+	  ("j" "Journal Entries")
+	  ("jj" "Journal" entry
            (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
            "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
            ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
@@ -661,12 +618,9 @@ kept-old-versions 5)
            :empty-lines 1))))
 
 (use-package olivetti
-  :straight t
   :hook (org-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 100))))
 
 (use-package org-roam
-:straight t
-:ensure t
 :custom
 (org-roam-directory "~/org/notes")
 :bind (("C-c n l" . org-roam-buffer-toggle)
@@ -676,9 +630,7 @@ kept-old-versions 5)
 (org-roam-setup))
 
 (use-package treemacs
-  :ensure t
   :defer t
-  :straight t
   :init
   (with-eval-after-load 'winum
     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
@@ -767,42 +719,31 @@ kept-old-versions 5)
         ("C-x t M-t" . treemacs-find-tag)))
 
 (use-package treemacs-evil
-  :after (treemacs evil)
-  :straight t
-  :ensure t)
+  :after (treemacs evil))
 
 (use-package treemacs-projectile
-  :after (treemacs projectile)
-  :straight t
-  :ensure t)
+  :after (treemacs projectile))
 
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :straight t
-  :ensure t)
+  :after (treemacs magit))
 
 (use-package treemacs-nerd-icons
-  :straight t
   :config
   (treemacs-load-theme "nerd-icons"))
 
 (use-package magit
-  :straight t
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
   )
 (use-package magit-todos
-  :straight t
   :after magit
 :config (magit-todos-mode 1))
 
 (use-package forge
-    :straight t
   :after magit)
 (setq auth-sources '("~/.authinfo"))
 
 (use-package direnv
-    :straight t
  :config
  (direnv-mode))
 
@@ -811,7 +752,6 @@ kept-old-versions 5)
   (lsp-headerline-breadcrumb-mode))
 
   (use-package lsp-mode
-    :straight t
     :commands (lsp lsp-deferred)
     :hook (lsp-mode . sakomacs/lsp-mode-setup)
     :init
@@ -822,28 +762,23 @@ kept-old-versions 5)
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
-  :straight t
   :custom
   (lsp-ui-doc-position 'bottom))
 
 (use-package lsp-treemacs
-  :straight t
   :after lsp)
 
 (use-package lsp-ivy
-  :straight t
   )
 
 (use-package web-mode
-  :straight t
      :hook (web-mode . lsp)
      :mode ("\\.html\\'"
              "\\.css\\'"))
 
 (use-package js2-mode
-  :straight t
 :mode ("\\.js\\'"
-     "\\.jsx\\'")
+	 "\\.jsx\\'")
 :hook (js2-mode . lsp)
 :config
 (setq web-mode-markup-indent-offset 2) ; HTML
@@ -852,9 +787,8 @@ kept-old-versions 5)
 (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))))
 
 (use-package typescript-mode
-  :straight t
   :mode ("\\.ts\\'"
-       "\\.tsx\\'")
+	 "\\.tsx\\'")
   :hook (typescript-mode . lsp))
 
 (define-derived-mode astro-mode web-mode "astro")
@@ -881,22 +815,18 @@ kept-old-versions 5)
 
 (use-package cmake-mode
   :mode "CMakeLists.txt"
-  :straight t
   :hook (cmake-mode . lsp))
 
 (use-package lua-mode
   :mode "\\.lua\\'"
-  :straight t
   :hook (lua-mode . lsp))
 
 (use-package python-mode
   :mode "\\.py\\'"
-  :straight t
   :hook (python-mode . lsp))
 
 (use-package elpy
 :after python-mode
-  :straight t
 
 :custom
 (elpy-rpc-python-command "python3")
@@ -905,51 +835,41 @@ kept-old-versions 5)
 (elpy-enable))
 
 (use-package lsp-pyright
-  :ensure t
-  :straight t
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp))))  ; or lsp-deferred
 
 (use-package haskell-mode
   :mode "\\.hs\\'"
-  :straight t
   :hook (python-mode . lsp))
 
 (use-package yaml-mode
-:straight t
-    :mode ("\\.yaml\\'"
-           "\\.yml\\'"))
+  :mode ("\\.yaml\\'"
+         "\\.yml\\'"))
 
 (use-package nix-mode
-:straight t
   :hook ((nix-mode . lsp) 
            (nix-mode . format-all-mode)
            (nix-mode . (lambda () (setq-local format-all-formatters '(("Nix" alejandra))))))
   :mode "\\.nix\\'")
 
 (use-package dart-mode
-  :straight t
  :hook (dart-mode . lsp)
 :mode "\\.dart\\'" )
 
 (use-package markdown-mode
-  :straight t
   :hook (markdown-mode . visual-line-mode))
 
 (use-package markdown-preview-mode
-  :straight t)
 
 (use-package evil-nerd-commenter
-  :straight t
 :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 
 (use-package company
-    :straight t
     :after lsp-mode
     :hook (lsp-mode . company-mode)
     :bind (:map company-active-map
-  	      ("<tab>" . company-complete-selection))
+		("<tab>" . company-complete-selection))
     (:map lsp-mode-map
           ("<tab>" . company-indent-or-complete-common))
     :custom
@@ -959,13 +879,11 @@ kept-old-versions 5)
     (company-tooltip-align-annotations t))
 
 (use-package company-box
-    :straight t
     :hook (company-mode . company-box-mode))
 
-(use-package flycheck :straight t :config (global-flycheck-mode +1))
+(use-package flycheck :config (global-flycheck-mode +1))
 
 (use-package format-all
-  :straight t
   )
 
 (use-package fancy-compilation
@@ -975,19 +893,15 @@ kept-old-versions 5)
   (fancy-compilation-mode))
 
 (use-package yasnippet
-  :straight t
   :diminish yas-minor-mode
   :hook (after-init . yas-global-mode))
 
 (use-package yasnippet-snippets
-  :straight t)
 
 (use-package yasnippet-capf
- :straight t
 :init (add-to-list 'completion-at-point-functions #'yasnippet-capf))
 
 (use-package dired
-  :ensure nil
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -1014,7 +928,6 @@ kept-old-versions 5)
 ;(setq user-emacs-directory "~/.cache/emacs")
 
 (use-package no-littering
-  :straight t
   )
 
 ;; no-littering doesn't set this by default so we must place
@@ -1023,7 +936,6 @@ kept-old-versions 5)
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
 (use-package elfeed
-  :straight t
   :config
   (setq elfeed-use-curl t)
   (setq browse-url-browser-function 'eww-browse-url)
@@ -1031,7 +943,6 @@ kept-old-versions 5)
   )
 
 (use-package elfeed-protocol
-  :straight t
   :after elfeed
   :config
   (elfeed-set-timeout 36000)
@@ -1065,7 +976,6 @@ kept-old-versions 5)
 (use-package telega)
 
 (use-package pdf-tools
-  :straight t
   :mode ("\\.pdf\\'" . pdf-view-mode)
   :config
   (setq-default pdf-view-display-size 'fit-page)
@@ -1073,7 +983,6 @@ kept-old-versions 5)
   (pdf-tools-install))
 
 (use-package ement
-  :straight t)
 
 ;; global defaults 
 ;; (use-package mu4e
@@ -1082,8 +991,7 @@ kept-old-versions 5)
   ;; )
 
 ;; we need this regardless of platform
-(use-package smtpmail
-  :straight t)
+(use-package smtpmail)
 
 (org-babel-do-load-languages
 'org-babel-load-languages
@@ -1117,7 +1025,6 @@ kept-old-versions 5)
 (use-package eshell-git-prompt)
 
 (use-package eshell
-    :straight t
   :hook (eshell-first-time-mode . sakomacs/configure-eshell)
   :config
 
@@ -1128,7 +1035,6 @@ kept-old-versions 5)
   (eshell-git-prompt-use-theme 'powerline))
 
 (use-package vterm
-  :straight t
 :commands vterm
 :config
 (setq vterm-max-scrollback 10000))

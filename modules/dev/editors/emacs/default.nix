@@ -25,7 +25,7 @@ in {
       install = true;
       #package = pkgs.emacs29-pgtk;
       package = (pkgs.emacsWithPackagesFromUsePackage {
-          config = ../../../../config/emacs/emacs.org;
+          config = ../../../../config/emacs/init.el;
           defaultInitFile = true;
           package = pkgs.emacs-pgtk;
           alwaysEnsure = true;
