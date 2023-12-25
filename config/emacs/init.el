@@ -361,7 +361,7 @@ kept-old-versions 5)
    ;; toggles
    "t" `(:ignore t :which-key "toggles")
    "tt" `(counsel-load-theme :which-key "choose theme")
-   "ts" '(hydra-text-scale/body :which-key "scale text"))
+   "ts" '(hydra-text-scale/body :which-key "scale text")
    ;; search
    "s" `(:ignore s :which-key "search")
    "sb" `(swiper :which-key "search buffer")
@@ -400,7 +400,7 @@ kept-old-versions 5)
    "gcR" `(magit-clone :which-key "clone repo")
    "gcc" `(magit-commit-create :which-key "commit")
    "gci" `(forge-create-issue :which-key "issue")
-   "gcp" `(forge-create-pullreq :which-key "pull request"))
+   "gcp" `(forge-create-pullreq :which-key "pull request")))
 
 (use-package dashboard
   :init
