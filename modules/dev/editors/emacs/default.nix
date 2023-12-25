@@ -29,7 +29,7 @@ in {
       package = pkgs.emacsWithPackagesFromUsePackage {
         config = ../../../../config/emacs/emacs.org;
 
-        # defaultInitFile = true;
+        defaultInitFile = true;
 
         package = pkgs.emacs-pgtk;
 
