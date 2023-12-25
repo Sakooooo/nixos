@@ -4,6 +4,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 with lib; let
@@ -15,6 +16,11 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # import overlay
+    nixpkgs.overlays = [
+      inputs.emacs-overlay
+    ];
+
     # ues daemon
     services.emacs = {
       enable = cfg.daemon;
