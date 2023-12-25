@@ -20,7 +20,20 @@ in {
     services.emacs = {
       enable = cfg.daemon;
       install = true;
+<<<<<<< HEAD
       package = pkgs.emacs29-pgtk;
+=======
+      # package = pkgs.emacs29-pgtk;
+      package = pkgs.emacsWithPackagesFromUsePackage {
+        # org mode files are borked with this right now
+        config = ../../../../config/emacs/init.el;
+
+        defaultInitFile = true;
+
+        package = pkgs.emacs29-pgtk;
+
+      };
+>>>>>>> parent of 0b03caa (please)
     };
     users.users.sako.packages = with pkgs; [
       # direnv
