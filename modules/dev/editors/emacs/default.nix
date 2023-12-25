@@ -18,7 +18,7 @@ in {
   config = mkIf cfg.enable {
     # import overlay
     nixpkgs.overlays = [
-      inputs.emacs-overlay
+      inputs.emacs-overlay.overlay
     ];
 
     # ues daemon
