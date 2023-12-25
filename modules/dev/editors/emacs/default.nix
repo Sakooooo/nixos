@@ -26,7 +26,7 @@ in {
       #package = pkgs.emacs29-pgtk;
       package = pkgs.emacsWithPackagesFromUsePackage {
         config = ../../../../config/emacs/init.el;
-        package = pkgs.emacs-unstable-pgtk;
+        package = pkgs.emacs-pgtk;
         defaultInitFile = true;
       };
     };
