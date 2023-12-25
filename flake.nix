@@ -29,7 +29,6 @@
     home-manager,
     NixOS-WSL,
     sops-nix,
-    emacs-overlay,
     ...
   } @ inputs: let
     inherit (self) outputs;
