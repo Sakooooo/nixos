@@ -421,10 +421,6 @@ Should make startup faster, taken from doom-emacs
 #+begin_src emacs-lisp
   (use-package general
     :config
-    (general-create-definer sakomacs/leader-keys
-      :keymaps `(normal insert visual emacs)
-      :prefix "SPC"
-      :global-prefix "C-SPC")
     (sakomacs/leader-keys
       ;; code
       "c" `(:ignore c :which-key "code")
@@ -472,7 +468,11 @@ Should make startup faster, taken from doom-emacs
       "gcR" `(magit-clone :which-key "clone repo")
       "gcc" `(magit-commit-create :which-key "commit")
       "gci" `(forge-create-issue :which-key "issue")
-      "gcp" `(forge-create-pullreq :which-key "pull request")))
+      "gcp" `(forge-create-pullreq :which-key "pull request"))
+    (general-create-definer sakomacs/leader-keys
+      :keymaps `(normal insert visual emacs)
+      :prefix "SPC"
+      :global-prefix "C-SPC")) 
 #+end_src 
 ** Dashboard
 #+begin_src emacs-lisp
