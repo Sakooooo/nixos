@@ -347,7 +347,7 @@ kept-old-versions 5)
   :config (delete-selection-mode +1))
 
 (use-package general
-  :init
+  :config
   (general-create-definer sakomacs/leader-keys
     :keymaps `(normal insert visual emacs)
     :prefix "SPC"
@@ -361,6 +361,7 @@ kept-old-versions 5)
    ;; toggles
    "t" `(:ignore t :which-key "toggles")
    "tt" `(counsel-load-theme :which-key "choose theme")
+   "ts" '(hydra-text-scale/body :which-key "scale text"))
    ;; search
    "s" `(:ignore s :which-key "search")
    "sb" `(swiper :which-key "search buffer")
@@ -463,16 +464,12 @@ kept-old-versions 5)
 :diminish
 :config (evil-commentary-mode +1))
 
-(use-package hydra
-  )
+(use-package hydra)
 (defhydra hydra-text-scale (:timeout 4)
   "scale text"
   ("j" text-scale-increase "in")
   ("k" text-scale-decrease "out")
   ("f" nil "finished" :exit t))
-
-(sakomacs/leader-keys
-  "ts" '(hydra-text-scale/body :which-key "scale text"))
 
 (use-package projectile
   :diminish projectile-mode
