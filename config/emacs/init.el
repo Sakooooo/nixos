@@ -65,8 +65,8 @@ kept-old-versions 5)
 (require `package)
 
 (setq package-archives `(("mepla" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")
-			 ("elpa" . "https://elpa.gnu.org/packages/")))
+  		       ("org" . "https://orgmode.org/elpa/")
+  		       ("elpa" . "https://elpa.gnu.org/packages/")))
 
 (package-initialize)
 (unless package-archive-contents
@@ -113,8 +113,8 @@ kept-old-versions 5)
 (add-hook 'emacs-startup-hook
           (lambda ()
             ;;(setq gc-cons-threshold 16777216 ; 16mb
-	    ;; this could be really bad idk
-	    (setq gc-cons-threshold 100000000
+  	  ;; this could be really bad idk
+  	  (setq gc-cons-threshold 100000000
                   gc-cons-percentage 0.1)))
 
 (defun doom-defer-garbage-collection-h ()
@@ -143,18 +143,18 @@ kept-old-versions 5)
 (force-mode-line-update)
 
 (setq-default mode-line-format
-  	      '((:eval (sakoline-render
-  			;; left
-  			(quote ("%e"
-  				sakoline-evil-mode
-  				" "
-  				sakoline-buffer-name
-  				" "
-  				sakoline-buffer-state))
-  			;; right
-  			(quote (sakoline-major-mode
-  				)
-  			       )))))
+     	   '((:eval (sakoline-render
+     		     ;; left
+     		     (quote ("%e"
+     			     sakoline-evil-mode
+     			     " "
+     			     sakoline-buffer-name
+     			     " "
+     			     sakoline-buffer-state))
+     		     ;; right
+     		     (quote (sakoline-major-mode
+     			     )
+     			    )))))
 
 (defun sakoline-render (left right)
   "Return a string of `window-width' length.
@@ -215,7 +215,7 @@ kept-old-versions 5)
              ((eq evil-state 'insert) (propertize " INSERT " 'face 'sakoline-evil-insert-color ))
              ((eq evil-state 'emacs) (propertize " EMACS " 'face 'sakoline-evil-emacs-color ))
              ((eq evil-state 'operator) (propertize " OPERATOR " 'face 'sakoline-evil-operator-color))
-    	     "Get current evil mode state")))
+       	  "Get current evil mode state")))
 
 (put 'sakoline-evil-mode 'risky-local-variable t)
 
@@ -230,24 +230,24 @@ kept-old-versions 5)
     '(:eval
       (cond
        (buffer-read-only
-      	(propertize ">:("
-      		    'face 'sakoline-buffer-state-readonly
-      		    'help-echo "buffer is read only"))
+             (propertize ">:("
+         		 'face 'sakoline-buffer-state-readonly
+         		 'help-echo "buffer is read only"))
        ((buffer-modified-p)
-      	(propertize "!!!"
-      		    'face 'sakoline-buffer-state-modified)))))
+             (propertize "!!!"
+         		 'face 'sakoline-buffer-state-modified)))))
 
 (put 'sakoline-buffer-state 'risky-local-variable t)
 
 (message "setting up packages")
 
 (use-package command-log-mode
-  :straight t
+  ;;:straight t
   )
 
 ;; better search
 (use-package swiper
-      :straight t
+      ;;:straight t
   )
 ;; better commands
 (use-package counsel
@@ -355,7 +355,7 @@ kept-old-versions 5)
            embark-collect-mode
            lsp-ui-imenu-mode
            pdf-annot-list-mode
-	     dashboard-mode) . turn-on-hide-mode-line-mode)
+  	 dashboard-mode) . turn-on-hide-mode-line-mode)
          (dired-mode . turn-off-hide-mode-line-mode)))
 
 (use-package minions
@@ -547,7 +547,7 @@ kept-old-versions 5)
 
   ;; archive thingy i forgot
   (setq org-refile-targets
-	'(("archive.org" :maxlevel . 1)))
+      '(("archive.org" :maxlevel . 1)))
 
   ;; save org buffer before refile
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
@@ -575,85 +575,85 @@ kept-old-versions 5)
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
 
   (setq org-todo-keywords
-	'((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-	  (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)")))
+      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+  	(sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)")))
 
   (setq org-refile-targets
-	'(("archive.org" :maxlevel . 1)
-	  ("tasks.org" :maxlevel . 1)))
+      '(("archive.org" :maxlevel . 1)
+  	("tasks.org" :maxlevel . 1)))
 
   ;; Save Org buffers after refiling!
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
   (setq org-tag-alist
-	'((:startgroup)
-					; Put mutually exclusive tags here
-	  (:endgroup)
-	  ("@errand" . ?E)
-	  ("@home" . ?H)
-	  ("@work" . ?W)
-	  ("agenda" . ?a)
-	  ("planning" . ?p)
-	  ("publish" . ?P)
-	  ("batch" . ?b)
-	  ("note" . ?n)
-	  ("idea" . ?i)))
+      '((:startgroup)
+  				      ; Put mutually exclusive tags here
+  	(:endgroup)
+  	("@errand" . ?E)
+  	("@home" . ?H)
+  	("@work" . ?W)
+  	("agenda" . ?a)
+  	("planning" . ?p)
+  	("publish" . ?P)
+  	("batch" . ?b)
+  	("note" . ?n)
+  	("idea" . ?i)))
 
   ;; Configure custom agenda views
   (setq org-agenda-custom-commands
-	'(("d" "Dashboard"
-	   ((agenda "" ((org-deadline-warning-days 7)))
-	    (todo "NEXT"
-		  ((org-agenda-overriding-header "Next Tasks")))
-	    (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
+      '(("d" "Dashboard"
+  	 ((agenda "" ((org-deadline-warning-days 7)))
+  	  (todo "NEXT"
+  		((org-agenda-overriding-header "Next Tasks")))
+  	  (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
 
-	  ("n" "Next Tasks"
-	   ((todo "NEXT"
-		  ((org-agenda-overriding-header "Next Tasks")))))
+  	("n" "Next Tasks"
+  	 ((todo "NEXT"
+  		((org-agenda-overriding-header "Next Tasks")))))
 
-	  ("W" "Work Tasks" tags-todo "+work-email")
+  	("W" "Work Tasks" tags-todo "+work-email")
 
-	  ;; Low-effort next actions
-	  ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
-	   ((org-agenda-overriding-header "Low Effort Tasks")
-	    (org-agenda-max-todos 20)
-	    (org-agenda-files org-agenda-files)))
+  	;; Low-effort next actions
+  	("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
+  	 ((org-agenda-overriding-header "Low Effort Tasks")
+  	  (org-agenda-max-todos 20)
+  	  (org-agenda-files org-agenda-files)))
 
-	  ("w" "Workflow Status"
-	   ((todo "WAIT"
-		  ((org-agenda-overriding-header "Waiting on External")
-		   (org-agenda-files org-agenda-files)))
-	    (todo "REVIEW"
-		  ((org-agenda-overriding-header "In Review")
-		   (org-agenda-files org-agenda-files)))
-	    (todo "PLAN"
-		  ((org-agenda-overriding-header "In Planning")
-		   (org-agenda-todo-list-sublevels nil)
-		   (org-agenda-files org-agenda-files)))
-	    (todo "BACKLOG"
-		  ((org-agenda-overriding-header "Project Backlog")
-		   (org-agenda-todo-list-sublevels nil)
-		   (org-agenda-files org-agenda-files)))
-	    (todo "READY"
-		  ((org-agenda-overriding-header "Ready for Work")
-		   (org-agenda-files org-agenda-files)))
-	    (todo "ACTIVE"
-		  ((org-agenda-overriding-header "Active Projects")
-		   (org-agenda-files org-agenda-files)))
-	    (todo "COMPLETED"
-		  ((org-agenda-overriding-header "Completed Projects")
-		   (org-agenda-files org-agenda-files)))
-	    (todo "CANC"
-		  ((org-agenda-overriding-header "Cancelled Projects")
-		   (org-agenda-files org-agenda-files)))))))
+  	("w" "Workflow Status"
+  	 ((todo "WAIT"
+  		((org-agenda-overriding-header "Waiting on External")
+  		 (org-agenda-files org-agenda-files)))
+  	  (todo "REVIEW"
+  		((org-agenda-overriding-header "In Review")
+  		 (org-agenda-files org-agenda-files)))
+  	  (todo "PLAN"
+  		((org-agenda-overriding-header "In Planning")
+  		 (org-agenda-todo-list-sublevels nil)
+  		 (org-agenda-files org-agenda-files)))
+  	  (todo "BACKLOG"
+  		((org-agenda-overriding-header "Project Backlog")
+  		 (org-agenda-todo-list-sublevels nil)
+  		 (org-agenda-files org-agenda-files)))
+  	  (todo "READY"
+  		((org-agenda-overriding-header "Ready for Work")
+  		 (org-agenda-files org-agenda-files)))
+  	  (todo "ACTIVE"
+  		((org-agenda-overriding-header "Active Projects")
+  		 (org-agenda-files org-agenda-files)))
+  	  (todo "COMPLETED"
+  		((org-agenda-overriding-header "Completed Projects")
+  		 (org-agenda-files org-agenda-files)))
+  	  (todo "CANC"
+  		((org-agenda-overriding-header "Cancelled Projects")
+  		 (org-agenda-files org-agenda-files)))))))
 
   (setq org-capture-templates
-	`(("t" "Tasks / Projects")
-	  ("tt" "Task" entry (file+olp "~/Projects/Code/emacs-from-scratch/OrgFiles/Tasks.org" "Inbox")
+      `(("t" "Tasks / Projects")
+  	("tt" "Task" entry (file+olp "~/Projects/Code/emacs-from-scratch/OrgFiles/Tasks.org" "Inbox")
            "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
 
-	  ("j" "Journal Entries")
-	  ("jj" "Journal" entry
+  	("j" "Journal Entries")
+  	("jj" "Journal" entry
            (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
            "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
            ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
@@ -843,7 +843,7 @@ kept-old-versions 5)
 (use-package js2-mode
   :straight t
 :mode ("\\.js\\'"
-	 "\\.jsx\\'")
+     "\\.jsx\\'")
 :hook (js2-mode . lsp)
 :config
 (setq web-mode-markup-indent-offset 2) ; HTML
@@ -854,7 +854,7 @@ kept-old-versions 5)
 (use-package typescript-mode
   :straight t
   :mode ("\\.ts\\'"
-	 "\\.tsx\\'")
+       "\\.tsx\\'")
   :hook (typescript-mode . lsp))
 
 (define-derived-mode astro-mode web-mode "astro")
@@ -949,7 +949,7 @@ kept-old-versions 5)
     :after lsp-mode
     :hook (lsp-mode . company-mode)
     :bind (:map company-active-map
-		("<tab>" . company-complete-selection))
+  	      ("<tab>" . company-complete-selection))
     (:map lsp-mode-map
           ("<tab>" . company-indent-or-complete-common))
     :custom
