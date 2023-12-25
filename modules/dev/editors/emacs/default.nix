@@ -34,9 +34,6 @@ in {
 
         package = pkgs.emacs29-pgtk;
 
-        # alwaysEnsure = true;
-
-        alwaysTangle = true;
       };
     };
     users.users.sako.packages = with pkgs; [
