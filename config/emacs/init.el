@@ -347,12 +347,13 @@ kept-old-versions 5)
   :config (delete-selection-mode +1))
 
 (use-package general
+  :demand t
   :config
-  ;; (general-create-definer sakomacs/leader-keys
-  ;;   :keymaps `(normal insert visual emacs)
-  ;;   :prefix "SPC"
-  ;;   :global-prefix "C-SPC")
-  (nvmap :prefix "SPC" :global-prefix "C-SPC"
+  (general-create-definer sakomacs/leader-keys
+    :keymaps `(normal insert visual emacs)
+    :prefix "SPC"
+    :global-prefix "C-SPC")
+  (sakomacs/leader-keys
    ;; code
    "c" `(:ignore c :which-key "code")
    "cc" `(compile :which-key "compile")
