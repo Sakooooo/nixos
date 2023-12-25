@@ -15,12 +15,22 @@ in {
     daemon = mkEnableOption true;
   };
 
+  nixpkgs.overlays = [
+    inputs.emacs-overlay.overlay
+  ];
+
   config = mkIf cfg.enable {
     # ues daemon
     services.emacs = {
       enable = cfg.daemon;
       install = true;
-      package = pkgs.emacs29-pgtk;
+      #package = pkgs.emacs29-pgtk;
+      package = (pkgs.emacsWithPackagesFromUsePackage {
+          config = ../../../../config/emacs/emacs.org;
+          defaultInitFile = true;
+          alwaysEnsure = true;
+          alwaysTangle = true;
+          });
     };
     users.users.sako.packages = with pkgs; [
       # direnv
