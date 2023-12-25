@@ -42,11 +42,11 @@ in {
       # direnv
       direnv
     ];
-    home-manager.users.sako.home.file.".emacs.d" = {
-      enable = true;
-      source = ../../../../config/emacs;
-      recursive = true;
-    };
+    # home-manager.users.sako.home.file.".emacs.d" = {
+    #   enable = true;
+    #   source = ../../../../config/emacs;
+    #   recursive = true;
+    # };
     fonts.packages = with pkgs; [
       (nerdfonts.override {fonts = ["JetBrainsMono"];})
       jetbrains-mono
