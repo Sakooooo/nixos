@@ -16,34 +16,21 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # import overlay
-    nixpkgs.overlays = [
-      inputs.emacs-overlay.overlay
-    ];
-
     # ues daemon
     services.emacs = {
       enable = cfg.daemon;
       install = true;
-      #package = pkgs.emacs29-pgtk;
-      package = pkgs.emacsWithPackagesFromUsePackage {
-        config = ../../../../config/emacs/init.el;
-
-        defaultInitFile = true;
-
-        package = pkgs.emacs29-pgtk;
-
-      };
+      package = pkgs.emacs29-pgtk;
     };
     users.users.sako.packages = with pkgs; [
       # direnv
       direnv
     ];
-    # home-manager.users.sako.home.file.".emacs.d" = {
-    #   enable = true;
-    #   source = ../../../../config/emacs;
-    #   recursive = true;
-    # };
+    home-manager.users.sako.home.file.".emacs.d" = {
+      enable = true;
+      source = ../../../../config/emacs;
+      recursive = true;
+    };
     fonts.packages = with pkgs; [
       (nerdfonts.override {fonts = ["JetBrainsMono"];})
       jetbrains-mono
