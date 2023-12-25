@@ -28,7 +28,7 @@ in {
       package = (pkgs.emacsWithPackagesFromUsePackage {
           config = ../../../../config/emacs/emacs.org;
           defaultInitFile = true;
-          package = pkgs.emacs-pgtk
+          package = pkgs.emacs-pgtk;
           alwaysEnsure = true;
           alwaysTangle = true;
           });
