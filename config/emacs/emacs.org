@@ -104,22 +104,6 @@ Should make startup faster, taken from doom-emacs
   (require 'use-package)
   (setq use-package-always-ensure t)
 #+end_src
-* Straight.el setup
-#+begin_src emacs-lisp
-  (message "setting up straight.el")
-  (defvar bootstrap-version)
-  (let ((bootstrap-file
-         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-        (bootstrap-version 6))
-    (unless (file-exists-p bootstrap-file)
-      (with-current-buffer
-          (url-retrieve-synchronously
-           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-           'silent 'inhibit-cookies)
-        (goto-char (point-max))
-        (eval-print-last-sexp)))
-    (load bootstrap-file nil 'nomessage))
-#+end_src
 * SPEED SPEED SPEED SPEED
 ** Avoid Garbage Collection at startup
 #+begin_src emacs-lisp
@@ -292,23 +276,19 @@ Should make startup faster, taken from doom-emacs
 ** Command Log Mode
 #+begin_src emacs-lisp
       (use-package command-log-mode
-        :straight t
         )
 #+end_src
 ** Command Autocompletion Packages 
 #+begin_src emacs-lisp
   ;; better search
   (use-package swiper
-        ;;:straight t
     )
   ;; better commands
   (use-package counsel
-      :straight t
       )
   ;; autocompletion on commands (?)
   (use-package ivy
     :diminish
-    :straight t
     :bind (("C-s" . swiper)
            :map ivy-minibuffer-map
            ("TAB" . ivy-alt-done)	
@@ -327,13 +307,11 @@ Should make startup faster, taken from doom-emacs
     (ivy-mode 1))
   ;; better ivy autocompletion
   (use-package ivy-rich
-    :straight t
     :init
     (ivy-rich-mode 1))
 
   ;; ivy in the middle
   (use-package ivy-posframe
-    :straight t
     :init
     (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
     :config
@@ -341,7 +319,6 @@ Should make startup faster, taken from doom-emacs
 
   ;; counsel M+X
   (use-package counsel
-    :straight t
     :bind (("M-x" . counsel-M-x)
            ("C-x b" . counsel-ibuffer)
            ("C-x C-f" . counsel-find-file)
@@ -353,7 +330,6 @@ Should make startup faster, taken from doom-emacs
 ** Custom Themes
 #+begin_src emacs-lisp
   ;; (use-package doom-themes
-  ;; :straight t
   ;; :ensure t
   ;; :config
   ;; ;; Global settings (defaults)
@@ -370,7 +346,6 @@ Should make startup faster, taken from doom-emacs
   ;; (doom-themes-visual-bell-config))
 
   (use-package timu-macos-theme 
-    :straight t
     :config
   (load-theme 'timu-macos t))
 
@@ -382,7 +357,6 @@ Should make startup faster, taken from doom-emacs
 ** Nerd-Fonts (All of the Icons doesnt work for me)
 #+begin_src emacs-lisp
 (use-package nerd-icons
-  :straight t
   :custom
   ;; "Symbols Nerd Font Mono" is the default and is recommended
   ;; but you can use any other Nerd Font if you want
@@ -392,13 +366,11 @@ Should make startup faster, taken from doom-emacs
 ** Rainbow Delimiters
 #+begin_src emacs-lisp
 (use-package rainbow-delimiters
-  :straight t
   :hook (prog-mode . rainbow-delimiters-mode))
 #+end_src
 ** Keybinding autocompletion
 #+begin_src emacs-lisp
   (use-package which-key
-    :straight t
     :init (which-key-mode)
     :diminish which-key-mode
     :config
@@ -408,14 +380,12 @@ Should make startup faster, taken from doom-emacs
 #+begin_src emacs-lisp
   ;; (use-package doom-modeline
   ;;   :ensure t
-  ;;   :straight t
   ;;   :hook (after-init . doom-modeline-mode)
   ;;   :custom ((doom-modeline-height 40)))
 #+end_src
 ** Hide Modeline
 #+begin_src emacs-lisp
     (use-package hide-mode-line
-      :straight t
       :hook (((treemacs-mode
                eshell-mode shell-mode
                term-mode vterm-mode
@@ -428,14 +398,12 @@ Should make startup faster, taken from doom-emacs
 ** Minor mode menu for modline
 #+begin_src emacs-lisp
   (use-package minions
-    :straight t
     :hook (doom-modeline-mode . minions-mode))
 #+end_src
 ** Better help menu
 #+begin_src emacs-lisp
 (use-package helpful
   :ensure t
-  :straight t
   :custom
   (counsel-describe-function-function #'helpful-callable)
   (counsel-describe-variable-function #'helpful-variable)
@@ -448,14 +416,12 @@ Should make startup faster, taken from doom-emacs
 ** Modern selection behavior
 #+begin_src emacs-lisp
   (use-package delsel
-    :straight t
     :ensure nil
     :config (delete-selection-mode +1))
 #+end_src
 ** General Leader Key
 #+begin_src emacs-lisp
   (use-package general
-    :straight t
     :config
     (general-create-definer sakomacs/leader-keys
       :keymaps `(normal insert visual emacs)
@@ -513,7 +479,6 @@ Should make startup faster, taken from doom-emacs
 ** Dashboard
 #+begin_src emacs-lisp
   (use-package dashboard
-    :straight t
     :init
     (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
     (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
@@ -547,7 +512,6 @@ Should make startup faster, taken from doom-emacs
 ** Evil Mode (vim)
 #+begin_src emacs-lisp
   (use-package evil
-    :straight t
     :init
     (setq evil-want-integration t)
     (setq evil-want-keybinding nil)
@@ -569,14 +533,12 @@ Should make startup faster, taken from doom-emacs
 
   ;; extra things for Evil
   (use-package evil-collection
-    :straight t
     :after evil
     :config
     (evil-collection-init))
 
   ;; commenting
   (use-package evil-commentary
-  :straight t
   :after evil
   :diminish
   :config (evil-commentary-mode +1))
@@ -584,7 +546,6 @@ Should make startup faster, taken from doom-emacs
 ** Hydra for scaling text
 #+begin_src emacs-lisp
   (use-package hydra
-    :straight t
     )
   (defhydra hydra-text-scale (:timeout 4)
     "scale text"
@@ -598,7 +559,6 @@ Should make startup faster, taken from doom-emacs
 ** Helpful for projects
 #+begin_src emacs-lisp
   (use-package projectile
-    :straight t
     :diminish projectile-mode
     :demand
     :config (projectile-mode)
@@ -611,13 +571,11 @@ Should make startup faster, taken from doom-emacs
     (setq projectile-switch-project-action #'projectile-dired))
 
   (use-package counsel-projectile
-    :straight t
     :config (counsel-projectile-mode))
 #+end_src 
 ** Org-Mode
 #+begin_src emacs-lisp
   (use-package org
-    :straight t
     :hook (org-mode . org-indent-mode)
     :config
     (setq org-ellipsis " ↓")
@@ -749,13 +707,11 @@ Should make startup faster, taken from doom-emacs
 *** Olivetti
 #+begin_src emacs-lisp
   (use-package olivetti
-    :straight t
     :hook (org-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 100))))
 #+end_src
 ** Org-Roam
 #+begin_src emacs-lisp
   (use-package org-roam
-  :straight t
   :ensure t
   :custom
   (org-roam-directory "~/org/notes")
@@ -770,7 +726,6 @@ Should make startup faster, taken from doom-emacs
   (use-package treemacs
     :ensure t
     :defer t
-    :straight t
     :init
     (with-eval-after-load 'winum
       (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
@@ -860,21 +815,17 @@ Should make startup faster, taken from doom-emacs
 
   (use-package treemacs-evil
     :after (treemacs evil)
-    :straight t
     :ensure t)
 
   (use-package treemacs-projectile
     :after (treemacs projectile)
-    :straight t
     :ensure t)
 
   (use-package treemacs-magit
     :after (treemacs magit)
-    :straight t
     :ensure t)
 
   (use-package treemacs-nerd-icons
-    :straight t
     :config
     (treemacs-load-theme "nerd-icons"))
 
@@ -883,12 +834,10 @@ Should make startup faster, taken from doom-emacs
 *** Magit (git in emacs)
 #+begin_src emacs-lisp
         (use-package magit
-          :straight t
           :custom
           (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
           )
         (use-package magit-todos
-          :straight t
           :after magit
   	:config (magit-todos-mode 1))
 #+end_src
@@ -896,7 +845,6 @@ Should make startup faster, taken from doom-emacs
 make sure to setup authinfo
 #+begin_src emacs-lisp
 (use-package forge
-    :straight t
   :after magit)
 (setq auth-sources '("~/.authinfo"))
 #+end_src
@@ -904,7 +852,6 @@ make sure to setup authinfo
 *** Direnv
 #+begin_src emacs-lisp
 (use-package direnv
-    :straight t
  :config
  (direnv-mode))
 #+end_src
@@ -916,7 +863,6 @@ make sure to setup authinfo
     (lsp-headerline-breadcrumb-mode))
 
     (use-package lsp-mode
-      :straight t
       :commands (lsp lsp-deferred)
       :hook (lsp-mode . sakomacs/lsp-mode-setup)
       :init
@@ -929,27 +875,23 @@ make sure to setup authinfo
 #+begin_src emacs-lisp
   (use-package lsp-ui
     :hook (lsp-mode . lsp-ui-mode)
-    :straight t
     :custom
     (lsp-ui-doc-position 'bottom))
 #+end_src
 **** Treemacs Lsp 
 #+begin_src emacs-lisp
   (use-package lsp-treemacs
-    :straight t
     :after lsp)
 #+end_src
 **** lsp-ivy
 #+begin_src emacs-lisp
   (use-package lsp-ivy
-    :straight t
     )
 #+end_src
 **** Languages
 ***** HTML/CSS
 #+begin_src emacs-lisp
   (use-package web-mode
-    :straight t
        :hook (web-mode . lsp)
        :mode ("\\.html\\'"
                "\\.css\\'"))
@@ -957,7 +899,6 @@ make sure to setup authinfo
 ***** Javascript 
 #+begin_src emacs-lisp
     (use-package js2-mode
-      :straight t
     :mode ("\\.js\\'"
   	 "\\.jsx\\'")
     :hook (js2-mode . lsp)
@@ -970,7 +911,6 @@ make sure to setup authinfo
 ***** Typescript
 #+begin_src emacs-lisp
   (use-package typescript-mode
-    :straight t
     :mode ("\\.ts\\'"
   	 "\\.tsx\\'")
     :hook (typescript-mode . lsp))
@@ -1006,26 +946,22 @@ make sure to setup authinfo
 #+begin_src emacs-lisp
   (use-package cmake-mode
     :mode "CMakeLists.txt"
-    :straight t
     :hook (cmake-mode . lsp))
 #+end_src
 ***** Lua
 #+begin_src emacs-lisp
   (use-package lua-mode
     :mode "\\.lua\\'"
-    :straight t
     :hook (lua-mode . lsp))
 #+end_src
 ***** Python
 #+begin_src emacs-lisp
   (use-package python-mode
     :mode "\\.py\\'"
-    :straight t
     :hook (python-mode . lsp))
 
   (use-package elpy
   :after python-mode
-    :straight t
 
   :custom
   (elpy-rpc-python-command "python3")
@@ -1035,7 +971,6 @@ make sure to setup authinfo
 
   (use-package lsp-pyright
     :ensure t
-    :straight t
     :hook (python-mode . (lambda ()
                            (require 'lsp-pyright)
                            (lsp))))  ; or lsp-deferred
@@ -1044,20 +979,17 @@ make sure to setup authinfo
 #+begin_src emacs-lisp
   (use-package haskell-mode
     :mode "\\.hs\\'"
-    :straight t
     :hook (python-mode . lsp))
 #+end_src
 ***** Yaml editing
 #+begin_src emacs-lisp
       (use-package yaml-mode
-    :straight t
         :mode ("\\.yaml\\'"
                "\\.yml\\'"))
 #+end_src
 ***** Nix
 #+begin_src emacs-lisp
     (use-package nix-mode
-    :straight t
       :hook ((nix-mode . lsp) 
                (nix-mode . format-all-mode)
                (nix-mode . (lambda () (setq-local format-all-formatters '(("Nix" alejandra))))))
@@ -1066,29 +998,24 @@ make sure to setup authinfo
 ***** Dart 
 #+begin_src emacs-lisp
   (use-package dart-mode
-    :straight t
    :hook (dart-mode . lsp)
   :mode "\\.dart\\'" )
 #+end_src
 ***** Markdown
 #+begin_src emacs-lisp
     (use-package markdown-mode
-      :straight t
       :hook (markdown-mode . visual-line-mode))
 
     (use-package markdown-preview-mode
-      :straight t)
 #+end_src
 *** Commenter
 #+begin_src emacs-lisp
   (use-package evil-nerd-commenter
-    :straight t
   :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 #+end_src
 *** Company Mode (Better Autocompletion)
 #+begin_src emacs-lisp
   (use-package company
-      :straight t
       :after lsp-mode
       :hook (lsp-mode . company-mode)
       :bind (:map company-active-map
@@ -1102,17 +1029,15 @@ make sure to setup authinfo
       (company-tooltip-align-annotations t))
 
   (use-package company-box
-      :straight t
       :hook (company-mode . company-box-mode))
 #+end_src
 *** Syntax Checking (Flycheck)
 #+begin_src emacs-lisp
-(use-package flycheck :straight t :config (global-flycheck-mode +1))
+(use-package flycheck :config (global-flycheck-mode +1))
 #+end_src
 *** Formatting
 #+begin_src emacs-lisp
   (use-package format-all
-    :straight t
     )
 #+end_src
 *** Better Compile Messages
@@ -1126,15 +1051,12 @@ make sure to setup authinfo
 *** Snippets
 #+begin_src emacs-lisp
   (use-package yasnippet
-    :straight t
     :diminish yas-minor-mode
     :hook (after-init . yas-global-mode))
 
   (use-package yasnippet-snippets
-    :straight t)
 
   (use-package yasnippet-capf
-   :straight t
   :init (add-to-list 'completion-at-point-functions #'yasnippet-capf))
 #+end_src
 ** Dired (quick file management in emacs)
@@ -1227,7 +1149,6 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
   ;(setq user-emacs-directory "~/.cache/emacs")
 
   (use-package no-littering
-    :straight t
     )
 
   ;; no-littering doesn't set this by default so we must place
@@ -1238,7 +1159,6 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 ** RSS Reader
 #+begin_src emacs-lisp
     (use-package elfeed
-    :straight t
     :config
     (setq elfeed-use-curl t)
     (setq browse-url-browser-function 'eww-browse-url)
@@ -1246,7 +1166,6 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
     )
 
   (use-package elfeed-protocol
-    :straight t
     :after elfeed
     :config
     (elfeed-set-timeout 36000)
@@ -1287,7 +1206,6 @@ only god knows why im doing this
 Emacs can be everything? Why not turn it into a pdf reader
 #+begin_src emacs-lisp
     (use-package pdf-tools
-      :straight t
       :mode ("\\.pdf\\'" . pdf-view-mode)
       :config
       (setq-default pdf-view-display-size 'fit-page)
@@ -1298,12 +1216,10 @@ Emacs can be everything? Why not turn it into a pdf reader
 okay this one is a bit more understandable
 #+begin_src emacs-lisp
   (use-package ement
-    :straight t)
 #+end_src
 ** Discord RPC
 #+begin_src emacs-lisp
 (use-package elcord
-:straight t)
 #+end_src>
 ** Email 
 This has to be one of the hardest things to configure on windows
@@ -1317,8 +1233,7 @@ I should just switch to Linux at this point :(
     ;; )
 
   ;; we need this regardless of platform
-  (use-package smtpmail
-    :straight t)
+  (use-package smtpmail)
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
@@ -1363,7 +1278,6 @@ god dammit why are they making my shells in emacs lisp
 (use-package eshell-git-prompt)
 
 (use-package eshell
-    :straight t
   :hook (eshell-first-time-mode . sakomacs/configure-eshell)
   :config
 
@@ -1376,7 +1290,6 @@ god dammit why are they making my shells in emacs lisp
 ** VTerm
 #+begin_src emacs-lisp
   (use-package vterm
-    :straight t
   :commands vterm
   :config
   (setq vterm-max-scrollback 10000))
