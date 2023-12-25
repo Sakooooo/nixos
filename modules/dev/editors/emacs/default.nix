@@ -15,11 +15,10 @@ in {
     daemon = mkEnableOption true;
   };
 
-  nixpkgs.overlays = [
-    inputs.emacs-overlay.overlay
-  ];
-
   config = mkIf cfg.enable {
+    nixpkgs.overlays = [
+      inputs.emacs-overlay.overlay
+    ];
     # ues daemon
     services.emacs = {
       enable = cfg.daemon;
