@@ -25,15 +25,15 @@ in {
     services.emacs = {
       enable = cfg.daemon;
       install = true;
-      # package = pkgs.emacs29-pgtk;
-      package = pkgs.emacsWithPackagesFromUsePackage {
-        config = ../../../../config/emacs/init.el;
+      package = pkgs.emacs29-pgtk;
+      #package = pkgs.emacsWithPackagesFromUsePackage {
+      #  config = ../../../../config/emacs/init.el;
 
-        defaultInitFile = true;
+#        defaultInitFile = true;
 
-        package = pkgs.emacs29-pgtk;
+#        package = pkgs.emacs29-pgtk;
 
-      };
+#      };
     };
     users.users.sako.packages = with pkgs; [
       # direnv
