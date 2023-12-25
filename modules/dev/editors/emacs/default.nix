@@ -27,26 +27,13 @@ in {
       package = pkgs.emacsWithPackagesFromUsePackage {
         config = ../../../../config/emacs/init.el;
         package = pkgs.emacs-pgtk;
+        defaultInitFile = true;
       };
     };
     users.users.sako.packages = with pkgs; [
       # direnv
       direnv
     ];
-
-    home-manager.users.sako = {lib, ...}: {
-      home.file = {
-        ".emacs.d".source = ../../../../config/emacs;
-        ".emacs.d/init.el".source = pkgs.runCommand "init.el" {} ''
-          cp ${../../../../config/emacs/emacs.org} emacs.org
-          ${pkgs.emacs}/bin/emacs -Q --batch ./emacs.org -f org-babel-tangle
-          mv init.el $out
-        '';
-
-        # Create the auto-saves directory
-        # ".emacs.d/auto-saves/.manage-directory".text = "";
-      };
-    };
 
     fonts.packages = with pkgs; [
       (nerdfonts.override {fonts = ["JetBrainsMono"];})
