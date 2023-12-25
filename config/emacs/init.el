@@ -400,7 +400,7 @@ kept-old-versions 5)
    "gcR" `(magit-clone :which-key "clone repo")
    "gcc" `(magit-commit-create :which-key "commit")
    "gci" `(forge-create-issue :which-key "issue")
-   "gcp" `(forge-create-pullreq :which-key "pull request")))
+   "gcp" `(forge-create-pullreq :which-key "pull request"))
 
 (use-package dashboard
   :init

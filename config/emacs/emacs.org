@@ -473,7 +473,7 @@ Should make startup faster, taken from doom-emacs
      "gcR" `(magit-clone :which-key "clone repo")
      "gcc" `(magit-commit-create :which-key "commit")
      "gci" `(forge-create-issue :which-key "issue")
-     "gcp" `(forge-create-pullreq :which-key "pull request"))) 
+     "gcp" `(forge-create-pullreq :which-key "pull request")) 
 #+end_src 
 ** Dashboard
 #+begin_src emacs-lisp
