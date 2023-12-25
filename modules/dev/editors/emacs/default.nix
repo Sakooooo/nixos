@@ -36,10 +36,9 @@ in {
       # direnv
       direnv
     ];
-    home-manager.users.sako.home.file.".emacs.d" = {
+    home-manager.users.sako.home.file.".emacs.d"."dashboard.png" = {
       enable = true;
-      source = ../../../../config/emacs;
-      recursive = true;
+      source = ../../../../config/emacs/dashboard.png;
     };
     fonts.packages = with pkgs; [
       (nerdfonts.override {fonts = ["JetBrainsMono"];})
