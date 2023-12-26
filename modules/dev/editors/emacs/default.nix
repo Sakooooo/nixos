@@ -29,7 +29,7 @@ in {
         package = pkgs.emacs-pgtk;
         alwaysEnsure = true;
         alwaysTangle = true;
-        extraEmacsPackages = with epkgs; [
+        extraEmacsPackages = epkgs: [
           epkgs.use-package
         ];
       };
