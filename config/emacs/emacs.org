@@ -90,20 +90,28 @@ Should make startup faster, taken from doom-emacs
   (require `package)
 
   (setq package-archives `(("mepla" . "https://melpa.org/packages/")
-                         ("org" . "https://orgmode.org/elpa/")
-                         ("elpa" . "https://elpa.gnu.org/packages/")))
+                           ("org" . "https://orgmode.org/elpa/")
+                           ("elpa" . "https://elpa.gnu.org/packages/")))
 
   (package-initialize)
 
-    (if (executable-find "nix")
-        (message "skipping use-package install")
-      (else
-       (unless (package-installed-p 'use-package)
-         (progn
-           (package-refresh-contents)
-           (package-install 'use-package)))
-       ))
 
+  (defun get-distro-or-os ()
+    "Return the Linux distribution or OS Emacs is running on."
+    (if (eq system-type 'darwin)
+        "Darwin"
+      (when (eq system-type 'gnu/linux)
+        (if (file-exists-p "/etc/os-release")
+            (substring (shell-command-to-string "source /etc/os-release && echo $NAME") 0 -1)
+          (substring (car (cdr (process-exit-code-and-output "uname" "-o"))) 0 -1)))))
+
+  (let (os-name (get-distro-or-os))
+    (if (string= os-name "NixOS")
+        (message "skipping use-package installation")
+      (unless (package-installed-p 'use-package)
+        (progn
+          (package-refresh-contents)
+          (package-install 'use-package)))))
   (require 'use-package)
   (setq use-package-always-ensure t)
 #+end_src
