@@ -37,6 +37,8 @@ in {
     users.users.sako.packages = with pkgs; [
       # direnv
       direnv
+      # mu for email
+      mu
     ];
 
     home-manager.users.sako = {lib, ...}: {
