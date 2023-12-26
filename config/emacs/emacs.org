@@ -107,11 +107,13 @@ Should make startup faster, taken from doom-emacs
 
   (let (os-name (get-distro-or-os))
     (if (string= os-name "NixOS")
-        (message "skipping use-package installation")
-      (unless (package-installed-p 'use-package)
+        (message "skipping use-package installation"))
+     (if (os-name)
+        (unless (package-installed-p 'use-package)
         (progn
           (package-refresh-contents)
           (package-install 'use-package)))))
+
   (require 'use-package)
   (setq use-package-always-ensure t)
 #+end_src
