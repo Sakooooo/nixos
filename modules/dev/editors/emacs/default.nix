@@ -16,19 +16,19 @@ in {
   };
 
   config = mkIf cfg.enable {
-    #nixpkgs.overlays = [
-    #  inputs.emacs-overlay.overlay
-    #];
+    nixpkgs.overlays = [
+      inputs.emacs-overlay.overlay
+    ];
     # ues daemon
     services.emacs = {
       enable = cfg.daemon;
       install = true;
-      package = pkgs.emacs29-pgtk;
-    #  package = pkgs.emacsWithPackagesFromUsePackage {
-    #    config = ../../../../config/emacs/init.el;
-    #    package = pkgs.emacs-pgtk;
-    #    defaultInitFile = true;
-    #  };
+    #  package = pkgs.emacs29-pgtk;
+      package = pkgs.emacsWithPackagesFromUsePackage {
+        config = ../../../../config/emacs/init.el;
+        package = pkgs.emacs-pgtk;
+        defaultInitFile = true;
+      };
     };
     users.users.sako.packages = with pkgs; [
       # direnv
