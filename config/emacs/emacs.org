@@ -1214,14 +1214,8 @@ This has to be one of the hardest things to configure on windows
 I should just switch to Linux at this point :(
 #+begin_src emacs-lisp
 
-  ;; global defaults 
-  ;; (use-package mu4e
-    ;; :custom
-    ;; mu4e-update-interval 300
-    ;; )
+  (use-pacakage mu4e)
 
-  ;; we need this regardless of platform
-  (use-package smtpmail)
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
