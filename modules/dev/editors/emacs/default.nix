@@ -23,18 +23,34 @@ in {
     services.emacs = {
       enable = cfg.daemon;
       install = true;
-    #  package = pkgs.emacs29-pgtk;
+      #  package = pkgs.emacs29-pgtk;
       package = pkgs.emacsWithPackagesFromUsePackage {
         config = ../../../../config/emacs/emacs.org;
         package = pkgs.emacs-pgtk;
         alwaysEnsure = true;
         alwaysTangle = true;
+        extraEmacsPackages = epkgs: [
+          epkgs.use-package
+        ];
       };
     };
     users.users.sako.packages = with pkgs; [
       # direnv
       direnv
     ];
+
+    home-manager.users.sako = {lib, ...}: {
+      home.file = {
+        ".emacs.d/init.el".source = pkgs.runCommand "init.el" {} ''
+          cp ${../../../../config/emacs/emacs.org} emacs.org
+          ${pkgs.emacs}/bin/emacs -Q --batch ./emacs.org -f org-babel-tangle
+          mv init.el $out
+        '';
+
+        # Create the auto-saves directory
+        # ".emacs.d/auto-saves/.manage-directory".text = "";
+      };
+    };
 
     fonts.packages = with pkgs; [
       (nerdfonts.override {fonts = ["JetBrainsMono"];})

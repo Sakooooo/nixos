@@ -1,5 +1,5 @@
 #+title: Sakomacs configuration
-#+PROPERTY: header-args:emacs-lisp :tangle yes 
+#+PROPERTY: header-args:emacs-lisp :tangle yes :tangle init.el 
 * Usage
 M-x org-bable-tangle
 * Lexical Binding
@@ -90,14 +90,14 @@ Should make startup faster, taken from doom-emacs
   (require `package)
 
   (setq package-archives `(("mepla" . "https://melpa.org/packages/")
-  			 ("org" . "https://orgmode.org/elpa/")
-  			 ("elpa" . "https://elpa.gnu.org/packages/")))
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
 
   (package-initialize)
   (unless package-archive-contents
     (package-refresh-contents))
 
-  ;; Init package for non-linux
+  ;; install the thing
   (unless (package-installed-p `use-package)
     (package-install `use-package))
 
