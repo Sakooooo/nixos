@@ -46,9 +46,7 @@ in {
           ${pkgs.emacs}/bin/emacs -Q --batch ./emacs.org -f org-babel-tangle
           mv init.el $out
         '';
-
-        # Create the auto-saves directory
-        # ".emacs.d/auto-saves/.manage-directory".text = "";
+        ".emacs.d/dashboard.png".source = ../../../../config/emacs/dashboard.png;
       };
     };
 
