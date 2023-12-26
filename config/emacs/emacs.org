@@ -473,6 +473,7 @@ Should make startup faster, taken from doom-emacs
      ;; notes
      "n" '(:ignore o :which-key "notes")
      "na" '(org-agenda :which-key "agenda")
+     "nf" '(org-roam-node-find :which-key "find node")
      ;; quit
      "q" '(:ignore q :which-key "quit")
      "qq" '(delete-frame :which-key "close emacs")
