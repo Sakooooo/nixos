@@ -40,6 +40,8 @@ in {
       direnv
       # mu for email
       mu
+      # sync
+      isync
     ];
 
     home-manager.users.sako = {lib, ...}: {
