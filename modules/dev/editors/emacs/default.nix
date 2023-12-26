@@ -31,6 +31,7 @@ in {
         alwaysTangle = true;
         extraEmacsPackages = epkgs: [
           epkgs.use-package
+          epkgs.mu4e
         ];
       };
     };
