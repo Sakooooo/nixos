@@ -95,10 +95,14 @@ Should make startup faster, taken from doom-emacs
 
   (package-initialize)
 
-  (unless (package-installed-p 'use-package)
-  (progn
-    (package-refresh-contents)
-    (package-install 'use-package)))
+    (if (executable-find "nix")
+        (message "skipping use-package install")
+      (else
+       (unless (package-installed-p 'use-package)
+         (progn
+           (package-refresh-contents)
+           (package-install 'use-package)))
+       ))
 
   (require 'use-package)
   (setq use-package-always-ensure t)
