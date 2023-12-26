@@ -27,7 +27,6 @@ in {
       package = pkgs.emacsWithPackagesFromUsePackage {
         config = ../../../../config/emacs/emacs.org;
         package = pkgs.emacs-pgtk;
-        defaultInitFile = true;
       };
     };
     users.users.sako.packages = with pkgs; [
