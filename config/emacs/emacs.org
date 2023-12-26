@@ -1,5 +1,5 @@
 #+title: Sakomacs configuration
-#+PROPERTY: header-args:emacs-lisp :tangle ./init.el
+#+PROPERTY: header-args:emacs-lisp :tangle yes 
 * Usage
 M-x org-bable-tangle
 * Lexical Binding

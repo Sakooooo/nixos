@@ -27,6 +27,8 @@ in {
       package = pkgs.emacsWithPackagesFromUsePackage {
         config = ../../../../config/emacs/emacs.org;
         package = pkgs.emacs-pgtk;
+        alwaysEnsure = true;
+        alwaysTangle = true;
       };
     };
     users.users.sako.packages = with pkgs; [
