@@ -96,20 +96,20 @@ Should make startup faster, taken from doom-emacs
   (package-initialize)
 
 
-  (defun get-distro-or-os ()
     "Return the Linux distribution or OS Emacs is running on."
-    (if (eq system-type 'darwin)
-        "Darwin"
-      (when (eq system-type 'gnu/linux)
-        (if (file-exists-p "/etc/os-release")
-            (substring (shell-command-to-string "source /etc/os-release && echo $NAME") 0 -1)
-          (substring (car (cdr (process-exit-code-and-output "uname" "-o"))) 0 -1)))))
+      ;; (when (eq system-type 'gnu/linux)
+  (when (eq system-type 'darwin)
+        (unless (package-installed-p 'use-package)
+          (progn
+            (package-refresh-contents)
+            (package-install 'use-package))))
 
-       ;; FIXME nixos overlay breaks this
-       ;; (unless (package-installed-p 'use-package)
-       ;; (progn
-       ;;   (package-refresh-contents)
-       ;;   (package-install 'use-package)))))
+  (when (eq system-type 'windows-nt)
+        (unless (package-installed-p 'use-package)
+          (progn
+            (package-refresh-contents)
+            (package-install 'use-package))))
+
 
   (require 'use-package)
   (setq use-package-always-ensure t)
