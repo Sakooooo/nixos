@@ -95,22 +95,13 @@ Should make startup faster, taken from doom-emacs
                            ("org" . "https://orgmode.org/elpa/")
                            ("elpa" . "https://elpa.gnu.org/packages/")))
 
-  ;; (package-initialize)
+  (package-initialize)
 
 
-    "Return the Linux distribution or OS Emacs is running on."
-      ;; (when (eq system-type 'gnu/linux)
-  (when (eq system-type 'darwin)
-        (unless (package-installed-p 'use-package)
-          (progn
-            (package-refresh-contents)
-            (package-install 'use-package))))
-
-  (when (eq system-type 'windows-nt)
-        (unless (package-installed-p 'use-package)
-          (progn
-            (package-refresh-contents)
-            (package-install 'use-package))))
+  (unless (package-installed-p 'use-package)
+    (progn
+      (package-refresh-contents)
+      (package-install 'use-package)))
 
 
   (require 'use-package)
@@ -1117,27 +1108,34 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 - =L= - Load an Emacs Lisp file into Emacs
 *** Configuration
 #+begin_src emacs-lisp
-    (use-package dired
-    :commands (dired dired-jump)
-    :bind (("C-x C-j" . dired-jump))
-    :custom ((dired-listing-switches "-agho --group-directories-first"))
-    :config
+      ;; (use-package dired
+      ;; :commands (dired dired-jump)
+      ;; :bind (("C-x C-j" . dired-jump))
+      ;; :custom ((dired-listing-switches "-agho --group-directories-first"))
+      ;; :config
+      ;; (evil-collection-define-key 'normal 'dired-mode-map
+      ;;   "h" 'dired-single-up-directory
+      ;;   "l" 'dired-single-buffer))
+
+    (global-set-key (kbd "C-x C-j") 'dired-jump)
+    (setq dired-listing-switches "-agho --group-directories-first")
     (evil-collection-define-key 'normal 'dired-mode-map
-      "h" 'dired-single-up-directory
-      "l" 'dired-single-buffer))
+       "h" 'dired-single-up-directory
+       "l" 'dired-single-buffer)
 
-  (use-package dired-single)
 
-  ;; (use-package dired-open
-  ;;   :config
-  ;;   (setq dired-open-extensions '(("png" . "feh")
-  ;;                                 ("mkv" . "mpv"))))
+    (use-package dired-single)
 
-  ;; (use-package dired-hide-dotfiles
-  ;;   :hook (dired-mode . dired-hide-dotfiles-mode)
-  ;;   :config
-  ;;   (evil-collection-define-key 'normal 'dired-mode-map
-  ;;     "H" 'dired-hide-dotfiles-mode))
+    ;; (use-package dired-open
+    ;;   :config
+    ;;   (setq dired-open-extensions '(("png" . "feh")
+    ;;                                 ("mkv" . "mpv"))))
+
+    ;; (use-package dired-hide-dotfiles
+    ;;   :hook (dired-mode . dired-hide-dotfiles-mode)
+    ;;   :config
+    ;;   (evil-collection-define-key 'normal 'dired-mode-map
+    ;;     "H" 'dired-hide-dotfiles-mode))
 #+end_src
 ** Folder Cleaning
 #+begin_src emacs-lisp
@@ -1235,16 +1233,6 @@ I should just switch to Linux at this point :(
     (python . t)))
 #+end_src
 
-** Auto-tangle Configuration
-#+begin_src emacs-lisp
-  (defun sakomacs/org-babel-tangle-config ()
-    (when (string-equal (buffer-file-name)
-                        (expand-file-name "~/nixos/config/emacs/emacs.org"))
-      (let ((org-confirm-babel-evaluate nil))
-        (org-babel-tangle)))
-    (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'sakomacs/org-babel-tangle-config))))
-#+end_src
-
 * Terminals
 ** EShell
 god dammit why are they making my shells in emacs lisp
@@ -1268,14 +1256,13 @@ god dammit why are they making my shells in emacs lisp
 
   (use-package eshell-git-prompt)
 
-  (use-package eshell
-    :hook (eshell-first-time-mode . sakomacs/configure-eshell)
-    :config
+    
+    (add-hook 'eshell-first-time-mode 'sakomacs/configure-eshell)
 
     (with-eval-after-load 'esh-opt
       (setq eshell-destroy-buffer-when-process-dies t)
-      (setq eshell-visual-commands '("htop" "zsh" "vim")))
-    
+      (setq eshell-visual-commands '("htop" "zsh" "vim"))
+
     (eshell-git-prompt-use-theme 'powerline))
 #+end_src
 ** VTerm
