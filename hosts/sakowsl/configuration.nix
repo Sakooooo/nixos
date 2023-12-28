@@ -78,6 +78,7 @@
     gh # github
     htop # htop
     tree # trees
+    wsl-open # wsl-open
   ];
 
   environment.noXlibs = lib.mkForce false;
@@ -119,6 +120,11 @@
     security = {
       certs.enable = true;
     };
+  };
+
+  # for wsl-open
+  environment.sessionVariables = rec {
+    BROWSER = "wsl-open";
   };
 
   security.sudo.wheelNeedsPassword = true;
