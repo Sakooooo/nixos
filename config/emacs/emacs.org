@@ -105,14 +105,11 @@ Should make startup faster, taken from doom-emacs
             (substring (shell-command-to-string "source /etc/os-release && echo $NAME") 0 -1)
           (substring (car (cdr (process-exit-code-and-output "uname" "-o"))) 0 -1)))))
 
-  (let (os-name (get-distro-or-os))
-    (if (string= os-name "NixOS")
-        (message "skipping use-package installation"))
-     (if (os-name)
-        (unless (package-installed-p 'use-package)
-        (progn
-          (package-refresh-contents)
-          (package-install 'use-package)))))
+       ;; FIXME nixos overlay breaks this
+       ;; (unless (package-installed-p 'use-package)
+       ;; (progn
+       ;;   (package-refresh-contents)
+       ;;   (package-install 'use-package)))))
 
   (require 'use-package)
   (setq use-package-always-ensure t)
