@@ -1,4 +1,4 @@
-#+title: Sakomacs configuration
+#+title: Sako's Emacs configuration
 #+PROPERTY: header-args:emacs-lisp :tangle yes :tangle init.el 
 * Usage
 M-x org-bable-tangle
