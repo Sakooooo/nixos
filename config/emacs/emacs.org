@@ -1241,11 +1241,13 @@ okay this one is a bit more understandable
 (use-package elcord)
 #+end_src
 ** Email 
-This has to be one of the hardest things to configure on windows
-I should just switch to Linux at this point :(
+This ONLY works on Linux and Darwin
+Not windows
 #+begin_src emacs-lisp
 
-  (use-pacakage mu4e)
+  (when (eq system-type 'gnu/linux)
+    (use-pacakage mu4e)
+  )
 
 #+end_src
 * Org Mode Configuration Setup
