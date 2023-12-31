@@ -372,14 +372,9 @@ Cause emacs overlay lol
       ;; ;; Enable flashing mode-line on errors
       ;; (doom-themes-visual-bell-config))
 
-      ;; (use-package timu-macos-theme 
-      ;;   :config
-      ;; (load-theme 'timu-macos t))
-
-      (use-package melancholy-theme
+      (use-package timu-macos-theme 
         :config
-        (load-theme 'melancholy-theme))
-
+      (load-theme 'timu-macos t))
 #+end_src
 ** All the Icons (to make doom-themes happy)
 #+begin_src emacs-lisp
