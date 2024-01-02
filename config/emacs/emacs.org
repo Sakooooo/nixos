@@ -1252,6 +1252,12 @@ Not windows
   )
 
 #+end_src
+** Docker
+Aint no way bro
+#+begin_src emacs-lisp
+(use-package docker
+  :bind ("C-c d" . docker))
+#+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
 #+begin_src emacs-lisp
