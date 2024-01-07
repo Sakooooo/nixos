@@ -1064,11 +1064,11 @@ make sure to setup authinfo
 #+end_src
 *** Better Compile Messages
 #+begin_src emacs-lisp
-  (use-package fancy-compilation
-    :commands (fancy-compilation-mode))
+  ;; (use-package fancy-compilation
+    ;; :commands (fancy-compilation-mode))
 
-  (with-eval-after-load 'compile
-    (fancy-compilation-mode))
+  ;; (with-eval-after-load 'compile
+    ;; (fancy-compilation-mode))
 #+end_src
 *** Snippets
 #+begin_src emacs-lisp
