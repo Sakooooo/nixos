@@ -663,15 +663,6 @@ Cause emacs overlay lol
             ("note" . ?n)
             ("idea" . ?i)))
 
-    ;; should be less distracting
-    (setq org-agenda-prefix-format '(
-                                     ;; (agenda  . " %i %-12:c%?-12t% s") ;; file name + org-agenda-entry-type
-                                     (agenda  . " - %-12:c%?-12t% s")
-                                     (timeline  . "  % s")
-                                     (todo  . " %i %-12:c")
-                                     (tags  . " %i %-12:c")
-                                     (search . " %i %-12:c")))
-
     ;; Configure custom agenda views
     (setq org-agenda-custom-commands
           '(("d" "Dashboard"
