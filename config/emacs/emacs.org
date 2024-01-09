@@ -666,7 +666,7 @@ Cause emacs overlay lol
     ;; should be less distracting
     (setq org-agenda-prefix-format '(
                                      ;; (agenda  . " %i %-12:c%?-12t% s") ;; file name + org-agenda-entry-type
-                                     (agenda  . "  - ")
+                                     (agenda  . " - %-12:c%?-12t% s")
                                      (timeline  . "  % s")
                                      (todo  . " %i %-12:c")
                                      (tags  . " %i %-12:c")
