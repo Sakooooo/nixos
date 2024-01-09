@@ -61,6 +61,22 @@
     xdg.configFile.git = {
       source = ../../config/git;
     };
+
+    # cure my sanity
+    home.pointerCursor = {
+      name = "Catppuccin-Mocha-Dark";
+      size = 16;
+      x11 = {
+        enable = true;
+      };
+      gtk.enable = true;
+      package = pkgs.catppuccin-cursors.mochaDark;
+    };
+    gtk = {
+      enable = true;
+      theme.name = "vimix-dark-ruby";
+      iconTheme.name = "Vimix Ruby Dark";
+    };
   };
   programs.gnupg.agent = {
     enable = true;
