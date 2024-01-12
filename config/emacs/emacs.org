@@ -126,7 +126,10 @@ Cause emacs overlay lol
           (goto-char (point-max))
           (eval-print-last-sexp)))
       (load bootstrap-file nil 'nomessage))
-    (setq straight-use-package-by-default t)
+    (use-package straight
+      :custom
+      (straight-use-package-by-default t))
+    )
 #+end_src
 * SPEED SPEED SPEED SPEED
 ** Avoid Garbage Collection at startup
