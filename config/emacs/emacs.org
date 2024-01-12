@@ -744,7 +744,11 @@ Cause emacs overlay lol
 *** Org-super-agenda 
 #+begin_src emacs-lisp
   (use-package org-super-agenda
-    :hook ((org-agenda-mode . org-super-agenda-mode)))
+    :hook ((org-agenda-mode . org-super-agenda-mode))
+    :config
+    (let ((org-super-agenda-groups
+           '((:auto-group t))))
+      (org-agenda-list)))
 #+end_src
 ** Org-Roam
 #+begin_src emacs-lisp
