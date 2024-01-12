@@ -746,7 +746,7 @@ Cause emacs overlay lol
   (use-package org-super-agenda
     :hook ((org-agenda-mode . org-super-agenda-mode))
     :config
-    (let ((org-super-agenda-groups
+    (setq ((org-super-agenda-groups
            '((:auto-group t))))
       (org-agenda-list)))
 #+end_src
