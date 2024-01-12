@@ -738,8 +738,8 @@ Cause emacs overlay lol
 *** Olivetti
 #+begin_src emacs-lisp
     (use-package olivetti
-      :hook ((org-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 200)))
-             (org-agenda-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 200)))))
+      :hook ((org-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 150)))
+             (org-agenda-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 150)))))
 #+end_src
 *** Org-Modern 
 *** Org-super-agenda 
