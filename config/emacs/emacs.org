@@ -718,6 +718,8 @@ Cause emacs overlay lol
                                                                             (org-agenda-entry-types '(:deadline)) ;; this entry excludes :scheduled
                                                                             (org-deadline-warning-days 0) ))))
 
+    ;; TODO Setup template for school
+
     (setq org-capture-templates
           `(("t" "Tasks / Projects")
             ("tt" "Task" entry (file+olp "~/org/tasks.org" "captured")
@@ -734,8 +736,15 @@ Cause emacs overlay lol
 ** Org Mode Beautifers 
 *** Olivetti
 #+begin_src emacs-lisp
-  (use-package olivetti
-    :hook (org-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 100))))
+    (use-package olivetti
+      :hook ((org-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 200)))
+             (org-agenda-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 200)))))
+#+end_src
+*** Org-Modern 
+*** Org-super-agenda 
+#+begin_src emacs-lisp
+  (use-package org-super-agenda
+    :hook ((org-agenda-mode . org-super-agenda-mode)))
 #+end_src
 ** Org-Roam
 #+begin_src emacs-lisp
