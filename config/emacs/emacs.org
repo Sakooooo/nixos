@@ -487,6 +487,7 @@ Cause emacs overlay lol
      "n" '(:ignore o :which-key "notes")
      "na" '(org-agenda :which-key "agenda")
      "nf" '(org-roam-node-find :which-key "find node")
+     "nc" '(org-capture :which-key "capture")
      ;; quit
      "q" '(:ignore q :which-key "quit")
      "qq" '(delete-frame :which-key "close emacs")
