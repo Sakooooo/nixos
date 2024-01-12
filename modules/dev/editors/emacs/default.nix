@@ -42,6 +42,8 @@ in {
       mu
       # sync
       isync
+      # doc-view
+      unoconv
     ];
 
     home-manager.users.sako = {lib, ...}: {
