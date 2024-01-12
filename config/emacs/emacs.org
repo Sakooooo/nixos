@@ -364,7 +364,7 @@ Cause emacs overlay lol
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
   ;; load the theme
-  (load-theme 'doom-monokai-pro t)
+  (load-theme 'doom-vibrant)
 
   (doom-themes-org-config)
 
@@ -404,8 +404,13 @@ Cause emacs overlay lol
 #+begin_src emacs-lisp
   (use-package doom-modeline
     :ensure t
-    :hook (after-init . doom-modeline-mode)
-    :custom ((doom-modeline-height 40)))
+    ;; :hook (after-init . doom-modeline-mode)
+    :init (doom-modeline-mode 1)
+    :custom (
+             (doom-modeline-height 30)
+             (doom-modeline-major-mode-icon nil)
+             (doom-modeline-modal-modern-icon nil)
+             ))
 #+end_src
 ** Hide Modeline
 #+begin_src emacs-lisp
