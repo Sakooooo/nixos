@@ -1219,7 +1219,7 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 
     ;; setup feeds
     (setq elfeed-protocol-feeds '(("fever+https://sako@rss.sako.box"
-                                   :api-url "https://rss.sako.box/fever"
+                                   :api-url "https://rss.sako.box/fever/"
                                    :use-authinfo t)))
 
     ;; enable elfeed-protocol
