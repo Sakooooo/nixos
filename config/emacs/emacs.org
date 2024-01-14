@@ -887,7 +887,7 @@ make sure to setup authinfo
 
 *** Direnv
 #+begin_src emacs-lisp
-  (when eq system-type 'gnu/linux
+  (when (eq system-type 'gnu/linux)
         (use-package direnv
           :config
           (direnv-mode))
