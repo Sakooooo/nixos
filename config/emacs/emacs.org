@@ -738,8 +738,8 @@ Cause emacs overlay lol
 *** Olivetti
 #+begin_src emacs-lisp
     (use-package olivetti
-      :hook ((org-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 150)))
-             (org-agenda-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 150)))))
+      :hook ((org-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 100)))
+             (org-agenda-mode . (lambda () (interactive) (olivetti-mode) (olivetti-set-width 100)))))
 #+end_src
 *** Org-Modern 
 *** Org-super-agenda 
@@ -764,6 +764,12 @@ Cause emacs overlay lol
          ("C-c n i" . org-roam-node-insert))
   :config
   (org-roam-setup))
+#+end_src
+** Org-Wild-Notifier
+#+begin_src emacs-lisp
+    (use-package org-wild-notifier
+      :config
+      (org-wild-notifier-mode))
 #+end_src
 ** Alert.el
 #+begin_src emacs-lisp
