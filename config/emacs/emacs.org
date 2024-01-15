@@ -765,6 +765,17 @@ Cause emacs overlay lol
   :config
   (org-roam-setup))
 #+end_src
+** Alert.el
+#+begin_src emacs-lisp
+  ;; quick and dirty fix for windows alert.el
+  (when (eq system-type 'windows-nt)
+    (use-package alert
+      :commands (alert)
+      :config (setq alert-default-style 'toast))
+    
+    (use-package alert-toast
+      :after alert))
+#+end_src
 ** Treemacs
 #+begin_src emacs-lisp
   (use-package treemacs
