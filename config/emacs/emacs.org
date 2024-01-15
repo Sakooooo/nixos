@@ -750,6 +750,10 @@ Cause emacs overlay lol
           (setq org-super-agenda-groups
                 '((:auto-group t))))
 #+end_src
+*** Org Pomodoro
+#+begin_src emacs-lisp
+(use-package org-pomodoro)
+#+end_src
 ** Org-Roam
 #+begin_src emacs-lisp
   (use-package org-roam
