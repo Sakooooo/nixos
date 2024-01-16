@@ -488,6 +488,8 @@ Cause emacs overlay lol
      "na" '(org-agenda :which-key "agenda")
      "nf" '(org-roam-node-find :which-key "find node")
      "nc" '(org-capture :which-key "capture")
+     "ne" '(:ignore ne :which-key "export")
+     "nep" '(org-latex-export-to-pdf :which-key "pdf")
      ;; quit
      "q" '(:ignore q :which-key "quit")
      "qq" '(delete-frame :which-key "close emacs")
