@@ -44,6 +44,9 @@ in {
       isync
       # doc-view
       unoconv
+      # org to pdf
+      # this might be bloat...
+      texliveFull
     ];
 
     home-manager.users.sako = {lib, ...}: {

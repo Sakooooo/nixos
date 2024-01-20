@@ -653,6 +653,8 @@ Cause emacs overlay lol
     ;; Save Org buffers after refiling!
     (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
+    (setq org-startup-with-inline-images t)
+
     (setq org-tag-alist
           '((:startgroup)
                                           ; Put mutually exclusive tags here
@@ -755,7 +757,7 @@ Cause emacs overlay lol
 #+end_src
 *** Org Pomodoro
 #+begin_src emacs-lisp
-(use-package org-pomodoro)
+  (use-package org-pomodoro)
 #+end_src
 ** Org-Roam
 #+begin_src emacs-lisp
