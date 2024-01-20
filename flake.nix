@@ -78,6 +78,13 @@
           ./hosts/sakopc/configuration.nix
         ];
       };
+      sakoserver = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./default.nix
+          ./hosts/sakoserver/configuration.nix
+        ];
+      };
       sakowsl = nixpkgs.lib.nixosSystem {
         # because theres no hardware-configuration.nix
         system = "x86_64-linux";
