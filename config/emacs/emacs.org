@@ -1227,6 +1227,7 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 #+end_src
 ** RSS Reader
 #+begin_src emacs-lisp
+  (when (eq system-type 'gnu/linux)
     (use-package elfeed
     :config
     (setq elfeed-use-curl t)
@@ -1245,8 +1246,8 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 
     ;; setup feeds
     (setq elfeed-protocol-feeds '(("fever+https://sako@rss.sako.box"
-                                   :api-url "https://rss.sako.box/fever/"
-                                   :use-authinfo t)))
+				   :api-url "https://rss.sako.box/fever/"
+				   :use-authinfo t)))
 
     ;; enable elfeed-protocol
     (setq elfeed-protocol-enabled-protocols '(fever))
@@ -1254,14 +1255,15 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
     )
 
   (let* ((proto-id "fever+https://sako@rss.sako.box")
-         (last-id (elfeed-protocol-fever-get-update-mark proto-id 'update)))
+	 (last-id (elfeed-protocol-fever-get-update-mark proto-id 'update)))
     (elfeed-protocol-fever-set-update-mark  proto-id 'update (- last-id 1000)))
 
   (run-at-time 300 300
-             (lambda () (when (= elfeed-curl-queue-active 0)
-                          (elfeed-update))))
+	     (lambda () (when (= elfeed-curl-queue-active 0)
+			  (elfeed-update))))
 
   ;; (add-hook 'emacs-startup-hook (elfeed-update))
+  )
 
     #+end_src
 ** Telegram
