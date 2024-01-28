@@ -39,6 +39,7 @@
         nemo.enable = true;
         pass.enable = true;
         keepassxc.enable = true;
+        bitwarden.enable = true;
         rssguard.enable = true;
         nicotineplus.enable = true;
         transmission.enable = true;
