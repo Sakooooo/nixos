@@ -1,6 +1,7 @@
 {
   imports = [
     ./keepassxc
+    ./bitwarden
     ./pass
     ./nicotineplus
     ./kdeconnect
