@@ -26,7 +26,7 @@ in {
       #  package = pkgs.emacs29-pgtk;
       package = pkgs.emacsWithPackagesFromUsePackage {
         config = ../../../../config/emacs/emacs.org;
-        package = pkgs.emacs-pgtk;
+        package = pkgs.emacs-unstable;
         alwaysEnsure = true;
         alwaysTangle = true;
         extraEmacsPackages = epkgs: [
