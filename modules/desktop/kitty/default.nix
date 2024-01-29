@@ -1,9 +1,13 @@
-{ options, config, lib, pkgs, ...}:
-with lib;
-let
-  cfg = config.modules.desktop.kitty;
-in
 {
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.desktop.kitty;
+in {
   options.modules.desktop.kitty = {
     enable = mkEnableOption false;
   };
@@ -13,19 +17,18 @@ in
       kitty
     ];
 
-    home-manager.users.sako = { pkgs , ...}: {
-    xdg.configFile = {
-      kitty = {
-        source = ../../../config/kitty;
+    home-manager.users.sako = {pkgs, ...}: {
+      xdg.configFile = {
+        kitty = {
+          source = ../../../config/kitty;
         };
-      }; 
+      };
     };
 
     # also just in case
-    fonts.fonts = with pkgs;[
-    jetbrains-mono
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    fonts.packages = with pkgs; [
+      jetbrains-mono
+      (nerdfonts.override {fonts = ["JetBrainsMono"];})
     ];
-
   };
 }
