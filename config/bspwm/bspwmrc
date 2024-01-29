@@ -40,4 +40,5 @@ blueman-applet &
 bitwarden &
 flameshot &
 nextcloud &
+telegram-desktop -autostart &
 
