@@ -37,6 +37,7 @@
         zoom.enable = true;
         discord.enable = true;
         teams.enable = true;
+        telegram.enable = true;
       };
       apps = {
         nemo.enable = true;
