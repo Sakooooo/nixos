@@ -1,18 +1,23 @@
-{ outputs, options, config, lib, pkgs, ...}:
-with lib;
-let
-  cfg = config.modules.desktop.picom;
-in
 {
+  outputs,
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.desktop.picom;
+in {
   options.modules.desktop.picom = {
     enable = mkEnableOption false;
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
+    users.users.sako.packages = with pkgs; [
       picom
     ];
-    home-manager.users.sako = { pkgs, ...}: {
+    home-manager.users.sako = {pkgs, ...}: {
       xdg.configFile = {
         picom = {
           source = ../../../config/picom;
