@@ -20,8 +20,11 @@
     desktop = {
       wireguard.enable = true;
       kitty.enable = true;
-      dwm.enable = false;
-      xmonad.enable = true;
+      xmonad.enable = false;
+      bspwm = {
+        enable = true;
+        polybar.enable = true;
+      };
       picom.enable = true;
       dunst.enable = true;
       browsers = {

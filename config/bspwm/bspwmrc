@@ -24,8 +24,8 @@ bspc rule -a Screenkey manage=off
 xsetroot -cursor_name left_ptr
 
 # picom
-killall picom &
-picom &
+#killall picom &
+#picom &
 
 # background
 feh --bg-scale /home/sako/background.png &
@@ -38,6 +38,6 @@ nm-applet &
 blueman-applet &
 
 # actual software
-keepassxc &
+bitwarden &
 flameshot &
 
