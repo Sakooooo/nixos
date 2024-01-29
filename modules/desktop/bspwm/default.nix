@@ -18,9 +18,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-
     # this is needed for gtk configuration to work
     programs.dconf.enable = true;
+
+    # keyring
+    services.gnome3.gnome-keyring.enable = true;
 
     services.xserver = {
       enable = true;
