@@ -4,5 +4,6 @@
     ./whatsapp
     ./zoom
     ./discord
+    ./telegram
   ];
 }
