@@ -1291,7 +1291,8 @@ okay this one is a bit more understandable
 #+end_src
 ** Discord RPC
 #+begin_src emacs-lisp
-(use-package elcord)
+  (use-package elcord
+    :hook (projectile-mode . elcord-mode))
 #+end_src
 ** Email 
 This ONLY works on Linux and Darwin
