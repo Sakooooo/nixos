@@ -1060,6 +1060,7 @@ make sure to setup authinfo
 #+end_src
 ***** Dart 
 #+begin_src emacs-lisp
+  (use-package lsp-dart)
   (use-package dart-mode
    :hook (dart-mode . lsp)
   :mode "\\.dart\\'" )
