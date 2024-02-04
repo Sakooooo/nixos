@@ -8,12 +8,17 @@
 }:
 with lib; let
   cfg = config.modules.desktop.exwm;
+  imports = [
+    ../../dev/editors/emacs
+  ];
 in {
   options.modules.desktop.exwm = {
     enable = mkEnableOption false;
   };
 
   config = mkIf cfg.enable {
+    modules.dev.editors.emacs.daemon = lib.mkForce false;
+    modules.dev.editors.emacs.enable = true;
     # this needs to be enabled for gtk apps
     programs.dconf.enable = true;
     # https://nixos.wiki/wiki/XMonad
@@ -24,8 +29,8 @@ in {
       # };
 
       # TODO FIX THIS !!!!!!
-      displayManager.session = let
-        # Allow for per-host injected desktop-related Emacs configuration.
+      windowManager.session = let
+        # dpi thing ill figure out later
         # extraConfig = pkgs.writeText "emacs-extra-config" ''
         #   (setq mb/system-settings
         #     '((desktop/dpi . ${(toString cfg.dpi)})
@@ -35,7 +40,7 @@ in {
         #     else "nil"
         #   })))
         # '';
-        extraConfig = pkgs.writeText "emacs-extra-config" ''
+        extraConfig = pkgs.writeText "emacs-loadscript" ''
           (require 'exwm-config)
           (exwm-config-default)
           (exwm-enable)
@@ -92,8 +97,8 @@ in {
       flameshot
     ];
 
-    environment.systemPackages = with pkgs; [
-    ];
+    # environment.systemPackages = with pkgs; [
+    # ];
 
     home-manager.users.sako = {pkgs, ...}: {
       home.pointerCursor = {
