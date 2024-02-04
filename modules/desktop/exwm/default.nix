@@ -23,7 +23,7 @@ in {
       #   enable = true;
       # };
 
-      windowManager.session = let
+      displayManager.session = let
         # Allow for per-host injected desktop-related Emacs configuration.
         # extraConfig = pkgs.writeText "emacs-extra-config" ''
         #   (setq mb/system-settings
