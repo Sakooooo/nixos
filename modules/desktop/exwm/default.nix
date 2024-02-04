@@ -23,6 +23,7 @@ in {
       #   enable = true;
       # };
 
+      # TODO FIX THIS !!!!!!
       displayManager.session = let
         # Allow for per-host injected desktop-related Emacs configuration.
         # extraConfig = pkgs.writeText "emacs-extra-config" ''
