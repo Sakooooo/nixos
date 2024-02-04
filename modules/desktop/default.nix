@@ -7,6 +7,7 @@
     ./hyprland
     ./xmonad
     ./qtile
+    ./exwm
     # desktop environ men t s s  s s
     ./kde
     ./gnome
