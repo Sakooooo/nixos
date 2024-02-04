@@ -18,6 +18,8 @@ with lib; let
     extraEmacsPackages = epkgs: [
       epkgs.use-package
       epkgs.mu4e
+      # TODO make this check if EXWM is enabled or not
+      epkgs.exwm
     ];
   };
 in {

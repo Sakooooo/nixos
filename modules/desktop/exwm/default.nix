@@ -8,20 +8,12 @@
 }:
 with lib; let
   cfg = config.modules.desktop.exwm;
-
-  imports = [
-    ../dev/editors/emacs
-  ];
 in {
   options.modules.desktop.exwm = {
     enable = mkEnableOption false;
   };
 
   config = mkIf cfg.enable {
-    # add this just incase
-    myEmacs.extraEmacsPackage = epkgs: [
-      epkgs.exwm
-    ];
     # this needs to be enabled for gtk apps
     programs.dconf.enable = true;
     # https://nixos.wiki/wiki/XMonad
