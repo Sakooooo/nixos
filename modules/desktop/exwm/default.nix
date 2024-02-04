@@ -27,9 +27,9 @@ in {
     # https://nixos.wiki/wiki/XMonad
     services.xserver = {
       enable = true;
-      windowManager.exwm = {
-        enable = true;
-      };
+      # windowManager.exwm = {
+      #   enable = true;
+      # };
 
       windowManager.session = let
         # Allow for per-host injected desktop-related Emacs configuration.
@@ -45,6 +45,7 @@ in {
         extraConfig = pkgs.writeText "emacs-extra-config" ''
           (require 'exwm-config)
           (exwm-config-default)
+          (exwm-enable)
         '';
       in
         singleton {
