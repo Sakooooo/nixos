@@ -162,7 +162,7 @@ Cause emacs overlay lol
               ;;(setq gc-cons-threshold 16777216 ; 16mb
             ;; this could be really bad idk
             (setq gc-cons-threshold 100000000
-                    gc-cons-percentage 0.1))))
+                    gc-cons-percentage 0.1)))
 #+end_src
 ** Don't use GC when minibuffer is used 
 #+begin_src emacs-lisp
