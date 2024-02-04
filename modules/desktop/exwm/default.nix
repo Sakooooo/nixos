@@ -7,27 +7,54 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.desktop.xmonad;
+  cfg = config.modules.desktop.exwm;
+
+  imports = [
+    ../dev/editors/emacs
+  ];
 in {
-  options.modules.desktop.xmonad = {
+  options.modules.desktop.exwm = {
     enable = mkEnableOption false;
   };
 
   config = mkIf cfg.enable {
+    # add this just incase
+    myEmacs.extraEmacsPackage = epkgs: [
+      epkgs.exwm
+    ];
     # this needs to be enabled for gtk apps
     programs.dconf.enable = true;
     # https://nixos.wiki/wiki/XMonad
     services.xserver = {
       enable = true;
-      windowManager.xmonad = {
+      windowManager.exwm = {
         enable = true;
-        enableContribAndExtras = true;
-        ghcArgs = [
-          "-hidir /tmp" # place interface files in /tmp, otherwise ghc tries to write them to the nix store
-          "-odir /tmp" # place object files in /tmp, otherwise ghc tries to write them to the nix store
-          #              "-i${xmonad-contexts}" # tell ghc to search in the respective nix store path for the module
-        ];
       };
+
+      windowManager.session = let
+        # Allow for per-host injected desktop-related Emacs configuration.
+        # extraConfig = pkgs.writeText "emacs-extra-config" ''
+        #   (setq mb/system-settings
+        #     '((desktop/dpi . ${(toString cfg.dpi)})
+        #       (desktop/hidpi . ${
+        #     if cfg.hidpi
+        #     then "t"
+        #     else "nil"
+        #   })))
+        # '';
+        extraConfig = pkgs.writeText "emacs-extra-config" ''
+          (require 'exwm-config)
+          (exwm-config-default)
+        '';
+      in
+        singleton {
+          name = "exwm";
+          start = ''
+            # Emacs via dbus in fullscreen lol
+            ${pkgs.dbus.dbus-launch} --exit-with-session emacs -mm --fullscreen \
+              -l "${extraConfig}"
+          '';
+        };
       displayManager = {
         lightdm = {
           enable = true;
@@ -57,7 +84,7 @@ in {
     };
 
     users.users.sako.packages = with pkgs; [
-      rofi
+      #rofi
       # network
       networkmanagerapplet
       # brightness
@@ -72,10 +99,6 @@ in {
     ];
 
     environment.systemPackages = with pkgs; [
-      # bar
-      xmobar
-      # tray
-      trayer
     ];
 
     home-manager.users.sako = {pkgs, ...}: {
@@ -99,8 +122,8 @@ in {
           source = ../../../config/background.png;
         };
       };
-      xdg.configFile = {
-      };
+      # xdg.configFile = {
+      # };
     };
   };
 }

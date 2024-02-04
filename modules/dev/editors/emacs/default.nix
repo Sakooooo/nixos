@@ -9,6 +9,17 @@
 }:
 with lib; let
   cfg = config.modules.dev.editors.emacs;
+
+  myEmacs = pkgs.emacsWithPackagesFromUsePackage {
+    config = ../../../../config/emacs/emacs.org;
+    package = pkgs.emacs-unstable;
+    alwaysEnsure = true;
+    alwaysTangle = true;
+    extraEmacsPackages = epkgs: [
+      epkgs.use-package
+      epkgs.mu4e
+    ];
+  };
 in {
   options.modules.dev.editors.emacs = {
     enable = mkEnableOption false;
@@ -24,16 +35,17 @@ in {
       enable = cfg.daemon;
       install = true;
       #  package = pkgs.emacs29-pgtk;
-      package = pkgs.emacsWithPackagesFromUsePackage {
-        config = ../../../../config/emacs/emacs.org;
-        package = pkgs.emacs-unstable;
-        alwaysEnsure = true;
-        alwaysTangle = true;
-        extraEmacsPackages = epkgs: [
-          epkgs.use-package
-          epkgs.mu4e
-        ];
-      };
+      # package = pkgs.emacsWithPackagesFromUsePackage {
+      #   config = ../../../../config/emacs/emacs.org;
+      #   package = pkgs.emacs-unstable;
+      #   alwaysEnsure = true;
+      #   alwaysTangle = true;
+      #   extraEmacsPackages = epkgs: [
+      #     epkgs.use-package
+      #     epkgs.mu4e
+      #   ];
+      # };
+      package = myEmacs;
     };
     users.users.sako.packages = with pkgs; [
       # direnv
