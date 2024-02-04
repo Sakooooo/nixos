@@ -22,10 +22,10 @@
       kitty.enable = true;
       xmonad.enable = false;
       bspwm = {
-        enable = false;
-        polybar.enable = false;
+        enable = true;
+        polybar.enable = true;
       };
-      exwm.enable = true;
+      exwm.enable = false;
       picom.enable = true;
       dunst.enable = true;
       browsers = {
