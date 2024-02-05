@@ -1198,9 +1198,6 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
        "h" 'dired-single-up-directory
        "l" 'dired-single-buffer)
 
-
-    (use-package dired-single)
-
     ;; (use-package dired-open
     ;;   :config
     ;;   (setq dired-open-extensions '(("png" . "feh")
