@@ -31,14 +31,12 @@ in {
       src = ../config/dwm;
     });
     nvidiaDriverPackage = prev.nvidiaDriverPackage.overrideAttrs (old: {
-      patches =
-        (old.patches or [])
-        ++ [
-          (prev.fetchpatch {
-            url = "https://github.com/gentoo/gentoo/raw/c64caf53/x11-drivers/nvidia-drivers/files/nvidia-drivers-470.223.02-gpl-pfn_valid.patch";
-            hash = "sha256-eZiQQp2S/asE7MfGvfe6dA/kdCvek9SYa/FFGp24dVg=";
-          })
-        ];
+      patches = [
+        (prev.fetchpatch {
+          url = "https://github.com/gentoo/gentoo/raw/c64caf53/x11-drivers/nvidia-drivers/files/nvidia-drivers-470.223.02-gpl-pfn_valid.patch";
+          hash = "sha256-eZiQQp2S/asE7MfGvfe6dA/kdCvek9SYa/FFGp24dVg=";
+        })
+      ];
     });
   };
 
