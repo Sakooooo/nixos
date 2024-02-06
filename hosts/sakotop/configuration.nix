@@ -110,7 +110,7 @@
     };
     media = {
       mpd.enable = false;
-      mopidy.enable = true;
+      mopidy.enable = false;
       ncmpcpp.enable = true;
     };
     work = {
