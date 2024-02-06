@@ -2,5 +2,6 @@
   imports = [
     ./mpd
     ./ncmpcpp
+    ./mopidy
   ];
 }
