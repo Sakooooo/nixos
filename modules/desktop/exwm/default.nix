@@ -21,7 +21,9 @@ in {
     modules.dev.editors.emacs.enable = lib.mkForce true;
     # this needs to be enabled for gtk apps
     programs.dconf.enable = true;
-    # https://nixos.wiki/wiki/XMonad
+
+    # keyring
+    services.gnome.gnome-keyring.enable = true;
     services.xserver = {
       enable = true;
       # windowManager.exwm = {
