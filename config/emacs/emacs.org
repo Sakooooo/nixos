@@ -1297,7 +1297,7 @@ Not windows
 #+begin_src emacs-lisp
 
   (when (eq system-type 'gnu/linux)
-    (use-pacakage mu4e)
+    (use-package mu4e)
   )
 
 #+end_src
