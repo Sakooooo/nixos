@@ -1310,55 +1310,59 @@ Aint no way bro
 ** EXWM
 RELEASE ME
 #+begin_src emacs-lisp
-    (when (eq system-type 'gnu/linux)
-      (use-package exwm
-        :config
-        ;; workspaces
-        (setq exwm-workspace-number 5)
+  (when (eq system-type 'gnu/linux)
+    (use-package exwm
+      :config
+      ;; workspaces
+      (setq exwm-workspace-number 5)
 
-        ;; always use these keys in emacs
-        (setq exwm-input-prefix-keys
-              '(?\C-x
-                ?\C-u
-                ?\C-h
-                ?\M-x
-                ?\M-`
-                ?\M-&
-                ?\M-:
-                ?\C-\M-j  ;; Buffer list
-                ?\C-\ ))  ;; Ctrl+Space
 
-        ;; Ctrl+Q will enable the next key to be sent directly
-        (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
-        ;; Set up global key bindings.  These always work, no matter the input state!
-        ;; Keep in mind that changing this list after EXWM initializes has no effect.
-        (setq exwm-input-global-keys
-              `(
-                ;; Reset to line-mode (C-c C-k switches to char-mode via exwm-input-release-keyboard)
-                ([?\s-r] . exwm-reset)
+      (require 'exwm-systemtray)
+      (exwm-systemtray-enable)
 
-                ;; Move between windows
-                ([s-left] . windmove-left)
-                ([s-right] . windmove-right)
-                ([s-up] . windmove-up)
-                ([s-down] . windmove-down)
+      ;; always use these keys in emacs
+      (setq exwm-input-prefix-keys
+            '(?\C-x
+              ?\C-u
+              ?\C-h
+              ?\M-x
+              ?\M-`
+              ?\M-&
+              ?\M-:
+              ?\C-\M-j  ;; Buffer list
+              ?\C-\ ))  ;; Ctrl+Space
 
-                ;; Launch applications via shell command
-                ([?\s-&] . (lambda (command)
-                             (interactive (list (read-shell-command "$ ")))
-                             (start-process-shell-command command nil command)))
+      ;; Ctrl+Q will enable the next key to be sent directly
+      (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+      ;; Set up global key bindings.  These always work, no matter the input state!
+      ;; Keep in mind that changing this list after EXWM initializes has no effect.
+      (setq exwm-input-global-keys
+            `(
+              ;; Reset to line-mode (C-c C-k switches to char-mode via exwm-input-release-keyboard)
+              ([?\s-r] . exwm-reset)
 
-                ;; Switch workspace
-                ([?\s-w] . exwm-workspace-switch)
+              ;; Move between windows
+              ([s-left] . windmove-left)
+              ([s-right] . windmove-right)
+              ([s-up] . windmove-up)
+              ([s-down] . windmove-down)
 
-                ;; 's-N': Switch to certain workspace with Super (Win) plus a number key (0 - 9)
-                ,@(mapcar (lambda (i)
-                            `(,(kbd (format "s-%d" i)) .
-                              (lambda ()
-                                (interactive)
-                                (exwm-workspace-switch-create ,i))))
-                          (number-sequence 0 9))))
-        ))
+              ;; Launch applications via shell command
+              ([?\s-&] . (lambda (command)
+                           (interactive (list (read-shell-command "$ ")))
+                           (start-process-shell-command command nil command)))
+
+              ;; Switch workspace
+              ([?\s-w] . exwm-workspace-switch)
+
+              ;; 's-N': Switch to certain workspace with Super (Win) plus a number key (0 - 9)
+              ,@(mapcar (lambda (i)
+                          `(,(kbd (format "s-%d" i)) .
+                            (lambda ()
+                              (interactive)
+                              (exwm-workspace-switch-create ,i))))
+                        (number-sequence 0 9))))
+      ))
 
 #+end_src
 * Org Mode Configuration Setup
