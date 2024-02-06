@@ -84,7 +84,7 @@ Should make startup faster, taken from doom-emacs
 #+end_src
 * Fonts
 #+begin_src emacs-lisp
-  (set-face-attribute `default nil :font "JetBrainsMono NF" :height 130)
+  (set-face-attribute `default nil :font "JetBrainsMono NF" :height 100)
 #+end_src
 * Use-Package setup 
 #+begin_src emacs-lisp
