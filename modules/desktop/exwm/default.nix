@@ -128,9 +128,9 @@ in {
         # backup
         bspwm = {
           source = ../../../config/bspwm;
-          sxhkd = {
-            source = ../../../config/sxhkd;
-          };
+        };
+        sxhkd = {
+          source = ../../../config/sxhkd;
         };
       };
     };
