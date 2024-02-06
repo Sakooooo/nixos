@@ -22,7 +22,7 @@
       kitty.enable = true;
       xmonad.enable = false;
       bspwm = {
-        enable = true;
+        enable = false;
         polybar.enable = true;
       };
       exwm.enable = true;

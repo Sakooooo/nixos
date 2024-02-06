@@ -28,6 +28,9 @@ in {
       #   enable = true;
       # };
 
+      # backup
+      windowManager.bspwm.enable = true;
+
       # TODO FIX THIS !!!!!!
       windowManager.session = let
         # dpi thing ill figure out later
@@ -83,7 +86,7 @@ in {
     };
 
     users.users.sako.packages = with pkgs; [
-      #rofi
+      rofi
       # network
       networkmanagerapplet
       # brightness
@@ -121,8 +124,15 @@ in {
           source = ../../../config/background.png;
         };
       };
-      # xdg.configFile = {
-      # };
+      xdg.configFile = {
+        # backup
+        bspwm = {
+          source = ../../../config/bspwm;
+          sxhkd = {
+            source = ../../../config/sxhkd;
+          };
+        };
+      };
     };
   };
 }
