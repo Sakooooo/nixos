@@ -22,8 +22,8 @@
       kitty.enable = true;
       xmonad.enable = false;
       bspwm = {
-        enable = false;
-        polybar.enable = false;
+        enable = true;
+        polybar.enable = true;
       };
       exwm.enable = true;
       picom.enable = true;
