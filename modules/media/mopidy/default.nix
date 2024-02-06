@@ -21,9 +21,6 @@ in {
       ];
       configuration = ''
         [core]
-        cache_dir = $XDG_CACHE_DIR/mopidy
-        config_dir = $XDG_CONFIG_DIR/mopidy
-        data_dir = $XDG_DATA_DIR/mopidy
         max_tracklist_length = 10000
         restore_state = false
 
@@ -44,8 +41,8 @@ in {
         [mpd]
         enabled = True
         hostname = 127.0.0.1
-
-
+        port = 6600
+        connection_timeout = 300
       '';
     };
   };
