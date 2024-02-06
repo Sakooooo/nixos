@@ -18,7 +18,7 @@ in {
 
   config = mkIf cfg.enable {
     modules.dev.editors.emacs.daemon = lib.mkForce false;
-    modules.dev.editors.emacs.enable = true;
+    modules.dev.editors.emacs.enable = lib.mkForce true;
     # this needs to be enabled for gtk apps
     programs.dconf.enable = true;
     # https://nixos.wiki/wiki/XMonad
@@ -48,8 +48,8 @@ in {
       in
         singleton {
           name = "exwm";
+          # launch emacs in fullscreen with dbus lol
           start = ''
-            # Emacs via dbus in fullscreen lol
             ${pkgs.dbus.dbus-launch} --exit-with-session emacs -mm --fullscreen \
               -l "${extraConfig}"
           '';
