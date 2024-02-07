@@ -1289,7 +1289,11 @@ okay this one is a bit more understandable
 ** Discord RPC
 #+begin_src emacs-lisp
   (use-package elcord
-    :hook (projectile-mode . elcord-mode))
+    :init
+    (setq elcord-display-buffer-details nil)
+    (setq elcord-use-major-mode-as-main-icon t)
+    (elcord-mode)
+    )
 #+end_src
 ** Email 
 This ONLY works on Linux and Darwin
