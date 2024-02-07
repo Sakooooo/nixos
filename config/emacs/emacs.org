@@ -1311,6 +1311,7 @@ Aint no way bro
 RELEASE ME
 #+begin_src emacs-lisp
   (when (eq system-type 'gnu/linux)
+    (display-battery-mode)
     (use-package exwm
       :config
       ;; workspaces
