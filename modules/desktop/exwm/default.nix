@@ -93,6 +93,8 @@ in {
       networkmanagerapplet
       # brightness
       brightnessctl
+      # background
+      feh
       # gee tee k
       vimix-gtk-themes
       vimix-icon-theme
