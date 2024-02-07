@@ -1314,64 +1314,91 @@ Aint no way bro
 ** EXWM
 RELEASE ME
 #+begin_src emacs-lisp
-    (when (eq system-type 'gnu/linux)
-      (display-battery-mode)
-      (use-package exwm
-        :config
+  (when (eq system-type 'gnu/linux)
+    (display-battery-mode)
+    (use-package exwm
+      :config
 
-        ;; background
-        (call-process-shell-command "feh --bg-fill ~/background.png" nil 0)     
-        (call-process-shell-command "~/.config/polybar/startpolybar" nil 0)     
-        ;; workspaces
-        (setq exwm-workspace-number 5)
+      ;; background
+      (call-process-shell-command "feh --bg-fill ~/background.png" nil 0)     
+      (call-process-shell-command "~/.config/polybar/startpolybar" nil 0)     
+      ;; workspaces
+      (setq exwm-workspace-number 5)
 
 
-        (require 'exwm-systemtray)
-        (exwm-systemtray-enable)
+      (require 'exwm-systemtray)
+      (exwm-systemtray-enable)
 
-        ;; always use these keys in emacs
-        (setq exwm-input-prefix-keys
-              '(?\C-x
-                ?\C-u
-                ?\C-h
-                ?\M-x
-                ?\M-`
-                ?\M-&
-                ?\M-:
-                ?\C-\M-j  ;; Buffer list
-                ?\C-\ ))  ;; Ctrl+Space
+      ;; polybar
+      (defvar sakomacs/polybar-process nil
+        "Holds the process of the running Polybar instance, if any")
 
-        ;; Ctrl+Q will enable the next key to be sent directly
-        (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
-        ;; Set up global key bindings.  These always work, no matter the input state!
-        ;; Keep in mind that changing this list after EXWM initializes has no effect.
-        (setq exwm-input-global-keys
-              `(
-                ;; Reset to line-mode (C-c C-k switches to char-mode via exwm-input-release-keyboard)
-                ([?\s-r] . exwm-reset)
+      (server-start)
 
-                ;; Move between windows
-                ([s-left] . windmove-left)
-                ([s-right] . windmove-right)
-                ([s-up] . windmove-up)
-                ([s-down] . windmove-down)
+      (defun sakomacs/kill-panel ()
+        (interactive)
+        (when sakomacs/polybar-process
+          (ignore-errors
+            (kill-process sakomacs/polybar-process)))
+        (setq sakomacs/polybar-process nil))
 
-                ;; Launch applications via shell command
-                ([?\s-&] . (lambda (command)
-                             (interactive (list (read-shell-command "$ ")))
-                             (start-process-shell-command command nil command)))
+      (defun sakomacs/start-panel ()
+        (interactive)
+        (sakomacs/kill-panel)
+        (setq sakomacs/polybar-process (start-process-shell-command "polybar" nil "polybar panel")))
 
-                ;; Switch workspace
-                ([?\s-w] . exwm-workspace-switch)
+      (defun sakomacs/send-polybar-hook (module-name hook-index)
+        (start-process-shell-command "polybar-msg" nil (format "polybar-msg hook %s %s" module-name hook-index)))
 
-                ;; 's-N': Switch to certain workspace with Super (Win) plus a number key (0 - 9)
-                ,@(mapcar (lambda (i)
-                            `(,(kbd (format "s-%d" i)) .
-                              (lambda ()
-                                (interactive)
-                                (exwm-workspace-switch-create ,i))))
-                          (number-sequence 0 9))))
-        )
+      (defun sakomacs/send-polybar-exwm-workspace ()
+        (sakomacs/send-polybar-hook "exwm-workspace" 1))
+
+      ;; Update panel indicator when workspace changes
+      (add-hook 'exwm-workspace-switch-hook #'sakomacs/send-polybar-exwm-workspace)
+
+      ;; always use these keys in emacs
+      (setq exwm-input-prefix-keys
+            '(?\C-x
+              ?\C-u
+              ?\C-h
+              ?\M-x
+              ?\M-`
+              ?\M-&
+              ?\M-:
+              ?\C-\M-j  ;; Buffer list
+              ?\C-\ ))  ;; Ctrl+Space
+
+      ;; Ctrl+Q will enable the next key to be sent directly
+      (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+      ;; Set up global key bindings.  These always work, no matter the input state!
+      ;; Keep in mind that changing this list after EXWM initializes has no effect.
+      (setq exwm-input-global-keys
+            `(
+              ;; Reset to line-mode (C-c C-k switches to char-mode via exwm-input-release-keyboard)
+              ([?\s-r] . exwm-reset)
+
+              ;; Move between windows
+              ([s-left] . windmove-left)
+              ([s-right] . windmove-right)
+              ([s-up] . windmove-up)
+              ([s-down] . windmove-down)
+
+              ;; Launch applications via shell command
+              ([?\s-&] . (lambda (command)
+                           (interactive (list (read-shell-command "$ ")))
+                           (start-process-shell-command command nil command)))
+
+              ;; Switch workspace
+              ([?\s-w] . exwm-workspace-switch)
+
+              ;; 's-N': Switch to certain workspace with Super (Win) plus a number key (0 - 9)
+              ,@(mapcar (lambda (i)
+                          `(,(kbd (format "s-%d" i)) .
+                            (lambda ()
+                              (interactive)
+                              (exwm-workspace-switch-create ,i))))
+                        (number-sequence 0 9))))
+      )
 
     )
 #+end_src
