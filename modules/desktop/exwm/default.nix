@@ -55,7 +55,7 @@ in {
           name = "exwm";
           # launch emacs in fullscreen with dbus lol
           start = ''
-            ${pkgs.dbus.dbus-launch} --exit-with-session emacs -mm --fullscreen \
+            ${pkgs.dbus.dbus-launch} --exit-with-session emacs -mm \
               -l "${extraConfig}"
           '';
         };
