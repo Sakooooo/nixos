@@ -1321,6 +1321,7 @@ RELEASE ME
 
         ;; background
         (call-process-shell-command "feh --bg-fill ~/background.png" nil 0)     
+        (call-process-shell-command "~/.config/polybar/startpolybar" nil 0)     
         ;; workspaces
         (setq exwm-workspace-number 5)
 
