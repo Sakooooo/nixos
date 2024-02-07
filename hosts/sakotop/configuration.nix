@@ -59,6 +59,7 @@
         lutris.enable = true;
         steam.enable = true;
         grapejuice.enable = true;
+        tetrio.enable = true;
       };
       media = {
         gimp.enable = true;
