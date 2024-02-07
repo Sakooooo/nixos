@@ -1314,6 +1314,9 @@ RELEASE ME
     (display-battery-mode)
     (use-package exwm
       :config
+
+      ;; background
+      (call-process-shell-command "feh --bg-fill ~/background.png" nil 0)     
       ;; workspaces
       (setq exwm-workspace-number 5)
 
@@ -1365,6 +1368,16 @@ RELEASE ME
                         (number-sequence 0 9))))
       ))
 
+
+  (use-package exwm-outer-gaps
+    :straight (exmw-outer-gaps :type git :host github :repo "lucasgruss/exwm-outer-gaps")
+    :config
+    (defun exwm-outer-gaps-redraw ()        
+      "exwm-outer gaps sometimes has artifacts in the gap area. Quickly toggling the mode on and off works forces a redraw of the gaps and gets rid of them."
+      (interactive)
+      (exwm-outer-gaps-mode))
+    :hook (exwm-init
+           . (lambda () (exwm-outer-gaps-mode))))
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
