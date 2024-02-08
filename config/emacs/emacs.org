@@ -1321,16 +1321,16 @@ RELEASE ME
 
       ;; background
       (add-hook 'exwm-init-hook (lambda ()
-      ;; background
-      (call-process-shell-command "feh --bg-fill ~/background.png" nil 0)     
-      (call-process-shell-command "~/.config/polybar/startpolybar" nil 0)     
-      (call-process-shell-command "~/.config/picom/startpicom" nil 0)     
-      ;; startup
-      (call-process-shell-command "nm-applet" nil 0)     
-      (call-process-shell-command "blueman-applet" nil 0)     
-      (call-process-shell-command "nextcloud" nil 0)     
-      (call-process-shell-command "bitwarden" nil 0)     
-      (call-process-shell-command "flameshot" nil 0)     
+                                  ;; background
+                                  (call-process-shell-command "feh --bg-fill ~/background.png" nil 0)     
+                                  (call-process-shell-command "~/.config/polybar/startpolybar" nil 0)     
+                                  (call-process-shell-command "~/.config/picom/startpicom" nil 0)     
+                                  ;; startup
+                                  (call-process-shell-command "nm-applet" nil 0)     
+                                  (call-process-shell-command "blueman-applet" nil 0)     
+                                  (call-process-shell-command "nextcloud" nil 0)     
+                                  (call-process-shell-command "bitwarden" nil 0)     
+                                  (call-process-shell-command "flameshot" nil 0)     
                                   )) 
       ;; startup
       ;; workspaces
@@ -1410,6 +1410,15 @@ RELEASE ME
                               (exwm-workspace-switch-create ,i))))
                         (number-sequence 0 9))))
       )
+
+    (use-package desktop-environment
+      :after exwm
+      :config (desktop-environment-mode)
+      :custom
+      (desktop-environment-brightness-small-increment "2%+")
+      (desktop-environment-brightness-small-decrement "2%-")
+      (desktop-environment-brightness-normal-increment "5%+")
+      (desktop-environment-brightness-normal-decrement "5%-"))
 
     )
 #+end_src
