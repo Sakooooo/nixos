@@ -103,7 +103,8 @@ in {
       # screen shot (s)
       flameshot
       # counsel-linux-apps
-      gtk3.gtk-launch
+      # surely theres a better way right? just need gtk-laucnh
+      gtk3
     ];
 
     # environment.systemPackages = with pkgs; [
