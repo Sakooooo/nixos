@@ -66,6 +66,7 @@
         blender.enable = true;
         kdenlive.enable = true;
         mpv.enable = true;
+        jellyfin.enable = true;
       };
     };
     hardware = {

@@ -7,5 +7,6 @@
     ./kdenlive
     ./lmms
     ./mpv
+    ./jellyfin
   ];
 }
