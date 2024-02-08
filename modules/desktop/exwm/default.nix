@@ -24,6 +24,9 @@ in {
 
     # keyring
     services.gnome.gnome-keyring.enable = true;
+    services.gnome.seahorse.enable = true;
+    security.pam.services.lightdm.enableGnomeKeyring = true;
+
     services.xserver = {
       enable = true;
       # windowManager.exwm = {
