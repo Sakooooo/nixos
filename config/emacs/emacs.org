@@ -313,7 +313,7 @@ Cause emacs overlay lol
       )
     ;; better commands
     (use-package counsel
-      :custon
+      :custom
       (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
       )
     ;; autocompletion on commands (?)
