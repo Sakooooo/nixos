@@ -102,6 +102,8 @@ in {
       catppuccin-cursors.mochaDark
       # screen shot (s)
       flameshot
+      # counsel-linux-apps
+      gtk3.gtk-launch
     ];
 
     # environment.systemPackages = with pkgs; [
