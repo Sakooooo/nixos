@@ -1320,8 +1320,19 @@ RELEASE ME
       :config
 
       ;; background
+      (add-hook 'exwm-init-hook (lambda ()
+      ;; background
       (call-process-shell-command "feh --bg-fill ~/background.png" nil 0)     
       (call-process-shell-command "~/.config/polybar/startpolybar" nil 0)     
+      (call-process-shell-command "~/.config/picom/startpicom" nil 0)     
+      ;; startup
+      (call-process-shell-command "nm-applet" nil 0)     
+      (call-process-shell-command "blueman-applet" nil 0)     
+      (call-process-shell-command "nextcloud" nil 0)     
+      (call-process-shell-command "bitwarden" nil 0)     
+      (call-process-shell-command "flameshot" nil 0)     
+                                  )) 
+      ;; startup
       ;; workspaces
       (setq exwm-workspace-number 5)
 
