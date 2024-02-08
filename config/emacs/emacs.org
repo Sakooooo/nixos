@@ -1294,7 +1294,6 @@ okay this one is a bit more understandable
     :init
     (setq elcord-display-buffer-details nil)
     (setq elcord-use-major-mode-as-main-icon t)
-    (elcord-mode)
     )
 #+end_src
 ** Email 
