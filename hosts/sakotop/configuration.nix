@@ -109,6 +109,7 @@
       tmux.enable = true;
       newsboat.enable = true;
       ranger.enable = true;
+      aria.enable = true;
     };
     media = {
       mpd.enable = false;

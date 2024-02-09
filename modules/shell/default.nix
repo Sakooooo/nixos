@@ -5,5 +5,6 @@
     ./tmux
     ./newsboat
     ./ranger
+    ./aria
   ];
 }
