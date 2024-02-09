@@ -1325,7 +1325,8 @@ RELEASE ME
         ;; background
         (call-process-shell-command "feh --bg-fill ~/background.png" nil 0)     
         (set-frame-parameter (selected-frame)'alpha '(90 . 90))
-        (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+        (setq default-frame-alist
+              '((alpha . 30)))
         (call-process-shell-command "~/.config/polybar/startpolybar" nil 0)     
         (call-process-shell-command "~/.config/picom/startpicom" nil 0)     
         ;; startup
