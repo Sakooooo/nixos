@@ -510,36 +510,37 @@ Cause emacs overlay lol
 #+end_src 
 ** Dashboard
 #+begin_src emacs-lisp
-  (use-package dashboard
-    :init
-    (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
-    (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
-    (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
-    (setq dashboard-center-content t)
-    (setq dashboard-projects-backend 'projectile)
-    (setq dashboard-startup-banner "~/.emacs.d/dashboard.png")
-    (setq dashboard-footer-messages '("i think i have emacs pinky"
-                                      "why are we still using lisp again?"
-                                      "why is this running on 1/16 threads?!?!?"
-                                      "still waiting for multithreaded :)"
-                                      "any day now"
-                                      "make sure to pray today"
-                                      "im literally kanye west"
-                                      "please dont break please dont break"
-                                      "GNU/Linux/Emacs/???"
-                                      "what is a GNU/Linux ?????????????"
-                                      "done!"
-                                      "remove / for faster emacs on linux"
-                                      ""))
-    (setq dashboard-items '((recents  . 3)
-                            (projects . 3)
-                            (agenda . 5)))
+    (use-package dashboard
+      :init
+      (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
+      (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
+      (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+      (setq dashboard-center-content t)
+      (setq dashboard-projects-backend 'projectile)
+      (setq dashboard-startup-banner "~/.emacs.d/dashboard.png")
+      (setq dashboard-footer-messages '("i think i have emacs pinky"
+                                        "why are we still using lisp again?"
+                                        "why is this running on 1/16 threads?!?!?"
+                                        "still waiting for multithreaded :)"
+                                        "any day now"
+                                        "make sure to pray today"
+                                        "im literally kanye west"
+                                        "please dont break please dont break"
+                                        "GNU/Linux/Emacs/???"
+                                        "what is a GNU/Linux ?????????????"
+                                        "done!"
+                                        "remove / for faster emacs on linux"
+                                        ""))
+      (setq dashboard-items '((recents  . 3)
+                              (projects . 3)
+                              (agenda . 5)))
 
-    (setq dashboard-image-banner-max-height 200)
-    (setq dashboard-image-banner-max-width 300)
+      (setq dashboard-image-banner-max-height 200)
+      (setq dashboard-image-banner-max-width 300)
 
-    (setq dashboard-page-separator "\n\n")
-    (dashboard-setup-startup-hook))
+      (setq dashboard-page-separator "\n\n")
+      (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+      (dashboard-setup-startup-hook))
 #+end_src
 ** Evil Mode (vim)
 #+begin_src emacs-lisp
@@ -1320,21 +1321,25 @@ RELEASE ME
     (use-package exwm
       :config
 
+      (defun sakomacs/exwm-init-hook ()
+        ;; background
+        (call-process-shell-command "feh --bg-fill ~/background.png" nil 0)     
+        (set-frame-parameter (selected-frame)'alpha '(90 . 90))
+        (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+        (call-process-shell-command "~/.config/polybar/startpolybar" nil 0)     
+        ;; todo fix picom
+        ;; (call-process-shell-command "~/.config/picom/startpicom" nil 0)     
+        ;; startup
+        (call-process-shell-command "nm-applet" nil 0)     
+        (call-process-shell-command "blueman-applet" nil 0)     
+        (call-process-shell-command "nextcloud" nil 0)     
+        (call-process-shell-command "bitwarden" nil 0)     
+        (call-process-shell-command "flameshot" nil 0)  
+        )
+
       ;; background
       ;; todo turn this info a function
-      (add-hook 'exwm-init-hook (lambda ()
-                                  ;; background
-                                  (call-process-shell-command "feh --bg-fill ~/background.png" nil 0)     
-                                  (call-process-shell-command "~/.config/polybar/startpolybar" nil 0)     
-                                  ;; todo fix picom
-                                  ;; (call-process-shell-command "~/.config/picom/startpicom" nil 0)     
-                                  ;; startup
-                                  (call-process-shell-command "nm-applet" nil 0)     
-                                  (call-process-shell-command "blueman-applet" nil 0)     
-                                  (call-process-shell-command "nextcloud" nil 0)     
-                                  (call-process-shell-command "bitwarden" nil 0)     
-                                  (call-process-shell-command "flameshot" nil 0)     
-                                  )) 
+      (add-hook 'exwm-init-hook 'sakomacs/exwm-init-hook)
       ;; startup
       ;; workspaces
       (setq exwm-workspace-number 5)
