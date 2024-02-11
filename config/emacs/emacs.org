@@ -1271,7 +1271,8 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 only god knows why im doing this 
 #+begin_src emacs-lisp
   ;; codeberg thingy
-  (use-package visual-fill-column)
+  ;; breaks on nixos
+  ;; (use-package visual-fill-column)
   (use-package telega)
 #+end_src
 ** pdf-tools 
