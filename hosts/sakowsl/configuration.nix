@@ -53,8 +53,10 @@
 
   services.gnome.gnome-keyring.enable = true;
 
+  # git-credential-manager setup
   users.users.sako.packages = with pkgs; [
     git-credential-manager
+    dotnet-sdk_7
   ];
 
   # Home manager setup
