@@ -51,6 +51,8 @@
   '';
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  services.gnome.gnome-keyring.enable = true;
+
   # Home manager setup
   home-manager.useUserPackages = true;
   home-manager.users.sako = {pkgs, ...}: {
@@ -61,8 +63,6 @@
     xdg.configFile.git = {
       source = ../../config/git;
     };
-
-    services.gnome.gnome-keyring.enable = true;
 
     # cure my sanity
     home.pointerCursor = {
