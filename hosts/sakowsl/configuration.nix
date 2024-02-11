@@ -51,18 +51,6 @@
   '';
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  services.gnome.gnome-keyring.enable = true;
-
-  environment.sessionVariables = {
-    DOTNET_ROOT = "${pkgs.dotnet-sdk}";
-  };
-
-  # git-credential-manager setup
-  users.users.sako.packages = with pkgs; [
-    git-credential-manager
-    dotnet-sdk_7
-  ];
-
   # Home manager setup
   home-manager.useUserPackages = true;
   home-manager.users.sako = {pkgs, ...}: {
