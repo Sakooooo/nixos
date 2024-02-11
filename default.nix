@@ -110,6 +110,7 @@
     gh # github
     htop # htop
     tree # trees
+    git-credential-manager # this is so good
   ];
   # you phisiclally cannot live without this
   # litearlly!  ! ! ! ! !
