@@ -53,6 +53,10 @@
 
   services.gnome.gnome-keyring.enable = true;
 
+  users.users.sako.packages = with pkgs; [
+    git-credential-manager
+  ];
+
   # Home manager setup
   home-manager.useUserPackages = true;
   home-manager.users.sako = {pkgs, ...}: {
