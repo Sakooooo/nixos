@@ -53,6 +53,10 @@
 
   services.gnome.gnome-keyring.enable = true;
 
+  environment.sessionVariables = {
+    DOTNET_ROOT = "${pkgs.dotnet-sdk}";
+  };
+
   # git-credential-manager setup
   users.users.sako.packages = with pkgs; [
     git-credential-manager
