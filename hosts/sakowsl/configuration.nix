@@ -62,6 +62,8 @@
       source = ../../config/git;
     };
 
+    services.gnome.gnome-keyring.enable = true;
+
     # cure my sanity
     home.pointerCursor = {
       name = "Catppuccin-Mocha-Dark";
