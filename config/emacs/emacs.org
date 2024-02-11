@@ -1273,7 +1273,7 @@ only god knows why im doing this
   ;; codeberg thingy
   ;; breaks on nixos
   ;; (use-package visual-fill-column)
-  (use-package telega)
+  ;; (use-package telega)
 #+end_src
 ** pdf-tools 
 Emacs can be everything? Why not turn it into a pdf reader
