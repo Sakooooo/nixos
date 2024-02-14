@@ -118,8 +118,11 @@
     dev = {
       editors = {
         nvim.enable = true;
-        emacs.enable = true;
-        emacs.daemon = false;
+        emacs = {
+          enable = true;
+          daemon = false;
+          type = "unstable-pgtk";
+        };
       };
       cc.enable = true;
       nil.enable = true;
