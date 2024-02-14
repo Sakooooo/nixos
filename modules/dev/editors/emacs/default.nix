@@ -27,7 +27,7 @@ in {
     enable = mkEnableOption false;
     daemon = mkEnableOption true;
     type = mkOption {
-      type = string;
+      type = with types; str;
       default = "unstable";
     };
   };
