@@ -12,7 +12,7 @@ with lib; let
 
   myEmacs = pkgs.emacsWithPackagesFromUsePackage {
     config = ../../../../config/emacs/emacs.org;
-    package = "pkgs.emacs-" + cfg.type;
+    package = cfg.type;
     alwaysEnsure = true;
     alwaysTangle = true;
     extraEmacsPackages = epkgs: [
@@ -22,13 +22,15 @@ with lib; let
       epkgs.exwm
     ];
   };
+
+  emacsType = "pkgs.*";
 in {
   options.modules.dev.editors.emacs = {
     enable = mkEnableOption false;
     daemon = mkEnableOption true;
     type = mkOption {
-      type = with types; str;
-      default = "unstable";
+      type = emacsType;
+      default = "pkgs.emacs-unstable";
     };
   };
 
