@@ -4,7 +4,6 @@
   config,
   lib,
   pkgs,
-  types,
   inputs,
   ...
 }:
@@ -28,7 +27,7 @@ in {
     enable = mkEnableOption false;
     daemon = mkEnableOption true;
     package = mkOption {
-      type = types.package;
+      type = with types; package;
       default = pkgs.emacs-unstable;
       description = "pkgs. followed by the name of the emacs overlay package";
     };
