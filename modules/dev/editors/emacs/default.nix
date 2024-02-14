@@ -26,7 +26,7 @@ in {
   options.modules.dev.editors.emacs = {
     enable = mkEnableOption false;
     daemon = mkEnableOption true;
-    type = mkOption {
+    package = mkOption {
       type = pkg;
       default = pkgs.emacs-unstable;
       description = "pkgs. followed by the name of the emacs overlay package";

@@ -121,7 +121,7 @@
         emacs = {
           enable = true;
           daemon = false;
-          type = "pkgs.emacs-unstable-pgtk";
+          package = pkgs.emacs-unstable-pgtk;
         };
       };
       cc.enable = true;
