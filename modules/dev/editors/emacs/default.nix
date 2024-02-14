@@ -31,6 +31,7 @@ in {
     type = mkOption {
       type = emacsType;
       default = "pkgs.emacs-unstable";
+      description = "pkgs. followed by the name of the emacs overlay package";
     };
   };
 
