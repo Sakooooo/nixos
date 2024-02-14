@@ -27,8 +27,8 @@ in {
     enable = mkEnableOption false;
     daemon = mkEnableOption true;
     type = mkOption {
-      type = with types; str;
-      default = "pkgs.emacs-unstable";
+      type = pkg;
+      default = pkgs.emacs-unstable;
       description = "pkgs. followed by the name of the emacs overlay package";
     };
   };
