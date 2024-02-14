@@ -12,7 +12,7 @@ with lib; let
 
   myEmacs = pkgs.emacsWithPackagesFromUsePackage {
     config = ../../../../config/emacs/emacs.org;
-    package = pkgs.emacs- + cfg.type;
+    package = "pkgs.emacs-" + cfg.type;
     alwaysEnsure = true;
     alwaysTangle = true;
     extraEmacsPackages = epkgs: [
