@@ -12,7 +12,7 @@ with lib; let
 
   myEmacs = pkgs.emacsWithPackagesFromUsePackage {
     config = ../../../../config/emacs/emacs.org;
-    package = pkgs.emacs-unstable;
+    package = pkgs.emacs- + cfg.type;
     alwaysEnsure = true;
     alwaysTangle = true;
     extraEmacsPackages = epkgs: [
@@ -26,6 +26,10 @@ in {
   options.modules.dev.editors.emacs = {
     enable = mkEnableOption false;
     daemon = mkEnableOption true;
+    type = mkOption {
+      type = string;
+      default = "unstable";
+    };
   };
 
   config = mkIf cfg.enable {
