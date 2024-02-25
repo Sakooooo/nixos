@@ -1075,6 +1075,12 @@ make sure to setup authinfo
 
   (use-package markdown-preview-mode)
 #+end_src
+***** GDScript
+#+begin_src emacs-lisp
+  (use-package gdscript-mode
+    :hook (gdscript-mode . lsp)
+    :mode "\\.gd\\'")
+#+end_src
 *** Commenter
 #+begin_src emacs-lisp
   (use-package evil-nerd-commenter
