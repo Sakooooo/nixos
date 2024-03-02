@@ -17,14 +17,19 @@
 
   modules = {
     desktop = {
-      xmonad.enable = true;
+      bspwm = {
+        enable = true;
+        polybar.enable = true;
+      };
       kitty.enable = true;
       picom.enable = true;
       apps = {
         keepassxc.enable = true;
-        obs.enable = true;
         nextcloud.enable = true;
         rssguard.enable = true;
+        nextcloud.enable = true;
+        bitwarden.enable = true;
+        obs.enable = true;
       };
       browsers = {
         firefox.enable = true;
@@ -35,22 +40,30 @@
         whatsapp.enable = true;
         zoom.enable = true;
         discord.enable = true;
+        teams.enable = true;
+        telegram.enable = true;
       };
       game = {
         lutris.enable = true;
         steam.enable = true;
         wine.enable = true;
         grapejuice.enable = true;
+        tetrio.enable = true;
       };
       media = {
         mpv.enable = true;
         kdenlive.enable = true;
+        blender.enable = true;
+        mpv.enable = true;
       };
     };
     dev = {
       editors = {
         nvim.enable = true;
-        emacs.enable = true;
+        emacs = {
+          enable = true;
+          daemon = true;
+        };
       };
       cc.enable = true;
       javascript.enable = true;
