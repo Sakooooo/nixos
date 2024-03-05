@@ -114,6 +114,9 @@
         nextcloud.enable = true;
         pass.enable = true;
       };
+      chat = {
+        weechat.enable = true;
+      };
     };
     dev = {
       editors = {

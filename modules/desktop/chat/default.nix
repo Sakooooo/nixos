@@ -5,5 +5,6 @@
     ./zoom
     ./discord
     ./telegram
+    ./weechat
   ];
 }

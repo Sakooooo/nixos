@@ -39,6 +39,7 @@
         discord.enable = true;
         teams.enable = true;
         telegram.enable = true;
+        weechat.enable = true;
       };
       apps = {
         nemo.enable = true;
