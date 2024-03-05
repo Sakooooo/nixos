@@ -7,7 +7,7 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.desktop.chat.whatsapp;
+  cfg = config.modules.desktop.chat.weechat;
 in {
   options.modules.desktop.chat.weechat = {
     enable = mkEnableOption false;
