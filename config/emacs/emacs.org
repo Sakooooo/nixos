@@ -366,7 +366,7 @@ Cause emacs overlay lol
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
   ;; load the theme
-  (load-theme 'doom-xcode t)
+  (load-theme 'doom-wilmersdorf t)
 
   (doom-themes-org-config)
 
@@ -404,16 +404,16 @@ Cause emacs overlay lol
 #+end_src
 ** Custom Modeline
 #+begin_src emacs-lisp
-  (use-package doom-modeline
-    :ensure t
-    ;; :hook (after-init . doom-modeline-mode)
-    :init (doom-modeline-mode 1)
-    :custom (
-             (doom-modeline-height 25)
-  	   (doom-modeline-bar-width 4)
-  	   (doom-modeline-major-mode-icon nil)
-             (doom-modeline-modal-modern-icon nil)
-             ))
+  ;; (use-package doom-modeline
+  ;;   :ensure t
+  ;;   ;; :hook (after-init . doom-modeline-mode)
+  ;;   :init (doom-modeline-mode 1)
+  ;;   :custom (
+  ;;            (doom-modeline-height 35)
+  ;; 	   (doom-modeline-bar-width 4)
+  ;; 	   (doom-modeline-major-mode-icon nil)
+  ;;            (doom-modeline-modal-modern-icon nil)
+  ;;            ))
 #+end_src
 ** Hide Modeline
 #+begin_src emacs-lisp
@@ -1445,6 +1445,15 @@ RELEASE ME
         erc-user-full-name "sako"
         ;; erc-autojoin-channels-alist '(("irc-libera.chat" "#systemcrafters" "#emacs"))
         erc-kill-buffer-on-part 8)
+#+end_src
+** fancy-compilation
+#+begin_src emacs-lisp
+  ;; to get past codeberg blocks in my country
+  (use-package (fancy-compilation :type git :host github :repo "emacsmirror/fancy-compilation")
+    :commands (fancy-compilation-mode))
+
+  (with-eval-after-load 'compile
+    (fancy-compilation-mode))
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
