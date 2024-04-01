@@ -27,7 +27,6 @@
         keepassxc.enable = true;
         nextcloud.enable = true;
         rssguard.enable = true;
-        nextcloud.enable = true;
         bitwarden.enable = true;
         obs.enable = true;
       };
@@ -55,7 +54,6 @@
         mpv.enable = true;
         kdenlive.enable = true;
         blender.enable = true;
-        mpv.enable = true;
       };
     };
     dev = {
