@@ -366,7 +366,7 @@ Cause emacs overlay lol
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
   ;; load the theme
-  (load-theme 'doom-wilmersdorf t)
+  (load-theme 'doom-badger t)
 
   (doom-themes-org-config)
 
@@ -404,16 +404,20 @@ Cause emacs overlay lol
 #+end_src
 ** Custom Modeline
 #+begin_src emacs-lisp
-  ;; (use-package doom-modeline
-  ;;   :ensure t
-  ;;   ;; :hook (after-init . doom-modeline-mode)
-  ;;   :init (doom-modeline-mode 1)
-  ;;   :custom (
-  ;;            (doom-modeline-height 35)
-  ;; 	   (doom-modeline-bar-width 4)
-  ;; 	   (doom-modeline-major-mode-icon nil)
-  ;;            (doom-modeline-modal-modern-icon nil)
-  ;;            ))
+      ;; (use-package doom-modeline
+      ;;   :ensure t
+      ;;   ;; :hook (after-init . doom-modeline-mode)
+      ;;   :init (doom-modeline-mode 1)
+      ;;   :custom (
+      ;;            (doom-modeline-height 35)
+      ;; 	   (doom-modeline-bar-width 4)
+      ;; 	   (doom-modeline-major-mode-icon nil)
+      ;;            (doom-modeline-modal-modern-icon nil)
+      ;;            ))
+
+      (use-package telephone-line
+        :init
+        (telephone-line-mode 1))
 #+end_src
 ** Hide Modeline
 #+begin_src emacs-lisp
@@ -537,7 +541,7 @@ Cause emacs overlay lol
                               (agenda . 5)))
 
       (setq dashboard-image-banner-max-height 200)
-      (setq dashboard-image-banner-max-width 300)
+      ;; (setq dashboard-image-banner-max-width 300)
 
       (setq dashboard-page-separator "\n\n")
       (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
@@ -1081,6 +1085,12 @@ make sure to setup authinfo
   (use-package gdscript-mode
     :hook (gdscript-mode . lsp)
     :mode "\\.gd\\'")
+#+end_src
+***** Rust
+#+begin_src emacs-lisp
+    (use-package rust-mode
+      :hook (rust-mode . lsp)
+      :mode "\\.rs\\'")
 #+end_src
 *** Commenter
 #+begin_src emacs-lisp
