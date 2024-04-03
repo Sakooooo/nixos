@@ -30,6 +30,18 @@ local plugins = {
 	"nvim-treesitter/nvim-treesitter",
 	"windwp/nvim-ts-autotag",
 
+	-- org mode
+	{
+	'nvim-orgmode/orgmode',
+  	event = 'VeryLazy',
+  	config = function()
+    	-- Setup orgmode
+    		require('orgmode').setup({
+      			org_agenda_files = '~/org/*',
+      			--org_default_notes_file = '~/org/refile.org',
+    		})
+	},
+
 	-- like fzf but goofier
 	{
 		"nvim-telescope/telescope.nvim",
