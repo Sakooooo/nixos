@@ -95,30 +95,6 @@ local plugins = {
 				theme = "doom", --  theme is doom and hyper default is hyper
 				config = {
 					-- todo https://github.com/nvimdev/dashboard-nvim
-					header = {
-            "",
-            "",                                                                        
-            "",                                                                        
-            "",                                                                        
-            "",                                                                        
-            "",                                                                        
-            "                                          iiii                          ",                                                                        
-            "                                         i::::i                         ",                                                                        
-            "                                          iiii                          ",                                                                        
-            "                                                                        ",                                                                        
-            "nnnn  nnnnnnnn vvvvvvv           vvvvvvviiiiiii    mmmmmmm    mmmmmmm   ",                                                                        
-            "n:::nn::::::::nnv:::::v         v:::::v i:::::i  mm:::::::m  m:::::::mm ",                                                                        
-            "n::::::::::::::nnv:::::v       v:::::v   i::::i m::::::::::mm::::::::::m",                                                                        
-            "nn:::::::::::::::nv:::::v     v:::::v    i::::i m::::::::::::::::::::::m",                                                                        
-            "  n:::::nnnn:::::n v:::::v   v:::::v     i::::i m:::::mmm::::::mmm:::::m",                                                                        
-            "  n::::n    n::::n  v:::::v v:::::v      i::::i m::::m   m::::m   m::::m",                                                                        
-            "  n::::n    n::::n   v:::::v:::::v       i::::i m::::m   m::::m   m::::m",                                                                        
-            "  n::::n    n::::n    v:::::::::v        i::::i m::::m   m::::m   m::::m",                                                                        
-            "  n::::n    n::::n     v:::::::v        i::::::im::::m   m::::m   m::::m",                                                                        
-            "  n::::n    n::::n      v:::::v         i::::::im::::m   m::::m   m::::m",                                                                        
-            "  n::::n    n::::n       v:::v          i::::::im::::m   m::::m   m::::m",                                                                        
-            "  nnnnnn    nnnnnn        vvv           iiiiiiiimmmmmm   mmmmmm   mmmmmm",                                                                        
-					}, --your header
 					center = {
 						{
 							icon = " ",
