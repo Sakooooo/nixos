@@ -21,7 +21,8 @@ local plugins = {
 	"nvim-tree/nvim-web-devicons",
 
 	-- colorscheme
-	{ "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
+	-- { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
+  "savq/melange-nvim",
 
 	-- default bar only looks good on linux
 	"nvim-lualine/lualine.nvim",
