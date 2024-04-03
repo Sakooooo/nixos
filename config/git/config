@@ -1,9 +1,6 @@
 [user]
 	email = "78461130+Sakooooo@users.noreply.github.com"
 	name = "Sakooooo"
-[commit]
-	gpgsign = tru
-
 [credential "https://github.com"]
 	helper =
 	helper = !gh auth git-credential
