@@ -1,7 +1,8 @@
 [user]
 	email = "78461130+Sakooooo@users.noreply.github.com"
 	name = "Sakooooo"
-	gpgsign = true
+[commit]
+	gpgsign = tru
 
 [credential "https://github.com"]
 	helper =
