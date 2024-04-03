@@ -53,7 +53,7 @@ vim.keymap.set("n", "<leader>t", ":FloatermToggle<CR>")
 vim.keymap.set("n", "<leader>nt", ":FloatermNew --height=25 --width --100<CR>")
 
 -- git client
-vim.keymap.set("n", "<leader>gs", ":Neogit")
+vim.keymap.set("n", "<leader>gs", ":Neogit<CR>")
 
 -- exit terminal with esc
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)
