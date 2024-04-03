@@ -115,6 +115,21 @@ local plugins = {
 
 	-- floating terminal, useful to mimic/be better than vscode
 	"voldikss/vim-floaterm",
+
+  -- git client
+  {
+  "NeogitOrg/neogit",
+  dependencies = {
+    "nvim-lua/plenary.nvim",         -- required
+    "sindrets/diffview.nvim",        -- optional - Diff integration
+
+    -- Only one of these is needed, not both.
+    "nvim-telescope/telescope.nvim", -- optional
+    "ibhagwan/fzf-lua",              -- optional
+  },
+  config = true
+  },
+
 }
 
 require("lazy").setup(plugins, {})
