@@ -148,6 +148,8 @@
     };
   };
 
+  services.gnome.gnome-keyring.enable = true;
+
   # for wsl-open
   environment.sessionVariables = rec {
     BROWSER = "wsl-open";
