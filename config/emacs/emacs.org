@@ -111,6 +111,7 @@ Cause emacs overlay lol
 #+begin_src emacs-lisp
   ;; TODO Test this on darwin someday
   (when (eq system-type 'windows-nt)
+    (message "setting up straight.el")
     (defvar bootstrap-version)
     (let ((bootstrap-file
            (expand-file-name
@@ -129,6 +130,10 @@ Cause emacs overlay lol
       (setq straight-use-package-by-default t))
 #+end_src
 * SPEED SPEED SPEED SPEED
+** Notify
+#+begin_src emacs-lisp
+(message "making emacs faster")
+#+end_src
 ** Avoid Garbage Collection at startup
 #+begin_src emacs-lisp
   (use-package gcmh
@@ -401,20 +406,20 @@ Cause emacs overlay lol
 #+end_src
 ** Custom Modeline
 #+begin_src emacs-lisp
-      ;; (use-package doom-modeline
-      ;;   :ensure t
-      ;;   ;; :hook (after-init . doom-modeline-mode)
-      ;;   :init (doom-modeline-mode 1)
-      ;;   :custom (
-      ;;            (doom-modeline-height 35)
-      ;; 	   (doom-modeline-bar-width 4)
-      ;; 	   (doom-modeline-major-mode-icon nil)
-      ;;            (doom-modeline-modal-modern-icon nil)
-      ;;            ))
+      (use-package doom-modeline
+        :ensure t
+        ;; :hook (after-init . doom-modeline-mode)
+        :init (doom-modeline-mode 1)
+        :custom (
+                 (doom-modeline-height 35)
+	   (doom-modeline-bar-width 4)
+	   (doom-modeline-major-mode-icon nil)
+                 (doom-modeline-modal-modern-icon nil)
+                 ))
 
-      (use-package telephone-line
-        :init
-        (telephone-line-mode 1))
+      ;; (use-package telephone-line
+      ;;   :init
+      ;;   (telephone-line-mode 1))
 #+end_src
 ** Hide Modeline
 #+begin_src emacs-lisp
@@ -1459,6 +1464,10 @@ RELEASE ME
 
   (with-eval-after-load 'compile
     (fancy-compilation-mode))
+#+end_src
+** End
+#+begin_src emacs-lisp
+(message "finishing up")
 #+end_src
 * Org Mode Configuration Setup
 ** Babel Languages
