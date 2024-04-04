@@ -66,6 +66,8 @@ in {
       # org to pdf
       # this might be bloat...
       texliveFull
+      # ement.el
+      pantalaimon
     ];
 
     home-manager.users.sako = {lib, ...}: {
