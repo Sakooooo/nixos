@@ -24,8 +24,17 @@
     outputs.nixosModules.security
   ];
 
-  # flakes
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  # nix settings that should 100% be global
+  #nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+    substituters = [
+      "https://cache.garnix.io"
+    ];
+    trusted-public-keys = [
+      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+    ];
+  };
 
   # import the overlays
   nixpkgs = {
