@@ -49,7 +49,17 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+# nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+    substituters = [
+      "https://cache.garnix.io"
+    ];
+    trusted-public-keys = [
+      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+    ];
+  };
+
 
   # Home manager setup
   home-manager.useUserPackages = true;
