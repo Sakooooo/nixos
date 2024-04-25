@@ -85,6 +85,10 @@ Should make startup faster, taken from doom-emacs
 * Fonts
 #+begin_src emacs-lisp
   (set-face-attribute `default nil :font "JetBrainsMono NF" :height 125)
+
+  ;; fix emojis
+  (setf use-default-font-for-symbols nil)
+  (set-fontset-font t 'unicode "Noto Color Emoji" nil 'append)
 #+end_src
 * Use-Package setup 
 #+begin_src emacs-lisp
@@ -1030,23 +1034,27 @@ make sure to setup authinfo
 #+end_src
 ***** Python
 #+begin_src emacs-lisp
-  (use-package python-mode
-    :mode "\\.py\\'"
-    :hook (python-mode . lsp))
+      (use-package python-mode
+        :mode "\\.py\\'"
+        :hook (python-mode . lsp))
 
-  (use-package elpy
-  :after python-mode
+      (use-package elpy
+      :after python-mode
 
-  :custom
-  (elpy-rpc-python-command "python3")
+      :custom
+      (elpy-rpc-python-command "python3")
 
-  :config
-  (elpy-enable))
+      :config
+      (elpy-enable))
 
-  (use-package lsp-pyright
-    :hook (python-mode . (lambda ()
-                           (require 'lsp-pyright)
-                           (lsp))))  ; or lsp-deferred
+      (use-package lsp-pyright
+        :hook (python-mode . (lambda ()
+                               (require 'lsp-pyright)
+                               (lsp))))  ; or lsp-deferred
+
+      (use-package poetry
+        :config
+        (poetry-tracking-mode 1))
 #+end_src
 ***** Haskell
 #+begin_src emacs-lisp
@@ -1305,7 +1313,35 @@ Emacs can be everything? Why not turn it into a pdf reader
 ** Matrix Client
 okay this one is a bit more understandable
 #+begin_src emacs-lisp
-  (use-package ement)
+  (use-package ement
+    :config
+    (when (eq system-type 'windows-nt)
+      (setq plz-curl-default-args
+  	    '("--silent"
+  	        "--location"))
+      )
+    (setq ement-room-images t)
+    )
+
+  (defvar ement-pantalaimon-not-running t
+    "Variable to see if Pantalaimon Proxy is running.")
+
+  (defun ement-connect-encrypted ()
+    "Connect to Matrix with E2E enabled."
+    (interactive)
+    (if ement-pantalaimon-not-running 
+    (when (eq system-type 'windows-nt)
+      (call-process-shell-command "wsl pantalaimon" nil 0))
+    (setq pantalaimon-not-running nil))
+      (ement-connect :uri-prefix "http://localhost:8009"))
+
+  (defun sakomacs/ement-pantalaimon-disconnect-hook ()
+      "Kill pantalaimon on disconnect"
+      (when (eq system-type 'windows-nt)
+        ;; TODO FIND BETTER WAY
+  	(call-process-shell-command "wsl --shutdown" nil 0)
+  	  (setq pantalaimon-not-running t)))
+  (add-hook 'ement-disconnect-hook 'sakomacs/ement-pantalaimon-disconnect-hook)
 #+end_src
 ** Discord RPC
 #+begin_src emacs-lisp
