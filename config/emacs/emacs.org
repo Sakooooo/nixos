@@ -1020,8 +1020,11 @@ make sure to setup authinfo
 #+end_src
 ***** C/C++
 #+begin_src emacs-lisp
-(add-hook 'c-mode-hook 'lsp)
-(add-hook 'c++-mode-hook 'lsp)
+  (add-hook 'c-mode-hook 'lsp)
+  (add-hook 'c++-mode-hook 'lsp)
+  (add-hook 'c-mode-hook 'format-all-mode)
+  (add-hook 'c++-mode-hook 'format-all-mode)
+
 #+end_src
 ***** CMake
 #+begin_src emacs-lisp
@@ -1134,8 +1137,7 @@ make sure to setup authinfo
 #+end_src
 *** Formatting
 #+begin_src emacs-lisp
-  (use-package format-all
-    )
+  (use-package format-all)
 #+end_src
 *** Better Compile Messages
 #+begin_src emacs-lisp
