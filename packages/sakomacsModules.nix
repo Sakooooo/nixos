@@ -4,7 +4,7 @@ trivialBuild
 }:
 
 trivialBuild {
-    pname = "sakomodules";
+    pname = "sakomacsModules";
     version = "lol";
     src = ../../../../config/emacs/modules;
 

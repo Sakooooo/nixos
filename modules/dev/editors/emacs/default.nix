@@ -21,8 +21,8 @@ with lib; let
     extraEmacsPackages = epkgs: [
       epkgs.use-package
       epkgs.mu4e
+      pkgs.sako.sakomacsModules
       # TODO make this check if EXWM is enabled or not
-      sako.sakomacsModules
       epkgs.exwm
     ];
   };
