@@ -628,22 +628,26 @@ this should be useful later
 #+end_src
 ** Eglot (LSP)
 #+begin_src emacs-lisp
-(use-package eglot
-  :bind (:map eglot-mode-map
-              ("C-c C-a" . eglot-code-actions)
-              ("C-c C-r" . eglot-rename))
-  :config
-  (setq eglot-autoshutdown t
-        eglot-confirm-server-initiated-edits nil))
+  (use-package eglot
+    :bind (:map eglot-mode-map
+                ("C-c C-a" . eglot-code-actions)
+                ("C-c C-r" . eglot-rename))
+    :config
+    (setq eglot-autoshutdown t
+          eglot-confirm-server-initiated-edits nil))
 
-;; this'll make it so i don't have to use vscode every now and then
-;; TODO:: WRITE NIX PACKAGE!!!!!!!!!!!!!!
-(unless (eq system-type 'gnu/linux)
-  (use-package eglot-booster
-    :straight (eglot-booster :type git :host github :repo "jdtsmith/eglot-booster")
-    :after eglot
-    :config (eglot-booster-mode))
-  )
+  ;; this'll make it so i don't have to use vscode every now and then
+  ;; (when (eq system-type 'windows-nt)
+  ;;   (use-package eglot-booster
+  ;;     :straight (eglot-booster :type git :host github :repo "jdtsmith/eglot-booster")
+  ;;     :after eglot
+  ;;     :config (eglot-booster-mode))
+  ;;   )
+
+  (when (eq system-type 'gnu/linux)
+      (use-package eglot-booster
+        :ensure nil
+        :config (eglot-booster-mode)))
 #+end_src
 ** Magit
 #+begin_src emacs-lisp

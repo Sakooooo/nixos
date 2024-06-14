@@ -22,7 +22,24 @@ with lib; let
       # TODO make this check if EXWM is enabled or not
       epkgs.exwm
 #     epkgs.sakomodules
+      epkgs.eglot-booster
     ];
+    # add eglot-lsp-booster package
+    override = epkgs: epkgs // {
+    eglot-booster = epkgs.trivialBuild {
+      pname = "eglot-booster";
+      version = "e19dd7ea81bada84c66e8bdd121408d9c0761fe6";
+
+      packageRequires = with pkgs; [ emacs-lsp-booster ];
+
+      src = pkgs.fetchFromGitHub {
+        owner = "jdtsmith";
+        repo = "eglot-booster";
+        rev = "e19dd7ea81bada84c66e8bdd121408d9c0761fe6";
+        hash = "sha256-vF34ZoUUj8RENyH9OeKGSPk34G6KXZhEZozQKEcRNhs=";
+      };
+    };
+    };
     # override for modules
 #   override = epkgs: epkgs // {
 #     sakomodules = epkgs.trivialBuild {
