@@ -5,20 +5,24 @@
   lib,
   pkgs,
   inputs,
+  trivialBuild,
   ...
 }:
 with lib; let
   cfg = config.modules.dev.editors.emacs;
 
   myEmacs = pkgs.emacsWithPackagesFromUsePackage {
-    config = ../../../../config/emacs/emacs.org;
+    #config = ../../../../config/emacs/emacs.org;
+    config = ../../../../config/emacs/init.el;
     package = cfg.package;
     alwaysEnsure = true;
-    alwaysTangle = true;
+    #alwaysTangle = true;
+    defaultInitFile = true;
     extraEmacsPackages = epkgs: [
       epkgs.use-package
       epkgs.mu4e
       # TODO make this check if EXWM is enabled or not
+      sako.sakomacsModules
       epkgs.exwm
     ];
   };
@@ -72,12 +76,13 @@ in {
 
     home-manager.users.sako = {lib, ...}: {
       home.file = {
-        ".emacs.d/init.el".source = pkgs.runCommand "init.el" {} ''
-          cp ${../../../../config/emacs/emacs.org} emacs.org
-          ${pkgs.emacs}/bin/emacs -Q --batch ./emacs.org -f org-babel-tangle
-          mv init.el $out
-        '';
-        ".emacs.d/dashboard.png".source = ../../../../config/emacs/dashboard.png;
+   #    ".emacs.d/init.el".source = pkgs.runCommand "init.el" {} ''
+   #      cp ${../../../../config/emacs/emacs.org} emacs.org
+   #      ${pkgs.emacs}/bin/emacs -Q --batch ./emacs.org -f org-babel-tangle
+   #      mv init.el $out
+   #    '';
+        #".emacs.d/dashboard.png".source = ../../../../config/emacs/dashboard.png;
+        ".emacs.d/modules".source = ../../../../config/emacs/modules;
       };
     };
 

@@ -4,4 +4,5 @@
   # example = pkgs.callPackage ./example { };
   sako.davinci-resolve = pkgs.callPackage ./davinci-resolve.nix {};
   nullpomino = pkgs.callPackage ./nullpomino.nix {};
+  sako.sakomacsModules = pkgs.callPackage ./sakomacsModules.nix {};
 }
