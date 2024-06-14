@@ -1,0 +1,918 @@
+#+title: EMACS 2
+#+PROPERTY: header-args:emacs-lisp :tangle yes :tangle init.el
+* Welcome!
+#+begin_src emacs-lisp
+;; -*- lexical-binding: t; -*-
+#+end_src
+* Package Setup 
+#+begin_src emacs-lisp
+  (message "Reached package setup")
+
+  (require `package)
+
+(setq package-archives `(("mepla" . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
+
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (progn
+    (package-refresh-contents)
+    (package-install 'use-package)))
+
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+;; TODO add better detection to this
+(when (eq system-type 'windows-nt)
+  (message "setting up straight.el")
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name
+          "straight/repos/straight.el/bootstrap.el"
+          (or (bound-and-true-p straight-base-dir)
+              user-emacs-directory)))
+        (bootstrap-version 7))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+    (setq straight-use-package-by-default t))
+#+end_src
+* Keybinds
+Ill use this later eventually
+#+begin_src emacs-lisp
+(message "Got to keybinds")
+#+end_src
+* Core
+#+begin_src elisp
+  (message "Reached core.")
+#+end_src
+** Encoding 
+#+begin_src emacs-lisp
+(setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
+(set-language-environment 'utf-8)
+(set-keyboard-coding-system 'utf-8) ; For old Carbon emacs on OS X only
+(setq locale-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-selection-coding-system
+  (if (eq system-type 'windows-nt)
+      'utf-16-le  ;; https://rufflewind.com/2014-07-20/pasting-unicode-in-emacs-on-windows
+    'utf-8))
+(prefer-coding-system 'utf-8)
+#+end_src
+** Cleanup .emacs.d
+#+begin_src emacs-lisp
+(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+backup-by-copying t
+version-control t     
+delete-old-versions t  
+kept-new-versions 20 
+kept-old-versions 5)
+
+(use-package no-littering
+  :config
+  (setq custom-file (if (boundp 'server-socket-dir)
+                        (expand-file-name "custom.el" server-socket-dir)
+                      (no-littering-expand-etc-file-name "custom.el")))
+  (when (file-exists-p custom-file)
+    (load custom-file t))
+
+  ;; Don't litter project folders with backup files
+  (let ((backup-dir (no-littering-expand-var-file-name "backup/")))
+    (make-directory backup-dir t)
+    (setq backup-directory-alist
+          `(("\\`/tmp/" . nil)
+            ("\\`/dev/shm/" . nil)
+            ("." . ,backup-dir))))
+
+  (setq auto-save-default nil)
+
+  ;; Tidy up auto-save files
+  (setq auto-save-default nil)
+  (let ((auto-save-dir (no-littering-expand-var-file-name "auto-save/")))
+    (make-directory auto-save-dir t)
+    (setq auto-save-file-name-transforms
+          `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'"
+             ,(concat temporary-file-directory "\\2") t)
+            ("\\`\\(/tmp\\|/dev/shm\\)\\([^/]*/\\)*\\(.*\\)\\'" "\\3")
+            ("." ,auto-save-dir t)))))
+
+;; no-littering doesn't set this by default so we must place
+;; auto save files in the same path as it uses for sessions
+(setq auto-save-file-name-transforms
+      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+#+end_src
+** Native Compilation
+#+begin_src emacs-lisp
+(setq native-comp-async-report-warnings-errors nil)
+
+(add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory))
+#+end_src
+** Emacs settings
+#+begin_src emacs-lisp
+(setq inhibit-startup-message t)
+
+;; make emacs look a little more cleaner
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(tooltip-mode -1)
+(set-fringe-mode 10)
+(menu-bar-mode -1)
+
+;; this is really annoying i hate it
+(setq visible-bell nil)
+
+;; -- core keybinds and packages --
+(repeat-mode 1)
+
+(column-number-mode)
+
+(dolist (mode '(text-mode-hook
+                prog-mode-hook
+                conf-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 1))))
+#+end_src
+** Core Keybinds
+#+begin_src emacs-lisp
+(repeat-mode 1)
+
+(column-number-mode)
+
+(dolist (mode '(text-mode-hook
+                prog-mode-hook
+                conf-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 1))))
+#+end_src
+** Appearance
+#+begin_src emacs-lisp
+;; TODO: change this for something better i guess
+(use-package doom-themes
+  :config
+  (load-theme 'doom-monokai-pro t))
+
+;; emacsclient things
+(setq frame-resize-pixelwise t)
+;; ui settings apparently go below
+(setq default-frame-alist '((font . "JetBrainsMono NF")
+                            '(vertical-scroll-bars . nil)
+                            '(horizontal-scroll-bars . nil)))
+
+;; GO AWAY
+(defun my/disable-scroll-bars (frame)
+  (modify-frame-parameters frame
+                           '((vertical-scroll-bars . nil)
+                             (horizontal-scroll-bars . nil))))
+(add-hook 'after-make-frame-functions 'my/disable-scroll-bars)
+
+
+;; y/n is better than yes/no
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; font
+(set-face-attribute 'default nil
+		    :font "JetBrainsMono NF"
+		    :weight 'light
+		    :height 125)
+#+end_src
+** Emacs Client
+#+begin_src emacs-lisp
+(setq frame-resize-pixelwise t)
+;; ui settings apparently go below
+(setq default-frame-alist '((font . "JetBrainsMono NF")
+                            '(vertical-scroll-bars . nil)
+                            '(horizontal-scroll-bars . nil)))
+#+end_src
+** Modeline
+#+begin_src emacs-lisp
+(use-package nerd-icons
+  :custom
+  (nerd-icons-font-family "JetBrainsMono NF"))
+(use-package doom-modeline
+  :init (doom-modeline-mode 1))
+#+end_src
+** Editor Configuration
+#+begin_src emacs-lisp
+(use-package super-save
+  :config
+  (super-save-mode +1)
+  (setq super-save-auto-save-when-idle t))
+
+;; revert dired and other buffers
+(setq global-auto-revert-non-file-buffers t)
+
+;; revert buffers when file has been changed
+(global-auto-revert-mode 1)
+
+;; popups and stuff
+(use-package popper
+  :bind (("C-M-'" . popper-toggle)
+         ("M-'" . popper-cycle)
+         ("C-M-\"" . popper-toggle-type))
+  :custom
+  (popper-window-height 12)
+  (popper-reference-buffers '(eshell-mode
+                              vterm-mode
+                              geiser-repl-mode
+                              help-mode
+                              grep-mode
+                              helpful-mode
+                              compilation-mode))
+  :config
+  (popper-mode 1))
+#+end_src
+** Helpful
+#+begin_src emacs-lisp
+(use-package helpful
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind (([remap describe-function] . helpful-function)
+         ([remap describe-symbol] . helpful-symbol)
+         ([remap describe-variable] . helpful-variable)
+         ([remap describe-command] . helpful-command)
+         ([remap describe-key] . helpful-key)))
+#+end_src
+** Which Key
+#+begin_src emacs-lisp
+;; incase i get lost
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 1))
+#+end_src
+** Alerts
+#+begin_src emacs-lisp
+(when (eq system-type 'windows-nt)
+  (use-package alert
+    :commands (alert)
+    :config (setq alert-default-style 'toast))
+  
+  (use-package alert-toast
+    :after alert))
+#+end_src
+** Daemon
+#+begin_src emacs-lisp
+(if (eq system-type 'windows-nt)
+    (setq server-socket-dir "~/.emacs.d/server"))
+(server-start)
+#+end_src
+* Keys
+#+begin_src emacs-lisp
+(message "got to keys setup")
+#+end_src
+** General
+#+begin_src emacs-lisp
+(use-package general
+  :config
+  (general-create-definer sk/leader-keys
+    :keymaps '(normal insert visual emacs)
+    :prefix "SPC"
+    :global-prefix "C-SPC")
+
+  (sk/leader-keys
+   ;; code
+   "c" '(:ignore c :which-key "code")
+   "cc" '(compile :which-key "compile")
+   "cC" '(recompile :which-key "compile")
+   "cX" '(lsp-treeemacs-errors-list :which-ley "list errors")
+   ;; toggles
+   "t" '(:ignore t :which-key "toggles")
+   "tt" '(counsel-load-theme :which-key "choose theme")
+   "ts" '(hydra-text-scale/body :which-key "scale text")
+   ;; search
+   "s" '(:ignore s :which-key "search")
+   "sb" '(swiper :which-key "search buffer")
+   ;; insert
+   "i" '(:ignore i :which-key "insert")
+   "ie" '(emoji-search :which-key "Emoji")
+   ;; project
+   "p" '(:ignore p :which-key "projects")
+   "pp" '(project-switch-project :which-key "open project")
+   "pk" '(project-kill-buffers :which-key "close project")
+   "pt" '(magit-todos-list :which-key "list project todos")
+   "ps" '(projectile-save-project-buffers :which-key "save project")
+   "po" '(projectile-find-other-file :which-key "find other file")
+   "pg" '(projectile-configure-project :which-key "configure project")
+   "pc" '(project-compile :which-key "compile project")
+   ;; open
+   "o" '(:ignore o :which-key "open")
+   "op" '(treemacs :which-key "treemacs")
+   "oP" '(treemacs-find-file :which-key "treemacs find file")
+   "oe" '(eshell :which-key "eshell")
+   "or" '(elfeed :which-key "rss")
+   ;; notes
+   "n" '(:ignore o :which-key "notes")
+   "na" '(org-agenda :which-key "agenda")
+   "nf" '(org-roam-node-find :which-key "find node")
+   "nc" '(org-capture :which-key "capture")
+   "np" '(org-pomodoro :which-key "pomodoro")
+   "ne" '(:ignore ne :which-key "export")
+   "nep" '(org-latex-export-to-pdf :which-key "pdf")
+   ;; quit
+   "q" '(:ignore q :which-key "quit")
+   "qq" '(delete-frame :which-key "close emacs")
+   "qK" '(kill-emacs :which-key "quit emacs")
+   ;; git
+   "g" '(:ignore g :which-key "git")
+   "gs" '(magit-status :which-key "status")
+   "gc" '(:ignore gc :which-key "create")
+   "gcr" '(magit-init :which-key "init repo")
+   "gcR" '(magit-clone :which-key "clone repo")
+   "gcc" '(magit-commit-create :which-key "commit")
+   "gci" '(forge-create-issue :which-key "issue")
+   "gcp" '(forge-create-pullreq :which-key "pull request"))) 
+
+#+end_src
+** Evil
+#+begin_src emacs-lisp
+
+(use-package evil
+  :init
+  ;; Pre-load configuration
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
+  (setq evil-respect-visual-line-mode t)
+  (setq evil-undo-system 'undo-tree)
+  :config
+  (evil-mode 1)
+
+   ;; use emacs state for these mods
+  (dolist (mode '(custom-mode
+                  eshell-mode
+                  git-rebase-mode
+                  erc-mode
+                  circe-server-mode
+                  circe-chat-mode
+                  circe-query-mode
+                  term-mode))
+    (add-to-list 'evil-emacs-state-modes mode))
+
+   (defun sk/dont-arrow-me-bro ()
+      (interactive)
+      (message "STOP USING THE ARROW KEYS!!!!!!!!!!!!!!!!!!!!!!!"))
+
+    ;; Disable arrow keys in normal and visual modes
+    (define-key evil-normal-state-map (kbd "<left>") 'sk/dont-arrow-me-bro)
+    (define-key evil-normal-state-map (kbd "<right>") 'sk/dont-arrow-me-bro)
+    (define-key evil-normal-state-map (kbd "<down>") 'sk/dont-arrow-me-bro)
+    (define-key evil-normal-state-map (kbd "<up>") 'sk/dont-arrow-me-bro)
+    (evil-global-set-key 'motion (kbd "<left>") 'sk/dont-arrow-me-bro)
+    (evil-global-set-key 'motion (kbd "<right>") 'sk/dont-arrow-me-bro)
+    (evil-global-set-key 'motion (kbd "<down>") 'sk/dont-arrow-me-bro)
+    (evil-global-set-key 'motion (kbd "<up>") 'sk/dont-arrow-me-bro)
+
+   (evil-set-initial-state 'messages-buffer-mode 'normal) 
+   (evil-set-initial-state 'dashboard-mode 'normal))
+
+(use-package evil-collection
+  :after evil
+  :custom
+  (evil-collection-outline-bind-tab-p nil)
+  :config
+  ;; Is this a bug in evil-collection?
+  (setq evil-collection-company-use-tng nil)
+  (delete 'lispy evil-collection-mode-list)
+  (delete 'org-present evil-collection-mode-list)
+  (evil-collection-init))
+
+(use-package evil-org
+  :after (evil org)
+  :hook ((org-mode . evil-org-mode)
+         (org-agenda-mode . evil-org-mode))
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-set-key-theme '(navigation todo insert textobjects additional))
+  (evil-org-agenda-set-keys))
+
+(use-package evil-nerd-commenter
+:bind ("M-/" . evilnc-comment-or-uncomment-lines))
+
+(with-eval-after-load 'org
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "C-j") 'org-next-visible-heading)
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "C-k") 'org-previous-visible-heading)
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "M-j") 'org-metadown)
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "M-k") 'org-metaup))
+#+end_src
+* Interface
+#+begin_src emacs-lisp
+(message "Got to interface")
+#+end_src
+** Hydra
+#+begin_src emacs-lisp
+(use-package hydra)
+#+end_src
+** Vertico
+#+begin_src emacs-lisp
+(use-package vertico
+  :bind (:map vertico-map
+	      ("C-j" . vertico-next)
+	      ("C-k" . vertico-previous)
+	      ("C-f" . vertico-exit-input)
+	      :map minibuffer-local-map
+	      ("M-h" . vertico-directory-up))
+  :custom
+  (vertico-cycle t)
+
+  :init
+  (require 'vertico-directory)
+  (vertico-mode))
+#+end_src
+** Marginalia
+#+begin_src emacs-lisp
+(use-package marginalia
+  :after vertico
+  :ensure t
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  :init
+  (marginalia-mode))
+#+end_src
+** Consult
+#+begin_src emacs-lisp
+(use-package consult
+  :bind (("C-s" . consult-line)
+         ("C-M-l" . consult-imenu)
+         ("C-M-j" . consult-buffer)
+         ("C-x C-b" . consult-buffer)
+         :map minibuffer-local-map
+         ("C-r" . consult-history)))
+
+
+(use-package consult-dir
+  :bind (("C-x C-d" . consult-dir)
+         :map vertico-map
+         ("C-x C-d" . consult-dir)
+         ("C-x C-j" . consult-dir-jump-file))
+
+  :custom
+  (consult-dir-project-list-function nil))
+#+end_src
+** Orderless
+#+begin_src emacs-lisp
+(use-package orderless
+  :config
+  (orderless-define-completion-style orderless+initialism
+    (orderless-matching-styles '(orderless-initialism
+                                 orderless-literal
+                                 orderless-regexp)))
+
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        orderless-matching-styles '(orderless-literal orderless-regexp)
+        completion-category-overrides
+        '((file (styles partial-completion)))))
+#+end_src
+** Embark
+#+begin_src emacs-lisp
+(use-package embark
+  :after vertico
+  :bind (("C-." . embark-act)
+         ("M-." . embark-dwim)
+         :map minibuffer-local-map
+         ("C-d" . embark-act)
+         :map embark-region-map
+         ("D" . denote-region))
+
+  :config
+  ;; Remove the mixed indicator to prevent the popup from being displayed
+  ;; automatically
+  (delete #'embark-mixed-indicator embark-indicators)
+  (add-to-list 'embark-indicators 'embark-minimal-indicator)
+
+  ;; Use Embark to show command prefix help
+  (setq prefix-help-command #'embark-prefix-help-command))
+
+(use-package embark-consult
+  :after embark)
+#+end_src
+** Corfu (Autocomplete)
+#+begin_src emacs-lisp
+  (use-package corfu
+  :bind (:map corfu-map
+              ("C-j" . corfu-next)
+              ("C-k" . corfu-previous)
+              ("TAB" . corfu-insert)
+              ([tab] . corfu-insert)
+              ("C-f" . corfu-insert))
+  :custom
+  (corfu-cycle t)
+  (corfu-auto t)
+  (corfu-preview-current nil)
+  (corfu-quit-at-boundary t)
+  (corfu-quit-no-match t)
+  (corfu-min-chars 1)
+  :config
+  (global-corfu-mode 1)
+
+  (defun corfu-enable-in-minibuffer ()
+    "Enable Corfu in the minibuffer if `completion-at-point' is bound."
+    (when (where-is-internal #'completion-at-point (list (current-local-map)))
+      ;; (setq-local corfu-auto nil) ;; Enable/disable auto completion
+      (setq-local corfu-echo-delay nil ;; Disable automatic echo and popup
+                  corfu-popupinfo-delay nil)
+      (corfu-mode 1)))
+
+  (add-hook 'minibuffer-setup-hook #'corfu-enable-in-minibuffer))
+#+end_src
+** Dashboard
+TODO
+* Auth
+#+begin_src emacs-lisp
+(message "Reached auth")
+#+end_src
+** Pinentry
+#+begin_src emacs-lisp
+  (unless (eq system-type 'windows-nt)
+    (use-package pinentry
+      :config
+      (setq epa-pinentry-mode 'loopback))
+    (pinentry-start))
+#+end_src
+** Password-Store
+#+begin_src emacs-lisp
+(use-package password-store
+  :bind (("C-c p p" . password-store-copy)
+         ("C-c p i" . password-store-insert)
+         ("C-c p g" . password-store-generate))
+  :config
+  (setq password-store-password-length 12))
+
+(use-package auth-source-pass
+  :config
+  (auth-source-pass-enable))
+#+end_src
+** OAuth2
+this should be useful later
+#+begin_src emacs-lisp
+(use-package oauth2
+  :ensure t)
+#+end_src
+* Shell
+#+begin_src emacs-lisp
+(message "Reached shell")
+#+end_src
+** EShell
+#+begin_src emacs-lisp
+(defun sk/configure-eshell ()
+  ;; Save command history when commands are entered
+  (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
+
+  ;; Truncate buffer for performance
+  (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
+
+  ;; Bind some useful keys for evil-mode
+  (evil-define-key '(normal insert visual) eshell-mode-map (kbd "C-r") 'counsel-esh-history)
+  (evil-define-key '(normal insert visual) eshell-mode-map (kbd "<home>") 'eshell-bol)
+  (evil-normalize-keymaps)
+
+  (setq eshell-history-size         10000
+        eshell-buffer-maximum-lines 10000
+        eshell-hist-ignoredups t
+        eshell-scroll-to-bottom-on-input t))
+
+(use-package eshell-git-prompt)
+
+  
+  (add-hook 'eshell-first-time-mode 'sakomacs/configure-eshell)
+
+  (with-eval-after-load 'esh-opt
+    (setq eshell-destroy-buffer-when-process-dies t)
+    (setq eshell-visual-commands '("htop" "zsh" "vim"))
+
+  (eshell-git-prompt-use-theme 'powerline))
+#+end_src
+* Dev
+#+begin_src emacs-lisp
+(message "Reached dev")
+#+end_src
+** {} and () matching
+#+begin_src emacs-lisp
+(use-package smartparens 
+  :hook (prog-mode . smartparens-mode)
+  :config
+  (sp-use-smartparens-bindings))
+
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+#+end_src
+** Compilation
+#+begin_src emacs-lisp
+(setq compilation-scroll-output t)
+
+(setq compilation-environment '("TERM=xterm-256color"))
+
+(defun sk/advice-compilation-filter (f proc string)
+  (funcall f proc (xterm-color-filter string)))
+
+(advice-add 'compilation-filter :around #'sk/advice-compilation-filter)
+
+(defun sk/auto-recompile-buffer ()
+  (interactive)
+  (if (member #'recompile after-save-hook)
+      (remove-hook 'after-save-hook #'recompile t)
+    (add-hook 'after-save-hook #'recompile nil t)))
+#+end_src
+** Project.el
+#+begin_src emacs-lisp
+(setq project-switch-commands '((project-find-file "Find file" "f") (project-find-dir "Find dir" "d") (project-dired "Dired" "D") (consult-ripgrep "ripgrep" "g") (magit-project-status "Magit" "m")))
+#+end_src
+** Eglot (LSP)
+#+begin_src emacs-lisp
+(use-package eglot
+  :bind (:map eglot-mode-map
+              ("C-c C-a" . eglot-code-actions)
+              ("C-c C-r" . eglot-rename))
+  :config
+  (setq eglot-autoshutdown t
+        eglot-confirm-server-initiated-edits nil))
+
+;; this'll make it so i don't have to use vscode every now and then
+;; TODO:: WRITE NIX PACKAGE!!!!!!!!!!!!!!
+(unless (eq system-type 'gnu/linux)
+  (use-package eglot-booster
+    :straight (eglot-booster :type git :host github :repo "jdtsmith/eglot-booster")
+    :after eglot
+    :config (eglot-booster-mode))
+  )
+#+end_src
+** Magit
+#+begin_src emacs-lisp
+(use-package magit
+  :bind ("C-M-;" . magit-status-here)
+  :custom
+  (magit-show-long-lines-warning nil)
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+(use-package magit-todos
+  :after magit
+  :config
+  (magit-todos-mode))
+
+;; -- magit forge --
+(use-package forge
+  :after magit)
+(setq auth-sources '("~/.authinfo"))
+
+(defhydra sk/smerge-panel ()
+  "smerge"
+  ("k" (smerge-prev) "prev change" )
+  ("j" (smerge-next) "next change")
+  ("u" (smerge-keep-upper) "keep upper")
+  ("l" (smerge-keep-lower) "keep lower")
+  ("q" nil "quit" :exit t))
+#+end_src
+** Formatting
+#+begin_src emacs-lisp
+(use-package apheleia
+  :hook (prog-mode . apheleia-mode))
+#+end_src
+** Flycheck (Syntax Checking)
+#+begin_src emacs-lisp
+(use-package flycheck
+  :config
+  (global-flycheck-mode +1))
+#+end_src
+* Languages
+#+begin_src emacs-lisp
+(message "Reached languages")
+#+end_src
+** HTML/CSS
+#+begin_src emacs-lisp
+(use-package web-mode
+     :hook (web-mode . eglot-ensure)
+     :mode ("\\.html\\'"
+             "\\.css\\'"))
+#+end_src
+** Javascript
+#+begin_src emacs-lisp
+(use-package js2-mode
+:mode ("\\.js\\'"
+  	 "\\.jsx\\'")
+:hook (js2-mode . eglot-ensure)
+:config
+(setq web-mode-markup-indent-offset 2) ; HTML
+(setq web-mode-css-indent-offset 2)    ; CSS
+(setq web-mode-code-indent-offset 2)   ; JS/JSX/TS/TSX
+(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))))
+#+end_src
+** Typescript
+#+begin_src emacs-lisp
+(use-package typescript-mode
+  :mode ("\\.ts\\'"
+	 "\\.tsx\\'")
+  :hook (typescript-mode . eglot-ensure))
+#+end_src
+** Astro
+#+begin_src emacs-lisp
+  (define-derived-mode astro-mode web-mode "astro")
+  (setq auto-mode-alist
+  (append '((".*\\.astro\\'" . astro-mode))
+  auto-mode-alist))
+#+end_src
+** C/C++
+#+begin_src emacs-lisp
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
+#+end_src
+** CMake
+#+begin_src emacs-lisp
+(use-package cmake-mode
+  :mode "CMakeLists.txt"
+  :hook (cmake-mode . eglot-ensure))
+#+end_src
+** Lua
+#+begin_src emacs-lisp
+(use-package lua-mode
+  :mode "\\.lua\\'"
+  :hook (lua-mode . eglot-ensure))
+#+end_src
+** Python
+#+begin_src emacs-lisp
+(use-package python-mode
+  :mode "\\.py\\'"
+  :hook (python-mode . eglot-ensure))
+
+(use-package elpy
+:after python-mode
+
+:custom
+(elpy-rpc-python-command "python3")
+
+:config
+(elpy-enable))
+
+(use-package poetry
+  :config
+  (poetry-tracking-mode 1))
+#+end_src
+** Yaml
+#+begin_src emacs-lisp
+(use-package nix-mode
+  :hook (nix-mode . eglot-ensure) 
+  :mode "\\.nix\\'")
+#+end_src
+** Nix
+#+begin_src emacs-lisp
+(use-package nix-mode
+  :hook (nix-mode . eglot-ensure) 
+  :mode "\\.nix\\'")
+#+end_src
+** Dart
+#+begin_src emacs-lisp
+(use-package dart-mode
+ :hook (dart-mode . eglot-ensure)
+:mode "\\.dart\\'" )
+#+end_src
+** Markdown
+#+begin_src emacs-lisp
+(use-package markdown-mode
+  :hook (markdown-mode . visual-line-mode))
+
+(use-package markdown-preview-mode)
+#+end_src
+** GDScript
+#+begin_src emacs-lisp
+(use-package gdscript-mode
+  :hook (gdscript-mode . eglot-ensure)
+  :mode "\\.gd\\'")
+#+end_src
+** Rust
+#+begin_src emacs-lisp
+(use-package rust-mode
+  :hook (rust-mode . eglot-ensure)
+  :mode "\\.rs\\'")
+#+end_src
+* Social
+#+begin_src emacs-lisp
+(message "Reached social")
+#+end_src
+** Elcord (Discord rich precense)
+#+begin_src emacs-lisp
+(use-package elcord
+  :init
+  (setq elcord-display-buffer-details nil)
+  (setq elcord-use-major-mode-as-main-icon t)
+  )
+#+end_src
+** Telegram
+does NOT WORK ON WINDOWS
+#+begin_src emacs-lisp
+(unless (eq system-type 'windows-nt)
+  (use-package telega))
+#+end_src
+** IRC
+Will configure later
+#+begin_src emacs-lisp
+(use-package rcirc)
+#+end_src
+** RSS
+Will configure later, (use elfeed protocol ok ty)
+#+begin_src emacs-lisp
+(use-package elfeed)
+#+end_src
+** Matrix
+Ill set this up later as well
+#+begin_src emacs-lisp
+(use-package ement)
+#+end_src
+* Org
+#+begin_src emacs-lisp
+(message "Reached Org")
+#+end_src
+** Org mode configuration
+#+begin_src emacs-lisp
+  (use-package org
+  :hook (org-mode . org-indent-mode)
+  :config
+  (setq org-ellipsis " ↓")
+  (setq org-agenda-start-with-log-mode t)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+
+  ;; habits, useless for now though
+  ;; (require 'org-habit)
+  ;; (add-to-list 'org-modules 'org-habit)
+  ;; (setq org-habit-graph-column 60)
+
+  ;; archive
+  (setq org-refile-targets
+        '(("archive.org" :maxlevel . 1)))
+
+  ;; make sure to save everything after refiling
+  (advice-add 'org-refile :after 'org-save-all-org-buffers)
+
+  ;; org agenda
+  (setq org-agenda-files
+        '("~/org/tasks.org"
+          "~/org/school.org"
+          "~/org/daily.org"
+          "~/org/irl.org"
+          "~/org/work.org"))
+
+  ;; follow links
+  (setq org-return-follows-link  t)
+
+  ;; hide leading stars
+  (setq org-hide-leading-stars t)
+  (setq org-hide-emphasis-markers nil)
+
+  ;; templates
+  (require 'org-tempo)
+
+  ;; this'll come in handly later
+  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("py" . "src python"))
+
+  ;; more options
+   (setq org-todo-keywords
+         '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+          (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)")))
+
+   ;; this is really useful 
+  (setq org-startup-with-inline-images t)
+
+  ;; i hope i actually use this eventually
+  (setq org-capture-templates
+  	`(("t" "Tasks")
+  	  ("tt" "Task" entry (file+olp "~/org/tasks.org" "captured")
+  	   "* TODO %?\n %U\n %a\n %i" :empty-lines1)))
+  )
+
+
+#+end_src
+** Org Roam
+#+begin_src emacs-lisp
+(use-package org-roam
+  :custom
+g (org-roam-directory "~/org/notes")
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+	 ("C-c n f" . org-roam-node-find)
+	 ("C-c n i" . org-roam-node-insert))
+  :config
+  (org-roam-setup))
+#+end_src
+** Org-wild-notifier
+#+begin_src emacs-lisp
+(use-package org-wild-notifier
+  :config
+  (org-wild-notifier-mode))
+#+end_src
+** Org-Pomodoro
+#+begin_src emacs-lisp
+(use-package org-pomodoro)
+#+end_src
+* End
+#+begin_src elisp
+  (message "Welcome to Emacs!")
+#+end_src
