@@ -47,7 +47,6 @@ in {
         bspwm.enable = true;
       };
       displayManager = {
-        defaultSession = "none+bspwm";
         lightdm = {
           enable = true;
           background = ../../../config/background.png;
