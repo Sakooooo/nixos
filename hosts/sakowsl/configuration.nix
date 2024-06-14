@@ -94,7 +94,7 @@
 
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = null;
+    pinentryPackage = null;
     settings = {
       pinentry-program = "/mnt/c/Program Files (x86)/Gpg4win/bin/pinentry.exe";
     };
