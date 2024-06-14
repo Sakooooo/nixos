@@ -95,9 +95,10 @@
   programs.gnupg.agent = {
     enable = true;
     #pinentryPackage = null;
-   #settings = {
+   settings = {
    #  pinentry-program = "/mnt/c/Program Files (x86)/Gpg4win/bin/pinentry.exe";
-   #};
+      allow-loopback-entry = true;
+   };
   };
   # bare minimum
   environment.systemPackages = with pkgs; [
