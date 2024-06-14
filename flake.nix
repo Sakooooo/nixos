@@ -7,7 +7,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # nixpkgs unstable branch
     home-manager = {
       # this manages your dotfiles for the most part
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-24.05";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
