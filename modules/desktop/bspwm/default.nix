@@ -25,7 +25,7 @@ in {
     services.gnome.gnome-keyring.enable = true;
 
     # ????????????
-    serices.libinput = {
+    services.libinput = {
         enable = true;
         # no mouse accel
         mouse = {
@@ -37,7 +37,6 @@ in {
           accelProfile = "flat";
         };
       };
-    };
 
     # why???????????????????????
     services.displayManager.defaultSession = "none+bspwm";
