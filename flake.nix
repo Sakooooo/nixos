@@ -3,7 +3,7 @@
   description = "horrible dotfiles for amazing distro";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11"; # nixpkgs stable branch
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05"; # nixpkgs stable branch
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # nixpkgs unstable branch
     home-manager = {
       # this manages your dotfiles for the most part
