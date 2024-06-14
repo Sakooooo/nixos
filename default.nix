@@ -124,7 +124,7 @@
   # litearlly!  ! ! ! ! !
   programs.gnupg.agent = {
     enable = true;
-    pinentryPackage = "gtk2";
+    pinentryPackage = pkgs.pinentry-gtk2;
     # enableSSHSupport = true;
   };
 
