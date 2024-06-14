@@ -24,6 +24,24 @@ in {
     # keyring
     services.gnome.gnome-keyring.enable = true;
 
+    # ????????????
+    serices.libinput = {
+        enable = true;
+        # no mouse accel
+        mouse = {
+          accelProfile = "flat";
+        };
+
+        # no touchpad accel
+        touchpad = {
+          accelProfile = "flat";
+        };
+      };
+    };
+
+    # why???????????????????????
+    services.displayManager.defaultSession = "none+bspwm";
+
     services.xserver = {
       enable = true;
       windowManager = {
@@ -45,19 +63,6 @@ in {
 
             '';
           };
-        };
-      };
-      libinput = {
-        enable = true;
-
-        # no mouse accel
-        mouse = {
-          accelProfile = "flat";
-        };
-
-        # no touchpad accel
-        touchpad = {
-          accelProfile = "flat";
         };
       };
     };
