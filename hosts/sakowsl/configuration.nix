@@ -134,7 +134,7 @@
         nvim.enable = true;
         emacs = {
           enable = true;
-          daemon = false;
+          daemon = true;
           package = pkgs.emacs-unstable-pgtk;
         };
       };
