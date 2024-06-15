@@ -540,16 +540,16 @@ TODO
 #+end_src
 ** Password-Store
 #+begin_src emacs-lisp
-(use-package password-store
-  :bind (("C-c p p" . password-store-copy)
-         ("C-c p i" . password-store-insert)
-         ("C-c p g" . password-store-generate))
-  :config
-  (setq password-store-password-length 12))
+  (use-package password-store
+    :bind (("C-c p p" . password-store-copy)
+           ("C-c p i" . password-store-insert)
+           ("C-c p g" . password-store-generate))
+    :config
+    (setq password-store-password-length 12))
 
-(use-package auth-source-pass
-  :config
-  (auth-source-pass-enable))
+  (use-package auth-source-pass
+    :config
+    (auth-source-pass-enable))
 #+end_src
 ** OAuth2
 this should be useful later
