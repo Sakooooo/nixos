@@ -684,6 +684,12 @@ this should be useful later
   :config
   (global-flycheck-mode +1))
 #+end_src
+** Docker
+#+begin_src emacs-lisp
+(use-package docker
+  :ensure t
+  :bind ("C-c d" . docker))
+#+end_src
 * Languages
 #+begin_src emacs-lisp
 (message "Reached languages")
