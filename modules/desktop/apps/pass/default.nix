@@ -31,7 +31,6 @@ in {
     systemd.services."pass-sync" = {
       script = ''
               set -eu
-              ${pkgs.coreutils}/bin/echo "Hello World"
               ${pkgs.pass}/bin/pass git pull
               ${pkgs.pass}/bin/pass git push
              '';
