@@ -589,6 +589,13 @@ this should be useful later
 
   (eshell-git-prompt-use-theme 'powerline))
 #+end_src
+** VTerm
+#+begin_src emacs-lisp
+  (use-package vterm
+    :commands vterm
+    :config
+    (setq vterm-max-scrollback 10000))
+#+end_src
 * Dev
 #+begin_src emacs-lisp
 (message "Reached dev")
