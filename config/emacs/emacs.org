@@ -833,6 +833,10 @@ Ill set this up later as well
 #+begin_src emacs-lisp
 (use-package ement)
 #+end_src
+** Subsonic
+#+begin_src emacs-lisp
+(use-package subsonic)
+#+end_src
 * Org
 #+begin_src emacs-lisp
 (message "Reached Org")
