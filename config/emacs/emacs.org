@@ -262,7 +262,7 @@ kept-old-versions 5)
 #+begin_src emacs-lisp
 (if (eq system-type 'windows-nt)
     (setq server-socket-dir "~/.emacs.d/server"))
-(server-start)
+;; (server-start)
 #+end_src
 * Keys
 #+begin_src emacs-lisp
