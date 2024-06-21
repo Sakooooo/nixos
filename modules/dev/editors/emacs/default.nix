@@ -106,7 +106,7 @@ in {
           ${pkgs.emacs}/bin/emacs -Q --batch ./emacs.org -f org-babel-tangle
           mv init.el $out
         '';
-        #".emacs.d/dashboard.png".source = ../../../../config/emacs/dashboard.png;
+        ".emacs.d/icon.png".source = ../../../../config/emacs/icon.png;
       };
     };
 
