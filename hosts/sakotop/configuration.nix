@@ -59,7 +59,6 @@
         wine.enable = true;
         lutris.enable = true;
         steam.enable = true;
-        grapejuice.enable = true;
         tetrio.enable = false;
       };
       media = {

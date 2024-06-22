@@ -24,11 +24,10 @@
       kitty.enable = true;
       picom.enable = true;
       apps = {
-        keepassxc.enable = true;
         nextcloud.enable = true;
         rssguard.enable = true;
-        bitwarden.enable = true;
         obs.enable = true;
+        pass.enable = true;
       };
       browsers = {
         firefox.enable = true;
@@ -47,7 +46,6 @@
         lutris.enable = true;
         steam.enable = true;
         wine.enable = true;
-        grapejuice.enable = true;
         tetrio.enable = true;
       };
       media = {
