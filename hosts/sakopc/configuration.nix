@@ -9,11 +9,9 @@
   imports = [
     # Hardware Configuration
     # TODO:: Add this back once generated!!!!!!!
-    # ./hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
 
-  # TAKE ME OUT DONT FORGET
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   # hostname
   networking.hostName = "sakopc";
 
