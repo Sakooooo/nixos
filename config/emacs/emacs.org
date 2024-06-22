@@ -672,12 +672,12 @@ this should be useful later
           eglot-confirm-server-initiated-edits nil))
 
   ;; this'll make it so i don't have to use vscode every now and then
-  ;; (when (eq system-type 'windows-nt)
-  ;;   (use-package eglot-booster
-  ;;     :straight (eglot-booster :type git :host github :repo "jdtsmith/eglot-booster")
-  ;;     :after eglot
-  ;;     :config (eglot-booster-mode))
-  ;;   )
+  (when (eq system-type 'windows-nt)
+    (use-package eglot-booster
+      :straight (eglot-booster :type git :host github :repo "jdtsmith/eglot-booster")
+      :after eglot
+      :config (eglot-booster-mode))
+    )
 
   (when (eq system-type 'gnu/linux)
       (use-package eglot-booster
