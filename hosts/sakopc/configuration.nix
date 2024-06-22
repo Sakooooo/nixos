@@ -12,6 +12,8 @@
     # ./hardware-configuration.nix
   ];
 
+  # TAKE ME OUT DONT FORGET
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   # hostname
   networking.hostName = "sakopc";
 
