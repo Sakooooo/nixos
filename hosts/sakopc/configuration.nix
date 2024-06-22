@@ -8,8 +8,8 @@
 }: {
   imports = [
     # Hardware Configuration
-    # Probably a better idea to add it into the flake
-    ./hardware-configuration.nix
+    # TODO:: Add this back once generated!!!!!!!
+    # ./hardware-configuration.nix
   ];
 
   # hostname
