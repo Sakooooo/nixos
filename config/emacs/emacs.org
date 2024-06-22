@@ -159,7 +159,7 @@ kept-old-versions 5)
 ;; TODO: change this for something better i guess
 (use-package doom-themes
   :config
-  (load-theme 'doom-monokai-pro t))
+  (load-theme 'doom-dark+ t))
 
 ;; emacsclient things
 (setq frame-resize-pixelwise t)
@@ -195,11 +195,13 @@ kept-old-versions 5)
 #+end_src
 ** Modeline
 #+begin_src emacs-lisp
-(use-package nerd-icons
-  :custom
-  (nerd-icons-font-family "JetBrainsMono NF"))
-(use-package doom-modeline
-  :init (doom-modeline-mode 1))
+  (use-package nerd-icons
+    :custom
+    (nerd-icons-font-family "JetBrainsMono NF"))
+  (use-package doom-modeline
+    :custom
+    (doom-modeline-height 35)
+    :init (doom-modeline-mode 1))
 #+end_src
 ** Editor Configuration
 #+begin_src emacs-lisp
@@ -901,9 +903,10 @@ this should be useful later
 #+end_src
 ** Yaml
 #+begin_src emacs-lisp
-(use-package nix-mode
-  :hook (nix-mode . eglot-ensure) 
-  :mode "\\.nix\\'")
+  (use-package yaml-mode
+    :hook (yaml-mode. eglot-ensure) 
+    :mode ("\\.yml\\'"
+  	 "\\.yaml\\'"))
 #+end_src
 ** Nix
 #+begin_src emacs-lisp
