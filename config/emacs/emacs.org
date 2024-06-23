@@ -417,19 +417,24 @@ kept-old-versions 5)
 #+end_src
 ** Vertico
 #+begin_src emacs-lisp
-(use-package vertico
-  :bind (:map vertico-map
-	      ("C-j" . vertico-next)
-	      ("C-k" . vertico-previous)
-	      ("C-f" . vertico-exit-input)
-	      :map minibuffer-local-map
-	      ("M-h" . vertico-directory-up))
-  :custom
-  (vertico-cycle t)
+  (use-package vertico
+    :bind (:map vertico-map
+  	      ("C-j" . vertico-next)
+  	      ("C-k" . vertico-previous)
+  	      ("C-f" . vertico-exit-input)
+  	      :map minibuffer-local-map
+  	      ("M-h" . vertico-directory-up))
+    :custom
+    (vertico-cycle t)
 
-  :init
-  (require 'vertico-directory)
-  (vertico-mode))
+    :init
+    (require 'vertico-directory)
+    (vertico-mode))
+
+  ;; center that shit!!!!!
+  (use-package vertico-posframe
+    :config
+    (vertico-posframe-mode 1))
 #+end_src
 ** Marginalia
 #+begin_src emacs-lisp
