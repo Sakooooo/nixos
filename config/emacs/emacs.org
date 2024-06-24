@@ -427,6 +427,7 @@ kept-old-versions 5)
     :custom
     (vertico-cycle t)
 
+    :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
     :init
     (require 'vertico-directory)
     (vertico-mode))
