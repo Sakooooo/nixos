@@ -97,7 +97,7 @@
     };
   };
 
-  home-manager.users.sako.home.stateVersion = " 24.05";
+  home-manager.users.sako.home.stateVersion = "24.05";
   # DO NOT CHANGE THIS!!!!
   # ONLY CHANGE WHEN FULLY REINSTALLING
   # OR USING NEW SYSTEMS
