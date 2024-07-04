@@ -24,8 +24,6 @@ in {
       };
     };
 
-    users.users.sako.packages = with pkgs; [
-      browserpass
-    ];
+    programs.browserpass.enable = true;
   };
 }
