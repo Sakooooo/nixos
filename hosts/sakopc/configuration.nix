@@ -104,7 +104,7 @@
   '';
 
   # lol
-  services.xserver.dpi = 192;
+  services.xserver.dpi = 100;
 
   home-manager.users.sako.home.stateVersion = "24.05";
   # DO NOT CHANGE THIS!!!!
