@@ -23,5 +23,9 @@ in {
         "browser.compactmode.show" = true;
       };
     };
+
+    users.users.sako.packages = with pkgs; [
+      browserpass
+    ];
   };
 }
