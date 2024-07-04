@@ -97,6 +97,12 @@
     };
   };
 
+  # fuck you AOC
+  # my monitor only works on 240hz now
+  services.xserver.displayManager.setupCommands = ''
+    ${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --primary --rate 239.96 --output HDMI-0 --left-of DP-0
+'';
+
   home-manager.users.sako.home.stateVersion = "24.05";
   # DO NOT CHANGE THIS!!!!
   # ONLY CHANGE WHEN FULLY REINSTALLING
