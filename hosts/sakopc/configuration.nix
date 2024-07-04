@@ -99,9 +99,9 @@
 
   # fuck you AOC
   # my monitor only works on 240hz now
-  services.xserver.displayManager.setupCommands = ''
-  xrandr --output DP-0 --mode 1920x1080 --rate 239.96 --output HDMI-0 --mode 1920x1080 --primary --left-of DP-0
-'';
+# services.xserver.displayManager.setupCommands = ''
+# xrandr --output DP-0 --mode 1920x1080 --rate 239.96 --output HDMI-0 --mode 1920x1080 --primary --left-of DP-0
+# '';
 
   home-manager.users.sako.home.stateVersion = "24.05";
   # DO NOT CHANGE THIS!!!!
