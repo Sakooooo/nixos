@@ -103,6 +103,8 @@
   ${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --mode 1920x1080 --rate 239.96 --primary --output HDMI-0 --mode 1920x1080 --left-of DP-0
   '';
 
+  services.xserver.dpi = 82;
+
   home-manager.users.sako.home.stateVersion = "24.05";
   # DO NOT CHANGE THIS!!!!
   # ONLY CHANGE WHEN FULLY REINSTALLING
