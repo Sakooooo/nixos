@@ -6,7 +6,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 bspc monitor -d web dev irc media game 
 
 if [[ $(xrandr -q | grep 'HDMI-0 connected') ]]; then
-  bspc monitor HDMI-0 6 7 8
+  bspc monitor -d HDMI-0 6 7 8
 fi
 
 bspc config border_width         3
