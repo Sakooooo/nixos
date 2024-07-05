@@ -23,6 +23,7 @@
       };
       kitty.enable = true;
       picom.enable = true;
+      dunst.enable = true;
       apps = {
         nextcloud.enable = true;
         rssguard.enable = true;
