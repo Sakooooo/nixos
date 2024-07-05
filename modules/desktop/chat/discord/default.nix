@@ -1,4 +1,5 @@
 {
+  inputs,
   outputs,
   options,
   config,
@@ -14,8 +15,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-    users.users.sako.packages = with pkgs; [
-      discord
+    users.users.sako.packages = [
+      (inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.discord-canary.override {
+        withOpenASAR = true;
+        withVencord = true;
+      })
     ];
   };
 }
