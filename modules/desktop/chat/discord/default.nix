@@ -15,7 +15,7 @@ in {
 
   config = mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
-      (pkgs.discord.override {
+      (pkgs.unstable.discord.override {
         withOpenASAR = true;
         withVencord = true;})
     ];
