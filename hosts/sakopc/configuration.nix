@@ -78,15 +78,9 @@
       pipewire.enable = true;
     };
     media = {
-<<<<<<< HEAD
-      mpd.enable = true;
-      ncmpcpp.enable = true;
-      mopidy.enable = true;
-=======
       mpd.enable = false;
       ncmpcpp.enable = false;
       mopidy.enable = false;
->>>>>>> 3d81864 (nvm)
     };
     shell = {
       nix = {
