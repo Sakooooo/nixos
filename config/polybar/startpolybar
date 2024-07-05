@@ -1,4 +1,11 @@
 #!/bin/sh
 
 killall -q polybar
-polybar
+
+if [[ $(cat /etc/hostname) == "sakopc" ]]; then
+    polybar pc-monitor-1
+    polybar pc-monitor-2
+else
+    polybar mainbar
+fi
+    
