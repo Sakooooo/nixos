@@ -30,6 +30,7 @@
         obs.enable = true;
         pass.enable = true;
         localsend.enable = true;
+        nemo.enable = true;
       };
       browsers = {
         firefox.enable = true;
