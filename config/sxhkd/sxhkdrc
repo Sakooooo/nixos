@@ -143,3 +143,10 @@ XF86MonBrightness{Up,Down}
 # Take a screenshot with gui selection
 super + Print
   flameshot gui
+
+#
+## rofi-pass
+#
+
+super + ctrl + p
+  rofi-pass
