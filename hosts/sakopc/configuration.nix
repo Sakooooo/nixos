@@ -55,6 +55,7 @@
         mpv.enable = true;
         kdenlive.enable = true;
         blender.enable = true;
+        feishin.enable = true;
       };
     };
     dev = {

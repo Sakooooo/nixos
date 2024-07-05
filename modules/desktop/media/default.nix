@@ -8,5 +8,6 @@
     ./lmms
     ./mpv
     ./jellyfin
+    ./feishin
   ];
 }
