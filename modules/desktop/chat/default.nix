@@ -6,5 +6,6 @@
     ./discord
     ./telegram
     ./weechat
+    ./signal
   ];
 }

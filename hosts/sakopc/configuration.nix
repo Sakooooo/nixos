@@ -41,6 +41,7 @@
         teams.enable = true;
         telegram.enable = true;
         weechat.enable = true;
+        signal.enable = true;
       };
       game = {
         lutris.enable = true;
