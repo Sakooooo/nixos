@@ -24,5 +24,6 @@
     ./plymouth
     # vpn
     ./wireguard
+    ./printing
   ];
 }
