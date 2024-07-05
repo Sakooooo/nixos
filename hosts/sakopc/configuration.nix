@@ -80,6 +80,7 @@
     media = {
       mpd.enable = true;
       ncmpcpp.enable = true;
+      mopidy.enable = true;
     };
     shell = {
       nix = {
