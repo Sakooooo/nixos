@@ -14,7 +14,12 @@ in {
 
   config = mkIf cfg.enable {
     # enable printing itself
-    services.printing.enable = true;
+    services.printing = {
+      enable = true;
+      drivers = with pkgs; [
+        epson-escpr
+      ];
+    };
 
     # autodiscovery of printers
     services.avahi = {
