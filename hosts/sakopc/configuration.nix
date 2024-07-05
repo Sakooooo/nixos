@@ -29,6 +29,7 @@
         rssguard.enable = true;
         obs.enable = true;
         pass.enable = true;
+        localsend.enable = true;
       };
       browsers = {
         firefox.enable = true;

@@ -13,5 +13,6 @@
     ./obs
     ./nextcloud
     ./rssguard
+    ./localsend
   ];
 }
