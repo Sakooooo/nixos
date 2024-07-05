@@ -1,6 +1,5 @@
 {
-  config,
-  pkgs,
+  config, pkgs,
   lib,
   inputs,
   outputs,
@@ -17,6 +16,7 @@
 
   modules = {
     desktop = {
+      printing.enable = true;
       bspwm = {
         enable = true;
         polybar.enable = true;
