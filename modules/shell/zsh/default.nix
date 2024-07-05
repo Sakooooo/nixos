@@ -34,7 +34,13 @@ in {
         enableCompletion = true;
         shellAliases = {
           ll = "ls -l";
+
+          # nix thing
           update = "sudo nixos-rebuild switch -v";
+          search = "nix search";
+          shell = "nix shell";
+          run = "nix run";
+          cleanup = "sudo nix-collect-garbage --delete-older-than 3d && nix-collect-garbage -d";
         };
         plugins = [
           {
