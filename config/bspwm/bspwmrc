@@ -42,8 +42,5 @@ nm-applet &
 blueman-applet &
 
 # actual software
-bitwarden &
 flameshot &
 nextcloud &
-telegram-desktop -autostart &
-

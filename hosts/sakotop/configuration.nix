@@ -20,12 +20,10 @@
     desktop = {
       wireguard.enable = true;
       kitty.enable = true;
-      xmonad.enable = false;
       bspwm = {
         enable = true;
         polybar.enable = true;
       };
-      exwm.enable = false;
       picom.enable = true;
       dunst.enable = true;
       browsers = {
@@ -44,14 +42,9 @@
       apps = {
         nemo.enable = true;
         pass.enable = true;
-        keepassxc.enable = true;
-        bitwarden.enable = true;
         rssguard.enable = true;
         nicotineplus.enable = true;
         transmission.enable = true;
-        calibre.enable = true;
-        kindle-comic-converter.enable = true;
-        mangal.enable = true;
         obs.enable = true;
         nextcloud.enable = true;
       };
@@ -59,7 +52,7 @@
         wine.enable = true;
         lutris.enable = true;
         steam.enable = true;
-        tetrio.enable = false;
+        tetrio.enable = true;
       };
       media = {
         gimp.enable = true;
