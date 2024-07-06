@@ -34,6 +34,8 @@ in {
               set -eu
               ${pkgs.pass}/bin/pass git pull
               ${pkgs.pass}/bin/pass git push
+
+              ${pkgs.libnotify}/bin/notify-send "Passwords synced"
              '';
       serviceConfig = {
         Type = "oneshot";
