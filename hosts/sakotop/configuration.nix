@@ -20,6 +20,7 @@
     desktop = {
       wireguard.enable = true;
       kitty.enable = true;
+      wezterm.enable = true;
       bspwm = {
         enable = true;
         polybar.enable = true;
