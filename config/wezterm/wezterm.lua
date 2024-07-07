@@ -2,13 +2,12 @@
 local wezterm = require("wezterm")
 
 -- This will hold the configuration.
--- local config = wezterm.config_builder()
-local config = {}
+local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices
 config.enable_tab_bar = false
 
-config.color_scheme = "Tartan"
+config.color_scheme = "Tartan (terminal.sexy)"
 
 config.window_frame = {
 
