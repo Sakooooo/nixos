@@ -13,6 +13,7 @@
     ./gnome
     # stuffs
     ./kitty
+    ./wezterm
     ./browsers
     ./apps
     ./game
