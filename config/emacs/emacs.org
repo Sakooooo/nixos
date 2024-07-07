@@ -1086,6 +1086,11 @@ g (org-roam-directory "~/org/notes")
 #+begin_src emacs-lisp
 (use-package org-pomodoro)
 #+end_src
+** PDF-Tools
+Export and then view with emacs :)
+#+begin_src emacs-lisp
+(use-package pdf-tools)
+#+end_src
 * End
 #+begin_src elisp
   (message "Welcome to Emacs!")
