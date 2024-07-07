@@ -2,7 +2,8 @@
 local wezterm = require("wezterm")
 
 -- This will hold the configuration.
-local config = wezterm.config_builder()
+-- local config = wezterm.config_builder()
+local config = {}
 
 -- This is where you actually apply your config choices
 config.enable_tab_bar = false
