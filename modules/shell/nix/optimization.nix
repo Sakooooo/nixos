@@ -16,7 +16,7 @@ in
       gc = {
         automatic = true;
         dates = "weekly";
-        options = "--delete-older-than 1w";
+        options = "--delete-older-than 14d";
       };
       # optimizes store to reduce storage space :)
       # does do alot on the cpu though :p
