@@ -97,6 +97,8 @@ in {
       texliveFull
       # ement.el
       pantalaimon
+      # lsp
+      emacs-lsp-booster
     ];
 
     home-manager.users.sako = {lib, ...}: {
