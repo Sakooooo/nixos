@@ -7,7 +7,7 @@ local config = wezterm.config_builder()
 -- This is where you actually apply your config choices
 config.enable_tab_bar = false
 
-config.color_scheme = "Tangoesque"
+config.color_scheme = "Tartan"
 
 config.window_frame = {
 
