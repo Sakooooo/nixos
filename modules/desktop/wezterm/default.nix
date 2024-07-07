@@ -17,7 +17,7 @@ in {
       wezterm
     ];
 
-    home-manager.users.asko = {...}: {
+    home-manager.users.sako = {...}: {
       home.file.".wezterm.lua" = {
         enable = true;
         source = ../../../config/wezterm/wezterm.lua;
