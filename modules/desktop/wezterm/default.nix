@@ -16,5 +16,10 @@ in {
     users.users.sako.packages = with pkgs; [
       wezterm
     ];
+
+    home.file.".wezterm.lua" = {
+      enable = true;
+      source = ../../../config/wezterm/wezterm.lua;
+    };
   };
 }
