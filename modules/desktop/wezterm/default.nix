@@ -17,9 +17,11 @@ in {
       wezterm
     ];
 
-    home.file.".wezterm.lua" = {
-      enable = true;
-      source = ../../../config/wezterm/wezterm.lua;
+    home-manager.users.asko = {...}: {
+      home.file.".wezterm.lua" = {
+        enable = true;
+        source = ../../../config/wezterm/wezterm.lua;
+      };
     };
   };
 }
