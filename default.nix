@@ -121,6 +121,7 @@
     gh # github
     htop # htop
     tree # trees
+    ripgrep # better grep may help later
   ];
   # you phisiclally cannot live without this
   # litearlly!  ! ! ! ! !
