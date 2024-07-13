@@ -1,0 +1,22 @@
+IMAPAccount outlook
+Host outlook.office365.com
+Port 993
+UserCmd "pass Microsoft | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'"
+PassCmd "pass Microsoft"
+SSLType IMAPS
+
+IMAPStore outlook-remote
+Account outlook
+
+MaildirStore outlook-local
+Subfolders Verbatim
+Path ~/Mail/Outlook/
+Inbox ~/Mail/Outlook/Inbox
+
+Channel Outlook
+Far :outlook-remote:
+Near :outlook-local:
+Patterns * !"Conversation History" !Calendar !Archive !Archives !Clutter !Drafts
+Create Both
+Expunge Both
+SyncState *

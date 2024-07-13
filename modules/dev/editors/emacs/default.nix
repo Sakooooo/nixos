@@ -109,6 +109,7 @@ in {
           mv init.el $out
         '';
         ".emacs.d/icon.png".source = ../../../../config/emacs/icon.png;
+        ".mbsyncrc".source = ../../../../config/emacs/.mbsyncrc;
       };
     };
 
