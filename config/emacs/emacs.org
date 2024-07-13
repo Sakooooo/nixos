@@ -1023,7 +1023,7 @@ GNU patch review metho dor sometihng idk
   	  (lambda (msg)
   	    (when msg
   	      (string-prefix-p "/Outlook" (mu4e-message-field msg :maildir))))
-  	  :vars `((user-mail-address . (let ((output (shell-command-to-string "pass Microsoft | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")) (format "%s" output)))))
+  	  :vars `((user-mail-address . (let ((output (shell-command-to-string "pass Microsoft | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")) (format "%s" output))))
   	          (user-full-name . "Sako")
   		  (mu4e-drafts-folder . "/Outlook/Drafts")
   		  (mu4e-sent-folder . "/Outlook/Sent")
