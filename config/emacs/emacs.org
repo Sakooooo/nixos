@@ -1004,32 +1004,32 @@ its over the machines took over guys can i get my likes now
 ** mu4e
 GNU patch review metho dor sometihng idk
 #+begin_src emacs-lisp
-    (use-package mu4e
-      :config
+  (use-package mu4e
+    :config
 
-      ;; mu4e syncing issue with isync
-      (setq mu4e-change-filenames-when-moving t)
+    ;; mu4e syncing issue with isync
+    (setq mu4e-change-filenames-when-moving t)
 
-      (setq mu4e-update-interval (* 10 60))
-      (setq mu4e-get-mail-command "mbsync -a")
-      (setq mu4e-maildir "~/Mail")
+    (setq mu4e-update-interval (* 10 60))
+    (setq mu4e-get-mail-command "mbsync -a")
+    (setq mu4e-maildir "~/Mail")
 
-      (setq mu4e-contexts
-    	(list
-    	 ;; outlook
-    	 (make-mu4e-context
-    	  :name "Outlook"
-    	  :match-func
-    	  (lambda (msg)
-    	    (when msg
-    	      (string-prefix-p "/Outlook" (mu4e-message-field msg :maildir))))
-    	  :vars `((user-mail-address . (let (shell-command-to-string "pass Microsoft | awk 'FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
-    		  (user-full-name . "Sako")
-    		  (mu4e-drafts-folder . "/Outlook/Drafts")
-    		  (mu4e-sent-folder . "/Outlook/Sent")
-    		  (mu4e-refile-folder . "/Outlook/Inbox")
-    		  (mu4e-trash-folder . "/Outlook/Deleted")))))
-      )
+    (setq mu4e-contexts
+  	(list
+  	 ;; outlook
+  	 (make-mu4e-context
+  	  :name "Outlook"
+  	  :match-func
+  	  (lambda (msg)
+  	    (when msg
+  	      (string-prefix-p "/Outlook" (mu4e-message-field msg :maildir))))
+  	  :vars `((user-mail-address . (shell-command-to-string "pass Microsoft | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'"))
+  	          (user-full-name . "Sako")
+  		  (mu4e-drafts-folder . "/Outlook/Drafts")
+  		  (mu4e-sent-folder . "/Outlook/Sent")
+  		  (mu4e-refile-folder . "/Outlook/Inbox")
+  		  (mu4e-trash-folder . "/Outlook/Deleted")))))
+    )
 #+end_src
 * Org
 #+begin_src emacs-lisp
