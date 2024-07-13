@@ -1014,6 +1014,9 @@ GNU patch review metho dor sometihng idk
     (setq mu4e-get-mail-command "mbsync -a")
     (setq mu4e-maildir "~/Mail")
 
+    (setq outlook-mail-address
+      (string-trim (shell-command-to-string "pass mail | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
+
     (setq mu4e-contexts
   	(list
   	 ;; outlook
@@ -1023,7 +1026,7 @@ GNU patch review metho dor sometihng idk
   	  (lambda (msg)
   	    (when msg
   	      (string-prefix-p "/Outlook" (mu4e-message-field msg :maildir))))
-  	  :vars `((user-mail-address . (string-trim (shell-command-to-string "pass Microsoft | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
+  	  :vars `((user-mail-address . ,outlook-mail-address)
   	          (user-full-name . "Sako")
   		  (mu4e-drafts-folder . "/Outlook/Drafts")
   		  (mu4e-sent-folder . "/Outlook/Sent")
