@@ -24,6 +24,9 @@
     dwm = prev.dwm.overrideAttrs (old: {
       src = ../config/dwm;
     });
+    isync = prev.isync.overrideAttrs (old: {
+      withCyrusSaslXoauth2 = true;
+    });
   };
 
   # lmao when did i add this
