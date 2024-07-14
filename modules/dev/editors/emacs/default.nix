@@ -110,7 +110,7 @@ in {
         User = "sako";
         Type = "simple";
       };
-      script = "${pkgs.hydroxide} serve";
+      script = "${pkgs.hydroxide}/bin/hydroxide serve";
       wantedBy = [ "multi-user.target" ];
     };
 
