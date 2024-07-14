@@ -90,6 +90,8 @@ in {
       mu
       # sync
       isync
+      # protonmail
+      hydroxide
       # doc-view
       unoconv
       # org to pdf
