@@ -90,6 +90,7 @@ in {
       mu
       # sync
       isync
+      cyrus-sasl-xoauth2
       # protonmail
       hydroxide
       # doc-view
