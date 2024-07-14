@@ -89,7 +89,7 @@ in {
       # mu for email
       mu
       # sync
-      isync
+      # isync
       # doc-view
       unoconv
       # org to pdf
