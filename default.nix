@@ -128,6 +128,10 @@
   programs.gnupg.agent = {
     enable = true;
     pinentryPackage = pkgs.pinentry-gtk2;
+    settings = {
+      allow-emacs-pinentry = "";
+      allow-loopback-pinentry = "";
+    };
     # enableSSHSupport = true;
   };
 
