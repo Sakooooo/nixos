@@ -111,6 +111,7 @@ in {
         Type = "simple";
       };
       script = "${pkgs.hydroxide} serve";
+      wantedBy = [ "multi-user.target" ];
     };
 
     home-manager.users.sako = {lib, ...}: {
