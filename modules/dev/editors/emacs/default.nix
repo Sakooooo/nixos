@@ -103,6 +103,16 @@ in {
       emacs-lsp-booster
     ];
 
+    systemd.services.hydroxide = {
+      enable = true;
+      description = "Unofficial Protonmail Bridge";
+      serviceConfig = {
+        User = "sako";
+        Type = "simple";
+      };
+      script = "${pkgs.hydroxide} serve";
+    };
+
     home-manager.users.sako = {lib, ...}: {
       home.file = {
         ".emacs.d/init.el".source = pkgs.runCommand "init.el" {} ''
