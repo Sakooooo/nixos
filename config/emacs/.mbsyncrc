@@ -20,3 +20,26 @@ Patterns * !"Conversation History" !Calendar !Archive !Archives !Clutter !Drafts
 Create Both
 Expunge Both
 SyncState *
+
+IMAPAccount proton 
+Host 127.0.0.1 
+Port 1143
+UserCmd "pass 'Proton Account' | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'"
+PassCmd "cat ~/.hydroxide-bridge-pass"
+SSLType none
+
+IMAPStore proton-remote
+Account proton 
+
+MailDirStore proton-local
+SubFolders Verbatim
+Path ~/Mail/Proton/
+Inbox ~/Mail/Proton/Inbox
+
+Channel proton
+Far :proton-remote:
+Near :proton-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *

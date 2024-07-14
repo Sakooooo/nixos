@@ -1015,7 +1015,16 @@ GNU patch review metho dor sometihng idk
     (setq mu4e-maildir "~/Mail")
 
     (setq outlook-mail-address
-      (string-trim (shell-command-to-string "pass mail | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
+  	(string-trim (shell-command-to-string "pass mail | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
+
+    (defun make-proton-from-pass ()
+      "Proton"
+      (let* ((command pass "pass 'Proton Account' | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")
+  	   (output (shell-command-to-string command))
+  	   (result (concat output "@proton.me")))
+        result))
+    
+    (setq proton-mail-address (make-proton-from-pass))
 
     (setq mu4e-contexts
   	(list
@@ -1031,7 +1040,20 @@ GNU patch review metho dor sometihng idk
   		  (mu4e-drafts-folder . "/Outlook/Drafts")
   		  (mu4e-sent-folder . "/Outlook/Sent")
   		  (mu4e-refile-folder . "/Outlook/Inbox")
-  		  (mu4e-trash-folder . "/Outlook/Deleted")))))
+  		  (mu4e-trash-folder . "/Outlook/Deleted")))
+  	 (make-mu4e-context
+  	  :name "Proton"
+  	  :match-func
+  	  (lambda (msg)
+  	    (when msg
+  	      (string-prefix-p "/Proton" (mu4e-message-field msg :maildir))))
+  	  :vars `((user-mail-address . ,proton-mail-address)
+  	          (user-full-name . "Sako")
+  		  (mu4e-drafts-folder . "/Proton/Drafts")
+  		  (mu4e-sent-folder . "/Proton/Sent")
+  		  (mu4e-refile-folder . "/Proton/Inbox")
+  		  (mu4e-trash-folder . "/Proton/Trash")))
+  	 ))
     )
 #+end_src
 * Org
