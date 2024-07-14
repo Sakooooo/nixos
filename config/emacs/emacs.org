@@ -1010,6 +1010,9 @@ GNU patch review metho dor sometihng idk
     ;; mu4e syncing issue with isync
     (setq mu4e-change-filenames-when-moving t)
 
+    ;; sending mail
+    (setq message-send-mail-function 'smtpmail-send-it)
+
     (setq mu4e-update-interval (* 10 60))
     (setq mu4e-get-mail-command "mbsync -a")
     (setq mu4e-maildir "~/Mail")
