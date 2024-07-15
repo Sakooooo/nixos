@@ -564,15 +564,6 @@ kept-old-versions 5)
     
     (dashboard-setup-startup-hook))
 #+end_src
-** ace-window
-#+begin_src emacs-lisp
-(use-package ace-window
-  :bind (("M-o" . ace-window))
-  :custom
-  (aw-scope 'frame)
-  (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-  (aw-minibuffer-flag t))
-#+end_src
 * Auth
 #+begin_src emacs-lisp
 (message "Reached auth")
