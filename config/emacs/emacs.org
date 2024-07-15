@@ -159,7 +159,7 @@ kept-old-versions 5)
 ;; TODO: change this for something better i guess
 (use-package doom-themes
   :config
-  (load-theme 'doom-dark+ t))
+  (load-theme 'doom-monokai-spectrum t))
 
 ;; emacsclient things
 (setq frame-resize-pixelwise t)
