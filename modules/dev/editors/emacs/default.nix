@@ -91,6 +91,7 @@ in {
       # sync
       isync
       cyrus-sasl-xoauth2
+      offlineimap
       # protonmail
       hydroxide
       # doc-view
