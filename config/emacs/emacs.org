@@ -334,7 +334,7 @@ kept-old-versions 5)
        "gci" '(forge-create-issue :which-key "issue")
        "gcp" '(forge-create-pullreq :which-key "pull request")
        ;; mail
-       "m" '(mu4e :which-key "mu4e")) 
+       "m" '(mu4e :which-key "mu4e")))
 
 #+end_src
 ** Evil
