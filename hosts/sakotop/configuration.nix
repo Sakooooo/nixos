@@ -49,6 +49,7 @@
         transmission.enable = true;
         obs.enable = true;
         nextcloud.enable = true;
+        localsend.enable = true;
       };
       game = {
         wine.enable = true;
