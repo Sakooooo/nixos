@@ -956,6 +956,12 @@ this should be useful later
   :hook (rust-mode . eglot-ensure)
   :mode "\\.rs\\'")
 #+end_src
+** Haskell
+#+begin_src emacs-lisp
+  (use-package haskell-mode
+    :hook (haskell-mode . eglot-ensure)
+    :mode "\\.hs'")
+#+end_src
 * Social
 #+begin_src emacs-lisp
 (message "Reached social")
