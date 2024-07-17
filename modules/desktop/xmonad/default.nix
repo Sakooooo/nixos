@@ -41,6 +41,9 @@ in {
           };
         };
       };
+    };
+
+    services.libinput = {
       libinput = {
         enable = true;
 
