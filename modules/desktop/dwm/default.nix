@@ -17,13 +17,14 @@ in {
     # this needs to be enabled for gtk apps
     programs.dconf.enable = true;
     # enable dwm
+    services.displayManager.defaultSession = "none+dwm";
+
     services.xserver = {
       enable = true;
       windowManager = {
         dwm.enable = true;
       };
       displayManager = {
-        defaultSession = "none+dwm";
         lightdm = {
           enable = true;
           background = ../../../config/background.png;
@@ -51,14 +52,15 @@ in {
         #  };
         };
       };
-      libinput = {
-        mouse = {
-          accelProfile = "flat";
-        };
+    };
 
-        touchpad = {
-          accelProfile = "flat";
-        };
+    services.libinput = {
+      mouse = {
+        accelProfile = "flat";
+      };
+
+      touchpad = {
+        accelProfile = "flat";
       };
     };
     users.users.sako.packages = with pkgs; [
