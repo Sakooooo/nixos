@@ -999,6 +999,15 @@ Ill set this up later as well
 #+begin_src emacs-lisp
 (use-package subsonic)
 #+end_src
+** mpdel
+MPD controller for emacs
+(will only work on linux obviously)
+#+begin_src emacs-lisp
+  (when (eq system-type 'gnu/linux)
+    (use-package mpdel
+      :config
+      (mpdel-mode)))
+#+end_src
 ** GPTel
 its over the machines took over guys can i get my likes now
 #+begin_src emacs-lisp
