@@ -109,8 +109,7 @@
       aria.enable = true;
     };
     media = {
-      mpd.enable = false;
-      mopidy.enable = false;
+      mpd.enable = true;
       ncmpcpp.enable = true;
     };
     work = {
