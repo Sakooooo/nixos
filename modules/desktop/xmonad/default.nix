@@ -44,7 +44,6 @@ in {
     };
 
     services.libinput = {
-      libinput = {
         enable = true;
 
         # mouse
@@ -56,7 +55,6 @@ in {
         touchpad = {
           accelProfile = "flat";
         };
-      };
     };
 
     users.users.sako.packages = with pkgs; [
