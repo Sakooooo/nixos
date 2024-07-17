@@ -1006,6 +1006,7 @@ good lodr emacs music
     :config
     (emms-all)
     (setq emms-player-list '(emms-player-mpv))
+    (setq emms-source-file-default-directory "~/music")
     )
 #+end_src
 ** GPTel
