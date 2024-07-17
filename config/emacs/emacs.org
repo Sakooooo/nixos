@@ -1004,7 +1004,9 @@ good lodr emacs music
 #+begin_src emacs-lisp
   (use-package emms
     :config
-    (emms-all))
+    (emms-all)
+    (setq emms-player-list '(emms-player-mpv))
+    )
 #+end_src
 ** GPTel
 its over the machines took over guys can i get my likes now
