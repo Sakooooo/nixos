@@ -307,7 +307,7 @@ myStartupHook = do
   spawnOnce "flameshot"
   spawnOnce "nextcloud"
   spawn "picom"
-  spawn "trayer --edge bottom --align right --iconspacing 5 --height 20 --widthtype request --alpha 0 --transparent true --tint 'black'"
+  spawn "trayer --edge bottom --align right --padding 8 --iconspacing 5 --height 25 --widthtype request --alpha 0 --transparent true --tint 'black'"
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
