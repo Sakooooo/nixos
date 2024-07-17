@@ -22,9 +22,10 @@
       kitty.enable = true;
       wezterm.enable = true;
       bspwm = {
-        enable = true;
-        polybar.enable = true;
+        enable = false;
+        polybar.enable = false;
       };
+      dwm.enable = true;
       picom.enable = true;
       dunst.enable = true;
       browsers = {
