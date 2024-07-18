@@ -23,6 +23,7 @@ with lib; let
       epkgs.exwm
 #     epkgs.sakomodules
       epkgs.eglot-booster
+      epkgs.app-launcher
     ];
     # add eglot-lsp-booster package
     override = epkgs: epkgs // {
@@ -37,6 +38,16 @@ with lib; let
         repo = "eglot-booster";
         rev = "e19dd7ea81bada84c66e8bdd121408d9c0761fe6";
         hash = "sha256-vF34ZoUUj8RENyH9OeKGSPk34G6KXZhEZozQKEcRNhs=";
+      };
+    };
+    app-launcher = epkgs.trivialBuild {
+      pname = "app-launcher";
+      version = "d5015e394b0a666a8c7c4d4bdf786266e773b145";
+
+      src = pkgs.fetchFromGitHub {
+        owner = "SebastienWae";
+        repo = "app-launcher";
+        rev = "d5015e394b0a666a8c7c4d4bdf786266e773b145";
       };
     };
     };
