@@ -141,7 +141,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl s 100-")
 
     -- Fullscreen
-    , ((modm, xK_f), sendMessage $ JumpToLayout "Full"  )
+    -- , ((modm, xK_f), sendMessage $ JumpToLayout "Full"  )
+    , ((modm, xK_f), sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts)
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
