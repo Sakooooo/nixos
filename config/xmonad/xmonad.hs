@@ -19,6 +19,7 @@ import XMonad.Util.Run -- for xmobar startup
 import XMonad.Layout.Spacing  -- gaps
 import XMonad.Layout.Fullscreen -- fullscreen
 import XMonad.Layout.NoBorders -- fullscreen
+import XMonad.Layout.ToggleLyouts (ToggleLayout(...), toggleLayouts)
 import XMonad.Util.Hacks as Hacks -- tray
 import Graphics.X11.ExtraTypes.XF86 -- for keys
 import XMonad.Util.Loggers -- smth
