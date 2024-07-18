@@ -23,7 +23,7 @@ with lib; let
       epkgs.exwm
 #     epkgs.sakomodules
       epkgs.eglot-booster
-      epkgs.applauncher
+      epkgs.app-launcher
     ];
     # add eglot-lsp-booster package
     override = epkgs: epkgs // {
