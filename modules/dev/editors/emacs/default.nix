@@ -41,8 +41,15 @@ with lib; let
       };
     };
     app-launcher = epkgs.melpaBuild {
-      pname = "applauncher";
+      pname = "app-launcher";
       version = "1.0";
+
+
+      commit = "d5015e394b0a666a8c7c4d4bdf786266e773b145";
+
+      recipe = writeText "recipe" ''
+             (app-launcher :repo "SebastienWae/app-launcher" :fetcher github)
+      '';   
 
       src = pkgs.fetchFromGitHub {
         owner = "SebastienWae";
