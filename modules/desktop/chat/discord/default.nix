@@ -17,7 +17,6 @@ in {
     users.users.sako.packages = [
       (pkgs.discord.override {
         withOpenASAR = true;
-        withVencord = true;
       })
     ];
   };
