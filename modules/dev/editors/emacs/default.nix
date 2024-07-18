@@ -48,6 +48,7 @@ with lib; let
         owner = "SebastienWae";
         repo = "app-launcher";
         rev = "d5015e394b0a666a8c7c4d4bdf786266e773b145";
+        hash = "sha256-d0d5rkuxK/zKpSCa1UTdpV7o+RDDsEeab56rI7xUJ1E=";
       };
     };
     };
