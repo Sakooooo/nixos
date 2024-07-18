@@ -133,7 +133,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
     -- See also the statusBar function from Hooks.DynamicLog.
     --
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
+    , ((modm              , xK_b     ), sendMessage ToggleStruts)
     -- Audio
     , ((0, xF86XK_AudioMute), spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
     , ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
@@ -144,8 +144,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl s 100-")
 
     -- Fullscreen
-    -- , ((modm, xK_f), sendMessage $ JumpToLayout "Full"  )
-    , ((modm, xK_f), sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts)
+    , ((modm, xK_f), sendMessage $ JumpToLayout "Full"  )
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
