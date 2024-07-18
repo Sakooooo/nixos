@@ -74,7 +74,9 @@ in {
           };
         };
       };
-      libinput = {
+    };
+
+      services.libinput = {
         enable = true;
 
         # mouse
@@ -87,7 +89,6 @@ in {
           accelProfile = "flat";
         };
       };
-    };
 
     users.users.sako.packages = with pkgs; [
       rofi
