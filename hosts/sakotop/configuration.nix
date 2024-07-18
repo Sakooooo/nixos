@@ -25,7 +25,8 @@
         enable = false;
         polybar.enable = false;
       };
-      xmonad.enable = true;
+      xmonad.enable = false;
+      exwm.enable = true;
       picom.enable = true;
       dunst.enable = true;
       browsers = {
