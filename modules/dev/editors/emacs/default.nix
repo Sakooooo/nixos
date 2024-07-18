@@ -40,7 +40,7 @@ with lib; let
         hash = "sha256-vF34ZoUUj8RENyH9OeKGSPk34G6KXZhEZozQKEcRNhs=";
       };
     };
-    app-launcher = epkgs.trivialBuild {
+    app-launcher = epkgs.melpaBuild {
       pname = "app-launcher";
       version = "d5015e394b0a666a8c7c4d4bdf786266e773b145";
 
