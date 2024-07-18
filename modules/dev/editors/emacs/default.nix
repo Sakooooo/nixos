@@ -47,7 +47,7 @@ with lib; let
 
       commit = "d5015e394b0a666a8c7c4d4bdf786266e773b145";
 
-      recipe = writeText "recipe" ''
+      recipe = pkgs.writeText "recipe" ''
              (app-launcher :repo "SebastienWae/app-launcher" :fetcher github)
       '';   
 
