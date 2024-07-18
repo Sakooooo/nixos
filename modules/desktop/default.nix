@@ -8,6 +8,7 @@
     ./xmonad
     ./qtile
     ./exwm
+    ./i3
     # desktop environ men t s s  s s
     ./kde
     ./gnome
