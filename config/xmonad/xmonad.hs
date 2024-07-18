@@ -22,6 +22,9 @@ import XMonad.Layout.NoBorders -- fullscreen
 import XMonad.Util.Hacks as Hacks -- tray
 import Graphics.X11.ExtraTypes.XF86 -- for keys
 import XMonad.Util.Loggers -- smth
+import XMonad.Layout.MultiToggle (mkToggle, single, EOT(EOT), (??))
+import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
+
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
