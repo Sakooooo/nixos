@@ -483,23 +483,26 @@ kept-old-versions 5)
 #+end_src
 ** Embark
 #+begin_src emacs-lisp
-(use-package embark
-  :after vertico
-  :bind (("C-." . embark-act)
-         ("M-." . embark-dwim)
-         :map minibuffer-local-map
-         ("C-d" . embark-act)
-         :map embark-region-map
-         ("D" . denote-region))
+  (use-package embark
+    :after vertico
+    :bind (("C-." . embark-act)
+           ("M-." . embark-dwim)
+           :map minibuffer-local-map
+           ("C-d" . embark-act)
+           :map embark-region-map
+           ("D" . denote-region))
 
-  :config
-  ;; Remove the mixed indicator to prevent the popup from being displayed
-  ;; automatically
-  (delete #'embark-mixed-indicator embark-indicators)
-  (add-to-list 'embark-indicators 'embark-minimal-indicator)
+    :config
+    ;; Remove the mixed indicator to prevent the popup from being displayed
+    ;; automatically
+    (delete #'embark-mixed-indicator embark-indicators)
+    (add-to-list 'embark-indicators 'embark-minimal-indicator)
 
-  ;; Use Embark to show command prefix help
-  (setq prefix-help-command #'embark-prefix-help-command))
+    ;; Use Embark to show command prefix help
+    (setq prefix-help-command #'embark-prefix-help-command))
+
+  (use-package embark-consult
+    :after embark)
 
 #+end_src
 ** Corfu (Autocomplete)
