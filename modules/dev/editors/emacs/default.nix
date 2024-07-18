@@ -23,7 +23,7 @@ with lib; let
       epkgs.exwm
 #     epkgs.sakomodules
       epkgs.eglot-booster
-      epkgs.app-launcher
+      epkgs.applauncher
     ];
     # add eglot-lsp-booster package
     override = epkgs: epkgs // {
@@ -41,7 +41,7 @@ with lib; let
       };
     };
     app-launcher = epkgs.melpaBuild {
-      pname = "app-launcher";
+      pname = "applauncher";
       version = "d5015e394b0a666a8c7c4d4bdf786266e773b145";
 
       src = pkgs.fetchFromGitHub {
