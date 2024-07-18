@@ -48,9 +48,7 @@ in {
         #   })))
         # '';
         extraConfig = pkgs.writeText "emacs-loadscript" ''
-          (require 'exwm-config)
-          (exwm-config-default)
-          (exwm-init)
+         (exwm-init)
         '';
       in
         singleton {
