@@ -1226,7 +1226,11 @@ I'm scared
 
       ;; Update panel indicator when workspace changes
       (add-hook 'exwm-workspace-switch-hook #'sakomacs/send-polybar-exwm-workspace)
-
+      
+      ;; set the buffer name to the window name
+      (add-hook 'exwm-update-class-hook
+                (lambda ()
+  		(exwm-workspace-rename-buffer exwm-class-name)))
       ;; always use these keys in emacs
       (setq exwm-input-prefix-keys
             '(?\C-x
