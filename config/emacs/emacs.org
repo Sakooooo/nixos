@@ -435,11 +435,6 @@ kept-old-versions 5)
     :init
     (require 'vertico-directory)
     (vertico-mode))
-
-  ;; center that shit!!!!!
-  (use-package vertico-posframe
-    :config
-    (vertico-posframe-mode 1))
 #+end_src
 ** Marginalia
 #+begin_src emacs-lisp
