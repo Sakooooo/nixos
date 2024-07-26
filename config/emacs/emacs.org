@@ -1247,7 +1247,7 @@ I'm scared
       ;; Ctrl+Q will enable the next key to be sent directly
       (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
       ;; app launcher and fullscreen
-      (exwm-input-set-key (kbd "s-SPC") 'counsel-linux-app)
+      (exwm-input-set-key (kbd "s-SPC") 'app-launcher-run-app)
       (exwm-input-set-key (kbd "s-f") 'exwm-layout-toggle-fullscreen)
       ;; Set up global key bindings.  These always work, no matter the input state!
       ;; Keep in mind that changing this list after EXWM initializes has no effect.
