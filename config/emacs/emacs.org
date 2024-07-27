@@ -1193,7 +1193,10 @@ I'm scared
         ;; show time on the modeline 
         (setq display-time-default-load-average nil)
         (setq display-time-24hr-format t)
-        (display-time-mode t))
+        (display-time-mode t)
+        ;; shrink fringe to 1px
+        (fringe-mode 1)
+        )
 
       ;; background
       ;; todo turn this info a function
@@ -1233,10 +1236,20 @@ I'm scared
       ;; Update panel indicator when workspace changes
       (add-hook 'exwm-workspace-switch-hook #'sakomacs/send-polybar-exwm-workspace)
       
-      ;; set the buffer name to the window name
+
+      ;; make the buffer names better
       (add-hook 'exwm-update-class-hook
                 (lambda ()
-  		(exwm-workspace-rename-buffer exwm-class-name)))
+  		(unless (or (string-prefix-p "sun-awt-X11-" exwm-instance-name)
+                              (string= "gimp" exwm-instance-name))
+  		  (exwm-workspace-rename-buffer exwm-class-name))))
+      (add-hook 'exwm-update-title-hook
+                (lambda ()
+  		(when (or (not exwm-instance-name)
+  			  (string-prefix-p "sun-awt-X11-" exwm-instance-name)
+  			  (string= "gimp" exwm-instance-name))
+  		  (exwm-workspace-rename-buffer exwm-title))))     
+      
       ;; always use these keys in emacs
       (setq exwm-input-prefix-keys
             '(?\C-x
@@ -1249,7 +1262,15 @@ I'm scared
               ?\C-\M-j  ;; Buffer list
               ?\C-\ ))  ;; Ctrl+Space
 
-      ;; Ctrl+Q will enable the next key to be sent directly
+      (setq exwm-input-stimulation-keys
+  	  '(
+  	    ;; cut/paste.
+  	    ([?\C-w] . [?\C-x])
+  	    ([?\M-w] . [?\C-c])
+  	    ([?\C-y] . [?\C-v])))
+      
+
+      ;; Ctrl+/3Q will enable the next key to be sent directly
       (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
       ;; app launcher and fullscreen
       (exwm-input-set-key (kbd "s-SPC") 'app-launcher-run-app)
