@@ -1172,7 +1172,6 @@ Export and then view with emacs :)
 I'm scared
 #+begin_src emacs-lisp
   (when (eq system-type 'gnu/linux)
-    (display-battery-mode)
     (use-package exwm
       :config
 
@@ -1188,7 +1187,13 @@ I'm scared
         ;; (call-process-shell-command "nextcloud" nil 0)     
         ;; (call-process-shell-command "bitwarden" nil 0)     
         (call-process-shell-command "flameshot" nil 0)  
-        )
+        
+        ;; battery
+        (display-battery-mode)
+        ;; show time on the modeline 
+        (setq display-time-default-load-average nil)
+        (setq display-time-24hr-format t)
+        (display-time-mode t))
 
       ;; background
       ;; todo turn this info a function
