@@ -538,7 +538,7 @@ kept-old-versions 5)
 #+begin_src emacs-lisp
   (use-package dashboard
     :config
-    (setq initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
+    (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 
     ;; Set the title
     (setq dashboard-banner-logo-title "GET ME OUT GET ME OUT GET ME OUT")
