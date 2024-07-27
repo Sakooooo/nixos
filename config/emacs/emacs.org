@@ -1286,6 +1286,7 @@ I'm scared
       ;; app launcher and fullscreen
       (exwm-input-set-key (kbd "s-SPC") 'app-launcher-run-app)
       (exwm-input-set-key (kbd "s-f") 'exwm-layout-toggle-fullscreen)
+      (exwm-input-set-key (kbd "s-<return>") 'vterm)
       ;; Set up global key bindings.  These always work, no matter the input state!
       ;; Keep in mind that changing this list after EXWM initializes has no effect.
       (setq exwm-input-global-keys
