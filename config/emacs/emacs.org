@@ -587,29 +587,28 @@ kept-old-versions 5)
 #+end_src
 ** Dashboard
 #+begin_src emacs-lisp
-  (use-package dashboard
-    :init
-    (setq initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
+    (use-package dashboard
+      :init
+      (setq initial-buffer-choice 'dashboard-open) 
+      ;; Set the title
+      (setq dashboard-banner-logo-title "GET ME OUT GET ME OUT GET ME OUT")
+      (setq dashboard-image-banner-max-height 200)
+      ;; Set the banner
+      (setq dashboard-startup-banner '"~/.emacs.d/icon.png")
+      (setq dashboard-center-content t)
+      (setq dashboard-vertically-center-content t)
+      (setq dashboard-show-shortcuts nil)
 
-    ;; Set the title
-    (setq dashboard-banner-logo-title "GET ME OUT GET ME OUT GET ME OUT")
-    (setq dashboard-image-banner-max-height 200)
-    ;; Set the banner
-    (setq dashboard-startup-banner '"~/.emacs.d/icon.png")
-    (setq dashboard-center-content t)
-    (setq dashboard-vertically-center-content t)
-    (setq dashboard-show-shortcuts nil)
+      ;; nerd icons
+      (setq dashboard-display-icons-p t)     ; display icons on both GUI and terminal
+      (setq dashboard-icon-type 'nerd-icons) ; use `nerd-icons' package
 
-    ;; nerd icons
-    (setq dashboard-display-icons-p t)     ; display icons on both GUI and terminal
-    (setq dashboard-icon-type 'nerd-icons) ; use `nerd-icons' package
-
-    ;; list stuff
-    (setq dashboard-items '((recents   . 3)
-                        (projects  . 3)
-                        (agenda    . 3)))
-    :config
-    (dashboard-setup-startup-hook))
+      ;; list stuff
+      (setq dashboard-items '((recents   . 3)
+                          (projects  . 3)
+                          (agenda    . 3)))
+      :config
+      (dashboard-setup-startup-hook))
 #+end_src
 * Auth
 #+begin_src emacs-lisp
