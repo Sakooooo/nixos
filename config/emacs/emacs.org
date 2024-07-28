@@ -588,8 +588,8 @@ kept-old-versions 5)
 ** Dashboard
 #+begin_src emacs-lisp
   (use-package dashboard
-    :config
-    (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+    :init
+    (setq initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
 
     ;; Set the title
     (setq dashboard-banner-logo-title "GET ME OUT GET ME OUT GET ME OUT")
@@ -608,7 +608,7 @@ kept-old-versions 5)
     (setq dashboard-items '((recents   . 3)
                         (projects  . 3)
                         (agenda    . 3)))
-    
+    :config
     (dashboard-setup-startup-hook))
 #+end_src
 * Auth
