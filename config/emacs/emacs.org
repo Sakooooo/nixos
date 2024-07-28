@@ -456,6 +456,154 @@ kept-old-versions 5)
     (evil-define-key '(normal insert visual) org-mode-map (kbd "M-j") 'org-metadown)
     (evil-define-key '(normal insert visual) org-mode-map (kbd "M-k") 'org-metaup))
 #+end_src
+* EXWM
+I'm scared
+#+begin_src emacs-lisp
+  (when (eq system-type 'gnu/linux)
+    (use-package exwm
+      :config
+
+      (defun sakomacs/exwm-init-hook ()
+        ;; background
+        (call-process-shell-command "feh --bg-fill ~/background.png" nil 0)     
+        ;; (set-frame-parameter nil 'alpha 90)
+        ;; (call-process-shell-command "~/.config/polybar/startpolybar" nil 0)     
+        (call-process-shell-command "~/.config/picom/startpicom" nil 0)     
+        ;; startup
+        (call-process-shell-command "nm-applet" nil 0)     
+        (call-process-shell-command "blueman-applet" nil 0)     
+        ;; (call-process-shell-command "nextcloud" nil 0)     
+        ;; (call-process-shell-command "bitwarden" nil 0)     
+        (call-process-shell-command "flameshot" nil 0)  
+        
+        ;; battery
+        (display-battery-mode)
+        ;; show time on the modeline 
+        (setq display-time-default-load-average nil)
+        (setq display-time-24hr-format t)
+        (display-time-mode t)
+        ;; shrink fringe to 1px
+        (fringe-mode 1)
+        )
+
+      ;; background
+      ;; todo turn this info a function
+      (add-hook 'exwm-init-hook 'sakomacs/exwm-init-hook)
+      ;; startup
+      ;; workspaces
+      (setq exwm-workspace-number 5)
+
+
+      (require 'exwm-systemtray)
+      (exwm-systemtray-enable)
+
+      ;; polybar
+      (defvar sakomacs/polybar-process nil
+        "Holds the process of the running Polybar instance, if any")
+
+      (server-start)
+
+      (defun sakomacs/kill-panel ()
+        (interactive)
+        (when sakomacs/polybar-process
+          (ignore-errors
+            (kill-process sakomacs/polybar-process)))
+        (setq sakomacs/polybar-process nil))
+
+      (defun sakomacs/start-panel ()
+        (interactive)
+        (sakomacs/kill-panel)
+        (setq sakomacs/polybar-process (start-process-shell-command "polybar" nil "polybar panel")))
+
+      (defun sakomacs/send-polybar-hook (module-name hook-index)
+        (start-process-shell-command "polybar-msg" nil (format "polybar-msg hook %s %s" module-name hook-index)))
+
+      (defun sakomacs/send-polybar-exwm-workspace ()
+        (sakomacs/send-polybar-hook "exwm-workspace" 1))
+
+      ;; Update panel indicator when workspace changes
+      (add-hook 'exwm-workspace-switch-hook #'sakomacs/send-polybar-exwm-workspace)
+      
+
+      ;; make the buffer names better
+      (add-hook 'exwm-update-class-hook
+                (lambda ()
+  		(unless (or (string-prefix-p "sun-awt-X11-" exwm-instance-name)
+                              (string= "gimp" exwm-instance-name))
+  		  (exwm-workspace-rename-buffer exwm-class-name))))
+      (add-hook 'exwm-update-title-hook
+                (lambda ()
+  		(when (or (not exwm-instance-name)
+  			  (string-prefix-p "sun-awt-X11-" exwm-instance-name)
+  			  (string= "gimp" exwm-instance-name))
+  		  (exwm-workspace-rename-buffer exwm-title))))     
+      
+      ;; always use these keys in emacs
+      (setq exwm-input-prefix-keys
+            '(?\C-x
+              ?\C-u
+              ?\C-h
+              ?\M-x
+              ?\M-`
+              ?\M-&
+              ?\M-:
+              ?\C-\M-j  ;; Buffer list
+              ?\C-\ ))  ;; Ctrl+Space
+
+      (setq exwm-input-stimulation-keys
+  	  '(
+  	    ;; cut/paste.
+  	    ([?\C-w] . [?\C-x])
+  	    ([?\M-w] . [?\C-c])
+  	    ([?\C-y] . [?\C-v])))
+      
+
+      ;; Ctrl+/3Q will enable the next key to be sent directly
+      (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+      ;; app launcher and fullscreen
+      (exwm-input-set-key (kbd "s-SPC") 'app-launcher-run-app)
+      (exwm-input-set-key (kbd "s-f") 'exwm-layout-toggle-fullscreen)
+      (exwm-input-set-key (kbd "s-<return>") 'vterm)
+      ;; Set up global key bindings.  These always work, no matter the input state!
+      ;; Keep in mind that changing this list after EXWM initializes has no effect.
+      (setq exwm-input-global-keys
+            `(
+              ;; Reset to line-mode (C-c C-k switches to char-mode via exwm-input-release-keyboard)
+              ([?\s-r] . exwm-reset)
+
+              ;; Move between windows
+              ([s-left] . windmove-left)
+              ([s-right] . windmove-right)
+              ([s-up] . windmove-up)
+              ([s-down] . windmove-down)
+
+              ;; Launch applications via shell command
+              ([?\s-&] . (lambda (command)
+                           (interactive (list (read-shell-command "$ ")))
+                           (start-process-shell-command command nil command)))
+
+              ;; Switch workspace
+              ([?\s-w] . exwm-workspace-switch)
+
+              ;; 's-N': Switch to certain workspace with Super (Win) plus a number key (0 - 9)
+              ,@(mapcar (lambda (i)
+                          `(,(kbd (format "s-%d" i)) .
+                            (lambda ()
+                              (interactive)
+                              (exwm-workspace-switch-create ,i))))
+                        (number-sequence 0 9))))
+      )
+
+    (use-package desktop-environment
+      :after exwm
+      :config (desktop-environment-mode)
+      :custom
+      (desktop-environment-brightness-small-increment "2%+")
+      (desktop-environment-brightness-small-decrement "2%-")
+      (desktop-environment-brightness-normal-increment "5%+")
+      (desktop-environment-brightness-normal-decrement "5%-"))
+    )
+#+end_src
 * Interface
 #+begin_src emacs-lisp
 (message "Got to interface")
@@ -1218,154 +1366,6 @@ g (org-roam-directory "~/org/notes")
 Export and then view with emacs :)
 #+begin_src emacs-lisp
 (use-package pdf-tools)
-#+end_src
-* EXWM
-I'm scared
-#+begin_src emacs-lisp
-  (when (eq system-type 'gnu/linux)
-    (use-package exwm
-      :config
-
-      (defun sakomacs/exwm-init-hook ()
-        ;; background
-        (call-process-shell-command "feh --bg-fill ~/background.png" nil 0)     
-        ;; (set-frame-parameter nil 'alpha 90)
-        ;; (call-process-shell-command "~/.config/polybar/startpolybar" nil 0)     
-        (call-process-shell-command "~/.config/picom/startpicom" nil 0)     
-        ;; startup
-        (call-process-shell-command "nm-applet" nil 0)     
-        (call-process-shell-command "blueman-applet" nil 0)     
-        ;; (call-process-shell-command "nextcloud" nil 0)     
-        ;; (call-process-shell-command "bitwarden" nil 0)     
-        (call-process-shell-command "flameshot" nil 0)  
-        
-        ;; battery
-        (display-battery-mode)
-        ;; show time on the modeline 
-        (setq display-time-default-load-average nil)
-        (setq display-time-24hr-format t)
-        (display-time-mode t)
-        ;; shrink fringe to 1px
-        (fringe-mode 1)
-        )
-
-      ;; background
-      ;; todo turn this info a function
-      (add-hook 'exwm-init-hook 'sakomacs/exwm-init-hook)
-      ;; startup
-      ;; workspaces
-      (setq exwm-workspace-number 5)
-
-
-      (require 'exwm-systemtray)
-      (exwm-systemtray-enable)
-
-      ;; polybar
-      (defvar sakomacs/polybar-process nil
-        "Holds the process of the running Polybar instance, if any")
-
-      (server-start)
-
-      (defun sakomacs/kill-panel ()
-        (interactive)
-        (when sakomacs/polybar-process
-          (ignore-errors
-            (kill-process sakomacs/polybar-process)))
-        (setq sakomacs/polybar-process nil))
-
-      (defun sakomacs/start-panel ()
-        (interactive)
-        (sakomacs/kill-panel)
-        (setq sakomacs/polybar-process (start-process-shell-command "polybar" nil "polybar panel")))
-
-      (defun sakomacs/send-polybar-hook (module-name hook-index)
-        (start-process-shell-command "polybar-msg" nil (format "polybar-msg hook %s %s" module-name hook-index)))
-
-      (defun sakomacs/send-polybar-exwm-workspace ()
-        (sakomacs/send-polybar-hook "exwm-workspace" 1))
-
-      ;; Update panel indicator when workspace changes
-      (add-hook 'exwm-workspace-switch-hook #'sakomacs/send-polybar-exwm-workspace)
-      
-
-      ;; make the buffer names better
-      (add-hook 'exwm-update-class-hook
-                (lambda ()
-  		(unless (or (string-prefix-p "sun-awt-X11-" exwm-instance-name)
-                              (string= "gimp" exwm-instance-name))
-  		  (exwm-workspace-rename-buffer exwm-class-name))))
-      (add-hook 'exwm-update-title-hook
-                (lambda ()
-  		(when (or (not exwm-instance-name)
-  			  (string-prefix-p "sun-awt-X11-" exwm-instance-name)
-  			  (string= "gimp" exwm-instance-name))
-  		  (exwm-workspace-rename-buffer exwm-title))))     
-      
-      ;; always use these keys in emacs
-      (setq exwm-input-prefix-keys
-            '(?\C-x
-              ?\C-u
-              ?\C-h
-              ?\M-x
-              ?\M-`
-              ?\M-&
-              ?\M-:
-              ?\C-\M-j  ;; Buffer list
-              ?\C-\ ))  ;; Ctrl+Space
-
-      (setq exwm-input-stimulation-keys
-  	  '(
-  	    ;; cut/paste.
-  	    ([?\C-w] . [?\C-x])
-  	    ([?\M-w] . [?\C-c])
-  	    ([?\C-y] . [?\C-v])))
-      
-
-      ;; Ctrl+/3Q will enable the next key to be sent directly
-      (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
-      ;; app launcher and fullscreen
-      (exwm-input-set-key (kbd "s-SPC") 'app-launcher-run-app)
-      (exwm-input-set-key (kbd "s-f") 'exwm-layout-toggle-fullscreen)
-      (exwm-input-set-key (kbd "s-<return>") 'vterm)
-      ;; Set up global key bindings.  These always work, no matter the input state!
-      ;; Keep in mind that changing this list after EXWM initializes has no effect.
-      (setq exwm-input-global-keys
-            `(
-              ;; Reset to line-mode (C-c C-k switches to char-mode via exwm-input-release-keyboard)
-              ([?\s-r] . exwm-reset)
-
-              ;; Move between windows
-              ([s-left] . windmove-left)
-              ([s-right] . windmove-right)
-              ([s-up] . windmove-up)
-              ([s-down] . windmove-down)
-
-              ;; Launch applications via shell command
-              ([?\s-&] . (lambda (command)
-                           (interactive (list (read-shell-command "$ ")))
-                           (start-process-shell-command command nil command)))
-
-              ;; Switch workspace
-              ([?\s-w] . exwm-workspace-switch)
-
-              ;; 's-N': Switch to certain workspace with Super (Win) plus a number key (0 - 9)
-              ,@(mapcar (lambda (i)
-                          `(,(kbd (format "s-%d" i)) .
-                            (lambda ()
-                              (interactive)
-                              (exwm-workspace-switch-create ,i))))
-                        (number-sequence 0 9))))
-      )
-
-    (use-package desktop-environment
-      :after exwm
-      :config (desktop-environment-mode)
-      :custom
-      (desktop-environment-brightness-small-increment "2%+")
-      (desktop-environment-brightness-small-decrement "2%-")
-      (desktop-environment-brightness-normal-increment "5%+")
-      (desktop-environment-brightness-normal-decrement "5%-"))
-    )
 #+end_src
 * End
 #+begin_src elisp
