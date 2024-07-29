@@ -139,6 +139,9 @@
   networking.wireguard.interfaces = {
   };
 
+  # set laptop dpi
+  services.xserver.dpi = 100;
+
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
