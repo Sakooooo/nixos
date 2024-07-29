@@ -1295,7 +1295,11 @@ I'm scared
   			  (string-prefix-p "sun-awt-X11-" exwm-instance-name)
   			  (string= "gimp" exwm-instance-name))
   		  (exwm-workspace-rename-buffer exwm-title))))     
-      
+      ;; floating 
+      (add-hook 'exwm-floating-setup-hook
+            (lambda ()
+              (toggle-frame-tab-bar) ;; No tab bars on floating frames
+              (exwm-layout-hide-mode-line))     
       ;; always use these keys in emacs
       (setq exwm-input-prefix-keys
             '(?\C-x
