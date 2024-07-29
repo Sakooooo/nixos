@@ -1,6 +1,6 @@
 # load stuff
 {
-  description = "horrible dotfiles for amazing distro";
+  description = "Sako's NixOS Configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05"; # nixpkgs stable branch
