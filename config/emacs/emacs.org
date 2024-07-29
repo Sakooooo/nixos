@@ -481,12 +481,6 @@ kept-old-versions 5)
     (require 'vertico-directory)
     (vertico-mode))
 #+end_src
-*** Vertico Postframe
-#+begin_src emacs-lisp
-  (use-package vertico-posframe
-    :config
-    (vertico-posframe-mode 1))
-#+end_src
 ** Marginalia
 #+begin_src emacs-lisp
 (use-package marginalia
