@@ -1312,7 +1312,7 @@ I'm scared
               ?\C-\M-j  ;; Buffer list
               ?\C-\ ))  ;; Ctrl+Space
 
-      (setq exwm-input-stimulation-keys
+      (setq exwm-input-global-stimulation-keys
   	  '(
   	    ;; cut/paste.
   	    ([?\C-w] . [?\C-x])
