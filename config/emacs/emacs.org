@@ -1309,11 +1309,11 @@ I'm scared
               ?\C-\ ))  ;; Ctrl+Space
 
       (setq exwm-input-stimulation-keys
-  	  '(
+  	  `(
   	    ;; cut/paste.
-  	    ([?\C-w] . [?\C-x])
-  	    ([?\M-w] . [?\C-c])
-  	    ([?\C-y] . [?\C-v])))
+  	    ( ,(kbd "C-w") . ,(kbd "C-x"))
+  	    (,(kbd "M-w") . ,(kbd "C-c"))
+  	    (,(kbd "C-y" . ,(kbd "C-v")))))
       
 
       ;; Ctrl+/3Q will enable the next key to be sent directly
