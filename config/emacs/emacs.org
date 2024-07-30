@@ -579,12 +579,6 @@ kept-old-versions 5)
 
   (add-hook 'minibuffer-setup-hook #'corfu-enable-in-minibuffer))
 #+end_src
-** Cape
-#+begin_src emacs-lisp
-  (use-package cape
-    :init
-    (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
-#+end_src
 ** Dashboard
 #+begin_src emacs-lisp
     (use-package dashboard
