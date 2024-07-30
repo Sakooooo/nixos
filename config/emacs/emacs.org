@@ -927,6 +927,12 @@ this should be useful later
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
 #+end_src
+** C#
+#+begin_src emacs-lisp
+  (use-package csharp-mode
+    :mode "\\.cs\\'"
+    :hook (csharp-mode . eglot-ensure))
+#+end_src
 ** CMake
 #+begin_src emacs-lisp
 (use-package cmake-mode
