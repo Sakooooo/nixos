@@ -932,6 +932,10 @@ this should be useful later
   (use-package csharp-mode
     :mode "\\.cs\\'"
     :hook (csharp-mode . eglot-ensure))
+
+  (use-package omnisharp
+    :mode "\\.cs\\'"
+    :hook (omnisharp-mode . csharp-mode))
 #+end_src
 ** CMake
 #+begin_src emacs-lisp
