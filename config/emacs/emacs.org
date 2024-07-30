@@ -929,9 +929,7 @@ this should be useful later
 #+end_src
 ** C#
 #+begin_src emacs-lisp
-  (use-package csharp-mode
-    :mode "\\.cs\\'"
-    :hook (csharp-mode . eglot-ensure))
+  (add-hook 'csharp-mode-hook 'eglot-ensure)
 
   (use-package omnisharp
     :mode "\\.cs\\'"
