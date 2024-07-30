@@ -930,6 +930,9 @@ this should be useful later
 ** C#
 #+begin_src emacs-lisp
   (add-hook 'csharp-mode-hook 'eglot-ensure)
+  (when (eq system-type 'gnu/linux)
+  (add-to-list 'eglot-server-programs
+             `(csharp-mode . ("OmniSharp" "-lsp"))))
 #+end_src
 ** CMake
 #+begin_src emacs-lisp
