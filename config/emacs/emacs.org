@@ -550,7 +550,7 @@ kept-old-versions 5)
     :after embark)
 
 #+end_src
-** Corfu (Autocomplete)
+** Corfu
 #+begin_src emacs-lisp
   (use-package corfu
   :bind (:map corfu-map
@@ -568,7 +568,7 @@ kept-old-versions 5)
   (corfu-min-chars 1)
   :config
   (global-corfu-mode 1)
-
+  
   (defun corfu-enable-in-minibuffer ()
     "Enable Corfu in the minibuffer if `completion-at-point' is bound."
     (when (where-is-internal #'completion-at-point (list (current-local-map)))
@@ -578,6 +578,12 @@ kept-old-versions 5)
       (corfu-mode 1)))
 
   (add-hook 'minibuffer-setup-hook #'corfu-enable-in-minibuffer))
+#+end_src
+** Cape
+#+begin_src emacs-lisp
+  (use-package cape
+    :init
+    (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
 #+end_src
 ** Dashboard
 #+begin_src emacs-lisp
