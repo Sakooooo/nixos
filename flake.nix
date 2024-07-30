@@ -64,7 +64,7 @@
 
     nixosConfigurations = {
       sakotop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs self;};
+        specialArgs = {inherit inputs outputs;};
         modules = [
           ./default.nix
           ./hosts/sakotop/configuration.nix
@@ -72,14 +72,14 @@
         ];
       };
      sakopc = nixpkgs.lib.nixosSystem {
-       specialArgs = {inherit inputs self;};
+       specialArgs = {inherit inputs outputs;};
        modules = [
          ./default.nix
          ./hosts/sakopc/configuration.nix
        ];
      };
      #sakoserver = nixpkgs.lib.nixosSystem {
-     #  specialArgs = {inherit inputs self;};
+     #  specialArgs = {inherit inputs outputs;};
      #  modules = [
      #    ./default.nix
      #    ./hosts/sakoserver/configuration.nix
@@ -88,7 +88,7 @@
       sakowsl = nixpkgs.lib.nixosSystem {
         # because theres no hardware-configuration.nix
         system = "x86_64-linux";
-        specialArgs = {inherit inputs self;};
+        specialArgs = {inherit inputs outputs;};
         modules = [
           {nix.registry.nixpkgs.flake = nixpkgs;}
           ./hosts/sakowsl/configuration.nix
