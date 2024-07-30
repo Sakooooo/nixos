@@ -8,5 +8,6 @@
     ./nixd.nix
     ./nil.nix
     ./lua.nix
+    ./cs.nix
   ];
 }
