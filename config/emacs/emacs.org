@@ -566,8 +566,8 @@ kept-old-versions 5)
   (corfu-quit-at-boundary t)
   (corfu-quit-no-match t)
   (corfu-min-chars 1)
-  :config
-  (global-corfu-mode 1)
+  :init
+  (global-corfu-mode) 
   
   (defun corfu-enable-in-minibuffer ()
     "Enable Corfu in the minibuffer if `completion-at-point' is bound."
