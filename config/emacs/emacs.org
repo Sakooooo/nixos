@@ -933,6 +933,12 @@ this should be useful later
   (when (eq system-type 'gnu/linux)
   (add-to-list 'eglot-server-programs
              `(csharp-mode . ("OmniSharp" "-lsp"))))
+
+  (use-package csproj-mode
+    :mode ("\\.csproj\\'"))
+
+  (use-package dotnet
+    :hook (dotnet-mode . csharp-mode))
 #+end_src
 ** CMake
 #+begin_src emacs-lisp
