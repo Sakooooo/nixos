@@ -565,7 +565,7 @@ kept-old-versions 5)
     (corfu-preview-current nil)
     (corfu-quit-at-boundary t)
     (corfu-quit-no-match t)
-    (corfu-min-chars 1)
+    (corfu-min-chars 3)
     (corfu-auto-delay 0)
     (corfu-auto-prefix 0)
     :init
