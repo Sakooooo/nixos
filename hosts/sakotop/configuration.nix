@@ -104,6 +104,7 @@
         search.enable = true;
         # optimize store
         optimize.enable = true;
+        switch-to-configuration-ng.enable = true;
       };
       zsh.enable = true;
       tmux.enable = true;
