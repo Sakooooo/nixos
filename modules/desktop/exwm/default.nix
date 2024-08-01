@@ -51,7 +51,7 @@ in {
          (exwm-init)
         '';
       in
-        singleton {
+        lib.singleton {
           name = "exwm";
           # launch emacs in fullscreen with dbus lol
           start = ''
