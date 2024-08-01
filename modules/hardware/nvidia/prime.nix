@@ -6,26 +6,26 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.hardware.nvidia.prime;
   busIDType = lib.types.strMatching "([[:print:]]+[\:\@][0-9]{1,3}\:[0-9]{1,2}\:[0-9])?";
 in {
   options.modules.hardware.nvidia.prime = {
-    enable = mkOption {
-      type = types.bool;
+    enable = lib.mkOption {
+      type = lib.types.bool;
       default = false;
     };
-    intelBusId = mkOption {
+    intelBusId = lib.mkOption {
       type = busIDType;
       default = "";
     };
-    nvidiaBusId = mkOption {
+    nvidiaBusId = lib.mkOption {
       type = busIDType;
       default = "";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     hardware.nvidia = {
       prime = {
         offload = {

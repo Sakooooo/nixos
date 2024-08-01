@@ -1,14 +1,13 @@
 { outputs, options, config, lib, pkgs, ...}:
-with lib;
 let
   cfg = config.modules.desktop.apps.transmission.tui;
 in
 {
   options.modules.desktop.apps.transmission= {
-    tui = mkEnableOption false;
+    tui = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg {
+  config = lib.mkIf cfg {
     users.users.sako.packages = with pkgs; [
       stig
     ];

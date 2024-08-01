@@ -6,17 +6,17 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.desktop.exwm;
   imports = [
     ../../dev/editors/emacs
   ];
 in {
   options.modules.desktop.exwm = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     modules.dev.editors.emacs.daemon = lib.mkForce false;
     modules.dev.editors.emacs.enable = lib.mkForce true;
     # this needs to be enabled for gtk apps

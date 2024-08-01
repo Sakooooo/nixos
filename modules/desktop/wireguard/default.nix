@@ -6,14 +6,14 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.desktop.wireguard;
 in {
   options.modules.desktop.wireguard = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # todo declaritivly setting it up
     networking.wireguard.enable = true;
   };

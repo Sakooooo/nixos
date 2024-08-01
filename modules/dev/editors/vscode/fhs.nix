@@ -6,14 +6,14 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.dev.editors.vscode.fhs;
 in {
   options.modules.dev.editors.vscode.fhs = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
       vscode.fhs
     ];

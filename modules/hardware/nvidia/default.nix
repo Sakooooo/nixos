@@ -6,17 +6,17 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.hardware.nvidia;
 in {
   imports = [
     ./prime.nix
   ];
   options.modules.hardware.nvidia = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     hardware.opengl = {
       enable = true;
       driSupport = true;

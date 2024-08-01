@@ -1,14 +1,13 @@
 { outputs, options, config, lib, pkgs, ...}:
-with lib;
 let
   cfg = config.modules.desktop.apps.transmission;
 in
 {
   options.modules.desktop.apps.transmission = {
-    daemon = mkEnableOption false;
+    daemon = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.daemon {
+  config = lib.mkIf cfg.daemon {
     #TODO(sako):: figure out service
     users.users.sako.packages = with pkgs; [
       transmission

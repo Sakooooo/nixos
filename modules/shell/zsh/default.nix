@@ -6,14 +6,14 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.shell.zsh;
 in {
   options.modules.shell.zsh = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     users.users.sako.shell = pkgs.zsh;
 
     programs.zsh = {

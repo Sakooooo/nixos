@@ -6,14 +6,14 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.desktop.chat.telegram;
 in {
   options.modules.desktop.chat.telegram = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
       telegram-desktop
     ];

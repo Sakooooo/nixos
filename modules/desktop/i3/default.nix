@@ -6,14 +6,14 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.desktop.i3;
 in {
   options.modules.desktop.i3 = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # this is needed for gtk configuration to work
     programs.dconf.enable = true;
 

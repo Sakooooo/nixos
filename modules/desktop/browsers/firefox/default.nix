@@ -5,17 +5,17 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.desktop.browsers.firefox;
 in {
   options.modules.desktop.browsers.firefox = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
   # TODO add this
   # https://github.com/Dook97/firefox-qutebrowser-userchrome
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.firefox = {
       enable = true;
       preferences = {

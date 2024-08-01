@@ -8,16 +8,16 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.dev.nixd;
 in {
   options.modules.dev.nixd = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
   # TODO(sako):: figure out how .nixd.json works
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       unstable.nixd
       alejandra

@@ -6,16 +6,16 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.desktop.qtile;
 in {
   options.modules.desktop.qtile = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
   #TODO Do this
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.xserver = {
       enable = true;
       windowManager.qtile = {

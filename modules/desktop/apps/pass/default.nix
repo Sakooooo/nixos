@@ -6,14 +6,14 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.desktop.apps.pass;
 in {
   options.modules.desktop.apps.pass = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
       (pass.withExtensions (pkgs: with pkgs; [pass-otp pass-import pass-genphrase pass-checkup]))
       rofi-pass

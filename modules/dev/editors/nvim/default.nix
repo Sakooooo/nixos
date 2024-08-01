@@ -6,14 +6,14 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.dev.editors.nvim;
 in {
   options.modules.dev.editors.nvim = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # because yes
     users.users.sako.packages = with pkgs; [
       neovim

@@ -2,15 +2,14 @@
 # this automatically optimizes stuff like nix-store
 # and cleans out garbage weekly
 # also limits generations
-with lib;
 let cfg = config.modules.shell.nix.optimize;
 in
 {
   options.modules.shell.nix.optimize = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable { 
+  config = lib.mkIf cfg.enable { 
     nix = {
       # garbage collection
       gc = {

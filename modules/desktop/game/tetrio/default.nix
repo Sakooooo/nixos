@@ -6,14 +6,14 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.desktop.game.tetrio;
 in {
   options.modules.desktop.game.tetrio = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
       (tetrio-desktop.override {
         withTetrioPlus = true;

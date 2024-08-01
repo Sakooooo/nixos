@@ -1,5 +1,4 @@
 { outputs, options, config, lib, pkgs, ...}:
-with lib;
 let
   cfg = config.modules.desktop.apps.transmission;
 in
@@ -9,10 +8,10 @@ in
     ./daemon.nix
   ];
   options.modules.desktop.apps.transmission = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     #TODO(sako):: figure out service
     users.users.sako.packages = with pkgs; [
       transmission-gtk

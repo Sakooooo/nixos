@@ -6,17 +6,17 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.dev.editors.vscode;
 in {
   imports = [
     ./fhs.nix
   ];
   options.modules.dev.editors.vscode = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions;

@@ -6,14 +6,14 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.desktop.dwm;
 in {
   options.modules.desktop.dwm = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # this needs to be enabled for gtk apps
     programs.dconf.enable = true;
     # enable dwm

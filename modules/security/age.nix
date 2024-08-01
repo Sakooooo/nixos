@@ -1,14 +1,13 @@
 { outputs, options, config, lib, pkgs, ...}:
-with lib;
 let
   cfg = config.modules.security.age;
 in
 {
   options.modules.security.age = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       age
     ];

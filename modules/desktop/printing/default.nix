@@ -5,14 +5,14 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.desktop.printing;
 in {
   options.modules.desktop.printing = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # enable printing itself
     services.printing = {
       enable = true;

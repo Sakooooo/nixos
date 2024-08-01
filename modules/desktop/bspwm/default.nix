@@ -6,7 +6,7 @@
   pkgs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.desktop.bspwm;
 in {
   imports = [
@@ -14,10 +14,10 @@ in {
     ./lemonbar
   ];
   options.modules.desktop.bspwm = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # this is needed for gtk configuration to work
     programs.dconf.enable = true;
 

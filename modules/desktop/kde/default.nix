@@ -1,14 +1,13 @@
 { outputs, options, config, lib, pkgs, ...}:
-with lib;
 let
   cfg = config.modules.desktop.kde;
 in
 {
   options.modules.desktop.kde = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.xserver = {
       enable = true;
       libinput.enable = true;

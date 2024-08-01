@@ -5,14 +5,14 @@
   lib,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.media.mopidy;
 in {
   options.modules.media.mopidy = {
-    enable = mkEnableOption false;
+    enable = lib.mkEnableOption false;
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.mopidy = {
       enable = true;
       extensionPackages = with pkgs; [

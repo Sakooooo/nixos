@@ -7,7 +7,7 @@
   inputs,
   ...
 }:
-with lib; let
+let
   cfg = config.modules.dev.editors.emacs;
 
 
@@ -72,16 +72,16 @@ with lib; let
   };
 in {
   options.modules.dev.editors.emacs = {
-    enable = mkEnableOption false;
-    daemon = mkEnableOption true;
-    package = mkOption {
-      type = with types; package;
+    enable = lib.mkEnableOption false;
+    daemon = lib.mkEnableOption true;
+    package = lib.mkOption {
+      type = with lib.types; package;
       default = pkgs.emacs-unstable;
       description = "pkgs. followed by the name of the emacs overlay package";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     nixpkgs.overlays = [
       inputs.emacs-overlay.overlay
     ];
