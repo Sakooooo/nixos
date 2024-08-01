@@ -121,8 +121,6 @@ in {
       pantalaimon
       # lsp
       emacs-lsp-booster
-      # for EMMS
-      exiftool
     ];
 
     systemd.services.hydroxide = {
