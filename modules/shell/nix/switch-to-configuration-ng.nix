@@ -2,7 +2,7 @@
 let
   cfg = config.modules.shell.nix.switch-to-configuration-ng;
 in {
-  options.modules.shell.nix.switch-configuration-ng = {
+  options.modules.shell.nix.switch-to-configuration-ng = {
     enable = lib.mkEnableOption false;
   };
 
