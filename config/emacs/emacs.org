@@ -1017,6 +1017,12 @@ this should be useful later
     :hook (haskell-mode . eglot-ensure)
     :mode "\\.hs'")
 #+end_src
+** Go
+#+begin_src emacs-lisp
+  (use-package go-mode
+    :mode "\\.go\\'"
+    :hook (go-mode . eglot-ensure))
+#+end_src
 * Social
 #+begin_src emacs-lisp
 (message "Reached social")
