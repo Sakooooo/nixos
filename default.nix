@@ -104,9 +104,26 @@
     home.homeDirectory = "/home/sako";
     programs.bash.enable = true;
     programs.home-manager.enable = true;
-    xdg.configFile.git = {
-      source = ./config/git;
+    # xdg.configFile.git = {
+    #   source = ./config/git;
+    # };
+
+    programs.git = {
+      enable = true;
+      userName = "Sakooooo";
+      userEmail = "78461130+Sakooooo@users.noreply.github.com";
+      includes = [
+        {
+          path = "~/.config/git/config.local";
+        }
+      ];
+      extraConfig = {
+        color.ui = "auto";
+        init.defaultBranch = "master";
+        pull.rebase = true;
+      };
     };
+
   };
   # bare minimum
   environment.systemPackages = with pkgs; [
@@ -135,10 +152,10 @@
     # enableSSHSupport = true;
   };
 
-  programs.git = {
-    enable = true;
-    package = pkgs.gitFull;
-  };
+  # programs.git = {
+  #   enable = true;
+  #   package = pkgs.gitFull;
+  # };
 
   # read stable version patch notes and fix any issues
   # then you can change this
