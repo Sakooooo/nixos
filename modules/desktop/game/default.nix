@@ -5,5 +5,6 @@
     ./wine
     ./grapejuice
     ./tetrio
+    ./prismlauncher
   ];
 }
