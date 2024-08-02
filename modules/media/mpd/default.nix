@@ -15,6 +15,11 @@ in
       extraConfig = builtins.readFile ../../../config/mpd/mpd.conf;
       startWhenNeeded = true;
     };
+
+    users.users.sako.packages = with pkgs; [
+      mpc-cli
+    ];
+
     systemd.services.mpd.environment = {
       XDG_RUNTIME_DIR = "/run/user/1000";
     };
