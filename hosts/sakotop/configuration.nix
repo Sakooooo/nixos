@@ -59,6 +59,7 @@
         lutris.enable = true;
         steam.enable = true;
         tetrio.enable = true;
+        prismlauncher.enable = true;
       };
       media = {
         gimp.enable = true;
