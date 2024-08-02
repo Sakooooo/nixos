@@ -1061,13 +1061,15 @@ Ill set this up later as well
 (use-package subsonic)
 #+end_src
 ** EMMS
-good lodr emacs music
+Emacs music player lmfao
 #+begin_src emacs-lisp
   (use-package emms
     :config
     (emms-all)
-    (setq emms-player-list '(emms-player-mpv))
+    (setq emms-player-list '(emms-player-mpd))
+    (setq emms-info-functions '(emms-info-mod))
     (setq emms-source-file-default-directory "~/music")
+    ;; TODO Keybinds maybe
     )
 #+end_src
 ** GPTel
