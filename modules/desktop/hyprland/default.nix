@@ -9,11 +9,17 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    services.greetd = {
-      enable = true;
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
+        user = "greeter";
+      };
     };
+  };
 
-    services.xserver = {
+  services.xserver = {
       enable = true;
 #       displayManager = {
 # #        lightdm = {
@@ -76,6 +82,7 @@ in
       ags
       brightnessctl
       inotify-tools
+      greetd.tuigreet
     ];
 
     programs.hyprland = {
