@@ -1243,7 +1243,12 @@ Export and then view with emacs :)
 * EXWM
 I'm scared
 #+begin_src emacs-lisp
+
+  (defvar is-exwm nil
+    "Toggle if EXWM is being used")
+
   (when (eq system-type 'gnu/linux)
+    (if (is-exwm)
     (use-package exwm
       :config
       (set-frame-parameter nil 'alpha '(90 . 90))
@@ -1392,7 +1397,7 @@ I'm scared
       (desktop-environment-brightness-small-decrement "2%-")
       (desktop-environment-brightness-normal-increment "5%+")
       (desktop-environment-brightness-normal-decrement "5%-"))
-    )
+    ))
 #+end_src
 * End
 #+begin_src elisp
