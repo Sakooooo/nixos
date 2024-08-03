@@ -15,6 +15,7 @@
     # stuffs
     ./kitty
     ./wezterm
+    ./foot
     ./browsers
     ./apps
     ./game
