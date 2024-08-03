@@ -923,6 +923,11 @@ this should be useful later
   (setq auto-mode-alist
   (append '((".*\\.astro\\'" . astro-mode))
   auto-mode-alist))
+  
+  (add-to-list 'eglot-server-programs
+               '(astro-mode . ("astro-ls" "--stdio"
+                               :initializationOptions
+                               (:typescript (:tsdk "./node_modules/typescript/lib")))))
 #+end_src
 ** C/C++
 #+begin_src emacs-lisp
