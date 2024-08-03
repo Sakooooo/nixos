@@ -90,6 +90,7 @@
         emacs = {
           enable = true;
           daemon = true;
+          package = pkgs.emacs-unstable-pgtk;
         };
       };
       nil.enable = true;
