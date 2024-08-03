@@ -11,5 +11,13 @@ in {
   users.users.sako.packages = with pkgs; [
     foot
   ];
+
+  home-manager.users.sako = {pkgs, ...}: {
+    xdg.configFile = {
+      foot = {
+        source = ../../../config/foot;
+      };
+    };
+  };
   };
 }
