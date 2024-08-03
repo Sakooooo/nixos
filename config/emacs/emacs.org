@@ -1248,7 +1248,7 @@ I'm scared
     "Toggle if EXWM is being used")
 
   (when (eq system-type 'gnu/linux)
-    (if (is-exwm)
+    (if '(is-exwm)
     (use-package exwm
       :config
       (set-frame-parameter nil 'alpha '(90 . 90))
