@@ -8,23 +8,28 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+
+    services.greetd = {
+      enable = true;
+    };
+
     services.xserver = {
       enable = true;
-      displayManager = {
-#        lightdm = {
-#          enable = true;
-#          background = ../../../config/background.png;
-#          greeters.gtk = {
-#            enable = true;
-#            theme = {
-#              name = "vimix-dark-ruby";
-#              package = pkgs.vimix-gtk-themes;
-#            };
-#          };
-#        };
-        gdm = {
-          enable = true;
-        };
+#       displayManager = {
+# #        lightdm = {
+# #          enable = true;
+# #          background = ../../../config/background.png;
+# #          greeters.gtk = {
+# #            enable = true;
+# #            theme = {
+# #              name = "vimix-dark-ruby";
+# #              package = pkgs.vimix-gtk-themes;
+# #            };
+# #          };
+# #        };
+#         gdm = {
+#           enable = true;
+#         };
       };
       libinput = {
         enable = true;
