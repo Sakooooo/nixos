@@ -30,7 +30,7 @@ in
 #         gdm = {
 #           enable = true;
 #         };
-      };
+      # };
       libinput = {
         enable = true;
 
