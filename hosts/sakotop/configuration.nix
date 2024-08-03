@@ -21,6 +21,7 @@
       wireguard.enable = true;
       kitty.enable = true;
       wezterm.enable = true;
+      foot.enable = true;
       bspwm = {
         enable = false;
         polybar.enable = false;
