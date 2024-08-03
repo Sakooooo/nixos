@@ -73,7 +73,6 @@ in
 
     programs.hyprland = {
       enable = true;
-      nvidiaPatches = true;
     }; 
     home-manager.users.sako = { pkgs , ...}: {
       home.pointerCursor = {
