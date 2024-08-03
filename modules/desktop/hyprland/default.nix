@@ -44,6 +44,7 @@ in
     users.users.sako.packages = with pkgs; [
       # use wayland counterparts
       wofi
+      rofi-wayland
       # network
       networkmanagerapplet
       # brightness
@@ -67,6 +68,7 @@ in
       # lock
       swaylock
       eww-wayland
+      ags
       brightnessctl
       inotify-tools
     ];
