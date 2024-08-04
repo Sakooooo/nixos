@@ -37,7 +37,8 @@ in
 #           enable = true;
 #         };
       # };
-      libinput = {
+      };
+      services.libinput = {
         enable = true;
 
         # no mouse accel
@@ -50,7 +51,6 @@ in
           accelProfile = "flat";
         };
       }; 
-    };
 
     users.users.sako.packages = with pkgs; [
       # use wayland counterparts
@@ -78,7 +78,6 @@ in
       (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true "]; }))
       # lock
       swaylock
-      eww-wayland
       ags
       brightnessctl
       inotify-tools
