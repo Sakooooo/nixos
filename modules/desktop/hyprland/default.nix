@@ -87,6 +87,10 @@ in
     programs.hyprland = {
       enable = true;
     }; 
+
+    # piece of shit thanks!
+    services.emacs.startWithGraphical = false;
+
     home-manager.users.sako = { pkgs , ...}: {
       home.pointerCursor = {
         name = "Catppuccin-Mocha-Dark"; 
