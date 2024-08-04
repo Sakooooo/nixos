@@ -87,7 +87,8 @@ in {
     ];
     # ues daemon
     services.emacs = {
-      enable = cfg.daemon;
+      # enable = cfg.daemon;
+      enable = true;
       install = true;
       #  package = pkgs.emacs29-pgtk;
       # package = pkgs.emacsWithPackagesFromUsePackage {
