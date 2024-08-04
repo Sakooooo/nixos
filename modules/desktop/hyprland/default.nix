@@ -21,7 +21,7 @@ in
 
   services.xserver = {
       enable = true;
-#       displayManager = {
+       displayManager = {
 # #        lightdm = {
 # #          enable = true;
 # #          background = ../../../config/background.png;
@@ -36,7 +36,7 @@ in
         gdm = {
           enable = true;
         };
-      # };
+       };
       };
       services.libinput = {
         enable = true;
