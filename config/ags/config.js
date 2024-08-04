@@ -1,5 +1,5 @@
 const hyprland = await Service.import("hyprland")
-const notifications = await Service.import("notifications")
+// const notifications = await Service.import("notifications")
 const mpris = await Service.import("mpris")
 const audio = await Service.import("audio")
 const battery = await Service.import("battery")
@@ -47,21 +47,21 @@ function Clock() {
 
 // we don't need dunst or any other notification daemon
 // because the Notifications module is a notification daemon itself
-function Notification() {
-    const popups = notifications.bind("popups")
-    return Widget.Box({
-        class_name: "notification",
-        visible: popups.as(p => p.length > 0),
-        children: [
-            Widget.Icon({
-                icon: "preferences-system-notifications-symbolic",
-            }),
-            Widget.Label({
-                label: popups.as(p => p[0]?.summary || ""),
-            }),
-        ],
-    })
-}
+// function Notification() {
+//     const popups = notifications.bind("popups")
+//     return Widget.Box({
+//         class_name: "notification",
+//         visible: popups.as(p => p.length > 0),
+//         children: [
+//             Widget.Icon({
+//                 icon: "preferences-system-notifications-symbolic",
+//             }),
+//             Widget.Label({
+//                 label: popups.as(p => p[0]?.summary || ""),
+//             }),
+//         ],
+//     })
+// }
 
 
 function Media() {
@@ -172,7 +172,7 @@ function Center() {
         spacing: 8,
         children: [
             Media(),
-            Notification(),
+            // Notification(),
         ],
     })
 }
