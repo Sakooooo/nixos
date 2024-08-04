@@ -1,4 +1,4 @@
-{inputs, pkgs, ...}: {
+{inputs, ...}: {
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../packages {pkgs = final;};
 
@@ -25,7 +25,7 @@
       src = ../config/dwm;
     });
     ags = prev.ags.overrideAttrs (old: {
-      buildInputs = old.buildInputs ++ [ pkgs.libdbusmenu-gtk3 ];
+      buildInputs = old.buildInputs ++ [ inputs.nixpkgs.pkgs.libdbusmenu-gtk3 ];
     });
   };
 
