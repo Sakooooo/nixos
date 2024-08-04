@@ -88,6 +88,9 @@ in
       enable = true;
     }; 
 
+    # ags battery
+    services.upower.enable = true;
+
     # piece of shit thanks!
     services.emacs.startWithGraphical = false;
 
