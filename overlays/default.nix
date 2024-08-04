@@ -25,7 +25,7 @@
       src = ../config/dwm;
     });
     ags = prev.ags.overrideAttrs (old: {
-      buildInputs = old.buildInputs ++ [ inputs.nixpkgs.pkgs.libdbusmenu-gtk3 ];
+      buildInputs = old.buildInputs ++ [ inputs.nixpkgs.legacyPackages.x86_64-linux.libdbusmenu-gtk3 ];
     });
   };
 
