@@ -182,9 +182,9 @@ function Right() {
         hpack: "end",
         spacing: 8,
         children: [
-	    BatteryLabel(),
             Volume(),
             Clock(),
+	    BatteryLabel(),
             SysTray(),
         ],
     })
