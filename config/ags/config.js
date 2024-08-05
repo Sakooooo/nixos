@@ -113,10 +113,15 @@ function Volume() {
         }),
     });
 
+    const value = Widget.Label({
+	label: audio.speaker.volume.toString(),
+    });
+
     return Widget.Box({
         class_name: "volume",
         css: "min-width: 180px",
-        children: [icon, slider],
+        children: [
+	    icon, value],
     });
 }
 
