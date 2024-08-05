@@ -121,7 +121,10 @@ in
         # thanks PartyWumpus
         # https://github.com/PartyWumpus/dotfiles/blob/277949d84d53a58a3f52be935cd3c581c89d5d7c/modules/hyprland/hyprland.nix#L492
         "/etc/nixos/config/ags/types" = {
-          source = "${inputs.ags.packages.x86_64-linux.agsWithTypes.out}/share/com.github.Aylur.ags/types";
+          source = pkgs.runCommand "types" {} ''
+               ${pkgs.ags}/bin/ags --init
+               mv types $out
+          '';
         };
       };
       xdg.configFile = {
