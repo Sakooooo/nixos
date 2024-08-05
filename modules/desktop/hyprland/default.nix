@@ -75,7 +75,7 @@ in
       # bg
       hyprpaper
       # bar
-      (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true "]; }))
+      waybar
       # lock
       swaylock
       ags
