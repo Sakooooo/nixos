@@ -126,6 +126,8 @@ function BatteryLabel() {
     // const icon = battery.bind("percent").as(p =>
         // `battery-level-${Math.floor(p / 10) * 10}-symbolic`)
 
+    console.log(value);
+
     return Widget.Box({
         class_name: "battery",
         visible: battery.bind("available"),
