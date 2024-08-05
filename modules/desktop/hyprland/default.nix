@@ -120,7 +120,7 @@ in
         # this automatically sets the types
         # thanks PartyWumpus
         # https://github.com/PartyWumpus/dotfiles/blob/277949d84d53a58a3f52be935cd3c581c89d5d7c/modules/hyprland/hyprland.nix#L492
-        "${inputs.self.location}/config/ags/types" = {
+        "/etc/nixos/config/ags/types" = {
           source = "${inputs.ags.packages.x86_64-linux.agsWithTypes.out}/share/com.github.Aylur.ags/types";
         };
       };
