@@ -132,7 +132,7 @@ function BatteryLabel() {
         children: [
             // Widget.Icon({ icon }),
             Widget.Label({
-                label: battery.bind("precent"), 
+                label: battery.bind("precent").toString(), 
             }),
         ],
     })
