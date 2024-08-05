@@ -1,3 +1,7 @@
+* {
+  border-radius: 0px;
+}
+
 window.bar {
     background-color: @theme_bg_color;
     color: @theme_fg_color;
