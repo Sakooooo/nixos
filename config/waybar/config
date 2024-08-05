@@ -19,7 +19,7 @@
 		"tray"
 	],
 
-	"wlr/workspaces": {
+	"hyprland/workspaces": {
     "all-outputs": true,
 		"disable-scroll": true,
 		"format": "{name}",
