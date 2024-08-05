@@ -122,7 +122,7 @@ function Volume() {
 
 
 function BatteryLabel() {
-    const value = battery.bind("precent").transform((v) => v.toFixed(0));
+    // const value = battery.bind("precent").transform((v) => v.toFixed(0));
     // const icon = battery.bind("percent").as(p =>
         // `battery-level-${Math.floor(p / 10) * 10}-symbolic`)
 
@@ -132,7 +132,7 @@ function BatteryLabel() {
         children: [
             // Widget.Icon({ icon }),
             Widget.Label({
-                label: value, 
+                label: battery.bind("precent"), 
             }),
         ],
     })
