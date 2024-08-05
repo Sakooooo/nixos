@@ -121,7 +121,9 @@ function Volume() {
         class_name: "volume",
         // css: "min-width: 180px",
         children: [
-	    icon, value],
+	    // icon,
+	    value
+	],
     });
 }
 
