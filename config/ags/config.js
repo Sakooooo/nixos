@@ -132,12 +132,11 @@ function BatteryLabel() {
         children: [
             // Widget.Icon({ icon }),
             Widget.Label({
-                label: battery.bind("precent").toString(), 
+                label: battery.bind('percent').as(x => x.toString()), 
             }),
         ],
     })
 }
-
 
 function SysTray() {
     const items = systemtray.bind("items")
