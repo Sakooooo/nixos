@@ -1,6 +1,6 @@
 #!/bin/sh
 
-killall -q ags
+pkill ags
 
 ags &
     
