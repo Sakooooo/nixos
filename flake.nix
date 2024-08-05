@@ -25,6 +25,10 @@
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -34,6 +38,7 @@
     NixOS-WSL,
     sops-nix,
     emacs-overlay,
+    ags,
     ...
   } @ inputs: let
     inherit (self) outputs;
