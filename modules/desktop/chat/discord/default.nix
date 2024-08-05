@@ -8,6 +8,7 @@
 }:
 let
   cfg = config.modules.desktop.chat.discord;
+  hyprland = config.modules.desktop.hyprland;
 in {
   options.modules.desktop.chat.discord = {
     enable = lib.mkEnableOption false;
@@ -18,6 +19,8 @@ in {
       (pkgs.discord.override {
         withOpenASAR = true;
       })
+      pkgs.vesktop
     ];
+
   };
 }
