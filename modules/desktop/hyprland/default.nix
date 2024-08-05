@@ -1,4 +1,4 @@
-{ outputs, options, config, lib, pkgs, ...}:
+{ inputs, outputs, options, config, lib, pkgs, ...}:
 let
   cfg = config.modules.desktop.hyprland;
 in
@@ -66,10 +66,13 @@ in
       lxappearance
       catppuccin-cursors.mochaDark
       # screenshot
-      grim
-      flameshot
+      sway-contrib.grimshot
       # todo figure this out
       gamescope
+      # clipboard
+      wl-clipboard
+      # playerctl
+      playerctl
     ];
     environment.systemPackages = with pkgs; [
       # bg
@@ -113,6 +116,12 @@ in
         "background.png" = {
           enable = true;
           source = ../../../config/background.png;
+        };
+        # this automatically sets the types
+        # thanks PartyWumpus
+        # https://github.com/PartyWumpus/dotfiles/blob/277949d84d53a58a3f52be935cd3c581c89d5d7c/modules/hyprland/hyprland.nix#L492
+        "${inputs.self.location}/config/ags/types" = {
+          source = "${inputs.ags.packages.x86_64-linux.agsWithTypes.out}/share/com.github.Aylur.ags/types";
         };
       };
       xdg.configFile = {
