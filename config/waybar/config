@@ -20,7 +20,7 @@
 	],
 
 	"hyprland/workspaces": {
-    "all-outputs": true,
+                "all-outputs": true,
 		"disable-scroll": true,
 		"format": "{name}",
     "persistent_workspaces": {
