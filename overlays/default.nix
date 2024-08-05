@@ -27,6 +27,9 @@
     ags = prev.ags.overrideAttrs (old: {
       buildInputs = old.buildInputs ++ [ inputs.nixpkgs.legacyPackages.x86_64-linux.libdbusmenu-gtk3 ];
     });
+    isync = prev.isync.overrideAttrs (old: {
+      withCyrusSaslXoauth2 = true;
+    });
   };
 
   # lmao when did i add this
