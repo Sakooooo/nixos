@@ -115,8 +115,6 @@ function Volume() {
 
     const vol = audio.speaker.volume * 100;
 
-    console.log(audio.bind("speaker"))
-
     const value = Widget.Label({
 	// label: audio.speaker.volume.toString(),
 	label: vol.toString(),
