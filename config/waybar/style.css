@@ -24,12 +24,12 @@ window#waybar {
 #workspaces button {
   padding: 0 2px;
   color: #fdf6e3;
-  border-bottom: 2px solid transparent;
+  border-bottom: 3px solid transparent;
 }
 
 #workspaces button.active{
     color: #268bd2;
-    border-bottom: 2px solid #194198;
+    border-bottom: 3px solid #194198;
 }
 #workspaces button:hover {
   box-shadow: inherit;
