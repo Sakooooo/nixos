@@ -113,7 +113,7 @@ function Volume() {
         }),
     });
 
-    const vol = audio.speaker.volume * 100;
+    const vol = Math.round(audio.speaker.volume * 100);
 
  const value = Widget.Label({
 	// label: audio.speaker.volume.toString(),
