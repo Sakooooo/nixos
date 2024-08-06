@@ -12,6 +12,9 @@ in
   services.greetd = {
     enable = true;
     settings = {
+      terminal = {
+        vt = 2;
+      };
       default_session = {
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
         user = "greeter";
