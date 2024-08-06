@@ -23,9 +23,12 @@ window#waybar {
 #workspaces button {
   padding: 0 2px;
   color: #fdf6e3;
+  border-bottom: 2px solid transparent;
 }
+
 #workspaces button.focused {
-  color: #268bd2;
+    color: #268bd2;
+    border-bottom: 2px splid #194198;
 }
 #workspaces button:hover {
   box-shadow: inherit;
@@ -34,7 +37,7 @@ window#waybar {
 #workspaces button:hover {
   background: #1a1a1a;
   border: #1a1a1a;
-  padding: 0 3px;
+  padding: 0 2px;
 }
 
 #pulseaudio {
