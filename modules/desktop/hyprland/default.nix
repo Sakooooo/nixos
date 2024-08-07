@@ -80,6 +80,7 @@ in
     environment.systemPackages = with pkgs; [
       # bg
       hyprpaper
+      swww
       # bar
       waybar
       # lock
