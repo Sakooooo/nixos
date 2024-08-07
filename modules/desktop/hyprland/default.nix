@@ -94,6 +94,8 @@ in
       enable = true;
     }; 
 
+    programs.hyprlock.enable = true;
+
     # ags battery
     services.upower.enable = true;
 
