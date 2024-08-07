@@ -83,7 +83,7 @@ in
       # bar
       waybar
       # lock
-      swaylock
+      # swaylock
       ags
       brightnessctl
       inotify-tools
@@ -138,10 +138,10 @@ in
           source = ../../../config/waybar;
           recursive = true;
         };
-        swaylock = {
-          source = ../../../config/swaylock;
-          recursive = true;
-        };
+        # swaylock = {
+        #   source = ../../../config/swaylock;
+        #   recursive = true;
+        # };
         ags = {
           source = ../../../config/ags;
           recursive = true;
@@ -150,11 +150,11 @@ in
     };
 
     # swaylock doesnt work without this
-    security.pam.services.swaylock.text = ''
-      # PAM configuration file for the swaylock screen locker. By default, it includes
-      # the 'login' configuration file (see /etc/pam.d/login)
-      auth include login
-    '';
+    # security.pam.services.swaylock.text = ''
+    #   # PAM configuration file for the swaylock screen locker. By default, it includes
+    #   # the 'login' configuration file (see /etc/pam.d/login)
+    #   auth include login
+    # '';
 
   };
 }
