@@ -134,7 +134,7 @@ function BatteryLabel() {
         children: [
             Widget.Icon({ icon }),
 	    Widget.Label({
-		label: percent,
+		label: battery.bind('percent').as(x => x.toString()),
 	    })
         ],
     })
