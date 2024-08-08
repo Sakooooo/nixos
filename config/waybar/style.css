@@ -23,7 +23,7 @@ window#waybar {
 
 #workspaces button {
   padding: 0 2px;
-  color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
   border-bottom: 3px solid transparent;
 }
 
@@ -38,7 +38,7 @@ window#waybar {
 #workspaces button:hover {
   background: #1a1a1a;
   border: #1a1a1a;
-  padding: 0 2px;
+  padding: 0 3px;
 }
 
 #pulseaudio {
