@@ -117,7 +117,8 @@ function Volume() {
 
  const value = Widget.Label({
 	// label: audio.speaker.volume.toString(),
-     label: audio.speaker.bind("volume").as(x => x.toString()),
+     // label: audio.speaker.bind("volume").as(x => x.toString()),
+     label: vol.toString(),
  });
 
     return Widget.Box({
