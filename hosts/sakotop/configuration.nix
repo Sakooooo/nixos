@@ -109,6 +109,8 @@
         # optimize store
         optimize.enable = true;
         switch-to-configuration-ng.enable = true;
+        # better cli
+        nh.enable = true;
       };
       zsh.enable = true;
       tmux.enable = true;
