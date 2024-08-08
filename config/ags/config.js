@@ -113,10 +113,14 @@ function Volume() {
         }),
     })
 
+    const volume = Widget.Label({
+	label: Math.round(audio.speaker.volume * 100).toString(),
+    })
+
     return Widget.Box({
         class_name: "volume",
         css: "min-width: 180px",
-        children: [icon, slider],
+        children: [icon, volume],
     })
 }
 
