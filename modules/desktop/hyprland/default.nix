@@ -149,6 +149,8 @@ in
      }; 
     };
 
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
     # swaylock doesnt work without this
     # security.pam.services.swaylock.text = ''
     #   # PAM configuration file for the swaylock screen locker. By default, it includes
