@@ -84,7 +84,7 @@ in
       waybar
       # lock
       # swaylock
-      ags
+      # ags
       brightnessctl
       inotify-tools
       greetd.tuigreet
@@ -97,7 +97,7 @@ in
     programs.hyprlock.enable = true;
 
     # ags battery
-    services.upower.enable = true;
+    # services.upower.enable = true;
 
     # piece of shit thanks!
     services.emacs.startWithGraphical = false;
@@ -125,9 +125,9 @@ in
         # this automatically sets the types
         # thanks PartyWumpus
         # https://github.com/PartyWumpus/dotfiles/blob/277949d84d53a58a3f52be935cd3c581c89d5d7c/modules/hyprland/hyprland.nix#L492
-        "/nixos/config/ags/types" = {
-          source = "${inputs.ags.packages.x86_64-linux.agsWithTypes.out}/share/com.github.Aylur.ags/types";
-        };
+        # "/nixos/config/ags/types" = {
+        #   source = "${inputs.ags.packages.x86_64-linux.agsWithTypes.out}/share/com.github.Aylur.ags/types";
+        # };
       };
       xdg.configFile = {
         hypr = {
