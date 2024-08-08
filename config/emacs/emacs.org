@@ -1405,4 +1405,6 @@ I'm scared
 * End
 #+begin_src elisp
   (message "Welcome to Emacs!")
+
+  ;; EOF
 #+end_src
