@@ -114,7 +114,10 @@ function Volume() {
     })
 
     const volume = Widget.Label({
-	label: Math.round(audio.speaker.volume * 100).toString(),
+	// label: Math.round(audio.speaker.volume * 100).toString(),
+	label: !audio.speaker.is_muted
+	    ? ` ${Math.round(audio.speaker.volume * 100).toString()}`
+	    : "",
     })
 
     return Widget.Box({
