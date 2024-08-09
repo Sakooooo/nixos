@@ -5,7 +5,7 @@
 }
 
 window#waybar {
-    background: #1D57BB;
+    background: #000000;
     color: #ffffff;
 }
 
@@ -18,7 +18,7 @@ window#waybar {
 #battery,
 #disk,
 #tray {
-    background: #2C5B2B;
+    background: #000000;
 }
 
 #workspaces button {
