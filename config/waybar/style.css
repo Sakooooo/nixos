@@ -28,8 +28,8 @@ window#waybar {
 }
 
 #workspaces button.active{
-    color: #2C5B2B;
-    border-bottom: 3px solid #2C5B2B;
+    color: #44E141;
+    border-bottom: 3px solid #44E141;
 }
 #workspaces button:hover {
   box-shadow: inherit;
