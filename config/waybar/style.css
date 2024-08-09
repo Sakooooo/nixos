@@ -18,8 +18,7 @@ window#waybar {
 #battery,
 #disk,
 #tray {
-    /* background: #222222; */
-    background: #3B70CD;
+    background: #222222;
 }
 
 #workspaces button {
