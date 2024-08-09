@@ -206,6 +206,11 @@ kept-old-versions 5)
   :config
   (load-theme 'doom-monokai-spectrum t))
 
+<<<<<<< HEAD
+  (use-package monokai-theme
+    :config
+    (load-theme 'monokai t))
+=======
 ;; emacsclient things
 (setq frame-resize-pixelwise t)
 ;; ui settings apparently go below
