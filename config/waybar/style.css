@@ -41,21 +41,25 @@ window#waybar {
   padding: 0 3px;
 }
 
-/* #pulseaudio {
-   color: #268bd2;
-   }
-   #memory {
-   color: #2aa198;
-   }
-   #cpu {
-   color: #6c71c4;
-   }
-   #battery {
-   color: #859900;
-   }
-   #disk {
-   color: #b58900;
-   } */
+#clock {
+    color: #E2C448;
+};
+
+#pulseaudio {
+    color: #B2ADBD;
+}
+#memory {
+    color: #444ACB;
+}
+#cpu {
+    color: #6c71c4;
+}
+#battery {
+    color: #0267CC;
+}
+#disk {
+    color: #0E4D8D;
+}
 
 #clock,
 #pulseaudio,
