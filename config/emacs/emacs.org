@@ -206,7 +206,7 @@ kept-old-versions 5)
   ;;   :config
   ;;   (load-theme 'doom-monokai-spectrum t))
 
-  (use-package monokai
+  (use-package monokai-theme
     :config
     (load-theme 'monokai t))
 
