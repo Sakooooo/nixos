@@ -211,8 +211,7 @@ kept-old-versions 5)
   (setq default-frame-alist '((font . "JetBrainsMono NF")
                               '(vertical-scroll-bars . nil)
                               '(horizontal-scroll-bars . nil)))
-  >>>>>>> parent of e33b8f5 (config/emacs: use moe-theme)
-
+  
   ;; GO AWAY
   (defun my/disable-scroll-bars (frame)
     (modify-frame-parameters frame
