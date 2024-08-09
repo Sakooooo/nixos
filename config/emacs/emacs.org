@@ -206,9 +206,9 @@ kept-old-versions 5)
   ;;   :config
   ;;   (load-theme 'doom-monokai-spectrum t))
 
-  (use-package moe-theme
+  (use-package monokai
     :config
-    (moe-dark))
+    (load-theme 'monokai t))
 
   ;; emacsclient things
   (setq frame-resize-pixelwise t)
