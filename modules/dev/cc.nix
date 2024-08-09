@@ -19,7 +19,7 @@ in
       clang-tools
       cmake-language-server
       # lint
-      cpplint
+      # cpplint
     ];
   };
 }

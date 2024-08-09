@@ -116,7 +116,7 @@ in {
       unoconv
       # org to pdf
       # this might be bloat...
-      texliveFull
+      texliveMinimal
       # ement.el
       pantalaimon
       # lsp

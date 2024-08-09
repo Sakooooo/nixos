@@ -18,7 +18,7 @@ in {
       python3
       black
       python310Packages.pip
-      nodePackages.pyright
+      pyright
     ];
   };
 }

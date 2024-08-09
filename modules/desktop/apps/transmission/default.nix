@@ -14,7 +14,7 @@ in
   config = lib.mkIf cfg.enable {
     #TODO(sako):: figure out service
     users.users.sako.packages = with pkgs; [
-      transmission-gtk
+      transmission_4-gtk
     ];
   };
 }

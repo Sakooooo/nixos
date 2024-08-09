@@ -9,7 +9,7 @@ in
 
   config = lib.mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
-      cinnamon.nemo
+      nemo
     ];
   };
 }

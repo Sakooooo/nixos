@@ -10,7 +10,8 @@ in
   config = lib.mkIf cfg.enable {
     # resolve racial conflict between 
     # pulseaudio and pipewire
-    sound.enable = lib.mkDefault false;
+    # its deprecated now the west has fallen
+    # sound.enable = lib.mkDefault false;
 
     hardware.pulseaudio.enable = false;
 
