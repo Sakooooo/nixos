@@ -201,34 +201,38 @@ kept-old-versions 5)
 #+end_src
 ** Appearance
 #+begin_src emacs-lisp
-;; TODO: change this for something better i guess
-(use-package doom-themes
-  :config
-  (load-theme 'doom-monokai-spectrum t))
+  ;; TODO: change this for something better i guess
+  ;; (use-package doom-themes
+  ;;   :config
+  ;;   (load-theme 'doom-monokai-spectrum t))
 
-;; emacsclient things
-(setq frame-resize-pixelwise t)
-;; ui settings apparently go below
-(setq default-frame-alist '((font . "JetBrainsMono NF")
-                            '(vertical-scroll-bars . nil)
-                            '(horizontal-scroll-bars . nil)))
+  (use-package moe-theme
+    :config
+    (moe-dark))
 
-;; GO AWAY
-(defun my/disable-scroll-bars (frame)
-  (modify-frame-parameters frame
-                           '((vertical-scroll-bars . nil)
-                             (horizontal-scroll-bars . nil))))
-(add-hook 'after-make-frame-functions 'my/disable-scroll-bars)
+  ;; emacsclient things
+  (setq frame-resize-pixelwise t)
+  ;; ui settings apparently go below
+  (setq default-frame-alist '((font . "JetBrainsMono NF")
+                              '(vertical-scroll-bars . nil)
+                              '(horizontal-scroll-bars . nil)))
+
+  ;; GO AWAY
+  (defun my/disable-scroll-bars (frame)
+    (modify-frame-parameters frame
+                             '((vertical-scroll-bars . nil)
+                               (horizontal-scroll-bars . nil))))
+  (add-hook 'after-make-frame-functions 'my/disable-scroll-bars)
 
 
-;; y/n is better than yes/no
-(fset 'yes-or-no-p 'y-or-n-p)
+  ;; y/n is better than yes/no
+  (fset 'yes-or-no-p 'y-or-n-p)
 
-;; font
-(set-face-attribute 'default nil
-		    :font "JetBrainsMono NF"
-		    :weight 'light
-		    :height 125)
+  ;; font
+  (set-face-attribute 'default nil
+  		    :font "JetBrainsMono NF"
+  		    :weight 'light
+  		    :height 125)
 #+end_src
 ** Emacs Client
 #+begin_src emacs-lisp
