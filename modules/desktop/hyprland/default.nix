@@ -3,15 +3,15 @@ let
   cfg = config.modules.desktop.hyprland;
 in
 {
+  imports = [
+    inputs.hyprland.nixosModules.default
+  ];
+
   options.modules.desktop.hyprland = {
     enable = lib.mkEnableOption false;
   };
 
   config = lib.mkIf cfg.enable {
-
-    imports = [
-      inputs.hyprland.nixosModules.default
-    ];
 
     modules.desktop.dunst.enable = lib.mkForce false;
 
