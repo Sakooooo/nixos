@@ -29,6 +29,10 @@
     #   url = "github:Aylur/ags";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+    hyprland = {
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -38,6 +42,7 @@
     NixOS-WSL,
     sops-nix,
     emacs-overlay,
+    hyprland,
     # ags,
     ...
   } @ inputs: let
