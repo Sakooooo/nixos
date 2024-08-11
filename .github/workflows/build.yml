@@ -18,7 +18,8 @@ jobs:
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
         # If you chose API tokens for write access OR if you have a private cache
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix run nixpkgs#nixos-rebuild -- --flake .#sakopc build
+    # - run: nix run nixpkgs#nixos-rebuild -- --flake .#sakopc build
+    - run: nix run github:Mic92/nix-fast-build -- --no-nom --skip-cached --flake .#nixosConfigurations.sakopc.config.system.build.toplevel
     - run: nix-shell --run "echo All done!"
   sakotop:
     runs-on: ubuntu-latest
@@ -35,7 +36,8 @@ jobs:
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
         # If you chose API tokens for write access OR if you have a private cache
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix run nixpkgs#nixos-rebuild -- --flake .#sakotop build
+    # - run: nix run nixpkgs#nixos-rebuild -- --flake .#sakotop build
+    - run: nix run github:Mic92/nix-fast-build -- --no-nom --skip-cached --flake .#nixosConfigurations.sakotop.config.system.build.toplevel
     - run: nix-shell --run "echo All done!"
   sakowsl:
     runs-on: ubuntu-latest
@@ -52,5 +54,6 @@ jobs:
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
         # If you chose API tokens for write access OR if you have a private cache
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix run nixpkgs#nixos-rebuild -- --flake .#sakowsl build
+    # - run: nix run nixpkgs#nixos-rebuild -- --flake .#sakowsl build
+    - run: nix run github:Mic92/nix-fast-build -- --no-nom --skip-cached --flake .#nixosConfigurations.sakowsl.config.system.build.toplevel
     - run: nix-shell --run "echo All done!"
