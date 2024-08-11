@@ -96,6 +96,8 @@ in
       greetd.tuigreet
       # notifications
       mako
+      # cursor
+      inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
     ];
 
     programs.hyprland = {

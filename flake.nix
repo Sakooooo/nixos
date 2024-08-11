@@ -33,6 +33,7 @@
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
   };
 
   outputs = {
@@ -43,6 +44,7 @@
     sops-nix,
     emacs-overlay,
     hyprland,
+    rose-pine-hyprcursor,
     # ags,
     ...
   } @ inputs: let
