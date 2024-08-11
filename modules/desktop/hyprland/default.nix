@@ -9,6 +9,10 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    imports = [
+      inputs.hyprland.nixosModules.default
+    ];
+
     modules.desktop.dunst.enable = lib.mkForce false;
 
   services.greetd = {
