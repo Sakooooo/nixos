@@ -1,8 +1,8 @@
 // -*- mode: json -*-
 
 {
-	"layer": "bottom",
-	"position": "bottom",
+	"layer": "top",
+	"position": "top",
 
 	"modules-left": [
 	    "hyprland/workspaces",
