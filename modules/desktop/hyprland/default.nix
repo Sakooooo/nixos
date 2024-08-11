@@ -9,6 +9,8 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    modules.desktop.dunst.enable = lib.mkForce false;
+
   services.greetd = {
     enable = true;
     settings = {
@@ -88,6 +90,8 @@ in
       brightnessctl
       inotify-tools
       greetd.tuigreet
+      # notifications
+      mako
     ];
 
     programs.hyprland = {
