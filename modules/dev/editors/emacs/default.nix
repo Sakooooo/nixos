@@ -117,8 +117,6 @@ in {
       # org to pdf
       # this might be bloat...
       texliveMinimal
-      # ement.el
-      pantalaimon
       # lsp
       emacs-lsp-booster
     ];
