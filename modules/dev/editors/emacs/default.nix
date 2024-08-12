@@ -133,7 +133,7 @@ in {
     };
 
     services.pantalaimon-headless.instances = {
-      wires.cafe = {
+      "wires.cafe" = {
         ssl = true;
         homeserver = "https://matrix.wires.cafe";
         listenAddress = "127.0.0.1";
