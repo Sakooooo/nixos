@@ -132,6 +132,14 @@ in {
       wantedBy = [ "multi-user.target" ];
     };
 
+    services.pantalaimon-headless.instances = {
+      wires.cafe = {
+        ssl = true;
+        homeserver = "https://matrix.wires.cafe";
+        listenAddress = "127.0.0.1";
+      };
+    };
+
     home-manager.users.sako = {lib, ...}: {
       home.file = {
         ".emacs.d/init.el".source = pkgs.runCommand "init.el" {} ''
