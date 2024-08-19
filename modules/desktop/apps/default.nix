@@ -14,6 +14,5 @@
     ./nextcloud
     ./rssguard
     ./localsend
-    ./stremio
   ];
 }
