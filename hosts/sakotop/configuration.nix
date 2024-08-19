@@ -20,7 +20,7 @@
     desktop = {
       wireguard.enable = true;
       kitty.enable = true;
-      wezterm.enable = true;
+      wezterm.enable = false;
       foot.enable = true;
       bspwm = {
         enable = false;
