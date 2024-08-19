@@ -52,7 +52,6 @@
         rssguard.enable = true;
         nicotineplus.enable = true;
         transmission.enable = true;
-        stremio.enable = true;
         obs.enable = true;
         nextcloud.enable = true;
         localsend.enable = true;
