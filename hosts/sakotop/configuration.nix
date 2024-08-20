@@ -67,6 +67,7 @@
         gimp.enable = true;
         blender.enable = true;
         kdenlive.enable = true;
+        resolve.enable = true;
         mpv.enable = true;
         jellyfin.enable = true;
       };
