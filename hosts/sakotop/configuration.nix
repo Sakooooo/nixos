@@ -51,7 +51,8 @@
         pass.enable = true;
         rssguard.enable = true;
         nicotineplus.enable = true;
-        transmission.enable = true;
+        transmission.enable = false;
+        qbittorrent.enable = true;
         obs.enable = true;
         nextcloud.enable = true;
         localsend.enable = true;

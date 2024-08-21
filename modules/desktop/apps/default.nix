@@ -7,6 +7,7 @@
     ./kdeconnect
     ./nemo
     ./transmission
+    ./qbittorrent
     ./kcc
     ./calibre
     ./mangal
