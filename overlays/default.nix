@@ -32,11 +32,10 @@
     });
   };
 
-  # lmao when did i add this
-  # for a few packages
-  # access through pkgs.unstable
-  unstable-packages = final: _prev: {
-    unstable = import inputs.nixpkgs-unstable {
+  # incase something breaks
+  # access through pkgs.stable
+  stable-packages = final: _prev: {
+    stable = import inputs.nixpkgs-stable {
       system = final.system;
       config.allowUnfree = true;
     };

@@ -3,8 +3,8 @@
   description = "Sako's NixOS Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # nixpkgs stable branch
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # nixpkgs unstable branch
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # nixpkgs unstable branch
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05"; # nixpkgs stable branch because some things break
     home-manager = {
       # this manages your dotfiles for the most part
       url = "github:nix-community/home-manager";
