@@ -6,6 +6,5 @@
     ./newsboat
     ./ranger
     ./aria
-    ./cachix
   ];
 }
