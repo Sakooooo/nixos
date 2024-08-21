@@ -8,7 +8,6 @@
     home-manager = {
       # this manages your dotfiles for the most part
       url = "github:nix-community/home-manager";
-
       inputs.nixpkgs.follows = "nixpkgs";
     };
     NixOS-WSL = {
@@ -23,7 +22,6 @@
     };
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     # ags = {
     #   url = "github:Aylur/ags";
