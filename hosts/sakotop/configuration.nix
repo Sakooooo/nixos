@@ -118,6 +118,7 @@
       newsboat.enable = true;
       ranger.enable = true;
       aria.enable = true;
+      cachix.enable = true;
     };
     media = {
       mpd.enable = true;
