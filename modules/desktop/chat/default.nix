@@ -7,5 +7,6 @@
     ./telegram
     ./weechat
     ./signal
+    ./cinny
   ];
 }
