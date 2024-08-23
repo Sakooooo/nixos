@@ -22,7 +22,6 @@
         polybar.enable = true;
       };
       kitty.enable = true;
-      wezterm.enable = true;
       picom.enable = true;
       dunst.enable = true;
       apps = {
