@@ -88,6 +88,8 @@
       nix = {
         optimize.enable = true;
         search.enable = true;
+        switch-to-configuration-ng.enable = true;
+        nh.enable = true;
       };
       zsh.enable = true;
       tmux.enable = true;
