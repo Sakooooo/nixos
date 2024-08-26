@@ -18,9 +18,11 @@
     desktop = {
       printing.enable = true;
       bspwm = {
-        enable = true;
-        polybar.enable = true;
+        enable = false;
+        polybar.enable = false;
       };
+      hyprland.enable = true;
+      foot.enable = true;
       kitty.enable = true;
       picom.enable = true;
       dunst.enable = true;
@@ -65,6 +67,7 @@
         emacs = {
           enable = true;
           daemon = true;
+          package = pkgs.emacs-unstable-pgtk;
         };
       };
       cc.enable = true;
