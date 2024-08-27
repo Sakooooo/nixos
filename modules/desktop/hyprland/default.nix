@@ -128,7 +128,8 @@ in
 
     home-manager.users.sako = { pkgs , ...}: {
       home.pointerCursor = {
-        name = "Catppuccin-Mocha-Dark"; 
+        # name = "Catppuccin-Mocha-Dark"; 
+        name = "catppuccin-mocha-dark-cursors";
         size = 16;
         gtk.enable = true;
         package = pkgs.catppuccin-cursors.mochaDark;
