@@ -110,6 +110,7 @@ in
       # notifications
       mako
       # cursor
+      catppuccin-cursors.mochaDark
       inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
     ];
 
