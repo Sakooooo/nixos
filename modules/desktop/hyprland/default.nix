@@ -13,7 +13,9 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    modules.desktop.dunst.enable = lib.mkForce false;
+  modules.desktop.dunst.enable = lib.mkForce false;
+
+  services.gnome.gnome-keyring.enable = true;
 
   services.greetd = {
     enable = true;
@@ -139,7 +141,7 @@ in
         theme.name = "vimix-dark-ruby";
         iconTheme.name = "Vimix Ruby Dark";
       };
-      home.file = {
+     home.file = {
         "background.png" = {
           enable = true;
           source = ../../../config/background.png;
