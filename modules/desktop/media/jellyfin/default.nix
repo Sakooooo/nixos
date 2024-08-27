@@ -16,7 +16,6 @@ in {
   config = lib.mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
       jellyfin-media-player
-      jellyfin-mpv-shim
     ];
   };
 }
