@@ -59,6 +59,7 @@
         kdenlive.enable = true;
         blender.enable = true;
         feishin.enable = true;
+        jellyfin.enable = true;
       };
     };
     dev = {
