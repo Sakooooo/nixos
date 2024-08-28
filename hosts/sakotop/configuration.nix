@@ -66,6 +66,7 @@
       };
       media = {
         gimp.enable = true;
+        feishin.enable = true;
         blender.enable = true;
         kdenlive.enable = true;
         resolve.enable = false;
