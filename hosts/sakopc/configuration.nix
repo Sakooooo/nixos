@@ -16,6 +16,7 @@
 
   modules = {
     desktop = {
+      wireguard.enable = true;
       printing.enable = true;
       bspwm = {
         enable = false;
