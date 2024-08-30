@@ -150,6 +150,11 @@
   networking.wireguard.interfaces = {
   };
 
+  services.logind.extraConfig = ''
+    # don’t shutdown when power button is short-pressed
+    HandlePowerKey=ignore
+  '';
+
   # set laptop dpi
   services.xserver.dpi = 100;
 
