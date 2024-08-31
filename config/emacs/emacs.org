@@ -201,17 +201,16 @@ kept-old-versions 5)
 #+end_src
 ** Appearance
 #+begin_src emacs-lisp
-  ;; TODO: change this for something better i guess
-  (use-package monokai-theme
+  (use-package ef-themes
     :config
-    (load-theme 'monokai t))
+    (load-theme 'ef-maris-dark t))
   ;; emacsclient things
   (setq frame-resize-pixelwise t)
   ;; ui settings apparently go below
   (setq default-frame-alist '((font . "JetBrainsMono NF")
                               '(vertical-scroll-bars . nil)
                               '(horizontal-scroll-bars . nil)))
-  
+
   ;; GO AWAY
   (defun my/disable-scroll-bars (frame)
     (modify-frame-parameters frame
