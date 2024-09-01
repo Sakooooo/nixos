@@ -100,7 +100,7 @@ in
     ];
     environment.systemPackages = with pkgs; [
       # bg
-      hyprpaper
+      inputs.hyprpaper.packages.${pkgs.system}.default
       # bar
       waybar
       # lock
@@ -112,7 +112,6 @@ in
       # notifications
       mako
       # cursor
-      inputs.hyprpaper.packages.${pkgs.system}.hyprpaper
       catppuccin-cursors.mochaDark
       inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
     ];
