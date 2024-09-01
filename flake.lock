@@ -188,11 +188,19 @@
         "xdph": "xdph"
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1725209073,
         "narHash": "sha256-1miFtjWh3UhDS85y1Lt1MLEG9LwU9lIwQ2ij/4qm4L8=",
         "ref": "refs/heads/main",
         "rev": "8bbeee20414bc0e20992076632d7d44ede443a1c",
         "revCount": 5177,
+=======
+        "lastModified": 1725203654,
+        "narHash": "sha256-H7WBli0+RacAmJOoZ+sYmeaV0OqrzB95AlJsY+yli90=",
+        "ref": "refs/heads/main",
+        "rev": "4b5b8a763073593ac48af3bdcf04cf65b219120b",
+        "revCount": 5175,
+>>>>>>> parent of 8728fd8 (fuck)
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -349,6 +357,7 @@
         "owner": "hyprwm",
         "repo": "hyprutils",
         "rev": "8976e3f6a5357da953a09511d0c7f6a890fb6ec2",
+<<<<<<< HEAD
         "type": "github"
       },
       "original": {
@@ -374,6 +383,8 @@
         "owner": "hyprwm",
         "repo": "hyprutils",
         "rev": "8976e3f6a5357da953a09511d0c7f6a890fb6ec2",
+=======
+>>>>>>> parent of 8728fd8 (fuck)
         "type": "github"
       },
       "original": {
@@ -739,11 +750,19 @@
         ]
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1725203932,
         "narHash": "sha256-VLULC/OnI+6R9KEP2OIGk+uLJJsfRlaLouZ5gyFd2+Y=",
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
         "rev": "2425e8f541525fa7409d9f26a8ffaf92a3767251",
+=======
+        "lastModified": 1725203619,
+        "narHash": "sha256-Am4gwnu5q+6GFKQ3NnEkXeZYKIZ9rv9mRLk+DYqX9Zs=",
+        "owner": "hyprwm",
+        "repo": "xdg-desktop-portal-hyprland",
+        "rev": "8e5ca2a299e95a3bdcdb84cfbe08f31b0690ecd5",
+>>>>>>> parent of 8728fd8 (fuck)
         "type": "github"
       },
       "original": {
