@@ -41,6 +41,7 @@ in {
           shell = "nix shell";
           run = "nix run";
           cleanup = "sudo nix-collect-garbage --delete-older-than 3d && nix-collect-garbage -d";
+          current-system-tree = "nix-tree /nix/var/nix/profiles/system";
         };
         plugins = [
           {

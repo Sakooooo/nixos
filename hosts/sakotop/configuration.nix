@@ -114,6 +114,8 @@
         switch-to-configuration-ng.enable = true;
         # better cli
         nh.enable = true;
+        # tree
+        tree.enable = true;
       };
       zsh.enable = true;
       tmux.enable = true;
