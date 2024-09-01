@@ -40,6 +40,7 @@
     sops-nix,
     emacs-overlay,
     hyprland,
+    hyprpaper,
     rose-pine-hyprcursor,
     # ags,
     ...
