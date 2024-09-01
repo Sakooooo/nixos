@@ -112,7 +112,7 @@ in
       # notifications
       mako
       # cursor
-      inputs.hyprpaper.packages.${pkgs.system}.default
+      inputs.hyprpaper.packages.${pkgs.system}.hyprpaper
       catppuccin-cursors.mochaDark
       inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
     ];
