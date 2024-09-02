@@ -73,6 +73,9 @@
         mpv.enable = true;
         jellyfin.enable = true;
       };
+      security = {
+        wireshark.enable = true;
+      };
     };
     hardware = {
       nvidia = {

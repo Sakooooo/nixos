@@ -28,5 +28,7 @@
     # vpn
     ./wireguard
     ./printing
+    # securitity
+    ./security
   ];
 }
