@@ -14,6 +14,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+
+    users.users.sako.extraGroups = [ "wireshark" ];
+
     programs.wireshark = {
       enable = true;
       package = pkgs.wireshark;
