@@ -1,9 +1,15 @@
-{ outputs, options, config, lib, pkgs, ...}:
-let
-  cfg = config.modules.desktop.security.wireguard;
-in
 {
-  options.modules.desktop.security.wireguard = {
+  outputs,
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.modules.desktop.security.wireshark;
+in {
+  options.modules.desktop.security.wireshark = {
     enable = lib.mkEnableOption false;
   };
 
