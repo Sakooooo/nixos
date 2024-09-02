@@ -44,7 +44,7 @@
         teams.enable = true;
         telegram.enable = true;
         weechat.enable = true;
-        cinny.enable = true;
+        element.enable = true;
       };
       apps = {
         nemo.enable = true;

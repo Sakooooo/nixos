@@ -7,5 +7,6 @@
     ./weechat
     ./signal
     ./cinny
+    ./element
   ];
 }
