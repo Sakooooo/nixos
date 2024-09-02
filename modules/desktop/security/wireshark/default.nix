@@ -14,6 +14,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.wireshark.enable = true;
+    programs.wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+    };
   };
 }
