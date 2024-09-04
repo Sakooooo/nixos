@@ -23,10 +23,10 @@
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
     };
-    # ags = {
-    #   url = "github:Aylur/ags";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
@@ -42,7 +42,7 @@
     hyprland,
     hyprpaper,
     rose-pine-hyprcursor,
-    # ags,
+    ags,
     ...
   } @ inputs: let
     inherit (self) outputs;
