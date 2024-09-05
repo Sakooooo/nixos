@@ -115,6 +115,8 @@ in
       # cursor
       catppuccin-cursors.mochaDark
       inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+      # gtk
+      fluent-gtk-theme
     ];
 
     programs.hyprland = {
