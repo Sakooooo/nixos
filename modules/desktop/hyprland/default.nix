@@ -87,6 +87,7 @@ in
       # gtk
       vimix-gtk-themes
       vimix-icon-theme
+      fluent-gtk-theme
       lxappearance
       catppuccin-cursors.mochaDark
       # screenshot

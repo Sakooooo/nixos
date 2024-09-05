@@ -21,6 +21,11 @@
     vimix-gtk-themes = prev.vimix-gtk-themes.override {
       themeVariants = ["ruby"];
     };
+    fluent-gtk-theme = prev.fluent-gtk-theme.override {
+      colorVariants = [ "dark" ];
+      themeVariants = [ "red" ];
+      tweaks = [ "square" ];
+    };
     dwm = prev.dwm.overrideAttrs (old: {
       src = ../config/dwm;
     });
