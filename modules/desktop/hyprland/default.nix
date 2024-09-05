@@ -143,7 +143,7 @@ in
       gtk = {
         enable = true;
         theme.name = "Fluent-red-Dark";
-        iconTheme.name = "Fluent-Dark";
+        iconTheme.name = "Fluent-red-dark";
       };
      home.file = {
         "background.png" = {
