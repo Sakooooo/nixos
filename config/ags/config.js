@@ -4,6 +4,7 @@ const mpris = await Service.import("mpris")
 const audio = await Service.import("audio")
 const battery = await Service.import("battery")
 const systemtray = await Service.import("systemtray")
+import * as Utils from 'resource:///com/github/Aylur/ags/utils.js'
 
 const date = Variable("", {
     poll: [1000, 'date "+%H:%M:%S %b %e."'],
@@ -200,6 +201,7 @@ function Bar(monitor = 0) {
         class_name: "bar",
         monitor,
         anchor: ["top", "left", "right"],
+	margins: [10, 10, 0, 10],
         exclusivity: "exclusive",
         child: Widget.CenterBox({
             start_widget: Left(),
@@ -212,9 +214,7 @@ function Bar(monitor = 0) {
 App.config({
     style: "./style.css",
     windows: [
-        Bar(),
-
-        // you can call it, for each monitor
+	Bar()
         // Bar(0),
         // Bar(1)
     ],
