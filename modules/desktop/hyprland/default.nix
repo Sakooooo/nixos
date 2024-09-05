@@ -141,6 +141,7 @@ in
         enable = true;
         theme.name = "vimix-dark-ruby";
         iconTheme.name = "Vimix Ruby Dark";
+        package = pkgs.fluent-gtk-theme;
       };
      home.file = {
         "background.png" = {
