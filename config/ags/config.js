@@ -211,12 +211,18 @@ function Bar(monitor = 0) {
     })
 }
 
+var hostname = Utils.exec("cat /etc/hostname");
+
+addExtraBar: if (hostname === "sakotop") {
+    break addExtraBar;
+} else if (hostname === "sakopc") {
+    App.addWindow(Bar(1));
+}
+
 App.config({
     style: "./style.css",
     windows: [
-	Bar()
-        // Bar(0),
-        // Bar(1)
+        Bar(),
     ],
 })
 
