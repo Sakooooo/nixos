@@ -84,11 +84,6 @@ in
       networkmanagerapplet
       # brightness
       # TODO(sako):: find one for wayland
-      # gtk
-      vimix-gtk-themes
-      vimix-icon-theme
-      fluent-gtk-theme
-      lxappearance
       catppuccin-cursors.mochaDark
       # screenshot
       sway-contrib.grimshot
@@ -114,7 +109,6 @@ in
       mako
       # cursor
       catppuccin-cursors.mochaDark
-      inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
       # gtk
       fluent-gtk-theme
       fluent-icon-theme
