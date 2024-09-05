@@ -15,5 +15,6 @@
     ./nextcloud
     ./rssguard
     ./localsend
+    ./anki
   ];
 }
