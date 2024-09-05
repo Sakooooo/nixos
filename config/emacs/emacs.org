@@ -1054,7 +1054,21 @@ Will configure later
 ** RSS
 Will configure later, (use elfeed protocol ok ty)
 #+begin_src emacs-lisp
-(use-package elfeed)
+  (use-package elfeed
+    :config
+    (setq elfeed-use-curl t)
+    (elfeed-set-timeout 36000)
+    )
+
+  (use-package elfeed-protocol
+    :config
+    ;; setup feeds
+    (setq elfeed-protocol-feeds '(("fever+https://sako@rss.sako.box"
+  				 :password (password-store-get "Selfhosted/rss.sako.box/fever"))))
+
+    ;; enable elfeed-protocol
+    (setq elfeed-protocol-enabled-protocols '(fever))
+    (elfeed-protocol-enable))
 #+end_src
 ** Matrix
 Ill set this up later as well
