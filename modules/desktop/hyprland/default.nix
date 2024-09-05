@@ -141,8 +141,8 @@ in
       };
       gtk = {
         enable = true;
-        theme.name = "vimix-dark-ruby";
-        iconTheme.name = "Vimix Ruby Dark";
+        theme.name = "Fluent-red-Dark";
+        iconTheme.name = "Fluent-Dark";
       };
      home.file = {
         "background.png" = {
