@@ -211,7 +211,7 @@ function Bar(monitor = 0) {
     })
 }
 
-var hostname = Utils.exec("cat /etc/hostname");
+var hostname = Utils.readFile("/etc/hostname");
 var hosts = ["sakotop", "sakopc"];
 
 addExtraBar: if (hostname === hosts[0]) {
