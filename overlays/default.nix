@@ -26,6 +26,9 @@
       themeVariants = [ "red" ];
       tweaks = [ "square" ];
     };
+    fluent-icon-theme = prev.fluent-icon-theme.override {
+      colorVariants = [ "red" ];
+    };
     dwm = prev.dwm.overrideAttrs (old: {
       src = ../config/dwm;
     });

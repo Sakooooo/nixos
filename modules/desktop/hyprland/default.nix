@@ -117,6 +117,7 @@ in
       inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
       # gtk
       fluent-gtk-theme
+      fluent-icon-theme
     ];
 
     programs.hyprland = {
