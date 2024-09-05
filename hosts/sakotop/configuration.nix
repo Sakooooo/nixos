@@ -56,6 +56,7 @@
         obs.enable = true;
         nextcloud.enable = true;
         localsend.enable = true;
+        anki.enable = true;
       };
       game = {
         wine.enable = true;
