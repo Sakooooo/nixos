@@ -34,6 +34,7 @@
         pass.enable = true;
         localsend.enable = true;
         nemo.enable = true;
+        anki.enable = true;
       };
       browsers = {
         firefox.enable = true;
