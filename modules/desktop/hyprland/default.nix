@@ -89,8 +89,6 @@ in
       sway-contrib.grimshot
       # todo figure this out
       gamescope
-      # clipboard
-      wl-clipboard
       # playerctl
       playerctl
     ];
@@ -112,6 +110,8 @@ in
       # gtk
       fluent-gtk-theme
       fluent-icon-theme
+      # clipboard
+      wl-clipboard
     ];
 
     programs.hyprland = {
