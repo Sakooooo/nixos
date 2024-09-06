@@ -1063,7 +1063,7 @@ Will configure later, (use elfeed protocol ok ty)
   (use-package elfeed-protocol
     :config
     ;; setup feeds
-    (setq elfeed-protocol-feeds '(("fever+https://sako@rss.sako.box"
+    (setq elfeed-protocol-feeds '(("fever+https://sako@rss.sako.box/fever/"
   				 :password (password-store-get "Selfhosted/rss.sako.box/fever"))))
 
     ;; enable elfeed-protocol
