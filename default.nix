@@ -22,7 +22,7 @@
     outputs.nixosModules.media
     outputs.nixosModules.work
     outputs.nixosModules.security
-    outputs.nixosModules.virtualzation
+    outputs.nixosModules.virtualization
   ];
 
   # nix settings that should 100% be global
