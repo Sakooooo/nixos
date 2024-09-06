@@ -1067,7 +1067,7 @@ Will configure later, (use elfeed protocol ok ty)
       (setq elfeed-protocol-fever-fetch-category-as-tag t)
       (setq elfeed-protocol-feeds '(("fever+https://sako@rss.sako.box"
     				 :api-url "https://rss.sako.box/fever/"
-    				 :password (password-store-get "Selfhosted/rss.sako.box/fever"))))
+    				 :password (password-store-get "SelfHosted/rss.sako.box/fever"))))
 
       ;; enable elfeed-protocol
       (setq elfeed-protocol-enabled-protocols '(fever))
