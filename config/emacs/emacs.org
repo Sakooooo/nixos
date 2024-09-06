@@ -912,15 +912,12 @@ this should be useful later
 #+end_src
 ** Typescript
 #+begin_src emacs-lisp
-  (use-package typescript-ts-mode
-    :mode (("\\.ts\\'" . typescript-ts-mode)
-  	 ("\\.tsx\\'" . tsx-ts-mode))
-    :config
+    (add-hook 'typescript-ts-mode 'eglot-ensure) 
+    (add-hook 'tsx-ts-mode 'eglot-ensure) 
+
     (setq treesit-language-source-alist
   	'((typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src" nil nil)
             (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src" nil nil)))
-    :hook ((typescript-mode . eglot-ensure)
-  	   (tsx-ts-mode . eglot-ensure))
 #+end_src
 ** Astro
 #+begin_src emacs-lisp
