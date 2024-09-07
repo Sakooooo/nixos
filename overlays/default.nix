@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{inputs, pkgs, ...}: {
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../packages {pkgs = final;};
 
@@ -37,6 +37,9 @@
     });
     isync = prev.isync.overrideAttrs (old: {
       withCyrusSaslXoauth2 = true;
+    });
+    blender = prev.blender.override (old: {
+      nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ pkgs.pkg-config pkgs.wayland-scanner ];
     });
   };
 
