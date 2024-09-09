@@ -201,9 +201,14 @@ kept-old-versions 5)
 #+end_src
 ** Appearance
 #+begin_src emacs-lisp
-  (use-package ef-themes
+  ;; (use-package ef-themes
+  ;;   :config
+  ;;   (load-theme 'ef-maris-dark t))
+
+  (use-package leuven-theme
     :config
-    (load-theme 'ef-maris-dark t))
+    (load-theme 'leuven-dark t))
+
   ;; emacsclient things
   (setq frame-resize-pixelwise t)
   ;; ui settings apparently go below
