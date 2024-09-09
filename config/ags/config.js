@@ -1,3 +1,4 @@
+// TODO(sako):: try to do something like this https://github.com/PartyWumpus/dotfiles/blob/7cecf39127af0818a3b0d2d8112bf03c304d1172/modules/hyprland/ags/src/main.ts
 const hyprland = await Service.import("hyprland")
 // const notifications = await Service.import("notifications")
 const mpris = await Service.import("mpris")
