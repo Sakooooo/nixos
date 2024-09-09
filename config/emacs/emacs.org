@@ -1024,15 +1024,22 @@ this should be useful later
 #+end_src
 ** Rust
 #+begin_src emacs-lisp
-  (use-package rust-mode
-    :hook (rust-mode . eglot-ensure)
-    :mode "\\.rs\\'")
+  ;; (use-package rust-mode
+  ;;   :hook (rust-mode . eglot-ensure)
+  ;;   :mode "\\.rs\\'")
 
-  (use-package cargo-mode
-    :hook
-    (rust-mode . cargo-minor-mode)
+  ;; (use-package cargo-mode
+  ;;   :hook
+  ;;   (rust-mode . cargo-minor-mode)
+  ;;   :config
+  ;;   (setq compilation-scroll-output t))
+
+  (use-package rustic
+    :ensure t
     :config
-    (setq compilation-scroll-output t))
+    (setq rustic-format-on-save nil)
+    :custom
+    (rustic-cargo-use-last-stored-arguments t))
 #+end_src
 ** Haskell
 #+begin_src emacs-lisp
