@@ -140,6 +140,9 @@
       sops.enable = true;
       certs.enable = true;
     };
+    virtualization = {
+      waydroid.enable = true;
+    };
   };
 
   # Enable CUPS to print documents.
