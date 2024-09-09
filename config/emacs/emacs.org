@@ -1024,9 +1024,15 @@ this should be useful later
 #+end_src
 ** Rust
 #+begin_src emacs-lisp
-(use-package rust-mode
-  :hook (rust-mode . eglot-ensure)
-  :mode "\\.rs\\'")
+  (use-package rust-mode
+    :hook (rust-mode . eglot-ensure)
+    :mode "\\.rs\\'")
+
+  (use-package cargo-mode
+    :hook
+    (rust-mode . cargo-minor-mode)
+    :config
+    (setq compilation-scroll-output t))
 #+end_src
 ** Haskell
 #+begin_src emacs-lisp
