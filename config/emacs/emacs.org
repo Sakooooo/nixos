@@ -205,9 +205,10 @@ kept-old-versions 5)
   ;;   :config
   ;;   (load-theme 'ef-maris-dark t))
 
-  (use-package leuven-theme
+
+  (use-package modus-themes
     :config
-    (load-theme 'leuven-dark t))
+    (load-theme 'modus-vivendi t))
 
   ;; emacsclient things
   (setq frame-resize-pixelwise t)
