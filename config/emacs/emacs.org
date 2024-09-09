@@ -922,8 +922,8 @@ this should be useful later
   (add-to-list 'auto-mode-alist '(".*\\.ts" . typescript-ts-mode))
   (add-to-list 'auto-mode-alist '(".*\\.tsx" . tsx-ts-mode))
   
-  (add-hook 'typescript-ts-mode 'eglot-ensure) 
-  (add-hook 'tsx-ts-mode 'eglot-ensure) 
+  (add-hook 'typescript-ts-mode-hook 'eglot-ensure) 
+  (add-hook 'tsx-ts-mode-hook 'eglot-ensure) 
 
   (setq treesit-language-source-alist
   	'((typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src" nil nil)
