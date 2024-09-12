@@ -29,11 +29,6 @@
 /* Bottom left page loading status or url preview */
 #statuspanel { display: none !important; }
 
-/* Hide dropdown that appears when you type in search bar */
-.autocomplete-history-popup, panel[type=autocomplete-richlistbox], panel[type=autocomplete] {
-	display: none !important;
-}
-
 /* remove radius from right-click popup */
 menupopup, panel { --panel-border-radius: 0px !important; }
 menu, menuitem, menucaption { border-radius: 0px !important; }
@@ -58,6 +53,11 @@ menupopup > #context-sep-navigation { display: none !important; }
 
 /* remove padding between toolbar buttons */
 toolbar .toolbarbutton-1 { padding: 0 0 !important; }
+
+/* add it back to the downloads button, otherwise it's too close to the urlbar */
+#downloads-button {
+	margin-left: 2px !important;
+}
 
 /* add padding to the right of the last button so that it doesn't touch the edge of the window */
 #PanelUI-menu-button {
@@ -96,6 +96,11 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 #customizationui-widget-panel { margin: 0 !important; }
 #unified-extensions-panel { margin: 0 !important; }
 
+/* make browser dialog boxes not overlap the navbar */
+:not(.content-prompt-dialog) > .dialogOverlay > .dialogBox:not(.spotlightBox) {
+	margin-top: 0px !important;
+}
+
 /* --- UNIFIED EXTENSIONS BUTTON ------------------------ */
 
 /* make extension icons smaller */
@@ -116,10 +121,6 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 	padding: 3px 0px !important;
 }
 
-#unified-extensions-view .unified-extensions-item-menu-button {
-	margin-inline-end: 0 !important;
-}
-
 #unified-extensions-view .toolbarbutton-icon {
 	padding: 0 !important;
 }
@@ -127,6 +128,15 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 .unified-extensions-item-contents {
 	line-height: 1 !important;
 	white-space: nowrap !important;
+}
+
+#unified-extensions-panel .unified-extensions-item {
+	margin-block: 0 !important;
+}
+
+.toolbar-menupopup :is(menu, menuitem), .subview-subheader, panelview
+.toolbarbutton-1, .subviewbutton, .widget-overflow-list .toolbarbutton-1 {
+	padding: 4px !important;
 }
 
 /* --- DEBLOAT URLBAR ----------------------------------- */
@@ -216,7 +226,7 @@ tab {
 /* remove dark space between pinned tab and first non-pinned tab */
 #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) >
 #tabbrowser-arrowscrollbox >
-.tabbrowser-tab[first-visible-unpinned-tab] {
+.tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) {
 	margin-inline-start: 0px !important;
 }
 
@@ -236,14 +246,6 @@ tab {
 	display: none !important;
 }
 
-/* remove firefox view */
-#firefox-view-button { display: none !important; }
-#tabbrowser-tabs {
-	border-inline-start: 0 !important;
-	padding-inline-start: 0 !important;
-	margin-inline-start: 0 !important;
-}
-
 /* hide private browsing indicator */
 #private-browsing-indicator-with-label {
 	display: none;
@@ -256,20 +258,13 @@ tab {
 	min-height: 0 !important;
 	max-height: 0 !important;
 	height: 0 !important;
-	--moz-transform: scaleY(0) !important;
-	transform: scaleY(0) !important;
 }
 
-/* show on focus */
+/* show on focus - uncomment the line below this if you want cursor hover
+ * events to trigger the navbar  */
+/* #titlebar:hover ~ .browser-toolbar, #nav-bar:hover, */
 #nav-bar:focus-within {
-	--moz-transform: scale(1) !important;
-	transform: scale(1) !important;
 	max-height: var(--urlbar-height-setting) !important;
 	height: var(--urlbar-height-setting) !important;
 	min-height: var(--urlbar-height-setting) !important;
-}
-
-#navigator-toolbox:focus-within > .browser-toolbar {
-	transform: translateY(0);
-	opacity: 1;
 }
