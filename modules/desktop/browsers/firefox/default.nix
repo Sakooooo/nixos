@@ -304,6 +304,8 @@ in {
               }
             '';
 
+            search.default = "DuckDuckGo";
+            search.force = true;
             search.engines = {
               "Nix Packages" = {
                 urls = [
