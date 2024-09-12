@@ -38,7 +38,7 @@
       };
       browsers = {
         firefox.enable = true;
-        qutebrowser.enable = false;
+        qutebrowser.enable = true;
         chromium.enable = true;
       };
       chat = {
