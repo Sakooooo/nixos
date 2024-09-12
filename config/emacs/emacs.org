@@ -201,18 +201,9 @@ kept-old-versions 5)
 #+end_src
 ** Appearance
 #+begin_src emacs-lisp
-  ;; (use-package ef-themes
-  ;;   :config
-  ;;   (load-theme 'ef-maris-dark t))
-
-
-  ;; (use-package modus-themes
-  ;;   :config
-  ;;   (load-theme 'modus-vivendi t))
-
-  (use-package jetbrains-darcula-theme
+  (use-package ef-themes
     :config
-    (load-theme 'jetbrains-darcula t))
+    (load-theme 'ef-maris-dark t))
 
   ;; emacsclient things
   (setq frame-resize-pixelwise t)
