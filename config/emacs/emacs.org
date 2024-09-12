@@ -206,9 +206,13 @@ kept-old-versions 5)
   ;;   (load-theme 'ef-maris-dark t))
 
 
-  (use-package modus-themes
+  ;; (use-package modus-themes
+  ;;   :config
+  ;;   (load-theme 'modus-vivendi t))
+
+  (use-package jetbrains-darcula-theme
     :config
-    (load-theme 'modus-vivendi t))
+    (load-theme 'jetbrains-darcula t))
 
   ;; emacsclient things
   (setq frame-resize-pixelwise t)
