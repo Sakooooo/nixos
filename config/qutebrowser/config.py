@@ -168,7 +168,10 @@ config.set("colors.webpage.preferred_color_scheme", "dark")
 
 # lmao i use pass now
 config.bind("pwa", "spawn --userscript qute-pass")
-config.bind("pwu", "spawn --userscript qute-pass --username-only")
+config.bind(
+    "pwu",
+    "spawn --userscript qute-pass --username-only --username-target secret --username-pattern 'login: (.*)'",
+)
 config.bind("pwp", "spawn --userscript qute-pass --password-only")
 config.bind("pwo", "spawn --userscript qute-pass --otp-only")
 
