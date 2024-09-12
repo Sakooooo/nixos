@@ -9,7 +9,7 @@ in
 
   config = lib.mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
-      qutebrowser-qt6
+      qutebrowser
       python310Packages.pynacl
       python310Packages.adblock
     ];
