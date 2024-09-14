@@ -71,6 +71,12 @@ in {
           };
         };
       };
+
+      programs.browserpass = {
+        enable = true;
+        browsers = [ "firefox" ];
+      };
+
     };
 
     programs.browserpass.enable = true;
