@@ -22,6 +22,7 @@
       kitty.enable = true;
       wezterm.enable = false;
       foot.enable = true;
+      flatpak.enable = true;
       bspwm = {
         enable = false;
         polybar.enable = false;
