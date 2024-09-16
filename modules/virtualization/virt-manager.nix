@@ -8,12 +8,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    virtualization.libvirtd.enable = true;
-    programs.dconf.enable = true;
-    environment.systemPackages = with pkgs; [
-      virt-manager
-    ];
-
-    users.users.sako.extraGroups = [ "libvirtd" ];
+   virtualisation.libvirtd.enable = true;
+   programs.virt-manager.enable = true;
+   users.users.sako.extraGroups = [ "libvirtd" ];
   };
 }
