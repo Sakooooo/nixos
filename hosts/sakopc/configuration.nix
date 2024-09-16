@@ -110,6 +110,9 @@
       sops.enable = true;
       certs.enable = true;
     };
+    virtualization = {
+      virt-manager.enable = true;
+    };
   };
 
   # fuck you AOC
