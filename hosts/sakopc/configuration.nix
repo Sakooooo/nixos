@@ -111,7 +111,7 @@
       certs.enable = true;
     };
     virtualization = {
-      virt-manager.enable = true;
+      libvirtd.enable = true;
     };
   };
 
