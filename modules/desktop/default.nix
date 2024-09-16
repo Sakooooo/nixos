@@ -23,6 +23,7 @@
     ./media
     ./dunst
     ./picom
+    ./flatpak
     # boot
     ./plymouth
     # vpn
