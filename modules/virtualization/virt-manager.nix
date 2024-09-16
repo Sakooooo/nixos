@@ -10,7 +10,7 @@ in
   config = lib.mkIf cfg.enable {
     virtualization.libvirtd.enable = true;
     programs.dconf.enable = true;
-    environtment.systemPackages = with pkgs; [
+    environment.systemPackages = with pkgs; [
       virt-manager
     ];
 
