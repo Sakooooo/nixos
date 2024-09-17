@@ -99,7 +99,7 @@ in
       waybar
       # lock
       # swaylock
-      inputs.ags.packages.${pkgs.system}.default
+      # inputs.ags.packages.${pkgs.system}.default
       brightnessctl
       inotify-tools
       greetd.tuigreet
@@ -127,6 +127,14 @@ in
     services.emacs.startWithGraphical = false;
 
     home-manager.users.sako = { pkgs , ...}: {
+      programs.ags = {
+        enable = true;
+        configDir = ../../../config/ags;
+        extraPackages = with pkgs; [
+          bun
+        ];
+      };
+
       home.pointerCursor = {
         # name = "Catppuccin-Mocha-Dark"; 
         name = "catppuccin-mocha-dark-cursors";
@@ -164,10 +172,10 @@ in
         #   source = ../../../config/swaylock;
         #   recursive = true;
         # };
-        ags = {
-          source = ../../../config/ags;
-          recursive = true;
-        };
+        # ags = {
+        #   source = ../../../config/ags;
+        #   recursive = true;
+        # };
      }; 
     };
 
