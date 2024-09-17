@@ -16,6 +16,7 @@
 
   modules = {
     desktop = {
+      flatpak.enable = true;
       wireguard.enable = true;
       printing.enable = true;
       bspwm = {
