@@ -25,8 +25,8 @@
       hyprland.enable = true;
       foot.enable = true;
       kitty.enable = true;
-      picom.enable = true;
-      dunst.enable = true;
+      picom.enable = false;
+      dunst.enable = false;
       apps = {
         nextcloud.enable = true;
         rssguard.enable = true;
@@ -39,7 +39,7 @@
       browsers = {
         firefox.enable = true;
         qutebrowser.enable = false;
-        chromium.enable = true;
+        chromium.enable = false;
       };
       chat = {
         zoom.enable = true;
@@ -109,9 +109,6 @@
     security = {
       sops.enable = true;
       certs.enable = true;
-    };
-    virtualization = {
-      libvirtd.enable = false;
     };
   };
 
