@@ -13,6 +13,8 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    inputs.home-manager.sharedModules = [{ imports = inputs.ags.homeManagerModules.default; }];
+
   modules.desktop.dunst.enable = lib.mkForce false;
 
   services.gnome.gnome-keyring.enable = true;
