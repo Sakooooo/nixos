@@ -888,6 +888,11 @@ this should be useful later
       :config
       (direnv-mode)))
 #+end_src
+** Color Picker
+#+begin_src emacs-lisp
+(use-package webkit-color-picker
+  :bind (("C-c C-p" . webkit-color-picker-show)))
+#+end_src
 * Languages
 #+begin_src emacs-lisp
 (message "Reached languages")
