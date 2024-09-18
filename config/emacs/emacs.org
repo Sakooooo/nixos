@@ -890,8 +890,7 @@ this should be useful later
 #+end_src
 ** Color Picker
 #+begin_src emacs-lisp
-(use-package webkit-color-picker
-  :bind (("C-c C-p" . webkit-color-picker-show)))
+  (use-package edit-color-stamp)
 #+end_src
 * Languages
 #+begin_src emacs-lisp
