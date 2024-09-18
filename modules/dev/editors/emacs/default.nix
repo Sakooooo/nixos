@@ -119,6 +119,8 @@ in {
       texliveMinimal
       # lsp
       emacs-lsp-booster
+      # zenity-color-picker
+      zenity
     ];
 
     systemd.services.hydroxide = {

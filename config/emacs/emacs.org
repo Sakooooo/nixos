@@ -890,7 +890,7 @@ this should be useful later
 #+end_src
 ** Color Picker
 #+begin_src emacs-lisp
-  (use-package edit-color-stamp)
+  (use-package zenity-color-picker)
 #+end_src
 * Languages
 #+begin_src emacs-lisp
