@@ -1028,10 +1028,6 @@ this should be useful later
     :config
     (setq rustic-format-on-save nil)
     (setq rustic-lsp-client 'eglot)
-    
-    (add-to-list 'eglot-server-programs
-                 `(rustic-mode . ("rust-analyzer" :initializationOptions
-                                ( :cargo ( :features "all")))))
     :custom
     (rustic-cargo-use-last-stored-arguments t))
 #+end_src
