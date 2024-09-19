@@ -1030,7 +1030,7 @@ this should be useful later
     (setq rustic-lsp-client 'eglot)
 
     (add-to-list 'eglot-server-programs
-                 '((rust-ts-mode rust-mode) .
+                 '((rust-ts-mode rust-mode rustic-mode) .
   		 ("rust-analyzer" :initializationOptions (:diagnostics (:disabled "inactive-code")))))   
     
     :custom
