@@ -1039,7 +1039,7 @@ this should be useful later
     		;; variables, should you want different configuration
     		;; per project/directory.
     		'(:rust-analyzer
-                    :cargo (:features ["all"]))))
+                    :cargo (:features "all"))))
 
     (add-hook 'rustic-mode-hook #'setup-rust)
     (add-hook 'rust-mode-hook #'setup-rust)
