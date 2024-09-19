@@ -1028,6 +1028,21 @@ this should be useful later
     :config
     (setq rustic-format-on-save nil)
     (setq rustic-lsp-client 'eglot)
+
+    (defun setup-rust ()
+      "Setup for ‘rust-mode’."
+      ;; Configuration taken from rust-analyzer’s manual:
+      ;; https://rust-analyzer.github.io/manual.html#configuration
+      (setq-local eglot-workspace-configuration
+  		;; Setting the workspace configuration for every
+  		;; rust-mode buffer, you can also set it with dir-local
+  		;; variables, should you want different configuration
+  		;; per project/directory.
+  		'(:rust-analyzer
+                      :cargo (:features ["all"]))))
+
+    (add-hook 'rustic-mode-hook #'setup-rust)
+    
     :custom
     (rustic-cargo-use-last-stored-arguments t))
 #+end_src
