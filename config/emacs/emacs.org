@@ -1023,21 +1023,16 @@ this should be useful later
 #+end_src
 ** Rust
 #+begin_src emacs-lisp
-  ;; (use-package rust-mode
-  ;;   :hook (rust-mode . eglot-ensure)
-  ;;   :mode "\\.rs\\'")
-
-  ;; (use-package cargo-mode
-  ;;   :hook
-  ;;   (rust-mode . cargo-minor-mode)
-  ;;   :config
-  ;;   (setq compilation-scroll-output t))
-
   (use-package rustic
     :ensure t
     :config
     (setq rustic-format-on-save nil)
     (setq rustic-lsp-client 'eglot)
+
+    (add-to-list 'eglot-server-programs
+                 '((rust-ts-mode rust-mode) .
+  		 ("rust-analyzer" :initializationOptions (:diagnostics (:disabled "inactive-code")))))   
+    
     :custom
     (rustic-cargo-use-last-stored-arguments t))
 #+end_src
