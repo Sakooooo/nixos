@@ -13,7 +13,6 @@ button {
     padding-bottom: 0;
     border: none;
     background-color: transparent;
-    border-bottom: 3px solid transparent;
 }
 
 button:active {
@@ -21,7 +20,7 @@ button:active {
 }
 
 button:hover {
-    border-bottom: 3px solid @theme_fg_color;
+    border-bottom: 1px solid @theme_fg_color;
 }
 
 label {
@@ -29,7 +28,7 @@ label {
 }
 
 .workspaces button.focused {
-    border-bottom: 3px solid @theme_selected_bg_color;
+    border-bottom: 1px solid @theme_selected_bg_color;
 }
 
 .client-title {
@@ -38,6 +37,31 @@ label {
 
 .notification {
     color: yellow;
+}
+
+
+.workspace-buttons {
+    min-width: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    outline-width: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.workspace-inactive {
+  opacity: 0.5;
+  border-bottom: 3px transparent;
+}
+
+.workspace-occupied {
+  opacity: 1;
+  border-bottom: 3px transparent;
+}
+
+.workspace-active {
+  outline-width: 0;
+  border-bottom: 3px solid @theme_selected_bg_color;
 }
 
 levelbar block,
