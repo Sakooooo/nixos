@@ -44,7 +44,7 @@ label {
     min-width: 0;
     padding-top: 0;
     padding-bottom: 0;
-    outline-width: 0;
+  /* outline-width: 0; */
     border: none;
     background-color: transparent;
 }
