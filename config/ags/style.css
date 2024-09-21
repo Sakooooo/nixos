@@ -40,12 +40,10 @@ label {
 }
 
 
-.workspace-buttons {
+.workspace-indicator {
     min-width: 0;
     padding-top: 0;
     padding-bottom: 0;
-  /* outline-width: 0; */
-    border: none;
     background-color: transparent;
 }
 
@@ -60,7 +58,6 @@ label {
 }
 
 .workspace-active {
-  outline-width: 0;
   border-bottom: 3px solid @theme_selected_bg_color;
 }
 
