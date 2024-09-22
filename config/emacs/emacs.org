@@ -205,9 +205,13 @@ kept-old-versions 5)
   ;;   :config
   ;;   (load-theme 'doom-sourcerer t))
 
-  (use-package grandshell-theme
+  ;; (use-package grandshell-theme
+  ;;   :config
+  ;;   (load-theme 'grandshell t))
+
+  (use-package ef-themes
     :config
-    (load-theme 'grandshell t))
+    (load-theme 'ef-duo-dark))
 
   ;; emacsclient things
   (setq frame-resize-pixelwise t)
