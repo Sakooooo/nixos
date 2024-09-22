@@ -201,9 +201,13 @@ kept-old-versions 5)
 #+end_src
 ** Appearance
 #+begin_src emacs-lisp
-  (use-package doom-themes
+  ;; (use-package doom-themes
+  ;;   :config
+  ;;   (load-theme 'doom-sourcerer t))
+
+  (use-package grandshell-theme
     :config
-    (load-theme 'doom-sourcerer t))
+    (load-theme 'grandshell t))
 
   ;; emacsclient things
   (setq frame-resize-pixelwise t)
