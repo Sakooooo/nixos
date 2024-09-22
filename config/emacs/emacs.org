@@ -211,7 +211,7 @@ kept-old-versions 5)
 
   (use-package ef-themes
     :config
-    (load-theme 'ef-duo-dark))
+    (load-theme 'ef-duo-dark t))
 
   ;; emacsclient things
   (setq frame-resize-pixelwise t)
