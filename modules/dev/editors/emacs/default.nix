@@ -107,9 +107,10 @@ in {
       direnv
       # mu for email
       mu
-      # sync
+      # email sync
       isync
       cyrus-sasl-xoauth2
+      offlineimap
       # protonmail
       hydroxide
       # doc-view
