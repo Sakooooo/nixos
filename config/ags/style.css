@@ -5,6 +5,7 @@
 window.bar {
     background-color: @theme_bg_color;
     color: @theme_fg_color;
+    min-height: 4rem;
 }
 
 button {
@@ -44,21 +45,27 @@ label {
     min-width: 0;
     padding-top: 0;
     padding-bottom: 0;
+    margin: 0;
     background-color: transparent;
 }
 
+/* .workspace-indicator button.focused {
+   border-bottom: 3px solid @theme_selected_bg_color;
+   }
+ */
+
 .workspace-inactive {
   opacity: 0.5;
-  /* border-bottom: 3px transparent; */
+  border-bottom: 5px transparent;
 }
 
 .workspace-occupied {
   opacity: 1;
-  /* border-bottom: 3px transparent; */
+  border-bottom: 5px transparent;
 }
 
 .workspace-active {
-  border-bottom: 3px solid @theme_selected_bg_color;
+    border-bottom: 3px solid @theme_selected_bg_color;
 }
 
 levelbar block,
