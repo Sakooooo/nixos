@@ -68,6 +68,20 @@ label {
     border-bottom: 3px solid @theme_selected_bg_color;
 }
 
+.client-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50px;
+}
+
+.media {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px; 
+}
+
 levelbar block,
 highlight {
     min-height: 10px;
