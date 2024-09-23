@@ -50,10 +50,10 @@ label {
     background-color: transparent;
 }
 
-/* .workspace-indicator button.focused {
-   border-bottom: 3px solid @theme_selected_bg_color;
-   }
- */
+.workspace-indicator button.focused {
+    border-bottom: 3px solid @theme_selected_bg_color;
+}
+
 
 .workspace-inactive {
   opacity: 0.5;
@@ -65,7 +65,7 @@ label {
   border-bottom: 3px transparent;
 }
 
-.workspace-active button.focused {
+.workspace-active {
     border-bottom: 3px solid @theme_selected_bg_color;
 }
 
