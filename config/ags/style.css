@@ -14,6 +14,7 @@ button {
     padding-bottom: 0;
     border: none;
     background-color: transparent;
+    border-bottom: 3px solid transparent;
 }
 
 button:active {
@@ -56,15 +57,15 @@ label {
 
 .workspace-inactive {
   opacity: 0.5;
-  border-bottom: 5px transparent;
+  border-bottom: 3px transparent;
 }
 
 .workspace-occupied {
   opacity: 1;
-  border-bottom: 5px transparent;
+  border-bottom: 3px transparent;
 }
 
-.workspace-active {
+.workspace-active button.focused {
     border-bottom: 3px solid @theme_selected_bg_color;
 }
 
