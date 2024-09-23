@@ -1163,7 +1163,7 @@ GNU patch review metho dor sometihng idk
     (setq message-send-mail-function 'smtpmail-send-it)
 
     (setq mu4e-update-interval (* 10 60))
-    (setq mu4e-get-mail-command "mbsync -a")
+    (setq mu4e-get-mail-command "offlineimap")
     (setq mu4e-maildir "~/Mail")
 
     (setq outlook-mail-address
