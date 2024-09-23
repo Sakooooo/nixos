@@ -108,8 +108,8 @@ in {
       # mu for email
       mu
       # email sync
-      isync
-      cyrus-sasl-xoauth2
+      # isync
+      # cyrus-sasl-xoauth2
       offlineimap
       # protonmail
       hydroxide
@@ -151,7 +151,7 @@ in {
           mv init.el $out
         '';
         ".emacs.d/icon.png".source = ../../../../config/emacs/icon.png;
-        ".mbsyncrc".source = ../../../../config/emacs/.mbsyncrc;
+        # ".mbsyncrc".source = ../../../../config/emacs/.mbsyncrc;
         ".offlineimaprc".source = ../../../../cconfig/emacs/.offlineimaprc;
         ".offlineimap.py".source = ../../../../cconfig/emacs/.offlineimap.py;
       };
