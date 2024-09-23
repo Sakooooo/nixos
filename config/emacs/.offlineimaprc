@@ -1,0 +1,19 @@
+[general]
+pythonfile = ~/.offlineimap.py
+accounts = Proton
+
+[Account Proton]
+localrepository = Proton-local
+remoterepository = Proton-remote
+
+[Repository Proton-local]
+type = Maildir
+localfolders = ~/Mail/Proton
+
+[Repository Proton-remote]
+type = IMAP
+ssl = no
+remotehost = 127.0.0.1
+remoteport = 1143
+remoteusereval = get_user("Proton\ Account")
+remotepasseval = hydroxide("/home/sako/.hydroxide-bridge-pass")
