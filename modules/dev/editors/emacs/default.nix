@@ -152,7 +152,7 @@ in {
         '';
         ".emacs.d/icon.png".source = ../../../../config/emacs/icon.png;
         # ".mbsyncrc".source = ../../../../config/emacs/.mbsyncrc;
-        ".offlineimaprc".source = ../../../../cconfig/emacs/.offlineimaprc;
+        ".offlineimaprc".source = ../../../../config/emacs/.offlineimaprc;
         ".offlineimap.py".source = ../../../../cconfig/emacs/.offlineimap.py;
       };
     };
