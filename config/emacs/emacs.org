@@ -1227,7 +1227,7 @@ GNU patch review metho dor sometihng idk
   		  (mu4e-refile-folder . "/Gmail-Personal-1/Inbox")
   		  (mu4e-trash-folder . "Gmail-Personal-1/Trash")))
   	 (make-mu4e-context
-  	  :name "Gmail Personal 2"
+  	  :name "Second Personal Gmail"
   	  :match-func
   	  (lambda (msg)
   	    (when msg
