@@ -10,7 +10,7 @@ def get_pass(account):
 def get_user(account):
     usercmd = check_output("pass " + account, shell=True)
 
-    return re.search(rb"login: (.*)", usercmd, flags=0).group(1)
+    return re.search(rb"login: (.*)", usercmd, flags=0).group(1).decode("utf-8")
 
 
 def hydroxide(path):
@@ -37,12 +37,14 @@ def get_client_secret(account):
 def get_client_token(account):
     cmd = check_output("pass " + account, shell=True)
 
-    return re.search(rb"client_token: (.*)", cmd, flags=0).group(1)
+    output = re.search("client_token: (.*)", cmd.decode(), flags=0).group(1)
+
+    return output
 
 
 def get_client_refresh_token(account):
     cmd = check_output("pass " + account, shell=True)
 
-    output = re.search(rb"client_refresh_token: (.*)", cmd, flags=0).group(1)
+    output = re.search("client_refresh_token: (.*)", cmd.decode(), flags=0).group(1)
 
-    return str.encode(output)
+    return output
