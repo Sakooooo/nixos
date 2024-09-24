@@ -17,3 +17,4 @@ remotehost = 127.0.0.1
 remoteport = 1143
 remoteusereval = get_user("Proton\ Account")
 remotepasseval = hydroxide("/home/sako/.hydroxide-bridge-pass")
+folderfilter = lambda foldername: foldername in [ "All Mail", "Archive", "Drafts", "INBOX", "Sent", "Spam", "Starred", "Trash" ]
