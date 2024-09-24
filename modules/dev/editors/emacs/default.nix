@@ -111,6 +111,8 @@ in {
       # isync
       # cyrus-sasl-xoauth2
       offlineimap
+      # oauth for microsoft
+      oauth2ms
       # protonmail
       hydroxide
       # doc-view
