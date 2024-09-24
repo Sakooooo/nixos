@@ -1167,7 +1167,7 @@ GNU patch review metho dor sometihng idk
     (setq mu4e-maildir "~/Mail")
 
     (setq outlook-mail-address
-    	(string-trim (shell-command-to-string "pass mail | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
+    	(string-trim (shell-command-to-string "pass Microsoft | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
 
     (defvar proton-mail-address nil)
 
@@ -1180,6 +1180,12 @@ GNU patch review metho dor sometihng idk
         (setq my-greeting (concat "@proton.me" output))))
 
     (get-proton-mail-address-from-pass "pass Proton\ Account | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")
+
+    (setq gmail-1-mail-address
+    	(string-trim (shell-command-to-string "pass accounts.google.com/one | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
+
+    (setq gmail-2-mail-address
+    	(string-trim (shell-command-to-string "pass accounts.google.com/two | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
     
     (setq mu4e-contexts
     	(list
@@ -1208,6 +1214,30 @@ GNU patch review metho dor sometihng idk
     		  (mu4e-sent-folder . "/Proton/Sent")
     		  (mu4e-refile-folder . "/Proton/Inbox")
     		  (mu4e-trash-folder . "/Proton/Trash")))
+  	 (make-mu4e-context
+  	  :name "Gmail Personal 1"
+  	  :match-func
+  	  (lambda (msg)
+  	    (when msg
+  	      (string-prefix-p "/Gmail-Personal-1" (mu4e-message-field msg :maildir))))
+  	  :vars `((user-mail-address .  ,gmail-1-mail-address)
+  		  (user-full-name . "Sako")
+  		  (mu4e-drafts-folder . "/Gmail-Personal-1/Drafts")
+  		  (mu4e-sent-folder . "/Gmail-Personal-1/Sent Mail")
+  		  (mu4e-refile-folder . "/Gmail-Personal-1/Inbox")
+  		  (mu4e-trash-folder . "Gmail-Personal-1/Trash")))
+  	 (make-mu4e-context
+  	  :name "Gmail Personal 2"
+  	  :match-func
+  	  (lambda (msg)
+  	    (when msg
+  	      (string-prefix-p "/Gmail-Personal-2" (mu4e-message-field msg :maildir))))
+  	  :vars `((user-mail-address .  ,gmail-2-mail-address)
+  		  (user-full-name . "Sako")
+  		  (mu4e-drafts-folder . "/Gmail-Personal-2/Drafts")
+  		  (mu4e-sent-folder . "/Gmail-Personal-2/Sent Mail")
+  		  (mu4e-refile-folder . "/Gmail-Personal-2/Inbox")
+  		  (mu4e-trash-folder . "Gmail-Personal-2/Trash")))
     	 ))
     )
 #+end_src
