@@ -1174,10 +1174,8 @@ GNU patch review metho dor sometihng idk
     (defun get-proton-mail-address-from-pass (command)
       "Execute COMMAND, concatenate its output with 'hello', and store it in my-greeting."
       (let ((output (shell-command-to-string command)))
-        ;; Trim whitespace from the output
         (setq output (string-trim output))
-        ;; Concatenate 'hello' with the command output
-        (setq my-greeting (concat "@proton.me" output))))
+        (setq proton-mail-address (concat "@proton.me" output))))
 
     (get-proton-mail-address-from-pass "pass Proton\ Account | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")
 
