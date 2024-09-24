@@ -1,6 +1,6 @@
 [general]
 pythonfile = ~/.offlineimap.py
-accounts = Proton
+accounts = Proton, Outlook
 
 [Account Proton]
 localrepository = Proton-local
@@ -18,3 +18,23 @@ remoteport = 1143
 remoteusereval = get_user("Proton\ Account")
 remotepasseval = hydroxide("/home/sako/.hydroxide-bridge-pass")
 folderfilter = lambda foldername: foldername in [ "All Mail", "Archive", "Drafts", "INBOX", "Sent", "Spam", "Starred", "Trash" ]
+
+[Account Outlook]
+localrepostiory = Outlook-local
+remoterepository = Outlook-remote
+
+[Repository Outlook-local]
+type = maildir
+localfolders = ~/Mail/Outlook
+
+[Repository Outlook-remote]
+type = IMAP
+remoteusereval = get_user("Microsoft")
+remotehost = outlook.office365.com
+remoteport = 993
+auth_mechanisms = XOAUTH2
+oauth2_request_url = https://login.microsoftonline.com/common/oauth2/v2.0/token
+oauth2_client_id = 9e5f94bc-e8a4-4e73-b8be-63364c29d753 # thunderbird's token not mine lol
+oauth2_client_secret = "" # no need for this lmao
+oauth2_refresh_token_eval = oauth.get_client_refresh_token("Microsoft") 
+oauth2_access_token_eval = oauth.get_client_token("Microsoft")
