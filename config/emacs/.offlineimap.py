@@ -34,14 +34,6 @@ def get_client_secret(account):
     return re.search(rb"client_secret: (.*)", cmd, flags=0).group(1)
 
 
-def get_client_token(account):
-    cmd = check_output("pass " + account, shell=True)
-
-    output = re.search("client_token: (.*)", cmd.decode(), flags=0).group(1)
-
-    return output
-
-
 def get_client_refresh_token(account):
     cmd = check_output("pass " + account, shell=True)
 
