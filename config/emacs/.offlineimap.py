@@ -25,13 +25,17 @@ def hydroxide(path):
 def get_client_id(account):
     cmd = check_output("pass " + account, shell=True)
 
-    return re.search(rb"client_id: (.*)", cmd, flags=0).group(1)
+    output = re.search("client_id: (.*)", cmd.decode(), flags=0).group(1)
+
+    return output
 
 
 def get_client_secret(account):
     cmd = check_output("pass " + account, shell=True)
 
-    return re.search(rb"client_secret: (.*)", cmd, flags=0).group(1)
+    output = re.search("client_secret: (.*)", cmd.decode(), flags=0).group(1)
+
+    return output
 
 
 def get_client_refresh_token(account):
