@@ -1153,120 +1153,101 @@ its over the machines took over guys can i get my likes now
 ** mu4e
 GNU patch review metho dor sometihng idk
 #+begin_src emacs-lisp
-  (use-package mu4e
-    :config
+    (use-package mu4e
+      :config
 
-    ;; mu4e syncing issue with isync
-    (setq mu4e-change-filenames-when-moving t)
+      ;; mu4e syncing issue with isync
+      (setq mu4e-change-filenames-when-moving t)
 
-    ;; sending mail
-    (setq message-send-mail-function 'smtpmail-send-it)
+      ;; sending mail
+      (setq message-send-mail-function 'smtpmail-send-it)
 
-    (setq mu4e-update-interval (* 10 60))
-    (setq mu4e-get-mail-command "offlineimap")
-    (setq mu4e-maildir "~/Mail")
+      (setq mu4e-update-interval (* 10 60))
+      (setq mu4e-get-mail-command "offlineimap")
+      (setq mu4e-maildir "~/Mail")
 
-    (setq outlook-mail-address
-    	(string-trim (shell-command-to-string "pass Microsoft | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
+      (setq outlook-mail-address
+      	(string-trim (shell-command-to-string "pass Microsoft | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
 
-    (defvar proton-mail-address nil)
+      (defvar proton-mail-address nil)
 
-    (defun get-proton-mail-address-from-pass (command)
-      "Execute COMMAND, concatenate its output with 'hello', and store it in my-greeting."
-      (let ((output (shell-command-to-string command)))
-        (setq output (string-trim output))
-        (setq proton-mail-address (concat "@proton.me" output))))
+      (defun get-proton-mail-address-from-pass (command)
+        "Execute COMMAND, concatenate its output with 'hello', and store it in my-greeting."
+        (let ((output (shell-command-to-string command)))
+          (setq output (string-trim output))
+          (setq proton-mail-address (concat "@proton.me" output))))
 
-    (get-proton-mail-address-from-pass "pass Proton\ Account | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")
+      (get-proton-mail-address-from-pass "pass Proton\ Account | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")
 
-    (setq gmail-1-mail-address
-    	(string-trim (shell-command-to-string "pass accounts.google.com/one | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
+      (setq gmail-1-mail-address
+      	(string-trim (shell-command-to-string "pass accounts.google.com/one | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
 
-    (setq gmail-2-mail-address
-    	(string-trim (shell-command-to-string "pass accounts.google.com/two | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
+      (setq gmail-2-mail-address
+      	(string-trim (shell-command-to-string "pass accounts.google.com/two | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
 
-    (setq mu4e-context-policy 'pick-first)
-    (setq mu4e-compose-context-policy 'always-ask)
-    (setq mu4e-contexts
-    	(list
-    	 ;; outlook
+      (setq mu4e-context-policy 'pick-first)
+      (setq mu4e-compose-context-policy 'always-ask)
+      (setq mu4e-contexts
+      	(list
+      	 ;; outlook
+      	 (make-mu4e-context
+      	  :name "Outlook"
+      	  :match-func
+      	  (lambda (msg)
+      	    (when msg
+      	      (string-prefix-p "/Outlook" (mu4e-message-field msg :maildir))))
+      	  :vars `((user-mail-address . ,outlook-mail-address)
+      	          (user-full-name . "Sako")
+      		  (mu4e-drafts-folder . "/Outlook/Drafts")
+      		  (mu4e-sent-folder . "/Outlook/Sent")
+      		  (mu4e-refile-folder . "/Outlook/Inbox")
+      		  (mu4e-trash-folder . "/Outlook/Deleted")
+    		  ;; todo stmpmail and compose signatures
+  		  ))
+      	 (make-mu4e-context
+      	  :name "Proton"
+      	  :match-func
+      	  (lambda (msg)
+      	    (when msg
+      	      (string-prefix-p "/Proton" (mu4e-message-field msg :maildir))))
+      	  :vars `((user-mail-address . ,proton-mail-address)
+      	          (user-full-name . "Sako")
+      		  (mu4e-drafts-folder . "/Proton/Drafts")
+      		  (mu4e-sent-folder . "/Proton/Sent")
+      		  (mu4e-refile-folder . "/Proton/Inbox")
+      		  (mu4e-trash-folder . "/Proton/Trash"))
+    	  ;; todo stmpmail and compose signatures
+    	  )
     	 (make-mu4e-context
-    	  :name "Outlook"
+    	  :name "Gmail Personal 1"
     	  :match-func
     	  (lambda (msg)
     	    (when msg
-    	      (string-prefix-p "/Outlook" (mu4e-message-field msg :maildir))))
-    	  :vars `((user-mail-address . ,outlook-mail-address)
-    	          (user-full-name . "Sako")
-    		  (mu4e-drafts-folder . "/Outlook/Drafts")
-    		  (mu4e-sent-folder . "/Outlook/Sent")
-    		  (mu4e-refile-folder . "/Outlook/Inbox")
-    		  (mu4e-trash-folder . "/Outlook/Deleted")
-  		  ;; todo stmpmail and compose signatures
-  		  (mu4e-maildir-shortcuts . (
-  					     ("/Outlook/Inbox" . ?i)
-  					     ("/Outlook/Sent" . ?s)
-  					     ("/Outlook/Drafts" . ?d)
-  		  ))))
+    	      (string-prefix-p "/Gmail-Personal-1" (mu4e-message-field msg :maildir))))
+    	  :vars `((user-mail-address .  ,gmail-1-mail-address)
+    		  (user-full-name . "Sako")
+    		  (mu4e-drafts-folder . "/Gmail-Personal-1/Drafts")
+    		  (mu4e-sent-folder . "/Gmail-Personal-1/Sent Mail")
+    		  (mu4e-refile-folder . "/Gmail-Personal-1/Inbox")
+    		  (mu4e-trash-folder . "Gmail-Personal-1/Trash")
+    		  ;; todo stmpmail and compose signatures
+    		  ))
     	 (make-mu4e-context
-    	  :name "Proton"
+    	  :name "Second Personal Gmail"
     	  :match-func
     	  (lambda (msg)
     	    (when msg
-    	      (string-prefix-p "/Proton" (mu4e-message-field msg :maildir))))
-    	  :vars `((user-mail-address . ,proton-mail-address)
-    	          (user-full-name . "Sako")
-    		  (mu4e-drafts-folder . "/Proton/Drafts")
-    		  (mu4e-sent-folder . "/Proton/Sent")
-    		  (mu4e-refile-folder . "/Proton/Inbox")
-    		  (mu4e-trash-folder . "/Proton/Trash"))
-  	  ;; todo stmpmail and compose signatures
-  	  (mu4e-maildir-shortcuts . (
-  				     ("/Proton/Inbox" . ?i)
-  				     ("/Proton/Sent" . ?s)
-  				     ("/Proton/Drafts" . ?d)
-  		  )
-  	  ))
-  	 (make-mu4e-context
-  	  :name "Gmail Personal 1"
-  	  :match-func
-  	  (lambda (msg)
-  	    (when msg
-  	      (string-prefix-p "/Gmail-Personal-1" (mu4e-message-field msg :maildir))))
-  	  :vars `((user-mail-address .  ,gmail-1-mail-address)
-  		  (user-full-name . "Sako")
-  		  (mu4e-drafts-folder . "/Gmail-Personal-1/Drafts")
-  		  (mu4e-sent-folder . "/Gmail-Personal-1/Sent Mail")
-  		  (mu4e-refile-folder . "/Gmail-Personal-1/Inbox")
-  		  (mu4e-trash-folder . "Gmail-Personal-1/Trash")
-  		  ;; todo stmpmail and compose signatures
-  		  (mu4e-maildir-shortcuts . (
-  					     ("/Gmail-Personal-1/Inbox" . ?i)
-  					     ("/Gmail-Personal-1/Sent Mail" . ?s)
-  					     ("/Gmail-Personal-1/Drafts" . ?d)
-  		  )
-  		  )))
-  	 (make-mu4e-context
-  	  :name "Second Personal Gmail"
-  	  :match-func
-  	  (lambda (msg)
-  	    (when msg
-  	      (string-prefix-p "/Gmail-Personal-2" (mu4e-message-field msg :maildir))))
-  	  :vars `((user-mail-address .  ,gmail-2-mail-address)
-  		  (user-full-name . "Sako")
-  		  (mu4e-drafts-folder . "/Gmail-Personal-2/Drafts")
-  		  (mu4e-sent-folder . "/Gmail-Personal-2/Sent Mail")
-  		  (mu4e-refile-folder . "/Gmail-Personal-2/Inbox")
-  		  (mu4e-trash-folder . "Gmail-Personal-2/Trash")
-  		  (mu4e-maildir-shortcuts . (
-  					     ("/Gmail-Personal-2/Inbox" . ?i)
-  					     ("/Gmail-Personal-2/Sent Mail" . ?s)
-  					     ("/Gmail-Personal-2/Drafts" . ?d)
-  		  )
-  		  )))
-  	 
-    	 ))
-    )
+    	      (string-prefix-p "/Gmail-Personal-2" (mu4e-message-field msg :maildir))))
+    	  :vars `((user-mail-address .  ,gmail-2-mail-address)
+    		  (user-full-name . "Sako")
+    		  (mu4e-drafts-folder . "/Gmail-Personal-2/Drafts")
+    		  (mu4e-sent-folder . "/Gmail-Personal-2/Sent Mail")
+    		  (mu4e-refile-folder . "/Gmail-Personal-2/Inbox")
+    		  (mu4e-trash-folder . "Gmail-Personal-2/Trash")
+    		  ))
+    	 
+      	 ))
+      )
 #+end_src
 * Org
 #+begin_src emacs-lisp
