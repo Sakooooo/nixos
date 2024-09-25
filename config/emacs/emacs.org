@@ -1253,7 +1253,7 @@ GNU patch review metho dor sometihng idk
   	 (concat "AUTH XOAUTH2 "
   		 (base64-encode-string
                     (concat "user=" user "\1auth=Bearer " token "\1\1") t)))))
-       (t nil)))
+       (t nil))
 
 
     
