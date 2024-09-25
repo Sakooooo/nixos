@@ -108,7 +108,7 @@ in {
       # mu for email
       mu
       # email sync
-      # isync
+      isync
       # cyrus-sasl-xoauth2
       offlineimap
       # oauth for microsoft
