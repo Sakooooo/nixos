@@ -38,9 +38,9 @@
     isync = prev.isync.overrideAttrs (old: {
       withCyrusSaslXoauth2 = true;
     });
-    blender = prev.blender.overrideAttrs (old: {
-      nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ inputs.nixpkgs.legacyPackages.x86_64-linux.pkg-config inputs.nixpkgs.legacyPackages.x86_64-linux.wayland-scanner ];
-    });
+    # blender = prev.blender.overrideAttrs (old: {
+    #   nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ inputs.nixpkgs.legacyPackages.x86_64-linux.pkg-config inputs.nixpkgs.legacyPackages.x86_64-linux.wayland-scanner ];
+    # });
   };
 
   # incase something breaks
