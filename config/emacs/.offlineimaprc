@@ -2,7 +2,6 @@
 pythonfile = ~/.offlineimap.py
 accounts = Proton, Outlook, Gmail-personal-1, Gmail-personal-2
 socktimeout = 60
-maxsyncaccounts = 3
 
 [Account Proton]
 localrepository = Proton-local
