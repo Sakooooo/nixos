@@ -1177,7 +1177,7 @@ GNU patch review metho dor sometihng idk
           (setq output (string-trim output))
           (setq proton-mail-address (concat "@proton.me" output))))
 
-      (get-proton-mail-address-from-pass "pass Proton\ Account | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")
+      (get-proton-mail-address-from-pass "pass Proton Account | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")
 
       (setq gmail-1-mail-address
       	(string-trim (shell-command-to-string "pass accounts.google.com/one | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
