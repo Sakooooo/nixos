@@ -16,5 +16,10 @@ in {
   config = lib.mkIf cfg.enable {
     # todo declaritivly setting it up
     networking.wireguard.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      openresolv
+    ];
+    
   };
 }
