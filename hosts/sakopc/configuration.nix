@@ -59,10 +59,11 @@
       };
       media = {
         mpv.enable = true;
+        ardour.enable = true;
         kdenlive.enable = true;
         blender.enable = true;
         feishin.enable = true;
-        jellyfin.enable = true;
+        jellyfin.enable = false;
       };
     };
     dev = {
