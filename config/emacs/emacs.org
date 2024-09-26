@@ -13,9 +13,7 @@
   (setq package-archives `(("mepla" . "https://melpa.org/packages/")
                            ("org" . "https://orgmode.org/elpa/")
                            ("elpa" . "https://elpa.gnu.org/packages/")))
-
   (package-initialize)
-
   (unless (package-installed-p 'use-package)
     (progn
       (package-refresh-contents)
