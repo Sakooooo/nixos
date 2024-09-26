@@ -99,7 +99,7 @@
 
   users.users.sako = {
     isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "networkmanager" "audio"];
   };
 
   home-manager.useUserPackages = true;
