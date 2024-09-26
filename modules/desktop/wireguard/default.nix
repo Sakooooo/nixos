@@ -17,7 +17,7 @@ in {
     # todo declaritivly setting it up
     networking.wireguard.enable = true;
 
-    environment.systemPackages = with pkgs; [
+    users.users.sako.packages = with pkgs; [
       openresolv
     ];
     
