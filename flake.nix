@@ -20,6 +20,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix.url = "github:ryantm/agenix";
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay/0442d57ffa83985ec2ffaec95db9c0fe742f5182";
     };
@@ -41,6 +42,7 @@
     hyprland,
     hyprpaper,
     ags,
+    agenix,
     ...
   } @ inputs: let
     inherit (self) outputs;
