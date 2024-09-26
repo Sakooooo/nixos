@@ -115,7 +115,7 @@ in {
       unoconv
       # org to pdf
       # this might be bloat...
-      texliveSmall
+      texliveFull
       # lsp
       emacs-lsp-booster
       # zenity-color-picker
