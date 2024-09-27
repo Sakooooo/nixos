@@ -1288,6 +1288,10 @@ GNU patch review metho dor sometihng idk
   (setq org-hide-leading-stars t)
   (setq org-hide-emphasis-markers nil)
 
+  ;; org latex pdf options
+  (setq org-latex-compiler "lualatex")
+  (setq org-preview-latex-default-process 'dvisvgm)
+
   ;; templates
   (require 'org-tempo)
 
