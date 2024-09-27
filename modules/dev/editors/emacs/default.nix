@@ -14,8 +14,7 @@ let
   tex = (pkgs.texlive.combine {
     inherit (pkgs.texlive) scheme-basic
       dvisvgm dvipng # for preview and export as html
-      wrapfig amsmath ulem hyperref capt-of fontspec inputenc graphicx
-      longtable rotating amssymb;
+      wrapfig amsmath ulem hyperref capt-of fontspec inputenx graphics;
   });
 
   myEmacs = pkgs.emacsWithPackagesFromUsePackage {
