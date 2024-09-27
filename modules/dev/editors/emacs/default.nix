@@ -10,6 +10,12 @@
 let
   cfg = config.modules.dev.editors.emacs;
 
+  # so we dont cry later on why texLive is MASSIVE
+  tex = (pkgs.texlive.combine {
+    inherit (pkgs.texlive) scheme-basic
+      dvisvgm dvipng # for preview and export as html
+      wrapfig amsmath ulem hyperref capt-of;
+  });
 
   myEmacs = pkgs.emacsWithPackagesFromUsePackage {
     config = ../../../../config/emacs/emacs.org;
@@ -114,8 +120,7 @@ in {
       # doc-view
       unoconv
       # org to pdf
-      # this might be bloat...
-      texliveMedium
+      tex
       # lsp
       emacs-lsp-booster
       # zenity-color-picker
