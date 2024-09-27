@@ -3,7 +3,6 @@
     # window managers
     ./awesome
     ./bspwm
-    ./dwm
     ./hyprland
     ./xmonad
     ./qtile
