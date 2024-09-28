@@ -1,0 +1,7 @@
+keys:
+  - &sakopc age1ac355av79sshqqkarxdtfs975mvr5mteen4h4y73x2nyn43esyqq0dl7kx
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+      - age:
+          - *sakopc
