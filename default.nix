@@ -10,11 +10,11 @@
   imports = [
     # home manager
     inputs.home-manager.nixosModules.default
-    # modules
+    inputs.sops-nix.nixosModules.sops
+    # TODO:: GET RID OF THIS PLEASE
+    # my modules modules
     # import for each folder
-    # modules/desktop IMPORT
-    # modules/desktop/example DO NOT IMPORT,
-    # add entry to module's default.nix
+    # add entry to module category's default.nix
     outputs.nixosModules.desktop
     outputs.nixosModules.shell
     outputs.nixosModules.hardware
