@@ -120,7 +120,7 @@
   sops.age.keyFile = "/home/sako/.config/sops/age/keys.txt";
 
   sops.secrets.example-key = {};
-  sops.secrets."service.subdir.mysecret" = {};
+  sops.secrets."service/subdir/mysecret" = {};
 
   # fuck you AOC
   # my monitor only works on 240hz now
