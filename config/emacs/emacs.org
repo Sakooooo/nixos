@@ -1178,7 +1178,7 @@ GNU patch review metho dor sometihng idk
       	  (lambda (msg)
       	    (when msg
       	      (string-prefix-p "/Outlook" (mu4e-message-field msg :maildir))))
-      	  :vars `((user-mail-address . (lambda () (cdr (assoc 'outlook sakomacs-mail-accounts))))
+      	  :vars `((user-mail-address . ,(cdr (assoc 'outlook sakomacs-mail-accounts)))
       	          (user-full-name . "Sako")
       		  (mu4e-drafts-folder . "/Outlook/Drafts")
       		  (mu4e-sent-folder . "/Outlook/Sent")
@@ -1192,7 +1192,7 @@ GNU patch review metho dor sometihng idk
       	  (lambda (msg)
       	    (when msg
       	      (string-prefix-p "/Proton" (mu4e-message-field msg :maildir))))
-      	  :vars `((user-mail-address . (lambda () (cdr (assoc 'protonmail sakomacs-mail-accounts))))
+      	  :vars `((user-mail-address . ,(cdr (assoc 'protonmail sakomacs-mail-accounts)))
       	          (user-full-name . "Sako")
       		  (mu4e-drafts-folder . "/Proton/Drafts")
       		  (mu4e-sent-folder . "/Proton/Sent")
@@ -1206,7 +1206,7 @@ GNU patch review metho dor sometihng idk
     	  (lambda (msg)
     	    (when msg
     	      (string-prefix-p "/Gmail-Personal-1" (mu4e-message-field msg :maildir))))
-    	  :vars `((user-mail-address .  (lambda () (cdr (assoc 'gmail-1 sakomacs-mail-accounts))))
+    	  :vars `((user-mail-address .  ,(cdr (assoc 'gmail-1 sakomacs-mail-accounts)))
     		  (user-full-name . "Sako")
     		  (mu4e-drafts-folder . "/Gmail-Personal-1/Drafts")
     		  (mu4e-sent-folder . "/Gmail-Personal-1/Sent Mail")
@@ -1220,7 +1220,7 @@ GNU patch review metho dor sometihng idk
     	  (lambda (msg)
     	    (when msg
     	      (string-prefix-p "/Gmail-Personal-2" (mu4e-message-field msg :maildir))))
-    	  :vars `((user-mail-address . (lambda () (cdr (assoc 'gmail-2 sakomacs-mail-accounts))))
+    	  :vars `((user-mail-address . ,(cdr (assoc 'gmail-2 sakomacs-mail-accounts)))
     		  (user-full-name . "Sako")
     		  (mu4e-drafts-folder . "/Gmail-Personal-2/Drafts")
     		  (mu4e-sent-folder . "/Gmail-Personal-2/Sent Mail")
