@@ -15,9 +15,10 @@ in {
 
   config = lib.mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
-      (tetrio-desktop.override {
-        withTetrioPlus = true;
-      })
+      # (tetrio-desktop.override {
+      #   withTetrioPlus = true;
+      # })
+      tetrio-desktop
     ];
   };
 }
