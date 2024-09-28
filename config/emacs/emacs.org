@@ -1189,6 +1189,11 @@ GNU patch review metho dor sometihng idk
 
 
       )
+
+    (defvar outlook-mail-address nil)
+    (defvar proton-mail-address nil)
+    (defvar gmail-1-mail-address nil)
+    (defvar gmail-2-mail-address nil)
     
     (setq mu4e-context-policy 'pick-first)
     (setq mu4e-compose-context-policy 'always-ask)
