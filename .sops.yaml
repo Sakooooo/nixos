@@ -1,7 +1,9 @@
 keys:
   - &sakopc age1ac355av79sshqqkarxdtfs975mvr5mteen4h4y73x2nyn43esyqq0dl7kx
+  - &sakotop age1nhj5fz9cakgd6rrkwpjkndra6fd4rqxgfvcrap5g0anwxgmh4yqspvf22y
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:
       - age:
           - *sakopc
+          - *sakotop
