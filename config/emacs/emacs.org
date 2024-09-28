@@ -1163,39 +1163,10 @@ GNU patch review metho dor sometihng idk
     (setq mu4e-update-interval (* 10 60))
     (setq mu4e-get-mail-command "offlineimap")
     (setq mu4e-maildir "~/Mail")
-
     
-    (defvar outlook-mail-address nil)
-    (defvar proton-mail-address nil)
-    (defvar gmail-1-mail-address nil)
-    (defvar gmail-2-mail-address nil)
-    
-    (add-hook 'mu4e-update-pre-hook 'sakomacs/pull-email-address)
+    ;; for mail accounts
+    (setq sakomacs-mail-accounts (json-read-file "~/Mail/accounts.json"))
 
-    (defun sakomacs/pull-email-address ()
-
-      (setq outlook-mail-address
-            (string-trim (shell-command-to-string "pass Microsoft | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
-
-      (defvar proton-mail-address nil)
-
-      (defun get-proton-mail-address-from-pass (command)
-        "Execute COMMAND, concatenate its output with 'hello', and store it in my-greeting."
-        (let ((output (shell-command-to-string command)))
-          (setq output (string-trim output))
-          (setq proton-mail-address (concat output "@proton.me"))))
-
-      (get-proton-mail-address-from-pass "pass 'Proton Account' | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")
-
-      (setq gmail-1-mail-address
-            (string-trim (shell-command-to-string "pass accounts.google.com/one | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
-
-      (setq gmail-2-mail-address
-            (string-trim (shell-command-to-string "pass accounts.google.com/two | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
-
-
-      )
-   
     (setq mu4e-context-policy 'pick-first)
     (setq mu4e-compose-context-policy 'always-ask)
     (setq mu4e-contexts
@@ -1207,7 +1178,7 @@ GNU patch review metho dor sometihng idk
       	  (lambda (msg)
       	    (when msg
       	      (string-prefix-p "/Outlook" (mu4e-message-field msg :maildir))))
-      	  :vars `((user-mail-address . ,outlook-mail-address)
+      	  :vars `((user-mail-address . (cdr (assoc 'outlook sakomacs-mail-accounts)))
       	          (user-full-name . "Sako")
       		  (mu4e-drafts-folder . "/Outlook/Drafts")
       		  (mu4e-sent-folder . "/Outlook/Sent")
@@ -1221,7 +1192,7 @@ GNU patch review metho dor sometihng idk
       	  (lambda (msg)
       	    (when msg
       	      (string-prefix-p "/Proton" (mu4e-message-field msg :maildir))))
-      	  :vars `((user-mail-address . ,proton-mail-address)
+      	  :vars `((user-mail-address . (cdr (assoc 'protonmail sakomacs-mail-accounts)))
       	          (user-full-name . "Sako")
       		  (mu4e-drafts-folder . "/Proton/Drafts")
       		  (mu4e-sent-folder . "/Proton/Sent")
@@ -1235,7 +1206,7 @@ GNU patch review metho dor sometihng idk
     	  (lambda (msg)
     	    (when msg
     	      (string-prefix-p "/Gmail-Personal-1" (mu4e-message-field msg :maildir))))
-    	  :vars `((user-mail-address .  ,gmail-1-mail-address)
+    	  :vars `((user-mail-address .  (cdr (assoc 'gmail-1 sakomacs-mail-accounts)))
     		  (user-full-name . "Sako")
     		  (mu4e-drafts-folder . "/Gmail-Personal-1/Drafts")
     		  (mu4e-sent-folder . "/Gmail-Personal-1/Sent Mail")
@@ -1249,7 +1220,7 @@ GNU patch review metho dor sometihng idk
     	  (lambda (msg)
     	    (when msg
     	      (string-prefix-p "/Gmail-Personal-2" (mu4e-message-field msg :maildir))))
-    	  :vars `((user-mail-address .  ,gmail-2-mail-address)
+    	  :vars `((user-mail-address . (cdr (assoc 'gmail-2 sakomacs-mail-accounts)))
     		  (user-full-name . "Sako")
     		  (mu4e-drafts-folder . "/Gmail-Personal-2/Drafts")
     		  (mu4e-sent-folder . "/Gmail-Personal-2/Sent Mail")
