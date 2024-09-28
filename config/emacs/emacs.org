@@ -1164,25 +1164,32 @@ GNU patch review metho dor sometihng idk
     (setq mu4e-get-mail-command "offlineimap")
     (setq mu4e-maildir "~/Mail")
 
-    (setq outlook-mail-address
-      	(string-trim (shell-command-to-string "pass Microsoft | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
+    (add-hook 'mu4e-update-pre-hook 'sakomacs/pull-email-address)
 
-    (defvar proton-mail-address nil)
+    (defun sakomacs/pull-email-address ()
 
-    (defun get-proton-mail-address-from-pass (command)
-      "Execute COMMAND, concatenate its output with 'hello', and store it in my-greeting."
-      (let ((output (shell-command-to-string command)))
-        (setq output (string-trim output))
-        (setq proton-mail-address (concat "@proton.me" output))))
+      (setq outlook-mail-address
+            (string-trim (shell-command-to-string "pass Microsoft | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
 
-    (get-proton-mail-address-from-pass "pass 'Proton Account' | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")
+      (defvar proton-mail-address nil)
 
-    (setq gmail-1-mail-address
-      	(string-trim (shell-command-to-string "pass accounts.google.com/one | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
+      (defun get-proton-mail-address-from-pass (command)
+        "Execute COMMAND, concatenate its output with 'hello', and store it in my-greeting."
+        (let ((output (shell-command-to-string command)))
+          (setq output (string-trim output))
+          (setq proton-mail-address (concat output "@proton.me"))))
 
-    (setq gmail-2-mail-address
-      	(string-trim (shell-command-to-string "pass accounts.google.com/two | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
+      (get-proton-mail-address-from-pass "pass 'Proton Account' | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")
 
+      (setq gmail-1-mail-address
+            (string-trim (shell-command-to-string "pass accounts.google.com/one | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
+
+      (setq gmail-2-mail-address
+            (string-trim (shell-command-to-string "pass accounts.google.com/two | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
+
+
+      )
+    
     (setq mu4e-context-policy 'pick-first)
     (setq mu4e-compose-context-policy 'always-ask)
     (setq mu4e-contexts
