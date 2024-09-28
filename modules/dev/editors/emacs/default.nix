@@ -126,6 +126,8 @@ in {
       emacs-lsp-booster
       # zenity-color-picker
       zenity
+      # org-wild-notifier
+      libnotify
     ];
 
     systemd.services.hydroxide = {

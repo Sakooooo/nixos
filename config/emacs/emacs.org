@@ -1330,9 +1330,10 @@ GNU patch review metho dor sometihng idk
 #+end_src
 ** Org-wild-notifier
 #+begin_src emacs-lisp
-(use-package org-wild-notifier
-  :config
-  (org-wild-notifier-mode))
+  (use-package org-wild-notifier
+    :config
+    (setq alert-default-style 'libnotify)
+    (org-wild-notifier-mode))
 #+end_src
 ** Org-Pomodoro
 #+begin_src emacs-lisp
