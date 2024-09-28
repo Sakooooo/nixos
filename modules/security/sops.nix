@@ -7,7 +7,7 @@
   ...
 }:
 let
-  cfg = config.modules.security.age;
+  cfg = config.modules.security.sops;
 in {
   options.modules.security.sops = {
     enable = lib.mkEnableOption false;
