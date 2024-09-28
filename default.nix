@@ -10,7 +10,6 @@
   imports = [
     # home manager
     inputs.home-manager.nixosModules.default
-    inputs.sops-nix.nixosModules.sops
     # TODO:: GET RID OF THIS PLEASE
     # my modules modules
     # import for each folder
