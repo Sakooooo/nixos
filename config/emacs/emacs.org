@@ -1317,6 +1317,7 @@ GNU patch review metho dor sometihng idk
   (use-package org-wild-notifier
     :config
     (setq alert-default-style 'libnotify)
+    (setq org-wild-notifier-alert-time 30)
     (org-wild-notifier-mode))
 #+end_src
 ** Org-Pomodoro
