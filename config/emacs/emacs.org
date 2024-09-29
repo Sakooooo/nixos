@@ -898,6 +898,13 @@ this should be useful later
 #+begin_src emacs-lisp
   (use-package zenity-color-picker)
 #+end_src
+** editorconfig
+people will probably get mad at me if i dont have this and i try to contribute
+#+begin_src emacs-lisp
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
+#+end_src
 * Languages
 #+begin_src emacs-lisp
 (message "Reached languages")
