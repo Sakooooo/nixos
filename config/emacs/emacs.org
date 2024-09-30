@@ -905,6 +905,13 @@ people will probably get mad at me if i dont have this and i try to contribute
   :config
   (editorconfig-mode 1))
 #+end_src
+** wakatime
+the feds are watching
+#+begin_src emacs-lisp
+  (use-package wakatime-mode
+    :config
+    (global-wakatime-mode))
+#+end_src
 * Languages
 #+begin_src emacs-lisp
 (message "Reached languages")
