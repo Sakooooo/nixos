@@ -1177,6 +1177,7 @@ GNU patch review metho dor sometihng idk
 
     ;; sending mail
     (setq message-send-mail-function 'smtpmail-send-it)
+    (add-to-list 'smtpmail-auth-supported 'xoauth2)
 
     (setq mu4e-update-interval (* 10 60))
     (setq mu4e-get-mail-command "offlineimap")
