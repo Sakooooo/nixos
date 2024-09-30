@@ -1,21 +1,12 @@
-{
-  outputs,
-  options,
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}:
+{ outputs, options, config, lib, pkgs, inputs, ... }:
 let
   cfg = config.modules.dev.editors.emacs;
 
   # so we dont cry later on why texLive is MASSIVE
   tex = (pkgs.texlive.combine {
-    inherit (pkgs.texlive) scheme-basic
-      dvisvgm dvipng # for preview and export as html
-      wrapfig amsmath ulem hyperref capt-of fontspec inputenx graphics
-      etoolbox;
+    inherit (pkgs.texlive)
+      scheme-basic dvisvgm dvipng # for preview and export as html
+      wrapfig amsmath ulem hyperref capt-of fontspec inputenx graphics etoolbox;
   });
 
   myEmacs = pkgs.emacsWithPackagesFromUsePackage {
@@ -28,54 +19,54 @@ let
       epkgs.mu4e
       # TODO make this check if EXWM is enabled or not
       epkgs.exwm
-#     epkgs.sakomodules
+      #     epkgs.sakomodules
       epkgs.eglot-booster
       epkgs.app-launcher
     ];
     # add eglot-lsp-booster package
-    override = epkgs: epkgs // {
-    eglot-booster = epkgs.trivialBuild {
-      pname = "eglot-booster";
-      version = "e19dd7ea81bada84c66e8bdd121408d9c0761fe6";
+    override = epkgs:
+      epkgs // {
+        eglot-booster = epkgs.trivialBuild {
+          pname = "eglot-booster";
+          version = "e19dd7ea81bada84c66e8bdd121408d9c0761fe6";
 
-      packageRequires = with pkgs; [ emacs-lsp-booster ];
+          packageRequires = with pkgs; [ emacs-lsp-booster ];
 
-      src = pkgs.fetchFromGitHub {
-        owner = "jdtsmith";
-        repo = "eglot-booster";
-        rev = "e19dd7ea81bada84c66e8bdd121408d9c0761fe6";
-        hash = "sha256-vF34ZoUUj8RENyH9OeKGSPk34G6KXZhEZozQKEcRNhs=";
+          src = pkgs.fetchFromGitHub {
+            owner = "jdtsmith";
+            repo = "eglot-booster";
+            rev = "e19dd7ea81bada84c66e8bdd121408d9c0761fe6";
+            hash = "sha256-vF34ZoUUj8RENyH9OeKGSPk34G6KXZhEZozQKEcRNhs=";
+          };
+        };
+        app-launcher = epkgs.melpaBuild {
+          pname = "app-launcher";
+          version = "1.0";
+
+          commit = "d5015e394b0a666a8c7c4d4bdf786266e773b145";
+
+          recipe = pkgs.writeText "recipe" ''
+            (app-launcher :repo "SebastienWae/app-launcher" :fetcher github)
+          '';
+
+          src = pkgs.fetchFromGitHub {
+            owner = "SebastienWae";
+            repo = "app-launcher";
+            rev = "d5015e394b0a666a8c7c4d4bdf786266e773b145";
+            hash = "sha256-d0d5rkuxK/zKpSCa1UTdpV7o+RDDsEeab56rI7xUJ1E=";
+          };
+        };
       };
-    };
-    app-launcher = epkgs.melpaBuild {
-      pname = "app-launcher";
-      version = "1.0";
-
-
-      commit = "d5015e394b0a666a8c7c4d4bdf786266e773b145";
-
-      recipe = pkgs.writeText "recipe" ''
-             (app-launcher :repo "SebastienWae/app-launcher" :fetcher github)
-      '';   
-
-      src = pkgs.fetchFromGitHub {
-        owner = "SebastienWae";
-        repo = "app-launcher";
-        rev = "d5015e394b0a666a8c7c4d4bdf786266e773b145";
-        hash = "sha256-d0d5rkuxK/zKpSCa1UTdpV7o+RDDsEeab56rI7xUJ1E=";
-      };
-    };
-    };
     # override for modules
-#   override = epkgs: epkgs // {
-#     sakomodules = epkgs.trivialBuild {
-#       pname = "sakomodules";
-#       version = "lol";
+    #   override = epkgs: epkgs // {
+    #     sakomodules = epkgs.trivialBuild {
+    #       pname = "sakomodules";
+    #       version = "lol";
 
-#       src = ../../../../config/emacs/modules;
+    #       src = ../../../../config/emacs/modules;
 
-#     };
-# };
+    #     };
+    # };
   };
 in {
   options.modules.dev.editors.emacs = {
@@ -89,9 +80,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.overlays = [
-      inputs.emacs-overlay.overlay
-    ];
+    nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
     # ues daemon
     services.emacs = {
       enable = cfg.daemon;
@@ -128,6 +117,8 @@ in {
       zenity
       # org-wild-notifier
       libnotify
+      # wakatime-mode
+      wakatime-cli
     ];
 
     systemd.services.hydroxide = {
@@ -149,9 +140,9 @@ in {
     #   };
     # };
 
-    home-manager.users.sako = {lib, ...}: {
+    home-manager.users.sako = { lib, ... }: {
       home.file = {
-        ".emacs.d/init.el".source = pkgs.runCommand "init.el" {} ''
+        ".emacs.d/init.el".source = pkgs.runCommand "init.el" { } ''
           cp ${../../../../config/emacs/emacs.org} emacs.org
           ${myEmacs}/bin/emacs -Q --batch ./emacs.org -f org-babel-tangle
           mv init.el $out
@@ -164,7 +155,7 @@ in {
     };
 
     fonts.packages = with pkgs; [
-      (nerdfonts.override {fonts = ["JetBrainsMono"];})
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       jetbrains-mono
     ];
   };
