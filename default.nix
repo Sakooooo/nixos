@@ -1,12 +1,4 @@
-{
-  config,
-  inputs,
-  outputs,
-  pkgs,
-  lib,
-  home-manager,
-  ...
-}: {
+{ config, inputs, outputs, pkgs, lib, home-manager, ... }: {
   imports = [
     # home manager
     inputs.home-manager.nixosModules.default
@@ -27,7 +19,7 @@
   # nix settings that should 100% be global
   #nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [ "nix-command" "flakes" ];
     substituters = [
       # garnix
       "https://cache.garnix.io"
@@ -66,7 +58,7 @@
       efiSysMountPoint = "/boot/efi";
     };
     grub = {
-      devices = ["nodev"];
+      devices = [ "nodev" ];
       efiSupport = true;
       enable = true;
       useOSProber = true;
@@ -98,13 +90,13 @@
 
   users.users.sako = {
     isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager" "audio"];
+    extraGroups = [ "wheel" "networkmanager" "audio" ];
   };
 
   home-manager.useUserPackages = true;
-  home-manager.users.sako = {pkgs, ...}: {
+  home-manager.users.sako = { pkgs, ... }: {
     # CHANGE THIS WHEN THE SYSTEM VERSION CHANGES TOO!!!
-    home.packages = [];
+    home.packages = [ ];
     home.username = "sako";
     home.homeDirectory = "/home/sako";
     programs.bash.enable = true;
@@ -117,11 +109,7 @@
       enable = true;
       userName = "Sakooooo";
       userEmail = "78461130+Sakooooo@users.noreply.github.com";
-      includes = [
-        {
-          path = "~/.config/git/config.local";
-        }
-      ];
+      includes = [{ path = "~/.config/git/config.local"; }];
       extraConfig = {
         color.ui = "auto";
         init.defaultBranch = "master";
@@ -133,12 +121,8 @@
   # bare minimum
   environment.systemPackages = with pkgs; [
     vim # backup
-    wget #double u get
+    wget # double u get
     killall # die processes
-    alsa-utils # unsupported application
-    pulseaudio # unsupported application
-    pamixer # unsupported application
-    feh # im different
     unzip # zip file
     gh # github
     htop # htop

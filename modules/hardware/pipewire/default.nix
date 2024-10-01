@@ -1,11 +1,7 @@
-{ outputs, options, config, lib, pkgs, ...}:
-let 
-  cfg = config.modules.hardware.pipewire;
-in
-{
-  options.modules.hardware.pipewire = {
-    enable = lib.mkEnableOption false;
-  };
+{ outputs, options, config, lib, pkgs, ... }:
+let cfg = config.modules.hardware.pipewire;
+in {
+  options.modules.hardware.pipewire = { enable = lib.mkEnableOption false; };
 
   config = lib.mkIf cfg.enable {
     # resolve racial conflict between 
@@ -26,7 +22,10 @@ in
       jack.enable = true;
       pulse.enable = true;
     };
-    
+
+    # unsupported apps that use these
+    environment.systemPackages = with pkgs; [ pulseaudio alsa-utils pamixer ];
+
   };
 }
 
