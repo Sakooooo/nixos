@@ -1166,9 +1166,7 @@ its over the machines took over guys can i get my likes now
 GNU patch review metho dor sometihng idk
 #+begin_src emacs-lisp
 
-  (use-package stmpmail)
   (use-package auth-source-xoauth2)
-
   (use-package mu4e
     :config
 
