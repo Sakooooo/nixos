@@ -95,7 +95,6 @@
 
   home-manager.useUserPackages = true;
   home-manager.users.sako = { pkgs, ... }: {
-    # CHANGE THIS WHEN THE SYSTEM VERSION CHANGES TOO!!!
     home.packages = [ ];
     home.username = "sako";
     home.homeDirectory = "/home/sako";
@@ -146,8 +145,4 @@
   #   package = pkgs.gitFull;
   # };
 
-  # read stable version patch notes and fix any issues
-  # then you can change this
-  #system.stateVersion = "23.05";
-  # read comment you read the comment?
 }
