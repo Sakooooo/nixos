@@ -119,19 +119,17 @@
 
   };
   # bare minimum
-  environment.systemPackages = with pkgs;
-    let forAllSsytems = lib.genAttrs [ "x86_64-linux" ];
-    in [
-      vim # backup
-      wget # double u get
-      killall # die processes
-      unzip # zip file
-      gh # github
-      htop # htop
-      tree # trees
-      ripgrep # better grep may help later
-      (forAllSystems (system: inputs.agenix.pacakges.${system}.default))
-    ];
+  environment.systemPackages = with pkgs; [
+    vim # backup
+    wget # double u get
+    killall # die processes
+    unzip # zip file
+    gh # github
+    htop # htop
+    tree # trees
+    ripgrep # better grep may help later
+    inputs.agenix.packages.${system}.default
+  ];
   # you phisiclally cannot live without this
   # litearlly!  ! ! ! ! !
   programs.gnupg.agent = {
