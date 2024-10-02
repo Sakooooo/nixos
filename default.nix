@@ -130,6 +130,9 @@
     ripgrep # better grep may help later
     inputs.agenix.packages.${system}.default
   ];
+
+  age.secretsMountPoint = "/run/secrets";
+
   # you phisiclally cannot live without this
   # litearlly!  ! ! ! ! !
   programs.gnupg.agent = {
