@@ -1,10 +1,4 @@
-{
-  config, pkgs,
-  lib,
-  inputs,
-  outputs,
-  ...
-}: {
+{ config, pkgs, lib, inputs, outputs, ... }: {
   imports = [
     # Hardware Configuration
     # TODO:: Add this back once generated!!!!!!!
@@ -123,8 +117,13 @@
   # fuck you AOC
   # my monitor only works on 240hz now
   services.xserver.displayManager.setupCommands = ''
-  ${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --mode 1920x1080 --rate 239.96 --primary --output HDMI-0 --mode 1920x1080 --left-of DP-0
+    ${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --mode 1920x1080 --rate 239.96 --primary --output HDMI-0 --mode 1920x1080 --left-of DP-0
   '';
+
+  # secrets
+  age.identityPaths = [ "/home/sako/.ssh/id_ed25519" ];
+
+  age.secrets.test.file = ../../secrets/test.age;
 
   # lol
   services.xserver.dpi = 100;
