@@ -156,6 +156,8 @@
   # set laptop dpi
   services.xserver.dpi = 100;
 
+  age.identityPaths = [ "/home/sako/.ssh/id_ed25519" ];
+
   age.secrets.test.file = ../../secrets/test.age;
 
   # Enable the OpenSSH daemon.
