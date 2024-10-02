@@ -6,4 +6,8 @@ let
 
   shared = [ sakotop sakopc ];
 
-in { "test.age".publicKeys = shared; }
+in {
+  "test.age".publicKeys = shared;
+
+  "shared/bridges.age".publicKeys = shared;
+}
