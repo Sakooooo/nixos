@@ -22,7 +22,7 @@ local plugins = {
 
 	-- colorscheme
 	-- { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
-  "savq/melange-nvim",
+	"savq/melange-nvim",
 
 	-- default bar only looks good on linux
 	"nvim-lualine/lualine.nvim",
@@ -32,24 +32,24 @@ local plugins = {
 	"windwp/nvim-ts-autotag",
 
 	-- org mode
-{
-  'nvim-orgmode/orgmode',
-  event = 'VeryLazy',
-  config = function()
-    -- Setup orgmode
-    require('orgmode').setup({
-      org_agenda_files = '~/orgfiles/**/*',
-      org_default_notes_file = '~/orgfiles/refile.org',
-    })
+	{
+		"nvim-orgmode/orgmode",
+		event = "VeryLazy",
+		config = function()
+			-- Setup orgmode
+			require("orgmode").setup({
+				org_agenda_files = "~/orgfiles/**/*",
+				org_default_notes_file = "~/orgfiles/refile.org",
+			})
 
-    -- NOTE: If you are using nvim-treesitter with `ensure_installed = "all"` option
-    -- add `org` to ignore_install
-    -- require('nvim-treesitter.configs').setup({
-    --   ensure_installed = 'all',
-    --   ignore_install = { 'org' },
-    -- })
-  end,
-},
+			-- NOTE: If you are using nvim-treesitter with `ensure_installed = "all"` option
+			-- add `org` to ignore_install
+			-- require('nvim-treesitter.configs').setup({
+			--   ensure_installed = 'all',
+			--   ignore_install = { 'org' },
+			-- })
+		end,
+	},
 
 	-- like fzf but goofier
 	{
@@ -116,20 +116,20 @@ local plugins = {
 	-- floating terminal, useful to mimic/be better than vscode
 	"voldikss/vim-floaterm",
 
-  -- git client
-  {
-  "NeogitOrg/neogit",
-  dependencies = {
-    "nvim-lua/plenary.nvim",         -- required
-    "sindrets/diffview.nvim",        -- optional - Diff integration
+	-- git client
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- required
+			"sindrets/diffview.nvim", -- optional - Diff integration
 
-    -- Only one of these is needed, not both.
-    "nvim-telescope/telescope.nvim", -- optional
-    "ibhagwan/fzf-lua",              -- optional
-  },
-  config = true
-  },
-
+			-- Only one of these is needed, not both.
+			"nvim-telescope/telescope.nvim", -- optional
+			"ibhagwan/fzf-lua", -- optional
+		},
+		config = true,
+	},
+	{ "wakatime/vim-wakatime", lazy = false },
 }
 
 require("lazy").setup(plugins, {})
