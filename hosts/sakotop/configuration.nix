@@ -92,7 +92,7 @@
           package = pkgs.emacs-unstable-pgtk;
         };
       };
-      nil.enable = true;
+      nixd.enable = true;
       cc.enable = true;
       csharp.enable = true;
       javascript.enable = true;
