@@ -74,7 +74,6 @@
       lua.enable = true;
       python.enable = true;
       rust.enable = true;
-      nil.enable = true;
       nixd.enable = true;
     };
     hardware = {
