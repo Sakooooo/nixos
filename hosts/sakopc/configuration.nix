@@ -75,6 +75,7 @@
       python.enable = true;
       rust.enable = true;
       nil.enable = true;
+      nixd.enable = true;
     };
     hardware = {
       bluetooth.enable = false;
