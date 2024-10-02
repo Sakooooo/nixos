@@ -2,6 +2,7 @@
   imports = [
     # home manager
     inputs.home-manager.nixosModules.default
+    inputs.agenix.nixosModules.default
     # TODO:: GET RID OF THIS PLEASE
     # my modules modules
     # import for each folder
@@ -118,16 +119,19 @@
 
   };
   # bare minimum
-  environment.systemPackages = with pkgs; [
-    vim # backup
-    wget # double u get
-    killall # die processes
-    unzip # zip file
-    gh # github
-    htop # htop
-    tree # trees
-    ripgrep # better grep may help later
-  ];
+  environment.systemPackages = with pkgs;
+    let forAllSsytems = lib.genAttrs [ "x86_64-linux" ];
+    in [
+      vim # backup
+      wget # double u get
+      killall # die processes
+      unzip # zip file
+      gh # github
+      htop # htop
+      tree # trees
+      ripgrep # better grep may help later
+      (forAllSystems (system: inputs.agenix.pacakges.${system}.default))
+    ];
   # you phisiclally cannot live without this
   # litearlly!  ! ! ! ! !
   programs.gnupg.agent = {
