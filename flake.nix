@@ -63,7 +63,6 @@
             ./default.nix
             ./hosts/sakotop/configuration.nix
             sops-nix.nixosModules.sops
-            agenix.nixosModules.default
           ];
         };
         sakopc = nixpkgs.lib.nixosSystem {
