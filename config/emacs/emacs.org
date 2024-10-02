@@ -6,9 +6,9 @@
 #+end_src
 * Package Setup 
 #+begin_src emacs-lisp
-    (message "Reached package setup")
+  (message "Reached package setup")
 
-    (require `package)
+  (require `package)
 
   (setq package-archives `(("mepla" . "https://melpa.org/packages/")
                            ("org" . "https://orgmode.org/elpa/")
