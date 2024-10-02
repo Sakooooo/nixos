@@ -1,13 +1,6 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page and in the NixOS manual (accessible by running `nixos-help`).
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  outputs,
-  ...
-}: {
+{ config, pkgs, lib, inputs, outputs, ... }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -75,9 +68,7 @@
         mpv.enable = true;
         jellyfin.enable = true;
       };
-      security = {
-        wireshark.enable = true;
-      };
+      security = { wireshark.enable = true; };
     };
     hardware = {
       nvidia = {
@@ -141,24 +132,21 @@
       sops.enable = true;
       certs.enable = true;
     };
-    virtualization = {
-      waydroid.enable = true;
-    };
+    virtualization = { waydroid.enable = true; };
   };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   # homelab
   sops = {
     # we need to setup wireguard with this soon
-    age.sshKeyPaths = ["/home/sako/.ssh/id_ed25519"];
+    age.sshKeyPaths = [ "/home/sako/.ssh/id_ed25519" ];
   };
 
-  networking.wireguard.interfaces = {
-  };
+  networking.wireguard.interfaces = { };
 
   services.logind.extraConfig = ''
     # don’t shutdown when power button is short-pressed
@@ -167,6 +155,8 @@
 
   # set laptop dpi
   services.xserver.dpi = 100;
+
+  age.secrets.test.file = ../../secrets/test.age;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
