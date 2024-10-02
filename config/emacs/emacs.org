@@ -890,9 +890,9 @@ this should be useful later
 ** Direnv
 #+begin_src emacs-lisp
   (when (eq system-type 'gnu/linux)
-    (use-package direnv
-      :config
-      (direnv-mode)))
+    (use-package envrc
+      :hook (after-init . global-envrc-mode)
+      ))
 #+end_src
 ** Color Picker
 #+begin_src emacs-lisp
