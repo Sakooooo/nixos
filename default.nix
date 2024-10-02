@@ -131,7 +131,7 @@
     inputs.agenix.packages.${system}.default
   ];
 
-  age.secretsMountPoint = "/run/secrets";
+  age.secretsDir = "/run/secrets";
 
   # you phisiclally cannot live without this
   # litearlly!  ! ! ! ! !
