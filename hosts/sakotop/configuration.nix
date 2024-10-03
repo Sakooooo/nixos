@@ -129,7 +129,6 @@
     };
     security = {
       age.enable = true;
-      sops.enable = true;
       certs.enable = true;
     };
     virtualization = { waydroid.enable = true; };
@@ -139,12 +138,6 @@
   # services.printing.enable = true;
 
   services.xserver.videoDrivers = [ "nvidia" ];
-
-  # homelab
-  sops = {
-    # we need to setup wireguard with this soon
-    age.sshKeyPaths = [ "/home/sako/.ssh/id_ed25519" ];
-  };
 
   networking.wireguard.interfaces = { };
 

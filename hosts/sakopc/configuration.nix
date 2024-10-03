@@ -102,17 +102,8 @@
       libreoffice.enable = true;
       onlyoffice.enable = true;
     };
-    security = {
-      sops.enable = true;
-      certs.enable = true;
-    };
+    security = { certs.enable = true; };
   };
-
-  # sops setup :D
-  sops.defaultSopsFile = ../../secrets/secrets.yaml;
-  sops.defaultSopsFormat = "yaml";
-  # sops.age.keyFile = "/home/sako/.config/sops/age/keys.txt";
-  sops.age.sshKeyPaths = [ "/home/sako/.ssh/id_ed25519" ];
 
   # fuck you AOC
   # my monitor only works on 240hz now

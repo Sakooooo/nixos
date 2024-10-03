@@ -22,7 +22,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    agenix.url = "github:ryantm/agenix";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     emacs-overlay = {
       url =
         "github:nix-community/emacs-overlay/0442d57ffa83985ec2ffaec95db9c0fe742f5182";
@@ -35,8 +38,8 @@
     hyprpaper.url = "github:hyprwm/hyprpaper";
   };
 
-  outputs = { self, nixpkgs, home-manager, NixOS-WSL, sops-nix, agenix
-    , emacs-overlay, hyprland, hyprpaper, ags, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, NixOS-WSL, agenix, emacs-overlay
+    , hyprland, hyprpaper, ags, ... }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
@@ -59,19 +62,11 @@
       nixosConfigurations = {
         sakotop = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [
-            ./default.nix
-            ./hosts/sakotop/configuration.nix
-            sops-nix.nixosModules.sops
-          ];
+          modules = [ ./default.nix ./hosts/sakotop/configuration.nix ];
         };
         sakopc = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [
-            ./default.nix
-            ./hosts/sakopc/configuration.nix
-            sops-nix.nixosModules.sops
-          ];
+          modules = [ ./default.nix ./hosts/sakopc/configuration.nix ];
         };
         #sakoserver = nixpkgs.lib.nixosSystem {
         #  specialArgs = {inherit inputs outputs;};
@@ -88,7 +83,6 @@
             { nix.registry.nixpkgs.flake = nixpkgs; }
             ./hosts/sakowsl/configuration.nix
             NixOS-WSL.nixosModules.wsl
-            sops-nix.nixosModules.sops
           ];
         };
       };
