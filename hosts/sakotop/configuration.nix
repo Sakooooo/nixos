@@ -57,6 +57,7 @@
         lutris.enable = true;
         steam.enable = true;
         tetrio.enable = true;
+        osu.enable = true;
         prismlauncher.enable = true;
       };
       media = {
