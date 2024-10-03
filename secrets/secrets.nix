@@ -8,6 +8,4 @@ let
 
 in {
   "test.age".publicKeys = shared;
-
-  "shared/bridges.age".publicKeys = shared;
 }
