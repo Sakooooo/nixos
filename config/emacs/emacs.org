@@ -1099,7 +1099,7 @@ does NOT WORK ON WINDOWS
     			    :encryption tls
     			    :nick "sako@emacs/Libera"
     			    :user-name "sako@emacs/Libera"
-    			    :password ,(concat "sako@emacs/Libera:" (format "%s" (password-store-get "SelfHosted/ZNC"))))))
+    			    :password ,(concat "sako@emacs/Libera:" (string-trim (password-store-get "SelfHosted/ZNC"))))))
 
   (defun rcirc-detach-buffer ()
     (interactive)
