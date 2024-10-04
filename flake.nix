@@ -26,10 +26,7 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    emacs-overlay = {
-      url =
-        "github:nix-community/emacs-overlay/0442d57ffa83985ec2ffaec95db9c0fe742f5182";
-    };
+    emacs-overlay = { url = "github:nix-community/emacs-overlay"; };
     ags = {
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
