@@ -1080,12 +1080,11 @@ does NOT WORK ON WINDOWS
 (unless (eq system-type 'windows-nt)
   (use-package telega))
 #+end_src
-** IRC
-Will configure later
+** rcirc (irc)
 #+begin_src emacs-lisp
-(use-package rcirc)
+  (require 'rcirc)
 #+end_src
-** RSS
+** elfeed (rss) 
 Will configure later, (use elfeed protocol ok ty)
 #+begin_src emacs-lisp
     (use-package elfeed
