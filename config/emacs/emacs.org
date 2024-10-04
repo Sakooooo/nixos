@@ -1068,11 +1068,13 @@ the feds are watching
 #+end_src
 ** Elcord (Discord rich precense)
 #+begin_src emacs-lisp
-(use-package elcord
-  :init
-  (setq elcord-display-buffer-details nil)
-  (setq elcord-use-major-mode-as-main-icon t)
-  )
+  (use-package elcord
+    :init
+    (setq elcord-display-buffer-details nil)
+    (setq elcord-use-major-mode-as-main-icon t)
+    (setq elcord-quiet t)
+    :config
+    (elcord-mode))
 #+end_src
 ** Telegram
 does NOT WORK ON WINDOWS
@@ -1080,9 +1082,39 @@ does NOT WORK ON WINDOWS
 (unless (eq system-type 'windows-nt)
   (use-package telega))
 #+end_src
-** rcirc (irc)
+** rcirc (irc) 
 #+begin_src emacs-lisp
   (require 'rcirc)
+
+
+  (defvar *rcirc-last-message-time* nil)
+  (defvar *rcirc-last-message-time-file* "~/.emacs.d/.rcirc-last-message-time")
+  (defvar *rcirc-last-message-time-initial* nil)
+
+
+  (setq rcirc-id-string "Emacs rcirc")
+
+  (setq rcirc-server-alist `(("znc.sako.box"
+    			    :port 7000
+    			    :encryption tls
+    			    :nick "sako@emacs/Libera"
+    			    :user-name "sako@emacs/Libera"
+    			    :password ,(concat "sako@emacs/Libera:" (password-store-get "SelfHosted/ZNC")))))
+
+  (defun rcirc-detach-buffer ()
+    (interactive)
+    (let ((buffer (current-buffer)))
+      (when (and (rcirc-buffer-process)
+                 (eq (process-status (rcirc-buffer-process)) 'open))
+        (with-rcirc-server-buffer
+    	(setq rcirc-buffer-alist
+                (rassq-delete-all buffer rcirc-buffer-alist)))
+        (rcirc-update-short-buffer-names)
+        (if (rcirc-channel-p rcirc-target)
+            (rcirc-send-string (rcirc-buffer-process)
+                               (concat "DETACH " rcirc-target))))
+      (setq rcirc-target nil)
+      (kill-buffer buffer)))
 #+end_src
 ** elfeed (rss) 
 Will configure later, (use elfeed protocol ok ty)
