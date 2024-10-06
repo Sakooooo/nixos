@@ -632,6 +632,8 @@ kept-old-versions 5)
     :config
     (setq password-store-password-length 12))
 
+  (use-package pass)
+
   (auth-source-pass-enable)
 #+end_src
 ** OAuth2
