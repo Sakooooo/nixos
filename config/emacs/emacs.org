@@ -1080,38 +1080,6 @@ does NOT WORK ON WINDOWS
 (unless (eq system-type 'windows-nt)
   (use-package telega))
 #+end_src
-** rcirc (irc) 
-#+begin_src emacs-lisp
-  ;; (require 'rcirc)
-
-  (use-package rcirc
-    :ensure nil
-    :custom
-    (rcirc-id-string "Emacs rcirc")
-    (rcirc-server-alist `(("znc.sako.box"
-    			 :port 7000
-    			 :encryption tls
-    			 :nick "sako@emacs/Libera"
-    			 :user-name "sako@emacs/Libera"
-  			   :password ,(concat "sako@emacs/Libera:" (password-store-get "SelfHosted/ZNC")))))
-    (rcirc-fill-column 120)
-    (rcirc-reconnect-delay 5)
-    :config
-    (defun rcirc-detach-buffer ()
-      (interactive)
-      (let ((buffer (current-buffer)))
-        (when (and (rcirc-buffer-process)
-  		 (eq (process-status (rcirc-buffer-process)) 'open))
-  	(with-rcirc-server-buffer
-    	  (setq rcirc-buffer-alist
-  		(rassq-delete-all buffer rcirc-buffer-alist)))
-  	(rcirc-update-short-buffer-names)
-  	(if (rcirc-channel-p rcirc-target)
-              (rcirc-send-string (rcirc-buffer-process)
-                                 (concat "DETACH " rcirc-target))))
-        (setq rcirc-target nil)
-        (kill-buffer buffer))))
-#+end_src
 ** elfeed (rss) 
 Will configure later, (use elfeed protocol ok ty)
 #+begin_src emacs-lisp
