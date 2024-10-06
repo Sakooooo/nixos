@@ -1093,7 +1093,7 @@ does NOT WORK ON WINDOWS
     			 :encryption tls
     			 :nick "sako@emacs/Libera"
     			 :user-name "sako@emacs/Libera"
-  			   :password ,(format "%s%s" "sako@emacs/Libera:" (password-store-get "SelfHosted/ZNC")))))
+  			   :password ,(concat "sako@emacs/Libera:" (password-store-get "SelfHosted/ZNC")))))
     (rcirc-fill-column 120)
     (rcirc-reconnect-delay 5)
     :config
