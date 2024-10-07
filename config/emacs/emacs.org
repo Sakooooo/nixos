@@ -1102,6 +1102,29 @@ Will configure later, (use elfeed protocol ok ty)
       (setq elfeed-protocol-enabled-protocols '(fever))
       (elfeed-protocol-enable))
 #+end_src
+** IRC (erc)
+#+begin_src emacs-lisp
+  (require 'erc)
+
+  (setq erc-server "znc.sako.box")
+  (setq erc-port "7000")
+  (setq erc-prompt "(^w^)->")
+
+  (defun sakomacs/erc-znc-detach-channel ()
+      (when (erc-server-process-alive)
+      (let ((tgt (erc-default-target)))
+        (erc-server-send (format "DETACH %s" tgt)
+  		       nil tgt))))
+
+  (add-hook 'erc-kill-channel-hook (sakomacs/erc-znc-detach-channel))
+
+  (defun sakomacs/begin-irc ()
+    (interactive)
+    (erc-tls :server "znc.sako.box" :port "7000" :nick "sako" :password (concat "sako@emacs/Libera:" (password-store-get "SelfHosted/ZNC"))))
+
+  (advice-add 'irc :override
+  	    (sakomacs/begin-irc))
+#+end_src
 ** Matrix
 Ill set this up later as well
 #+begin_src emacs-lisp
