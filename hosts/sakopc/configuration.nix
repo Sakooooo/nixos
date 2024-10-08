@@ -102,7 +102,10 @@
       libreoffice.enable = true;
       onlyoffice.enable = true;
     };
-    security = { certs.enable = true; };
+    security = {
+      certs.enable = true;
+      tor.enable = true;
+    };
   };
 
   # fuck you AOC
