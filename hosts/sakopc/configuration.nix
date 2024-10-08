@@ -44,6 +44,7 @@
         weechat.enable = true;
         signal.enable = true;
         element.enable = true;
+        gajim.enable = true;
       };
       game = {
         lutris.enable = true;
