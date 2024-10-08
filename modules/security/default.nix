@@ -1,1 +1,1 @@
-{ imports = [ ./age.nix ./certs ]; }
+{ imports = [ ./age.nix ./certs ./tor.nix ]; }
