@@ -8,5 +8,6 @@
     ./signal
     ./cinny
     ./element
+    ./gajim
   ];
 }
