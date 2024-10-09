@@ -1,10 +1,8 @@
-{inputs, ...}: {
+{ inputs, ... }: {
   # This one brings our custom packages from the 'pkgs' directory
-  additions = final: _prev: import ../packages {pkgs = final;};
+  additions = final: _prev: import ../packages { pkgs = final; };
 
-  nixpkgs.overlays = [
-    inputs.emacs-overlay
-  ];
+  nixpkgs.overlays = [ inputs.emacs-overlay ];
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
@@ -12,35 +10,23 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
-    polybar = prev.polybar.override {
-      pulseSupport = true;
-    };
-    qutebrowser = prev.qutebrowser.override {
-      enableWideVine = true;
-    };
-    vimix-gtk-themes = prev.vimix-gtk-themes.override {
-      themeVariants = ["ruby"];
-    };
+    polybar = prev.polybar.override { pulseSupport = true; };
+    qutebrowser = prev.qutebrowser.override { enableWideVine = true; };
+    vimix-gtk-themes =
+      prev.vimix-gtk-themes.override { themeVariants = [ "ruby" ]; };
     fluent-gtk-theme = prev.fluent-gtk-theme.override {
       colorVariants = [ "dark" ];
       themeVariants = [ "red" ];
       tweaks = [ "square" ];
     };
-    fluent-icon-theme = prev.fluent-icon-theme.override {
-      colorVariants = [ "red" ];
-    };
-    dwm = prev.dwm.overrideAttrs (old: {
-      src = ../config/dwm;
-    });
+    fluent-icon-theme =
+      prev.fluent-icon-theme.override { colorVariants = [ "red" ]; };
+    dwm = prev.dwm.overrideAttrs (old: { src = ../config/dwm; });
     ags = prev.ags.overrideAttrs (old: {
-      buildInputs = old.buildInputs ++ [ inputs.nixpkgs.legacyPackages.x86_64-linux.libdbusmenu-gtk3 ];
+      buildInputs = old.buildInputs
+        ++ [ inputs.nixpkgs.legacyPackages.x86_64-linux.libdbusmenu-gtk3 ];
     });
-    isync = prev.isync.overrideAttrs (old: {
-      withCyrusSaslXoauth2 = true;
-    });
-    # blender = prev.blender.overrideAttrs (old: {
-    #   nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ inputs.nixpkgs.legacyPackages.x86_64-linux.pkg-config inputs.nixpkgs.legacyPackages.x86_64-linux.wayland-scanner ];
-    # });
+    isync = prev.isync.overrideAttrs (old: { withCyrusSaslXoauth2 = true; });
   };
 
   # incase something breaks
