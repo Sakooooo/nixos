@@ -91,3 +91,22 @@ oauth2_client_secret_eval = get_client_secret("email/oauth/gmail")
 oauth2_refresh_token_eval = get_client_refresh_token("accounts.google.com/two")
 # Google IMAP weirdness
 nametrans = lambda f: f.replace('[Gmail]/', '') if f.startswith('[Gmail]/') else f
+
+[Account li]
+localrepository = li-local
+remoterepository = li-remote
+proxy = SOCKS5:localhost:9050
+
+[Repository li-local]
+type = Maildir
+localfolders = ~/Mail/li
+
+[Repository li-remote]
+type = IMAP
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remotehosteval = get_host("email/li")
+remoteport = 993
+remoteusereval = get_user("email/li")
+remotepasseval = get_pass("email/li")
+

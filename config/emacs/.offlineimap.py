@@ -13,6 +13,12 @@ def get_user(account):
     return re.search(rb"login: (.*)", usercmd, flags=0).group(1).decode("utf-8")
 
 
+def get_host(account):
+    usercmd = check_output("pass " + account, shell=True)
+
+    return re.search(rb"host: (.*)", usercmd, flags=0).group(1).decode("utf-8")
+
+
 def hydroxide(path):
 
     file = open(path, "r")
