@@ -1261,6 +1261,18 @@ GNU patch review metho dor sometihng idk
     		  (mu4e-refile-folder . "/Gmail-Personal-2/Inbox")
     		  (mu4e-trash-folder . "Gmail-Personal-2/Trash")
     		  ))
+  	 (make-mu4e-context
+    	  :name "li"
+    	  :match-func
+    	  (lambda (msg)
+    	    (when msg
+    	      (string-prefix-p "/li" (mu4e-message-field msg :maildir))))
+    	  :vars `((user-mail-address . ,(cdr (assoc 'li sakomacs-mail-accounts)))
+    		  (user-full-name . "user")
+    		  (mu4e-sent-folder . "/li/Sent Mail")
+    		  (mu4e-refile-folder . "/li/INBOX")
+    		  (mu4e-trash-folder . "/li/Trash")
+    		  ))
     	 
       	 ))
     )
