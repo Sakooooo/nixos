@@ -9,5 +9,6 @@
     ./cinny
     ./element
     ./gajim
+    ./pidgin
   ];
 }
