@@ -5,6 +5,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     users.users.sako.packages = with pkgs;
-      [ (pidgin-with-plugins.override { plugins = [ pidgin-otr ]; }) ];
+      [ (pidgin.override { plugins = [ pidginPackages.pidgin-otr ]; }) ];
   };
 }
