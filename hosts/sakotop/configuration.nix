@@ -131,6 +131,7 @@
     security = {
       age.enable = true;
       certs.enable = true;
+      tor.enable = true;
     };
     virtualization = { waydroid.enable = true; };
   };
