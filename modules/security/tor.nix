@@ -5,6 +5,12 @@ in {
 
   config = lib.mkIf cfg.enable {
 
+    age.secrets.torrc = {
+      file = ../../secrets/shared/torrc.age;
+      owner = "tor";
+      group = "tor";
+    };
+
     users.users.sako.packages = with pkgs; [ tor-browser ];
 
     services.tor = {
@@ -12,5 +18,8 @@ in {
       torsocks.enable = true;
       client = { enable = true; };
     };
+
+    environment.etc = { "tor/torrc".source = config.age.secrets.torrc.path; };
+
   };
 }
