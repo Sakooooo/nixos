@@ -8,4 +8,5 @@ let
 
 in {
   "test.age".publicKeys = shared;
+  "shared/torrc.age".publicKeys = shared;
 }
