@@ -45,7 +45,6 @@
         signal.enable = true;
         element.enable = true;
         gajim.enable = true;
-        pidgin.enable = true;
       };
       game = {
         lutris.enable = true;
