@@ -39,6 +39,7 @@
         telegram.enable = true;
         weechat.enable = true;
         element.enable = true;
+        gajim.enable = true;
       };
       apps = {
         nemo.enable = true;
