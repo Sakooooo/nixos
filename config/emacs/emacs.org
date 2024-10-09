@@ -213,7 +213,7 @@ kept-old-versions 5)
 
   (use-package tao-theme
     :config
-    (load-theme 'yin t))
+    (load-theme 'tao-yin t))
 
   ;; emacsclient things
   (setq frame-resize-pixelwise t)
