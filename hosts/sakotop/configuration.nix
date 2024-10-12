@@ -40,6 +40,7 @@
         weechat.enable = true;
         element.enable = true;
         gajim.enable = true;
+        psi-plus.enable = true;
       };
       apps = {
         nemo.enable = true;
