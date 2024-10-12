@@ -10,5 +10,6 @@
     ./element
     ./gajim
     ./pidgin
+    ./psiplus
   ];
 }
