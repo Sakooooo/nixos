@@ -45,6 +45,7 @@
         signal.enable = true;
         element.enable = true;
         gajim.enable = true;
+        psi-plus.enable = true;
       };
       game = {
         lutris.enable = true;
