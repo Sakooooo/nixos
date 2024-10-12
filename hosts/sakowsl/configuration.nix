@@ -1,12 +1,4 @@
-{
-  lib,
-  pkgs,
-  config,
-  modulesPath,
-  inputs,
-  outputs,
-  ...
-}: {
+{ lib, pkgs, config, modulesPath, inputs, outputs, ... }: {
   imports = [
     inputs.home-manager.nixosModules.default
     "${modulesPath}/profiles/minimal.nix"
@@ -49,38 +41,31 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-# nix.settings.experimental-features = ["nix-command" "flakes"];
+  # nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
-    substituters = [
-      "https://cache.garnix.io"
-      "https://nix-community.cachix.org"
-    ];
+    experimental-features = [ "nix-command" "flakes" ];
+    substituters =
+      [ "https://cache.garnix.io" "https://nix-community.cachix.org" ];
     trusted-public-keys = [
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
 
-
   # Home manager setup
   home-manager.useUserPackages = true;
-  home-manager.users.sako = {pkgs, ...}: {
+  home-manager.users.sako = { pkgs, ... }: {
     home.stateVersion = "22.05";
-    home.packages = [];
+    home.packages = [ ];
     home.username = "sako";
     home.homeDirectory = "/home/sako";
-    xdg.configFile.git = {
-      source = ../../config/git;
-    };
+    xdg.configFile.git = { source = ../../config/git; };
 
     # cure my sanity
     home.pointerCursor = {
       name = "Catppuccin-Mocha-Dark";
       size = 16;
-      x11 = {
-        enable = true;
-      };
+      x11 = { enable = true; };
       gtk.enable = true;
       package = pkgs.catppuccin-cursors.mochaDark;
     };
@@ -97,16 +82,16 @@
   programs.gnupg.agent = {
     enable = true;
     #pinentryPackage = null;
-   settings = {
-   #  pinentry-program = "/mnt/c/Program Files (x86)/Gpg4win/bin/pinentry.exe";
+    settings = {
+      #  pinentry-program = "/mnt/c/Program Files (x86)/Gpg4win/bin/pinentry.exe";
       allow-emacs-pinentry = "";
       allow-loopback-pinentry = "";
-   };
+    };
   };
   # bare minimum
   environment.systemPackages = with pkgs; [
     vim # backup
-    wget #double u get
+    wget # double u get
     killall # die processes
     unzip # zip file
     gh # github
@@ -114,8 +99,6 @@
     tree # trees
     wsl-open # wsl-open
   ];
-
-  environment.noXlibs = lib.mkForce false;
 
   programs.git = {
     enable = true;
@@ -128,9 +111,7 @@
         nextcloud.enable = true;
         pass.enable = true;
       };
-      chat = {
-        weechat.enable = true;
-      };
+      chat = { weechat.enable = true; };
     };
     dev = {
       editors = {
@@ -157,17 +138,13 @@
         search.enable = true;
       };
     };
-    security = {
-      certs.enable = true;
-    };
+    security = { certs.enable = true; };
   };
 
   services.gnome.gnome-keyring.enable = true;
 
   # for wsl-open
-  environment.sessionVariables = rec {
-    BROWSER = "wsl-open";
-  };
+  environment.sessionVariables = rec { BROWSER = "wsl-open"; };
 
   security.sudo.wheelNeedsPassword = true;
 
