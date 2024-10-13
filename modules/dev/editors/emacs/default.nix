@@ -2,8 +2,6 @@
 let
   cfg = config.modules.dev.editors.emacs;
 
-  inherit (lib) mkForce;
-
   # so we dont cry later on why texLive is MASSIVE
   tex = (pkgs.texlive.combine {
     inherit (pkgs.texlive)
@@ -155,8 +153,6 @@ in {
         ".offlineimap.py".source = ../../../../config/emacs/.offlineimap.py;
       };
     };
-
-    programs.gnupg.agent = { pinentryPackage = mkForce pkgs.pinentry-emacs; };
 
     fonts.packages = with pkgs; [
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
