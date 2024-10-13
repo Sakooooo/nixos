@@ -207,9 +207,13 @@ kept-old-versions 5)
   ;;   :config
   ;;   (load-theme 'grandshell t))
 
-  (use-package ef-themes
-    :config
-    (load-theme 'ef-dark t))
+  ;; (use-package ef-themes
+  ;;   :config
+  ;;   (load-theme 'ef-dark t))
+
+  (use-package kanagawa-themes
+  :config
+  (load-theme 'kanagawa-dragon t))
 
   ;; emacsclient things
   (setq frame-resize-pixelwise t)
@@ -1192,8 +1196,10 @@ GNU patch review metho dor sometihng idk
     (setq mu4e-change-filenames-when-moving t)
 
     ;; sending mail
-    (setq message-send-mail-function 'smtpmail-send-it)
-    (add-to-list 'smtpmail-auth-supported 'xoauth2)
+    ;; (setq message-send-mail-function 'smtpmail-send-it)
+    ;; (add-to-list 'smtpmail-auth-supported 'xoauth2)
+    (setq send-mail-function 'sendmail-send-it
+  	sendmail-program "msmtp")
 
     (setq mu4e-update-interval (* 10 60))
     (setq mu4e-get-mail-command (format "INSIDE_EMACS=%s offlineimap" emacs-version)
