@@ -211,9 +211,13 @@ kept-old-versions 5)
   ;;   :config
   ;;   (load-theme 'ef-dark t))
 
-  (use-package kanagawa-themes
-  :config
-  (load-theme 'kanagawa-dragon t))
+  ;; (use-package kanagawa-themes
+  ;; :config
+  ;; (load-theme 'kanagawa-dragon t))
+
+  (use-package klere-theme
+    :config
+    (load-theme 'klere t))
 
   ;; emacsclient things
   (setq frame-resize-pixelwise t)
