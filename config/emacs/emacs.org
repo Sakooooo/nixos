@@ -621,7 +621,11 @@ kept-old-versions 5)
     (use-package pinentry
       :config
       (setq epa-pinentry-mode 'loopback))
-    (pinentry-start))
+    (pinentry-start)
+    (defun pinentry-emacs (desc prompt ok error)
+      (let ((str (read-passwd (concat (replace-regexp-in-string "%22" "\"" (replace-regexp-in-string "%0A" "\n" desc)) prompt ": "))))
+        str))
+    )
 #+end_src
 ** Password-Store
 #+begin_src emacs-lisp
