@@ -154,6 +154,8 @@ in {
       };
     };
 
+    programs.gnupg.agent = { pinentryPackage = pkgs.pinentry-emacs; };
+
     fonts.packages = with pkgs; [
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       jetbrains-mono
