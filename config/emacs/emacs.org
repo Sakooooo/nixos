@@ -1278,6 +1278,12 @@ GNU patch review metho dor sometihng idk
     	 
       	 ))
     )
+
+  (use-package mu4e-alert
+    :after mu4e
+    :config
+    (setq mu4e-alert-notify-repeated-mails nil)
+    (mu4e-alert-enable-notifications))
 #+end_src
 * Org
 #+begin_src emacs-lisp
