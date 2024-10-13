@@ -215,9 +215,14 @@ kept-old-versions 5)
   ;; :config
   ;; (load-theme 'kanagawa-dragon t))
 
-  (use-package klere-theme
+  ;; (use-package klere-theme
+  ;;   :config
+  ;;   (load-theme 'klere t))
+
+  (use-package kaolin-themes
     :config
-    (load-theme 'klere t))
+    (load-theme 'kaolin-shiva t)
+    (kaolin-treemacs-theme))
 
   ;; emacsclient things
   (setq frame-resize-pixelwise t)
