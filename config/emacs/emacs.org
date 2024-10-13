@@ -1203,6 +1203,9 @@ GNU patch review metho dor sometihng idk
     ;; for mail accounts
     (setq sakomacs-mail-accounts (json-read-file "~/Mail/accounts.json"))
 
+    ;; kill message buffers
+    (setq message-kill-buffer-on-exit t)
+
     (setq mu4e-context-policy 'pick-first)
     (setq mu4e-compose-context-policy 'always-ask)
     (setq mu4e-contexts
