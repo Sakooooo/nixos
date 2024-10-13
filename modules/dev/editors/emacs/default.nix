@@ -2,6 +2,8 @@
 let
   cfg = config.modules.dev.editors.emacs;
 
+  inherit (lib) mkForce;
+
   # so we dont cry later on why texLive is MASSIVE
   tex = (pkgs.texlive.combine {
     inherit (pkgs.texlive)
@@ -154,7 +156,7 @@ in {
       };
     };
 
-    programs.gnupg.agent = { pinentryPackage = pkgs.pinentry-emacs; };
+    programs.gnupg.agent = { pinentryPackage = mkForce pkgs.pinentry-emacs; };
 
     fonts.packages = with pkgs; [
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
