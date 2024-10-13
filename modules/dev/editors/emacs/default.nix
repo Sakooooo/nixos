@@ -109,6 +109,8 @@ in {
       offlineimap
       # protonmail
       hydroxide
+      # send mail
+      msmtp
       # doc-view
       unoconv
       # org to pdf
