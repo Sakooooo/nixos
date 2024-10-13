@@ -141,6 +141,8 @@
     settings = {
       allow-emacs-pinentry = "";
       allow-loopback-pinentry = "";
+      default-cache-ttl = "28800";
+      max-cache-ttl = "28800";
     };
     # enableSSHSupport = true;
   };
