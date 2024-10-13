@@ -1196,7 +1196,8 @@ GNU patch review metho dor sometihng idk
     (add-to-list 'smtpmail-auth-supported 'xoauth2)
 
     (setq mu4e-update-interval (* 10 60))
-    (setq mu4e-get-mail-command "offlineimap")
+    (setq mu4e-get-mail-command (format "INSIDE_EMACS=%s offlineimap" emacs-version)
+      epa-pinentry-mode 'ask)
     (setq mu4e-maildir "~/Mail")
     
     ;; for mail accounts
