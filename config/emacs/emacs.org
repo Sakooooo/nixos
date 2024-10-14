@@ -221,8 +221,7 @@ kept-old-versions 5)
 
   (use-package kaolin-themes
     :config
-    (load-theme 'kaolin-shiva t)
-    (kaolin-treemacs-theme))
+    (load-theme 'kaolin-shiva t))
 
   ;; emacsclient things
   (setq frame-resize-pixelwise t)
