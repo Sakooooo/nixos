@@ -234,7 +234,7 @@ function Bar(monitor = 0) {
         name: `bar-${monitor}`, // name has to be unique
         class_name: "bar",
         monitor,
-        anchor: ["top", "left", "right"],
+        anchor: ["bottom", "left", "right"],
 	// margins: [5, 10, 0, 10],
 	margins: [0, 0, 0, 0],
         exclusivity: "exclusive",
