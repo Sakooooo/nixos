@@ -107,6 +107,7 @@ in {
       mu
       # email sync
       offlineimap
+      (isync.override { withCyrusSaslXoauth2 = true; })
       # oauth
       oama
       # protonmail
