@@ -110,6 +110,7 @@ in {
       (isync.override { withCyrusSaslXoauth2 = true; })
       # oauth
       oama
+      oauth2ms
       # protonmail
       hydroxide
       # send mail
