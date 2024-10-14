@@ -75,15 +75,15 @@ Host 127.0.0.1
 Port 1143
 UserCmd "pass 'Proton Account' | grep 'login:' | sed 's/login: //'"
 PassCmd "cat ~/.hydroxide-bridge-pass"
-SSLType none
+TLSType None
 
 IMAPStore proton-remote
 Account proton 
 
 MailDirStore proton-local
 SubFolders Verbatim
-Path ~/Mail/Proton/
-Inbox ~/Mail/Proton/Inbox
+Path ~/.mail/proton/
+Inbox ~/.mail/proton/Inbox
 
 Channel proton
 Far :proton-remote:
@@ -94,19 +94,18 @@ Expunge Both
 SyncState *
 
 IMAPAccount li 
-Host 127.0.0.1 
-Port 993 
+AuthMechs * 
 UserCmd "pass show email/li | grep 'login: ' | sed 's/login: //'"
-PassCmd "cat ~/.hydroxide-bridge-pass"
-SSLType none
+PassCmd "pass show email/li"
+Tunnel "nc -T protocols=all -T ciphers=compat -X 5 -x <PROXY> <HOST> <PORT>"
 
 IMAPStore li-remote
 Account li 
 
 MailDirStore li-local
 SubFolders Verbatim
-Path ~/Mail/Proton/
-Inbox ~/Mail/Proton/Inbox
+Path ~/.mail/li/
+Inbox ~/.mail/li/Inbox
 
 Channel li 
 Far :li-remote:
