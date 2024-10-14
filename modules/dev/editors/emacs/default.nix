@@ -107,6 +107,8 @@ in {
       mu
       # email sync
       offlineimap
+      # oauth
+      oama
       # protonmail
       hydroxide
       # send mail
