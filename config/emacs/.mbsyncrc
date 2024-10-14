@@ -1,9 +1,10 @@
 IMAPAccount outlook
+AuthMechs XOAUTH2
 Host outlook.office365.com
 Port 993
-UserCmd "pass Microsoft | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'"
-PassCmd "pass Microsoft"
-SSLType IMAPS
+UserCmd "pass Microsoft | grep 'login:' | sed 's/login: //'"
+PassCmd "oama access $(pass Microsoft | grep 'login:' | sed 's/login: //')"
+TLSType IMAPS
 
 IMAPStore outlook-remote
 Account outlook
@@ -21,10 +22,58 @@ Create Both
 Expunge Both
 SyncState *
 
+IMAPAccount gmail-1
+AuthMechs XOAUTH2
+Host imap.gmail.com 
+Port 993
+UserCmd "pass accounts.google.com/one | grep 'login:' | sed 's/login: //'"
+PassCmd "oama access $(pass accounts.google.com/one | grep 'login:' | sed 's/login: //')"
+TLSType IMAPS
+
+IMAPStore gmail-1-remote
+Account gmail-1 
+
+MaildirStore gmail-1-local
+Subfolders Verbatim
+Path ~/Mail/gmail-one/
+Inbox ~/Mail/gmail-one/Inbox
+
+Channel gmail-1 
+Far :gmail-1-remote:
+Near :gmail-1-local:
+Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred" !"[Gmail]/Bin"
+Create Both
+Expunge Both
+SyncState *
+
+IMAPAccount gmail-2
+AuthMechs XOAUTH2
+Host imap.gmail.com 
+Port 993
+UserCmd "pass accounts.google.com/two| grep 'login:' | sed 's/login: //'"
+PassCmd "oama access $(pass accounts.google.com/two | grep 'login:' | sed 's/login: //')"
+TLSType IMAPS
+
+IMAPStore gmail-2-remote
+Account gmail-2 
+
+MaildirStore gmail-2-local
+Subfolders Verbatim
+Path ~/Mail/gmail-two/
+Inbox ~/Mail/gmail-two/Inbox
+
+Channel gmail-2 
+Far :gmail-2-remote:
+Near :gmail-2-local:
+Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred" !"[Gmail]/Bin"
+Create Both
+Expunge Both
+SyncState *
+
 IMAPAccount proton 
 Host 127.0.0.1 
 Port 1143
-UserCmd "pass 'Proton Account' | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'"
+UserCmd "pass 'Proton Account' | grep 'login:' | sed 's/login: //'"
 PassCmd "cat ~/.hydroxide-bridge-pass"
 SSLType none
 
@@ -39,6 +88,29 @@ Inbox ~/Mail/Proton/Inbox
 Channel proton
 Far :proton-remote:
 Near :proton-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *
+
+IMAPAccount li 
+Host 127.0.0.1 
+Port 993 
+UserCmd "pass show email/li | grep 'login: ' | sed 's/login: //'"
+PassCmd "cat ~/.hydroxide-bridge-pass"
+SSLType none
+
+IMAPStore li-remote
+Account li 
+
+MailDirStore li-local
+SubFolders Verbatim
+Path ~/Mail/Proton/
+Inbox ~/Mail/Proton/Inbox
+
+Channel li 
+Far :li-remote:
+Near :li-local:
 Patterns *
 Create Both
 Expunge Both
