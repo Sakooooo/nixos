@@ -9,7 +9,7 @@ remoterepository = Proton-remote
 
 [Repository Proton-local]
 type = Maildir
-localfolders = ~/Mail/Proton
+localfolders = ~/.mail/protonmail
 
 [Repository Proton-remote]
 type = IMAP
@@ -26,7 +26,7 @@ remoterepository = Outlook-remote
 
 [Repository Outlook-local]
 type = Maildir
-localfolders = ~/Mail/Outlook
+localfolders = ~/.mail/outlook
 
 [Repository Outlook-remote]
 ssl = yes
@@ -50,7 +50,7 @@ remoterepository = Gmail-personal-1-remote
 
 [Repository Gmail-personal-1-local]
 type = GmailMaildir
-localfolders = ~/Mail/Gmail-Personal-1
+localfolders = ~/.mail/gmail1
 # Google IMAP weirdness
 nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 'Spam', 'Trash', 'All Mail', 'Sent Mail'] else f
 
@@ -74,7 +74,7 @@ remoterepository = Gmail-personal-2-remote
 
 [Repository Gmail-personal-2-local]
 type = GmailMaildir
-localfolders = ~/Mail/Gmail-Personal-2
+localfolders = ~/.mail/gmail2
 # Google IMAP weirdness
 nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 'Spam', 'Trash', 'All Mail', 'Sent Mail'] else f
 
@@ -99,7 +99,7 @@ proxy = SOCKS5:localhost:9050
 
 [Repository li-local]
 type = Maildir
-localfolders = ~/Mail/li
+localfolders = ~/.mail/li
 
 [Repository li-remote]
 type = IMAP

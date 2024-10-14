@@ -1210,10 +1210,10 @@ GNU patch review metho dor sometihng idk
     (setq mu4e-update-interval (* 10 60))
     (setq mu4e-get-mail-command (format "INSIDE_EMACS=%s offlineimap" emacs-version)
       epa-pinentry-mode 'ask)
-    (setq mu4e-maildir "~/Mail")
+    (setq mu4e-maildir "~/.mail")
     
     ;; for mail accounts
-    (setq sakomacs-mail-accounts (json-read-file "~/Mail/accounts.json"))
+    (setq sakomacs-mail-accounts (json-read-file "~/.mail/accounts.json"))
 
     ;; kill message buffers
     (setq message-kill-buffer-on-exit t)
@@ -1228,13 +1228,13 @@ GNU patch review metho dor sometihng idk
       	  :match-func
       	  (lambda (msg)
       	    (when msg
-      	      (string-prefix-p "/Outlook" (mu4e-message-field msg :maildir))))
+      	      (string-prefix-p "/outlook" (mu4e-message-field msg :maildir))))
       	  :vars `((user-mail-address . ,(cdr (assoc 'outlook sakomacs-mail-accounts)))
       	          (user-full-name . "Sako")
-      		  (mu4e-drafts-folder . "/Outlook/Drafts")
-      		  (mu4e-sent-folder . "/Outlook/Sent")
-      		  (mu4e-refile-folder . "/Outlook/Inbox")
-      		  (mu4e-trash-folder . "/Outlook/Deleted")
+      		  (mu4e-drafts-folder . "/outlook/Drafts")
+      		  (mu4e-sent-folder . "/outlook/Sent")
+      		  (mu4e-refile-folder . "/outlook/Inbox")
+      		  (mu4e-trash-folder . "/outlook/Deleted")
     		  ;; todo stmpmail and compose signatures
     		  ))
       	 (make-mu4e-context
@@ -1242,13 +1242,13 @@ GNU patch review metho dor sometihng idk
       	  :match-func
       	  (lambda (msg)
       	    (when msg
-      	      (string-prefix-p "/Proton" (mu4e-message-field msg :maildir))))
+      	      (string-prefix-p "/protonmail" (mu4e-message-field msg :maildir))))
       	  :vars `((user-mail-address . ,(cdr (assoc 'protonmail sakomacs-mail-accounts)))
       	          (user-full-name . "Sako")
-      		  (mu4e-drafts-folder . "/Proton/Drafts")
-      		  (mu4e-sent-folder . "/Proton/Sent")
-      		  (mu4e-refile-folder . "/Proton/Inbox")
-      		  (mu4e-trash-folder . "/Proton/Trash"))
+      		  (mu4e-drafts-folder . "/protonmail/Drafts")
+      		  (mu4e-sent-folder . "/protonmail/Sent")
+      		  (mu4e-refile-folder . "/protonmail/Inbox")
+      		  (mu4e-trash-folder . "/protonmail/Trash"))
     	  ;; todo stmpmail and compose signatures
     	  )
     	 (make-mu4e-context
@@ -1256,13 +1256,13 @@ GNU patch review metho dor sometihng idk
     	  :match-func
     	  (lambda (msg)
     	    (when msg
-    	      (string-prefix-p "/Gmail-Personal-1" (mu4e-message-field msg :maildir))))
+    	      (string-prefix-p "/gmail1" (mu4e-message-field msg :maildir))))
     	  :vars `((user-mail-address .  ,(cdr (assoc 'gmail-1 sakomacs-mail-accounts)))
     		  (user-full-name . "Sako")
-    		  (mu4e-drafts-folder . "/Gmail-Personal-1/Drafts")
-    		  (mu4e-sent-folder . "/Gmail-Personal-1/Sent Mail")
-    		  (mu4e-refile-folder . "/Gmail-Personal-1/Inbox")
-    		  (mu4e-trash-folder . "Gmail-Personal-1/Trash")
+    		  (mu4e-drafts-folder . "/gmail1/Drafts")
+    		  (mu4e-sent-folder . "/gmail1/Sent Mail")
+    		  (mu4e-refile-folder . "/gmail1/Inbox")
+    		  (mu4e-trash-folder . "gmail1/Trash")
     		  ;; todo stmpmail and compose signatures
     		  ))
     	 (make-mu4e-context
@@ -1270,13 +1270,13 @@ GNU patch review metho dor sometihng idk
     	  :match-func
     	  (lambda (msg)
     	    (when msg
-    	      (string-prefix-p "/Gmail-Personal-2" (mu4e-message-field msg :maildir))))
+    	      (string-prefix-p "/gmail2" (mu4e-message-field msg :maildir))))
     	  :vars `((user-mail-address . ,(cdr (assoc 'gmail-2 sakomacs-mail-accounts)))
     		  (user-full-name . "Sako")
-    		  (mu4e-drafts-folder . "/Gmail-Personal-2/Drafts")
-    		  (mu4e-sent-folder . "/Gmail-Personal-2/Sent Mail")
-    		  (mu4e-refile-folder . "/Gmail-Personal-2/Inbox")
-    		  (mu4e-trash-folder . "Gmail-Personal-2/Trash")
+    		  (mu4e-drafts-folder . "/gmail2/Drafts")
+    		  (mu4e-sent-folder . "/gmail2/Sent Mail")
+    		  (mu4e-refile-folder . "/gmail2/Inbox")
+    		  (mu4e-trash-folder . "gmail2/Trash")
     		  ))
   	 (make-mu4e-context
     	  :name "li"
