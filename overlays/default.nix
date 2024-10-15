@@ -20,7 +20,7 @@
       tweaks = [ "square" ];
     };
     fluent-icon-theme =
-      prev.fluent-icon-theme.override { colorVariants = [ "red" ]; };
+      prev.fluent-icon-theme.override { colorVariants = [ "pink" ]; };
     dwm = prev.dwm.overrideAttrs (old: { src = ../config/dwm; });
     ags = prev.ags.overrideAttrs (old: {
       buildInputs = old.buildInputs
