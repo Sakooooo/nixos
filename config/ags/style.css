@@ -3,7 +3,8 @@
 }
 
 window.bar {
-    background-color: @theme_bg_color;
+    /* background-color: @theme_bg_color; */
+    background: #ff5050;
     color: @theme_fg_color;
     min-height: 4rem;
 }
