@@ -16,7 +16,7 @@
       prev.vimix-gtk-themes.override { themeVariants = [ "ruby" ]; };
     fluent-gtk-theme = prev.fluent-gtk-theme.override {
       colorVariants = [ "dark" ];
-      themeVariants = [ "red" ];
+      themeVariants = [ "pink" ];
       tweaks = [ "square" ];
     };
     fluent-icon-theme =
