@@ -56,7 +56,7 @@ label {
 }
 
 .workspace-active {
-    border-bottom: 1px solid @theme_selected_bg_color;
+    background-color: red;
 }
 
 levelbar block,
