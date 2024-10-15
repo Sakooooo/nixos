@@ -6,7 +6,8 @@ window.bar {
     /* background-color: @theme_bg_color; */
     background: rgba(0, 0, 0, .1);
     color: @theme_fg_color;
-    min-height: 4rem;
+    min-height: 5rem;
+    border-style: 2px solid #ea4c88;
 }
 
 button {
