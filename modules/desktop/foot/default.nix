@@ -36,7 +36,7 @@ in {
             regular4 = "4ca5ea";
             regular5 = "b24cea";
             regular6 = "33eabf";
-            regular7 = "766169";
+            regular7 = "D2AFBC";
 
             # Bright colors (8-15)
             bright0 = "4c4043";
