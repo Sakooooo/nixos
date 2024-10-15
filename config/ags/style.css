@@ -55,11 +55,6 @@ label {
     background-color: transparent;
 }
 
-.workspace-indicator button.focused {
-    border-bottom: 3px solid @theme_selected_bg_color;
-}
-
-
 .workspace-inactive {
   opacity: 0.5;
 }
