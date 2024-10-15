@@ -24,7 +24,7 @@ button {
 }
 
 button:active {
-    background-color: @theme_selected_bg_color;
+    background-color: #ea4c88;
 }
 
 button:hover {
@@ -37,12 +37,20 @@ label {
 
 .client-title {
     color: @theme_selected_bg_color;
+    max-width: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }
 
 .notification {
     color: yellow;
 }
 
+.media {
+    max-width: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
 
 .workspace-indicator {
     min-width: 0;
