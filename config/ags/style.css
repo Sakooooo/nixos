@@ -35,7 +35,7 @@ label {
 }
 
 .workspaces button.focused {
-    border-bottom: 1px solid @theme_selected_bg_color;
+    border-bottom: 3px solid @theme_selected_bg_color;
 }
 
 .client-title {
@@ -62,12 +62,10 @@ label {
 
 .workspace-inactive {
   opacity: 0.5;
-  border-bottom: 3px transparent;
 }
 
 .workspace-occupied {
   opacity: 1;
-  border-bottom: 3px transparent;
 }
 
 .workspace-active {
