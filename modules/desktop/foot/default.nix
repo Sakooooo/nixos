@@ -36,17 +36,17 @@ in {
             regular4 = "4ca5ea";
             regular5 = "b24cea";
             regular6 = "33eabf";
-            regular7 = "D2AFBC";
+            regular7 = "A3003E";
 
             # Bright colors (8-15)
-            bright0 = "4c4043";
+            bright0 = "C3A5AC";
             bright1 = "ff5353";
             bright2 = "99ff69";
             bright3 = "df8f4d";
             bright4 = "88c1ea";
             bright5 = "d6a0ea";
             bright6 = "9dead8";
-            bright7 = "eaeaea";
+            bright7 = "FF0061";
           };
         };
       };
