@@ -23,6 +23,31 @@ in {
             blink-rate = "1000";
           };
           mouse = { hide-when-typing = "yes"; };
+          colors = {
+            alpha = "1.0";
+            background = "513942";
+            foreground = "fbfffc";
+
+            # Normal/Regular colors
+            regular0 = "191516";
+            regular1 = "ea4c4c";
+            regular2 = "4cea50";
+            regular3 = "df7620";
+            regular4 = "4ca5ea";
+            regular5 = "b24cea";
+            regular6 = "33eabf";
+            regular7 = "766169";
+
+            # Bright colors (8-15)
+            bright0 = "4c4043";
+            bright1 = "ff5353";
+            bright2 = "99ff69";
+            bright3 = "df8f4d";
+            bright4 = "88c1ea";
+            bright5 = "d6a0ea";
+            bright6 = "9dead8";
+            bright7 = "eaeaea";
+          };
         };
       };
     };
