@@ -13,10 +13,14 @@ window.bar {
 
 button {
     min-width: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    border: none;
+    /* padding-top: 0;
+       padding-bottom: 0; */
     background-color: transparent;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    background: none;
 }
 
 button:active {
@@ -46,6 +50,7 @@ label {
     padding-bottom: 0;
     margin: 0;
     background-color: transparent;
+    padding-bottom: 2px;
 }
 
 .workspace-inactive {
@@ -58,6 +63,7 @@ label {
 
 .workspace-active {
     border-bottom: 2px solid #ea4c88;
+    padding-bottom: 0;
 }
 
 levelbar block,
