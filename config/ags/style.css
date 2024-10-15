@@ -8,7 +8,7 @@ window.bar {
     color: @theme_fg_color;
     min-height: 5rem;
     border: 2px solid #ea4c88;
-    padding: 2px;
+    padding: 10px;
 }
 
 button {
