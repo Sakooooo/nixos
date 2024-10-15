@@ -36,16 +36,11 @@ label {
 }
 
 .client-title {
-    color: @theme_selected_bg_color;
-    max-width: 50px;
+    color: #ea4c88;
 }
 
 .notification {
     color: yellow;
-}
-
-.media {
-    max-width: 50px;
 }
 
 .workspace-indicator {
