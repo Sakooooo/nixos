@@ -201,7 +201,7 @@ function Left() {
         spacing: 8,
         children: [
             Workspaces(),
-            ClientTitle(),
+            // ClientTitle(),
         ],
     })
 }
