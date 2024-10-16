@@ -174,7 +174,7 @@ function BatteryLabel() {
     const percent = battery.bind("percent").as(x => x.toString()) + "%";
 
     function getIcon() {
-	const icon = [100, 50, 25, 0].find(threshold => threshold <= battery.percent);
+	const icon = [100, 50, 30, 10].find(threshold => threshold <= battery.percent);
 
 	return `battery-${icons[icon]}-symbolic`;
     }
