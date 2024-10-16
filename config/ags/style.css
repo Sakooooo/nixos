@@ -8,6 +8,7 @@ window.bar {
     color: @theme_fg_color;
     min-height: 10rem;
     border: 2px solid #ea4c88;
+    border-bottom: none;
     border-radius: 6px 6px 0px 0px;
 }
 
