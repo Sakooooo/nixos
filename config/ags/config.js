@@ -161,22 +161,38 @@ function Volume() {
 
 
 function BatteryLabel() {
-    const value = battery.bind("percent").as(p => p > 0 ? p / 100 : 0)
-    const icon = battery.bind("percent").as(p =>
-        `battery-level-${Math.floor(p / 10) * 10}-symbolic`)
+    const icons = {
+        100: "full",
+        50: "good",
+        25: "low",
+        0: "empty",
+    };
+    const value = battery.bind("percent").as(p => p > 0 ? p / 100 : 0);
+    // const icon = battery.bind("percent").as(p =>
+    //     `battery-level-${Math.floor(p / 10) * 10}-symbolic`)
 
-    const percent = battery.bind("percent").as(x => x.toString()) + "%"
+    const percent = battery.bind("percent").as(x => x.toString()) + "%";
+
+    function getIcon() {
+	const icon = [100, 50, 25, 0].find(threshold => threshold <= battery.percent);
+
+	return `battery-${icons[icon]}-symbolic`;
+    }
+
+    const icon = Widget.Icon({
+	icon: Utils.watch(getIcon(), battery, getIcon),
+    });
 
     return Widget.Box({
         class_name: "battery",
         visible: battery.bind("available"),
         children: [
-            Widget.Icon({ icon }),
+	    icon,
 	    Widget.Label({
 		label: battery.bind('percent').as(x => x.toString()),
 	    })
         ],
-    })
+    });
 }
 
 
