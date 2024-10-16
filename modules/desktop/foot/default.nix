@@ -25,28 +25,28 @@ in {
           mouse = { hide-when-typing = "yes"; };
           colors = {
             alpha = "1.0";
-            background = "513942";
-            foreground = "fbfffc";
+            background = "010000";
+            foreground = "bfbfbf";
 
-            # Normal/Regular colors
-            regular0 = "191516";
-            regular1 = "ea4c4c";
-            regular2 = "4cea50";
-            regular3 = "df7620";
-            regular4 = "4ca5ea";
-            regular5 = "b24cea";
-            regular6 = "33eabf";
-            regular7 = "A3003E";
+            # Normal/Regular colors (0-7)
+            regular0 = "010000";
+            regular1 = "67514A";
+            regular2 = "6A5D4E";
+            regular3 = "9B686A";
+            regular4 = "9F8975";
+            regular5 = "BD7D81";
+            regular6 = "D07789";
+            regular7 = "bfbfbf";
 
             # Bright colors (8-15)
-            bright0 = "C3A5AC";
-            bright1 = "ff5353";
-            bright2 = "99ff69";
-            bright3 = "df8f4d";
-            bright4 = "88c1ea";
-            bright5 = "d6a0ea";
-            bright6 = "9dead8";
-            bright7 = "FF0061";
+            bright0 = "615050";
+            bright1 = "67514A";
+            bright2 = "6A5D4E";
+            bright3 = "9B686A";
+            bright4 = "9F8975";
+            bright5 = "BD7D81";
+            bright6 = "D07788";
+            bright7 = "bfbfbf";
           };
         };
       };
