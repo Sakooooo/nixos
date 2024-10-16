@@ -162,7 +162,7 @@ function Volume() {
 
 function BatteryLabel() {
     const icons = {
-        100: "full",
+        75: "full",
         50: "good",
         25: "low",
         0: "empty",
