@@ -162,10 +162,10 @@ function Volume() {
 
 function BatteryLabel() {
     const icons = {
-        75: "full",
+        80: "full",
         50: "good",
-        25: "low",
-        0: "empty",
+        30: "low",
+        10: "empty",
     };
     const value = battery.bind("percent").as(p => p > 0 ? p / 100 : 0);
     // const icon = battery.bind("percent").as(p =>
