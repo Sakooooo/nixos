@@ -64,7 +64,7 @@ in {
                   "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
                 urls = [{
                   template =
-                    "https://home-manager-options.extranix.com/release=master";
+                    "https://home-manager-options.extranix.com/?release=master";
                   params = [{
                     name = "query";
                     value = "{searchTerms}";
@@ -79,7 +79,7 @@ in {
                   template = "https://search.sako.box/search";
                   params = [{
                     name = "q";
-                    value = "searchTerms";
+                    value = "{searchTerms}";
                   }];
                 }];
               };
