@@ -73,8 +73,11 @@ in {
               };
               "sakosearch" = {
                 definedAliases = [ "@sakosearch" ];
-                icon =
-                  "${pkgs.searxng}/share/static/themes/simple/img/favicon.svg";
+                icon = pkgs.fetchurl {
+                  url =
+                    "https://raw.githubusercontent.com/searxng/searxng/refs/heads/master/src/brand/searxng-wordmark.svg";
+                  hash = "sha256-TwwPUNL+IRRjLY7Xmd466F474vglkvpJUYa+fBwDzFI=";
+                };
                 urls = [{
                   template = "https://search.sako.box/search";
                   params = [{
