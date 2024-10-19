@@ -70,6 +70,18 @@ in {
                   }];
                 }];
               };
+              "sakosearch" = {
+                definedAliases = [ "@sakosearch" ];
+                icon =
+                  "${pkgs.searxng}/share/static/themes/simple/img/favicon.svg";
+                urls = [{
+                  template = "https://search.sako.box/search";
+                  params = [{
+                    name = "q";
+                    value = "searchTerms";
+                  }];
+                }];
+              };
             };
           };
         };
