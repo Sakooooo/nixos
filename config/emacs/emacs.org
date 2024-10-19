@@ -339,141 +339,141 @@ kept-old-versions 5)
 #+end_src
 ** General
 #+begin_src emacs-lisp
-  (use-package general
-    :config
-    (general-create-definer sk/leader-keys
-      :keymaps '(normal insert visual emacs)
-      :prefix "SPC"
-      :global-prefix "C-SPC")
+  ;; (use-package general
+  ;;   :config
+  ;;   (general-create-definer sk/leader-keys
+  ;;     :keymaps '(normal insert visual emacs)
+  ;;     :prefix "SPC"
+  ;;     :global-prefix "C-SPC")
 
-    (sk/leader-keys
-     ;; code
-     "c" '(:ignore c :which-key "code")
-     "cc" '(compile :which-key "compile")
-     "cC" '(recompile :which-key "compile")
-     "cX" '(lsp-treeemacs-errors-list :which-ley "list errors")
-     ;; toggles
-     "t" '(:ignore t :which-key "toggles")
-     "tt" '(counsel-load-theme :which-key "choose theme")
-     "ts" '(hydra-text-scale/body :which-key "scale text")
-     ;; search
-     "s" '(:ignore s :which-key "search")
-     "sb" '(swiper :which-key "search buffer")
-     ;; insert
-     "i" '(:ignore i :which-key "insert")
-     "ie" '(emoji-search :which-key "Emoji")
-     ;; project
-     "p" '(:ignore p :which-key "projects")
-     "pp" '(project-switch-project :which-key "open project")
-     "pk" '(project-kill-buffers :which-key "close project")
-     "pt" '(magit-todos-list :which-key "list project todos")
-     "po" '(project-find-file :which-key "find file")
-     "pc" '(project-compile :which-key "compile project")
-     ;; open
-     "o" '(:ignore o :which-key "open")
-     "op" '(treemacs :which-key "treemacs")
-     "oP" '(treemacs-find-file :which-key "treemacs find file")
-     "oe" '(eshell :which-key "eshell")
-     "ov" '(vterm :which-key "vterm")
-     "or" '(elfeed :which-key "rss")
-     ;; notes
-     "n" '(:ignore o :which-key "notes")
-     "na" '(org-agenda :which-key "agenda")
-     "nf" '(org-roam-node-find :which-key "find node")
-     "nc" '(org-capture :which-key "capture")
-     "np" '(org-pomodoro :which-key "pomodoro")
-     "ne" '(:ignore ne :which-key "export")
-     "nep" '(org-latex-export-to-pdf :which-key "pdf")
-     ;; quit
-     "q" '(:ignore q :which-key "quit")
-     "qq" '(delete-frame :which-key "close emacs")
-     "qK" '(kill-emacs :which-key "quit emacs")
-     ;; git
-     "g" '(:ignore g :which-key "git")
-     "gs" '(magit-status :which-key "status")
-     "gc" '(:ignore gc :which-key "create")
-     "gcr" '(magit-init :which-key "init repo")
-     "gcR" '(magit-clone :which-key "clone repo")
-     "gcc" '(magit-commit-create :which-key "commit")
-     "gci" '(forge-create-issue :which-key "issue")
-     "gcp" '(forge-create-pullreq :which-key "pull request")
-     ;; mail
-     "m" '(mu4e :which-key "mu4e")))
+  ;;   (sk/leader-keys
+  ;;    ;; code
+  ;;    "c" '(:ignore c :which-key "code")
+  ;;    "cc" '(compile :which-key "compile")
+  ;;    "cC" '(recompile :which-key "compile")
+  ;;    "cX" '(lsp-treeemacs-errors-list :which-ley "list errors")
+  ;;    ;; toggles
+  ;;    "t" '(:ignore t :which-key "toggles")
+  ;;    "tt" '(counsel-load-theme :which-key "choose theme")
+  ;;    "ts" '(hydra-text-scale/body :which-key "scale text")
+  ;;    ;; search
+  ;;    "s" '(:ignore s :which-key "search")
+  ;;    "sb" '(swiper :which-key "search buffer")
+  ;;    ;; insert
+  ;;    "i" '(:ignore i :which-key "insert")
+  ;;    "ie" '(emoji-search :which-key "Emoji")
+  ;;    ;; project
+  ;;    "p" '(:ignore p :which-key "projects")
+  ;;    "pp" '(project-switch-project :which-key "open project")
+  ;;    "pk" '(project-kill-buffers :which-key "close project")
+  ;;    "pt" '(magit-todos-list :which-key "list project todos")
+  ;;    "po" '(project-find-file :which-key "find file")
+  ;;    "pc" '(project-compile :which-key "compile project")
+  ;;    ;; open
+  ;;    "o" '(:ignore o :which-key "open")
+  ;;    "op" '(treemacs :which-key "treemacs")
+  ;;    "oP" '(treemacs-find-file :which-key "treemacs find file")
+  ;;    "oe" '(eshell :which-key "eshell")
+  ;;    "ov" '(vterm :which-key "vterm")
+  ;;    "or" '(elfeed :which-key "rss")
+  ;;    ;; notes
+  ;;    "n" '(:ignore o :which-key "notes")
+  ;;    "na" '(org-agenda :which-key "agenda")
+  ;;    "nf" '(org-roam-node-find :which-key "find node")
+  ;;    "nc" '(org-capture :which-key "capture")
+  ;;    "np" '(org-pomodoro :which-key "pomodoro")
+  ;;    "ne" '(:ignore ne :which-key "export")
+  ;;    "nep" '(org-latex-export-to-pdf :which-key "pdf")
+  ;;    ;; quit
+  ;;    "q" '(:ignore q :which-key "quit")
+  ;;    "qq" '(delete-frame :which-key "close emacs")
+  ;;    "qK" '(kill-emacs :which-key "quit emacs")
+  ;;    ;; git
+  ;;    "g" '(:ignore g :which-key "git")
+  ;;    "gs" '(magit-status :which-key "status")
+  ;;    "gc" '(:ignore gc :which-key "create")
+  ;;    "gcr" '(magit-init :which-key "init repo")
+  ;;    "gcR" '(magit-clone :which-key "clone repo")
+  ;;    "gcc" '(magit-commit-create :which-key "commit")
+  ;;    "gci" '(forge-create-issue :which-key "issue")
+  ;;    "gcp" '(forge-create-pullreq :which-key "pull request")
+  ;;    ;; mail
+  ;;    "m" '(mu4e :which-key "mu4e")))
 
 #+end_src
 ** Evil
 #+begin_src emacs-lisp
 
-  (use-package evil
-    :init
-    ;; Pre-load configuration
-    (setq evil-want-integration t)
-    (setq evil-want-keybinding nil)
-    (setq evil-want-C-u-scroll t)
-    (setq evil-want-C-i-jump nil)
-    (setq evil-respect-visual-line-mode t)
-    (setq evil-undo-system 'undo-tree)
-    :config
-    (evil-mode 1)
+  ;; (use-package evil
+  ;;   :init
+  ;;   ;; Pre-load configuration
+  ;;   (setq evil-want-integration t)
+  ;;   (setq evil-want-keybinding nil)
+  ;;   (setq evil-want-C-u-scroll t)
+  ;;   (setq evil-want-C-i-jump nil)
+  ;;   (setq evil-respect-visual-line-mode t)
+  ;;   (setq evil-undo-system 'undo-tree)
+  ;;   :config
+  ;;   (evil-mode 1)
 
-     ;; use emacs state for these mods
-    (dolist (mode '(custom-mode
-                    eshell-mode
-                    git-rebase-mode
-                    erc-mode
-                    circe-server-mode
-                    circe-chat-mode
-                    circe-query-mode
-                    term-mode))
-      (add-to-list 'evil-emacs-state-modes mode))
+  ;;    ;; use emacs state for these mods
+  ;;   (dolist (mode '(custom-mode
+  ;;                   eshell-mode
+  ;;                   git-rebase-mode
+  ;;                   erc-mode
+  ;;                   circe-server-mode
+  ;;                   circe-chat-mode
+  ;;                   circe-query-mode
+  ;;                   term-mode))
+  ;;     (add-to-list 'evil-emacs-state-modes mode))
 
-     (defun sk/dont-arrow-me-bro ()
-        (interactive)
-        (message "STOP USING THE ARROW KEYS!!!!!!!!!!!!!!!!!!!!!!!"))
+  ;;    (defun sk/dont-arrow-me-bro ()
+  ;;       (interactive)
+  ;;       (message "STOP USING THE ARROW KEYS!!!!!!!!!!!!!!!!!!!!!!!"))
 
-      ;; Disable arrow keys in normal and visual modes
-      (define-key evil-normal-state-map (kbd "<left>") 'sk/dont-arrow-me-bro)
-      (define-key evil-normal-state-map (kbd "<right>") 'sk/dont-arrow-me-bro)
-      (define-key evil-normal-state-map (kbd "<down>") 'sk/dont-arrow-me-bro)
-      (define-key evil-normal-state-map (kbd "<up>") 'sk/dont-arrow-me-bro)
-      (evil-global-set-key 'motion (kbd "<left>") 'sk/dont-arrow-me-bro)
-      (evil-global-set-key 'motion (kbd "<right>") 'sk/dont-arrow-me-bro)
-      (evil-global-set-key 'motion (kbd "<down>") 'sk/dont-arrow-me-bro)
-      (evil-global-set-key 'motion (kbd "<up>") 'sk/dont-arrow-me-bro)
+  ;;     ;; Disable arrow keys in normal and visual modes
+  ;;     (define-key evil-normal-state-map (kbd "<left>") 'sk/dont-arrow-me-bro)
+  ;;     (define-key evil-normal-state-map (kbd "<right>") 'sk/dont-arrow-me-bro)
+  ;;     (define-key evil-normal-state-map (kbd "<down>") 'sk/dont-arrow-me-bro)
+  ;;     (define-key evil-normal-state-map (kbd "<up>") 'sk/dont-arrow-me-bro)
+  ;;     (evil-global-set-key 'motion (kbd "<left>") 'sk/dont-arrow-me-bro)
+  ;;     (evil-global-set-key 'motion (kbd "<right>") 'sk/dont-arrow-me-bro)
+  ;;     (evil-global-set-key 'motion (kbd "<down>") 'sk/dont-arrow-me-bro)
+  ;;     (evil-global-set-key 'motion (kbd "<up>") 'sk/dont-arrow-me-bro)
 
-     (evil-set-initial-state 'messages-buffer-mode 'normal) 
-     (evil-set-initial-state 'dashboard-mode 'normal))
+  ;;    (evil-set-initial-state 'messages-buffer-mode 'normal) 
+  ;;    (evil-set-initial-state 'dashboard-mode 'normal))
 
-  (use-package evil-collection
-    :after evil
-    :custom
-    (evil-collection-outline-bind-tab-p nil)
-    :config
-    ;; Is this a bug in evil-collection?
-    (setq evil-collection-company-use-tng nil)
-    (delete 'lispy evil-collection-mode-list)
-    (delete 'org-present evil-collection-mode-list)
-    ;; (delete 'mu4e evil-collection-mode-list)
-    ;; (delete 'mu4e-conversation evil-collection-mode-list)
-    (evil-collection-init))
+  ;; (use-package evil-collection
+  ;;   :after evil
+  ;;   :custom
+  ;;   (evil-collection-outline-bind-tab-p nil)
+  ;;   :config
+  ;;   ;; Is this a bug in evil-collection?
+  ;;   (setq evil-collection-company-use-tng nil)
+  ;;   (delete 'lispy evil-collection-mode-list)
+  ;;   (delete 'org-present evil-collection-mode-list)
+  ;;   ;; (delete 'mu4e evil-collection-mode-list)
+  ;;   ;; (delete 'mu4e-conversation evil-collection-mode-list)
+  ;;   (evil-collection-init))
 
-  (use-package evil-org
-    :after (evil org)
-    :hook ((org-mode . evil-org-mode)
-           (org-agenda-mode . evil-org-mode))
-    :config
-    (require 'evil-org-agenda)
-    (evil-org-set-key-theme '(navigation todo insert textobjects additional))
-    (evil-org-agenda-set-keys))
+  ;; (use-package evil-org
+  ;;   :after (evil org)
+  ;;   :hook ((org-mode . evil-org-mode)
+  ;;          (org-agenda-mode . evil-org-mode))
+  ;;   :config
+  ;;   (require 'evil-org-agenda)
+  ;;   (evil-org-set-key-theme '(navigation todo insert textobjects additional))
+  ;;   (evil-org-agenda-set-keys))
 
-  (use-package evil-nerd-commenter
-  :bind ("M-/" . evilnc-comment-or-uncomment-lines))
+  ;; (use-package evil-nerd-commenter
+  ;; :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 
-  (with-eval-after-load 'org
-    (evil-define-key '(normal insert visual) org-mode-map (kbd "C-j") 'org-next-visible-heading)
-    (evil-define-key '(normal insert visual) org-mode-map (kbd "C-k") 'org-previous-visible-heading)
-    (evil-define-key '(normal insert visual) org-mode-map (kbd "M-j") 'org-metadown)
-    (evil-define-key '(normal insert visual) org-mode-map (kbd "M-k") 'org-metaup))
+  ;; (with-eval-after-load 'org
+  ;;   (evil-define-key '(normal insert visual) org-mode-map (kbd "C-j") 'org-next-visible-heading)
+  ;;   (evil-define-key '(normal insert visual) org-mode-map (kbd "C-k") 'org-previous-visible-heading)
+  ;;   (evil-define-key '(normal insert visual) org-mode-map (kbd "M-j") 'org-metadown)
+  ;;   (evil-define-key '(normal insert visual) org-mode-map (kbd "M-k") 'org-metaup))
 #+end_src
 * Interface
 #+begin_src emacs-lisp
