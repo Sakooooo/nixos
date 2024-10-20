@@ -1205,94 +1205,118 @@ GNU patch review metho dor sometihng idk
     (setq mu4e-change-filenames-when-moving t)
 
     ;; sending mail
-    (setq message-send-mail-function 'smtpmail-send-it)
-    (add-to-list 'smtpmail-auth-supported 'xoauth2)
+    ;;(setq message-send-mail-function 'smtpmail-send-it)
+    ;;(add-to-list 'smtpmail-auth-supported 'xoauth2)
+    (setq send-mail-function 'sendmail-send-it)
+    (setq message-send-mail-function 'sendmail-sent-it)
+    (setq sendmail-program (executable-find "msmtp"))
+
+    ;; select the right sender email from the context.
+    (setq message-sendmail-envelope-from 'header)
     
     (setq mu4e-update-interval (* 10 60))
     (setq mu4e-get-mail-command (format "INSIDE_EMACS=%s offlineimap" emacs-version)
-      epa-pinentry-mode 'ask)
+    	epa-pinentry-mode 'ask)
     (setq mu4e-maildir "~/.mail")
     
     ;; for mail accounts
     (setq sakomacs-mail-accounts (json-read-file "~/.mail/accounts.json"))
 
+    (defun sakomacs/set-msmtp-account ()
+      (if (message-mail-p)
+  	(save-excursion
+            (let*
+                ((from (save-restriction
+                         (message-narrow-to-headers)
+                         (message-fetch-field "from")))
+                 (account
+  		(cond
+  		 ((string-match (cdr (assoc 'gmail-1 sakomacs-mail-accounts)) from) "gmail-1")
+  		 ((string-match (cdr (assoc 'gmail-2 sakomacs-mail-accounts)) from) "gmail-2")
+  		 ((string-match (cdr (assoc 'protonmail sakomacs-mail-accounts)) from) "protonmail")
+  		 ((string-match (cdr (assoc 'li sakomacs-mail-accounts)) from) "li")
+  		 ((string-match (cdr (assoc 'outlook sakomacs-mail-accounts)) from)))))
+              (setq message-sendmail-extra-arguments (list '"-a" account))))))
+
+    (add-hook 'message-send-mail-hook 'sakomacs/set-msmtp-account)
+    
     ;; kill message buffers
     (setq message-kill-buffer-on-exit t)
 
     (setq mu4e-context-policy 'pick-first)
     (setq mu4e-compose-context-policy 'always-ask)
     (setq mu4e-contexts
-      	(list
-      	 ;; outlook
+          (list
+           ;; outlook
+           (make-mu4e-context
+            :name "Outlook"
+            :match-func
+            (lambda (msg)
+              (when msg
+                (string-prefix-p "/outlook" (mu4e-message-field msg :maildir))))
+            :vars `((user-mail-address . ,(cdr (assoc 'outlook sakomacs-mail-accounts)))
+          	  (user-full-name . "Sako")
+          	  (mu4e-drafts-folder . "/outlook/Drafts")
+          	  (mu4e-sent-folder . "/outlook/Sent")
+          	  (mu4e-refile-folder . "/outlook/Inbox")
+          	  (mu4e-trash-folder . "/outlook/Deleted")
+        		  ;; todo stmpmail and compose signatures
+        		  ))
+           (make-mu4e-context
+            :name "Proton"
+            :match-func
+            (lambda (msg)
+              (when msg
+                (string-prefix-p "/protonmail" (mu4e-message-field msg :maildir))))
+            :vars `((user-mail-address . ,(cdr (assoc 'protonmail sakomacs-mail-accounts)))
+          	  (user-full-name . "Sako")
+          	  (mu4e-drafts-folder . "/protonmail/Drafts")
+          	  (mu4e-sent-folder . "/protonmail/Sent")
+          	  (mu4e-refile-folder . "/protonmail/Inbox")
+          	  (mu4e-trash-folder . "/protonmail/Trash"))
+        	  ;; todo stmpmail and compose signatures
+        	  )
+        	 (make-mu4e-context
+        	  :name "Gmail Personal 1"
+        	  :match-func
+        	  (lambda (msg)
+        	    (when msg
+        	      (string-prefix-p "/gmail1" (mu4e-message-field msg :maildir))))
+        	  :vars `((user-mail-address .  ,(cdr (assoc 'gmail-1 sakomacs-mail-accounts)))
+        		  (user-full-name . "Sako")
+        		  (mu4e-drafts-folder . "/gmail1/Drafts")
+        		  (mu4e-sent-folder . "/gmail1/Sent Mail")
+        		  (mu4e-refile-folder . "/gmail1/Inbox")
+        		  (mu4e-trash-folder . "gmail1/Trash")
+        		  ;; todo stmpmail and compose signatures
+        		  ))
+        	 (make-mu4e-context
+        	  :name "Second Personal Gmail"
+        	  :match-func
+        	  (lambda (msg)
+        	    (when msg
+        	      (string-prefix-p "/gmail2" (mu4e-message-field msg :maildir))))
+        	  :vars `((user-mail-address . ,(cdr (assoc 'gmail-2 sakomacs-mail-accounts)))
+        		  (user-full-name . "Sako")
+        		  (mu4e-drafts-folder . "/gmail2/Drafts")
+        		  (mu4e-sent-folder . "/gmail2/Sent Mail")
+        		  (mu4e-refile-folder . "/gmail2/Inbox")
+        		  (mu4e-trash-folder . "gmail2/Trash")
+        		  ))
       	 (make-mu4e-context
-      	  :name "Outlook"
-      	  :match-func
-      	  (lambda (msg)
-      	    (when msg
-      	      (string-prefix-p "/outlook" (mu4e-message-field msg :maildir))))
-      	  :vars `((user-mail-address . ,(cdr (assoc 'outlook sakomacs-mail-accounts)))
-      	          (user-full-name . "Sako")
-      		  (mu4e-drafts-folder . "/outlook/Drafts")
-      		  (mu4e-sent-folder . "/outlook/Sent")
-      		  (mu4e-refile-folder . "/outlook/Inbox")
-      		  (mu4e-trash-folder . "/outlook/Deleted")
-    		  ;; todo stmpmail and compose signatures
-    		  ))
-      	 (make-mu4e-context
-      	  :name "Proton"
-      	  :match-func
-      	  (lambda (msg)
-      	    (when msg
-      	      (string-prefix-p "/protonmail" (mu4e-message-field msg :maildir))))
-      	  :vars `((user-mail-address . ,(cdr (assoc 'protonmail sakomacs-mail-accounts)))
-      	          (user-full-name . "Sako")
-      		  (mu4e-drafts-folder . "/protonmail/Drafts")
-      		  (mu4e-sent-folder . "/protonmail/Sent")
-      		  (mu4e-refile-folder . "/protonmail/Inbox")
-      		  (mu4e-trash-folder . "/protonmail/Trash"))
-    	  ;; todo stmpmail and compose signatures
-    	  )
-    	 (make-mu4e-context
-    	  :name "Gmail Personal 1"
-    	  :match-func
-    	  (lambda (msg)
-    	    (when msg
-    	      (string-prefix-p "/gmail1" (mu4e-message-field msg :maildir))))
-    	  :vars `((user-mail-address .  ,(cdr (assoc 'gmail-1 sakomacs-mail-accounts)))
-    		  (user-full-name . "Sako")
-    		  (mu4e-drafts-folder . "/gmail1/Drafts")
-    		  (mu4e-sent-folder . "/gmail1/Sent Mail")
-    		  (mu4e-refile-folder . "/gmail1/Inbox")
-    		  (mu4e-trash-folder . "gmail1/Trash")
-    		  ;; todo stmpmail and compose signatures
-    		  ))
-    	 (make-mu4e-context
-    	  :name "Second Personal Gmail"
-    	  :match-func
-    	  (lambda (msg)
-    	    (when msg
-    	      (string-prefix-p "/gmail2" (mu4e-message-field msg :maildir))))
-    	  :vars `((user-mail-address . ,(cdr (assoc 'gmail-2 sakomacs-mail-accounts)))
-    		  (user-full-name . "Sako")
-    		  (mu4e-drafts-folder . "/gmail2/Drafts")
-    		  (mu4e-sent-folder . "/gmail2/Sent Mail")
-    		  (mu4e-refile-folder . "/gmail2/Inbox")
-    		  (mu4e-trash-folder . "gmail2/Trash")
-    		  ))
-  	 (make-mu4e-context
-    	  :name "li"
-    	  :match-func
-    	  (lambda (msg)
-    	    (when msg
-    	      (string-prefix-p "/li" (mu4e-message-field msg :maildir))))
-    	  :vars `((user-mail-address . ,(cdr (assoc 'li sakomacs-mail-accounts)))
-    		  (user-full-name . "user")
-    		  (mu4e-sent-folder . "/li/Sent Mail")
-    		  (mu4e-refile-folder . "/li/INBOX")
-    		  (mu4e-trash-folder . "/li/Trash")
-    		  ))
-    	 
-      	 ))
+        	  :name "li"
+        	  :match-func
+        	  (lambda (msg)
+        	    (when msg
+        	      (string-prefix-p "/li" (mu4e-message-field msg :maildir))))
+        	  :vars `((user-mail-address . ,(cdr (assoc 'li sakomacs-mail-accounts)))
+        		  (user-full-name . "user")
+        		  (mu4e-sent-folder . "/li/Sent Mail")
+        		  (mu4e-refile-folder . "/li/INBOX")
+        		  (mu4e-trash-folder . "/li/Trash")
+        		  ))
+        	 
+           ))
     )
 
   (use-package mu4e-alert
