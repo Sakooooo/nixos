@@ -692,7 +692,7 @@ this should be useful later
 ** VTerm
 #+begin_src emacs-lisp
   (use-package vterm
-    :bind ("C-`" . vterm)
+    :bind ("F1" . vterm)
     :commands vterm
     :config
     (setq vterm-max-scrollback 10000))
