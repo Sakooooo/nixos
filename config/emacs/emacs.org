@@ -1137,29 +1137,45 @@ Will configure later, (use elfeed protocol ok ty)
 Ill set this up later as well
 #+begin_src emacs-lisp
   (use-package ement
-  :commands ement-connect
-  :custom
-  (ement-notify-dbus-p nil) ;; Turn off notifications
-  (ement-sessions-file "~/.cache/ement.el")
-  (ement-room-list-default-keys
-   '(;; Group all invitations (this group will appear first since the rooms are
-     ;; already sorted first).
-     ((membership :status 'invite))
+    :commands (ement-connect)
+    :custom
+    (ement-room-avatars t)
+    (ement-room-images t)
+    (ement-room-compose-method 'compose-buffer)
+    (ement-room-compose-buffer-window-auto-height-min 10)
+    (ement-save-sessions t)
+    (ement-notify-dbus-p nil) ;; Turn off notifications
+    (ement-sessions-file "~/.cache/ement.el")
+    (ement-room-list-default-keys
+     '(;; Group all invitations (this group will appear first since the rooms are
+       ;; already sorted first).
+       ((membership :status 'invite))
 
-     ;; Group all left rooms (this group will appear last, because the rooms are already
-     ;; sorted last).
-     ((membership :status 'leave))
+       ;; Group all left rooms (this group will appear last, because the rooms are already
+       ;; sorted last).
+       ((membership :status 'leave))
 
-     ;; Group all favorite rooms, which are already sorted first.
-     (favourite)
+       ;; Group all favorite rooms, which are already sorted first.
+       (favourite)
 
-     ;; Group all low-priority rooms, which are already sorted last.
-     (low-priority)
+       ;; Group all low-priority rooms, which are already sorted last.
+       (low-priority)
 
-     ;; Group other rooms which are unread.
-     (unread)
-     (people)
-     freshness)))
+       ;; Group other rooms which are unread.
+       (unread)
+       (people)
+       freshness))
+    :config
+    (require 'ement-tabulated-room-list)
+    (add-to-list 'display-buffer-alist
+                 (cons "^\\*Ement compose: "
+                       (cons 'display-buffer-below-selected
+                             '((window-height . 6)
+                               (inhibit-same-window . t)
+                               (reusable-frames . nil)))))
+    (add-to-list 'display-buffer-alist
+                 '("\\*Ement image:" (display-buffer-reuse-window)
+  		 (reusable-frames . nil))))
 #+end_src
 ** Subsonic
 #+begin_src emacs-lisp
