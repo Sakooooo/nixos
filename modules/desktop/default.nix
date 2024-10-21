@@ -3,10 +3,8 @@
     # window managers
     ./awesome
     ./bspwm
-    ./dwm
     ./hyprland
     ./xmonad
-    ./qtile
     ./exwm
     ./i3
     # desktop environ men t s s  s s

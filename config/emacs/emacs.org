@@ -6,16 +6,14 @@
 #+end_src
 * Package Setup 
 #+begin_src emacs-lisp
-    (message "Reached package setup")
+  (message "Reached package setup")
 
-    (require `package)
+  (require `package)
 
   (setq package-archives `(("mepla" . "https://melpa.org/packages/")
                            ("org" . "https://orgmode.org/elpa/")
                            ("elpa" . "https://elpa.gnu.org/packages/")))
-
   (package-initialize)
-
   (unless (package-installed-p 'use-package)
     (progn
       (package-refresh-contents)
@@ -201,9 +199,29 @@ kept-old-versions 5)
 #+end_src
 ** Appearance
 #+begin_src emacs-lisp
-  (use-package doom-themes
+  ;; (use-package doom-themes
+  ;;   :config
+  ;;   (load-theme 'doom-sourcerer t))
+
+  ;; (use-package grandshell-theme
+  ;;   :config
+  ;;   (load-theme 'grandshell t))
+
+  ;; (use-package ef-themes
+  ;;   :config
+  ;;   (load-theme 'ef-dark t))
+
+  ;; (use-package kanagawa-themes
+  ;; :config
+  ;; (load-theme 'kanagawa-dragon t))
+
+  ;; (use-package klere-theme
+  ;;   :config
+  ;;   (load-theme 'klere t))
+
+  (use-package kaolin-themes
     :config
-    (load-theme 'doom-sourcerer t))
+    (load-theme 'kaolin-shiva t))
 
   ;; emacsclient things
   (setq frame-resize-pixelwise t)
@@ -239,14 +257,14 @@ kept-old-versions 5)
 #+end_src
 ** Modeline
 #+begin_src emacs-lisp
-  (use-package nerd-icons
-    :custom
-    (nerd-icons-font-family "JetBrainsMono NF"))
-  (use-package doom-modeline
-    :custom
-    (doom-modeline-height 35)
-    (doom-modeline-modal-modern-icon nil)
-    :init (doom-modeline-mode 1))
+  ;; (use-package nerd-icons
+  ;;   :custom
+  ;;   (nerd-icons-font-family "JetBrainsMono NF"))
+  ;; (use-package doom-modeline
+  ;;   :custom
+  ;;   (doom-modeline-height 35)
+  ;;   (doom-modeline-modal-modern-icon nil)
+  ;;   :init (doom-modeline-mode 1))
 #+end_src
 ** Editor Configuration
 #+begin_src emacs-lisp
@@ -321,141 +339,141 @@ kept-old-versions 5)
 #+end_src
 ** General
 #+begin_src emacs-lisp
-  (use-package general
-    :config
-    (general-create-definer sk/leader-keys
-      :keymaps '(normal insert visual emacs)
-      :prefix "SPC"
-      :global-prefix "C-SPC")
+  ;; (use-package general
+  ;;   :config
+  ;;   (general-create-definer sk/leader-keys
+  ;;     :keymaps '(normal insert visual emacs)
+  ;;     :prefix "SPC"
+  ;;     :global-prefix "C-SPC")
 
-    (sk/leader-keys
-     ;; code
-     "c" '(:ignore c :which-key "code")
-     "cc" '(compile :which-key "compile")
-     "cC" '(recompile :which-key "compile")
-     "cX" '(lsp-treeemacs-errors-list :which-ley "list errors")
-     ;; toggles
-     "t" '(:ignore t :which-key "toggles")
-     "tt" '(counsel-load-theme :which-key "choose theme")
-     "ts" '(hydra-text-scale/body :which-key "scale text")
-     ;; search
-     "s" '(:ignore s :which-key "search")
-     "sb" '(swiper :which-key "search buffer")
-     ;; insert
-     "i" '(:ignore i :which-key "insert")
-     "ie" '(emoji-search :which-key "Emoji")
-     ;; project
-     "p" '(:ignore p :which-key "projects")
-     "pp" '(project-switch-project :which-key "open project")
-     "pk" '(project-kill-buffers :which-key "close project")
-     "pt" '(magit-todos-list :which-key "list project todos")
-     "po" '(project-find-file :which-key "find file")
-     "pc" '(project-compile :which-key "compile project")
-     ;; open
-     "o" '(:ignore o :which-key "open")
-     "op" '(treemacs :which-key "treemacs")
-     "oP" '(treemacs-find-file :which-key "treemacs find file")
-     "oe" '(eshell :which-key "eshell")
-     "ov" '(vterm :which-key "vterm")
-     "or" '(elfeed :which-key "rss")
-     ;; notes
-     "n" '(:ignore o :which-key "notes")
-     "na" '(org-agenda :which-key "agenda")
-     "nf" '(org-roam-node-find :which-key "find node")
-     "nc" '(org-capture :which-key "capture")
-     "np" '(org-pomodoro :which-key "pomodoro")
-     "ne" '(:ignore ne :which-key "export")
-     "nep" '(org-latex-export-to-pdf :which-key "pdf")
-     ;; quit
-     "q" '(:ignore q :which-key "quit")
-     "qq" '(delete-frame :which-key "close emacs")
-     "qK" '(kill-emacs :which-key "quit emacs")
-     ;; git
-     "g" '(:ignore g :which-key "git")
-     "gs" '(magit-status :which-key "status")
-     "gc" '(:ignore gc :which-key "create")
-     "gcr" '(magit-init :which-key "init repo")
-     "gcR" '(magit-clone :which-key "clone repo")
-     "gcc" '(magit-commit-create :which-key "commit")
-     "gci" '(forge-create-issue :which-key "issue")
-     "gcp" '(forge-create-pullreq :which-key "pull request")
-     ;; mail
-     "m" '(mu4e :which-key "mu4e")))
+  ;;   (sk/leader-keys
+  ;;    ;; code
+  ;;    "c" '(:ignore c :which-key "code")
+  ;;    "cc" '(compile :which-key "compile")
+  ;;    "cC" '(recompile :which-key "compile")
+  ;;    "cX" '(lsp-treeemacs-errors-list :which-ley "list errors")
+  ;;    ;; toggles
+  ;;    "t" '(:ignore t :which-key "toggles")
+  ;;    "tt" '(counsel-load-theme :which-key "choose theme")
+  ;;    "ts" '(hydra-text-scale/body :which-key "scale text")
+  ;;    ;; search
+  ;;    "s" '(:ignore s :which-key "search")
+  ;;    "sb" '(swiper :which-key "search buffer")
+  ;;    ;; insert
+  ;;    "i" '(:ignore i :which-key "insert")
+  ;;    "ie" '(emoji-search :which-key "Emoji")
+  ;;    ;; project
+  ;;    "p" '(:ignore p :which-key "projects")
+  ;;    "pp" '(project-switch-project :which-key "open project")
+  ;;    "pk" '(project-kill-buffers :which-key "close project")
+  ;;    "pt" '(magit-todos-list :which-key "list project todos")
+  ;;    "po" '(project-find-file :which-key "find file")
+  ;;    "pc" '(project-compile :which-key "compile project")
+  ;;    ;; open
+  ;;    "o" '(:ignore o :which-key "open")
+  ;;    "op" '(treemacs :which-key "treemacs")
+  ;;    "oP" '(treemacs-find-file :which-key "treemacs find file")
+  ;;    "oe" '(eshell :which-key "eshell")
+  ;;    "ov" '(vterm :which-key "vterm")
+  ;;    "or" '(elfeed :which-key "rss")
+  ;;    ;; notes
+  ;;    "n" '(:ignore o :which-key "notes")
+  ;;    "na" '(org-agenda :which-key "agenda")
+  ;;    "nf" '(org-roam-node-find :which-key "find node")
+  ;;    "nc" '(org-capture :which-key "capture")
+  ;;    "np" '(org-pomodoro :which-key "pomodoro")
+  ;;    "ne" '(:ignore ne :which-key "export")
+  ;;    "nep" '(org-latex-export-to-pdf :which-key "pdf")
+  ;;    ;; quit
+  ;;    "q" '(:ignore q :which-key "quit")
+  ;;    "qq" '(delete-frame :which-key "close emacs")
+  ;;    "qK" '(kill-emacs :which-key "quit emacs")
+  ;;    ;; git
+  ;;    "g" '(:ignore g :which-key "git")
+  ;;    "gs" '(magit-status :which-key "status")
+  ;;    "gc" '(:ignore gc :which-key "create")
+  ;;    "gcr" '(magit-init :which-key "init repo")
+  ;;    "gcR" '(magit-clone :which-key "clone repo")
+  ;;    "gcc" '(magit-commit-create :which-key "commit")
+  ;;    "gci" '(forge-create-issue :which-key "issue")
+  ;;    "gcp" '(forge-create-pullreq :which-key "pull request")
+  ;;    ;; mail
+  ;;    "m" '(mu4e :which-key "mu4e")))
 
 #+end_src
 ** Evil
 #+begin_src emacs-lisp
 
-  (use-package evil
-    :init
-    ;; Pre-load configuration
-    (setq evil-want-integration t)
-    (setq evil-want-keybinding nil)
-    (setq evil-want-C-u-scroll t)
-    (setq evil-want-C-i-jump nil)
-    (setq evil-respect-visual-line-mode t)
-    (setq evil-undo-system 'undo-tree)
-    :config
-    (evil-mode 1)
+  ;; (use-package evil
+  ;;   :init
+  ;;   ;; Pre-load configuration
+  ;;   (setq evil-want-integration t)
+  ;;   (setq evil-want-keybinding nil)
+  ;;   (setq evil-want-C-u-scroll t)
+  ;;   (setq evil-want-C-i-jump nil)
+  ;;   (setq evil-respect-visual-line-mode t)
+  ;;   (setq evil-undo-system 'undo-tree)
+  ;;   :config
+  ;;   (evil-mode 1)
 
-     ;; use emacs state for these mods
-    (dolist (mode '(custom-mode
-                    eshell-mode
-                    git-rebase-mode
-                    erc-mode
-                    circe-server-mode
-                    circe-chat-mode
-                    circe-query-mode
-                    term-mode))
-      (add-to-list 'evil-emacs-state-modes mode))
+  ;;    ;; use emacs state for these mods
+  ;;   (dolist (mode '(custom-mode
+  ;;                   eshell-mode
+  ;;                   git-rebase-mode
+  ;;                   erc-mode
+  ;;                   circe-server-mode
+  ;;                   circe-chat-mode
+  ;;                   circe-query-mode
+  ;;                   term-mode))
+  ;;     (add-to-list 'evil-emacs-state-modes mode))
 
-     (defun sk/dont-arrow-me-bro ()
-        (interactive)
-        (message "STOP USING THE ARROW KEYS!!!!!!!!!!!!!!!!!!!!!!!"))
+  ;;    (defun sk/dont-arrow-me-bro ()
+  ;;       (interactive)
+  ;;       (message "STOP USING THE ARROW KEYS!!!!!!!!!!!!!!!!!!!!!!!"))
 
-      ;; Disable arrow keys in normal and visual modes
-      (define-key evil-normal-state-map (kbd "<left>") 'sk/dont-arrow-me-bro)
-      (define-key evil-normal-state-map (kbd "<right>") 'sk/dont-arrow-me-bro)
-      (define-key evil-normal-state-map (kbd "<down>") 'sk/dont-arrow-me-bro)
-      (define-key evil-normal-state-map (kbd "<up>") 'sk/dont-arrow-me-bro)
-      (evil-global-set-key 'motion (kbd "<left>") 'sk/dont-arrow-me-bro)
-      (evil-global-set-key 'motion (kbd "<right>") 'sk/dont-arrow-me-bro)
-      (evil-global-set-key 'motion (kbd "<down>") 'sk/dont-arrow-me-bro)
-      (evil-global-set-key 'motion (kbd "<up>") 'sk/dont-arrow-me-bro)
+  ;;     ;; Disable arrow keys in normal and visual modes
+  ;;     (define-key evil-normal-state-map (kbd "<left>") 'sk/dont-arrow-me-bro)
+  ;;     (define-key evil-normal-state-map (kbd "<right>") 'sk/dont-arrow-me-bro)
+  ;;     (define-key evil-normal-state-map (kbd "<down>") 'sk/dont-arrow-me-bro)
+  ;;     (define-key evil-normal-state-map (kbd "<up>") 'sk/dont-arrow-me-bro)
+  ;;     (evil-global-set-key 'motion (kbd "<left>") 'sk/dont-arrow-me-bro)
+  ;;     (evil-global-set-key 'motion (kbd "<right>") 'sk/dont-arrow-me-bro)
+  ;;     (evil-global-set-key 'motion (kbd "<down>") 'sk/dont-arrow-me-bro)
+  ;;     (evil-global-set-key 'motion (kbd "<up>") 'sk/dont-arrow-me-bro)
 
-     (evil-set-initial-state 'messages-buffer-mode 'normal) 
-     (evil-set-initial-state 'dashboard-mode 'normal))
+  ;;    (evil-set-initial-state 'messages-buffer-mode 'normal) 
+  ;;    (evil-set-initial-state 'dashboard-mode 'normal))
 
-  (use-package evil-collection
-    :after evil
-    :custom
-    (evil-collection-outline-bind-tab-p nil)
-    :config
-    ;; Is this a bug in evil-collection?
-    (setq evil-collection-company-use-tng nil)
-    (delete 'lispy evil-collection-mode-list)
-    (delete 'org-present evil-collection-mode-list)
-    ;; (delete 'mu4e evil-collection-mode-list)
-    ;; (delete 'mu4e-conversation evil-collection-mode-list)
-    (evil-collection-init))
+  ;; (use-package evil-collection
+  ;;   :after evil
+  ;;   :custom
+  ;;   (evil-collection-outline-bind-tab-p nil)
+  ;;   :config
+  ;;   ;; Is this a bug in evil-collection?
+  ;;   (setq evil-collection-company-use-tng nil)
+  ;;   (delete 'lispy evil-collection-mode-list)
+  ;;   (delete 'org-present evil-collection-mode-list)
+  ;;   ;; (delete 'mu4e evil-collection-mode-list)
+  ;;   ;; (delete 'mu4e-conversation evil-collection-mode-list)
+  ;;   (evil-collection-init))
 
-  (use-package evil-org
-    :after (evil org)
-    :hook ((org-mode . evil-org-mode)
-           (org-agenda-mode . evil-org-mode))
-    :config
-    (require 'evil-org-agenda)
-    (evil-org-set-key-theme '(navigation todo insert textobjects additional))
-    (evil-org-agenda-set-keys))
+  ;; (use-package evil-org
+  ;;   :after (evil org)
+  ;;   :hook ((org-mode . evil-org-mode)
+  ;;          (org-agenda-mode . evil-org-mode))
+  ;;   :config
+  ;;   (require 'evil-org-agenda)
+  ;;   (evil-org-set-key-theme '(navigation todo insert textobjects additional))
+  ;;   (evil-org-agenda-set-keys))
 
-  (use-package evil-nerd-commenter
-  :bind ("M-/" . evilnc-comment-or-uncomment-lines))
+  ;; (use-package evil-nerd-commenter
+  ;; :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 
-  (with-eval-after-load 'org
-    (evil-define-key '(normal insert visual) org-mode-map (kbd "C-j") 'org-next-visible-heading)
-    (evil-define-key '(normal insert visual) org-mode-map (kbd "C-k") 'org-previous-visible-heading)
-    (evil-define-key '(normal insert visual) org-mode-map (kbd "M-j") 'org-metadown)
-    (evil-define-key '(normal insert visual) org-mode-map (kbd "M-k") 'org-metaup))
+  ;; (with-eval-after-load 'org
+  ;;   (evil-define-key '(normal insert visual) org-mode-map (kbd "C-j") 'org-next-visible-heading)
+  ;;   (evil-define-key '(normal insert visual) org-mode-map (kbd "C-k") 'org-previous-visible-heading)
+  ;;   (evil-define-key '(normal insert visual) org-mode-map (kbd "M-j") 'org-metadown)
+  ;;   (evil-define-key '(normal insert visual) org-mode-map (kbd "M-k") 'org-metaup))
 #+end_src
 * Interface
 #+begin_src emacs-lisp
@@ -588,8 +606,8 @@ kept-old-versions 5)
       :init
       (setq initial-buffer-choice 'dashboard-open) 
       ;; Set the title
-      (setq dashboard-banner-logo-title "GET ME OUT GET ME OUT GET ME OUT")
-      (setq dashboard-image-banner-max-height 200)
+      (setq dashboard-banner-logo-title "Welcome to Emacs!")
+      (setq dashboard-image-banner-max-height 100)
       ;; Set the banner
       (setq dashboard-startup-banner '"~/.emacs.d/icon.png")
       (setq dashboard-center-content t)
@@ -601,9 +619,7 @@ kept-old-versions 5)
       (setq dashboard-icon-type 'nerd-icons) ; use `nerd-icons' package
 
       ;; list stuff
-      (setq dashboard-items '((recents   . 3)
-                          (projects  . 3)
-                          (agenda    . 3)))
+      (setq dashboard-items '((projects  . 3)))
       :config
       (dashboard-setup-startup-hook))
 #+end_src
@@ -616,8 +632,9 @@ kept-old-versions 5)
   (unless (eq system-type 'windows-nt)
     (use-package pinentry
       :config
-      (setq epa-pinentry-mode 'loopback))
-    (pinentry-start))
+      (setq epa-pinentry-mode 'loopback)
+      (pinentry-start))
+    )
 #+end_src
 ** Password-Store
 #+begin_src emacs-lisp
@@ -628,9 +645,9 @@ kept-old-versions 5)
     :config
     (setq password-store-password-length 12))
 
-  (use-package auth-source-pass
-    :config
-    (auth-source-pass-enable))
+  (use-package pass)
+
+  (auth-source-pass-enable)
 #+end_src
 ** OAuth2
 this should be useful later
@@ -675,6 +692,7 @@ this should be useful later
 ** VTerm
 #+begin_src emacs-lisp
   (use-package vterm
+    :bind ("<f1>" . vterm)
     :commands vterm
     :config
     (setq vterm-max-scrollback 10000))
@@ -773,12 +791,6 @@ this should be useful later
 (use-package flycheck
   :config
   (global-flycheck-mode +1))
-#+end_src
-** Docker
-#+begin_src emacs-lisp
-(use-package docker
-  :ensure t
-  :bind ("C-c d" . docker))
 #+end_src
 ** Treemacs
 #+begin_src emacs-lisp
@@ -884,9 +896,26 @@ this should be useful later
 ** Direnv
 #+begin_src emacs-lisp
   (when (eq system-type 'gnu/linux)
-    (use-package direnv
-      :config
-      (direnv-mode)))
+    (use-package envrc
+      :hook (after-init . envrc-global-mode)))
+#+end_src
+** Color Picker
+#+begin_src emacs-lisp
+  (use-package zenity-color-picker)
+#+end_src
+** editorconfig
+people will probably get mad at me if i dont have this and i try to contribute
+#+begin_src emacs-lisp
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
+#+end_src
+** wakatime
+the feds are watching
+#+begin_src emacs-lisp
+  (use-package wakatime-mode
+    :config
+    (global-wakatime-mode))
 #+end_src
 * Languages
 #+begin_src emacs-lisp
@@ -1019,16 +1048,6 @@ this should be useful later
 #+end_src
 ** Rust
 #+begin_src emacs-lisp
-  ;; (use-package rust-mode
-  ;;   :hook (rust-mode . eglot-ensure)
-  ;;   :mode "\\.rs\\'")
-
-  ;; (use-package cargo-mode
-  ;;   :hook
-  ;;   (rust-mode . cargo-minor-mode)
-  ;;   :config
-  ;;   (setq compilation-scroll-output t))
-
   (use-package rustic
     :ensure t
     :config
@@ -1055,11 +1074,13 @@ this should be useful later
 #+end_src
 ** Elcord (Discord rich precense)
 #+begin_src emacs-lisp
-(use-package elcord
-  :init
-  (setq elcord-display-buffer-details nil)
-  (setq elcord-use-major-mode-as-main-icon t)
-  )
+  (use-package elcord
+    :init
+    (setq elcord-display-buffer-details nil)
+    (setq elcord-use-major-mode-as-main-icon t)
+    (setq elcord-quiet t)
+    :config
+    (elcord-mode))
 #+end_src
 ** Telegram
 does NOT WORK ON WINDOWS
@@ -1067,12 +1088,7 @@ does NOT WORK ON WINDOWS
 (unless (eq system-type 'windows-nt)
   (use-package telega))
 #+end_src
-** IRC
-Will configure later
-#+begin_src emacs-lisp
-(use-package rcirc)
-#+end_src
-** RSS
+** elfeed (rss) 
 Will configure later, (use elfeed protocol ok ty)
 #+begin_src emacs-lisp
     (use-package elfeed
@@ -1093,6 +1109,29 @@ Will configure later, (use elfeed protocol ok ty)
       ;; enable elfeed-protocol
       (setq elfeed-protocol-enabled-protocols '(fever))
       (elfeed-protocol-enable))
+#+end_src
+** IRC (erc)
+#+begin_src emacs-lisp
+  (require 'erc)
+
+  (setq erc-server "znc.sako.box")
+  (setq erc-port "7000")
+  (setq erc-prompt "(^w^)->")
+
+  (defun sakomacs/erc-znc-detach-channel ()
+      (when (erc-server-process-alive)
+      (let ((tgt (erc-default-target)))
+        (erc-server-send (format "DETACH %s" tgt)
+  		       nil tgt))))
+
+  (add-hook 'erc-kill-channel-hook (sakomacs/erc-znc-detach-channel))
+
+  (defun sakomacs/begin-irc ()
+    (interactive)
+    (erc-tls :server "znc.sako.box" :port "7000" :nick "sako" :password (concat "sako@emacs/Libera:" (password-store-get "SelfHosted/ZNC"))))
+
+  ;; (advice-add 'irc :override
+  ;; 	    (sakomacs/begin-irc))
 #+end_src
 ** Matrix
 Ill set this up later as well
@@ -1151,6 +1190,8 @@ its over the machines took over guys can i get my likes now
 ** mu4e
 GNU patch review metho dor sometihng idk
 #+begin_src emacs-lisp
+
+  (use-package auth-source-xoauth2)
   (use-package mu4e
     :config
 
@@ -1158,56 +1199,125 @@ GNU patch review metho dor sometihng idk
     (setq mu4e-change-filenames-when-moving t)
 
     ;; sending mail
-    (setq message-send-mail-function 'smtpmail-send-it)
+    ;;(setq message-send-mail-function 'smtpmail-send-it)
+    ;;(add-to-list 'smtpmail-auth-supported 'xoauth2)
+    (setq send-mail-function 'sendmail-send-it)
+    (setq message-send-mail-function 'sendmail-sent-it)
+    (setq sendmail-program (executable-find "msmtp"))
 
-    (setq mu4e-update-interval (* 10 60))
-    (setq mu4e-get-mail-command "mbsync -a")
-    (setq mu4e-maildir "~/Mail")
-
-    (setq outlook-mail-address
-    	(string-trim (shell-command-to-string "pass mail | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")))
-
-    (defvar proton-mail-address nil)
-
-    (defun get-proton-mail-address-from-pass (command)
-      "Execute COMMAND, concatenate its output with 'hello', and store it in my-greeting."
-      (let ((output (shell-command-to-string command)))
-        ;; Trim whitespace from the output
-        (setq output (string-trim output))
-        ;; Concatenate 'hello' with the command output
-        (setq my-greeting (concat "@proton.me" output))))
-
-    (get-proton-mail-address-from-pass "pass Proton\ Account | awk 'BEGIN {ORS=\"\"} FNR == 2{gsub(\"login: \", \"\"); gsub(/ /, \"\"); print}'")
+    ;; select the right sender email from the context.
+    (setq message-sendmail-envelope-from 'header)
     
+    (setq mu4e-update-interval (* 10 60))
+    (setq mu4e-get-mail-command (format "INSIDE_EMACS=%s offlineimap" emacs-version)
+    	epa-pinentry-mode 'ask)
+    (setq mu4e-maildir "~/.mail")
+    
+    ;; for mail accounts
+    (setq sakomacs-mail-accounts (json-read-file "~/.mail/accounts.json"))
+
+    (defun sakomacs/set-msmtp-account ()
+      (if (message-mail-p)
+  	(save-excursion
+            (let*
+                ((from (save-restriction
+                         (message-narrow-to-headers)
+                         (message-fetch-field "from")))
+                 (account
+  		(cond
+  		 ((string-match (cdr (assoc 'gmail-1 sakomacs-mail-accounts)) from) "gmail-1")
+  		 ((string-match (cdr (assoc 'gmail-2 sakomacs-mail-accounts)) from) "gmail-2")
+  		 ((string-match (cdr (assoc 'protonmail sakomacs-mail-accounts)) from) "protonmail")
+  		 ((string-match (cdr (assoc 'li sakomacs-mail-accounts)) from) "li")
+  		 ((string-match (cdr (assoc 'outlook sakomacs-mail-accounts)) from)))))
+              (setq message-sendmail-extra-arguments (list '"-a" account))))))
+
+    (add-hook 'message-send-mail-hook 'sakomacs/set-msmtp-account)
+    
+    ;; kill message buffers
+    (setq message-kill-buffer-on-exit t)
+
+    (setq mu4e-context-policy 'pick-first)
+    (setq mu4e-compose-context-policy 'always-ask)
     (setq mu4e-contexts
-    	(list
-    	 ;; outlook
-    	 (make-mu4e-context
-    	  :name "Outlook"
-    	  :match-func
-    	  (lambda (msg)
-    	    (when msg
-    	      (string-prefix-p "/Outlook" (mu4e-message-field msg :maildir))))
-    	  :vars `((user-mail-address . ,outlook-mail-address)
-    	          (user-full-name . "Sako")
-    		  (mu4e-drafts-folder . "/Outlook/Drafts")
-    		  (mu4e-sent-folder . "/Outlook/Sent")
-    		  (mu4e-refile-folder . "/Outlook/Inbox")
-    		  (mu4e-trash-folder . "/Outlook/Deleted")))
-    	 (make-mu4e-context
-    	  :name "Proton"
-    	  :match-func
-    	  (lambda (msg)
-    	    (when msg
-    	      (string-prefix-p "/Proton" (mu4e-message-field msg :maildir))))
-    	  :vars `((user-mail-address . ,proton-mail-address)
-    	          (user-full-name . "Sako")
-    		  (mu4e-drafts-folder . "/Proton/Drafts")
-    		  (mu4e-sent-folder . "/Proton/Sent")
-    		  (mu4e-refile-folder . "/Proton/Inbox")
-    		  (mu4e-trash-folder . "/Proton/Trash")))
-    	 ))
+          (list
+           ;; outlook
+           (make-mu4e-context
+            :name "Outlook"
+            :match-func
+            (lambda (msg)
+              (when msg
+                (string-prefix-p "/outlook" (mu4e-message-field msg :maildir))))
+            :vars `((user-mail-address . ,(cdr (assoc 'outlook sakomacs-mail-accounts)))
+          	  (user-full-name . "Sako")
+          	  (mu4e-drafts-folder . "/outlook/Drafts")
+          	  (mu4e-sent-folder . "/outlook/Sent")
+          	  (mu4e-refile-folder . "/outlook/Inbox")
+          	  (mu4e-trash-folder . "/outlook/Deleted")
+        		  ;; todo stmpmail and compose signatures
+        		  ))
+           (make-mu4e-context
+            :name "Proton"
+            :match-func
+            (lambda (msg)
+              (when msg
+                (string-prefix-p "/protonmail" (mu4e-message-field msg :maildir))))
+            :vars `((user-mail-address . ,(cdr (assoc 'protonmail sakomacs-mail-accounts)))
+          	  (user-full-name . "Sako")
+          	  (mu4e-drafts-folder . "/protonmail/Drafts")
+          	  (mu4e-sent-folder . "/protonmail/Sent")
+          	  (mu4e-refile-folder . "/protonmail/Inbox")
+          	  (mu4e-trash-folder . "/protonmail/Trash"))
+        	  ;; todo stmpmail and compose signatures
+        	  )
+        	 (make-mu4e-context
+        	  :name "Gmail Personal 1"
+        	  :match-func
+        	  (lambda (msg)
+        	    (when msg
+        	      (string-prefix-p "/gmail1" (mu4e-message-field msg :maildir))))
+        	  :vars `((user-mail-address .  ,(cdr (assoc 'gmail-1 sakomacs-mail-accounts)))
+        		  (user-full-name . "Sako")
+        		  (mu4e-drafts-folder . "/gmail1/Drafts")
+        		  (mu4e-sent-folder . "/gmail1/Sent Mail")
+        		  (mu4e-refile-folder . "/gmail1/Inbox")
+        		  (mu4e-trash-folder . "gmail1/Trash")
+        		  ;; todo stmpmail and compose signatures
+        		  ))
+        	 (make-mu4e-context
+        	  :name "Second Personal Gmail"
+        	  :match-func
+        	  (lambda (msg)
+        	    (when msg
+        	      (string-prefix-p "/gmail2" (mu4e-message-field msg :maildir))))
+        	  :vars `((user-mail-address . ,(cdr (assoc 'gmail-2 sakomacs-mail-accounts)))
+        		  (user-full-name . "Sako")
+        		  (mu4e-drafts-folder . "/gmail2/Drafts")
+        		  (mu4e-sent-folder . "/gmail2/Sent Mail")
+        		  (mu4e-refile-folder . "/gmail2/Inbox")
+        		  (mu4e-trash-folder . "gmail2/Trash")
+        		  ))
+      	 (make-mu4e-context
+        	  :name "li"
+        	  :match-func
+        	  (lambda (msg)
+        	    (when msg
+        	      (string-prefix-p "/li" (mu4e-message-field msg :maildir))))
+        	  :vars `((user-mail-address . ,(cdr (assoc 'li sakomacs-mail-accounts)))
+        		  (user-full-name . "user")
+        		  (mu4e-sent-folder . "/li/Sent Mail")
+        		  (mu4e-refile-folder . "/li/INBOX")
+        		  (mu4e-trash-folder . "/li/Trash")
+        		  ))
+        	 
+           ))
     )
+
+  (use-package mu4e-alert
+    :after mu4e
+    :config
+    (setq mu4e-alert-notify-repeated-mails nil)
+    (mu4e-alert-enable-notifications))
 #+end_src
 * Org
 #+begin_src emacs-lisp
@@ -1250,6 +1360,10 @@ GNU patch review metho dor sometihng idk
   (setq org-hide-leading-stars t)
   (setq org-hide-emphasis-markers nil)
 
+  ;; org latex pdf options
+  (setq org-latex-compiler "lualatex")
+  (setq org-preview-latex-default-process 'dvisvgm)
+
   ;; templates
   (require 'org-tempo)
 
@@ -1288,9 +1402,11 @@ GNU patch review metho dor sometihng idk
 #+end_src
 ** Org-wild-notifier
 #+begin_src emacs-lisp
-(use-package org-wild-notifier
-  :config
-  (org-wild-notifier-mode))
+  (use-package org-wild-notifier
+    :config
+    (setq alert-default-style 'libnotify)
+    (setq org-wild-notifier-alert-time 30)
+    (org-wild-notifier-mode))
 #+end_src
 ** Org-Pomodoro
 #+begin_src emacs-lisp

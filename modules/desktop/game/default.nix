@@ -1,10 +1,4 @@
 {
-  imports = [
-    ./steam
-    ./lutris
-    ./wine
-    ./grapejuice
-    ./tetrio
-    ./prismlauncher
-  ];
+  imports =
+    [ ./steam ./lutris ./wine ./grapejuice ./tetrio ./prismlauncher ./osu ];
 }

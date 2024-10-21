@@ -1,20 +1,12 @@
-{
-  config,
-  inputs,
-  outputs,
-  pkgs,
-  lib,
-  home-manager,
-  ...
-}: {
+{ config, inputs, outputs, pkgs, lib, home-manager, ... }: {
   imports = [
     # home manager
     inputs.home-manager.nixosModules.default
-    # modules
+    inputs.agenix.nixosModules.default
+    # TODO:: GET RID OF THIS PLEASE
+    # my modules modules
     # import for each folder
-    # modules/desktop IMPORT
-    # modules/desktop/example DO NOT IMPORT,
-    # add entry to module's default.nix
+    # add entry to module category's default.nix
     outputs.nixosModules.desktop
     outputs.nixosModules.shell
     outputs.nixosModules.hardware
@@ -28,7 +20,7 @@
   # nix settings that should 100% be global
   #nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [ "nix-command" "flakes" ];
     substituters = [
       # garnix
       "https://cache.garnix.io"
@@ -67,7 +59,7 @@
       efiSysMountPoint = "/boot/efi";
     };
     grub = {
-      devices = ["nodev"];
+      devices = [ "nodev" ];
       efiSupport = true;
       enable = true;
       useOSProber = true;
@@ -99,13 +91,12 @@
 
   users.users.sako = {
     isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "audio" ];
   };
 
   home-manager.useUserPackages = true;
-  home-manager.users.sako = {pkgs, ...}: {
-    # CHANGE THIS WHEN THE SYSTEM VERSION CHANGES TOO!!!
-    home.packages = [];
+  home-manager.users.sako = { pkgs, ... }: {
+    home.packages = [ ];
     home.username = "sako";
     home.homeDirectory = "/home/sako";
     programs.bash.enable = true;
@@ -118,11 +109,7 @@
       enable = true;
       userName = "Sakooooo";
       userEmail = "78461130+Sakooooo@users.noreply.github.com";
-      includes = [
-        {
-          path = "~/.config/git/config.local";
-        }
-      ];
+      includes = [{ path = "~/.config/git/config.local"; }];
       extraConfig = {
         color.ui = "auto";
         init.defaultBranch = "master";
@@ -134,18 +121,18 @@
   # bare minimum
   environment.systemPackages = with pkgs; [
     vim # backup
-    wget #double u get
+    wget # double u get
     killall # die processes
-    alsa-utils # unsupported application
-    pulseaudio # unsupported application
-    pamixer # unsupported application
-    feh # im different
     unzip # zip file
     gh # github
     htop # htop
     tree # trees
     ripgrep # better grep may help later
+    inputs.agenix.packages.${system}.default
   ];
+
+  age.secretsDir = "/run/secrets";
+
   # you phisiclally cannot live without this
   # litearlly!  ! ! ! ! !
   programs.gnupg.agent = {
@@ -154,6 +141,8 @@
     settings = {
       allow-emacs-pinentry = "";
       allow-loopback-pinentry = "";
+      default-cache-ttl = "28800";
+      max-cache-ttl = "28800";
     };
     # enableSSHSupport = true;
   };
@@ -163,8 +152,4 @@
   #   package = pkgs.gitFull;
   # };
 
-  # read stable version patch notes and fix any issues
-  # then you can change this
-  #system.stateVersion = "23.05";
-  # read comment you read the comment?
 }

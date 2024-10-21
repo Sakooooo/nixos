@@ -1,8 +1,0 @@
-keys:
-  - &host_sakotop age1nhj5fz9cakgd6rrkwpjkndra6fd4rqxgfvcrap5g0anwxgmh4yqspvf22y
-
-creation_rules:
-    - path_regex: hosts/sakotop/secrets/[^/]+\.(yaml|json|env|ini)$ 
-      key_groups:
-        - age:
-            - *host_sakotop

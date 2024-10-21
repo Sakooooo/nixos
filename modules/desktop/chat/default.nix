@@ -8,5 +8,8 @@
     ./signal
     ./cinny
     ./element
+    ./gajim
+    ./pidgin
+    ./psiplus
   ];
 }

@@ -1,7 +1,1 @@
-{
-  imports = [
-    ./age.nix
-    ./sops.nix
-    ./certs
-  ];
-}
+{ imports = [ ./age.nix ./certs ./tor.nix ]; }

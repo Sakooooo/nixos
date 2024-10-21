@@ -16,5 +16,10 @@ in {
   config = lib.mkIf cfg.enable {
     # todo declaritivly setting it up
     networking.wireguard.enable = true;
+
+    users.users.sako.packages = with pkgs; [
+      openresolv
+    ];
+    
   };
 }

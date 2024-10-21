@@ -1,0 +1,112 @@
+[general]
+pythonfile = ~/.offlineimap.py
+accounts = Proton, Outlook, Gmail-personal-1, Gmail-personal-2, li
+socktimeout = 60
+
+[Account Proton]
+localrepository = Proton-local
+remoterepository = Proton-remote
+
+[Repository Proton-local]
+type = Maildir
+localfolders = ~/.mail/protonmail
+
+[Repository Proton-remote]
+type = IMAP
+ssl = no
+remotehost = 127.0.0.1
+remoteport = 1143
+remoteusereval = get_user("Proton\ Account")
+remotepasseval = hydroxide("/home/sako/.hydroxide-bridge-pass")
+folderfilter = lambda foldername: foldername in [ "All Mail", "Archive", "Drafts", "INBOX", "Sent", "Spam", "Starred", "Trash" ]
+
+[Account Outlook]
+localrepository = Outlook-local
+remoterepository = Outlook-remote
+
+[Repository Outlook-local]
+type = Maildir
+localfolders = ~/.mail/outlook
+
+[Repository Outlook-remote]
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+type = IMAP
+remoteusereval = get_user("Microsoft")
+remotehost = outlook.office365.com
+remoteport = 993
+auth_mechanisms = XOAUTH2
+oauth2_request_url = https://login.microsoftonline.com/common/oauth2/v2.0/token
+# Thunderbird client_id below
+oauth2_client_id = 9e5f94bc-e8a4-4e73-b8be-63364c29d753
+# Do not need client_secret :D
+oauth2_client_secret = 
+oauth2_refresh_token_eval = get_client_refresh_token("Microsoft") 
+folderfilter = lambda folder: not folder.startswith('Calendar') and not folder.startswith('Contacts')
+
+[Account Gmail-personal-1]
+localrepository = Gmail-personal-1-local
+remoterepository = Gmail-personal-1-remote
+
+[Repository Gmail-personal-1-local]
+type = GmailMaildir
+localfolders = ~/.mail/gmail1
+# Google IMAP weirdness
+nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 'Spam', 'Trash', 'All Mail', 'Sent Mail'] else f
+
+[Repository Gmail-personal-1-remote]
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+type = Gmail 
+remotehost = imap.gmail.com
+auth_mechanisms = XOAUTH2
+remoteusereval = get_user("accounts.google.com/one")
+oauth2_request_url = https://accounts.google.com/o/oauth2/token
+oauth2_client_id_eval = get_client_id("email/oauth/gmail")
+oauth2_client_secret_eval = get_client_secret("email/oauth/gmail")
+oauth2_refresh_token_eval = get_client_refresh_token("accounts.google.com/one")
+# Google IMAP weirdness
+nametrans = lambda f: f.replace('[Gmail]/', '') if f.startswith('[Gmail]/') else f
+
+[Account Gmail-personal-2]
+localrepository = Gmail-personal-2-local
+remoterepository = Gmail-personal-2-remote
+
+[Repository Gmail-personal-2-local]
+type = GmailMaildir
+localfolders = ~/.mail/gmail2
+# Google IMAP weirdness
+nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 'Spam', 'Trash', 'All Mail', 'Sent Mail'] else f
+
+[Repository Gmail-personal-2-remote]
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+type = Gmail 
+remotehost = imap.gmail.com
+auth_mechanisms = XOAUTH2
+remoteusereval = get_user("accounts.google.com/two")
+oauth2_request_url = https://accounts.google.com/o/oauth2/token
+oauth2_client_id_eval = get_client_id("email/oauth/gmail")
+oauth2_client_secret_eval = get_client_secret("email/oauth/gmail")
+oauth2_refresh_token_eval = get_client_refresh_token("accounts.google.com/two")
+# Google IMAP weirdness
+nametrans = lambda f: f.replace('[Gmail]/', '') if f.startswith('[Gmail]/') else f
+
+[Account li]
+localrepository = li-local
+remoterepository = li-remote
+proxy = SOCKS5:localhost:9050
+
+[Repository li-local]
+type = Maildir
+localfolders = ~/.mail/li
+
+[Repository li-remote]
+type = IMAP
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remotehosteval = get_host("email/li")
+remoteport = 993
+remoteusereval = get_user("email/li")
+remotepasseval = get_pass("email/li")
+

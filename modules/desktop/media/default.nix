@@ -6,6 +6,7 @@
     ./blender
     ./kdenlive
     ./lmms
+    ./ardour
     ./mpv
     ./jellyfin
     ./feishin

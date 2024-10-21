@@ -15,20 +15,53 @@ const date = Variable("", {
 // so to make a reuseable widget, make it a function
 // then you can simply instantiate one by calling it
 
-function Workspaces() {
-    const activeId = hyprland.active.workspace.bind("id")
-    const workspaces = hyprland.bind("workspaces")
-        .as(ws => ws.map(({ id }) => Widget.Button({
-            on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
-            child: Widget.Label(`${id}`),
-            class_name: activeId.as(i => `${i === id ? "focused" : ""}`),
-        })))
+// function Workspaces() {
+//     const activeId = hyprland.active.workspace.bind("id")
+//     const workspaces = hyprland.bind("workspaces")
+//         .as(ws => ws.map(({ id }) => Widget.Button({
+//             on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
+//             child: Widget.Label(`${id}`),
+//             class_name: activeId.as(i => `${i === id ? "focused" : ""}`),
+//         })))
 
-    return Widget.Box({
-        class_name: "workspaces",
-        children: workspaces,
-    })
-}
+//     return Widget.Box({
+//         class_name: "workspaces",
+//         children: workspaces,
+//     })
+// }
+
+const dispatch = ws => hyprland.sendMessage(`dispatch workspace ${ws}`);
+
+export const Workspaces = () => Widget.EventBox({
+    child: Widget.Box({
+        children: Array.from({ length: 10 }, (_, i) => i + 1).map(i => Widget.Button({
+            class_name: "workspace-buttons",
+            attribute: i,
+            // Keeps button from expanding to fit its container
+            onClicked: () => dispatch(i),
+            child: Widget.Box({
+                class_name: "workspace-indicator",
+                // vpack: "start",
+                vpack: "center",
+                hpack: "center",
+                children: [
+                    Widget.Label({
+                        label: `${i}`,
+                        justification: "center",
+                    })
+                ],
+                setup: self => self.hook(hyprland, () => {
+                    // The "?" is used here to return "undefined" if the workspace doesn't exist
+                    self.toggleClassName('workspace-inactive', (hyprland.getWorkspace(i)?.windows || 0) === 0);
+                    self.toggleClassName('workspace-occupied', (hyprland.getWorkspace(i)?.windows || 0) > 0);
+                    self.toggleClassName('workspace-active', hyprland.active.workspace.id === i);
+                    // self.toggleClassName('workspace-large', (hyprland.getWorkspace(i)?.windows || 0) > 1);
+                }),
+            }),
+
+        })),
+    }),
+});
 
 
 function ClientTitle() {
@@ -128,22 +161,38 @@ function Volume() {
 
 
 function BatteryLabel() {
-    const value = battery.bind("percent").as(p => p > 0 ? p / 100 : 0)
-    const icon = battery.bind("percent").as(p =>
-        `battery-level-${Math.floor(p / 10) * 10}-symbolic`)
+    const icons = {
+        80: "full",
+        50: "good",
+        30: "low",
+        10: "empty",
+    };
+    const value = battery.bind("percent").as(p => p > 0 ? p / 100 : 0);
+    // const icon = battery.bind("percent").as(p =>
+    //     `battery-level-${Math.floor(p / 10) * 10}-symbolic`)
 
-    const percent = battery.bind("percent").as(x => x.toString()) + "%"
+    const percent = battery.bind("percent").as(x => x.toString()) + "%";
+
+    function getIcon() {
+	const icon = [80, 50, 30, 10].find(threshold => threshold <= battery.percent);
+
+	return `battery-${icons[icon]}-symbolic`;
+    }
+
+    const icon = Widget.Icon({
+	icon: Utils.watch(getIcon(), battery, getIcon),
+    });
 
     return Widget.Box({
         class_name: "battery",
         visible: battery.bind("available"),
         children: [
-            Widget.Icon({ icon }),
+	    icon,
 	    Widget.Label({
 		label: battery.bind('percent').as(x => x.toString()),
 	    })
         ],
-    })
+    });
 }
 
 
@@ -168,7 +217,7 @@ function Left() {
         spacing: 8,
         children: [
             Workspaces(),
-            ClientTitle(),
+            // ClientTitle(),
         ],
     })
 }
@@ -201,8 +250,8 @@ function Bar(monitor = 0) {
         name: `bar-${monitor}`, // name has to be unique
         class_name: "bar",
         monitor,
-        anchor: ["top", "left", "right"],
-	margins: [5, 10, 0, 10],
+        anchor: ["bottom", "left", "right"],
+	margins: [0, 10, 0, 10],
         exclusivity: "exclusive",
         child: Widget.CenterBox({
             start_widget: Left(),

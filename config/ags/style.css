@@ -3,41 +3,67 @@
 }
 
 window.bar {
-    background-color: @theme_bg_color;
+    /* background-color: @theme_bg_color; */
+    background: rgba(0, 0, 0, .1);
     color: @theme_fg_color;
+    min-height: 10rem;
+    border: 2px solid #ea4c88;
+    border-bottom: none;
+    border-radius: 6px 6px 0px 0px;
 }
 
 button {
     min-width: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    border: none;
+    /* padding-top: 0;
+       padding-bottom: 0; */
     background-color: transparent;
-    border-bottom: 3px solid transparent;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    background: none;
 }
 
 button:active {
-    background-color: @theme_selected_bg_color;
+    background-color: #ea4c88;
 }
 
 button:hover {
-    border-bottom: 3px solid @theme_fg_color;
+  /* border-bottom: 1px solid @theme_fg_color; */
 }
 
 label {
     font-weight: bold;
 }
 
-.workspaces button.focused {
-    border-bottom: 3px solid @theme_selected_bg_color;
-}
-
 .client-title {
-    color: @theme_selected_bg_color;
+    color: #ea4c88;
 }
 
 .notification {
     color: yellow;
+}
+
+.workspace-indicator {
+    min-width: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+    background-color: transparent;
+    padding-bottom: 2px;
+}
+
+.workspace-inactive {
+  opacity: 0.5;
+}
+
+.workspace-occupied {
+  opacity: 1;
+}
+
+.workspace-active {
+    border-bottom: 2px solid #ea4c88;
+    padding-bottom: 0;
 }
 
 levelbar block,
