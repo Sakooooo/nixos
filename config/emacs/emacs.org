@@ -1245,7 +1245,7 @@ GNU patch review metho dor sometihng idk
   		 ((string-match (cdr (assoc 'gmail-2 sakomacs-mail-accounts)) from) "gmail-2")
   		 ((string-match (cdr (assoc 'protonmail sakomacs-mail-accounts)) from) "protonmail")
   		 ((string-match (cdr (assoc 'li sakomacs-mail-accounts)) from) "li")
-  		 ((string-match (cdr (assoc 'outlook sakomacs-mail-accounts)) from)))))
+  		 ((string-match (cdr (assoc 'outlook sakomacs-mail-accounts)) from) "outlook"))))
               (setq message-sendmail-extra-arguments (list '"-a" account))))))
 
     (add-hook 'message-send-mail-hook 'sakomacs/set-msmtp-account)
