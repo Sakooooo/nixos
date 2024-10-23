@@ -1232,6 +1232,10 @@ GNU patch review metho dor sometihng idk
     ;; for mail accounts
     (setq sakomacs-mail-accounts (json-read-file "~/.mail/accounts.json"))
 
+    ;; C-c C-m C-e to encrypt and sign your shit
+    ;; TODO how do i do this automatically ffs
+    (setq mm-sign-option 'guided)
+
     (defun sakomacs/set-msmtp-account ()
       (if (message-mail-p)
   	(save-excursion
