@@ -1217,8 +1217,8 @@ GNU patch review metho dor sometihng idk
     ;; sending mail
     ;;(setq message-send-mail-function 'smtpmail-send-it)
     ;;(add-to-list 'smtpmail-auth-supported 'xoauth2)
-    (setq send-mail-function 'sendmail-send-it)
-    (setq message-send-mail-function 'sendmail-sent-it)
+    (setq send-mail-function 'message-send-mail-with-sendmail)
+    (setq message-send-mail-function 'message-send-mail-with-sendmail)
     (setq sendmail-program (executable-find "msmtp"))
 
     ;; select the right sender email from the context.
