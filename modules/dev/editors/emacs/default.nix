@@ -158,6 +158,7 @@ in {
         # ".mbsyncrc".source = ../../../../config/emacs/.mbsyncrc;
         ".offlineimaprc".source = ../../../../config/emacs/.offlineimaprc;
         ".offlineimap.py".source = ../../../../config/emacs/.offlineimap.py;
+        ".msmtprc".source = ../../../../config/emacs/.msmtprc;
       };
     };
 
