@@ -28,8 +28,7 @@ in {
             # userChrome = ''
             # '';
 
-            # search.default = "DuckDuckGo";
-            search.default = "sakosearch";
+            search.default = "DuckDuckGo";
             search.force = true;
             search.engines = {
               "Nix Packages" = {
@@ -67,21 +66,6 @@ in {
                     "https://home-manager-options.extranix.com/?release=master";
                   params = [{
                     name = "query";
-                    value = "{searchTerms}";
-                  }];
-                }];
-              };
-              "sakosearch" = {
-                definedAliases = [ "@sakosearch" ];
-                icon = pkgs.fetchurl {
-                  url =
-                    "https://raw.githubusercontent.com/searxng/searxng/refs/heads/master/src/brand/searxng-wordmark.svg";
-                  hash = "sha256-TwwPUNL+IRRjLY7Xmd466F474vglkvpJUYa+fBwDzFI=";
-                };
-                urls = [{
-                  template = "https://search.sako.box/search";
-                  params = [{
-                    name = "q";
                     value = "{searchTerms}";
                   }];
                 }];
