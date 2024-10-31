@@ -94,6 +94,8 @@
           daemon = true;
           package = pkgs.emacs-unstable-pgtk;
         };
+        # backup/just cause
+        vscode.enable = true;
       };
       nixd.enable = true;
       cc.enable = true;
