@@ -14,6 +14,7 @@ in {
               mkhl.direnv
               ms-python.vscode-pylance
               ms-vscode.cmake-tools
+              bbenoist.nix  
               ms-dotnettools.csharp
               tuttieee.emacs-mcx
               kahole.magit
