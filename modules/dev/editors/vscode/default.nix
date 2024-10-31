@@ -14,13 +14,13 @@ in {
               mkhl.direnv
               ms-python.vscode-pylance
               ms-vscode.cmake-tools
-              bbenoist.nix  
+              jnoortheen.nix-ide
               ms-dotnettools.csharp
               tuttieee.emacs-mcx
               kahole.magit
               zhuangtongfa.material-theme
               rust-lang.rust-analyzer
-              PKief.material-icon-theme
+              pkief.material-icon-theme
             ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
               name = "better-comments";
               publisher = "aaron-bond";
