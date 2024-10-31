@@ -18,6 +18,9 @@ in {
               ms-dotnettools.csharp
               tuttieee.emacs-mcx
               kahole.magit
+              zhuangtongfa.material-theme
+              rust-lang.rust-analyzer
+              PKief.material-icon-theme
             ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
               name = "better-comments";
               publisher = "aaron-bond";
