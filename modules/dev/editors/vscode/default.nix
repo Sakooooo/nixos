@@ -12,10 +12,11 @@ in {
           vscodeExtensions = with vscode-extensions;
             [
               mkhl.direnv
-              vscodevim.vim
               ms-python.vscode-pylance
               ms-vscode.cmake-tools
               ms-dotnettools.csharp
+              tuttieee.emacs-mcx
+              kahole.magit
             ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
               name = "better-comments";
               publisher = "aaron-bond";
