@@ -70,6 +70,7 @@
           daemon = true;
           package = pkgs.emacs-unstable-pgtk;
         };
+        vscode.enable = true;
       };
       cc.enable = true;
       javascript.enable = true;
