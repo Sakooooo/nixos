@@ -1348,6 +1348,7 @@ GNU patch review metho dor sometihng idk
 ** Org mode configuration
 #+begin_src emacs-lisp
   (use-package org
+  :bind (("C-c o a" . org-agenda))
   :hook (org-mode . org-indent-mode)
   :config
   (setq org-ellipsis " ↓")
