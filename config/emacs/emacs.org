@@ -199,53 +199,55 @@ kept-old-versions 5)
 #+end_src
 ** Appearance
 #+begin_src emacs-lisp
-  ;; (use-package doom-themes
-  ;;   :config
-  ;;   (load-theme 'doom-sourcerer t))
+    ;; (use-package doom-themes
+    ;;   :config
+    ;;   (load-theme 'doom-sourcerer t))
 
-  ;; (use-package grandshell-theme
-  ;;   :config
-  ;;   (load-theme 'grandshell t))
+    ;; (use-package grandshell-theme
+    ;;   :config
+    ;;   (load-theme 'grandshell t))
 
-  ;; (use-package ef-themes
-  ;;   :config
-  ;;   (load-theme 'ef-dark t))
+    ;; (use-package ef-themes
+    ;;   :config
+    ;;   (load-theme 'ef-dark t))
 
-   (use-package kanagawa-themes
-   :config
-   (load-theme 'kanagawa-dragon t))
+     ;; (use-package kanagawa-themes
+     ;; :config
+     ;; (load-theme 'kanagawa-dragon t))
 
   ;; (use-package klere-theme
-  ;;   :config
-  ;;   (load-theme 'klere t))
+    ;;   :config
+    ;;   (load-theme 'klere t))
 
-;;  (use-package kaolin-themes
-  ;;  :config
-    ;; (load-theme 'kaolin-shiva t))
+  ;;  (use-package kaolin-themes
+    ;;  :config
+      ;; (load-theme 'kaolin-shiva t))
 
-  ;; emacsclient things
-  (setq frame-resize-pixelwise t)
-  ;; ui settings apparently go below
-  (setq default-frame-alist '((font . "JetBrainsMono NF")
-                              '(vertical-scroll-bars . nil)
-                              '(horizontal-scroll-bars . nil)))
+  (load-theme 'wombat t)
 
-  ;; GO AWAY
-  (defun my/disable-scroll-bars (frame)
-    (modify-frame-parameters frame
-                             '((vertical-scroll-bars . nil)
-                               (horizontal-scroll-bars . nil))))
-  (add-hook 'after-make-frame-functions 'my/disable-scroll-bars)
+    ;; emacsclient things
+    (setq frame-resize-pixelwise t)
+    ;; ui settings apparently go below
+    (setq default-frame-alist '((font . "JetBrainsMono NF")
+                                '(vertical-scroll-bars . nil)
+                                '(horizontal-scroll-bars . nil)))
+
+    ;; GO AWAY
+    (defun my/disable-scroll-bars (frame)
+      (modify-frame-parameters frame
+                               '((vertical-scroll-bars . nil)
+                                 (horizontal-scroll-bars . nil))))
+    (add-hook 'after-make-frame-functions 'my/disable-scroll-bars)
 
 
-  ;; y/n is better than yes/no
-  (fset 'yes-or-no-p 'y-or-n-p)
+    ;; y/n is better than yes/no
+    (fset 'yes-or-no-p 'y-or-n-p)
 
-  ;; font
-  (set-face-attribute 'default nil
-  		    :font "JetBrainsMono NF"
-  		    :weight 'light
-  		    :height 125)
+    ;; font
+    (set-face-attribute 'default nil
+    		    :font "JetBrainsMono NF"
+    		    :weight 'light
+    		    :height 125)
 #+end_src
 ** Emacs Client
 #+begin_src emacs-lisp
