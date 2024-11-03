@@ -11,5 +11,6 @@
     ./gajim
     ./pidgin
     ./psiplus
+    ./thunderbird
   ];
 }
