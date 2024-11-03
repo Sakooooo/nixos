@@ -39,6 +39,7 @@
       chat = {
         zoom.enable = true;
         discord.enable = true;
+        thunderbird.enable = true;
         teams.enable = true;
         telegram.enable = true;
         weechat.enable = true;
