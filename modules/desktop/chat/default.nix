@@ -11,6 +11,6 @@
     ./gajim
     ./pidgin
     ./psiplus
-    ./thunderbird
+    ./thunderbird.nix
   ];
 }
