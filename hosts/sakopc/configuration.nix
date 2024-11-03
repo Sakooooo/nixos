@@ -101,10 +101,7 @@
       tmux.enable = true;
       ranger.enable = true;
     };
-    work = {
-      libreoffice.enable = true;
-      onlyoffice.enable = true;
-    };
+    work = { onlyoffice.enable = true; };
     security = {
       certs.enable = true;
       tor.enable = true;
