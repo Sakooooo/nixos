@@ -114,8 +114,6 @@ in {
       hydroxide
       # send mail
       msmtp
-      # doc-view
-      unoconv
       # org to pdf
       tex
       # lsp
