@@ -73,11 +73,6 @@
         };
         vscode.enable = true;
       };
-      cc.enable = true;
-      javascript.enable = true;
-      lua.enable = true;
-      python.enable = true;
-      rust.enable = true;
       nixd.enable = true;
     };
     hardware = {
