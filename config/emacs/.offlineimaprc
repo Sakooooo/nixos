@@ -94,7 +94,7 @@ nametrans = lambda f: f.replace('[Gmail]/', '') if f.startswith('[Gmail]/') else
 
 [Account sako]
 localrepostiory = sako-local
-remoterepostiory = sako-remote
+remoterepository = sako-remote
 proxy = SOCKS5:localhost:9050
 
 [Repository sako-local]
