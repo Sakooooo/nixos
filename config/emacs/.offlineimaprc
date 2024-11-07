@@ -1,6 +1,6 @@
 [general]
 pythonfile = ~/.offlineimap.py
-accounts = Proton, Outlook, Gmail-personal-1, Gmail-personal-2, li
+accounts = Proton, Outlook, Gmail-personal-1, Gmail-personal-2, dev, li
 socktimeout = 60
 
 [Account Proton]
@@ -91,6 +91,24 @@ oauth2_client_secret_eval = get_client_secret("email/oauth/gmail")
 oauth2_refresh_token_eval = get_client_refresh_token("accounts.google.com/two")
 # Google IMAP weirdness
 nametrans = lambda f: f.replace('[Gmail]/', '') if f.startswith('[Gmail]/') else f
+
+[Account sako]
+localrepostiory = sako-local
+remoterepostiory = sako-remote
+proxy = SOCKS5:localhost:9050
+
+[Repository sako-local]
+type = Maildir
+localfolders = ~/.mail/sako
+
+[Repository sako-remote]
+type = IMAP
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+host = mail.cock.li
+port = 993
+user = sako@cock.email
+remotepasseval = get_pass("email/sako@cock.email")
 
 [Account li]
 localrepository = li-local
