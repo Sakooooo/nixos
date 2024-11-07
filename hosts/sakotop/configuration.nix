@@ -12,6 +12,7 @@
   modules = {
     desktop = {
       wireguard.enable = true;
+      tailscale.enable = true;
       kitty.enable = true;
       wezterm.enable = false;
       foot.enable = true;
