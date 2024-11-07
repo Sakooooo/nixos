@@ -93,7 +93,7 @@ oauth2_refresh_token_eval = get_client_refresh_token("accounts.google.com/two")
 nametrans = lambda f: f.replace('[Gmail]/', '') if f.startswith('[Gmail]/') else f
 
 [Account sako]
-localrepostiory = sako-local
+localrepository = sako-local
 remoterepository = sako-remote
 proxy = SOCKS5:localhost:9050
 
