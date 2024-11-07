@@ -105,9 +105,9 @@ localfolders = ~/.mail/sako
 type = IMAP
 ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-host = mail.cock.li
-port = 993
-user = sako@cock.email
+remotehost = mail.cock.li
+remoteport = 993
+remoteuser = sako@cock.email
 remotepasseval = get_pass("email/sako@cock.email")
 
 [Account li]
