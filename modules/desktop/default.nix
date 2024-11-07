@@ -26,6 +26,7 @@
     ./plymouth
     # vpn
     ./wireguard
+    ./tailscale
     ./printing
     # securitity
     ./security
