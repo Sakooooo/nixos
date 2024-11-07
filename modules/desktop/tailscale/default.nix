@@ -1,7 +1,7 @@
 { outputs, options, config, lib, pkgs, ... }:
-let cfg = config.modules.desktop.wireguard;
+let cfg = config.modules.desktop.tailscale;
 in {
-  options.modules.desktop.wireguard = { enable = lib.mkEnableOption false; };
+  options.modules.desktop.tailscale = { enable = lib.mkEnableOption false; };
 
   config = lib.mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [ tailscale ];
