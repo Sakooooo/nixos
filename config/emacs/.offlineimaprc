@@ -1,6 +1,6 @@
 [general]
 pythonfile = ~/.offlineimap.py
-accounts = Proton, Outlook, Gmail-personal-1, Gmail-personal-2, dev, li
+accounts = Proton, Outlook, Gmail-personal-1, Gmail-personal-2, li
 socktimeout = 60
 
 [Account Proton]
