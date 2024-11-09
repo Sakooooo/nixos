@@ -4,22 +4,18 @@
 }
 
 window.bar {
-    /* background-color: @theme_bg_color; */
-    background: rgba(0, 0, 0, .1);
-    color: @theme_fg_color;
-    min-height: 10rem;
-    border: 2px solid #ea4c88;
-    border-bottom: none;
-    border-radius: 6px 6px 0px 0px;
+  /* background-color: @theme_bg_color; */
+  background: #222222;
+  color: @theme_fg_color;
 }
 
 button {
     min-width: 0;
-    /* padding-top: 0;
-       padding-bottom: 0; */
-    background-color: transparent;
-    padding: 5px;
-    padding-left: 10px;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: transparent;
+  padding: 5px;
+  padding-left: 10px;
     padding-right: 10px;
     border: none;
     background: none;
@@ -51,7 +47,7 @@ label {
     padding-bottom: 0;
     margin: 0;
     background-color: transparent;
-    padding-bottom: 2px;
+  padding-bottom: 2px;
 }
 
 .workspace-inactive {
@@ -69,5 +65,5 @@ label {
 
 levelbar block,
 highlight {
-    min-height: 10px;
+  min-height: 10px;
 }
