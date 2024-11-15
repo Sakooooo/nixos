@@ -49,7 +49,7 @@
         psi-plus.enable = true;
       };
       game = {
-        lutris.enable = true;
+        #lutris.enable = true;
         #steam.enable = true;
         wine.enable = true;
         tetrio.enable = true;
