@@ -24,7 +24,7 @@
       dunst.enable = false;
       apps = {
         nextcloud.enable = true;
-        rssguard.enable = true;
+        #rssguard.enable = true;
         obs.enable = true;
         pass.enable = true;
         localsend.enable = true;
