@@ -71,7 +71,7 @@
           daemon = true;
           package = pkgs.emacs-unstable-pgtk;
         };
-        vscode.enable = true;
+        #vscode.enable = true;
       };
       nixd.enable = true;
     };
