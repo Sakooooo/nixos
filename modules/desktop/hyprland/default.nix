@@ -89,6 +89,20 @@ in {
       # lock
       # swaylock
       inputs.ags.packages.${pkgs.system}.default
+      (inputs.ags.lib.bundle {
+        inherit pkgs;
+        src = ../../../config/ags;
+        name = "sakoshell";
+        entry = "app.ts";
+        extraPackages = [
+          inputs.ags.packages.${pkgs.system}.hyprland
+          inputs.ags.packages.${pkgs.system}.mpris
+          inputs.ags.packages.${pkgs.system}.battery
+          inputs.ags.packages.${pkgs.system}.wireplumber
+          inputs.ags.packages.${pkgs.system}.network
+          inputs.ags.packages.${pkgs.system}.tray
+        ];
+      })
       brightnessctl
       inotify-tools
       greetd.tuigreet
