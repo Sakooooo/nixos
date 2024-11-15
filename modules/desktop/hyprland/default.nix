@@ -152,10 +152,10 @@ in {
         #   source = ../../../config/swaylock;
         #   recursive = true;
         # };
-        #ags = {
-        #  source = ../../../config/ags;
-        #  recursive = true;
-        #};
+        ags = {
+          source = ../../../config/ags;
+          recursive = true;
+        };
       };
     };
 
