@@ -27,14 +27,6 @@
         ++ [ inputs.nixpkgs.legacyPackages.x86_64-linux.libdbusmenu-gtk3 ];
     });
     isync = prev.isync.overrideAttrs (old: { withCyrusSaslXoauth2 = true; });
-    localsend = prev.localsend.overrideAttrs (old: {
-      # can't see window fix
-      # https://github.com/NixOS/nixpkgs/commit/98a18e8bd005f6003686ca26e8223c8761b2322d
-      postUnpack = ''
-        substituteInPlace $sourceRoot/linux/my_application.cc \
-          --replace-fail "gtk_widget_realize(GTK_WIDGET(window))" "gtk_widget_show(GTK_WIDGET(window))"
-      '';
-    });
   };
 
   # incase something breaks
