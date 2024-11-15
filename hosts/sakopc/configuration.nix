@@ -44,7 +44,7 @@
         telegram.enable = true;
         weechat.enable = true;
         signal.enable = true;
-        element.enable = true;
+        #element.enable = true;
         gajim.enable = true;
         psi-plus.enable = true;
       };
