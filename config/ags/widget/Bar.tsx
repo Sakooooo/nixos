@@ -5,7 +5,6 @@ import Hyprland from "gi://AstalHyprland"
 import Mpris from "gi://AstalMpris"
 import Battery from "gi://AstalBattery"
 import Wp from "gi://AstalWp"
-import Network from "gi://AstalNetwork"
 import Tray from "gi://AstalTray"
 
 function SysTray() {
@@ -29,16 +28,6 @@ function SysTray() {
             </button>
         }))}
     </box>
-}
-
-function Wifi() {
-    const { wifi } = Network.get_default()
-
-    return <icon
-        tooltipText={bind(wifi, "ssid").as(String)}
-        className="Wifi"
-        icon={bind(wifi, "iconName")}
-    />
 }
 
 function AudioPercent() {
