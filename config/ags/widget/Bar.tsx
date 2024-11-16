@@ -160,9 +160,8 @@ export default function Bar(monitor: Gdk.Monitor) {
                 <FocusedClient />
             </box>
             <box>
-                <Media />
-            </box>
-            <box hexpand halign={Gtk.Align.END} >
+             </box>
+            <box className="right" hexpand halign={Gtk.Align.END} >
                 <SysTray />
 	      <AudioPercent/>
                 <BatteryLevel />

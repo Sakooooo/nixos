@@ -1,18 +1,19 @@
 @use "sass:color";
 
-$bg: #212223;
-$fg: #f1f1f1;
-$accent: #378DF7;
+$bg: #222222;
+$fg: #bbbbbb;
+$accent: #005577;
 $radius: 0px;
 
 window.Bar {
     font-family: 'monospace';
     border: none;
     box-shadow: none;
-    background-color: $bg;
+    background-color: $accent;
     color: $fg;
-    font-size: 1.1em;
-    font-weight: bold;
+    font-size: 10pt;
+    // font-size: 1.1em;
+    // font-weight: bold;
 
     button {
         all: unset;
@@ -34,6 +35,14 @@ window.Bar {
         // margin: 2px;
         border-radius: $radius;
         // border: 1pt solid transparent;
+    }
+
+    .Workspaces {
+	background-color: $bg;
+    }
+
+    .right {
+	background-color: $bg;
     }
 
     .Workspaces .focused label {
