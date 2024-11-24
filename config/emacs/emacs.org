@@ -223,7 +223,11 @@ kept-old-versions 5)
     ;;  :config
       ;; (load-theme 'kaolin-shiva t))
 
-  (load-theme 'wombat t)
+  ;; (load-theme 'wombat t)
+
+  (use-package cherry-blossom-theme
+    :config
+    (load-theme 'cherry-blossom t))
 
     ;; emacsclient things
     (setq frame-resize-pixelwise t)
