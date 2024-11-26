@@ -38,6 +38,7 @@ window.Bar {
 
     .Workspaces {
 	background-color: $bg;
+	color: $fg;
     }
 
     .right {
@@ -47,6 +48,10 @@ window.Bar {
     .Workspaces .focused label {
         color: $fg;
         background-color: $accent;
+    }
+
+    .Workspaces .inactive label {
+	opacity: 0.5;
     }
 
     .FocusedClient {

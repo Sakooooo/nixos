@@ -86,7 +86,7 @@ function Workspaces() {
   return <box className="Workspaces">
 	   {workspaceButtons.map (workspace =>
 	     <button
-	       className={bind(hypr, "focused-workspace").as(fw => workspace === fw.id ? "focused" : bind(hypr, "workspaces").as(ws => ws.id.contains(workspace)) ? "inactive" : "")}
+	       className={bind(hypr, "focused-workspace").as(fw => workspace === fw.id ? "focused" : "")}
 	     >{workspace}</button>
 	   )}
 	 </box>
