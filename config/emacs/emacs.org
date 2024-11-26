@@ -577,34 +577,38 @@ kept-old-versions 5)
 #+end_src
 ** Corfu
 #+begin_src emacs-lisp
-    (use-package corfu
-    :bind (:map corfu-map
-                ("C-j" . corfu-next)
-                ("C-k" . corfu-previous)
-                ("TAB" . corfu-insert)
-                ([tab] . corfu-insert)
-                ("C-f" . corfu-insert))
-    :custom
-    (corfu-cycle t)
-    (corfu-auto t)
-    (corfu-preview-current nil)
-    (corfu-quit-at-boundary t)
-    (corfu-quit-no-match t)
-    (corfu-min-chars 3)
-    (corfu-auto-delay 0)
-    (corfu-auto-prefix 0)
-    :init
-    (global-corfu-mode) 
+  (use-package corfu
+  :bind (:map corfu-map
+  	    ("M-SPC" . corfu-insert-separator)
+  	    ("RET" . nil)
+              ("TAB" . corfu-next)
+  	    ([tab] . corfu-next)
+  	    ("S-TAB" . corfu-previous)
+  	    ([backtab] . corfu-previous)
+              ("S-<return>" . corfu-insert))
+  :custom
+  (corfu-cycle t)
+  (corfu-auto t)
+  (corfu-preview-current 'insert)
+  (corfu-echo-documentation 0.20)
+  ;; (corfu-quit-at-boundary t)
+  (corfu-quit-at-boundary 'seperator)
+  (corfu-quit-no-match t)
+  (corfu-min-chars 3)
+  (corfu-auto-delay 0.0)
+  (corfu-auto-prefix 2)
+  :init
+  (global-corfu-mode)
+  (corfu-history-mode))
+  ;; (defun corfu-enable-in-minibuffer ()
+  ;;   "Enable Corfu in the minibuffer if `completion-at-point' is bound."
+  ;;   (when (where-is-internal #'completion-at-point (list (current-local-map)))
+  ;;     (setq-local corfu-auto nil) ;; Enable/disable auto completion
+  ;;     (setq-local corfu-echo-delay nil ;; Disable automatic echo and popup
+  ;;                 corfu-popupinfo-delay nil)
+  ;;     (corfu-mode 1)))
 
-    (defun corfu-enable-in-minibuffer ()
-      "Enable Corfu in the minibuffer if `completion-at-point' is bound."
-      (when (where-is-internal #'completion-at-point (list (current-local-map)))
-        (setq-local corfu-auto nil) ;; Enable/disable auto completion
-        (setq-local corfu-echo-delay nil ;; Disable automatic echo and popup
-                    corfu-popupinfo-delay nil)
-        (corfu-mode 1)))
-
-    (add-hook 'minibuffer-setup-hook #'corfu-enable-in-minibuffer))
+  ;; (add-hook 'minibuffer-setup-hook #'corfu-enable-in-minibuffer))
 #+end_src
 ** Dashboard
 #+begin_src emacs-lisp
