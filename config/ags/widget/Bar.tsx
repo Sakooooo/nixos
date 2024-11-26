@@ -79,21 +79,17 @@ function Media() {
 }
 
 function Workspaces() {
-    const hypr = Hyprland.get_default()
+  const hypr = Hyprland.get_default()
 
-    return <box className="Workspaces">
-        {bind(hypr, "workspaces").as(wss => wss
-            .sort((a, b) => a.id - b.id)
-            .map(ws => (
-                <button
-                    className={bind(hypr, "focusedWorkspace").as(fw =>
-                        ws === fw ? "focused" : "")}
-                    onClicked={() => ws.focus()}>
-                    {ws.id}
-                </button>
-            ))
-        )}
-    </box>
+  const workspaceButtons: number[] = (Array.from({ length: 10 }, (_, id) => id + 1))
+
+  return <box className="Workspaces">
+	   {workspaceButtons.map (workspace =>
+	     <button
+	       className={bind(hypr, "focusedWorkspace").as(fw => workspace === fw.id ? "focused" : "")}
+	     >{workspace}</button>
+	   )}
+	 </box>
 }
 
 function FocusedClient() {
@@ -132,7 +128,7 @@ export default function Bar(monitor: Gdk.Monitor) {
         anchor={anchor}>
         <centerbox>
             <box hexpand halign={Gtk.Align.START}>
-                <Workspaces />
+	      <Workspaces />
                 <FocusedClient />
             </box>
             <box>
