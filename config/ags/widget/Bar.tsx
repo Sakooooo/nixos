@@ -83,10 +83,13 @@ function Workspaces() {
 
   const workspaceButtons: number[] = (Array.from({ length: 10 }, (_, id) => id + 1))
 
+  const focusWorkspace = (workspaceId: number) => hypr.dispatch("workspace", workspaceId.toString());
+
   return <box className="Workspaces">
 	   {workspaceButtons.map (workspace =>
 	     <button
 	       className={bind(hypr, "focused_workspace").as(fw => workspace === fw.id ? "focused" : hypr.get_workspace(workspace) ? "" : "inactive" )}
+	       onClicked={() => focusWorkspace(workspace)}
 	     >{workspace}</button>
 	   )}
 	 </box>
