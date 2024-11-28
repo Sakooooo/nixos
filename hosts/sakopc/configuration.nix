@@ -53,6 +53,7 @@
         steam.enable = true;
         wine.enable = true;
         tetrio.enable = true;
+        prismlauncher.enable = true;
       };
       media = {
         mpv.enable = true;
