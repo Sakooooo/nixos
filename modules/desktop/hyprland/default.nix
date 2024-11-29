@@ -74,6 +74,8 @@ in {
       # brightness
       # TODO(sako):: find one for wayland
       catppuccin-cursors.mochaDark
+      inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+      rose-pine-cursor
       # screenshot
       sway-contrib.grimshot
       # todo figure this out
@@ -129,10 +131,10 @@ in {
     home-manager.users.sako = { pkgs, ... }: {
       home.pointerCursor = {
         # name = "Catppuccin-Mocha-Dark"; 
-        name = "catppuccin-mocha-dark-cursors";
-        size = 16;
+        name = "BreezeX-RosePine-Linux";
+        size = 24;
         gtk.enable = true;
-        package = pkgs.catppuccin-cursors.mochaDark;
+        package = pkgs.rose-pine-cursor;
       };
       gtk = {
         enable = true;
