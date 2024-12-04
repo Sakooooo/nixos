@@ -314,9 +314,76 @@
     :ensure nil
     :config (eglot-booster-mode)))
 
-;;
-;; --- Languages ---
-;;
+;;; --- Languages ---
+
+;; nix
+(use-package nix-mode
+  :hook (nix-mode . eglot-ensure)
+  :mode "\\.nix\\'")
+
+;; python
+(use-package python-mode
+  :mode "\\.py\\'"
+  :hook (python-mode . eglot-ensure))
+
+(use-package elpy
+  :after python-mode
+
+  :custom
+  (elpy-rpc-python-command "python3")
+
+  :config
+  (elpy-enable))
+
+(use-package poetry
+  :config
+  (poetry-tracking-mode 1))
+
+;; c/cpp
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
+
+;; cmake
+(use-package cmake-mode
+  :mode "CMakeLists.txt"
+  :hook (cmake-mode . eglot-ensure))
+
+;; astro
+(define-derived-mode astro-mode web-mode "astro")
+(setq auto-mode-alist
+      (append '((".*\\.astro\\'" . astro-mode))
+	      auto-mode-alist))
+
+(add-to-list 'eglot-server-programs
+             '(astro-mode . ("astro-ls" "--stdio"
+                             :initializationOptions
+                             (:typescript (:tsdk "./node_modules/typescript/lib")))))
+
+;; typescript
+(add-to-list 'auto-mode-alist '(".*\\.ts" . typescript-ts-mode))
+(add-to-list 'auto-mode-alist '(".*\\.tsx" . tsx-ts-mode))
+
+(add-hook 'typescript-ts-mode-hook 'eglot-ensure) 
+(add-hook 'tsx-ts-mode-hook 'eglot-ensure) 
+
+(setq treesit-language-source-alist
+      '((typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src" nil nil)
+        (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src" nil nil)))
+
+;; html/css
+(use-package web-mode
+  :hook (web-mode . eglot-ensure)
+  :mode ("\\.html\\'"
+         "\\.css\\'"))
+
+;; rust
+(use-package rustic
+  :ensure t
+  :config
+  (setq rustic-format-on-save nil)
+  (setq rustic-lsp-client 'eglot)
+  :custom
+  (rustic-cargo-use-last-stored-arguments t))
 
 ;; --- Org-Mode ---
 (use-package org
