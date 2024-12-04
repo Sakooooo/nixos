@@ -1,11 +1,12 @@
-;; -*- lexical-binding: t; -*-
-;; Sako's terrible eMacs config!
+;;; init.el --- Sako's terrible eMacs config -*- lexical-binding: t; -*-
+;;; Commentary:
 ;; Lots of things missing but its whats needed
 ;; TODO(sako):: Setup mu4e
 ;; TODO(sako):: Setup irc (erc/rcirc)
 ;; TODO(sako):: Setup elfeed
 ;; TODO(sako):: Setup elcord
 
+;;; Code:
 
 ;; --- Display Options ---
 (scroll-bar-mode -1)
@@ -19,12 +20,10 @@
 (repeat-mode 1)
 (column-number-mode)
 
-(setq display-line-numbers 'relative)
-
 (dolist (mode '(text-mode-hook
 		prog-mode-hook
 		conf-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 1))))
+  (add-hook mode (lambda () (setq display-line-numbers 'relative) (display-line-numbers-mode 1))))
 
 (set-face-attribute 'default nil
 		    :font "JetBrainsMono NF"
@@ -76,6 +75,13 @@
   (load-theme 'cherry-blossom t))
 
 ;; --- no-littering ---
+
+(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+      backup-by-copying t
+      version-control t
+      delete-old-versions t  
+      kept-new-versions 20 
+      kept-old-versions 5)
 
 (use-package no-littering
   :config
@@ -308,6 +314,10 @@
     :ensure nil
     :config (eglot-booster-mode)))
 
+;;
+;; --- Languages ---
+;;
+
 ;; --- Org-Mode ---
 (use-package org
   :ensure t
@@ -357,3 +367,5 @@
 
 (use-package org-pomodoro
   :ensure t)
+
+;;; init.el ends here
