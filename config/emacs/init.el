@@ -287,7 +287,7 @@
   (global-wakatime-mode))
 
 ;; --- formatting ---
-(use-package aphelelia
+(use-package apheleia
   :ensure t
   :hook (prog-mode . aphelia-mode))
 
@@ -317,9 +317,9 @@
   ;; replace ... with >
   (setq org-ellipsis " >")
   (setq org-startup-with-inline-images t)
-   (setq org-todo-keywords
-       '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-        (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)")))
+  (setq org-todo-keywords
+	'((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+          (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANCELED(k@)")))
 
   ;; --- Org Agenda ---
   (setq org-agenda-files
