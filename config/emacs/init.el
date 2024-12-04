@@ -289,7 +289,7 @@
 ;; --- formatting ---
 (use-package apheleia
   :ensure t
-  :hook (prog-mode . aphelia-mode))
+  :hook (prog-mode . apheleia-mode))
 
 ;; --- LSP ---
 (use-package eglot
