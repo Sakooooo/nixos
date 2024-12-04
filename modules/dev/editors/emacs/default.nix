@@ -12,18 +12,18 @@ let
   });
 
   myEmacs = pkgs.emacsWithPackagesFromUsePackage {
-    config = ../../../../config/emacs/emacs.org;
+    config = ../../../../config/emacs/init.el;
     package = cfg.package;
-    alwaysEnsure = true;
-    alwaysTangle = true;
+    # alwaysEnsure = true;
+    # alwaysTangle = true;
     extraEmacsPackages = epkgs: [
       epkgs.use-package
-      epkgs.mu4e
+      # epkgs.mu4e
       # TODO make this check if EXWM is enabled or not
-      epkgs.exwm
+      # epkgs.exwm
       #     epkgs.sakomodules
       epkgs.eglot-booster
-      epkgs.app-launcher
+      # epkgs.app-launcher
     ];
     # add eglot-lsp-booster package
     override = epkgs:
@@ -41,23 +41,23 @@ let
             hash = "sha256-vF34ZoUUj8RENyH9OeKGSPk34G6KXZhEZozQKEcRNhs=";
           };
         };
-        app-launcher = epkgs.melpaBuild {
-          pname = "app-launcher";
-          version = "1.0";
+        # app-launcher = epkgs.melpaBuild {
+        #   pname = "app-launcher";
+        #   version = "1.0";
 
-          commit = "d5015e394b0a666a8c7c4d4bdf786266e773b145";
+        #   commit = "d5015e394b0a666a8c7c4d4bdf786266e773b145";
 
-          recipe = pkgs.writeText "recipe" ''
-            (app-launcher :repo "SebastienWae/app-launcher" :fetcher github)
-          '';
+        #   recipe = pkgs.writeText "recipe" ''
+        #     (app-launcher :repo "SebastienWae/app-launcher" :fetcher github)
+        #   '';
 
-          src = pkgs.fetchFromGitHub {
-            owner = "SebastienWae";
-            repo = "app-launcher";
-            rev = "d5015e394b0a666a8c7c4d4bdf786266e773b145";
-            hash = "sha256-d0d5rkuxK/zKpSCa1UTdpV7o+RDDsEeab56rI7xUJ1E=";
-          };
-        };
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "SebastienWae";
+        #     repo = "app-launcher";
+        #     rev = "d5015e394b0a666a8c7c4d4bdf786266e773b145";
+        #     hash = "sha256-d0d5rkuxK/zKpSCa1UTdpV7o+RDDsEeab56rI7xUJ1E=";
+        #   };
+        # };
       };
     # override for modules
     #   override = epkgs: epkgs // {
@@ -104,16 +104,16 @@ in {
       # direnv
       direnv
       # mu for email
-      mu
+      # mu
       # email sync
-      offlineimap
-      (isync.override { withCyrusSaslXoauth2 = true; })
+      # offlineimap
+      # (isync.override { withCyrusSaslXoauth2 = true; })
       # oauth
-      oama
+      # oama
       # protonmail
-      hydroxide
+      # hydroxide
       # send mail
-      msmtp
+      # msmtp
       # org to pdf
       tex
       # lsp
@@ -126,16 +126,16 @@ in {
       wakatime-cli
     ];
 
-    systemd.services.hydroxide = {
-      enable = true;
-      description = "Unofficial Protonmail Bridge";
-      serviceConfig = {
-        User = "sako";
-        Type = "simple";
-      };
-      script = "${pkgs.hydroxide}/bin/hydroxide serve";
-      wantedBy = [ "multi-user.target" ];
-    };
+    # systemd.services.hydroxide = {
+    #   enable = true;
+    #   description = "Unofficial Protonmail Bridge";
+    #   serviceConfig = {
+    #     User = "sako";
+    #     Type = "simple";
+    #   };
+    #   script = "${pkgs.hydroxide}/bin/hydroxide serve";
+    #   wantedBy = [ "multi-user.target" ];
+    # };
 
     # services.pantalaimon-headless.instances = {
     #   "wires.cafe" = {
@@ -147,16 +147,12 @@ in {
 
     home-manager.users.sako = { lib, ... }: {
       home.file = {
-        ".emacs.d/init.el".source = pkgs.runCommand "init.el" { } ''
-          cp ${../../../../config/emacs/emacs.org} emacs.org
-          ${myEmacs}/bin/emacs -Q --batch ./emacs.org -f org-babel-tangle
-          mv init.el $out
-        '';
-        ".emacs.d/icon.png".source = ../../../../config/emacs/icon.png;
+        ".emacs.d/init.el".source = ../../../../config/emacs/init.el;
+        # ".emacs.d/icon.png".source = ../../../../config/emacs/icon.png;
         # ".mbsyncrc".source = ../../../../config/emacs/.mbsyncrc;
-        ".offlineimaprc".source = ../../../../config/emacs/.offlineimaprc;
-        ".offlineimap.py".source = ../../../../config/emacs/.offlineimap.py;
-        ".msmtprc".source = ../../../../config/emacs/.msmtprc;
+        # ".offlineimaprc".source = ../../../../config/emacs/.offlineimaprc;
+        # ".offlineimap.py".source = ../../../../config/emacs/.offlineimap.py;
+        # ".msmtprc".source = ../../../../config/emacs/.msmtprc;
       };
     };
 
