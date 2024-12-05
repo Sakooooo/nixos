@@ -20,7 +20,7 @@
 (repeat-mode 1)
 (column-number-mode)
 
-(setq display-line-numbers 'relative)
+(setq display-line-numbers-type 'relative)
 
 (dolist (mode '(text-mode-hook
 		prog-mode-hook
