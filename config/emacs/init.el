@@ -20,10 +20,12 @@
 (repeat-mode 1)
 (column-number-mode)
 
+(setq display-line-numbers 'relative)
+
 (dolist (mode '(text-mode-hook
 		prog-mode-hook
 		conf-mode-hook))
-  (add-hook mode (lambda () (setq display-line-numbers 'relative) (display-line-numbers-mode 1))))
+  (add-hook mode (lambda () (display-line-numbers-mode 1))))
 
 (set-face-attribute 'default nil
 		    :font "JetBrainsMono NF"
