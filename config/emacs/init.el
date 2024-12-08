@@ -437,4 +437,31 @@
 (use-package org-pomodoro
   :ensure t)
 
+;; --- Social ---
+
+;; elcord
+(use-package elcord
+  :init
+  (setq elcord-display-buffer-details nil)
+  (setq elcord-use-major-mode-as-main-icon t)
+  (setq elcord-quiet t)
+  (setq elcord-display-elapsed nil)
+  :config
+  (defun elcord--disable-elcord-if-no-frames (f)
+    (ignore f)
+    (when (let ((frames (delete f (visible-frame-list))))
+  	    (or (null frames)
+                (elcord-mode -1)))))
+
+  (defun elcord--enable-on-frame-created (f)
+    (elcord-mode +1))
+
+  (add-hook 'after-make-frame-functions 'elcord--enable-on-frame-created)
+
+  (defun sakomacs/elcord-mode-hook ()
+    (if elcord-mode
+        (add-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)
+      (remove-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)))
+  (elcord-mode)
+  (add-hook 'elcord-mode-hook 'sakomacs/elcord-mode-hook))
 ;;; init.el ends here
