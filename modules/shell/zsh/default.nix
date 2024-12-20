@@ -1,17 +1,7 @@
-{
-  inputs,
-  options,
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-let
-  cfg = config.modules.shell.zsh;
+{ inputs, options, config, lib, pkgs, ... }:
+let cfg = config.modules.shell.zsh;
 in {
-  options.modules.shell.zsh = {
-    enable = lib.mkEnableOption false;
-  };
+  options.modules.shell.zsh = { enable = lib.mkEnableOption false; };
 
   config = lib.mkIf cfg.enable {
     users.users.sako.shell = pkgs.zsh;
@@ -22,9 +12,8 @@ in {
       #      promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     };
 
-    home-manager.users.sako = {pkgs, ...}: {
-      home.file = {
-      };
+    home-manager.users.sako = { pkgs, ... }: {
+      home.file = { };
       programs.direnv = {
         enableZshIntegration = true;
         enable = true;
@@ -40,7 +29,8 @@ in {
           search = "nix search";
           shell = "nix shell";
           run = "nix run";
-          cleanup = "sudo nix-collect-garbage --delete-older-than 3d && nix-collect-garbage -d";
+          cleanup =
+            "sudo nix-collect-garbage --delete-older-than 3d && nix-collect-garbage -d";
           current-system-tree = "nix-tree /nix/var/nix/profiles/system";
         };
         plugins = [
@@ -69,9 +59,6 @@ in {
     };
 
     # for theme
-    fonts.packages = with pkgs; [
-      jetbrains-mono
-      (nerdfonts.override {fonts = ["JetBrainsMono"];})
-    ];
+    fonts.packages = with pkgs; [ jetbrains-mono nerd-fonts.jetbrains-mono ];
   };
 }
