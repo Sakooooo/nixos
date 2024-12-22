@@ -387,6 +387,12 @@
   :custom
   (rustic-cargo-use-last-stored-arguments t))
 
+;; go
+(use-package go-mode
+  :ensure t
+  :hook (go-mode . eglot-ensure)
+  :mode ("\\.go\\'"))
+
 ;; --- Org-Mode ---
 (use-package org
   :ensure t
