@@ -15,12 +15,8 @@ in {
               ms-python.vscode-pylance
               ms-vscode.cmake-tools
               jnoortheen.nix-ide
-              ms-dotnettools.csharp
-              tuttieee.emacs-mcx
-              kahole.magit
-              zhuangtongfa.material-theme
               rust-lang.rust-analyzer
-              pkief.material-icon-theme
+              golang.Go
             ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
               name = "better-comments";
               publisher = "aaron-bond";
