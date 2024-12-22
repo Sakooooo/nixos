@@ -16,7 +16,7 @@ in {
               ms-vscode.cmake-tools
               jnoortheen.nix-ide
               rust-lang.rust-analyzer
-              golang.Go
+              golang.go
             ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
               name = "better-comments";
               publisher = "aaron-bond";
