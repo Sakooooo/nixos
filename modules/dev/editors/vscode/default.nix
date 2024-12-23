@@ -18,6 +18,7 @@ in {
               rust-lang.rust-analyzer
               golang.go
               leonardssh.vscord
+              ms-python.python
             ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
               name = "better-comments";
               publisher = "aaron-bond";
