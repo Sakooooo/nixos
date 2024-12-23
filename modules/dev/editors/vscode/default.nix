@@ -17,6 +17,7 @@ in {
               jnoortheen.nix-ide
               rust-lang.rust-analyzer
               golang.go
+              leonardssh.vscord
             ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
               name = "better-comments";
               publisher = "aaron-bond";
