@@ -34,10 +34,11 @@
     hyprland.url = "github:hyprwm/Hyprland";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
+    nvf.url = "github:notashelf/nvf";
   };
 
   outputs = { self, nixpkgs, home-manager, NixOS-WSL, agenix, emacs-overlay
-    , hyprland, hyprpaper, ags, ... }@inputs:
+    , hyprland, hyprpaper, ags, nvf, ... }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
