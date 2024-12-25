@@ -1,0 +1,20 @@
+{
+  "pins": {
+    "vim-wakatime": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "wakatime",
+        "repo": "vim-wakatime"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "version": "11.3.0",
+      "revision": "cf51327a9e08935569614d1cb24e779ee9f45519",
+      "url": "https://api.github.com/repos/wakatime/vim-wakatime/tarball/11.3.0",
+      "hash": "10d59w48h1n744l9w406msghncdl7i2nxg98dsd8siy6mycb5d2b"
+    }
+  },
+  "version": 3
+}

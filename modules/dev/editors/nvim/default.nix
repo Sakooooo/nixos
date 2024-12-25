@@ -5,7 +5,17 @@ let
     # custom options 
     # options = { ... };
 
-    config.vim = { theme.enable = true; };
+    config = {
+      vim = {
+        theme.enable = true;
+        lazy.plugins = with pkgs.vimPlugins; {
+          vim-wakatime = {
+            package = vim-wakatime;
+            lazy = false;
+          };
+        };
+      };
+    };
   };
   customNeovim = inputs.nvf.lib.neovimConfiguration {
     inherit pkgs;
