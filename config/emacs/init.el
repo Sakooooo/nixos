@@ -71,10 +71,15 @@
     (package-install 'use-package)))
 
 ;; --- Theme ---
-(use-package cherry-blossom-theme
+;; (use-package cherry-blossom-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'cherry-blossom t))
+
+(use-package kanagawa-theme
   :ensure t
   :config
-  (load-theme 'cherry-blossom t))
+  (load-theme 'kanagawa-dragon))
 
 ;; --- no-littering ---
 
