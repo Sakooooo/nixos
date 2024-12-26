@@ -24,8 +24,10 @@ in {
         # };
         vim = {
           lsp = { enable = true; };
+          filetree.nvimTree.enable = true;
           languages = {
              enableLSP = true;
+             clang.enable = true;
              nix = {
                 enable = true;
                 format.enable = true;
