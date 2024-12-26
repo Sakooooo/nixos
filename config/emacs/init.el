@@ -79,7 +79,7 @@
 (use-package kanagawa-themes
   :ensure t
   :config
-  (load-theme 'kanagawa-dragon))
+  (load-theme 'kanagawa-dragon t))
 
 ;; --- no-littering ---
 
