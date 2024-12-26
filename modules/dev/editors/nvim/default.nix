@@ -36,7 +36,7 @@ in {
              clang.enable = true;
              python = {
               enable = true;
-              format.enabe = true;
+              format.enable = true;
              };
              nix = {
                 enable = true;
