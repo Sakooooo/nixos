@@ -25,6 +25,12 @@ in {
         vim = {
           lsp = { enable = true; };
           filetree.nvimTree.enable = true;
+          precense.neocord = {
+            enable = true;
+            setupOpts = {
+              workspace_text = "Working on something";
+            };
+          };
           languages = {
              enableLSP = true;
              clang.enable = true;
