@@ -34,6 +34,10 @@ in {
           languages = {
              enableLSP = true;
              clang.enable = true;
+             python = {
+              enable = true;
+              format.enabe = true;
+             };
              nix = {
                 enable = true;
                 format.enable = true;
