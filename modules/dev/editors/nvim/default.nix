@@ -25,7 +25,7 @@ in {
         vim = {
           lsp = { enable = true; };
           filetree.nvimTree.enable = true;
-          presense.neocord = {
+          presence.neocord = {
             enable = true;
             setupOpts = {
               workspace_text = "Working on something";
