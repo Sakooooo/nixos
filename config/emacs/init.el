@@ -76,7 +76,7 @@
 ;;   :config
 ;;   (load-theme 'cherry-blossom t))
 
-(use-package kanagawa-theme
+(use-package kanagawa-themes
   :ensure t
   :config
   (load-theme 'kanagawa-dragon))
