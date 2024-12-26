@@ -1,19 +1,16 @@
 {
   "pins": {
-    "vim-wakatime": {
-      "type": "GitRelease",
+    "kanagawa.nvim": {
+      "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "wakatime",
-        "repo": "vim-wakatime"
+        "owner": "rebelot",
+        "repo": "kanagawa.nvim"
       },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "version": "11.3.0",
-      "revision": "cf51327a9e08935569614d1cb24e779ee9f45519",
-      "url": "https://api.github.com/repos/wakatime/vim-wakatime/tarball/11.3.0",
-      "hash": "10d59w48h1n744l9w406msghncdl7i2nxg98dsd8siy6mycb5d2b"
+      "branch": "master",
+      "revision": "2d54b56242a6f03c74864d118d61afa1acb5918e",
+      "url": "https://github.com/rebelot/kanagawa.nvim/archive/2d54b56242a6f03c74864d118d61afa1acb5918e.tar.gz",
+      "hash": "0kb4szw2h8qabv6f4n1ky7lshrhq1833f8137n15ifnna998di90"
     }
   },
   "version": 3

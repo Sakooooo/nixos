@@ -6,6 +6,10 @@ sources = {
         name = "vim-wakatime";
         src = pins.vim-wakatime;
    };
+   "kanagawa.nvim" = buildVimPlugin {
+        name = "kanagawa.nvim";
+        src = pins."kanagawa.nvim";
+   };
 };
 in
   sources

@@ -17,6 +17,7 @@ in {
 
     programs.nvf = {
       enable = true;
+      enableManpages = true;
       settings = {
         # vim.lazy = {
 
@@ -31,6 +32,15 @@ in {
              };
           };
           utility = { vim-wakatime.enable = true; };
+          extraPlugins = {
+            "kanagawa.nvim" = {
+              package = sources."kanagawa.nvim";
+              setup = ''
+              require('kanagawa').setup({ theme = 'dragon'})
+              vim.cmd('colorscheme kanagawa')
+              ''; 
+            };
+          };
         };
       };
     };
