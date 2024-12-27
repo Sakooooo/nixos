@@ -1,0 +1,13 @@
+diff --git a/src/cli.rs b/src/cli.rs
+index 9068da6..76b63e3 100644
+--- a/src/cli.rs
++++ b/src/cli.rs
+@@ -139,7 +139,7 @@ This only works when building locally.
+     nix_option: Vec<String>,
+     #[arg(
+         long,
+-        default_value_t,
++        default_value_t = true,
+         help = "Use direct flake evaluation (experimental)",
+         long_help = r#"If enabled, flakes will be evaluated using `nix eval`. This requires the flake to depend on Colmena as an input and expose a compatible `colmenaHive` output:
+ 

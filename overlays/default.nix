@@ -27,6 +27,8 @@
         ++ [ inputs.nixpkgs.legacyPackages.x86_64-linux.libdbusmenu-gtk3 ];
     });
     isync = prev.isync.overrideAttrs (old: { withCyrusSaslXoauth2 = true; });
+    colmena = inputs.colmena.packages.x86_64-linux.colmena.overrideAttrs
+      (old: { patches = old.patches or [ ] ++ [ ./colmena-eval.diff ]; });
   };
 
   # incase something breaks
