@@ -5,7 +5,7 @@ let
 in {
   meta = {
     nixpkgs = nixpkgs.legacyPackages.x86_64-linux;
-    specialArgs = { inherit inputs; };
+    specialArgs = { inherit inputs outputs; };
   };
 
   sakotop = { names, nodes, ... }: {
@@ -13,7 +13,6 @@ in {
       allowLocalDeployment = true;
       targetHost = null;
     };
-    specialArgs = { inherit inputs outputs; };
     imports = [ ./default.nix ./hosts/sakotop/configuration.nix ];
   };
 }
