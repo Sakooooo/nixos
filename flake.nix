@@ -35,12 +35,14 @@
     hyprpaper.url = "github:hyprwm/hyprpaper";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     nvf.url = "github:notashelf/nvf";
+    colmena.url = "github:zhaofengli/colmena/";
   };
 
   outputs = { self, nixpkgs, home-manager, NixOS-WSL, agenix, emacs-overlay
-    , hyprland, hyprpaper, ags, nvf, ... }@inputs:
+    , hyprland, hyprpaper, ags, nvf, colmena, ... }@inputs:
     let
       inherit (self) outputs;
+      inherit (colmena.lib) makeHive;
       forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
     in rec {
       # custom packages
@@ -57,6 +59,9 @@
 
       # modules :D
       nixosModules = import ./modules;
+
+      colmenaHive = makeHive (import ./hive.nix { inherit inputs outputs; });
+      colmena = import ./hive.nix { inherit inputs outputs; };
 
       nixosConfigurations = {
         sakotop = nixpkgs.lib.nixosSystem {
