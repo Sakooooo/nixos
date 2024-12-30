@@ -15,4 +15,9 @@ in {
     };
     imports = [ ./default.nix ./hosts/sakotop/configuration.nix ];
   };
+
+  sakoserver = { names, nodes, ... }: {
+    deployment = { tags = [ "server" ]; };
+    imports = [ ./hosts/sakoserver/configuration.nix ];
+  };
 }
