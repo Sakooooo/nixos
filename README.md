@@ -1,5 +1,6 @@
+# sako's nixos configuration
+its terrible please don't use it
 
-# My Dotfiles!
-
-[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
-![Static Badge](https://img.shields.io/badge/time_wasted-alot-red)
+## configs used as references
+[itslychee/config](https://github.com/itslychee/config)
+[notashelf/nyx](https://github.com/notashelf/nyx)
