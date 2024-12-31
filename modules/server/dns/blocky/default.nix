@@ -18,7 +18,7 @@ in {
         };
         caching = {
           minTime = "20m";
-          prefetching = true;
+          prefetching = "true";
         };
         upstreams = {
           groups = {
@@ -220,7 +220,7 @@ in {
         };
         customDNS = {
           customTTL = "1h";
-          filterUnmappedTypes = true;
+          filterUnmappedTypes = "true";
           mapping = { "sako.box" = "192.168.1.28"; };
         };
         ports = {
