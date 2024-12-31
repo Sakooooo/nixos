@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 with lib;
 let cfg = config.void.server.postgresql;
 in {
@@ -7,7 +7,7 @@ in {
   config = mkIf cfg.enable {
     services.postgresql = {
       enable = true;
-      package = postgresql_17_jit;
+      package = pkgs.postgresql_17_jit;
       ensureDatabases = [ "forgejo" ];
       ensureUsers = [
         {
