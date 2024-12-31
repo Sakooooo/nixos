@@ -12,6 +12,7 @@ in {
       defaults.server =
         "https://acme-staging-v02.api.letsencrypt.org/directory";
       defaults.group = config.services.nginx.group;
+      defaults.webroot = "/var/lib/acme/acme-challenge";
     };
     services.nginx = {
       enable = true;
