@@ -2,7 +2,7 @@
 with lib;
 let cfg = config.void.server;
 in {
-  imports = [ ./dns ./nginx.nix ];
+  imports = [ ./dns ./nginx.nix ./services ];
 
   options.void.server = { isServer = mkEnableOption false; };
 
