@@ -25,5 +25,8 @@
     };
   };
 
-  void = { isServer = true; };
-}
+  void = {
+    server = {
+      isServer = true;
+    };
+  };
