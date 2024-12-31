@@ -13,8 +13,8 @@ in {
         "https://acme-staging-v02.api.letsencrypt.org/directory";
       defaults.group = config.services.nginx.group;
       defaults.credentialsFile = "/srv/secrets/porkbun";
-      credentialsFile = "/srv/secrets/porkbun";
       defaults.dnsProvider = "porkbun";
+      defaults.webroot = null;
     };
     services.nginx = {
       enable = true;
