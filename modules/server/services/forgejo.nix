@@ -1,6 +1,6 @@
 { config, lib, ... }:
 with lib;
-let cfg = config.void.services.forgejo;
+let cfg = config.void.server.services.forgejo;
 in {
   options.void.server.services.forgejo = { enable = mkEnableOption false; };
 
