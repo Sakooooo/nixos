@@ -13,7 +13,7 @@ in {
         log = {
           level = "warn";
           format = "json";
-          timestamp = "false";
+          timestamp = false;
           privacy = true;
         };
         caching = {
