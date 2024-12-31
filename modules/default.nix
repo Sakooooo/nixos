@@ -7,4 +7,5 @@
   security = import ./security;
   work = import ./work;
   virtualization = import ./virtualization;
+  server = import ./server;
 }
