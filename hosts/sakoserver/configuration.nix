@@ -25,8 +25,19 @@
     };
   };
 
+  users.users.sako = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+  };
+
+  environment.systemPackages = with pkgs; [ neovim wget ];
+
+  # networking.firewall.allowedTCPPorts = [];
+  # networking.firewall.allowedUDPPorts = [];
+
   void = { server = { isServer = true; }; };
 
+  # https://nixos.org/manual/nixos/stable/#sec-upgrading
   # don't change this pls ty ily thanks
   system.stateVersion = "24.11";
 }
