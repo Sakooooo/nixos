@@ -26,7 +26,6 @@ in {
           v4 = "100.64.0.0/10";
           v6 = "fd7a:115c:a1e0::/48";
         };
-        # TODOOOOO POSTGRES NOW NOWNOW
         database = {
           type = "sqlite3";
           debug = false;
@@ -80,6 +79,8 @@ in {
             add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
           '';
         };
+
+        security.acme.certs."headscale.sako.lol" = { };
 
         systemd.services = { tailscaled.after = [ "headscale.service" ]; };
 

@@ -66,7 +66,7 @@
       postgresql.enable = true;
       services = {
         forgejo.enable = true;
-        # headscale.enable = true;
+        headscale.enable = true;
       };
     };
   };
