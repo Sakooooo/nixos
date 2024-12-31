@@ -22,7 +22,7 @@ in {
         }
         {
           name = "forgejo";
-          ensureDBOwnereship = true;
+          ensureDBOwnership = true;
         }
       ];
       # Thank you NotAShelf
