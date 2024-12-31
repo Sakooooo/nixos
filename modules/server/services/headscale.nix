@@ -60,7 +60,7 @@ in {
         dns = {
           magic_dns = true;
           #override_local_dns = true;
-          base_Domain = "sa.ko";
+          base_domain = "sa.ko";
 
           domains = [ "sa.ko" ];
 
