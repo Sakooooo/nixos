@@ -39,6 +39,7 @@
     server = {
       isServer = true;
       dns.blocky.enable = true;
+      nginx.enable = true;
     };
   };
 
