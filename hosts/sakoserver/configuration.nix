@@ -1,5 +1,10 @@
 { config, pkgs, lib, inputs, outputs, ... }: {
-  imports = [ outputs.nixosModules.server ./hardware-configuration.nix ];
+  imports = [
+    inputs.home-manager.nixosModules.default
+    outputs.nixosModules.shell
+    outputs.nixosModules.server
+    ./hardware-configuration.nix
+  ];
 
   # its you!
   networking.hostName = "sakoserver";
@@ -42,6 +47,8 @@
 
   # networking.firewall.allowedTCPPorts = [];
   # networking.firewall.allowedUDPPorts = [];
+
+  modules.shell.tmux.enable = true;
 
   void = {
     server = {
