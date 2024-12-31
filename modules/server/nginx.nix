@@ -12,7 +12,11 @@ in {
       defaults.server =
         "https://acme-staging-v02.api.letsencrypt.org/directory";
       defaults.group = config.services.nginx.group;
-      defaults.webroot = "/var/lib/acme/acme-challenge";
+      defaults.credentialsFile = {
+        "PORKBUN_API_KEY" = "/srv/secrets/porkbun-api";
+        "PORKBUN_SECRET_API_KEY" = "/srv/secrets/porkbun-secret-api";
+      };
+      defaults.dnsProvider = "porkbun";
     };
     services.nginx = {
       enable = true;
@@ -26,7 +30,8 @@ in {
       commonHttpConfig = ''
 
         access_log /var/log/nginx/access.log combined buffer=32k flush=5m;
-         error_log /var/log/nginx/error.log warn;
+        error_log /var/log/nginx/error.log warn;
+
       '';
     };
 
