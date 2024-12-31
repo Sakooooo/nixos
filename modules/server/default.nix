@@ -11,12 +11,12 @@ in {
     # into a wall
     services.openssh = {
       enable = true;
+      ports = [ 69 ];
       settings = {
         # disable this NEVER enable it
         PermitRootLogin = "no";
         # its so easy to use keys your grandmother could use it
         PasswordAuthentication = false;
-        ports = [ 69 ];
         openFirewall = true;
       };
     };
