@@ -7,7 +7,7 @@ in {
   config = mkIf cfg.enable {
     services.postgresql = {
       enable = true;
-      package = pkgs.postgresql_17_jit;
+      package = postgresql_17_jit;
       ensureDatabases = [ "forgejo" ];
       ensureUsers = [
         {
