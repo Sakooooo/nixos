@@ -216,7 +216,7 @@ in {
             "api.twitter.com"
             "mobile.twitter.com"
           ];
-          clientGroupsBlock.default = [ ads ];
+          clientGroupsBlock.default = [ "ads" ];
         };
         customDNS = {
           customTTL = "1h";
