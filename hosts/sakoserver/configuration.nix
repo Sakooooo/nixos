@@ -30,7 +30,15 @@
     extraGroups = [ "wheel" ];
   };
 
-  environment.systemPackages = with pkgs; [ neovim wget ];
+  environment.systemPackages = with pkgs; [
+    vim
+    neovim
+    wget
+    killall
+    unzip
+    htop
+    ripgrep
+  ];
 
   # networking.firewall.allowedTCPPorts = [];
   # networking.firewall.allowedUDPPorts = [];
