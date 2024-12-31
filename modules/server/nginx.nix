@@ -9,8 +9,6 @@ in {
     security.acme = {
       acceptTerms = true;
       defaults.email = "Sayeko@proton.me";
-      defaults.server =
-        "https://acme-staging-v02.api.letsencrypt.org/directory";
       defaults.group = config.services.nginx.group;
       defaults.credentialsFile = "/srv/secrets/porkbun";
       defaults.dnsProvider = "porkbun";

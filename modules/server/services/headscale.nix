@@ -93,7 +93,11 @@ in {
       '';
     };
 
-    security.acme.certs."headscale.sako.lol" = { };
+    security.acme.certs."headscale.sako.lol" = {
+      credentialsFile = "/srv/secrets/porkbun";
+      dnsProvider = "porkbun";
+      webroot = null;
+    };
 
     systemd.services = { tailscaled.after = [ "headscale.service" ]; };
 
