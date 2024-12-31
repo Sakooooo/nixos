@@ -6,7 +6,7 @@ in {
 
   options.void.server.dns.blocky = { enable = mkEnableOption false; };
 
-  config = mkIf cfg.isServer {
+  config = mkIf cfg.enable {
     services.blocky = {
       enable = true;
       settings = {
