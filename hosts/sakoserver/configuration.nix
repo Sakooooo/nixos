@@ -48,6 +48,7 @@
       isServer = true;
       dns.blocky.enable = true;
       nginx.enable = true;
+      services = { forgejo.enable = true; };
     };
   };
 
