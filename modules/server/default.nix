@@ -4,7 +4,7 @@ let cfg = config.void.server;
 in {
   imports = [ ];
 
-  options.modules.server = { isServer = mkEnableOption false; };
+  options.void.server = { isServer = mkEnableOption false; };
 
   config = mkIf cfg.isServer {
     # we need this if you say otherwise ill throw you
