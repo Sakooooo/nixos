@@ -8,7 +8,7 @@ in {
     services.postgresql = {
       enable = true;
       package = pkgs.postgresql_17_jit;
-      ensureDatabases = [ "forgejo" "headscale" ];
+      ensureDatabases = [ "forgejo" ];
       ensureUsers = [
         {
           name = "postgres";
@@ -22,10 +22,6 @@ in {
         }
         {
           name = "forgejo";
-          ensureDBOwnership = true;
-        }
-        {
-          name = "headscale";
           ensureDBOwnership = true;
         }
       ];
