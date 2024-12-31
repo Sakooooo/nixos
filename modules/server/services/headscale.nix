@@ -74,29 +74,28 @@ in {
           format = "text";
           level = "info";
         };
-
-        services.nginx.virtualHosts."headscale.sako.lol" = {
-          forceSSL = true;
-          enableACME = true;
-          http3 = true;
-
-          locations = {
-            "/" = {
-              proxyPass =
-                "http://localhost:${toString config.services.headscale.port}";
-              proxyWebsockets = true;
-            };
-          };
-          extraConfig = ''
-            add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
-          '';
-        };
-
-        security.acme.certs."headscale.sako.lol" = { };
-
-        systemd.services = { tailscaled.after = [ "headscale.service" ]; };
-
       };
     };
+    services.nginx.virtualHosts."headscale.sako.lol" = {
+      forceSSL = true;
+      enableACME = true;
+      http3 = true;
+
+      locations = {
+        "/" = {
+          proxyPass =
+            "http://localhost:${toString config.services.headscale.port}";
+          proxyWebsockets = true;
+        };
+      };
+      extraConfig = ''
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+      '';
+    };
+
+    security.acme.certs."headscale.sako.lol" = { };
+
+    systemd.services = { tailscaled.after = [ "headscale.service" ]; };
+
   };
 }
