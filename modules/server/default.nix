@@ -2,7 +2,7 @@
 with lib;
 let cfg = config.void.server;
 in {
-  imports = [ ];
+  imports = [ ./dns ];
 
   options.void.server = { isServer = mkEnableOption false; };
 

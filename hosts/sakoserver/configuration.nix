@@ -35,7 +35,12 @@
   # networking.firewall.allowedTCPPorts = [];
   # networking.firewall.allowedUDPPorts = [];
 
-  void = { server = { isServer = true; }; };
+  void = {
+    server = {
+      isServer = true;
+      dns.blocky.enable = true;
+    };
+  };
 
   # https://nixos.org/manual/nixos/stable/#sec-upgrading
   # don't change this pls ty ily thanks
