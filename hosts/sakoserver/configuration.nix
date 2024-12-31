@@ -35,6 +35,14 @@
     extraGroups = [ "wheel" ];
   };
 
+  home-manager.useUserPackages = true;
+  home-manager.users.sako = { pkgs, ... }: {
+    home.username = "sako";
+    home.homeDirectory = "/home/sako";
+    programs.bash.enable = true;
+    stateVerion = "24.11";
+  };
+
   environment.systemPackages = with pkgs; [
     vim
     neovim
