@@ -26,4 +26,7 @@
   };
 
   void = { server = { isServer = true; }; };
+
+  # don't change this pls ty ily thanks
+  system.stateVersion = "24.11";
 }
