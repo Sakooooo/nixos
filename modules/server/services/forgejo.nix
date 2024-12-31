@@ -7,7 +7,9 @@ in {
   config = mkIf cfg.enable {
     services.forgejo = {
       enable = true;
-      # settings = { };
+      # settings = {
+
+      # };
     };
   };
 }
