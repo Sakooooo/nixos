@@ -31,6 +31,8 @@ in {
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDjPSt4TykAJgafU9Trk7sr9wzXhBZxawDIZir0CPyDN sako@sakopc"
     ];
 
+    services.logrotate.enable = true;
+
     # anything can be a server, even a laptop
     # any say against this is a lie and propaganda
     services.logind.lidSwitch = "ignore";

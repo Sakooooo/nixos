@@ -28,5 +28,12 @@ in {
       '';
     };
 
+    services.logrotate.settings.nginx = {
+      enable = true;
+      minsize = "50M";
+      rotate = "2";
+      compress = true;
+    };
+
   };
 }
