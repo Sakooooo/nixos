@@ -2,8 +2,6 @@
 with lib;
 let cfg = config.void.server.nginx;
 in {
-  imports = [ ./dns ];
-
   options.void.server.nginx = { enable = mkEnableOption false; };
 
   config = mkIf cfg.enable {
