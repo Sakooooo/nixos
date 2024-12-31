@@ -7,6 +7,7 @@ in {
   options.void.server.nginx = { enable = mkEnableOption false; };
 
   config = mkIf cfg.enable {
+    networking.firewall.allowedTCPPorts = [ 80 443 ];
     security.acme = {
       acceptTerms = true;
       defaults.email = "Sayeko@proton.me";
