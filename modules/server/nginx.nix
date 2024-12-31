@@ -12,10 +12,7 @@ in {
       defaults.server =
         "https://acme-staging-v02.api.letsencrypt.org/directory";
       defaults.group = config.services.nginx.group;
-      defaults.credentialsFile = {
-        "PORKBUN_API_KEY" = "/srv/secrets/porkbun-api";
-        "PORKBUN_SECRET_API_KEY" = "/srv/secrets/porkbun-secret-api";
-      };
+      defaults.credentialsFile = "/srv/secrets/porkbun";
       defaults.dnsProvider = "porkbun";
     };
     services.nginx = {
