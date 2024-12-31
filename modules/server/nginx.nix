@@ -21,7 +21,7 @@ in {
       recommendedZstdSettings = true;
 
       commonHttpConfig = ''
-        access_log /var/log/nginx/access.log combined_anon buffer=32k flush=5m;
+        access_log /var/log/nginx/access.log buffer=32k flush=5m;
         error_log /var/log/nginx/error.log warn;
       '';
     };
