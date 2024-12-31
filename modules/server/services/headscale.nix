@@ -57,6 +57,18 @@ in {
         unix_socket = "/run/headscale/headscale.sock";
         unix_socket_permission = "0770";
 
+        dns = {
+          magic_dns = true;
+          #override_local_dns = true;
+          base_Domain = "sa.ko";
+
+          domains = [ "sa.ko" ];
+
+          nameservers = { global = [ "192.168.1.28" "sakoserver" "1.1.1.1" ]; };
+        };
+
+        # TODO Derp relays
+
         # logging
         log = {
           format = "text";
