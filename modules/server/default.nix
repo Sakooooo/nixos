@@ -10,6 +10,7 @@ in {
     ./redis.nix
     ./fail2ban.nix
     ./media
+    ./fedi
   ];
 
   options.void.server = { isServer = mkEnableOption false; };
