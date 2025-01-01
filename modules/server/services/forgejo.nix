@@ -63,7 +63,7 @@ in {
     services.fail2ban.jails.forgejo = {
       settings = {
         filter = "forgejo";
-        action = "nftables-multiport";
+        action = "iptables-multiport";
         mode = "aggressive";
         maxretry = 5;
         findtime = 3600;
