@@ -19,17 +19,17 @@ in {
         environment = { "PEROID" = "5m"; };
       };
 
-      systemd.services.ddns-updater = {
-        serviceConfig = {
-          DynamicUser = lib.mkForce false;
-          User = "ddns-updater";
-          Group = "ddns-updater";
-        };
-      };
       nginx.virtualHosts = {
         "ddns.sako.box" = {
           locations."/" = { proxyPass = "http://localhost:8000"; };
         };
+      };
+    };
+    systemd.services.ddns-updater = {
+      serviceConfig = {
+        DynamicUser = lib.mkForce false;
+        User = "ddns-updater";
+        Group = "ddns-updater";
       };
     };
   };
