@@ -5,6 +5,9 @@ in {
   options.void.server.services.forgejo = { enable = mkEnableOption false; };
 
   config = mkIf cfg.enable {
+
+    networking.firewall.allowedTCPPorts = [ 22 ];
+
     services.forgejo = {
       enable = true;
       database.type = "postgres";
