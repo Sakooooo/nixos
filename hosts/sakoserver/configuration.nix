@@ -70,6 +70,14 @@
         forgejo.enable = true;
         headscale.enable = true;
       };
+      media = {
+        qbittorrent = {
+          enable = true;
+          torrentPort = 55907;
+          openFirewall = true;
+          group = "media";
+        };
+      };
     };
   };
 
