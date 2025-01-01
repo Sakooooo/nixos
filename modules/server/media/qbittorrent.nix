@@ -111,7 +111,6 @@ in {
         in "!${preStartScript}";
 
         ExecStart = "${cfg.package}/bin/qbittorrent-nox";
-        UMask = "0002";
       };
 
       environment = {
