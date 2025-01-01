@@ -75,7 +75,12 @@ in {
     networking.firewall =
       mkIf cfg.openFirewall { allowedTCPPorts = [ cfg.torrentPort cfg.port ]; };
 
-    users.users.qbittorrent = { };
+    users.users.qbittorrent = {
+      home = cfg.dataDir;
+      useDefaultShell = true;
+      group = cfg.group;
+      isSystemUser = true;
+    };
     users.groups.media = { };
 
     systemd.services.qbittorrent = {
