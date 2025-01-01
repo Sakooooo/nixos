@@ -67,7 +67,11 @@ in {
         bantime = 900;
       };
     };
-    security.acme.certs."git.sako.lol" = { };
+    security.acme.certs."git.sako.lol" = {
+      credentialsFile = "/srv/secrets/porkbun";
+      dnsProvider = "porkbun";
+      webroot = null;
+    };
     environment.etc = {
       "fail2ban/filter.d/forgejo.conf".text = ''
         [Definition]
