@@ -9,7 +9,10 @@ in {
     environment.systemPackages =
       [ config.services.headscale.package pkgs.tailscale ];
 
-    services.tailscale.enable = true;
+    services.tailscale = {
+      enable = true;
+      useRoutingFeatures = "server";
+    };
 
     services.headscale = {
       enable = true;
@@ -97,11 +100,6 @@ in {
       credentialsFile = "/srv/secrets/porkbun";
       dnsProvider = "porkbun";
       webroot = null;
-    };
-
-    boot.kernel.sysctl = {
-      "net.ipv4.ip_forward" = 1;
-      "net.ipv6.conf.all.forwarding" = 1;
     };
 
     systemd.services = { tailscaled.after = [ "headscale.service" ]; };
