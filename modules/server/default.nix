@@ -9,6 +9,7 @@ in {
     ./postgresql.nix
     ./redis.nix
     ./fail2ban.nix
+    ./media
   ];
 
   options.void.server = { isServer = mkEnableOption false; };
