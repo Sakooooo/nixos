@@ -13,7 +13,10 @@ in {
       ddns-updater = {
         enable = true;
         package = ddns-updater-updated;
-        environment = { "PEROID" = "5m"; };
+        environment = lib.mkForce {
+          "PEROID" = "5m";
+          "DATADIR" = "/var/lib/ddns-updater";
+        };
       };
 
       nginx.virtualHosts = {
