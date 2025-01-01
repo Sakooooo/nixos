@@ -11,6 +11,7 @@ in {
     ./fail2ban.nix
     ./media
     ./fedi
+    ./ddns.nix
   ];
 
   options.void.server = { isServer = mkEnableOption false; };
