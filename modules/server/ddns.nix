@@ -22,7 +22,10 @@ in {
         };
       };
     };
-    users.users.ddns-updater = { group = "ddns-updater"; };
+    users.users.ddns-updater = {
+      group = "ddns-updater";
+      isSystemUser = true;
+    };
     users.groups.ddns-updater = { };
 
     systemd.services.ddns-updater = {
