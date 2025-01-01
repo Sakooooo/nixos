@@ -64,6 +64,7 @@
       dns.blocky.enable = true;
       nginx.enable = true;
       postgresql.enable = true;
+      redis.enable = true;
       services = {
         forgejo.enable = true;
         headscale.enable = true;
