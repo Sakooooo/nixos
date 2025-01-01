@@ -33,7 +33,7 @@ in {
           DESCRIPTION = "Something is happening...";
         };
 
-        #service.DISABLE_REGISTRATION = true;
+        service.DISABLE_REGISTRATION = true;
 
         server = {
           ROOT_URL = "https://git.sako.lol";
