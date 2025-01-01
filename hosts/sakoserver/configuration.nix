@@ -66,6 +66,7 @@
       postgresql.enable = true;
       redis.enable = true;
       fail2ban.enable = true;
+      ddns.enable = true;
       services = {
         forgejo.enable = true;
         headscale.enable = true;
