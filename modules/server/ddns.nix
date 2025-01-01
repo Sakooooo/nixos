@@ -10,9 +10,6 @@ in {
         pkgs.callPackage ../../packages/ddns-updater.nix { };
     in {
 
-      users.users.ddns-updater = { group = "ddns-updater"; };
-      users.groups.ddns-updater = { };
-
       ddns-updater = {
         enable = true;
         package = ddns-updater-updated;
@@ -25,6 +22,9 @@ in {
         };
       };
     };
+    users.users.ddns-updater = { group = "ddns-updater"; };
+    users.groups.ddns-updater = { };
+
     systemd.services.ddns-updater = {
       serviceConfig = {
         DynamicUser = lib.mkForce false;
