@@ -76,6 +76,9 @@ in {
                 "Pleroma.Upload.Filter.AnonymizeFilename"
               ];
             };
+
+            ":mrf".policies =
+              map mkRaw [ "Pleroma.Web.ActivityPub.MRF.SimplePolicy" ];
             ":mrf_simple" = let blocklist = import ./blocklist.nix;
             in {
               # media_nsfw = mkMap blocklist.media_nsfw;
