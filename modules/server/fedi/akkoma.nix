@@ -30,9 +30,9 @@ in {
         nginx = {
           enableACME = true;
           forceSSL = true;
-          recommendedTlsSettings = true;
-          recommendedOptimisation = true;
-          recommendedGzipSettings = true;
+          # recommendedTlsSettings = true;
+          # recommendedOptimisation = true;
+          # recommendedGzipSettings = true;
         };
 
         config = {
