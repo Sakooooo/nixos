@@ -133,6 +133,7 @@ in {
           forceSSL = true;
           enableACME = true;
           locations = {
+            "/" = { return = "301 https://social.sako.lol"; };
             "/media" = { proxyPass = "http://unix:/run/akkoma/socket"; };
             "/proxy" = {
               proxyPass = "http://unix:/run/akkoma/socket";
