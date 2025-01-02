@@ -84,6 +84,7 @@
           openFirewall = true;
           group = "media";
         };
+        jellyfin.enable = true;
       };
     };
   };
