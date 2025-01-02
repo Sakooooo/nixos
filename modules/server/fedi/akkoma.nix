@@ -89,7 +89,13 @@ in {
           enableACME = true;
           locations = {
             "/media" = { proxyPass = "http://unix:/run/akkoma/socket"; };
-            "/proxy" = { proxyPass = "http://unix:/run/akkoma/socket"; };
+            "/proxy" = {
+              proxyPass = "http://unix:/run/akkoma/socket";
+              extraConfig = ''
+                proxy_cache akkoma_media_cache;
+                 proxy_cache_lock on;
+              '';
+            };
           };
         };
       };
