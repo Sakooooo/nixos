@@ -12,6 +12,7 @@ in {
     ./media
     ./fedi
     ./ddns.nix
+    ./ddclient.nix
   ];
 
   options.void.server = { isServer = mkEnableOption false; };
