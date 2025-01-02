@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 with lib;
-let cfg = config.void.server.fedi.akkoma;
+let
+  cfg = config.void.server.fedi.akkoma;
+
+  inherit ((pkgs.formats.elixirConf { }).lib) mkRaw mkMap;
 in {
   options.void.server.fedi.akkoma = { enable = mkEnableOption false; };
 
@@ -76,7 +79,7 @@ in {
             ":mrf_simple" = let blocklist = import ./blocklist.nix;
             in {
               # media_nsfw = mkMap blocklist.media_nsfw;
-              reject = lib.mkMap blocklist.reject;
+              reject = mkMap blocklist.reject;
               # followers_only = mkMap blocklist.followers_only;
             };
           };
