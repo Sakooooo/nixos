@@ -82,10 +82,13 @@ in {
         journalmatch = _SYSTEMD_UNIT=forgejo.service
       '';
     };
-    systemd.services.forgejo.serviceConfig = {
-      AmbientCapabilities = lib.mkForce [ "CAP_NET_BIND_SERVICE" ];
-      CapabilityBoundingSet = lib.mkForce [ "CAP_NET_BIND_SERVICE" ];
-      PrivateUsers = lib.mkForce false;
+    systemd.services.forgejo = {
+      after = [ "postgresql.service" "redis-forgejo.service" ];
+      serviceConfig = {
+        AmbientCapabilities = lib.mkForce [ "CAP_NET_BIND_SERVICE" ];
+        CapabilityBoundingSet = lib.mkForce [ "CAP_NET_BIND_SERVICE" ];
+        PrivateUsers = lib.mkForce false;
+      };
     };
   };
 }
