@@ -56,6 +56,8 @@ in {
               account_activation_required = false;
               cleanup_attachments = true;
               allow_relay = true;
+              # AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+              federating = true;
             };
             ":media_proxy" = {
               enabled = true;
