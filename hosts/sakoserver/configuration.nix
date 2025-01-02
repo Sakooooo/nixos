@@ -56,6 +56,10 @@
   # networking.firewall.allowedTCPPorts = [];
   # networking.firewall.allowedUDPPorts = [];
 
+  # To trust others, you first must trust yourself
+  # - Homless guy that looked like Sun Tzu
+  security.pki.certificateFiles = [ ./trust/homelab.pem ];
+
   modules.shell.tmux.enable = true;
 
   void = {
