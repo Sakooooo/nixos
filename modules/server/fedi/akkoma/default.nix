@@ -65,7 +65,7 @@ in {
             ":media_proxy" = {
               enabled = true;
               proxy_opts = { redirect_on_failure = true; };
-              base_url = "https://media.social.sako.lol/proxy";
+              base_url = "https://media.social.sako.lol";
             };
             "Pleroma.Web.Endpoint" = { url.host = "social.sako.lol"; };
             "Pleroma.Upload" = {
