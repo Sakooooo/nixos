@@ -16,7 +16,6 @@ in {
         credentialsFile = "/srv/secrets/porkbun";
         dnsProvider = "porkbun";
         webroot = null;
-
       };
     };
     services = {
@@ -61,7 +60,7 @@ in {
             "Pleroma.Upload" = {
               base_url = "https://media.social.sako.lol";
               filters = map (pkgs.formats.elixirConf { }).lib.mkRaw [
-                "Pleroma.Upload.Filter.Exiftool"
+                "Pleroma.Upload.Filter.Exiftool.StripMetadata"
                 "Pleroma.Upload.Filter.Dedupe"
                 "Pleroma.Upload.Filter.AnonymizeFilename"
               ];
