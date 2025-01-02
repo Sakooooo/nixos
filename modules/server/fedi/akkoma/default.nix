@@ -76,7 +76,7 @@ in {
             ":mrf_simple" = let blocklist = import ./blocklist.nix;
             in {
               # media_nsfw = mkMap blocklist.media_nsfw;
-              reject = mkMap blocklist.reject;
+              reject = lib.mkMap blocklist.reject;
               # followers_only = mkMap blocklist.followers_only;
             };
           };
