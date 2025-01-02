@@ -25,6 +25,37 @@ in {
       akkoma = {
         enable = true;
         package = pkgs.akkoma;
+        extraStatic = {
+          "emoji/blobs.gg" = pkgs.akkoma-emoji.blobs_gg;
+          "static/terms-of-service.html" = pkgs.writeText "terms-of-service.html" ''
+<h1>Rules</h1>
+<ol>
+  <li>No NSFW <b><i>at all</i></b></li>
+  <li>try not to get this server blacklisted thanks :)</li>
+</ol>
+
+Instance is invite only because I don't know how many users this will handle, if you know any contact methods for the admin go ask him for an invite.
+    …
+  '';
+    #       "favicon.png" = let
+    #         rev = "697a8211b0f427a921e7935a35d14bb3e32d0a2c";
+    #       in pkgs.stdenvNoCC.mkDerivation {
+    #         name = "favicon.png";
+
+    #         src = pkgs.fetchurl {
+    #           url = "https://raw.githubusercontent.com/TilCreator/NixOwO/${rev}/NixOwO_plain.svg";
+    #           hash = "sha256-tWhHMfJ3Od58N9H5yOKPMfM56hYWSOnr/TGCBi8bo9E=";
+    #         };
+
+    #         nativeBuildInputs = with pkgs; [ librsvg ];
+
+    #         dontUnpack = true;
+    #         installPhase = ''
+    #   rsvg-convert -o $out -w 96 -h 96 $src
+    # '';
+          };
+        }
+        ;
         extraPackages =
           builtins.attrValues { inherit (pkgs) ffmpeg exiftool imagemagick; };
         frontends = {
