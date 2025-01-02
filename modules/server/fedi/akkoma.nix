@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 with lib;
 let cfg = config.void.server.fedi.akkoma;
 in {
