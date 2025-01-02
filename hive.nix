@@ -16,6 +16,14 @@ in {
     imports = [ ./default.nix ./hosts/sakotop/configuration.nix ];
   };
 
+  sakopc = { names, nodes, ... }: {
+    deployment = {
+      allowLocalDeployment = true;
+      targetHost = null;
+    };
+    imports = [ ./default.nix ./hosts/sakopc/configuration.nix ];
+  };
+
   sakoserver = { names, nodes, ... }: {
     deployment = { tags = [ "server" ]; };
     imports = [ ./hosts/sakoserver/configuration.nix ];
