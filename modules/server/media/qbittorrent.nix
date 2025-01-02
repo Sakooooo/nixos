@@ -113,14 +113,14 @@ in {
         ExecStart = "${cfg.package}/bin/qbittorrent-nox";
       };
 
-      services.nginx.virtualhost."qbittorrent.sako.box" = {
-        proxyPass = "http://localhost:${toString cfg.port}";
-      };
-
       environment = {
         QBT_PROFILE = cfg.dataDir;
         QBT_WEBUI_PORT = toString cfg.port;
       };
     };
+    services.nginx.virtualhost."qbittorrent.sako.box" = {
+      proxyPass = "http://localhost:${toString cfg.port}";
+    };
+
   };
 }
