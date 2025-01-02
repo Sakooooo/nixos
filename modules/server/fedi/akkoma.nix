@@ -59,11 +59,11 @@ in {
             };
             ":media_proxy" = {
               enabled = false;
-              base_url = "media.social.sako.lol";
+              # base_url = "media.social.sako.lol";
             };
             "Pleroma.Web.Endpoint" = { url.host = "social.sako.lol"; };
             "Pleroma.Upload" = {
-              base_url = "https://media.social.sako.lol";
+              base_url = "https://media.social.sako.lol/media";
               filters = map (pkgs.formats.elixirConf { }).lib.mkRaw [
                 "Pleroma.Upload.Filter.Exiftool.StripMetadata"
                 "Pleroma.Upload.Filter.Dedupe"
