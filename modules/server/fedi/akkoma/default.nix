@@ -61,6 +61,7 @@ in {
               allow_relay = true;
               # AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
               federating = true;
+              external_user_synchronization = true;
             };
             ":media_proxy" = {
               enabled = true;
