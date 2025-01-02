@@ -22,6 +22,8 @@ in {
       akkoma = {
         enable = true;
         package = pkgs.akkoma;
+        extraPackages =
+          builtins.attrValues { inherit (pkgs) ffmpeg exiftool imagemagick; };
         frontends = {
           primary = {
             package = pkgs.akkoma-frontends.akkoma-fe;
@@ -61,7 +63,7 @@ in {
             };
             "Pleroma.Web.Endpoint" = { url.host = "social.sako.lol"; };
             "Pleroma.Upload" = {
-              base_url = "https://media.social.sako.lol/media";
+              base_url = "https://media.social.sako.lol";
               filters = map (pkgs.formats.elixirConf { }).lib.mkRaw [
                 "Pleroma.Upload.Filter.Exiftool.StripMetadata"
                 "Pleroma.Upload.Filter.Dedupe"
@@ -71,6 +73,16 @@ in {
           };
         };
       };
+      nginx.virtualHosts = {
+        "media.social.sako.lol" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://unix:/run/akkoma/socket";
+          };
+        };
+      };
+      ;
     };
   };
 }
