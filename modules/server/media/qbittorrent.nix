@@ -119,9 +119,9 @@ in {
       };
     };
     services.nginx.virtualHosts."qbittorrent.sako.box" = {
+      forceSSL = true;
       locations."/" = {
         proxyPass = "http://localhost:${toString cfg.port}";
-        forceSSL = true;
         sslCertificate = "/srv/secrets/certs/sako.box.pem";
         sslCertificateKey = "/srv/secrets/certs/sako.box-key.pem";
       };
