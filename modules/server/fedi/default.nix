@@ -1,1 +1,1 @@
-{ imports = [ ./akkoma.nix ]; }
+{ imports = [ ./akkoma ]; }
