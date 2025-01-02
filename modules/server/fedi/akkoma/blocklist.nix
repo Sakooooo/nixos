@@ -23,6 +23,7 @@
     "loli.rodeo" = "total pedo death";
     "pawoo.net" = "total pedo death";
     "shota.house" = "total pedo death";
+    "yiff.life" = "never goon";
   };
 
   followers_only = { };
