@@ -118,7 +118,7 @@ in {
         QBT_WEBUI_PORT = toString cfg.port;
       };
     };
-    services.nginx.virtualhost."qbittorrent.sako.box" = {
+    services.nginx.virtualHosts."qbittorrent.sako.box" = {
       proxyPass = "http://localhost:${toString cfg.port}";
     };
 
