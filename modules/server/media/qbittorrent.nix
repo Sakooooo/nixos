@@ -119,7 +119,7 @@ in {
       };
     };
     services.nginx.virtualHosts."qbittorrent.sako.box" = {
-      proxyPass = "http://localhost:${toString cfg.port}";
+      locations."/" = { proxyPass = "http://localhost:${toString cfg.port}"; };
     };
 
   };
