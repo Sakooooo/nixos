@@ -77,12 +77,9 @@ in {
         "media.social.sako.lol" = {
           forceSSL = true;
           enableACME = true;
-          locations."/" = {
-            proxyPass = "http://unix:/run/akkoma/socket";
-          };
+          locations."/" = { proxyPass = "http://unix:/run/akkoma/socket"; };
         };
       };
-      ;
     };
   };
 }
