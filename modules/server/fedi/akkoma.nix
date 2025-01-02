@@ -7,8 +7,17 @@ in {
   # :(
   config = mkIf cfg.enable {
     security.acme.certs = {
-      "social.sako.lol" = { };
-      "media.social.sako.lol" = { };
+      "social.sako.lol" = {
+        credentialsFile = "/srv/secrets/porkbun";
+        dnsProvider = "porkbun";
+        webroot = null;
+      };
+      "media.social.sako.lol" = {
+        credentialsFile = "/srv/secrets/porkbun";
+        dnsProvider = "porkbun";
+        webroot = null;
+
+      };
     };
     services = {
       akkoma = {
