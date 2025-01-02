@@ -55,7 +55,10 @@ in {
               cleanup_attachments = true;
               allow_relay = true;
             };
-            ":media_proxy".enabled = false;
+            ":media_proxy" = {
+              enabled = false;
+              base_url = "media.social.sako.lol";
+            };
             "Pleroma.Web.Endpoint" = { url.host = "social.sako.lol"; };
             "Pleroma.Upload" = {
               base_url = "https://media.social.sako.lol";
