@@ -58,8 +58,9 @@ in {
               allow_relay = true;
             };
             ":media_proxy" = {
-              enabled = false;
-              # base_url = "media.social.sako.lol";
+              enabled = true;
+              proxy_opts = { redirect_on_failure = true; };
+              base_url = "media.social.sako.lol/proxy";
             };
             "Pleroma.Web.Endpoint" = { url.host = "social.sako.lol"; };
             "Pleroma.Upload" = {
@@ -73,11 +74,23 @@ in {
           };
         };
       };
+      nginx.proxyCachePath."akkoma-media-cache" = {
+        enable = true;
+        levels = "1:2";
+        inactive = "720m";
+        maxSize = "10g";
+        useTempPath = false;
+        keysZoneName = "akkoma_media_cache";
+        keysZoneSize = "10m";
+      };
       nginx.virtualHosts = {
         "media.social.sako.lol" = {
           forceSSL = true;
           enableACME = true;
-          locations."/" = { proxyPass = "http://unix:/run/akkoma/socket"; };
+          locations = {
+            "/media" = { proxyPass = "http://unix:/run/akkoma/socket"; };
+            "/proxy" = { proxyPass = "http://unix:/run/akkoma/socket"; };
+          };
         };
       };
     };
