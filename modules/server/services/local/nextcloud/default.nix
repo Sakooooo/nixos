@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, pkgs, lib, ... }:
 with lib;
 let cfg = config.void.server.services.local.nextcloud;
 in {
