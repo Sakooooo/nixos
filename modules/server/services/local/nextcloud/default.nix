@@ -1,6 +1,6 @@
 { config, lib, ... }:
 with lib;
-let cfg = config.void.server.local.nextcloud;
+let cfg = config.void.server.services.local.nextcloud;
 in {
   options.void.server.services.local.nextcloud = {
     enable = mkEnableOption false;
