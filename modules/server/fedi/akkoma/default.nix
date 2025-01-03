@@ -148,7 +148,7 @@ in {
     };
     # can't have SHIT in detroit
     users = {
-      fedifetcher = {
+      users.fedifetcher = {
         home = "/var/lib/fedifetcher";
         createHome = true;
         isSystemUser = true;
