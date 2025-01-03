@@ -75,6 +75,7 @@
       services = {
         forgejo.enable = true;
         headscale.enable = true;
+        local = { nextcloud.enable = true; };
       };
       fedi = { akkoma.enable = true; };
       media = {
