@@ -33,6 +33,8 @@ in {
           dbhost = "/run/postgresql";
           dbname = "nextcloud";
           dbuser = "nextcloud";
+          # SHUT UP
+          adminpassFile = "/srv/secrets/nextcloud/admin-temp-pass";
         };
         settings = {
           maintenance_window_start = 1;
