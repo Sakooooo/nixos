@@ -11,14 +11,22 @@ in {
     services.redis = {
       enable = true;
       vmOverCommit = true;
-      servers = mkIf srv.services.forgejo.enable {
-        forgejo = {
+      servers = {
+        forgejo = mkIf srv.services.forgejo.enable {
           enable = true;
           user = "forgejo";
           port = 6371;
           databases = 16;
           logLevel = "debug";
           requirePass = "forgejo";
+        };
+        nextcloud = mkIf srv.services.local.nextcloud.enable {
+          enable = true;
+          user = "nextcloud";
+          prot = 6372;
+          databases = 16;
+          logLevel = "debug";
+          requirePass = "nextcloud";
         };
       };
     };

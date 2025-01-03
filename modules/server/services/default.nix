@@ -1,1 +1,1 @@
-{ imports = [ ./forgejo.nix ./headscale.nix ]; }
+{ imports = [ ./forgejo.nix ./headscale.nix ./local ]; }
