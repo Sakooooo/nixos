@@ -173,7 +173,7 @@ in {
         serviceConfig = {
           WorkingDirectory = state;
           Type = "oneshot";
-          ExecStart = "{pkgs.fedifetcher}/bin/fedifetcher"
+          ExecStart = "${pkgs.fedifetcher}/bin/fedifetcher"
             + " --config ${configPath}" + " --state-dir ${state}";
           user = "fedifetcher";
           group = "fedifetcher";
