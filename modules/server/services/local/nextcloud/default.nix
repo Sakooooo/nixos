@@ -75,16 +75,17 @@ in {
         sslCertificateKey = "/srv/secrets/certs/sako.box-key.pem";
       };
     };
-  };
-  systemd.services = {
-    phpfpm-nextcloud.aliases = [ "nextcloud.service" ];
-    "nextcloud-setup" = {
-      requires = [ "postgresql.service" "redis-nextcloud.service" ];
-      after = [ "postgresql.service" "redis-nextcloud.service" ];
-      serviceConfig = {
-        Restart = "on-failure";
-        RestartSec = "10s";
+    systemd.services = {
+      phpfpm-nextcloud.aliases = [ "nextcloud.service" ];
+      "nextcloud-setup" = {
+        requires = [ "postgresql.service" "redis-nextcloud.service" ];
+        after = [ "postgresql.service" "redis-nextcloud.service" ];
+        serviceConfig = {
+          Restart = "on-failure";
+          RestartSec = "10s";
+        };
       };
     };
   };
+
 }
