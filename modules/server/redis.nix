@@ -23,7 +23,7 @@ in {
         nextcloud = mkIf srv.services.local.nextcloud.enable {
           enable = true;
           user = "nextcloud";
-          prot = 6372;
+          port = 6372;
           databases = 16;
           logLevel = "debug";
           requirePass = "nextcloud";
