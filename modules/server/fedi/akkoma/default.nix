@@ -175,8 +175,8 @@ in {
           Type = "oneshot";
           ExecStart = "${pkgs.fedifetcher}/bin/fedifetcher"
             + " --config ${configPath}" + " --state-dir ${state}";
-          user = "fedifetcher";
-          group = "fedifetcher";
+          User = "fedifetcher";
+          Group = "fedifetcher";
         };
       };
     };
