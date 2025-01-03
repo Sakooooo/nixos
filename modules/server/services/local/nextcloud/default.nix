@@ -31,9 +31,6 @@ in {
 
         config = {
           dbtype = "pgsql";
-          dbhost = "/run/postgresql";
-          dbname = "nextcloud";
-          dbuser = "nextcloud";
           # SHUT UP
           adminpassFile = "/srv/secrets/nextcloud/admin-temp-pass";
         };
@@ -74,6 +71,7 @@ in {
         };
       };
       nginx.virtualHosts."nextcloud.sako.box" = {
+        forceSSL = true;
         sslCertificate = "/srv/secrets/certs/sako.box.pem";
         sslCertificateKey = "/srv/secrets/certs/sako.box-key.pem";
       };
