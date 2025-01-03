@@ -76,7 +76,7 @@
         forgejo.enable = true;
         headscale.enable = true;
       };
-      fedi = { akkoma.enable = true; };
+      fedi = { akkoma.enable = false; };
       media = {
         qbittorrent = {
           enable = true;
