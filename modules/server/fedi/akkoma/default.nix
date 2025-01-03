@@ -146,5 +146,39 @@ in {
         };
       };
     };
+    # can't have SHIT in detroit
+    users = {
+      fedifetcher = {
+        home = "/var/lib/fedifetcher";
+        createHome = true;
+        isSystemUser = true;
+        group = "fedifetcher";
+      };
+      groups.fedifetcher = { };
+    };
+
+    systemd = let
+      configPath = "/srv/secrets/fedifetcher.json";
+      state = "/var/lib/fedifetcher";
+    in {
+      timers.fedifetcher = {
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+          OnUnitActiveSec = "1m";
+          Unit = "fedifetcher.service";
+        };
+      };
+      services.fedifetcher = {
+        unitConfig = { ConditionPathExists = configPath; };
+        serviceConfig = {
+          WorkingDirectory = state;
+          Type = "oneshot";
+          ExecStart = "{pkgs.fedifetcher}/bin/fedifetcher"
+            + " --config ${configPath}" + " --state-dir ${state}";
+          user = "fedifetcher";
+          group = "fedifetcher";
+        };
+      };
+    };
   };
 }
