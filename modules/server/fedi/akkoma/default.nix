@@ -10,12 +10,12 @@ in {
   # :(
   config = mkIf cfg.enable {
     security.acme.certs = {
-      "social.sako.lol" = {
+      "fedi.sako.lol" = {
         credentialsFile = "/srv/secrets/porkbun";
         dnsProvider = "porkbun";
         webroot = null;
       };
-      "media.social.sako.lol" = {
+      "media.fedi.sako.lol" = {
         credentialsFile = "/srv/secrets/porkbun";
         dnsProvider = "porkbun";
         webroot = null;
@@ -96,11 +96,11 @@ in {
             ":media_proxy" = {
               enabled = true;
               proxy_opts = { redirect_on_failure = true; };
-              base_url = "https://media.social.sako.lol";
+              base_url = "https://media.fedi.sako.lol";
             };
-            "Pleroma.Web.Endpoint" = { url.host = "social.sako.lol"; };
+            "Pleroma.Web.Endpoint" = { url.host = "fedi.sako.lol"; };
             "Pleroma.Upload" = {
-              base_url = "https://media.social.sako.lol/media";
+              base_url = "https://media.fedi.sako.lol/media";
               filters = map (pkgs.formats.elixirConf { }).lib.mkRaw [
                 "Pleroma.Upload.Filter.Exiftool.StripMetadata"
                 "Pleroma.Upload.Filter.Dedupe"
@@ -129,11 +129,11 @@ in {
         keysZoneSize = "10m";
       };
       nginx.virtualHosts = {
-        "media.social.sako.lol" = {
+        "media.fedi.sako.lol" = {
           forceSSL = true;
           enableACME = true;
           locations = {
-            "/" = { return = "301 https://social.sako.lol"; };
+            "/" = { return = "301 https://fedi.sako.lol"; };
             "/media" = { proxyPass = "http://unix:/run/akkoma/socket"; };
             "/proxy" = {
               proxyPass = "http://unix:/run/akkoma/socket";
