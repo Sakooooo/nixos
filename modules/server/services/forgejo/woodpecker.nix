@@ -35,6 +35,7 @@ in {
           WOODPECKER_SERVER_ADDR = ":3007";
           WOODPECKER_FORGEJO = "TRUE";
           WOODPECKER_FORGEJO_URL = "https://git.sako.lol";
+          WOODPECKER_OPEN = "TRUE";
         };
         # /srv/secrets/woodpecker-server.env
         # WOODPECKER_AGENT_SECRET=XXXXXXXXXXXXXXXXXXXXXX
