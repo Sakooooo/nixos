@@ -56,7 +56,7 @@ in {
         };
         # Same as with woodpecker-server
         # WOODPECKER_AGENT_SECRET goes here too idiot
-        environmentFile = [ "/var/lib/secrets/woodpecker.env" ];
+        environmentFile = [ "/srv/secrets/woodpecker.env" ];
       };
       nginx.virtualHosts."${domain}" = {
         enableACME = true;
