@@ -76,6 +76,7 @@
         forgejo = {
           enable = true;
           # runner.enable = true;
+          woodpecker.enable = true;
         };
         headscale.enable = true;
         local = { nextcloud.enable = false; };
