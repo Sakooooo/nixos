@@ -73,6 +73,7 @@
       fail2ban.enable = true;
       ddclient.enable = true;
       services = {
+        sakosite.enable = true;
         forgejo = {
           enable = true;
           # runner.enable = true;
