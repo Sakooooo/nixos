@@ -2,7 +2,7 @@
 with lib;
 let cfg = config.void.server.services.forgejo;
 in {
-  imports = [ ./runner.nix ];
+  imports = [ ./runner.nix ./woodpecker.nix ];
   options.void.server.services.forgejo = { enable = mkEnableOption false; };
 
   config = mkIf cfg.enable {
