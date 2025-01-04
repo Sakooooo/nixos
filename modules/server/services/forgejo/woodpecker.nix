@@ -51,7 +51,7 @@ in {
       woodpecker-agents.agents."sakoserver-agent" = {
         enable = true;
         # We need this to talk to the podman socket
-        extraGroups = [ "podman" ];
+        extraGroups = [ "docker" ];
         environment = {
           WOODPECKER_SERVER = "localhost:9000";
           WOODPECKER_MAX_WORKFLOWS = "1";
