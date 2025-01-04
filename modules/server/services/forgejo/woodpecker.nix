@@ -18,7 +18,10 @@ in {
     # LOL get it, a man is in a pod LMAO XDDDDD ROFL
     virtualisation.podman = {
       enable = true;
-      # defaultNetwork.settings = { dns_enabled = true; };
+      defaultNetwork.settings = {
+        dns_enabled = true;
+        dns = "127.0.0.1";
+      };
     };
 
     # # This is needed for podman to be able to talk over dns
