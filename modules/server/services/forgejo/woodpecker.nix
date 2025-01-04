@@ -33,7 +33,7 @@ in {
         environment = {
           WOODPECKER_HOST = "https://${domain}";
           WOODPECKER_SERVER_ADDR = ":3007";
-          WOODPECKER_FORGEJO = true;
+          WOODPECKER_FORGEJO = "TRUE";
           WOODPECKER_FORGEJO_URL = "https://git.sako.lol";
         };
         # /srv/secrets/woodpecker-server.env
