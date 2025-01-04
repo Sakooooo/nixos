@@ -36,6 +36,7 @@ in {
           WOODPECKER_FORGEJO = "TRUE";
           WOODPECKER_FORGEJO_URL = "https://git.sako.lol";
           WOODPECKER_OPEN = "TRUE";
+          WOODPECKER_ADMIN = "sako";
         };
         # /srv/secrets/woodpecker-server.env
         # WOODPECKER_AGENT_SECRET=XXXXXXXXXXXXXXXXXXXXXX
