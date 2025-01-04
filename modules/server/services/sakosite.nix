@@ -1,6 +1,6 @@
 { config, lib, ... }:
 with lib;
-let cfg = config.void.services.sakosite;
+let cfg = config.void.server.services.sakosite;
 in {
   options.void.server.services.sakosite = { enable = mkEnableOption false; };
 
