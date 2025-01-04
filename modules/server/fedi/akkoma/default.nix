@@ -27,6 +27,11 @@ in {
         package = pkgs.akkoma;
         extraStatic = {
           "emoji/blobs.gg" = pkgs.akkoma-emoji.blobs_gg;
+          # TODO Change this lmao
+          "static/favicon.png" = pkgs.fetchurl {
+            url = "https://sako.lol/icon.png";
+            hash = "sha256-G8qYTlRwQWn+x6b9t0gFBriIxm6LV2n1jI5OcTSg/jc=";
+          };
           "static/terms-of-service.html" =
             pkgs.writeText "terms-of-service.html" ''
               <h1>Rules</h1>
