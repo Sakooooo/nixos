@@ -85,6 +85,7 @@ in {
 
         config = {
           ":pleroma" = {
+            ":frontend_configurations" = { logo = "/static/favicon.png"; };
             ":instance" = {
               name = "v0id";
               description = "Good ass fediverse instance";
