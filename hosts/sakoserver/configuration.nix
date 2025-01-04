@@ -75,7 +75,7 @@
       services = {
         forgejo = {
           enable = true;
-          runner.enable = true;
+          # runner.enable = true;
         };
         headscale.enable = true;
         local = { nextcloud.enable = false; };
