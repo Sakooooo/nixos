@@ -16,13 +16,14 @@ in {
     };
 
     # LOL get it, a man is in a pod LMAO XDDDDD ROFL
-    virtualisation.podman = {
-      enable = true;
-      defaultNetwork.settings = {
-        # dns_enabled = true;
-        dns = "127.0.0.1";
-      };
-    };
+    # virtualisation.podman = {
+    #   enable = true;
+    #   defaultNetwork.settings = {
+    #     # dns_enabled = true;
+    #     dns = "127.0.0.1";
+    #   };
+    # };
+    virtualisation.docker.enable = true;
 
     # # This is needed for podman to be able to talk over dns
     # networking.firewall.interfaces."podman0" = {
@@ -54,7 +55,7 @@ in {
         environment = {
           WOODPECKER_SERVER = "localhost:9000";
           WOODPECKER_MAX_WORKFLOWS = "1";
-          DOCKER_HOST = "unix:///run/podman/podman.sock";
+          # DOCKER_HOST = "unix:///run/podman/podman.sock";
           WOODPECKER_BACKEND = "docker";
           WOODPECKER_HEALTHCHECK_ADDR = ":3001";
         };
