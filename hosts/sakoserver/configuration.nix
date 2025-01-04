@@ -73,7 +73,10 @@
       fail2ban.enable = true;
       ddclient.enable = true;
       services = {
-        forgejo.enable = true;
+        forgejo = {
+          enable = true;
+          runner.enable = true;
+        };
         headscale.enable = true;
         local = { nextcloud.enable = false; };
       };
