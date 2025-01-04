@@ -18,14 +18,14 @@ in {
     # LOL get it, a man is in a pod LMAO XDDDDD ROFL
     virtualisation.podman = {
       enable = true;
-      defaultNetwork.settings = { dns_enabled = true; };
+      # defaultNetwork.settings = { dns_enabled = true; };
     };
 
-    # This is needed for podman to be able to talk over dns
-    networking.firewall.interfaces."podman0" = {
-      allowedUDPPorts = [ 53 ];
-      allowedTCPPorts = [ 53 ];
-    };
+    # # This is needed for podman to be able to talk over dns
+    # networking.firewall.interfaces."podman0" = {
+    #   allowedUDPPorts = [ 53 ];
+    #   allowedTCPPorts = [ 53 ];
+    # };
 
     services = {
       woodpecker-server = {
