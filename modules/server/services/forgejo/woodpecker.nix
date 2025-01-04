@@ -19,7 +19,7 @@ in {
     virtualisation.podman = {
       enable = true;
       defaultNetwork.settings = {
-        dns_enabled = true;
+        # dns_enabled = true;
         dns = "127.0.0.1";
       };
     };
