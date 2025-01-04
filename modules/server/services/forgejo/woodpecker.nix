@@ -49,10 +49,11 @@ in {
         # We need this to talk to the podman socket
         extraGroups = [ "podman" ];
         environment = {
-          WOODPECKER_SERVER = "localhost:3007";
+          WOODPECKER_SERVER = "localhost:9000";
           WOODPECKER_MAX_WORKFLOWS = "1";
           DOCKER_HOST = "unix:///run/podman/podman.sock";
           WOODPECKER_BACKEND = "docker";
+          WOODPECKER_HEALTHCHECK_ADDR = ":3001";
         };
         # Same as with woodpecker-server
         # WOODPECKER_AGENT_SECRET goes here too idiot
