@@ -132,14 +132,22 @@ in {
 
     services.nginx.virtualHosts = {
       "pages.sako.lol" = {
-        forceSSL = true;
+        listen = [{
+          addr = "0.0.0.0";
+          port = 443;
+          ssl = true;
+        }];
         locations."/" = { proxyPass = "http://localhost:4563"; };
         extraConfig = ''
           ssl_preread on;
         '';
       };
       "*.pages.sako.lol" = {
-        forceSSL = true;
+        listen = [{
+          addr = "0.0.0.0";
+          port = 443;
+          ssl = true;
+        }];
         locations."/" = { proxyPass = "http://localhost:4563"; };
         extraConfig = ''
           ssl_preread on;
