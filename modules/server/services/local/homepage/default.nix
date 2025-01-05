@@ -45,7 +45,7 @@ in {
               description = "Selfhosted Fediverse thing";
               href = "https://fedi.sako.lol";
             };
-            "Redlib" = mkIf srv.services.local.redlib.enable {
+            "Redlib" = mkIf srv.services.redlib.enable {
               icon = "redlib.svg";
               description = "privacy friendly reddit frontend";
               href = "https://redlib.sako.box";
