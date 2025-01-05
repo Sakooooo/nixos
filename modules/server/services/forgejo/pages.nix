@@ -138,9 +138,6 @@ in {
           # ssl = true;
         }];
         locations."/" = { proxyPass = "http://localhost:57763"; };
-        extraConfig = ''
-          ssl_preread on;
-        '';
       };
       "*.pages.sako.lol" = {
         listen = [{
@@ -149,9 +146,6 @@ in {
           # ssl = true;
         }];
         locations."/" = { proxyPass = "http://localhost:56773"; };
-        extraConfig = ''
-          ssl_preread on;
-        '';
       };
     };
     services.nginx.streamConfig = ''
