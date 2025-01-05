@@ -151,7 +151,6 @@ in {
         #   # ssl = true;
         # }];
         forceSSL = true;
-        enableACME = true;
         useACMEHost = "pages.sako.lol";
         extraConfig = ''
           proxy_ssl_server_name on;
