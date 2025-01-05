@@ -134,6 +134,9 @@ in {
       "pages.sako.lol" = {
         locations."/" = { proxyPass = "http://localhost:4563"; };
       };
+      "*.pages.sako.lol" = {
+        locations."/" = { proxyPass = "http://localhost:4563"; };
+      };
     };
   };
 }
