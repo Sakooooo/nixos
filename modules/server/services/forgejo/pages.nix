@@ -139,7 +139,7 @@ in {
         # }];
         forceSSL = true;
         enableACME = true;
-        locations."/" = { proxyPass = "https://localhost:55342"; };
+        locations."/" = { proxyPass = "https://localhost:4563"; };
       };
     };
     security.acme.certs."pages.sako.lol" = {
@@ -148,20 +148,20 @@ in {
       dnsProvider = "porkbun";
       webroot = null;
     };
-    services.nginx.streamConfig = ''
-       server {
-        server_name *.pages.sako.lol;
-        listen 55342 ssl;
+    # services.nginx.streamConfig = ''
+    #    server {
+    #     server_name *.pages.sako.lol;
+    #     listen 55342 ssl;
 
-        ssl_certificate /var/lib/acme/pages.sako.lol/fullchain.pem;
-        ssl_certificate_key /var/lib/acme/pages.sako.lol/key.pem;
-            
-        proxy_connect_timeout 1s;
-        proxy_timeout 3s;
-        
-        proxy_pass https://localhost:4563;       
-        ssl_preread on;
-      }
-    '';
+    #     ssl_certificate /var/lib/acme/pages.sako.lol/fullchain.pem;
+    #     ssl_certificate_key /var/lib/acme/pages.sako.lol/key.pem;
+
+    #     proxy_connect_timeout 1s;
+    #     proxy_timeout 3s;
+
+    #     proxy_pass https://localhost:4563;       
+    #     ssl_preread on;
+    #   }
+    # '';
   };
 }
