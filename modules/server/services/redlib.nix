@@ -25,7 +25,7 @@ in {
         forceSSL = true;
         sslCertificate = "/srv/secrets/certs/sako.box.pem";
         sslCertificateKey = "/srv/secrets/certs/sako.box-key.pem";
-        locations."/" = { proxyPass = "http://localhost:8284";- };
+        locations."/" = { proxyPass = "http://localhost:8284"; };
       };
     };
 
