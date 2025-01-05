@@ -97,7 +97,10 @@
         };
         headscale.enable = true;
         redlib.enable = true;
-        local = { nextcloud.enable = false; };
+        local = {
+          homepage.enable = true;
+          nextcloud.enable = false;
+        };
       };
       fedi = { akkoma.enable = true; };
       media = {

@@ -1,1 +1,1 @@
-{ imports = [ ./nextcloud ]; }
+{ imports = [ ./nextcloud ./homepage ]; }
