@@ -11,6 +11,8 @@ in {
       jellyfin = {
         enable = true;
         group = "media";
+        # television
+        openFirewall = true;
       };
 
       nginx = {
