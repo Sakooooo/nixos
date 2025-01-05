@@ -80,6 +80,7 @@
           woodpecker.enable = true;
         };
         headscale.enable = true;
+        redlib.enable = true;
         local = { nextcloud.enable = false; };
       };
       fedi = { akkoma.enable = true; };
