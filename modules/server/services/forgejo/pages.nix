@@ -139,7 +139,7 @@ in {
         # }];
         forceSSL = true;
         enableACME = true;
-        locations."/" = { proxyPass = "https://localhost:4563"; };
+        locations."/" = { proxyPass = "http://localhost:4563"; };
       };
     };
     security.acme.certs."pages.sako.lol" = {
