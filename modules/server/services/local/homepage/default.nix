@@ -56,13 +56,13 @@ in {
                 href = "https://redlib.sako.box";
               };
             }
-            {
-              "Nextcloud" = mkIf srv.services.local.nextcloud.enable {
-                icon = "nextcloud.svg";
-                description = "cloud";
-                href = "https://nextcloud.sako.box";
-              };
-            }
+            # {
+            #   "Nextcloud" = mkIf srv.services.local.nextcloud.enable {
+            #     icon = "nextcloud.svg";
+            #     description = "cloud";
+            #     href = "https://nextcloud.sako.box";
+            #   };
+            # }
             {
               "Site" = mkIf srv.services.sakosite.enable {
                 icon = "https://sako.lol/icon.png";
