@@ -148,7 +148,8 @@ in {
     #     locations."/" = { proxyPass = "https://localhost:56773"; };
     #   };
     # };
-    security.acme.certs."*.pages.sako.lol" = {
+    security.acme.certs."pages.sako.lol" = {
+      extraDomainNames = [ "*.pages.sako.lol" ];
       credentialsFile = "/srv/secrets/porkbun";
       dnsProvider = "porkbun";
       webroot = null;
@@ -158,8 +159,8 @@ in {
         server_name *.pages.sako.lol;
         listen 443 ssl;
 
-        ssl_certificate /var/lib/acme/*.pages.sako.lol/fullchain.pem;
-        ssl_certificate_key /var/lib/acme/*.pages.sako.lol/key.pem;
+        ssl_certificate /var/lib/acme/pages.sako.lol/fullchain.pem;
+        ssl_certificate_key /var/lib/acme/pages.sako.lol/key.pem;
             
         proxy_connect_timeout 1s;
         proxy_timeout 3s;
