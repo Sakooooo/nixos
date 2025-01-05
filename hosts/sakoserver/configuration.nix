@@ -85,6 +85,8 @@
               PORT = "4563";
               ACME_ACCEPT_TERMS = "TRUE";
               ENABLE_HTTP_SERVER = "TRUE";
+              # Large instances shouldn't do this
+              NO_DNS_01 = "TRUE";
               GITEA_ROOT = "https://git.sako.lol";
               PAGES_DOMAIN = "pages.sako.lol";
               RAW_DOMAIN = "raw.pages.sako.lol";
