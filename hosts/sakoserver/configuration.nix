@@ -78,22 +78,22 @@
           enable = true;
           # runner.enable = true;
           woodpecker.enable = true;
-          pages = {
-            enable = true;
-            settings = {
-              HOST = "127.0.0.1";
-              PORT = "4563";
-              ACME_ACCEPT_TERMS = "TRUE";
-              ENABLE_HTTP_SERVER = "TRUE";
-              # Large instances shouldn't do this
-              # NO_DNS_01 = "TRUE";
-              DNS_PROVIDER = "porkbun";
-              GITEA_ROOT = "https://git.sako.lol";
-              PAGES_DOMAIN = "pages.sako.lol";
-              RAW_DOMAIN = "raw.pages.sako.lol";
-            };
-            environmentFile = "/srv/secrets/codeberg-pages.env";
-          };
+          # pages = {
+          #   enable = true;
+          #   settings = {
+          #     HOST = "127.0.0.1";
+          #     PORT = "4563";
+          #     ACME_ACCEPT_TERMS = "TRUE";
+          #     ENABLE_HTTP_SERVER = "TRUE";
+          #     # Large instances shouldn't do this
+          #     # NO_DNS_01 = "TRUE";
+          #     DNS_PROVIDER = "porkbun";
+          #     GITEA_ROOT = "https://git.sako.lol";
+          #     PAGES_DOMAIN = "pages.sako.lol";
+          #     RAW_DOMAIN = "raw.pages.sako.lol";
+          #   };
+          #   environmentFile = "/srv/secrets/codeberg-pages.env";
+          # };
         };
         headscale.enable = true;
         redlib.enable = true;
