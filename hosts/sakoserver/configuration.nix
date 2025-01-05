@@ -78,6 +78,18 @@
           enable = true;
           # runner.enable = true;
           woodpecker.enable = true;
+          pages = {
+            enable = true;
+            settings = {
+              HOST = "127.0.0.1";
+              PORT = "4563";
+              ACME_ACCEPT_TERMS = true;
+              ENABLE_HTTP_SERVER = true;
+              GITEA_ROOT = "git.sako.lol";
+              PAGES_DOMAIN = "pages.sako.lol";
+              RAW_DOMAIN = "raw.pages.sako.lol";
+            };
+          };
         };
         headscale.enable = true;
         redlib.enable = true;
