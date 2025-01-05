@@ -130,24 +130,18 @@ in {
     users.groups =
       mkIf (cfg.group == "codeberg-pages") { codeberg-pages = { }; };
 
-    # services.nginx.virtualHosts = {
-    #   "pages.sako.lol" = {
-    #     listen = [{
-    #       addr = "0.0.0.0";
-    #       port = 443;
-    #       # ssl = true;
-    #     }];
-    #     locations."/" = { proxyPass = "https://localhost:57763"; };
-    #   };
-    #   "*.pages.sako.lol" = {
-    #     listen = [{
-    #       addr = "0.0.0.0";
-    #       port = 443;
-    #       # ssl = true;
-    #     }];
-    #     locations."/" = { proxyPass = "https://localhost:56773"; };
-    #   };
-    # };
+    services.nginx.virtualHosts = {
+      "*.pages.sako.lol" = {
+        # listen = [{
+        #   addr = "0.0.0.0";
+        #   port = 443;
+        #   # ssl = true;
+        # }];
+        useACME = true;
+        useSSL = true;
+        locations."/" = { proxyPass = "https://localhost:56773"; };
+      };
+    };
     security.acme.certs."pages.sako.lol" = {
       extraDomainNames = [ "*.pages.sako.lol" ];
       credentialsFile = "/srv/secrets/porkbun";
@@ -157,7 +151,7 @@ in {
     services.nginx.streamConfig = ''
        server {
         server_name *.pages.sako.lol;
-        listen 443 ssl;
+        listen 55342 ssl;
 
         ssl_certificate /var/lib/acme/pages.sako.lol/fullchain.pem;
         ssl_certificate_key /var/lib/acme/pages.sako.lol/key.pem;
