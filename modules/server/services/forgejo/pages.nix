@@ -159,7 +159,7 @@ in {
         proxy_connect_timeout 1s;
         proxy_timeout 3s;
         
-        proxy_pass localhost:4563;       
+        proxy_pass https://localhost:4563;       
         ssl_preread on;
       }
     '';
