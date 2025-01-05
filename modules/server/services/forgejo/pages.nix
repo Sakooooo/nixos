@@ -131,14 +131,14 @@ in {
       mkIf (cfg.group == "codeberg-pages") { codeberg-pages = { }; };
 
     services.nginx.virtualHosts = {
-      "*.pages.sako.lol" = {
+      "pages.sako.lol" = {
         # listen = [{
         #   addr = "0.0.0.0";
         #   port = 443;
         #   # ssl = true;
         # }];
-        enableACME = true;
         forceSSL = true;
+        enableACME = true;
         locations."/" = { proxyPass = "https://localhost:56773"; };
       };
     };
