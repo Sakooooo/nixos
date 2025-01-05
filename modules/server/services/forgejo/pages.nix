@@ -4,12 +4,12 @@ let
   inherit (lib) mkIf mkOption mkEnableOption mkPackageOption;
   inherit (lib) types;
 
-  cfg = config.void.services.forgjeo.pages;
+  cfg = config.void.services.forgejo.pages;
 in {
   meta.maintainers = with lib.maintainers; [ NotAShelf ];
 
   options = {
-    void.server.services.pages = {
+    void.server.services.forgejo.pages = {
       enable = mkEnableOption "Codeberg pages server";
       package = mkPackageOption pkgs "codeberg-pages" { };
       stateDir = mkOption {
