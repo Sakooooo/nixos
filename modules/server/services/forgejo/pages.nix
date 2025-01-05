@@ -156,7 +156,8 @@ in {
     # };
     services.nginx.streamConfig = ''
       server {
-        listen 443 pages.sako.lol; 
+        server_name pages.sako.lol;
+        listen 443; 
             
         proxy_connect_timeout 1s;
         proxy_timeout 3s;
@@ -165,7 +166,8 @@ in {
         ssl_preread on;
       }
       server {
-        listen 443 *.pages.sako.lol; 
+        server_name *.pages.sako.lol;
+        listen 443; 
             
         proxy_connect_timeout 1s;
         proxy_timeout 3s;
