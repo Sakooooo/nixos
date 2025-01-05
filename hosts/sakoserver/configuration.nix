@@ -85,7 +85,7 @@
               PORT = "4563";
               ACME_ACCEPT_TERMS = "TRUE";
               ENABLE_HTTP_SERVER = "TRUE";
-              GITEA_ROOT = "git.sako.lol";
+              GITEA_ROOT = "https://git.sako.lol";
               PAGES_DOMAIN = "pages.sako.lol";
               RAW_DOMAIN = "raw.pages.sako.lol";
             };
