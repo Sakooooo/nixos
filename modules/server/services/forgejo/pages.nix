@@ -137,7 +137,7 @@ in {
         #   port = 443;
         #   # ssl = true;
         # }];
-        useACME = true;
+        enableACME = true;
         useSSL = true;
         locations."/" = { proxyPass = "https://localhost:56773"; };
       };
