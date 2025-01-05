@@ -172,7 +172,7 @@ in {
       };
     };
     security.acme.certs."pages.sako.lol" = {
-      extraDomainNames = [ "*.pages.sako.lol" "*.*.pages.sako.lol" ];
+      extraDomainNames = [ "*.pages.sako.lol" ];
       credentialsFile = "/srv/secrets/porkbun";
       dnsProvider = "porkbun";
       webroot = null;
