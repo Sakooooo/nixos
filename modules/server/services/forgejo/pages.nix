@@ -130,29 +130,49 @@ in {
     users.groups =
       mkIf (cfg.group == "codeberg-pages") { codeberg-pages = { }; };
 
-    services.nginx.virtualHosts = {
-      "pages.sako.lol" = {
-        listen = [{
-          addr = "0.0.0.0";
-          port = 443;
-          ssl = true;
-        }];
-        locations."/" = { proxyPass = "http://localhost:4563"; };
-        extraConfig = ''
-          ssl_preread on;
-        '';
-      };
-      "*.pages.sako.lol" = {
-        listen = [{
-          addr = "0.0.0.0";
-          port = 443;
-          ssl = true;
-        }];
-        locations."/" = { proxyPass = "http://localhost:4563"; };
-        extraConfig = ''
-          ssl_preread on;
-        '';
-      };
-    };
+    # services.nginx.virtualHosts = {
+    #   "pages.sako.lol" = {
+    #     listen = [{
+    #       addr = "0.0.0.0";
+    #       port = 443;
+    #       ssl = true;
+    #     }];
+    #     locations."/" = { proxyPass = "http://localhost:4563"; };
+    #     extraConfig = ''
+    #       ssl_preread on;
+    #     '';
+    #   };
+    #   "*.pages.sako.lol" = {
+    #     listen = [{
+    #       addr = "0.0.0.0";
+    #       port = 443;
+    #       ssl = true;
+    #     }];
+    #     locations."/" = { proxyPass = "http://localhost:4563"; };
+    #     extraConfig = ''
+    #       ssl_preread on;
+    #     '';
+    #   };
+    # };
+    services.nginx.streamConfig = ''
+      server {
+        listen 443 pages.sako.lol; 
+            
+        proxy_connect_timeout 1s;
+        proxy_timeout 3s;
+        
+        proxy_pass localhost:4563;       
+        ssl_preread on;
+      }
+      server {
+        listen 443 *.pages.sako.lol; 
+            
+        proxy_connect_timeout 1s;
+        proxy_timeout 3s;
+        
+        proxy_pass localhost:4563;       
+        ssl_preread on;
+      }
+    '';
   };
 }
