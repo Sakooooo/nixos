@@ -40,7 +40,7 @@ in {
               description = "Selfhosted Git Forge";
               href = "https://git.sako.lol";
             };
-            "Akkoma" = mkIf srv.services.fedi.akkoma.enable {
+            "Akkoma" = mkIf srv.fedi.akkoma.enable {
               icon = "akkoma.svg";
               description = "Selfhosted Fediverse thing";
               href = "https://fedi.sako.lol";
