@@ -157,9 +157,22 @@ in {
         '';
         locations."/" = { proxyPass = "https://localhost:4563"; };
       };
+      "*.*.pages.sako.lol" = {
+        # listen = [{
+        #   addr = "0.0.0.0";
+        #   port = 443;
+        #   # ssl = true;
+        # }];
+        forceSSL = true;
+        useACMEHost = "pages.sako.lol";
+        extraConfig = ''
+          proxy_ssl_server_name on;
+        '';
+        locations."/" = { proxyPass = "https://localhost:4563"; };
+      };
     };
     security.acme.certs."pages.sako.lol" = {
-      extraDomainNames = [ "*.pages.sako.lol" ];
+      extraDomainNames = [ "*.pages.sako.lol" "*.*.pages.sako.lol" ];
       credentialsFile = "/srv/secrets/porkbun";
       dnsProvider = "porkbun";
       webroot = null;
