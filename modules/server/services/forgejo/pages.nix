@@ -4,7 +4,7 @@ let
   inherit (lib) mkIf mkOption mkEnableOption mkPackageOption;
   inherit (lib) types;
 
-  cfg = config.void.services.forgejo.pages;
+  cfg = config.void.server.services.forgejo.pages;
 in {
   meta.maintainers = with lib.maintainers; [ NotAShelf ];
 
