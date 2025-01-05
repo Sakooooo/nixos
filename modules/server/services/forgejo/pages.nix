@@ -130,8 +130,10 @@ in {
     users.groups =
       mkIf (cfg.group == "codeberg-pages") { codeberg-pages = { }; };
 
-    services.nginx.virtualHosts."*.pages.sako.lol" = {
-      locations."/" = { proxyPass = "http://localhost:4563"; };
+    services.nginx.virtualHosts = {
+      "pages.sako.lol" = {
+        locations."/" = { proxyPass = "http://localhost:4563"; };
+      };
     };
   };
 }
