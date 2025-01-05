@@ -138,7 +138,7 @@ in {
         #   # ssl = true;
         # }];
         enableACME = true;
-        useSSL = true;
+        forceSSL = true;
         locations."/" = { proxyPass = "https://localhost:56773"; };
       };
     };
