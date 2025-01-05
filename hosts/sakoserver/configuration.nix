@@ -83,8 +83,8 @@
             settings = {
               HOST = "127.0.0.1";
               PORT = "4563";
-              ACME_ACCEPT_TERMS = true;
-              ENABLE_HTTP_SERVER = true;
+              ACME_ACCEPT_TERMS = "TRUE";
+              ENABLE_HTTP_SERVER = "TRUE";
               GITEA_ROOT = "git.sako.lol";
               PAGES_DOMAIN = "pages.sako.lol";
               RAW_DOMAIN = "raw.pages.sako.lol";
