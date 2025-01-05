@@ -10,7 +10,7 @@ in {
       redlib = {
         enable = true;
         address = "127.0.0.1";
-        port = "8284";
+        port = 8284;
         settings = {
           REDLIB_DEFAULT_WIDE = "on";
           REDLIB_DEFAULT_USE_HLS = "on";
