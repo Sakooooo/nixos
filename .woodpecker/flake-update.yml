@@ -1,0 +1,28 @@
+when:
+  event: cron
+  cron: "update flake"
+
+steps:
+  update:
+    image: ghcr.io/nixos/nix:latest
+    commands:
+      - nix --experimental-features 'flakes nix-command' flake update
+      - nix-shell -p git --run 'git config --global user.email "bot@sako.lol" && git config --global user.name "sako-ci" && git commit -a -m "flake.lock: update"'
+  push:
+    image: johnwalkerx/gitea-pull-request-create-plugin:latest
+    pull: true
+    settings:
+      gitea_address: https://codeberg.org
+      gitea_token:
+        from_secret: token
+      owner: ${CI_REPO_OWNER}
+      repo: ${CI_REPO_NAME}
+      branch: ${CI_COMMIT_BRANCH}
+      base_branch: master 
+      pr_title: flake.lock: update 
+      pr_body: flake tuah update that thang 
+      skip_on_missing_branch: true
+      close_pr_if_empty: true
+      delete_branch_if_pr_empty: true
+      merge_when_checks_succeed: true
+      delete_branch_after_merge: true
