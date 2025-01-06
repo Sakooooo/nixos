@@ -19,7 +19,7 @@ steps:
       repo: ${CI_REPO_NAME}
       branch: ${CI_COMMIT_BRANCH}
       base_branch: master 
-      pr_title: flake.lock: update 
+      pr_title: "flake.lock: update"
       pr_body: flake tuah update that thang 
       skip_on_missing_branch: true
       close_pr_if_empty: true
