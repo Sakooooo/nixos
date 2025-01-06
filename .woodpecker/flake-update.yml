@@ -7,7 +7,7 @@ steps:
     image: ghcr.io/nixos/nix:latest
     commands:
       - nix --experimental-features 'flakes nix-command' flake update
-      - "nix-shell -p git --run 'git config --global user.email 'bot@sako.lol' && git config --global user.name 'sako-ci' && git commit -m \"flake.lock: update\" -a'"
+      - "nix-shell -p git --run 'git config --global user.email 'bot@sako.lol' && git config --global user.name 'sako-ci' && git checkout -b flake-lock-update && git commit -m \"flake.lock: update\" -a'"
   push:
     image: johnwalkerx/gitea-pull-request-create-plugin:latest
     #pull: true
