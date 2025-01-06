@@ -16,7 +16,7 @@ steps:
         from_secret: token
       owner: ${CI_REPO_OWNER}
       repo: ${CI_REPO_NAME}
-      branch: ${CI_COMMIT_BRANCH}
+      branch: flake-lock-update 
       base_branch: master 
       pr_title: "flake.lock: update"
       pr_body: update flake.lock 
