@@ -5,7 +5,11 @@ when:
 steps:
   update:
     image: ghcr.io/nixos/nix:latest
+    environment:
+      GITHUB_TOKEN:
+        from_secret: github_token
     commands:
+      - echo 'access-tokens = github.com=$GITHUB_TOKEN' >> /etc/nix/nix.conf
       - nix --experimental-features 'flakes nix-command' flake update
       - "nix-shell -p git --run 'git config --global user.email 'bot@sako.lol' && git config --global user.name 'sako-ci' && git commit -m 'flake.lock: update' -a'"
   push:
