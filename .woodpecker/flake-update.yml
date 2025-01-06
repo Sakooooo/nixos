@@ -20,7 +20,7 @@ steps:
       base_branch: master 
       pr_title: "flake.lock: update"
       pr_body: update flake.lock 
-      skip_on_missing_branch: true
+      skip_on_missing_branch: false 
       close_pr_if_empty: true
       delete_branch_if_pr_empty: true
       merge_when_checks_succeed: false 
