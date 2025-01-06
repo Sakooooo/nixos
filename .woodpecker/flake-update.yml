@@ -12,7 +12,7 @@ steps:
     image: johnwalkerx/gitea-pull-request-create-plugin:latest
     pull: true
     settings:
-      gitea_address: https://codeberg.org
+      gitea_address: https://git.sako.lol
       gitea_token:
         from_secret: token
       owner: ${CI_REPO_OWNER}
