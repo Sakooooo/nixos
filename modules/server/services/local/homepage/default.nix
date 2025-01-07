@@ -26,46 +26,50 @@ in {
             memory = true;
           };
         }];
-        services = [{
-          "Media" = [ ] ++ lib.optionals srv.media.jellyfin.enable [{
-            "Jellyfin" = {
-              description = "media server";
-              href = "https://jellyfin.sako.box";
-              icon = "jellyfin.svg";
-            };
-          }];
-          "Services" = [ ] ++ lib.optionals srv.services.forgejo.enable [{
-            "Forgejo" = {
-              description = "Selfhosted Git Forge";
-              icon = "forgejo.svg";
-              href = "https://git.sako.lol";
-            };
-          }] ++ lib.optionals srv.fedi.akkoma.enable [{
-            "Akkoma" = {
-              description = "Fediverse";
-              icon = "akkoma.svg";
-              href = "https://fedi.sako.lol";
-            };
-          }] ++ lib.optionals srv.services.redlib.enable [{
-            "Redlib" = {
-              icon = "redlib.svg";
-              description = "privacy friendly reddit frontend";
-              href = "https://redlib.sako.box";
-            };
-          }] ++ lib.optionals srv.services.local.nextcloud.enable [{
-            "Nextcloud" = {
-              icon = "nextcloud.svg";
-              description = "selfhosted cloud";
-              href = "https://nextcloud.sako.box";
-            };
-          }] ++ lib.optionals srv.services.sakosite.enable [{
-            "Site" = {
-              icon = "https://sako.lol/icon.png";
-              description = "personal site";
-              href = "https://sako.lol";
-            };
-          }];
-        }];
+        services = [
+          {
+            "Media" = [ ] ++ lib.optionals srv.media.jellyfin.enable [{
+              "Jellyfin" = {
+                description = "media server";
+                href = "https://jellyfin.sako.box";
+                icon = "jellyfin.svg";
+              };
+            }];
+          }
+          {
+            "Services" = [ ] ++ lib.optionals srv.services.forgejo.enable [{
+              "Forgejo" = {
+                description = "Selfhosted Git Forge";
+                icon = "forgejo.svg";
+                href = "https://git.sako.lol";
+              };
+            }] ++ lib.optionals srv.fedi.akkoma.enable [{
+              "Akkoma" = {
+                description = "Fediverse";
+                icon = "akkoma.svg";
+                href = "https://fedi.sako.lol";
+              };
+            }] ++ lib.optionals srv.services.redlib.enable [{
+              "Redlib" = {
+                icon = "redlib.svg";
+                description = "privacy friendly reddit frontend";
+                href = "https://redlib.sako.box";
+              };
+            }] ++ lib.optionals srv.services.local.nextcloud.enable [{
+              "Nextcloud" = {
+                icon = "nextcloud.svg";
+                description = "selfhosted cloud";
+                href = "https://nextcloud.sako.box";
+              };
+            }] ++ lib.optionals srv.services.sakosite.enable [{
+              "Site" = {
+                icon = "https://sako.lol/icon.png";
+                description = "personal site";
+                href = "https://sako.lol";
+              };
+            }];
+          }
+        ];
       };
     };
   };
