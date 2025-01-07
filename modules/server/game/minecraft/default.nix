@@ -7,11 +7,7 @@ in {
   options.void.server.game.minecraft = { enable = mkEnableOption false; };
 
   config = mkIf cfg.enable {
-    nixpkgs = {
-      overlays = [ inputs.nix-minecraft.overlay ];
-      config.allowUnfreePredicate = pkg:
-        builtins.elem (lib.getName pkgs) [ "minecraft-server" ];
-    };
+    nixpkgs = { overlays = [ inputs.nix-minecraft.overlay ]; };
     # services = {
     services.minecraft-servers = {
       enable = true;
