@@ -36,11 +36,6 @@
   };
 
   nix.settings = { experimental-features = [ "nix-command" "flakes" ]; };
-  nixpkgs = {
-    overlays = [ inputs.nix-minecraft.overlay ];
-    config.allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkgs) [ "minecraft-server" ];
-  };
 
   home-manager.useUserPackages = true;
   home-manager.users.sako = { pkgs, ... }: {
