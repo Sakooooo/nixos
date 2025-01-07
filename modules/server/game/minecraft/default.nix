@@ -5,7 +5,7 @@ in {
   options.void.server.game.minecraft = { enable = mkEnableOption false; };
 
   config = mkIf cfg.enable {
-    imports = [ inputs.nix-minecraft.nixosModules.minecraft-server ];
+    imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
     nixpkgs = {
       overlays = [ inputs.nix-minecraft.overlay ];
       config.allowUnfreePredicate = pkg:
