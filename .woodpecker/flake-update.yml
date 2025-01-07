@@ -6,10 +6,23 @@ steps:
   update:
     image: ghcr.io/nixos/nix:latest
     commands:
-      - "nix-shell -p git --run 'git config --global user.email 'bot@sako.lol' && git config --global user.name 'sako-ci' && git checkout -b flake-lock-update && nix --experimental-features \"flakes nix-command\" flake update && git commit -m \"flake.lock: update\" -a'"
+      - nix flake update
   push:
+    image: appleboy/drone-git-push
+    settings:
+      branch: flake-lock-update 
+      local_ref: flake-lock-update
+      ssh_key:
+        from_secret: ssh_key
+      remote: ssh://forgejo@git.sako.lol/sako/nixos.git
+      force: false
+      commit: true
+      commit_message: "flake.lock: update"
+      author_name: "sako-ci"
+      author_email: "bot@sako.lol"
+  pr:
     image: johnwalkerx/gitea-pull-request-create-plugin:latest
-    #pull: true
+    pull: true
     settings:
       gitea_address: https://git.sako.lol
       gitea_token:
