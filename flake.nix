@@ -31,6 +31,10 @@
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs"; # Keep this
+    };
     hyprland.url = "github:hyprwm/Hyprland";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
@@ -40,7 +44,8 @@
   };
 
   outputs = { self, nixpkgs, home-manager, NixOS-WSL, agenix, emacs-overlay
-    , hyprland, hyprpaper, ags, nvf, colmena, nix-minecraft, ... }@inputs:
+    , hyprland, hyprpaper, ags, nvf, colmena, nix-minecraft, quickshell, ...
+    }@inputs:
     let
       inherit (self) outputs;
       inherit (colmena.lib) makeHive;

@@ -3151,6 +3151,26 @@
         "type": "github"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1736248279,
+        "narHash": "sha256-P0uL09P3g82PLqw3IRfPCgd/uWNyrj71bnOH29GmHEM=",
+        "ref": "refs/heads/master",
+        "rev": "2c411fce5a7d7e0708be1cee875bb3547f40887d",
+        "revCount": 454,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      }
+    },
     "rnix-lsp": {
       "inputs": {
         "naersk": "naersk",
@@ -3185,6 +3205,7 @@
         "nixpkgs": "nixpkgs_6",
         "nixpkgs-stable": "nixpkgs-stable_3",
         "nvf": "nvf",
+        "quickshell": "quickshell",
         "rose-pine-hyprcursor": "rose-pine-hyprcursor",
         "sops-nix": "sops-nix"
       }
