@@ -20,7 +20,7 @@ in {
           # HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHHAAHAHHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAH
           eula = true;
           openFirewall = true;
-          package = pkgs.fabricServers.fabric-1_24_4.override {
+          package = pkgs.fabricServers.fabric-1_20_4.override {
             loaderVersion = "0.16.9";
           };
           whitelist = { Sakoooo = "6b05caca-3d78-4597-aba5-d0f816f94024"; };

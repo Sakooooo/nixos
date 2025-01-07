@@ -2,32 +2,32 @@ hash-format = "sha256"
 
 [[files]]
 file = "mods/c2me-fabric.pw.toml"
-hash = "b9200ba3e3c64c6e88d54fddaf0a7abcee8d1b36d0d6d1e0b517a5c9fde738d8"
+hash = "47417b73fa94227651ac63139dddaf6beb937d45aed9ba8221a563a8ad50e209"
 metafile = true
 
 [[files]]
 file = "mods/chunky.pw.toml"
-hash = "01735a9d638c8fb4896c1a700eff0954aff8b854b517036bd9688e1d1754a7af"
+hash = "6211df918f9c91638c0e6e56361192afcd60d336b95687e4766540f9d2b6f118"
 metafile = true
 
 [[files]]
 file = "mods/debugify.pw.toml"
-hash = "b29157b97ddc91b9e027ee116121b851b86161a1dc3f50e7466729e6dc5d1abd"
+hash = "ebc95d8dac761549f43c49938b8d1a0044a43af4484f492959de83a2bdc9e267"
 metafile = true
 
 [[files]]
 file = "mods/fabric-api.pw.toml"
-hash = "b9ec27ce57c7e756dfbfe52cc0cdf9e67259a0297b353e1b2466d4e620684889"
+hash = "1dea1472741762757eed29f76877f5913b0e445aa5e91a43ec9dcab63149e190"
 metafile = true
 
 [[files]]
 file = "mods/ferrite-core.pw.toml"
-hash = "ada74e6d4149631f2b442d2f0061b0179feef576bbf4b5cd28bbcc7de1380b7e"
+hash = "39a6a39433b1b104bfafafcd60a8171f866daa2ebefffd64df822d0e69288e3a"
 metafile = true
 
 [[files]]
 file = "mods/krypton.pw.toml"
-hash = "4ee72fa3b6d91ccec6ec3420396db368dc5097350ee2bb909af3a65f0446c9d5"
+hash = "fe6abe1ea33393fe1441801f79eda74ea892e5f4b677a56eccafafcbf4d253ca"
 metafile = true
 
 [[files]]
@@ -37,20 +37,20 @@ metafile = true
 
 [[files]]
 file = "mods/lithium.pw.toml"
-hash = "52b25d589bdb56a6b73c086432543f35a8e004cfbefcfb775fb2fd9c74f37962"
+hash = "ed27ecb297016accc41e9894b6e11d6c46b455211e358afa6218ce629ef56978"
 metafile = true
 
 [[files]]
 file = "mods/modernfix.pw.toml"
-hash = "8d2c588848301dd572f4c36ae84e5985b76c395bf820fa331bfc74c7d41264a7"
+hash = "f6a053554df5a596e3113b7add27bd88c504ff50b8cb8083e8acdc2331a30bba"
 metafile = true
 
 [[files]]
 file = "mods/no-chat-reports.pw.toml"
-hash = "6136fc60427d37f49b7b58a030d67bbd68fd60a0eaf459f4f9fe0058858f07d4"
+hash = "293f06651cc903947ae422f5e612c73d66154453ad1390bda63920370671b968"
 metafile = true
 
 [[files]]
 file = "mods/yacl.pw.toml"
-hash = "7025706e3c3bb9191adac64a3eada81bc31711be08b4bdc4324fc05789a2076a"
+hash = "b99779a2db78a85b36377eb7bf7d67cf02d6fffdcc32ff193d2269732905a14b"
 metafile = true
