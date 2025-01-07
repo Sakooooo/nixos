@@ -104,6 +104,7 @@ in {
           inputs.ags.packages.${pkgs.system}.tray
         ];
       })
+      inputs.quickshell.packages.${pkgs.system}.default
       brightnessctl
       inotify-tools
       greetd.tuigreet
