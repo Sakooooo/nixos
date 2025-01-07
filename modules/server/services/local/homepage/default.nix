@@ -27,38 +27,38 @@ in {
           };
         }];
         services = [{
-          "Media" = [ ] ++ mkIf srv.media.jellyfin.enable [{
+          "Media" = [ ] ++ lib.optionals srv.media.jellyfin.enable [{
             "Jellyfin" = {
               description = "media server";
               href = "https://jellyfin.sako.box";
               icon = "jellyfin.svg";
             };
           }];
-          "Services" = [ ] ++ mkIf srv.services.forgejo.enable [{
+          "Services" = [ ] ++ lib.optionals srv.services.forgejo.enable [{
             "Forgejo" = {
               description = "Selfhosted Git Forge";
               icon = "forgejo.svg";
               href = "https://git.sako.lol";
             };
-          }] ++ mkIf srv.fedi.akkoma.enable [{
+          }] ++ lib.optionals srv.fedi.akkoma.enable [{
             "Akkoma" = {
               description = "Fediverse";
               icon = "akkoma.svg";
               href = "https://fedi.sako.lol";
             };
-          }] ++ mkIf srv.services.redlib.enable [{
+          }] ++ lib.optionals srv.services.redlib.enable [{
             "Redlib" = {
               icon = "redlib.svg";
               description = "privacy friendly reddit frontend";
               href = "https://redlib.sako.box";
             };
-          }] ++ mkIf srv.services.local.nextcloud.enable [{
+          }] ++ lib.optionals srv.services.local.nextcloud.enable [{
             "Nextcloud" = {
               icon = "nextcloud.svg";
               description = "selfhosted cloud";
               href = "https://nextcloud.sako.box";
             };
-          }] ++ mkIf srv.services.sakosite.enable [{
+          }] ++ lib.optionals srv.services.sakosite.enable [{
             "Site" = {
               icon = "https://sako.lol/icon.png";
               description = "personal site";
