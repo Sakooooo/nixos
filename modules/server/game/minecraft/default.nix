@@ -3,6 +3,7 @@ with lib;
 let cfg = config.void.server.game.minecraft;
 in {
   options.void.server.game.minecraft = { enable = mkEnableOption false; };
+  imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
 
   config = mkIf cfg.enable {
     imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
@@ -23,7 +24,7 @@ in {
           package = pkgs.fabrticServers.fabric-1_24_4.override {
             loaderVersion = "0.16.9";
           };
-          whielist = { Sakoooo = "6b05caca-3d78-4597-aba5-d0f816f94024"; };
+          whitelist = { Sakoooo = "6b05caca-3d78-4597-aba5-d0f816f94024"; };
           serverProperties = {
             white-list = true;
             difficulty = "normal";
