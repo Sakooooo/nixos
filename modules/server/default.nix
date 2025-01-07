@@ -11,6 +11,7 @@ in {
     ./fail2ban.nix
     ./media
     ./fedi
+    ./game
     ./ddns.nix
     ./ddclient.nix
   ];
