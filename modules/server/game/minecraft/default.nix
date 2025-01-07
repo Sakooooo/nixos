@@ -37,7 +37,7 @@ in {
         serverProperties = {
           white-list = true;
           difficulty = "normal";
-          server-port = 25568;
+          server-port = 25565;
           gamemode = "survival";
         };
         symlinks = { "mods" = "${modpack}/mods"; };
