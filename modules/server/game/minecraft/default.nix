@@ -13,7 +13,7 @@ in {
     };
 
     services = {
-      minecraft-servers.servers.wires =
+      inputs.nix-minecraft.nixosModules.minecraft-servers.servers.wires =
         let modpack = pkgs.fetchPackwizModpack { url = ./sakopack; };
         in {
           enable = true;
