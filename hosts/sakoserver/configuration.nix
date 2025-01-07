@@ -105,7 +105,7 @@
         };
       };
       fedi = { akkoma.enable = true; };
-      game = { minecraft.enable = true; };
+      game = { minecraft.enable = false; };
       media = {
         qbittorrent = {
           enable = true;
