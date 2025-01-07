@@ -35,41 +35,41 @@ in {
             };
           }];
           "Services" = [
-            {
+            [{
               "Forgejo" = mkIf srv.services.forgejo.enable {
                 icon = "forgejo.svg";
                 description = "Selfhosted Git Forge";
                 href = "https://git.sako.lol";
               };
-            }
-            {
+            }]
+            [{
               "Akkoma" = mkIf srv.fedi.akkoma.enable {
                 icon = "akkoma.svg";
                 description = "Selfhosted Fediverse thing";
                 href = "https://fedi.sako.lol";
               };
-            }
-            {
+            }]
+            [{
               "Redlib" = mkIf srv.services.redlib.enable {
                 icon = "redlib.svg";
                 description = "privacy friendly reddit frontend";
                 href = "https://redlib.sako.box";
               };
-            }
-            # {
+            }]
+            # [{
             #   "Nextcloud" = mkIf srv.services.local.nextcloud.enable {
             #     icon = "nextcloud.svg";
             #     description = "cloud";
             #     href = "https://nextcloud.sako.box";
             #   };
-            # }
-            {
+            # }]
+            [{
               "Site" = mkIf srv.services.sakosite.enable {
                 icon = "https://sako.lol/icon.png";
                 description = "personal site";
                 href = "https://sako.lol";
               };
-            }
+            }]
           ];
         }];
       };
