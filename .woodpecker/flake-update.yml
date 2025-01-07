@@ -5,8 +5,9 @@ when:
 steps:
   update:
     image: ghcr.io/nixos/nix:latest
-    commands:
-      - nix flake update
+    commands: |
+      echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
+      nix flake update
   push:
     image: appleboy/drone-git-push
     settings:
