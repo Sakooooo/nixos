@@ -36,10 +36,11 @@
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     nvf.url = "github:notashelf/nvf";
     colmena.url = "github:zhaofengli/colmena/";
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
   };
 
   outputs = { self, nixpkgs, home-manager, NixOS-WSL, agenix, emacs-overlay
-    , hyprland, hyprpaper, ags, nvf, colmena, ... }@inputs:
+    , hyprland, hyprpaper, ags, nvf, colmena, nix-minecraft, ... }@inputs:
     let
       inherit (self) outputs;
       inherit (colmena.lib) makeHive;
