@@ -3,15 +3,15 @@ with lib;
 let cfg = config.void.server.game.minecraft;
 in {
   imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
+  nixpkgs = {
+    overlays = [ inputs.nix-minecraft.overlay ];
+    config.allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkgs) [ "minecraft-server" ];
+  };
+
   options.void.server.game.minecraft = { enable = mkEnableOption false; };
 
   config = mkIf cfg.enable {
-    nixpkgs = {
-      overlays = [ inputs.nix-minecraft.overlay ];
-      config.allowUnfreePredicate = pkg:
-        builtins.elem (lib.getName pkgs) [ "minecraft-server" ];
-    };
-
     # services = {
     services.minecraft-servers.servers.wires =
       let modpack = pkgs.fetchPackwizModpack { url = ./sakopack; };
