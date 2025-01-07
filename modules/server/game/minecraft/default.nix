@@ -6,17 +6,30 @@ in {
 
   config = mkIf cfg.enable {
     imports = [ inputs.nix-minecraft.nixosModules.minecraft-server ];
-    nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
+    nixpkgs = {
+      overlays = [ inputs.nix-minecraft.overlay ];
+      config.allowUnfreePredicate = pkg:
+        builtins.elem (lib.getName pkgs) [ "minecraft-server" ];
+    };
 
     services = {
       minecraft-servers.servers.wires =
         let modpack = pkgs.fetchPackwizModpack { url = ./sakopack; };
         in {
           enable = true;
+          # HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHHAAHAHHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAH
+          eula = true;
+          openFirewall = true;
           package = pkgs.fabrticServers.fabric-1_24_4.override {
             loaderVersion = "0.16.9";
           };
           whielist = { Sakoooo = "6b05caca-3d78-4597-aba5-d0f816f94024"; };
+          serverProperties = {
+            white-list = true;
+            difficulty = "normal";
+            server-port = 25568;
+            gamemode = "survival";
+          };
           symlinks = { "mods" = "${modpack}/mods"; };
           # files = {
           #   "config" = "${modpack}/config";
