@@ -172,6 +172,10 @@ in {
           source = ../../../config/ags;
           recursive = true;
         };
+        quickshell = {
+          source = ../../../config/quickshell;
+          recursive = true;
+        };
       };
     };
 
