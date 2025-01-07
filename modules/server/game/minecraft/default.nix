@@ -20,7 +20,7 @@ in {
         modpack = pkgs.fetchPackwizModpack {
           url =
             "https://git.sako.lol/sako/sakopack/raw/branch/master/pack.toml";
-          hash = "sha256-PwZEorwK+ysdTvj+MoSOBLZ+czt+J8gxdmA1gCGjqa0=";
+          packHash = "sha256-PwZEorwK+ysdTvj+MoSOBLZ+czt+J8gxdmA1gCGjqa0=";
         };
         mcVersion = modpack.manifest.versions.minecraft;
         fabricVersion = modpack.manifest.versions.fabric;
