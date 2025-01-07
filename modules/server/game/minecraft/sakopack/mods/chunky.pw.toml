@@ -1,0 +1,13 @@
+name = "Chunky"
+filename = "Chunky-Fabric-1.4.27.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/fALzjamp/versions/VkAgASL1/Chunky-Fabric-1.4.27.jar"
+hash-format = "sha1"
+hash = "db518ceda4aa3068d32242285ac9c5816b9d694a"
+
+[update]
+[update.modrinth]
+mod-id = "fALzjamp"
+version = "VkAgASL1"

@@ -1,0 +1,56 @@
+hash-format = "sha256"
+
+[[files]]
+file = "mods/c2me-fabric.pw.toml"
+hash = "b9200ba3e3c64c6e88d54fddaf0a7abcee8d1b36d0d6d1e0b517a5c9fde738d8"
+metafile = true
+
+[[files]]
+file = "mods/chunky.pw.toml"
+hash = "01735a9d638c8fb4896c1a700eff0954aff8b854b517036bd9688e1d1754a7af"
+metafile = true
+
+[[files]]
+file = "mods/debugify.pw.toml"
+hash = "b29157b97ddc91b9e027ee116121b851b86161a1dc3f50e7466729e6dc5d1abd"
+metafile = true
+
+[[files]]
+file = "mods/fabric-api.pw.toml"
+hash = "b9ec27ce57c7e756dfbfe52cc0cdf9e67259a0297b353e1b2466d4e620684889"
+metafile = true
+
+[[files]]
+file = "mods/ferrite-core.pw.toml"
+hash = "ada74e6d4149631f2b442d2f0061b0179feef576bbf4b5cd28bbcc7de1380b7e"
+metafile = true
+
+[[files]]
+file = "mods/krypton.pw.toml"
+hash = "4ee72fa3b6d91ccec6ec3420396db368dc5097350ee2bb909af3a65f0446c9d5"
+metafile = true
+
+[[files]]
+file = "mods/ksyxis.pw.toml"
+hash = "cf4d50556f99d310bea0745680a9d8574791ad55880e5a8d85029e85711601ff"
+metafile = true
+
+[[files]]
+file = "mods/lithium.pw.toml"
+hash = "52b25d589bdb56a6b73c086432543f35a8e004cfbefcfb775fb2fd9c74f37962"
+metafile = true
+
+[[files]]
+file = "mods/modernfix.pw.toml"
+hash = "8d2c588848301dd572f4c36ae84e5985b76c395bf820fa331bfc74c7d41264a7"
+metafile = true
+
+[[files]]
+file = "mods/no-chat-reports.pw.toml"
+hash = "6136fc60427d37f49b7b58a030d67bbd68fd60a0eaf459f4f9fe0058858f07d4"
+metafile = true
+
+[[files]]
+file = "mods/yacl.pw.toml"
+hash = "7025706e3c3bb9191adac64a3eada81bc31711be08b4bdc4324fc05789a2076a"
+metafile = true
