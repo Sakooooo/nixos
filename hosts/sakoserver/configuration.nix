@@ -35,6 +35,8 @@
     extraGroups = [ "wheel" ];
   };
 
+  nix.settings = { experimental-features = [ "nix-command" "flakes" ]; };
+
   home-manager.useUserPackages = true;
   home-manager.users.sako = { pkgs, ... }: {
     home.username = "sako";
