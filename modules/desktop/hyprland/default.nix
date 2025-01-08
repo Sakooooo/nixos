@@ -104,7 +104,15 @@ in {
           inputs.ags.packages.${pkgs.system}.tray
         ];
       })
-      inputs.quickshell.packages.${pkgs.system}.default
+      (inputs.quickshell.packages.${pkgs.system}.default.override {
+        withQtSvg = true;
+        withWayland = true;
+        withHyprland = true;
+        withX11 = false;
+        withPipewire = true;
+        withPam = true;
+        withI3 = false;
+      })
       brightnessctl
       inotify-tools
       greetd.tuigreet
