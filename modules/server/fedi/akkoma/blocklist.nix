@@ -24,7 +24,8 @@
     "pawoo.net" = "total pedo death";
     "shota.house" = "total pedo death";
     "yiff.life" = "never goon";
+    "threads.net" = "meta, your platform has turned to shit";
   };
 
-  followers_only = { };
+  followers_only = { "bird.makeup" = "twitter mirror"; };
 }

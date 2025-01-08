@@ -119,7 +119,7 @@ in {
             in {
               # media_nsfw = mkMap blocklist.media_nsfw;
               reject = mkMap blocklist.reject;
-              # followers_only = mkMap blocklist.followers_only;
+              followers_only = mkMap blocklist.followers_only;
             };
           };
         };
