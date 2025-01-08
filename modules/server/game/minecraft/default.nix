@@ -16,7 +16,8 @@ in {
     services.minecraft-servers = {
       enable = true;
       eula = true;
-      servers.wires = let
+      servers.sakohell = let
+        # TODO use npins with this
         modpack = pkgs.fetchPackwizModpack {
           url =
             "https://git.sako.lol/sako/sakopack/raw/branch/master/pack.toml";
