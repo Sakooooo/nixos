@@ -398,6 +398,17 @@
   :hook (go-mode . eglot-ensure)
   :mode ("\\.go\\'"))
 
+;; lua
+(use-package lua-mode
+  :ensure t
+  :hook (lua-mode . eglot-ensure)
+  :mode ("\\.lua\\'"))
+
+(use-package moonscript-mode
+  :ensure t
+  :hook (moonscript-mode . eglot-ensure)
+  :mode ("\\.moon\\'"))
+
 ;; --- Org-Mode ---
 (use-package org
   :ensure t
