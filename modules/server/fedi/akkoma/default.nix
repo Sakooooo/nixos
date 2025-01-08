@@ -114,7 +114,6 @@ in {
             };
 
             ":mrf" = {
-              transparency = true;
               policies =
                 map mkRaw [ "Pleroma.Web.ActivityPub.MRF.SimplePolicy" ];
             };
