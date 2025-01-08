@@ -99,12 +99,12 @@
         vscode.enable = true;
       };
       nixd.enable = true;
-      cc.enable = true;
-      csharp.enable = true;
-      javascript.enable = true;
-      python.enable = true;
-      rust.enable = true;
-      lua.enable = true;
+      # cc.enable = true;
+      # csharp.enable = true;
+      # javascript.enable = true;
+      # python.enable = true;
+      # rust.enable = true;
+      # lua.enable = true;
     };
     shell = {
       nix = {
