@@ -404,7 +404,7 @@
   :hook (lua-mode . eglot-ensure)
   :mode ("\\.lua\\'"))
 
-(use-package moonscript-mode
+(use-package moonscript
   :ensure t
   :hook (moonscript-mode . eglot-ensure)
   :mode ("\\.moon\\'"))
