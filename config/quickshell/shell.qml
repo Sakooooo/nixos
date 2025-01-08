@@ -20,7 +20,8 @@ ShellRoot {
         right: true
       }
 
-      height: 30
+	height: 30
+
 
       Text {
         anchors.centerIn: parent
