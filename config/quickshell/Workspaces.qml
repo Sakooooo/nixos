@@ -3,4 +3,9 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
 
-Repeater {}
+Repeater {
+    id: repeater
+
+    model: Hyprland.workspaces.values.map(ws => ws.id)
+    property list<HyprlandWorkspace> workspaces: HyprlandIO.sortedworkspaces
+}
