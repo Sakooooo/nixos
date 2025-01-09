@@ -16,12 +16,6 @@ ShellRoot {
 
     PanelWindow {
 	property var modelData
-	property var workspaceArray: Array.from({ length: 7 }, (_, i) => ({
-                id: i + 1,
-                text: getWorkspaceIcon((i + 1)),
-                visible: Hyprland.workspaces.values.some(e => e.id === i + 1),
-                active: Hyprland.focusedMonitor.activeWorkspace.id === i + 1
-        }))
 
       screen: modelData
 
@@ -39,9 +33,9 @@ ShellRoot {
 	    anchors.top: parent.top
 	    anchors.bottom: parent.bottom
 	    spacing: 5
-
+	    
 	    Text {
-		text: "Left side"
+		text: "Proprety in Egypt"
 	    }
 	}
 
