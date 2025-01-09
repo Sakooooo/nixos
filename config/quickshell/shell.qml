@@ -26,7 +26,7 @@ ShellRoot {
       screen: modelData
 
       anchors {
-          top: true;
+          bottom: true;
           left: true;
           right: true;
       }
