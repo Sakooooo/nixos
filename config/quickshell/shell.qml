@@ -56,27 +56,22 @@ ShellRoot {
 	// Center
 	RowLayout {
 	    anchors.centerIn: parent
-	/*     Text { */
-	/* 	color: "#FFFFFF" */
-        /* // now just time instead of root.time */
-        /*         text: time */
-        /*     } */
+	    Text {
+		color: "#FFFFFF"
+        // now just time instead of root.time
+                text: time
+            }
 
 	}
 	
 	// right
 	RowLayout {
 	    /* anchors.right: parent.right */
-	    /* anchors.top: parent.top */
 	    anchors.bottom: parent.bottom
 	    spacing: 5
-
-	    Battery { } 
-
-	    Text {
-		color: "#FFFFFF"
-		text: "Right"
-	    }
+	    
+	    Battery { }
+	    Time { }
 	}
 
     }
@@ -84,7 +79,7 @@ ShellRoot {
 
   Process {
     id: dateProc
-    command: ["date"]
+    command: ["date", "+%I:%M%p %A, %b %e, %Y"]
     running: true
 
     stdout: SplitParser {

@@ -15,7 +15,7 @@ ListView {
     model: workspaceArray
     anchors.top: parent.top
     anchors.centerIn: parent
-    height: 500
+    height: 110
     width: 60
     spacing: 2
     delegate: Item {
