@@ -76,7 +76,7 @@ ShellRoot {
 	    anchors.horizontalCenter: parent.horizontalCenter
 	    /* spacing: 5 */
 
-	    
+	    Tray {}
 	    Battery { }
 	    /* Date {} */
 	    Time {}
@@ -96,11 +96,11 @@ ShellRoot {
   /*   } */
   /* } */
 
-  Timer {
-    interval: 1000
-    running: true
-    repeat: true
-    onTriggered: dateProc.running = true
-  }
+  /* Timer { */
+  /*   interval: 1000 */
+  /*   running: true */
+  /*   repeat: true */
+  /*   /\* onTriggered: dateProc.running = true *\/ */
+  /* } */
 }
 
