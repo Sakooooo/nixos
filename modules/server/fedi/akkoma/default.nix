@@ -180,8 +180,15 @@ in {
         serviceConfig = {
           WorkingDirectory = state;
           Type = "oneshot";
-          ExecStart = "${pkgs.fedifetcher}/bin/fedifetcher"
-            + " --config ${configPath}" + " --state-dir ${state}";
+          ExecStart = ''
+            ${
+              (pkgs.fedifetcher.overrideAttrs (old: {
+                patches = old.patches or [ ]
+                  ++ [ ../../../../overlays/plsbackfill.diff ];
+              }))
+            }))
+                        }/bin/fedifetcher'' + " --config ${configPath}"
+            + " --state-dir ${state}";
           User = "fedifetcher";
           Group = "fedifetcher";
         };
