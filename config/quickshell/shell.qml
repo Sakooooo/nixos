@@ -25,26 +25,24 @@ ShellRoot {
         }))
 
 
-      width: 70
+      /* width: 70 */
       color: "#222222"
       screen: modelData
 
       anchors {
-	  top: true;
+	  /* top: true; */
           bottom: true;
           left: true;
-          /* right: true; */
+          right: true;
       }
 
 	height: 30;
 
 	// left
 	RowLayout {
-	    /* anchors.left: parent.left */
+	    anchors.left: parent.left
 	    anchors.top: parent.top
-	    /* anchors.bottom: parent.bottom */
-	    anchors.topMargin: 5;
-	    spacing: 5
+	    anchors.bottom: parent.bottom
 
 	    Workspaces {}
 
@@ -56,18 +54,18 @@ ShellRoot {
 	// Center
 	RowLayout {
 	    anchors.centerIn: parent
-	/*     Text { */
-	/* 	color: "#FFFFFF" */
-        /* // now just time instead of root.time */
-        /*         text: time */
-        /*     } */
+	    Text {
+		color: "#FFFFFF"
+        // now just time instead of root.time
+                text: time
+            }
 
 	}
 	
 	// right
 	RowLayout {
-	    /* anchors.right: parent.right */
-	    /* anchors.top: parent.top */
+	    anchors.right: parent.right
+	    anchors.top: parent.top
 	    anchors.bottom: parent.bottom
 	    spacing: 5
 
