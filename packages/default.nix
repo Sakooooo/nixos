@@ -4,5 +4,5 @@
   # example = pkgs.callPackage ./example { };
   nullpomino = pkgs.callPackage ./nullpomino.nix { };
   ddns-updater = pkgs.callPackage ./ddns-updater.nix { };
-  akkoma-emoji.sakomoji = pkgs.callPackage ./sakomoji { };
+  akkoma-emoji.sakomoji = pkgs.callPackage ./sakomoji.nix { };
 }
