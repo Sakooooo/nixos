@@ -27,6 +27,7 @@ in {
         package = pkgs.akkoma;
         extraStatic = {
           "emoji/blobs.gg" = pkgs.akkoma-emoji.blobs_gg;
+          "emoji/sakomoji" = pkgs.akkoma-emoji.sakomoji;
           # TODO Change this lmao
           "favicon.png" = pkgs.fetchurl {
             url = "https://sako.lol/icon.png";
