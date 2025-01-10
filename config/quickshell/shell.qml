@@ -71,6 +71,8 @@ ShellRoot {
 	    anchors.bottom: parent.bottom
 	    spacing: 5
 
+	    Battery { } 
+
 	    Text {
 		color: "#FFFFFF"
 		text: "Right"
