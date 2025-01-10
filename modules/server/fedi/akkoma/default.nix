@@ -164,28 +164,28 @@ in {
       groups.fedifetcher = { };
     };
 
-    systemd = let
-      configPath = "/srv/secrets/fedifetcher.json";
-      state = "/var/lib/fedifetcher";
-    in {
-      timers.fedifetcher = {
-        wantedBy = [ "timers.target" ];
-        timerConfig = {
-          OnUnitActiveSec = "1m";
-          Unit = "fedifetcher.service";
-        };
-      };
-      services.fedifetcher = {
-        unitConfig = { ConditionPathExists = configPath; };
-        serviceConfig = {
-          WorkingDirectory = state;
-          Type = "oneshot";
-          ExecStart = "${pkgs.fedifetcher}/bin/fedifetcher"
-            + " --config ${configPath}" + " --state-dir ${state}";
-          User = "fedifetcher";
-          Group = "fedifetcher";
-        };
-      };
-    };
+    # systemd = let
+    #   configPath = "/srv/secrets/fedifetcher.json";
+    #   state = "/var/lib/fedifetcher";
+    # in {
+    #   timers.fedifetcher = {
+    #     wantedBy = [ "timers.target" ];
+    #     timerConfig = {
+    #       OnUnitActiveSec = "1m";
+    #       Unit = "fedifetcher.service";
+    #     };
+    #   };
+    #   services.fedifetcher = {
+    #     unitConfig = { ConditionPathExists = configPath; };
+    #     serviceConfig = {
+    #       WorkingDirectory = state;
+    #       Type = "oneshot";
+    #       ExecStart = "${pkgs.fedifetcher}/bin/fedifetcher"
+    #         + " --config ${configPath}" + " --state-dir ${state}";
+    #       User = "fedifetcher";
+    #       Group = "fedifetcher";
+    #     };
+    #   };
+    # };
   };
 }
