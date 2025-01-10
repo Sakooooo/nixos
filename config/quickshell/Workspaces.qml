@@ -14,9 +14,10 @@ ListView {
 
     model: workspaceArray
     anchors.top: parent.top
-    height: 150
+    height: 135
     width: 60
     spacing: 5
+    interactive: false
     delegate: Item {
 	width: Math.max((modelData.active) ? 70 : 40, 70)
 	height: 10

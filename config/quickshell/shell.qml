@@ -8,6 +8,8 @@ import QtQuick.Layouts
 
 ShellRoot {
 
+  id: root
+
   ReloadPopup {}
   property string time;
 
@@ -45,8 +47,8 @@ ShellRoot {
 
 	height: 30;
 
-	// left
-	RowLayout {
+	// top
+	ColumnLayout {
 	    /* anchors.left: parent.left */
 	    anchors.top: parent.top
 	    /* anchors.bottom: parent.bottom */
@@ -58,39 +60,41 @@ ShellRoot {
 	}
 
 	// Center
-	RowLayout {
-	    anchors.centerIn: parent
-	    Text {
-		color: "#FFFFFF"
-        // now just time instead of root.time
-                text: time
-            }
+	ColumnLayout {
+	/*     anchors.centerIn: parent */
+	/*     Text { */
+	/* 	color: "#FFFFFF" */
+        /* // now just time instead of root.time */
+        /*         text: time */
+        /*     } */
 
 	}
 	
-	// right
-	RowLayout {
-	    /* anchors.right: parent.right */
+	// bottom
+	ColumnLayout {
 	    anchors.bottom: parent.bottom
+	    anchors.horizontalCenter: parent.horizontalCenter
 	    /* spacing: 5 */
+
 	    
 	    Battery { }
-	    Time { }
+	    /* Date {} */
+	    Time {}
 	}
 
     }
   }
 
-  Process {
-    id: dateProc
-    command: ["date", "+%I:%M%p %A, %b %e, %Y"]
-    running: true
+  /* Process { */
+  /*   id: dateProc */
+  /*   command: ["date", "+%m %d"] */
+  /*   running: true */
 
-    stdout: SplitParser {
-      // now just time instead of root.time
-      onRead: data => time = data
-    }
-  }
+  /*   stdout: SplitParser { */
+  /*     // now just time instead of root.time */
+  /*     onRead: data => time = data */
+  /*   } */
+  /* } */
 
   Timer {
     interval: 1000
