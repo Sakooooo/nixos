@@ -1,0 +1,13 @@
+diff --git a/find_posts.py b/find_posts.py
+index a322e62..dd7a076 100644
+--- a/find_posts.py
++++ b/find_posts.py
+@@ -118,8 +118,6 @@ def add_post_with_context(post, server, access_token, seen_urls, seen_hosts):
+     return False
+ 
+ def user_has_opted_out(user):
+-    if 'note' in user and isinstance(user['note'], str) and (' nobot' in user['note'].lower() or '/tags/nobot' in user['note'].lower()):
+-        return True
+     if 'indexable' in user and not user['indexable']:
+         return True
+     if 'discoverable' in user and not user['discoverable']:

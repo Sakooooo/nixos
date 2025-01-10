@@ -29,6 +29,8 @@
     isync = prev.isync.overrideAttrs (old: { withCyrusSaslXoauth2 = true; });
     colmena = inputs.colmena.packages.x86_64-linux.colmena.overrideAttrs
       (old: { patches = old.patches or [ ] ++ [ ./colmena-eval.diff ]; });
+    fedifetcher = prev.fedifetcher.overriedAttrs
+      (old: { patches = old.patches or [ ] ++ [ ./plsbackfill.diff ]; });
   };
 
   # incase something breaks
