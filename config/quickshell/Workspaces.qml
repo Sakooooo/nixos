@@ -26,8 +26,10 @@ ListView {
 	    width: (modelData.active) ? 50 : 40
 	    height: 10
 	    radius: height / 2
-	    border.width: 1
-	    border.color: (modelData.active) ? "#FFF8C8DC" : (modelData.visible) ? "#3399FF" : "#FFFFFF"
+	    border.width: 2
+	    color: (modelData.active) ? "#0099DD" : (modelData.visible) ? "#227722" : "#222222"
+	    /* border.color: (modelData.active) ? "#AACCFF" : (modelData.visible) ? "#3399FF" : "#FFFFFF" */
+	    border.color: "#999999"
             anchors.centerIn: parent
 	}
     }
