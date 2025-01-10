@@ -14,16 +14,15 @@ ListView {
 
     model: workspaceArray
     anchors.top: parent.top
-    anchors.centerIn: parent
-    height: 110
+    height: 150
     width: 60
-    spacing: 2
+    spacing: 5
     delegate: Item {
-	width: Math.max((modelData.active) ? 50 : 40, 50)
+	width: Math.max((modelData.active) ? 70 : 40, 70)
 	height: 10
 	Rectangle {
 	    id: workspace
-	    width: (modelData.active) ? 50 : 40
+	    width: (modelData.active) ? 60 : 45
 	    height: 10
 	    radius: height / 2
 	    border.width: 2

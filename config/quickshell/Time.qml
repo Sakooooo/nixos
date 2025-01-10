@@ -6,9 +6,8 @@ import Quickshell
 ListView {
     id: root
 
-    height: 110
+    height: 70
     width: 60
-    anchors.centerIn: parent
     SystemClock {
 	id: clock
 	precision: SystemClock.Minutes
@@ -20,8 +19,9 @@ ListView {
 	anchors.centerIn: parent
 
 	Rectangle {
-	    width: 50
+	    width: 60
 	    height: 60
+	    radius: 3
 	    anchors.centerIn: parent
 	    Text {
    		Layout.alignment: Qt.AlignHCenter

@@ -29,6 +29,13 @@ ShellRoot {
       color: "#222222"
       screen: modelData
 
+
+	margins {
+	    top: 10
+	    bottom: 10
+	    left: 10
+	}
+	
       anchors {
 	  top: true;
           bottom: true;
@@ -48,9 +55,6 @@ ShellRoot {
 
 	    Workspaces {}
 
-	    Text {
-		text: "hi"
-	    }
 	}
 
 	// Center
@@ -68,7 +72,7 @@ ShellRoot {
 	RowLayout {
 	    /* anchors.right: parent.right */
 	    anchors.bottom: parent.bottom
-	    spacing: 5
+	    /* spacing: 5 */
 	    
 	    Battery { }
 	    Time { }
