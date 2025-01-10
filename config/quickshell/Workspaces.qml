@@ -32,5 +32,22 @@ ListView {
 	    border.color: "#999999"
             anchors.centerIn: parent
 	}
+	MouseArea {
+	    id: mouseArea
+	    anchors.fill: parent
+	    hoverEnabled: true
+	    onClicked: {
+		Hyprland.dispatch("workspace " + modelData.id)
+	    }
+	}
+	states: State {
+	    name: "hovered"; when: (mouseArea.containsMouse && !modelData.active)
+
+	    PropertyChanges {
+		target: workspace
+		height: 10
+		width: 50
+	    }
+	}
     }
 }
