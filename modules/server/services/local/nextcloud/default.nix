@@ -32,6 +32,7 @@ in {
         config = {
           dbtype = "pgsql";
           # SHUT UP
+          adminuser = "sako";
           adminpassFile = "/srv/secrets/nextcloud/admin-temp-pass";
         };
         settings = {
@@ -40,7 +41,7 @@ in {
           trusted_proxies = [ "https://nextcloud.sako.box" ];
 
           redis = {
-            host = "/run/redis-nextcloud";
+            host = "localhost:6372";
             dbindex = 0;
             timeout = 3;
           };
