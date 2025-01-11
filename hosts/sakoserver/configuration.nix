@@ -3,6 +3,7 @@
     inputs.home-manager.nixosModules.default
     outputs.nixosModules.shell
     outputs.nixosModules.server
+    outputs.nixosModules.media
     ./hardware-configuration.nix
   ];
 
@@ -64,6 +65,7 @@
     [ ../../modules/security/certs/trust/homelab.pem ];
 
   modules.shell.tmux.enable = true;
+  modules.media.beets.enable = true;
 
   void = {
     server = {
