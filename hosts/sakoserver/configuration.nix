@@ -103,7 +103,7 @@
         redlib.enable = true;
         local = {
           homepage.enable = true;
-          nextcloud.enable = true;
+          nextcloud.enable = false;
         };
       };
       fedi = { akkoma.enable = true; };
