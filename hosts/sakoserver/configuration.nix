@@ -78,6 +78,7 @@
       ddclient.enable = true;
       services = {
         sakosite.enable = true;
+        mumble.enable = true;
         forgejo = {
           enable = true;
           # runner.enable = true;
