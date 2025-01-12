@@ -20,9 +20,9 @@ in {
 
     security.acme.certs."mumble.sako.lol" = {
       group = config.services.murmur.group;
-      defaults.credentialsFile = "/srv/secrets/porkbun";
-      defaults.dnsProvider = "porkbun";
-      defaults.webroot = null;
+      credentialsFile = "/srv/secrets/porkbun";
+      dnsProvider = "porkbun";
+      webroot = null;
     };
 
   };
