@@ -9,6 +9,8 @@ in {
       murmur = {
         enable = true;
         port = 64738;
+        # Fuck you
+        group = "nginx";
         openFirewall = true;
         welcometext = "sako.lol!";
         sslKey = "/var/lib/acme/mumble.sako.lol/key.pem";
@@ -19,7 +21,6 @@ in {
     };
 
     security.acme.certs."mumble.sako.lol" = {
-      group = config.services.murmur.group;
       credentialsFile = "/srv/secrets/porkbun";
       dnsProvider = "porkbun";
       webroot = null;
