@@ -1,1 +1,10 @@
-{ imports = [ ./forgejo ./headscale.nix ./local ./sakosite.nix ./redlib.nix ]; }
+{
+  imports = [
+    ./forgejo
+    ./headscale.nix
+    ./local
+    ./sakosite.nix
+    ./redlib.nix
+    ./mumble.nix
+  ];
+}
