@@ -25,6 +25,7 @@
     "shota.house" = "total pedo death";
     "yiff.life" = "never goon";
     "threads.net" = "meta, your platform has turned to shit";
+    "void.rehab" = "blocked by isp, cannot federate with";
   };
 
   followers_only = { "bird.makeup" = "twitter mirror"; };
