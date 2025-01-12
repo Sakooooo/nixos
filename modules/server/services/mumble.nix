@@ -8,7 +8,7 @@ in {
     services = {
       murmur = {
         enable = true;
-        port = 64738;
+        port = 56734;
         openFirewall = true;
         welcometext = "sako.lol!";
         sslKey = "/var/lib/acme/mumble.sako.lol/key.pem";
