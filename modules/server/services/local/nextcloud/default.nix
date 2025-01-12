@@ -16,7 +16,7 @@ in {
         https = true;
         hostName = "nextcloud.sako.box";
         nginx = { recommendedHttpHeaders = true; };
-        database.createLocally = true;
+        # database.createLocally = true;
 
         autoUpdateApps = {
           enable = true;
