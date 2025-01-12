@@ -12,5 +12,6 @@
     ./pidgin
     ./psiplus
     ./thunderbird.nix
+    ./mumble.nix
   ];
 }
