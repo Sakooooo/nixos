@@ -51,7 +51,7 @@
       };
       game = {
         #lutris.enable = true;
-        steam.enable = true;
+        steam.enable = false;
         wine.enable = true;
         tetrio.enable = true;
         prismlauncher.enable = true;
