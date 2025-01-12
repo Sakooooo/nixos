@@ -10,7 +10,7 @@ in {
         enable = true;
         port = 64738;
         openFirewall = true;
-        welcomeText = "sako.lol!";
+        welcometext = "sako.lol!";
         sslKey = "/var/lib/acme/mumble.sako.lol/key.pem";
         sslCert = "/var/lib/acme/mumbe.sako.lol/fullchain.pem";
         bandwidth = 72000;
