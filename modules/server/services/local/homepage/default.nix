@@ -33,7 +33,13 @@ in {
                 description = "media server";
                 href = "https://jellyfin.sako.box";
                 icon = "jellyfin.svg";
-              };
+              } ++ lib.optionals srv.media.qbittorrent.enable [{
+                "Qbittorrent" = {
+                  description = "Thing";
+                  href = "https://qbittorrent.sako.box";
+                  icon = "qbittorrent.svg";
+                };
+              }];
             }];
           }
           {
