@@ -34,6 +34,12 @@ in {
                 href = "https://jellyfin.sako.box";
                 icon = "jellyfin.svg";
               };
+            }] ++ lib.optionals srv.media.qbittorrent.enable [{
+              "QBittorrent" = {
+                description = "Thing";
+                href = "https://qbittorrent.sako.box";
+                icon = "qbittorrent.svg";
+              };
             }];
           }
           {
