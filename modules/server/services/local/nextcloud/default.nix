@@ -16,7 +16,7 @@ in {
         https = true;
         hostName = "nextcloud.sako.box";
         nginx = { recommendedHttpHeaders = true; };
-        # database.createLocally = true;
+        database.createLocally = true;
 
         autoUpdateApps = {
           enable = true;
@@ -39,12 +39,6 @@ in {
           # maintenance_window_start = 1;
           trusted_domains = [ "https://nextcloud.sako.box" ];
           trusted_proxies = [ "https://nextcloud.sako.box" ];
-
-          redis = {
-            host = "localhost:6372";
-            dbindex = 0;
-            timeout = 3;
-          };
           default_phone_region = "AE";
           lost_password_link = "disabled";
         };

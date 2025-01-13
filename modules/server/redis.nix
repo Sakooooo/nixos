@@ -26,7 +26,7 @@ in {
           port = 6372;
           databases = 16;
           logLevel = "debug";
-          requirePass = "nextcloud";
+          # requirePass = "nextcloud";
         };
       };
     };
