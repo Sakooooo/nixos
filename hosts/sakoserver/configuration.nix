@@ -33,7 +33,7 @@
 
   users.users.sako = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "media" ];
   };
 
   nix.settings = { experimental-features = [ "nix-command" "flakes" ]; };
