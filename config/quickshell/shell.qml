@@ -74,7 +74,7 @@ ShellRoot {
 	ColumnLayout {
 	    anchors.bottom: parent.bottom
 	    anchors.horizontalCenter: parent.horizontalCenter
-	    /* spacing: 5 */
+	    spacing: 15
 
 	    Tray {}
 	    Battery { }
