@@ -17,7 +17,8 @@ ShellRoot {
   Variants {
     model: Quickshell.screens
 
-    PanelWindow {
+      PanelWindow {
+	  id: bar
 	property var modelData
 	
         property var workspaceArray: Array.from({ length: 10 }, (_, i) => ({
@@ -77,6 +78,8 @@ ShellRoot {
 	    /* anchors.bottom: parent.bottom */
 	    /* anchors.horizontalCenter: parent.horizontalCenter */
 	    anchors.right: parent.right
+	    anchors.rightMargin: 50;
+
 
 	    Tray {}
 	    Battery { }

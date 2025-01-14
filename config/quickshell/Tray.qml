@@ -9,6 +9,7 @@ Repeater {
     model: SystemTray.items
 
     Rectangle {
+	id: itemRect
         required property SystemTrayItem modelData
 
         Layout.preferredWidth: height
@@ -23,13 +24,9 @@ Repeater {
             source: parent.modelData.icon
         }
 
-	QsMenuOpener {
-	    id: openthing
-	}
-
 	QsMenuAnchor {
 	    id: opener
-	    /* anchor.window: root */
+	    anchor.window: bar
 	}
 
 	MouseArea {

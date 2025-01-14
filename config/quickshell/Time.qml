@@ -6,9 +6,8 @@ import Quickshell
 Item {
     id: root
 
-    anchors.centerIn: parent
     height: 40
-    width: 50
+    width: 20
     SystemClock {
 	id: clock
 	precision: SystemClock.Minutes
