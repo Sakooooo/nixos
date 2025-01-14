@@ -5,10 +5,9 @@ import Quickshell
 import Quickshell.Io
 
 
-ListView {
+Item {
     id: root
 
-    height: 70
     width: 60
 
     property date currentDate: new Date()
@@ -16,7 +15,7 @@ ListView {
     Item {
 	width: parent.width
 	height: parent.height
-	anchors.centerIn: parent
+	/* anchors.centerIn: parent */
 	Rectangle {
 	    width: 60
 	    height: 65

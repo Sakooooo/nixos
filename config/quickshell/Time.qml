@@ -3,11 +3,12 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell
 
-ListView {
+Item {
     id: root
 
-    height: 70
-    width: 60
+    anchors.centerIn: parent
+    height: 40
+    width: 67
     SystemClock {
 	id: clock
 	precision: SystemClock.Minutes
@@ -16,22 +17,21 @@ ListView {
     Item {
 	width: parent.width
 	height: parent.height
-	anchors.centerIn: parent
 
 	Rectangle {
-	    width: 60
-	    height: 65
-	    radius: 3
-	    anchors.centerIn: parent
+	    width: 70
+	    /* height: 30 */
+	    height: parent.height
+	    /* radius: 3 */
 	    Text {
    		Layout.alignment: Qt.AlignHCenter
 		anchors.centerIn: parent
    		text: {
    		    const hours = clock.hours.toString().padStart(2, '0')
    		    const minutes = clock.minutes.toString().padStart(2, '0')
-   		    return `${hours}\n${minutes}`
+   		    return `${hours} ${minutes}`
    		}
-   		font.pointSize: 20
+   		font.pointSize: 15
    		color: "black"
    	    }
 

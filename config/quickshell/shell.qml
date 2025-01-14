@@ -27,40 +27,41 @@ ShellRoot {
         }))
 
 
-      width: 70
       color: "#222222"
       screen: modelData
 
 
 	margins {
 	    top: 10
-	    bottom: 10
+	    /* bottom: 10 */
 	    left: 10
+	    right: 10
 	}
 	
       anchors {
-	  top: true;
+	  /* top: true; */
           bottom: true;
           left: true;
-          /* right: true; */
+          right: true;
       }
 
-	height: 30;
+	height: 40;
 
-	// top
-	ColumnLayout {
-	    /* anchors.left: parent.left */
-	    anchors.top: parent.top
+	// left
+	RowLayout {
+	    anchors.left: parent.left
+	    /* anchors.top: parent.top */
 	    /* anchors.bottom: parent.bottom */
-	    anchors.topMargin: 5;
-	    spacing: 5
+	    anchors.leftMargin: 5;
+	    /* spacing: 5 */
+	    anchors.verticalCenter: parent.verticalCenter
 
 	    Workspaces {}
 
 	}
 
 	// Center
-	ColumnLayout {
+	RowLayout {
 	/*     anchors.centerIn: parent */
 	/*     Text { */
 	/* 	color: "#FFFFFF" */
@@ -70,11 +71,11 @@ ShellRoot {
 
 	}
 	
-	// bottom
-	ColumnLayout {
-	    anchors.bottom: parent.bottom
-	    anchors.horizontalCenter: parent.horizontalCenter
-	    spacing: 15
+	// right
+	RowLayout {
+	    /* anchors.bottom: parent.bottom */
+	    /* anchors.horizontalCenter: parent.horizontalCenter */
+	    anchors.right: parent.right
 
 	    Tray {}
 	    Battery { }
