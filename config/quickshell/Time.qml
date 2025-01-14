@@ -8,7 +8,7 @@ Item {
 
     anchors.centerIn: parent
     height: 40
-    width: 67
+    width: 50
     SystemClock {
 	id: clock
 	precision: SystemClock.Minutes
