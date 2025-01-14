@@ -12,6 +12,6 @@ Item {
     
     Text {
 	color: isCharging ? "#00FF00" : isLow ? "#FF0000" : "#FFFFFF"
-	text: percentage * 100
+	text: Math.floor(percentage * 100)
     }
 }
