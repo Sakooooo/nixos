@@ -24,6 +24,10 @@ Repeater {
             source: parent.modelData.icon
         }
 
+	QsMenuOpener {
+            id: menuAnchor
+        }
+
         MouseArea {
             anchors.fill: parent
             acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
@@ -45,9 +49,5 @@ Repeater {
             cursorShape: Qt.PointingHandCursor
         }
 
-        QsMenuAnchor {
-            id: menuAnchor
-            anchor.window: repeater.toplevel
-        }
     }
 }
