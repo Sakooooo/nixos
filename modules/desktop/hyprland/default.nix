@@ -90,7 +90,7 @@ in {
       waybar
       # lock
       # swaylock
-      inputs.ags.packages.${pkgs.system}.default
+      inputs.ags.packages.${pkgs.system}.agsFull
       (inputs.ags.lib.bundle {
         inherit pkgs;
         src = ../../../config/ags;
