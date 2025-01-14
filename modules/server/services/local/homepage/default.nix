@@ -22,7 +22,7 @@ in {
         settings = {
           title = "sakoserver";
           description = "sakoserver";
-          color = "red";
+          color = "rose";
           target = "_self";
         };
         widgets = [{
