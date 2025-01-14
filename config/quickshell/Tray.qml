@@ -5,6 +5,7 @@ import Quickshell.Services.SystemTray
 
 Repeater {
     id: repeater
+
     model: SystemTray.items
 
     Rectangle {
@@ -16,8 +17,6 @@ Repeater {
             width = height
         }
 
-        color: Theme.bg
-
         Image {
             anchors.fill: parent
             anchors.margins: 5
@@ -25,29 +24,28 @@ Repeater {
         }
 
 	QsMenuOpener {
-            id: menuAnchor
-        }
+	    id: openthing
+	}
 
-        MouseArea {
-            anchors.fill: parent
-            acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
-            onClicked: (ev) => {
-                switch (ev.button) {
-                    case 1:
-                        parent.modelData.activate();
-                        break;
-                    case 4:
-                        parent.modelData.secondaryActivate();
-                        break;
-                    case 2:
-                        console.log(parent.modelData.menu);
-                        menuAnchor.menu = parent.modelData.menu;
-                        menuAnchor.open();
-                        break;
-                }
-            }
-            cursorShape: Qt.PointingHandCursor
-        }
+	QsMenuAnchor {
+	    id: opener
+	    /* anchor.window: root */
+	}
 
+	MouseArea {
+	    anchors.fill: parent
+	    acceptedButtons: Qt.LeftButton | Qt.RightButton
+	    onClicked: (event) => {
+		switch (event.button) {
+		case Qt.LeftButton:
+		    parent.modelData.activate();
+		    break;
+		case Qt.RightButton:
+		    opener.menu = parent.modelData.menu;
+		    opener.open();
+		    break;
+		}
+	    }
+	}
     }
 }
