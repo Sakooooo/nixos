@@ -1,4 +1,4 @@
-declare const SRC: string
+const SRC: string
 
 declare module "inline:*" {
     const content: string
