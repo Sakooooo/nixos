@@ -36,7 +36,7 @@ in {
           adminpassFile = "/srv/secrets/nextcloud/admin-temp-pass";
         };
         settings = {
-          # maintenance_window_start = 1;
+          maintenance_window_start = 1;
           trusted_domains = [ "https://nextcloud.sako.box" ];
           trusted_proxies = [ "https://nextcloud.sako.box" ];
           default_phone_region = "AE";
