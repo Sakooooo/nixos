@@ -11,7 +11,7 @@ Item {
     readonly property bool isLow: percentage <= 0.2
     
     Text {
-	color: "#FFFFFF"
-	text: percentage
+	color: isCharging ? "#00FF00" : isLow ? "#FF0000" : "#FFFFFF"
+	text: percentage * 100
     }
 }
