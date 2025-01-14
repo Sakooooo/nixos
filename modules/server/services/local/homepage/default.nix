@@ -19,6 +19,12 @@ in {
       };
       homepage-dashboard = {
         enable = true;
+        settings = {
+          title = "sakoserver";
+          description = "sakoserver";
+          color = "red";
+          target = "_self";
+        };
         widgets = [{
           resources = {
             cpu = true;
