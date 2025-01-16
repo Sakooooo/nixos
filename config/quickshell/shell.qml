@@ -90,23 +90,5 @@ ShellRoot {
 
     }
   }
-
-  /* Process { */
-  /*   id: dateProc */
-  /*   command: ["date", "+%m %d"] */
-  /*   running: true */
-
-  /*   stdout: SplitParser { */
-  /*     // now just time instead of root.time */
-  /*     onRead: data => time = data */
-  /*   } */
-  /* } */
-
-  /* Timer { */
-  /*   interval: 1000 */
-  /*   running: true */
-  /*   repeat: true */
-  /*   /\* onTriggered: dateProc.running = true *\/ */
-  /* } */
 }
 
