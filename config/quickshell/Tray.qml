@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.SystemTray
-
 Repeater {
     id: repeater
 
@@ -12,8 +11,10 @@ Repeater {
 	id: itemRect
         required property SystemTrayItem modelData
 
-        Layout.preferredWidth: height
+        Layout.preferredWidth: parent.height
         Layout.fillHeight: true
+	Layout.fillWidth: true
+	height: 40
         onHeightChanged: {
             width = height
         }
