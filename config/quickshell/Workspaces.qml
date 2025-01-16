@@ -13,9 +13,35 @@ Repeater {
     }))
     model: workspaceArray
     Rectangle {
+	id: workspace
 	height: 30
 	width: 30
-	color: (modelData.active) ? "#0099DD" : (modelData.visible) ? "#227722" : "#FFFFFF"
+	color: (modelData.active) ? "#0099DD" : (modelData.visible) ? "#227722" : "#AAAAAA"
+
+	MouseArea {
+	    id: button
+	    anchors.fill: parent
+	    hoverEnabled: true
+	    onClicked: {
+		Hyprland.dispatch("workspace " + modelData.id)
+	    }
+	}
+
+	states: State {
+	    name: "hovered"; when: (button.containsMouse && !modelData.active)
+
+	    PropertyChanges {
+		target: workspace
+		color: "#FFFFFF"
+	    }
+	}
+
+	transitions: Transition {
+	    ColorAnimation {
+		duration: 500
+	    }
+	}
+	
 	Text {
 	    text: modelData.text
 	    anchors.centerIn: parent
