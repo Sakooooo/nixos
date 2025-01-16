@@ -6,7 +6,7 @@ import Quickshell
 Item {
     id: root
 
-    height: 40
+    height: bar.height
     width: 20
     SystemClock {
 	id: clock
