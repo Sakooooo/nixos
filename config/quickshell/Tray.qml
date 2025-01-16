@@ -19,6 +19,7 @@ Repeater {
         }
 
         Image {
+	    id: hi
             anchors.fill: parent
             anchors.margins: 5
             source: parent.modelData.icon
@@ -27,6 +28,13 @@ Repeater {
 	QsMenuAnchor {
 	    id: opener
 	    anchor.window: bar
+	    anchor.onAnchoring: {
+                this.anchor.rect.x = parent.mapToItem(repeater.parent.contentItem, 0, 0).x
+            }
+	    anchor.rect.width: parent.width
+            anchor.rect.height: parent.height
+            anchor.edges: Edges.Top
+            anchor.gravity: Edges.Top
 	}
 
 	MouseArea {
