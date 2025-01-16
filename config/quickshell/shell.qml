@@ -79,7 +79,7 @@ ShellRoot {
 	    /* anchors.horizontalCenter: parent.horizontalCenter */
 	    anchors.right: parent.right
 	    anchors.rightMargin: 50;
-	    /* spacing: 10 */
+	    spacing: 10
 
 
 	    Tray {}
