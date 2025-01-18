@@ -15,7 +15,7 @@ in {
       wantedBy = [ "timers.target" ];
       timerConfig = {
         OnBootSec = "1m";
-        OnUnitActiveSec = "1h";
+        OnUnitActiveSec = "5m";
         Unit = "pass-sync.service";
       };
     };
