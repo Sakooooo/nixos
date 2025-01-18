@@ -105,6 +105,7 @@
         local = {
           homepage.enable = true;
           nextcloud.enable = true;
+          miniflux.enable = true;
         };
       };
       fedi = { akkoma.enable = true; };
