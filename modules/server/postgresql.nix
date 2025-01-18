@@ -8,7 +8,7 @@ in {
     services.postgresql = {
       enable = true;
       package = pkgs.postgresql_17_jit;
-      ensureDatabases = [ "forgejo" "akkoma" "nextcloud" ];
+      ensureDatabases = [ "forgejo" "akkoma" "nextcloud" "miniflux" ];
       ensureUsers = [
         {
           name = "postgres";
@@ -30,6 +30,10 @@ in {
         }
         {
           name = "nextcloud";
+          ensureDBOwnership = true;
+        }
+        {
+          name = "miniflux";
           ensureDBOwnership = true;
         }
       ];
