@@ -81,10 +81,15 @@
 ;;   :config
 ;;   (load-theme 'kanagawa-dragon t))
 
-(use-package grandshell-theme
+;; (use-package grandshell-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'grandshell t))
+
+(use-package kaolin-themes
   :ensure t
   :config
-  (load-theme 'grandshell t))
+  (load-theme 'kaolin-dark t))
 
 ;; --- no-littering ---
 
