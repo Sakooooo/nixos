@@ -86,10 +86,15 @@
 ;;   :config
 ;;   (load-theme 'grandshell t))
 
-(use-package kaolin-themes
+;; (use-package kaolin-themes
+;;   :ensure t
+;;   :config
+;;   (load-theme 'kaolin-dark t))
+
+(use-package gruber-darker-theme
   :ensure t
   :config
-  (load-theme 'kaolin-dark t))
+  (load-theme 'gruber-darker t))
 
 ;; --- no-littering ---
 
