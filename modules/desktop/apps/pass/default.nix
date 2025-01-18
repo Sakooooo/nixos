@@ -1,21 +1,12 @@
-{
-  outputs,
-  options,
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-let
-  cfg = config.modules.desktop.apps.pass;
+{ outputs, options, config, lib, pkgs, ... }:
+let cfg = config.modules.desktop.apps.pass;
 in {
-  options.modules.desktop.apps.pass = {
-    enable = lib.mkEnableOption false;
-  };
+  options.modules.desktop.apps.pass = { enable = lib.mkEnableOption false; };
 
   config = lib.mkIf cfg.enable {
     users.users.sako.packages = with pkgs; [
-      (pass.withExtensions (pkgs: with pkgs; [pass-otp pass-import pass-genphrase pass-checkup]))
+      (pass.withExtensions
+        (pkgs: with pkgs; [ pass-otp pass-import pass-genphrase pass-checkup ]))
       rofi-pass
     ];
 
@@ -31,15 +22,16 @@ in {
 
     systemd.services."pass-sync" = {
       script = ''
-              set -eu
-              ${pkgs.pass}/bin/pass git pull
-              ${pkgs.pass}/bin/pass git push
+        set -eu
+        ${pkgs.pass}/bin/pass git pull
+        ${pkgs.pass}/bin/pass git push
 
-              ${pkgs.libnotify}/bin/notify-send "Passwords synced"
-             '';
+        ${pkgs.libnotify}/bin/notify-send "Passwords synced"
+      '';
       serviceConfig = {
         Type = "oneshot";
         User = "sako";
+        Environment = "DISPLAY=:0";
       };
     };
   };
