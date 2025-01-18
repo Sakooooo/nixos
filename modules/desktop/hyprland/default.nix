@@ -184,6 +184,7 @@ in {
           source = ../../../config/quickshell;
           recursive = true;
         };
+        "mako/config" = { text = "default-timeout=5000"; };
       };
     };
 
