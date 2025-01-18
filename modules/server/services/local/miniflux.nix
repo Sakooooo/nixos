@@ -10,6 +10,7 @@ in {
     services = {
       miniflux = {
         enable = true;
+        adminCredentialsFile = "/srv/secrets/miniflux.env";
         config = {
           LISTEN_ADDR = "localhost:7665";
           BASE_URL = "https://rss.sako.box";
