@@ -76,10 +76,15 @@
 ;;   :config
 ;;   (load-theme 'cherry-blossom t))
 
-(use-package kanagawa-themes
+;; (use-package kanagawa-themes
+;;   :ensure t
+;;   :config
+;;   (load-theme 'kanagawa-dragon t))
+
+(use-package grandshell-theme
   :ensure t
   :config
-  (load-theme 'kanagawa-dragon t))
+  (load-theme 'grandshell t))
 
 ;; --- no-littering ---
 
