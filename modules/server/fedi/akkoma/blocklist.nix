@@ -25,7 +25,8 @@
     "shota.house" = "total pedo death";
     "yiff.life" = "never goon";
     "threads.net" = "meta, your platform has turned to shit";
-    "void.rehab" = "blocked by isp, cannot federate with";
+    "void.rehab" = "blocked by isp, phisically impossible to federate with";
+    "ouroboros.gay" = "blocked by isp, phisically impossible to federate with";
   };
 
   followers_only = { "bird.makeup" = "twitter mirror"; };
