@@ -45,6 +45,12 @@ in {
                 href = "https://qbittorrent.sako.box";
                 icon = "qbittorrent.svg";
               };
+            }] ++ lib.optionals srv.services.local.miniflux.enable [{
+              "Miniflux" = {
+                description = "RSS Reader";
+                href = "https://rss.sako.box";
+                icon = "miniflux.svg";
+              };
             }];
           }
           {
