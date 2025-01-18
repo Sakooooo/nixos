@@ -26,12 +26,11 @@ in {
         ${pkgs.pass}/bin/pass git pull
         ${pkgs.pass}/bin/pass git push
 
-        ${pkgs.libnotify}/bin/notify-send "Passwords synced"
+        XDG_RUNTIME_DIR=/run/user/$(id -u) ${pkgs.libnotify}/bin/notify-send "Passwords synced"
       '';
       serviceConfig = {
         Type = "oneshot";
         User = "sako";
-        Environment = "DISPLAY=:0";
       };
     };
   };
