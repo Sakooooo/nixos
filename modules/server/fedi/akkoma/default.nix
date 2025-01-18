@@ -170,12 +170,14 @@ in {
     in {
       timers.fedifetcher = {
         wantedBy = [ "timers.target" ];
+        after = [ "akkoma-config.service" "akkoma.service" ];
         timerConfig = {
           OnUnitActiveSec = "1m";
           Unit = "fedifetcher.service";
         };
       };
       services.fedifetcher = {
+        after = [ "akkoma-config.service" "akkoma.service" ];
         unitConfig = { ConditionPathExists = configPath; };
         serviceConfig = {
           WorkingDirectory = state;
