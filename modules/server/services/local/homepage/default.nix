@@ -60,7 +60,7 @@ in {
                 icon = "forgejo.svg";
                 href = "https://git.sako.lol";
               };
-            }] ++ lib.optionals srv.services.woodpecker.enable [{
+            }] ++ lib.optionals srv.services.forgejo.woodpecker.enable [{
               "Woodpecker CI" = {
                 description = "Selfhosted CI";
                 icon = "woodpecker.svg";
