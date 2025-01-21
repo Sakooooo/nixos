@@ -89,7 +89,7 @@ in {
               name = "v0id";
               description = "Good ass fediverse instance";
               email = "sako@sako.lol";
-              registration_open = false;
+              registrations_open = false;
               invites_enabled = true;
               account_activation_required = false;
               cleanup_attachments = true;
