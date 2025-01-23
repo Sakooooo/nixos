@@ -22,6 +22,7 @@ in {
       recommendedGzipSettings = true;
       recommendedProxySettings = true;
       recommendedZstdSettings = true;
+      clientMaxBodySize = "1g";
 
       commonHttpConfig = ''
 
