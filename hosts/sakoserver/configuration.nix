@@ -1,4 +1,11 @@
-{ config, pkgs, lib, inputs, outputs, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  outputs,
+  ...
+}: {
   imports = [
     inputs.home-manager.nixosModules.default
     outputs.nixosModules.shell
@@ -33,13 +40,13 @@
 
   users.users.sako = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "media" ];
+    extraGroups = ["wheel" "media"];
   };
 
-  nix.settings = { experimental-features = [ "nix-command" "flakes" ]; };
+  nix.settings = {experimental-features = ["nix-command" "flakes"];};
 
   home-manager.useUserPackages = true;
-  home-manager.users.sako = { pkgs, ... }: {
+  home-manager.users.sako = {pkgs, ...}: {
     home.username = "sako";
     home.homeDirectory = "/home/sako";
     home.stateVersion = "24.11";
@@ -61,10 +68,10 @@
 
   # To trust others, you first must trust yourself
   # - Homless guy that looked like Sun Tzu
-  security.pki.certificateFiles =
-    [ ../../modules/security/certs/trust/homelab.pem ];
+  security.pki.certificateFiles = [../../modules/security/certs/trust/homelab.pem];
 
   modules.shell.tmux.enable = true;
+  modules.shell.nix.optimize.enable = true;
   modules.media.beets.enable = true;
 
   void = {
@@ -108,8 +115,8 @@
           miniflux.enable = true;
         };
       };
-      fedi = { akkoma.enable = true; };
-      game = { minecraft.enable = false; };
+      fedi = {akkoma.enable = true;};
+      game = {minecraft.enable = false;};
       media = {
         qbittorrent = {
           enable = true;
