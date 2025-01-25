@@ -16,10 +16,12 @@ in {
       };
     };
 
-    home.file = {
-      "background.png" = {
-        enable = true;
-        source = ../../../config/background.png;
+    home-manager.users.sako = { pkgs, ... }: {
+      home.file = {
+        "background.png" = {
+          enable = true;
+          source = ../../../config/background.png;
+        };
       };
     };
   };
