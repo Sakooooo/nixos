@@ -90,20 +90,20 @@ in {
       waybar
       # lock
       # swaylock
-      inputs.ags.packages.${pkgs.system}.agsFull
-      (inputs.ags.lib.bundle {
-        inherit pkgs;
-        src = ../../../config/ags;
-        name = "sakoshell";
-        entry = "app.ts";
-        extraPackages = [
-          inputs.ags.packages.${pkgs.system}.hyprland
-          inputs.ags.packages.${pkgs.system}.mpris
-          inputs.ags.packages.${pkgs.system}.battery
-          inputs.ags.packages.${pkgs.system}.wireplumber
-          inputs.ags.packages.${pkgs.system}.tray
-        ];
-      })
+      # inputs.ags.packages.${pkgs.system}.agsFull
+      # (inputs.ags.lib.bundle {
+      #   inherit pkgs;
+      #   src = ../../../config/ags;
+      #   name = "sakoshell";
+      #   entry = "app.ts";
+      #   extraPackages = [
+      #     inputs.ags.packages.${pkgs.system}.hyprland
+      #     inputs.ags.packages.${pkgs.system}.mpris
+      #     inputs.ags.packages.${pkgs.system}.battery
+      #     inputs.ags.packages.${pkgs.system}.wireplumber
+      #     inputs.ags.packages.${pkgs.system}.tray
+      #   ];
+      # })
       (inputs.quickshell.packages.${pkgs.system}.default.override {
         withQtSvg = true;
         withWayland = true;
