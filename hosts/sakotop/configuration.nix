@@ -14,19 +14,9 @@
       wireguard.enable = true;
       tailscale.enable = true;
       kitty.enable = true;
-      wezterm.enable = false;
-      foot.enable = true;
       flatpak.enable = true;
-      bspwm = {
-        enable = false;
-        polybar.enable = false;
-      };
-      xmonad.enable = false;
-      i3.enable = false;
-      exwm.enable = false;
-      hyprland.enable = true;
-      picom.enable = true;
-      dunst.enable = true;
+      # hyprland.enable = true;
+      xfce.enable = true;
       browsers = {
         firefox.enable = true;
         qutebrowser.enable = false;

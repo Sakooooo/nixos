@@ -10,6 +10,7 @@
     # desktop environ men t s s  s s
     ./kde
     ./gnome
+    ./xfce
     # stuffs
     ./kitty
     ./wezterm
