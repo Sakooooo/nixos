@@ -16,7 +16,7 @@ in {
     xdg.portal.enable = true;
     xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
-    services.displayManager.defaultSession = "dwm";
+#   services.displayManager.defaultSession = "dwm";
     services.xserver = {
       enable = true;
       windowManager.dwm.enable = true;
