@@ -8,6 +8,6 @@ in {
   # TODO(sako):: figure out how .nixd.json works
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ nixd alejandra nixfmt ];
+    environment.systemPackages = with pkgs; [ nixd alejandra nixfmt-classic ];
   };
 }
