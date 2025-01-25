@@ -21,7 +21,7 @@ in {
       enable = true;
       windowManager.dwm.enable = true;
       windowManager.dwm.package = pkgs.dwm.overrideAttrs {
-        src = ./dwm;
+        src = ../../../config/dwm;
       };
       displayManager.lightdm = {
         enable = true;

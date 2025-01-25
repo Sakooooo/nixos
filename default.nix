@@ -81,7 +81,7 @@
   # xorg layout
   # change to needed
   services.xserver.xkb.layout = "us";
-  services.xserver.xkb.options = "grp:alt_shift_toggle, ctrl:swapcaps";
+  services.xserver.xkb.options = "grp:alt_space_toggle, ctrl:swapcaps";
 
   # already sold soul to corporations \_o_/
   nixpkgs.config.allowUnfree = true;
