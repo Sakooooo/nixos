@@ -6,6 +6,9 @@ in {
   config = lib.mkIf cfg.enable {
     modules.desktop.dunst.enable = lib.mkForce false;
 
+    # for flatpak
+    xdg.portal.enable = true;
+
     services.displayManager.defaultSession = "xfce";
     services.xserver = {
       enable = true;
