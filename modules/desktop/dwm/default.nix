@@ -15,6 +15,9 @@ in {
     # for flatpak
     xdg.portal.enable = true;
     xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    xdg.portal.config.common.default = "*";
+
+    programs.dconf.enable = true;
 
     #   services.displayManager.defaultSession = "dwm";
 
