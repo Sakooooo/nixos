@@ -20,7 +20,8 @@
       flatpak.enable = true;
       wireguard.enable = true;
       printing.enable = true;
-      xfce.enable = true;
+      # xfce.enable = true;
+      dwm.enable = true;
       # bspwm = {
       #   enable = false;
       #   polybar.enable = false;
