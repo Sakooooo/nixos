@@ -31,7 +31,19 @@ in {
       };
     };
 
+    environment.systemPackages = with pkgs; [
+      fluent-gtk-theme
+      fluent-icon-theme
+    ];
+
     home-manager.users.sako = {pkgs, ...}: {
+      # gtk = {
+      #   enable = true;
+      #   theme.name = "Fluent-pink-Dark";
+      #   theme.package = pkgs.fluent-gtk-theme;
+      #   iconTheme.name = "Fluent-pink-dark";
+      #   iconTheme.package = pkgs.fluent.icon-theme;
+      # };
       home.file = {
         "background.png" = {
           enable = true;
