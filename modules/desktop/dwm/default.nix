@@ -61,9 +61,13 @@ in {
       gtk = {
         enable = true;
         theme.name = "Fluent-pink-Dark";
-        theme.package = pkgs.fluent-gtk-theme;
+        theme.package = pkgs.fluent-gtk-theme.override {
+          colorVariants = ["dark"];
+          themeVariants = ["pink"];
+          tweaks = ["square"];
+        };
         iconTheme.name = "Fluent-pink-dark";
-        iconTheme.package = pkgs.fluent-icon-theme;
+        iconTheme.package = pkgs.fluent-icon-theme.override {colorVariants = ["pink"];};
       };
       home.file = {
         "background.png" = {
