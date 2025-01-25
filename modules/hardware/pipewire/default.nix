@@ -9,7 +9,7 @@ in {
     # its deprecated now the west has fallen
     # sound.enable = lib.mkDefault false;
 
-    hardware.pulseaudio.enable = false;
+    services.pulseaudio.enable = false;
 
     # what is this for will source games
     # still work what
