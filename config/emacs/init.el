@@ -315,9 +315,16 @@
   (global-wakatime-mode))
 
 ;; --- formatting ---
-(use-package apheleia
-  :ensure t
-  :hook (prog-mode . apheleia-mode))
+;; (use-package apheleia
+;;   :ensure t
+;;   :hook (prog-mode . apheleia-mode))
+
+(use-package format-all
+  :commands format-all-mode
+  :hook (prog-mode . format-all-mode)
+  :config
+  (setq-default format-all-formatters
+                '(("Nix" alejandra))))
 
 ;; --- LSP ---
 (use-package eglot
