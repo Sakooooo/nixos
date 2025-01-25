@@ -34,7 +34,7 @@ in {
       windowManager.dwm.package = pkgs.dwm.overrideAttrs {
         src = ../../../config/dwm;
       };
-      displayManapger.lightdm = {
+      displayManager.lightdm = {
         enable = true;
         greeters.gtk = {enable = true;};
       };
