@@ -1,4 +1,11 @@
-{ config, pkgs, lib, inputs, outputs, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  outputs,
+  ...
+}: {
   imports = [
     # Hardware Configuration
     # TODO:: Add this back once generated!!!!!!!
@@ -13,15 +20,16 @@
       flatpak.enable = true;
       wireguard.enable = true;
       printing.enable = true;
-      bspwm = {
-        enable = false;
-        polybar.enable = false;
-      };
-      hyprland.enable = true;
-      foot.enable = true;
+      xfce.enable = true;
+      # bspwm = {
+      #   enable = false;
+      #   polybar.enable = false;
+      # };
+      # hyprland.enable = true;
+      # foot.enable = true;
       kitty.enable = true;
-      picom.enable = false;
-      dunst.enable = false;
+      # picom.enable = false;
+      # dunst.enable = false;
       apps = {
         nextcloud.enable = true;
         #rssguard.enable = true;
@@ -99,7 +107,7 @@
       tmux.enable = true;
       ranger.enable = true;
     };
-    work = { onlyoffice.enable = true; };
+    work = {onlyoffice.enable = true;};
     security = {
       certs.enable = true;
       tor.enable = true;
@@ -113,7 +121,7 @@
   '';
 
   # secrets
-  age.identityPaths = [ "/home/sako/.ssh/id_ed25519" ];
+  age.identityPaths = ["/home/sako/.ssh/id_ed25519"];
 
   age.secrets.test.file = ../../secrets/test.age;
 
