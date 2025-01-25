@@ -58,7 +58,7 @@
       };
       media = {
         mpv.enable = true;
-        ardour.enable = true;
+        #ardour.enable = true;
         kdenlive.enable = true;
         blender.enable = true;
         # feishin.enable = true;
