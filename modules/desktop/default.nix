@@ -7,6 +7,7 @@
     ./xmonad
     ./exwm
     ./i3
+    ./dwm
     # desktop environ men t s s  s s
     ./kde
     ./gnome
