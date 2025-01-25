@@ -15,8 +15,7 @@
       tailscale.enable = true;
       kitty.enable = true;
       flatpak.enable = true;
-      # hyprland.enable = true;
-      xfce.enable = true;
+      dwm.enable = true;
       browsers = {
         firefox.enable = true;
         qutebrowser.enable = false;
