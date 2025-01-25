@@ -8,6 +8,7 @@ in {
 
     # for flatpak
     xdg.portal.enable = true;
+    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
     services.displayManager.defaultSession = "xfce";
     services.xserver = {
