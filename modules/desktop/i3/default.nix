@@ -5,8 +5,7 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.modules.desktop.i3;
 in {
   options.modules.desktop.i3 = {
@@ -20,19 +19,23 @@ in {
     # keyring
     services.gnome.gnome-keyring.enable = true;
 
+    # flatpak
+    xdg.portal.enable = true;
+    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+
     # ????????????
     services.libinput = {
-        enable = true;
-        # no mouse accel
-        mouse = {
-          accelProfile = "flat";
-        };
-
-        # no touchpad accel
-        touchpad = {
-          accelProfile = "flat";
-        };
+      enable = true;
+      # no mouse accel
+      mouse = {
+        accelProfile = "flat";
       };
+
+      # no touchpad accel
+      touchpad = {
+        accelProfile = "flat";
+      };
+    };
 
     services.displayManager.defaultSession = "none+i3";
 
@@ -50,16 +53,7 @@ in {
         lightdm = {
           enable = true;
           background = ../../../config/background.png;
-          greeters.mini = {
-            enable = true;
-            user = "sako";
-            extraConfig = ''
-              [greeter]
-              show-password-label = true
-              password-label-text = magic word
-              invalid-password-text = skull issue
-            '';
-          };
+          greeters.gtk.enable = true;
         };
       };
     };
@@ -80,18 +74,22 @@ in {
 
     home-manager.users.sako = {pkgs, ...}: {
       home.pointerCursor = {
-        name = "Catppuccin-Mocha-Dark";
-        size = 16;
-        x11 = {
-          enable = true;
-        };
+        # name = "Catppuccin-Mocha-Dark";
+        name = "BreezeX-RosePine-Linux";
+        size = 24;
         gtk.enable = true;
-        package = pkgs.catppuccin-cursors.mochaDark;
+        package = pkgs.rose-pine-cursor;
       };
       gtk = {
         enable = true;
-        theme.name = "vimix-dark-ruby";
-        iconTheme.name = "Vimix Ruby Dark";
+        theme.name = "Fluent-pink-Dark";
+        theme.package = pkgs.fluent-gtk-theme.override {
+          colorVariants = ["dark"];
+          themeVariants = ["pink"];
+          tweaks = ["square"];
+        };
+        iconTheme.name = "Fluent-pink-dark";
+        iconTheme.package = pkgs.fluent-icon-theme.override {colorVariants = ["pink"];};
       };
       home.file = {
         "background.png" = {
