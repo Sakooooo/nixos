@@ -63,11 +63,6 @@ in {
       networkmanagerapplet
       # brightness
       brightnessctl
-      # gee tee k
-      vimix-gtk-themes
-      vimix-icon-theme
-      lxappearance
-      catppuccin-cursors.mochaDark
       # screen shot (s)
       flameshot
     ];
