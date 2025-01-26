@@ -22,9 +22,7 @@
       tailscale.enable = true;
       kitty.enable = true;
       flatpak.enable = true;
-      # dwm.enable = true;
-      # xfce.enable = true;
-      i3.enable = true;
+      hyprland.enable = true;
       browsers = {
         firefox.enable = true;
         qutebrowser.enable = false;
