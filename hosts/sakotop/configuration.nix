@@ -23,6 +23,7 @@
       kitty.enable = true;
       flatpak.enable = true;
       hyprland.enable = true;
+      foot.enable = true;
       browsers = {
         firefox.enable = true;
         qutebrowser.enable = false;
