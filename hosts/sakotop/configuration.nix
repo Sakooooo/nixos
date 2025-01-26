@@ -23,7 +23,8 @@
       kitty.enable = true;
       flatpak.enable = true;
       # dwm.enable = true;
-      xfce.enable = true;
+      # xfce.enable = true;
+      i3.enable = true;
       browsers = {
         firefox.enable = true;
         qutebrowser.enable = false;
