@@ -20,15 +20,15 @@
       flatpak.enable = true;
       wireguard.enable = true;
       printing.enable = true;
-      xfce.enable = true;
+      # xfce.enable = true;
       # dwm.enable = true;
       # bspwm = {
       #   enable = false;
       #   polybar.enable = false;
       # };
-      # hyprland.enable = true;
-      # foot.enable = true;
-      kitty.enable = true;
+      hyprland.enable = true;
+      foot.enable = true;
+      # kitty.enable = true;
       # picom.enable = false;
       # dunst.enable = false;
       apps = {
