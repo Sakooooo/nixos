@@ -80,7 +80,7 @@
         emacs = {
           enable = true;
           daemon = true;
-          package = pkgs.emacs-unstable;
+          package = pkgs.emacs-unstable-pgtk;
         };
         #vscode.enable = true;
       };
