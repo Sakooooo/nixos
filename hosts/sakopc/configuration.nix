@@ -61,7 +61,7 @@
       game = {
         lutris.enable = true;
         steam.enable = true;
-        # wine.enable = true;
+        wine.enable = true;
         # tetrio.enable = true;
         # prismlauncher.enable = true;
       };
