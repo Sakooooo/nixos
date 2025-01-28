@@ -379,8 +379,7 @@
 
 ;; meson
 (use-package meson-mode
-  :mode "meson.build"
-  :hook (meson-mode . eglot-ensure))
+  :mode "meson.build")
 
 ;; astro
 (define-derived-mode astro-mode web-mode "astro")
