@@ -1,12 +1,19 @@
-{ inputs, outputs, options, config, lib, pkgs, ... }:
-let cfg = config.modules.desktop.hyprland;
+{
+  inputs,
+  outputs,
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.modules.desktop.hyprland;
 in {
-  imports = [ inputs.hyprland.nixosModules.default ];
+  imports = [inputs.hyprland.nixosModules.default];
 
-  options.modules.desktop.hyprland = { enable = lib.mkEnableOption false; };
+  options.modules.desktop.hyprland = {enable = lib.mkEnableOption false;};
 
   config = lib.mkIf cfg.enable {
-
     modules.desktop.dunst.enable = lib.mkForce false;
 
     services.gnome.gnome-keyring.enable = true;
@@ -14,10 +21,9 @@ in {
     services.greetd = {
       enable = true;
       settings = {
-        terminal = { vt = 2; };
+        terminal = {vt = 2;};
         default_session = {
-          command =
-            "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
           user = "greeter";
         };
       };
@@ -59,10 +65,10 @@ in {
       enable = true;
 
       # no mouse accel
-      mouse = { accelProfile = "flat"; };
+      mouse = {accelProfile = "flat";};
 
       # no touchpad accel
-      touchpad = { accelProfile = "flat"; };
+      touchpad = {accelProfile = "flat";};
     };
 
     users.users.sako.packages = with pkgs; [
@@ -127,7 +133,7 @@ in {
       wl-clipboard
     ];
 
-    programs.hyprland = { enable = true; };
+    programs.hyprland = {enable = true;};
 
     programs.hyprlock.enable = true;
 
@@ -137,9 +143,9 @@ in {
     # piece of shit thanks!
     services.emacs.startWithGraphical = false;
 
-    home-manager.users.sako = { pkgs, ... }: {
+    home-manager.users.sako = {pkgs, ...}: {
       home.pointerCursor = {
-        # name = "Catppuccin-Mocha-Dark"; 
+        # name = "Catppuccin-Mocha-Dark";
         name = "BreezeX-RosePine-Linux";
         size = 24;
         gtk.enable = true;
@@ -184,7 +190,7 @@ in {
           source = ../../../config/quickshell;
           recursive = true;
         };
-        "mako/config" = { text = "default-timeout=5000"; };
+        "mako/config" = {text = "default-timeout=5000";};
       };
     };
 
@@ -196,6 +202,6 @@ in {
     #   # the 'login' configuration file (see /etc/pam.d/login)
     #   auth include login
     # '';
-
+    security.pam.services.hyprlock = {};
   };
 }
