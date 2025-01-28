@@ -377,6 +377,11 @@
   :mode "CMakeLists.txt"
   :hook (cmake-mode . eglot-ensure))
 
+;; meson
+(use-package meson-mode
+  :mode "meson.build"
+  :hook (meson-mode . eglot-ensure))
+
 ;; astro
 (define-derived-mode astro-mode web-mode "astro")
 (setq auto-mode-alist
