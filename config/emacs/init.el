@@ -76,13 +76,6 @@
   :config
   (load-theme 'gruber-darker t))
 
-;; --- Modeline ---
-(use-package telephone-line
-  :ensure t
-  :config
-  (telephone-line-mode 1))
-
-
 ;; --- no-littering ---
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
