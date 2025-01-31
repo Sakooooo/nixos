@@ -377,7 +377,9 @@
 (use-package svelte-mode
   :ensure t
   :hook (svelte-mode . eglot-ensure)
-  :mode "\\.svelte")
+  :mode "\\.svelte"
+  :config
+  (add-to-list 'eglot-server-programs '(svelte-mode . ("svelteserver" "--stdio"))))
 
 ;; typescript
 (add-to-list 'auto-mode-alist '(".*\\.ts" . typescript-ts-mode))
