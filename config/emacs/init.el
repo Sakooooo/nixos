@@ -305,7 +305,8 @@
   :hook (prog-mode . format-all-mode)
   :config
   (setq-default format-all-formatters
-                '(("Nix" alejandra))))
+                '(("Nix" alejandra))
+		("Rust" (rustfmt "--edition" "2021"))))
 
 ;; --- LSP ---
 (use-package eglot
