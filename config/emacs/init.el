@@ -373,6 +373,12 @@
                              :initializationOptions
                              (:typescript (:tsdk "./node_modules/typescript/lib")))))
 
+;; svelte
+(use-package svelte-mode
+  :ensure t
+  :hook (svelte-mode . eglot-ensure)
+  :mode "\\.svelte")
+
 ;; typescript
 (add-to-list 'auto-mode-alist '(".*\\.ts" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '(".*\\.tsx" . tsx-ts-mode))
