@@ -1,5 +1,11 @@
-{ options, config, lib, pkgs, ... }:
-let cfg = config.modules.desktop.browsers.firefox;
+{
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.modules.desktop.browsers.firefox;
 in {
   options.modules.desktop.browsers.firefox = {
     enable = lib.mkEnableOption false;
@@ -14,6 +20,7 @@ in {
       preferences = {
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "browser.compactmode.show" = true;
+        "sidebar.verticalTabs" = true;
       };
     };
 
@@ -32,43 +39,49 @@ in {
             search.force = true;
             search.engines = {
               "Nix Packages" = {
-                urls = [{
-                  template =
-                    "https://search.nixos.org/packages?channel=unstable";
-                  params = [{
-                    name = "query";
-                    value = "{searchTerms}";
-                  }];
-                }];
-                icon =
-                  "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                definedAliases = [ "@nixpkgs" ];
+                urls = [
+                  {
+                    template = "https://search.nixos.org/packages?channel=unstable";
+                    params = [
+                      {
+                        name = "query";
+                        value = "{searchTerms}";
+                      }
+                    ];
+                  }
+                ];
+                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                definedAliases = ["@nixpkgs"];
               };
               "Nix Options" = {
-                definedAliases = [ "@nixopts" ];
-                icon =
-                  "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                urls = [{
-                  template =
-                    "https://search.nixos.org/options?channel=unstable";
-                  params = [{
-                    name = "query";
-                    value = "{searchTerms}";
-                  }];
-                }];
+                definedAliases = ["@nixopts"];
+                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                urls = [
+                  {
+                    template = "https://search.nixos.org/options?channel=unstable";
+                    params = [
+                      {
+                        name = "query";
+                        value = "{searchTerms}";
+                      }
+                    ];
+                  }
+                ];
               };
               "Home Manager Options" = {
-                definedAliases = [ "@homemgropts" ];
-                icon =
-                  "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                urls = [{
-                  template =
-                    "https://home-manager-options.extranix.com/?release=master";
-                  params = [{
-                    name = "query";
-                    value = "{searchTerms}";
-                  }];
-                }];
+                definedAliases = ["@homemgropts"];
+                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                urls = [
+                  {
+                    template = "https://home-manager-options.extranix.com/?release=master";
+                    params = [
+                      {
+                        name = "query";
+                        value = "{searchTerms}";
+                      }
+                    ];
+                  }
+                ];
               };
             };
           };
@@ -77,9 +90,8 @@ in {
 
       programs.browserpass = {
         enable = true;
-        browsers = [ "firefox" ];
+        browsers = ["firefox"];
       };
-
     };
 
     programs.browserpass.enable = true;
