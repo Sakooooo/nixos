@@ -71,30 +71,17 @@
     (package-install 'use-package)))
 
 ;; --- Theme ---
-;; (use-package cherry-blossom-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'cherry-blossom t))
-
-;; (use-package kanagawa-themes
-;;   :ensure t
-;;   :config
-;;   (load-theme 'kanagawa-dragon t))
-
-;; (use-package grandshell-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'grandshell t))
-
-;; (use-package kaolin-themes
-;;   :ensure t
-;;   :config
-;;   (load-theme 'kaolin-dark t))
-
 (use-package gruber-darker-theme
   :ensure t
   :config
   (load-theme 'gruber-darker t))
+
+;; --- Modeline ---
+(use-package telephone-line
+  :ensure t
+  :config
+  (telephone-line-mode 1))
+
 
 ;; --- no-littering ---
 
