@@ -1,4 +1,12 @@
-{ config, inputs, outputs, pkgs, lib, home-manager, ... }: {
+{
+  config,
+  inputs,
+  outputs,
+  pkgs,
+  lib,
+  home-manager,
+  ...
+}: {
   imports = [
     # home manager
     inputs.home-manager.nixosModules.default
@@ -20,7 +28,7 @@
   # nix settings that should 100% be global
   #nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
     substituters = [
       # nix-community
       "https://nix-community.cachix.org"
@@ -56,7 +64,7 @@
       efiSysMountPoint = "/boot/efi";
     };
     grub = {
-      devices = [ "nodev" ];
+      devices = ["nodev"];
       efiSupport = true;
       enable = true;
       useOSProber = true;
@@ -88,12 +96,12 @@
 
   users.users.sako = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" ];
+    extraGroups = ["wheel" "networkmanager" "audio"];
   };
 
   home-manager.useUserPackages = true;
-  home-manager.users.sako = { pkgs, ... }: {
-    home.packages = [ ];
+  home-manager.users.sako = {pkgs, ...}: {
+    home.packages = [];
     home.username = "sako";
     home.homeDirectory = "/home/sako";
     programs.bash.enable = true;
@@ -104,16 +112,16 @@
 
     programs.git = {
       enable = true;
+      lfs.enable = true;
       userName = "Sakooooo";
       userEmail = "78461130+Sakooooo@users.noreply.github.com";
-      includes = [{ path = "~/.config/git/config.local"; }];
+      includes = [{path = "~/.config/git/config.local";}];
       extraConfig = {
         color.ui = "auto";
         init.defaultBranch = "master";
         pull.rebase = true;
       };
     };
-
   };
   # bare minimum
   environment.systemPackages = with pkgs; [
@@ -149,5 +157,4 @@
   #   enable = true;
   #   package = pkgs.gitFull;
   # };
-
 }
