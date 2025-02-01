@@ -306,7 +306,7 @@
   :config
   (setq-default format-all-formatters
                 '(("Nix" alejandra))
-		("Rust" (rustfmt "--edition" "2021"))))
+		  ("Rust" (rustfmt "--edition" "2021"))))
 
 ;; --- LSP ---
 (use-package eglot
@@ -509,7 +509,9 @@
   (emms-all)
   (setq emms-player-mpd-server-name "localhost")
   (setq emms-player-mpd-server-port "6600")
-  (setq emms-player-list '(emms-player-mpd)
-  (setq emms-info-functions '(emms-info-mod))))
+  (add-to-list 'emms-info-functions 'emms-info-mpd)
+  (add-to-list 'emms-player-list 'emms-player-mpd)
+  (emms-player-mpd-connect)
+  (add-hook 'emms-playlist-cleared-hook 'emms-player-mpd-clear))
 
 ;;; init.el ends here
