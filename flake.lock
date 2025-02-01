@@ -124,11 +124,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1738442362,
-        "narHash": "sha256-CRzDCMoI+nA6Ws7UQ8z03VaZBhif0QrRNoGkrbjc+Do=",
+        "lastModified": 1738442508,
+        "narHash": "sha256-GfvLesaaOii8neBHXhDqNRIwBuKJ08v+d0r2+I8MolQ=",
         "owner": "snugnug",
         "repo": "big-brother",
-        "rev": "13860e8ded1622e0e492e1c30ae5de1a0c6c99db",
+        "rev": "3a4f7b51666df713d6d11e042005074c5e687f2f",
         "type": "github"
       },
       "original": {
