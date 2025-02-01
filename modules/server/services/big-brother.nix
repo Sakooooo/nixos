@@ -2,12 +2,10 @@
   config,
   lib,
   inputs,
-  pkgs,
   ...
 }:
 with lib; let
   cfg = config.void.server.services.big-brother;
-  inherit (pkgs.stdenv.hostPlatform) system;
 in {
   imports = [inputs.big-brother.nixosModules.default];
   options.void.server.services.big-brother = {enable = mkEnableOption false;};
