@@ -86,6 +86,7 @@
       services = {
         sakosite.enable = true;
         mumble.enable = true;
+        big-brother.enable = true;
         forgejo = {
           enable = true;
           # runner.enable = true;

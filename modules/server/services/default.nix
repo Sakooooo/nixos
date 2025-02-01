@@ -6,5 +6,6 @@
     ./sakosite.nix
     ./redlib.nix
     ./mumble.nix
+    ./big-brother.nix
   ];
 }
