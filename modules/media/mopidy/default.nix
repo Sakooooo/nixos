@@ -24,10 +24,7 @@ in {
         restore_state = false
 
         [audio]
-        mixer = software
-        mixer_volume =
         output = autoaudiosink
-        buffer_time =
 
         [jellyfin]
         hostname = http://192.168.1.28:8096
