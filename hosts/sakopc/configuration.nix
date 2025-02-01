@@ -91,11 +91,11 @@
       nvidia.enable = true;
       pipewire.enable = true;
     };
-    media = {
-      mpd.enable = false;
-      ncmpcpp.enable = true;
-      mopidy.enable = true;
-    };
+    # media = {
+    #   mpd.enable = false;
+    #   ncmpcpp.enable = true;
+    #   mopidy.enable = true;
+    # };
     shell = {
       nix = {
         optimize.enable = true;
