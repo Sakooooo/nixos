@@ -30,7 +30,7 @@ in {
         buffer_time =
 
         [jellyfin]
-        hostname = https://jellyfin.sako.box
+        hostname = 192.168.1.28
         username = sako
         password = sako
         libraries = Music
