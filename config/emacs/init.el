@@ -510,6 +510,6 @@
   (setq emms-player-mpd-server-name "localhost")
   (setq emms-player-mpd-server-port "6600")
   (setq emms-player-list '(emms-player-mpd)
-  (setq emms-info-functions '(emms-info-mod)))
+  (setq emms-info-functions '(emms-info-mod))))
 
 ;;; init.el ends here
