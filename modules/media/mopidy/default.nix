@@ -4,8 +4,7 @@
   pkgs,
   lib,
   ...
-}:
-let
+}: let
   cfg = config.modules.media.mopidy;
 in {
   options.modules.media.mopidy = {
@@ -31,7 +30,7 @@ in {
         buffer_time =
 
         [jellyfin]
-        hostname = jellyfin.sako.box
+        hostname = https://jellyfin.sako.box
         username = sako
         password = sako
         libraries = Music
