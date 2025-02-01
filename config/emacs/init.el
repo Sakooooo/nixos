@@ -502,4 +502,14 @@
       (remove-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)))
   (elcord-mode)
   (add-hook 'elcord-mode-hook 'sakomacs/elcord-mode-hook))
+
+;; emms
+(use-package emms
+  :config
+  (emms-all)
+  (setq emms-player-mpd-server-name "localhost")
+  (setq emms-player-mpd-server-port "6600")
+  (setq emms-player-list '(emms-player-mpd)
+  (setq emms-info-functions '(emms-info-mod)))
+
 ;;; init.el ends here
