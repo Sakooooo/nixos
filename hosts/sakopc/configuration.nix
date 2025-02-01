@@ -58,13 +58,13 @@
         gajim.enable = true;
         psi-plus.enable = true;
       };
-      game = {
-        lutris.enable = true;
-        # steam.enable = true;
-        wine.enable = true;
-        # tetrio.enable = true;
-        # prismlauncher.enable = true;
-      };
+      # game = {
+      #   lutris.enable = true;
+      #   steam.enable = true;
+      #   wine.enable = true;
+      #   tetrio.enable = true;
+      #   prismlauncher.enable = true;
+      # };
       media = {
         mpv.enable = true;
         #ardour.enable = true;
