@@ -22,7 +22,6 @@
 
 (repeat-mode 1)
 (column-number-mode)
-(electric-pair-mode)
 
 (setq display-line-numbers-type 'relative)
 
