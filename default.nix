@@ -135,6 +135,7 @@
     ripgrep # better grep may help later
     inputs.agenix.packages.${system}.default
     colmena
+    attic-client
   ];
 
   age.secretsDir = "/run/secrets";
