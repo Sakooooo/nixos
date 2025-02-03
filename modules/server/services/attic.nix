@@ -16,7 +16,7 @@ in {
         enable = true;
 
         # Replace with absolute path to your environment file
-        environmentFile = "/srv/secrets/atticd.env";
+        environmentFile = "/srv/secrets/attic.env";
 
         settings = {
           listen = "[::]:35743";
