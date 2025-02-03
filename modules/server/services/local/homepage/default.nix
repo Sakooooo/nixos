@@ -137,6 +137,7 @@ in {
               ++ lib.optionals srv.services.local.wakapi.enable [
                 {
                   "Wakapi" = {
+                    icon = "wakapi.svg";
                     description = "Wakatime Selfhosted";
                     href = "https://wakapi.sako.lol";
                   };
