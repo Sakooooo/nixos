@@ -401,21 +401,6 @@
 ;; html/css
 (use-package web-mode
   :hook (web-mode . eglot-ensure)
-  :config
-  ;; jinja/django templating related fixes
-  (setq web-mode-auto-pairs nil)
-  (setq-local
-   electric-pair-pairs
-   (cdr electric-pair-pairs))
-
-  ;; and
-  (setq electric-pair-pairs '(
-			      ;; {} must be first for web-mode
-                              (?\{ . ?\})
-                              (?\( . ?\))
-                              (?\[ . ?\])
-                              (?\" . ?\")
-                              ))
   :mode ("\\.html\\'"
          "\\.css\\'"))
 
