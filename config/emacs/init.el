@@ -306,7 +306,8 @@
   :config
   (setq-default format-all-formatters
                 '(("Nix"     (alejandra))
-                  ("Rust" (rustfmt "--edition" "2021")))))
+                  ("Rust" (rustfmt "--edition" "2021"))
+		   "C++" (clang-format))))
 
 ;; --- LSP ---
 (use-package eglot
