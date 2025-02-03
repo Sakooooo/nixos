@@ -133,6 +133,14 @@ in {
                     href = "https://big-brother.sako.lol";
                   };
                 }
+              ]
+              ++ lib.optionals srv.services.local.wakapi.enable [
+                {
+                  "Wakapi" = {
+                    description = "Wakatime Selfhosted";
+                    href = "https://wakapi.sako.lol";
+                  };
+                }
               ];
           }
         ];
