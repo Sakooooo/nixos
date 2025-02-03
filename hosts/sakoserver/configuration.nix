@@ -114,6 +114,7 @@
           homepage.enable = true;
           nextcloud.enable = true;
           miniflux.enable = true;
+          wakapi.enable = true;
         };
       };
       fedi = {akkoma.enable = true;};
