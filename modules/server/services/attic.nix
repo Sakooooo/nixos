@@ -23,6 +23,13 @@ in {
 
           jwt = {};
 
+          storage = {
+            type = "local";
+            path = "/var/lib/atticd/storage";
+          };
+
+          database.url = "postgresql://attic@127.0.0.1:5432/attic";
+
           # Data chunking
           #
           # Warning: If you change any of the values here, it will be
