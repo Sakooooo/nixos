@@ -16,6 +16,9 @@
 (set-fringe-mode 0)
 (setq visible-bell nil)
 (setq inhibit-startup-message t)
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq use-dialog-box nil)
+;; (setq warning-minimum-level :emergency)
 
 (repeat-mode 1)
 (column-number-mode)
@@ -397,6 +400,21 @@
 ;; html/css
 (use-package web-mode
   :hook (web-mode . eglot-ensure)
+  :config
+  ;; jinja/django templating related fixes
+  (setq web-mode-enable-auto-pairing nil)
+  (setq-local
+   electric-pair-pairs
+   (cdr electric-pair-pairs))
+
+  ;; and
+  (setq electric-pair-pairs '(
+			      ;; {} must be first for web-mode
+                              (?\{ . ?\})
+                              (?\( . ?\))
+                              (?\[ . ?\])
+                              (?\" . ?\")
+                              ))
   :mode ("\\.html\\'"
          "\\.css\\'"))
 
