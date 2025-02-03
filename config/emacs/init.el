@@ -402,7 +402,7 @@
   :hook (web-mode . eglot-ensure)
   :config
   ;; jinja/django templating related fixes
-  (setq web-mode-enable-auto-pairing nil)
+  (setq web-mode-auto-pairs nil)
   (setq-local
    electric-pair-pairs
    (cdr electric-pair-pairs))
