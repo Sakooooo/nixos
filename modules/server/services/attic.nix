@@ -28,7 +28,7 @@ in {
             path = "/var/lib/atticd/storage";
           };
 
-          database.url = "postgresql://attic@localhost:5432/attic";
+          database.url = "postgresql://attic:attic@localhost:5432/attic";
 
           # Data chunking
           #
