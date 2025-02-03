@@ -13,6 +13,7 @@ in {
       wakapi = {
         enable = true;
         passwordSaltFile = "/srv/secrets/wakapi-salt";
+        database.dialect = "postgres";
 
         settings = {
           server = {
