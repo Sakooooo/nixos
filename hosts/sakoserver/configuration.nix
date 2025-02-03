@@ -110,6 +110,7 @@
         };
         headscale.enable = true;
         redlib.enable = true;
+        attic.enable = true;
         local = {
           homepage.enable = true;
           nextcloud.enable = true;
