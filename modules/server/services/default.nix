@@ -7,5 +7,6 @@
     ./redlib.nix
     ./mumble.nix
     ./big-brother.nix
+    ./attic.nix
   ];
 }
