@@ -1,14 +1,19 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let cfg = config.void.server.postgresql;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.void.server.postgresql;
 in {
-  options.void.server.postgresql = { enable = mkEnableOption false; };
+  options.void.server.postgresql = {enable = mkEnableOption false;};
 
   config = mkIf cfg.enable {
     services.postgresql = {
       enable = true;
       package = pkgs.postgresql_17_jit;
-      ensureDatabases = [ "forgejo" "akkoma" "nextcloud" "miniflux" ];
+      ensureDatabases = ["forgejo" "akkoma" "nextcloud" "miniflux" "wakapi"];
       ensureUsers = [
         {
           name = "postgres";
@@ -36,6 +41,10 @@ in {
           name = "miniflux";
           ensureDBOwnership = true;
         }
+        {
+          name = "wakapi";
+          ensureDBOwnership = true;
+        }
       ];
       # Thank you NotAShelf
       # https://github.com/NotAShelf/nyx/blob/d407b4d6e5ab7f60350af61a3d73a62a5e9ac660/modules/core/roles/server/system/services/databases/postgresql.nix#L74
@@ -55,11 +64,9 @@ in {
         random_page_cost =
           1.25; # speed of random disk access relative to sequential access (1.0);
         # Monitoring;
-        shared_preload_libraries =
-          "pg_stat_statements,auto_explain"; # per statement resource usage stats & log explain statements for slow queries
+        shared_preload_libraries = "pg_stat_statements,auto_explain"; # per statement resource usage stats & log explain statements for slow queries
         track_io_timing = "on"; # measure exact block IO times;
-        track_functions =
-          "pl"; # track execution times of pl-language procedures if any;
+        track_functions = "pl"; # track execution times of pl-language procedures if any;
         # Replication;
         wal_level = "replica"; # consider using at least "replica";
         max_wal_senders = 0;
@@ -114,4 +121,3 @@ in {
     };
   };
 }
-
