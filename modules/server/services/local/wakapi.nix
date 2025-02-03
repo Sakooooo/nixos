@@ -4,9 +4,9 @@
   ...
 }:
 with lib; let
-  cfg = config.void.server.services.wakapi;
+  cfg = config.void.server.services.local.wakapi;
 in {
-  options.void.server.services.wakapi = {enable = mkEnableOption false;};
+  options.void.server.services.local.wakapi = {enable = mkEnableOption false;};
 
   config = mkIf cfg.enable {
     services = {
