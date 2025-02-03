@@ -47,8 +47,6 @@ in {
         }
         {
           name = "attic";
-          # ???? you need this apparently?
-          password = "attic";
           ensureDBOwnership = true;
         }
       ];
