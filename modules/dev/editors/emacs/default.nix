@@ -1,15 +1,34 @@
-{ outputs, options, config, lib, pkgs, inputs, ... }:
-let
+{
+  outputs,
+  options,
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: let
   cfg = config.modules.dev.editors.emacs;
 
   inherit (lib) mkForce;
 
   # so we dont cry later on why texLive is MASSIVE
-  tex = (pkgs.texlive.combine {
-    inherit (pkgs.texlive)
-      scheme-basic dvisvgm dvipng # for preview and export as html
-      wrapfig amsmath ulem hyperref capt-of fontspec inputenx graphics etoolbox;
-  });
+  tex = pkgs.texlive.combine {
+    inherit
+      (pkgs.texlive)
+      scheme-basic
+      dvisvgm
+      dvipng # for preview and export as html
+      wrapfig
+      amsmath
+      ulem
+      hyperref
+      capt-of
+      fontspec
+      inputenx
+      graphics
+      etoolbox
+      ;
+  };
 
   myEmacs = pkgs.emacsWithPackagesFromUsePackage {
     config = ../../../../config/emacs/init.el;
@@ -27,18 +46,30 @@ let
     ];
     # add eglot-lsp-booster package
     override = epkgs:
-      epkgs // {
+      epkgs
+      // {
         eglot-booster = epkgs.trivialBuild {
           pname = "eglot-booster";
           version = "e19dd7ea81bada84c66e8bdd121408d9c0761fe6";
 
-          packageRequires = with pkgs; [ emacs-lsp-booster ];
+          packageRequires = with pkgs; [emacs-lsp-booster];
 
           src = pkgs.fetchFromGitHub {
             owner = "jdtsmith";
             repo = "eglot-booster";
             rev = "e19dd7ea81bada84c66e8bdd121408d9c0761fe6";
             hash = "sha256-vF34ZoUUj8RENyH9OeKGSPk34G6KXZhEZozQKEcRNhs=";
+          };
+        };
+        eglot-luau = epkgs.trivialBuild {
+          pname = "eglot-luau";
+          version = "idk";
+
+          src = pkgs.fetchFromGitHub {
+            owner = "kennethloeffler";
+            repo = "eglot-luau";
+            rev = "23335f45fb91de606e6971e93179df0fee0fd062";
+            hash = "sha256-cE/BP+wO0WzXlqaCRO/a4VuWKOwu8aR2igdQgbj+g8w=";
           };
         };
         # app-launcher = epkgs.melpaBuild {
@@ -82,7 +113,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
+    nixpkgs.overlays = [inputs.emacs-overlay.overlay];
     # ues daemon
     services.emacs = {
       enable = cfg.daemon;
@@ -145,7 +176,7 @@ in {
     #   };
     # };
 
-    home-manager.users.sako = { lib, ... }: {
+    home-manager.users.sako = {lib, ...}: {
       home.file = {
         ".emacs.d/init.el".source = ../../../../config/emacs/init.el;
         # ".emacs.d/icon.png".source = ../../../../config/emacs/icon.png;
@@ -159,6 +190,6 @@ in {
     programs.gnupg.agent.pinentryPackage = mkForce pkgs.pinentry-emacs;
 
     # fonts.packages = with pkgs; [ nerdfonts.jetbrains-mono jetbrains-mono ];
-    fonts.packages = with pkgs; [ jetbrains-mono nerd-fonts.jetbrains-mono ];
+    fonts.packages = with pkgs; [jetbrains-mono nerd-fonts.jetbrains-mono];
   };
 }
