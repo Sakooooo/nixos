@@ -28,6 +28,7 @@
   # nix settings that should 100% be global
   #nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings = {
+    trusted-users = ["root" "@wheel"]; # I am very trustworthy with infinite power.
     experimental-features = ["nix-command" "flakes"];
     substituters = [
       # nix-community
