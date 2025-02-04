@@ -61,17 +61,6 @@
             hash = "sha256-vF34ZoUUj8RENyH9OeKGSPk34G6KXZhEZozQKEcRNhs=";
           };
         };
-        eglot-luau = epkgs.trivialBuild {
-          pname = "eglot-luau";
-          version = "idk";
-
-          src = pkgs.fetchFromGitHub {
-            owner = "kennethloeffler";
-            repo = "eglot-luau";
-            rev = "23335f45fb91de606e6971e93179df0fee0fd062";
-            hash = "sha256-cE/BP+wO0WzXlqaCRO/a4VuWKOwu8aR2igdQgbj+g8w=";
-          };
-        };
         # app-launcher = epkgs.melpaBuild {
         #   pname = "app-launcher";
         #   version = "1.0";
