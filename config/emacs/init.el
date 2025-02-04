@@ -422,7 +422,8 @@
 (use-package lua-mode
   :ensure t
   :hook (lua-mode . eglot-ensure)
-  :mode ("\\.lua\\'"))
+  :mode ("\\.lua\\'"
+	 "\\.luau\\'"))
 
 (use-package moonscript
   :ensure t
