@@ -426,7 +426,7 @@
 	 "\\.luau\\'"))
 
 (use-package eglot-luau
-  :demand t
+  :ensure t
   :after (lua-mode eglot)
   :functions eglot-luau-setup
   :config (eglot-luau-setup)
