@@ -186,9 +186,12 @@ in {
           source = ../../../config/ags;
           recursive = true;
         };
-        quickshell = {
-          source = ../../../config/quickshell;
-          recursive = true;
+        # quickshell = {
+        #   source = ../../../config/quickshell;
+        #   recursive = true;
+        # };
+        "quickshell/manifest.conf" = lib.generators.toKeyValue {} {
+          shell = "${lib.path ../../../.}/config/quickshell";
         };
         "mako/config" = {text = "default-timeout=5000";};
       };
