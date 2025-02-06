@@ -67,6 +67,33 @@ in {
                     icon = "miniflux.svg";
                   };
                 }
+              ]
+              ++ lib.optionals srv.media.prowlarr.enable [
+                {
+                  "Prowlarr" = {
+                    description = "the thingy";
+                    href = "https://prowlarr.sako.box";
+                    icon = "prowlarr.svg";
+                  };
+                }
+              ]
+              ++ lib.optionals srv.media.sonarr.enable [
+                {
+                  "Sonarr" = {
+                    description = "that one thing arr";
+                    href = "https://sonarr.sako.box";
+                    icon = "sonarr.svg";
+                  };
+                }
+              ]
+              ++ lib.optionals srv.media.autobrr.enable [
+                {
+                  "Autobrr" = {
+                    description = "the other arr thing";
+                    href = "https://brr.sako.box";
+                    icon = "autobrr.svg";
+                  };
+                }
               ];
           }
           {

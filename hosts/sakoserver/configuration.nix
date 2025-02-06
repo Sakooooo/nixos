@@ -128,6 +128,9 @@
           group = "media";
         };
         jellyfin.enable = true;
+        prowlarr.enable = true;
+        sonarr.enable = true;
+        autobrr.enable = true;
       };
     };
   };

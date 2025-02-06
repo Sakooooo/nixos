@@ -1,1 +1,1 @@
-{ imports = [ ./qbittorrent.nix ./jellyfin.nix ]; }
+{imports = [./qbittorrent.nix ./jellyfin.nix ./sonarr.nix ./prowlarr.nix ./autobrr.nix];}
