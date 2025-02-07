@@ -1,11 +1,16 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let cfg = config.void.server.media.jellyfin;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.void.server.media.jellyfin;
 in {
-  options.void.server.media.jellyfin = { enable = mkEnableOption false; };
+  options.void.server.media.jellyfin = {enable = mkEnableOption false;};
 
   config = mkIf cfg.enable {
-    users.groups.media = { };
+    users.groups.media = {};
 
     services = {
       jellyfin = {
@@ -16,15 +21,6 @@ in {
       };
 
       nginx = {
-        proxyCachePath."jellyfin" = {
-          enable = true;
-          levels = "1:2";
-          inactive = "1w";
-          maxSize = "5g";
-          useTempPath = false;
-          keysZoneName = "jellyfin_cache";
-          keysZoneSize = "10m";
-        };
         virtualHosts = {
           "jellyfin.sako.box" = {
             forceSSL = true;
@@ -40,11 +36,6 @@ in {
             locations = {
               "/" = {
                 proxyPass = "http://localhost:8096";
-                extraConfig = ''
-                                    # Disable buffering when the nginx proxy gets very resource heavy upon streaming
-                                    proxy_buffering off;
-                  proxy_cache jellyfin_cache;
-                '';
               };
               "/socket" = {
                 proxyPass = "http://localhost:8096";
