@@ -10,6 +10,8 @@ in {
   options.void.server.services.attic = {enable = mkEnableOption false;};
 
   config = mkIf cfg.enable {
+    users.users.sako.packages = [pkgs.attic-client];
+
     # copied from the docs LOL
     services = {
       atticd = {
