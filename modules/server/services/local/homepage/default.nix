@@ -169,6 +169,15 @@ in {
                     href = "https://wakapi.sako.lol";
                   };
                 }
+              ]
+              ++ lib.optionals srv.services.local.thelounge.enable [
+                {
+                  "The Lounge" = {
+                    icon = "thelounge.svg";
+                    description = "irc bouncer";
+                    href = "https://irc.sako.box";
+                  };
+                }
               ];
           }
         ];
