@@ -425,18 +425,18 @@
   :mode ("\\.lua\\'"
 	 "\\.luau\\'"))
 
-(use-package eglot-luau
-  :ensure t
-  :after (lua-mode eglot)
-  :functions eglot-luau-setup
-  :config (eglot-luau-setup)
-  :custom
-  (eglot-luau-rojo-sourcemap-enabled t)
-  (eglot-luau-rojo-sourcemap-includes-non-scripts t)
-  (eglot-luau-auto-update-roblox-docs t)
-  (eglot-luau-auto-update-roblox-types t)
-  (eglot-luau-fflag-overrides '(("LuauNonStrictByDefaultBetaFeature" "False")))
-  :hook (lua-mode . eglot-ensure))
+;; (use-package eglot-luau
+;;   :ensure t
+;;   :after (lua-mode eglot)
+;;   :functions eglot-luau-setup
+;;   :config (eglot-luau-setup)
+;;   :custom
+;;   (eglot-luau-rojo-sourcemap-enabled t)
+;;   (eglot-luau-rojo-sourcemap-includes-non-scripts t)
+;;   (eglot-luau-auto-update-roblox-docs t)
+;;   (eglot-luau-auto-update-roblox-types t)
+;;   (eglot-luau-fflag-overrides '(("LuauNonStrictByDefaultBetaFeature" "False")))
+;;   :hook (lua-mode . eglot-ensure))
 
 (use-package moonscript
   :ensure t
