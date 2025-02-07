@@ -19,12 +19,12 @@ in {
           thelounge-theme-mininapse
         ];
       };
-    };
-    nginx.virtualHosts."irc.sako.box" = {
-      forceSSL = true;
-      sslCertificate = "/srv/secrets/certs/sako.box.pem";
-      sslCertificateKey = "/srv/secrets/certs/sako.box-key.pem";
-      locations."/" = {proxyPass = "http://localhost:8284";};
+      nginx.virtualHosts."irc.sako.box" = {
+        forceSSL = true;
+        sslCertificate = "/srv/secrets/certs/sako.box.pem";
+        sslCertificateKey = "/srv/secrets/certs/sako.box-key.pem";
+        locations."/" = {proxyPass = "http://localhost:9543";};
+      };
     };
   };
 }
