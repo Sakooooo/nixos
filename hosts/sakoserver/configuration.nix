@@ -38,6 +38,29 @@
     };
   };
 
+  # Is that
+  # HEEERO ON A PLASTIC HORSE
+  boot.kernel.sysctl = {
+    # https://wiki.archlinux.org/title/Sysctl#Improving_performance
+    # increase recieve queue size
+    "net.core.netdev_max_backlog" = 16384;
+    # increase maximum connections
+    "net.core.somaxconn" = 8192;
+    # increase memory dedicated to network interfaces
+    "net.core.rmem_default" = 1048576;
+    "net.core.rmem_max" = 16777216;
+    "net.core.wmem_default" = 1048576;
+    "net.core.wmem_max" = 16777216;
+    "net.core.optmem_max" = 65536;
+    "net.ipv4.tcp_rmem" = "4096 1048576 2097152";
+    "net.ipv4.tcp_wmem" = "4096 65536 16777216";
+    "net.ipv4.udp_rmem_min" = 8192;
+    "net.ipv4.udp_wmem_min" = 8192;
+    # tweak pending connection handling
+    "net.ipv4.tcp_max_syn_backlog" = 8192;
+    "net.ipv4.tcp_max_tw_buckets" = 2000000;
+  };
+
   users.users.sako = {
     isNormalUser = true;
     extraGroups = ["wheel" "media"];
