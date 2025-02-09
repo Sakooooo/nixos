@@ -9,6 +9,7 @@ with lib; let
 in {
   options.void.server.proxies = {
     enable = mkEnableOption false;
+    openFirewall = mkEnableOption false;
     wgProxyPort = mkOption {
       type = lib.types.port;
       default = 23456;
@@ -32,6 +33,11 @@ in {
     '';
   in
     mkIf cfg.enable {
+      networking.firewall = mkIf cfg.openFirewall {
+        allowedTCPPorts = [cfg.wgProxyPort];
+        allowedUDPPorts = [cfg.wgProxyPort];
+      };
+
       users.groups.wireproxy = {};
 
       users.users.wireproxy = {
