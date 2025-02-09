@@ -100,7 +100,10 @@
   void = {
     server = {
       isServer = true;
-      proxies.enable = true;
+      proxies = {
+        enable = true;
+        wgHost = "0.0.0.0";
+      };
       dns.blocky.enable = true;
       nginx.enable = true;
       postgresql.enable = true;
