@@ -5,12 +5,12 @@
   ...
 }:
 with lib; let
+  srv = config.void.server;
   cfg = config.void.server.services.local.thelounge;
 in {
   options.void.server.services.local.thelounge = {enable = mkEnableOption false;};
 
   config = mkIf cfg.enable {
-    # TODO Maybe make this a public instance? idk
     services = {
       thelounge = {
         enable = true;
@@ -27,5 +27,7 @@ in {
         locations."/" = {proxyPass = "http://localhost:9543";};
       };
     };
+
+    systemd.services.thelounge.after = lib.mkIf (srv.proxies.enable) ["wireproxy.service"];
   };
 }

@@ -1,8 +1,13 @@
-{ config, lib, ... }:
-with lib;
-let cfg = config.void.server;
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.void.server;
 in {
   imports = [
+    ./proxies.nix
     ./dns
     ./nginx.nix
     ./services
@@ -16,14 +21,14 @@ in {
     ./ddclient.nix
   ];
 
-  options.void.server = { isServer = mkEnableOption false; };
+  options.void.server = {isServer = mkEnableOption false;};
 
   config = mkIf cfg.isServer {
     # we need this if you say otherwise ill throw you
     # into a wall
     services.openssh = {
       enable = true;
-      ports = [ 69 ];
+      ports = [69];
       openFirewall = true;
       settings = {
         # disable this NEVER enable it
