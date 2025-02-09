@@ -103,6 +103,7 @@
       proxies = {
         enable = true;
         wgHost = "0.0.0.0";
+        openFirewall = true;
       };
       dns.blocky.enable = true;
       nginx.enable = true;
