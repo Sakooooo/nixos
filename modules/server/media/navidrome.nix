@@ -32,6 +32,8 @@ in {
           Port = 4533;
           Address = "127.0.0.1";
           MusicFolder = "/srv/media/music";
+          # I hear things in my head actually
+          EnableInsightsCollector = false;
           "LastFM.Enabled" = true;
           "LastFM.ApiKey" = config.age.secrets.navidrome-last-fm-key.path;
           "LastFM.Secret" = config.age.secrets.navidrome-last-fm-secret.path;
