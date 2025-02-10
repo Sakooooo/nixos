@@ -21,6 +21,11 @@ in {
         owner = "navidrome";
         group = "media";
       };
+      navidrome-environmentFile = {
+        file = ../../../secrets/server/navidrome/environmentFile.age;
+        owner = "navidrome";
+        group = "media";
+      };
     };
 
     users.groups.media = {};
@@ -54,5 +59,7 @@ in {
         };
       };
     };
+
+    systemd.services.navidrome.serviceConfig.EnvironmentFile = config.age.secrets.navidrome-environmentFile.path;
   };
 }

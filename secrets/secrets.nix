@@ -10,4 +10,5 @@ in {
   "server/wireproxy.age".publicKeys = shared;
   "server/navidrome/last-fm-key.age".publicKeys = shared;
   "server/navidrome/last-fm-secret.age".publicKeys = shared;
+  "server/navidrome/environmentFile.age".publicKeys = shared;
 }
