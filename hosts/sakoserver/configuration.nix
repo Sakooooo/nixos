@@ -8,6 +8,7 @@
 }: {
   imports = [
     inputs.home-manager.nixosModules.default
+    inputs.agenix.nixosModules.default
     outputs.nixosModules.shell
     outputs.nixosModules.server
     outputs.nixosModules.media
