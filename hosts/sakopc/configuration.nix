@@ -90,6 +90,7 @@
       bluetooth.enable = false;
       nvidia.enable = true;
       pipewire.enable = true;
+      tablet.enable = true;
     };
     # media = {
     #   mpd.enable = false;

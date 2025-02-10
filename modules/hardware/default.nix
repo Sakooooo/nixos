@@ -4,5 +4,6 @@
     ./pipewire
     ./bluetooth
     ./intel
+    ./tablet.nix
   ];
 }
