@@ -50,6 +50,15 @@ in {
                   };
                 }
               ]
+              ++ lib.optionals srv.media.navidrome.enable [
+                {
+                  "Navidrome" = {
+                    description = "Music Server";
+                    href = "https://navidrome.sako.box";
+                    icon = "navidrome.svg";
+                  };
+                }
+              ]
               ++ lib.optionals srv.media.qbittorrent.enable [
                 {
                   "QBittorrent" = {

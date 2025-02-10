@@ -166,6 +166,7 @@
           group = "media";
         };
         jellyfin.enable = true;
+        navidrome.enable = true;
         prowlarr.enable = true;
         sonarr.enable = true;
         autobrr.enable = true;

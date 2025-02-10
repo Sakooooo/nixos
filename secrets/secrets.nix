@@ -8,4 +8,6 @@ in {
   "test.age".publicKeys = shared;
   "shared/torrc.age".publicKeys = shared;
   "server/wireproxy.age".publicKeys = shared;
+  "server/navidrome/last-fm-key.age".publicKeys = shared;
+  "server/navidrome/last-fm-secret.age".publicKeys = shared;
 }
