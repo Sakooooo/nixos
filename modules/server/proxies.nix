@@ -26,44 +26,45 @@ in {
   # Why? I forgot why but it might come in handy later...
   config =
     # TODO Use sops templating or whatever and fix this lol
-    #   let
-    #   # configFile = pkgs.writeText "wireproxy config" ''
-    #   #   WGConfig = /srv/secrets/wireproxy.conf
-    #   #   [Socks5]
-    #   #   BindAddress = ${cfg.wgHost}:${toString cfg.wgProxyPort}
-    #   # '';
-    # in
-    mkIf cfg.enable {
-      networking.firewall = mkIf cfg.openFirewall {
-        allowedTCPPorts = [cfg.wgProxyPort];
-        allowedUDPPorts = [cfg.wgProxyPort];
-      };
-
-      users.groups.wireproxy = {};
-
-      users.users.wireproxy = {
-        group = "wireproxy";
-        isSystemUser = true;
-      };
-
-      age.secrets.wireproxy-conf = {
-        file = ../../secrets/server/wireproxy.age;
-        mode = "770";
-        owner = "wireproxy";
-        group = "wireproxy";
-      };
-
-      systemd.services.wireproxy = {
-        unitConfig = {
-          description = "A wireguard socks5 proxy";
-          after = ["network.target"];
+    let
+      configFile = pkgs.writeText "wireproxy config" ''
+          WGConfig = /srv/secrets/wireproxy.conf
+          [Socks5]
+          BindAddress = ${cfg.wgHost}:${toString cfg.wgProxyPort}
+        # '';
+    in
+      mkIf cfg.enable {
+        networking.firewall = mkIf cfg.openFirewall {
+          allowedTCPPorts = [cfg.wgProxyPort];
+          allowedUDPPorts = [cfg.wgProxyPort];
         };
-        serviceConfig = {
-          Type = "simple";
-          User = "wireproxy";
-          ExecStart = "${pkgs.wireproxy}/bin/wireproxy --config ${config.age.secrets.wireproxy-conf.path}";
+
+        users.groups.wireproxy = {};
+
+        users.users.wireproxy = {
+          group = "wireproxy";
+          isSystemUser = true;
         };
-        wantedBy = ["multi-user.target"];
+
+        # age.secrets.wireproxy-conf = {
+        #   file = ../../secrets/server/wireproxy.age;
+        #   mode = "770";
+        #   owner = "wireproxy";
+        #   group = "wireproxy";
+        # };
+
+        systemd.services.wireproxy = {
+          unitConfig = {
+            description = "A wireguard socks5 proxy";
+            after = ["network.target"];
+          };
+          serviceConfig = {
+            Type = "simple";
+            User = "wireproxy";
+            # ExecStart = "${pkgs.wireproxy}/bin/wireproxy --config ${config.age.secrets.wireproxy-conf.path}";
+            ExecStart = "${pkgs.wireproxy}/bin/wireproxy --config ${configFile}";
+          };
+          wantedBy = ["multi-user.target"];
+        };
       };
-    };
 }
