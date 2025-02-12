@@ -163,8 +163,13 @@
   (vertico-cycle t)
   :init
   (require 'vertico-directory)
-  (vertico-mode)
-  (vertico-flat-mode))
+  (vertico-mode))
+
+(use-package vertico-posframe
+  :ensure t
+  :after vertico
+  :init
+  (vertico-posframe-mode))
 
 (use-package marginalia
   :after vertico
