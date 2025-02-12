@@ -496,7 +496,7 @@
   :ensure t
   :config
   (setq alert-default-style 'libnotifiy)
-  (setq org-wild-notifier-alert-time 30)
+  (setq org-wild-notifier-alert-time 10)
   (org-wild-notifier-mode))
 
 (use-package org-pomodoro
