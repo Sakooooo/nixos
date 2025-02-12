@@ -286,12 +286,17 @@
 ;; -- neotree --
 (use-package neotree
   :ensure t
-  :config
+  :custom
   (neo-smart-open t)
   (neo-window-width 30)
   (neo-show-updir-line nil)
   :bind
   ("C-c t" . neotree))
+
+(use-package hide-mode-line
+  :ensure t
+  :config
+  (add-hook 'neotree-mode-hook #'hide-mode-line-mode))
 
 ;; --- flycheck ---
 (use-package flycheck
