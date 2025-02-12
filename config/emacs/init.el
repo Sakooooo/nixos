@@ -73,10 +73,15 @@
     (package-install 'use-package)))
 
 ;; --- Theme ---
-(use-package gruber-darker-theme
+;; (use-package gruber-darker-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'gruber-darker t))
+
+(use-package modus-themes
   :ensure t
   :config
-  (load-theme 'gruber-darker t))
+  (load-theme 'modus-vivendi))
 
 ;; --- no-littering ---
 
