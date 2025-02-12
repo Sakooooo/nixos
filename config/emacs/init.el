@@ -283,6 +283,16 @@
   (magit-show-long-lines-warning nil)
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
+;; -- neotree --
+(use-package neotree
+  :ensure t
+  :config
+  (neo-smart-open t)
+  (neo-window-width 30)
+  (neo-show-updir-line nil)
+  :bind
+  ("C-c t" . neotree))
+
 ;; --- flycheck ---
 (use-package flycheck
   :ensure t
