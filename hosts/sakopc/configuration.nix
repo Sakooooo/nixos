@@ -89,6 +89,7 @@
     hardware = {
       bluetooth.enable = false;
       nvidia.enable = true;
+      nvidia.open = true;
       pipewire.enable = true;
       tablet.enable = true;
     };

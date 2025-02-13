@@ -5,8 +5,7 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.modules.hardware.nvidia;
 in {
   imports = [
@@ -14,6 +13,7 @@ in {
   ];
   options.modules.hardware.nvidia = {
     enable = lib.mkEnableOption false;
+    open = lib.mkEnableOption false;
   };
 
   config = lib.mkIf cfg.enable {
@@ -31,10 +31,9 @@ in {
       # wayland support
       modesetting.enable = true;
 
-      # TODO(sako) add this as a cfg option
       # set to true if you have an rtx or newer graphics card
       # else set to false
-      open = false;
+      open = cfg.open;
 
       # settings
       nvidiaSettings = true;
@@ -44,7 +43,9 @@ in {
       forceFullCompositionPipeline = true;
 
       # Package
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      # package = config.boot.kernelPackages.nvidiaPackages.stable;
+      # maybe change this back once stable has explicit sync?
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
   };
 }
