@@ -127,8 +127,8 @@ in {
       # cursor
       catppuccin-cursors.mochaDark
       # gtk
-      fluent-gtk-theme
-      fluent-icon-theme
+      # fluent-gtk-theme
+      # fluent-icon-theme
       # clipboard
       wl-clipboard
     ];
@@ -151,11 +151,11 @@ in {
         gtk.enable = true;
         package = pkgs.rose-pine-cursor;
       };
-      gtk = {
-        enable = true;
-        theme.name = "Fluent-pink-Dark";
-        iconTheme.name = "Fluent-pink-dark";
-      };
+      # gtk = {
+      #   enable = true;
+      #   theme.name = "Fluent-pink-Dark";
+      #   iconTheme.name = "Fluent-pink-dark";
+      # };
       home.file = {
         "background.png" = {
           enable = true;
