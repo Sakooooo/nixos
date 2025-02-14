@@ -65,6 +65,7 @@ in {
             ExecStart = "${pkgs.wireproxy}/bin/wireproxy --config ${configFile}";
           };
           wantedBy = ["multi-user.target"];
+          wants = ["network-online.target"];
         };
       };
 }
