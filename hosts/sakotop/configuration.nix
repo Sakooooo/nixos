@@ -74,6 +74,8 @@
     hardware = {
       nvidia = {
         enable = true;
+        # 940mx, does not support open drivers
+        open = false;
         prime = {
           enable = true;
           intelBusId = "PCI:0:2:0";
