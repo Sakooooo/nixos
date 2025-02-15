@@ -33,6 +33,12 @@ in {
 
           database.url = "postgresql:///atticd?host=/run/postgresql";
 
+          # garbage collection
+          garbage-collection = {
+            interval = "24 hours";
+            default-retention-period = "8 weeks";
+          };
+
           # Data chunking
           #
           # Warning: If you change any of the values here, it will be
