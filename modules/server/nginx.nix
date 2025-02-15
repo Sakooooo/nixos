@@ -1,11 +1,15 @@
-{ config, lib, ... }:
-with lib;
-let cfg = config.void.server.nginx;
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.void.server.nginx;
 in {
-  options.void.server.nginx = { enable = mkEnableOption false; };
+  options.void.server.nginx = {enable = mkEnableOption false;};
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [80 443];
     security.acme = {
       acceptTerms = true;
       defaults.email = "Sayeko@proton.me";
@@ -23,6 +27,7 @@ in {
       recommendedProxySettings = true;
       recommendedZstdSettings = true;
       clientMaxBodySize = "1g";
+      proxyTimeout = "120s";
 
       commonHttpConfig = ''
 
@@ -38,6 +43,5 @@ in {
       rotate = "2";
       compress = true;
     };
-
   };
 }
