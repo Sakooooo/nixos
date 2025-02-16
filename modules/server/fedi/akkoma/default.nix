@@ -90,16 +90,16 @@ in {
           ":pleroma" = {
             ":instance" = {
               name = "v0id";
-              description = "Good ass fediverse instance";
+              description = "fediverse or something i dunno";
               email = "sako@sako.lol";
               registrations_open = false;
               invites_enabled = true;
               account_activation_required = false;
               cleanup_attachments = true;
-              allow_relay = true;
+              # allow_relay = true;
               # AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
               federating = true;
-              # external_user_synchronization = true;
+              external_user_synchronization = true;
             };
             ":media_proxy" = {
               enabled = true;
