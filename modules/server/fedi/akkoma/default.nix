@@ -1,11 +1,15 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.void.server.fedi.akkoma;
 
-  inherit ((pkgs.formats.elixirConf { }).lib) mkRaw mkMap;
+  inherit ((pkgs.formats.elixirConf {}).lib) mkRaw mkMap;
 in {
-  options.void.server.fedi.akkoma = { enable = mkEnableOption false; };
+  options.void.server.fedi.akkoma = {enable = mkEnableOption false;};
 
   # :(
   config = mkIf cfg.enable {
@@ -32,17 +36,16 @@ in {
             url = "https://sako.lol/icon.png";
             hash = "sha256-G8qYTlRwQWn+x6b9t0gFBriIxm6LV2n1jI5OcTSg/jc=";
           };
-          "static/terms-of-service.html" =
-            pkgs.writeText "terms-of-service.html" ''
-              <h1>Rules</h1>
-              <ol>
-                <li>No NSFW <b><i>at all</i></b></li>
-                <li>try not to get this server blacklisted thanks :)</li>
-              </ol>
+          "static/terms-of-service.html" = pkgs.writeText "terms-of-service.html" ''
+            <h1>Rules</h1>
+            <ol>
+              <li>No NSFW <b><i>at all</i></b></li>
+              <li>try not to get this server blacklisted thanks :)</li>
+            </ol>
 
-              Instance is invite only because I don't know how many users this will handle, if you know any contact methods for the admin go ask him for an invite.
-                  …
-            '';
+            Instance is invite only because I don't know how many users this will handle, if you know any contact methods for the admin go ask him for an invite.
+                …
+          '';
           #       "favicon.png" = let
           #         rev = "697a8211b0f427a921e7935a35d14bb3e32d0a2c";
           #       in pkgs.stdenvNoCC.mkDerivation {
@@ -61,7 +64,7 @@ in {
           # '';
         };
         extraPackages =
-          builtins.attrValues { inherit (pkgs) ffmpeg exiftool imagemagick; };
+          builtins.attrValues {inherit (pkgs) ffmpeg exiftool imagemagick;};
         frontends = {
           primary = {
             package = pkgs.akkoma-frontends.akkoma-fe;
@@ -100,13 +103,13 @@ in {
             };
             ":media_proxy" = {
               enabled = true;
-              proxy_opts = { redirect_on_failure = true; };
+              proxy_opts = {redirect_on_failure = true;};
               base_url = "https://media.fedi.sako.lol";
             };
-            "Pleroma.Web.Endpoint" = { url.host = "fedi.sako.lol"; };
+            "Pleroma.Web.Endpoint" = {url.host = "fedi.sako.lol";};
             "Pleroma.Upload" = {
               base_url = "https://media.fedi.sako.lol/media";
-              filters = map (pkgs.formats.elixirConf { }).lib.mkRaw [
+              filters = map (pkgs.formats.elixirConf {}).lib.mkRaw [
                 "Pleroma.Upload.Filter.Exiftool.StripMetadata"
                 "Pleroma.Upload.Filter.Dedupe"
                 "Pleroma.Upload.Filter.AnonymizeFilename"
@@ -114,11 +117,12 @@ in {
             };
 
             ":mrf" = {
-              transparency = true;
               policies =
-                map mkRaw [ "Pleroma.Web.ActivityPub.MRF.SimplePolicy" ];
+                map mkRaw ["Pleroma.Web.ActivityPub.MRF.SimplePolicy"];
+              transparency = true;
             };
-            ":mrf_simple" = let blocklist = import ./blocklist.nix;
+            ":mrf_simple" = let
+              blocklist = import ./blocklist.nix;
             in {
               # media_nsfw = mkMap blocklist.media_nsfw;
               reject = mkMap blocklist.reject;
@@ -141,8 +145,8 @@ in {
           forceSSL = true;
           enableACME = true;
           locations = {
-            "/" = { return = "301 https://fedi.sako.lol"; };
-            "/media" = { proxyPass = "http://unix:/run/akkoma/socket"; };
+            "/" = {return = "301 https://fedi.sako.lol";};
+            "/media" = {proxyPass = "http://unix:/run/akkoma/socket";};
             "/proxy" = {
               proxyPass = "http://unix:/run/akkoma/socket";
               extraConfig = ''
@@ -162,7 +166,7 @@ in {
         isSystemUser = true;
         group = "fedifetcher";
       };
-      groups.fedifetcher = { };
+      groups.fedifetcher = {};
     };
 
     systemd = let
@@ -170,25 +174,29 @@ in {
       state = "/var/lib/fedifetcher";
     in {
       timers.fedifetcher = {
-        wantedBy = [ "timers.target" ];
-        after = [ "akkoma-config.service" "akkoma.service" ];
+        wantedBy = ["timers.target"];
+        after = ["akkoma-config.service" "akkoma.service"];
         timerConfig = {
           OnUnitActiveSec = "1m";
           Unit = "fedifetcher.service";
         };
       };
       services.fedifetcher = {
-        after = [ "akkoma-config.service" "akkoma.service" ];
-        unitConfig = { ConditionPathExists = configPath; };
+        after = ["akkoma-config.service" "akkoma.service"];
+        unitConfig = {ConditionPathExists = configPath;};
         serviceConfig = {
           WorkingDirectory = state;
           Type = "oneshot";
-          ExecStart = "${
+          ExecStart =
+            "${
               (pkgs.fedifetcher.overrideAttrs (old: {
-                patches = old.patches or [ ]
-                  ++ [ ../../../../overlays/plsbackfill.diff ];
+                patches =
+                  old.patches
+                  or []
+                  ++ [../../../../overlays/plsbackfill.diff];
               }))
-            }/bin/fedifetcher" + " --config ${configPath}"
+            }/bin/fedifetcher"
+            + " --config ${configPath}"
             + " --state-dir ${state}";
           User = "fedifetcher";
           Group = "fedifetcher";
