@@ -27,7 +27,7 @@ in {
       recommendedProxySettings = true;
       recommendedZstdSettings = true;
       clientMaxBodySize = "1g";
-      proxyTimeout = "120s";
+      proxyTimeout = "300s";
 
       commonHttpConfig = ''
 
