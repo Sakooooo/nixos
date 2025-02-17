@@ -106,7 +106,8 @@
         nh.enable = true;
         tree.enable = true;
       };
-      zsh.enable = true;
+      # zsh.enable = true;
+      fish.enable = true;
       tmux.enable = true;
       ranger.enable = true;
     };
