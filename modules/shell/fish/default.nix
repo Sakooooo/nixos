@@ -22,7 +22,6 @@ in {
       home.file = {};
       programs.direnv = {
         enable = true;
-        enableFishIntegration = lib.mkForce true;
       };
       programs.fish = {
         enable = true;
