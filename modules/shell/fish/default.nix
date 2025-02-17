@@ -15,7 +15,6 @@ in {
 
     programs.fish = {
       enable = true;
-      enableCompletion = true;
       #      promptInit = "source ${pkgs.fish-powerlevel10k}/share/fish-powerlevel10k/powerlevel10k.fish-theme";
     };
 
