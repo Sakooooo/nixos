@@ -269,6 +269,11 @@
       (remove-hook 'after-save-hook #'recompile t)
     (add-hook 'after-save-hook #'recompile nil t)))
 
+;; --- fancy compile mode ---
+(use-package fancy-compilation
+  :config
+  (fancy-compilation-mode))
+
 ;; --- project.el ---
 (setq project-switch-commands '((project-find-file "Find file" "f")
 				(project-find-dir "Find dir" "d")
