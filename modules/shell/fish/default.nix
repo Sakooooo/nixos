@@ -21,8 +21,8 @@ in {
     home-manager.users.sako = {pkgs, ...}: {
       home.file = {};
       programs.direnv = {
-        enableFishIntegration = true;
         enable = true;
+        enableFishIntegration = true;
       };
       programs.fish = {
         enable = true;
