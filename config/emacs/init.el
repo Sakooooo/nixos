@@ -86,7 +86,7 @@
 (use-package flexoki-themes
   :ensure t
   :config
-  (load-theme 'flexoki-themes-light t)
+  (load-theme 'flexoki-themes-dark t)
   :custom
   (flexoki-themes-use-bold-keywords t)
   (flexoki-themes-use-bold-builtins t)
