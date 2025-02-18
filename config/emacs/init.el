@@ -78,10 +78,19 @@
 ;;   :config
 ;;   (load-theme 'gruber-darker t))
 
-(use-package modus-themes
+;; (use-package modus-themes
+;;   :ensure t
+;;   :config
+;;   (load-theme 'modus-vivendi t))
+
+(use-package flexoki-themes
   :ensure t
   :config
-  (load-theme 'modus-vivendi t))
+  (load-theme 'flexoki-themes-light t)
+  :custom
+  (flexoki-themes-use-bold-keywords t)
+  (flexoki-themes-use-bold-builtins t)
+  (flexoki-themes-use-italic-comments t))
 
 ;; --- no-littering ---
 
