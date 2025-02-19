@@ -40,6 +40,7 @@
     colmena.url = "github:zhaofengli/colmena/";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     big-brother.url = "github:snugnug/big-brother";
+    conduwuit.url = "github:girlbossceo/conduwuit?ref=v0.4.6";
   };
 
   outputs = {

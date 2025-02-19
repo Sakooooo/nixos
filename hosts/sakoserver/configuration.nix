@@ -223,7 +223,10 @@
           thelounge.enable = true;
         };
       };
-      fedi = {akkoma.enable = true;};
+      fedi = {
+        akkoma.enable = true;
+        conduwuit.enable = true;
+      };
       game = {minecraft.enable = false;};
       media = {
         qbittorrent = {

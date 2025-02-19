@@ -1,1 +1,1 @@
-{ imports = [ ./akkoma ]; }
+{imports = [./akkoma ./conduwuit];}
