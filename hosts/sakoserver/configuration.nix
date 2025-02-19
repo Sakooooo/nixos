@@ -225,7 +225,7 @@
       };
       fedi = {
         akkoma.enable = true;
-        conduwuit.enable = true;
+        matrix.enable = true;
       };
       game = {minecraft.enable = false;};
       media = {
