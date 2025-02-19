@@ -40,6 +40,9 @@ in {
           };
 
           # compression.type = "none";
+
+          # For some reason, attic won't accept pushes of large builds
+          # without disabling chunking, surely this does nothing either way LMAO
           chunking = {
             nar-size-threshold = 0;
             min-size = 0;
