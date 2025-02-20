@@ -210,7 +210,7 @@
         forgejo = {
           enable = true;
           # runner.enable = true;
-          woodpecker.enable = true;
+          # woodpecker.enable = true;
           # pages = {
           #   enable = true;
           #   settings = {
