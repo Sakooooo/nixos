@@ -39,6 +39,22 @@
     };
   };
 
+  # CPU performance
+  services.thermald.enable = true; # prevent overheating on an intel cpu
+  services.auto-cpufreq = {
+    enable = true;
+    settings = {
+      battery = {
+        governor = "powersave";
+        turbo = "never";
+      };
+      charger = {
+        governor = "performance";
+        turbo = "always";
+      };
+    };
+  };
+
   # TODO Move this to a module
   boot.kernelModules = ["tls" "tcp_bbr"];
   boot.kernel.sysctl = {
