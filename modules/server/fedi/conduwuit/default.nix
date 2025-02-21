@@ -33,7 +33,7 @@ in {
           allow_registration = false;
           new_user_displayname_suffix = "^w^";
           trusted_servers = ["matrix.org"];
-          rocksdb_optimize_for_spinning_disks = true;
+          # rocksdb_optimize_for_spinning_disks = true;
         };
       };
       nginx.virtualHosts."matrix.sako.lol" = {
