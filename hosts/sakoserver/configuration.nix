@@ -58,6 +58,8 @@
   # TODO Move this to a module
   boot.kernelModules = ["tls" "tcp_bbr"];
   boot.kernel.sysctl = {
+    # how much u wanna swap in %
+    "vm.swappiness" = 40;
     # From https://github.com/NotAShelf/nyx/blob/d407b4d6e5ab7f60350af61a3d73a62a5e9ac660/modules/core/common/system/os/networking/optimize.nix
     # TCP hardening
     # Prevent bogus ICMP errors from filling up logs.
