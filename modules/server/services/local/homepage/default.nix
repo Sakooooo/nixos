@@ -95,6 +95,15 @@ in {
                   };
                 }
               ]
+              ++ lib.optionals srv.media.radarr.enable [
+                {
+                  "Radarr" = {
+                    description = "that other thing arr";
+                    href = "https://radarr.sako.box";
+                    icon = "radarr.svg";
+                  };
+                }
+              ]
               ++ lib.optionals srv.media.autobrr.enable [
                 {
                   "Autobrr" = {

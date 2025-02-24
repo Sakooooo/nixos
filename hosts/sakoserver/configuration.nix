@@ -257,6 +257,7 @@
         navidrome.enable = true;
         prowlarr.enable = true;
         sonarr.enable = true;
+        radarr.enable = true;
         autobrr.enable = true;
       };
     };

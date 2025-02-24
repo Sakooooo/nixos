@@ -1,1 +1,1 @@
-{ imports = [ ./mpd ./ncmpcpp ./mopidy ./beets.nix ]; }
+{imports = [./mpd ./ncmpcpp ./mopidy ./beets.nix ./radarr.nix];}
