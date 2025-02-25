@@ -1,1 +1,1 @@
-{imports = [./nextcloud ./homepage ./miniflux.nix ./wakapi.nix ./thelounge.nix];}
+{imports = [./nextcloud ./homepage ./miniflux.nix ./wakapi.nix ./thelounge.nix ./soju.nix];}
