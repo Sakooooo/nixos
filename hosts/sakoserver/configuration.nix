@@ -238,7 +238,8 @@
           nextcloud.enable = true;
           miniflux.enable = true;
           wakapi.enable = true;
-          thelounge.enable = true;
+          # thelounge.enable = true;
+          soju.enable = true;
         };
       };
       fedi = {
