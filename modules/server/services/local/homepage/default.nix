@@ -196,6 +196,15 @@ in {
                     href = "https://irc.sako.box";
                   };
                 }
+              ]
+              ++ lib.optionals srv.services.local.soju.enable [
+                {
+                  "Soju" = {
+                    icon = "soju.svg";
+                    description = "irc bouncer (web ui is gamja)";
+                    href = "https://irc.sako.box";
+                  };
+                }
               ];
           }
         ];
