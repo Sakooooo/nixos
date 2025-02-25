@@ -16,6 +16,8 @@ in {
       isSystemUser = true;
       group = "soju";
     };
+
+    networking.firewall.allowedTCPPorts = [6697 6698];
     services = {
       soju = {
         enable = true;
