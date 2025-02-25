@@ -11,6 +11,11 @@ in {
   options.void.server.services.local.soju = {enable = mkEnableOption false;};
 
   config = mkIf cfg.enable {
+    users.groups.soju = {};
+    users.users.soju = {
+      isSystemUser = true;
+      group = "soju";
+    };
     services = {
       soju = {
         enable = true;
@@ -19,8 +24,8 @@ in {
           ":6697"
           "wss://:6698"
         ];
-        tlsCertificate = "/srv/secrets/certs/sako.box.pem";
-        tlsCertificateKey = "/srv/secrets/certs/sako.box-key.pem";
+        tlsCertificate = "/srv/secrets/soju-certs/sako.box.pem";
+        tlsCertificateKey = "/srv/secrets/soju-certs/sako.box-key.pem";
         httpOrigins = ["*"];
       };
       nginx.virtualHosts."irc.sako.box" = {
@@ -40,6 +45,11 @@ in {
           in "${gamja}";
         };
       };
+    };
+
+    systemd.services.soju.serviceConfig = {
+      User = "soju";
+      Group = "soju";
     };
 
     systemd.services.soju.after = lib.mkIf (srv.proxies.enable) ["wireproxy.service"];
