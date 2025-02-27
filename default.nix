@@ -134,6 +134,16 @@
           };
         }
         {
+          condition = "gitdir:~/nixos/";
+          contents = {
+            user = {
+              name = "Sakooooo";
+              email = "78461130+Sakooooo@users.noreply.github.com";
+            };
+            commit = {gpgsign = true;};
+          };
+        }
+        {
           condition = "gitdir:~/dev/qwq/";
           path = config.age.secrets.git-condition1.path;
         }
