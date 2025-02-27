@@ -100,6 +100,14 @@
     extraGroups = ["wheel" "networkmanager" "audio"];
   };
 
+  age.secrets = {
+    git-condition1 = {
+      file = ./secrets/desktop/git/condition1.age;
+      owner = "sako";
+      group = "users";
+    };
+  };
+
   home-manager.useUserPackages = true;
   home-manager.users.sako = {pkgs, ...}: {
     home.packages = [];
@@ -114,9 +122,22 @@
     programs.git = {
       enable = true;
       lfs.enable = true;
-      userName = "Sakooooo";
-      userEmail = "78461130+Sakooooo@users.noreply.github.com";
-      includes = [{path = "~/.config/git/config.local";}];
+      includes = [
+        {
+          condition = "gitdir:~/dev/sako/";
+          contents = {
+            user = {
+              name = "Sakooooo";
+              email = "78461130+Sakooooo@users.noreply.github.com";
+            };
+            commit = {gpgsign = true;};
+          };
+        }
+        {
+          condition = "gitdir:~/dev/qwq/";
+          path = config.age.secrets.git-condition1.path;
+        }
+      ];
       extraConfig = {
         color.ui = "auto";
         init.defaultBranch = "master";
