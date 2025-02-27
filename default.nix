@@ -158,6 +158,7 @@
     inputs.agenix.packages.${system}.default
     colmena
     attic-client
+    socat
   ];
 
   age.secretsDir = "/run/secrets";
