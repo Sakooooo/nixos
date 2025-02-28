@@ -165,10 +165,11 @@
     htop # htop
     tree # trees
     ripgrep # better grep may help later
-    inputs.agenix.packages.${system}.default
-    colmena
-    attic-client
-    socat
+    inputs.agenix.packages.${system}.default # agenix
+    colmena # deployment tool
+    attic-client # caching tool
+    socat # to proxy ssh
+    git-crypt # for managing some other secrets
   ];
 
   age.secretsDir = "/run/secrets";
