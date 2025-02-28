@@ -19,7 +19,7 @@ in {
         enable = true;
         webserver = "nginx";
         database.type = "postgres";
-        nginx.hostname = "wiki.sako.box";
+        nginx.hostName = "wiki.sako.box";
         uploadsDir = "/var/lib/mediawiki-uploads/";
         # password or something go change this to agenix secret later
         passwordFile = "/srv/secrets/wikimedia-admin";
