@@ -240,7 +240,6 @@
           wakapi.enable = true;
           # thelounge.enable = true;
           soju.enable = true;
-          mediawiki.enable = true;
         };
       };
       fedi = {
