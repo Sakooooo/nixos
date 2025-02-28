@@ -14,11 +14,20 @@ in {
 
   config = mkIf cfg.enable {
     services = {
+      # okay so mediawiki sucks with postgres for some reason?
+      # i wish i knew why mysql is a priority for php devs...
+      mysql = {
+        enable = true;
+        package = pkgs.mariadb_114;
+      };
+
       mediawiki = {
         name = "abcdef";
         enable = true;
         webserver = "nginx";
-        database.type = "postgres";
+        # I hate you.
+        database.type = "mysql";
+        createLocally = true;
         nginx.hostName = "wiki.sako.box";
         uploadsDir = "/var/lib/mediawiki-uploads/";
         # password or something go change this to agenix secret latre
@@ -37,9 +46,16 @@ in {
           $wgGroupPermissions['*']['createaccount'] = false; // REQUIRED to enforce account requests via this extension
 
           $wgDefaultSkin = 'vector';
+
+          // InviteSignup plugin
+          $wgGroupPermissions['sysop']['invitesignup'] = true;
         '';
         extensions = {
           VisualEditor = null;
+          InviteSignup = pkgs.fetchzip {
+            url = "https://extdist.wmflabs.org/dist/extensions/InviteSignup-REL1_43-8eb3d0a.tar.gz";
+            hash = "sha256-ik8rX6kyk4SqARgMrgp4XP7/J0smjAXlq6JGtlFhICo=";
+          };
         };
       };
       nginx.virtualHosts."wiki.sako.box" = {
