@@ -21,11 +21,26 @@ in {
         database.type = "postgres";
         nginx.hostName = "wiki.sako.box";
         uploadsDir = "/var/lib/mediawiki-uploads/";
-        # password or something go change this to agenix secret later
+        # password or something go change this to agenix secret latre
         passwordFile = "/srv/secrets/wikimedia-admin";
         extraConfig = ''
+          // Disable email requirement
+          $wgEnableEmail = false;
+          // Nobody can read or edit
           $wgGroupPermissions['*']['edit'] = false;
+          $wgGroupPermissions['*']['read'] = false;
+          // ...without an account
+          $wgGroupPermissions['users']['edit'] = true;
+          $wgGroupPermissions['users']['read'] = true;
+
+          // Disable account creation, only SysOps can make accounts
+          $wgGroupPermissions['*']['createaccount'] = false; // REQUIRED to enforce account requests via this extension
+
+          $wgDefaultSkin = 'vector';
         '';
+        extensions = {
+          VisualEditor = null;
+        };
       };
       nginx.virtualHosts."wiki.sako.box" = {
         forceSSL = true;
