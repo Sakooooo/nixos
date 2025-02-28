@@ -1,0 +1,1 @@
+modules/server/a/** filter=git-crypt diff=git-crypt
