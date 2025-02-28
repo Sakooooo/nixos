@@ -27,7 +27,7 @@ in {
         webserver = "nginx";
         # I hate you.
         database.type = "mysql";
-        createLocally = true;
+        database.createLocally = true;
         nginx.hostName = "wiki.sako.box";
         uploadsDir = "/var/lib/mediawiki-uploads/";
         # password or something go change this to agenix secret latre
