@@ -184,7 +184,7 @@ in {
                   "Wakapi" = {
                     icon = "wakapi.svg";
                     description = "Wakatime Selfhosted";
-                    href = "https://wakapi.sako.lol";
+                    href = "https://wakapi.sako.box";
                   };
                 }
               ]
