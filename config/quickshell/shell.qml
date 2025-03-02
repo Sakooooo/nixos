@@ -33,12 +33,12 @@ ShellRoot {
       screen: modelData
 
 
-	margins {
-	    top: 10
-	    /* bottom: 10 */
-	    left: 10
-	    right: 10
-	}
+	/* margins { */
+	/*     top: 10 */
+	/*     /\* bottom: 10 *\/ */
+	/*     left: 10 */
+	/*     right: 10 */
+	/* } */
 	
       anchors {
 	  /* top: true; */
