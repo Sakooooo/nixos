@@ -405,14 +405,6 @@
 (use-package meson-mode
   :mode "meson.build")
 
-;; bazel
-(use-package bazel
-  ;; too lazy todo it the use package way
-  :config
-  (add-to-list 'auto-mode-alist '("\\.bazel\\'" . bazel-mode))
-  (add-to-list 'auto-mode-alist '("\\.bzl\\'" . bazel-mode))
-  (add-to-list 'auto-mode-alist '("WORKSPACE\\'" . bazel-mode)))
-
 ;; astro
 (define-derived-mode astro-mode web-mode "astro")
 (setq auto-mode-alist
