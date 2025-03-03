@@ -174,12 +174,6 @@
   (require 'vertico-directory)
   (vertico-mode))
 
-(use-package vertico-posframe
-  :ensure t
-  :after vertico
-  :init
-  (vertico-posframe-mode))
-
 (use-package marginalia
   :after vertico
   :ensure t
