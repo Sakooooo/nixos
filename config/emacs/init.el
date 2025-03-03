@@ -172,7 +172,8 @@
   (vertico-cycle t)
   :init
   (require 'vertico-directory)
-  (vertico-mode))
+  (vertico-mode)
+  (vertico-flat-mode))
 
 (use-package marginalia
   :after vertico
