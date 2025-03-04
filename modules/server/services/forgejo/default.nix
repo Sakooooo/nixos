@@ -1,13 +1,16 @@
-{ config, lib, ... }:
-with lib;
-let cfg = config.void.server.services.forgejo;
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.void.server.services.forgejo;
 in {
-  imports = [ ./runner.nix ./woodpecker.nix ./pages.nix ];
-  options.void.server.services.forgejo = { enable = mkEnableOption false; };
+  imports = [./runner.nix ./woodpecker.nix ./pages.nix];
+  options.void.server.services.forgejo = {enable = mkEnableOption false;};
 
   config = mkIf cfg.enable {
-
-    networking.firewall.allowedTCPPorts = [ 22 ];
+    networking.firewall.allowedTCPPorts = [22];
 
     services.forgejo = {
       enable = true;
@@ -38,6 +41,12 @@ in {
         };
 
         service.DISABLE_REGISTRATION = true;
+        "service.explore" = {
+          REQUIRE_SIGNIN_VIEW = true;
+          DISABLE_USERS_PAGE = true;
+          DISABLE_ORGANIZATIONS_PAGE = true;
+          DISABLE_CODE_PAGE = true;
+        };
 
         server = {
           ROOT_URL = "https://git.sako.lol";
@@ -57,7 +66,7 @@ in {
         forceSSL = true;
         enableACME = true;
         http3 = true;
-        locations."/" = { proxyPass = "http://localhost:3000"; };
+        locations."/" = {proxyPass = "http://localhost:3000";};
       };
     };
 
@@ -84,10 +93,10 @@ in {
       '';
     };
     systemd.services.forgejo = {
-      after = [ "postgresql.service" "redis-forgejo.service" ];
+      after = ["postgresql.service" "redis-forgejo.service"];
       serviceConfig = {
-        AmbientCapabilities = lib.mkForce [ "CAP_NET_BIND_SERVICE" ];
-        CapabilityBoundingSet = lib.mkForce [ "CAP_NET_BIND_SERVICE" ];
+        AmbientCapabilities = lib.mkForce ["CAP_NET_BIND_SERVICE"];
+        CapabilityBoundingSet = lib.mkForce ["CAP_NET_BIND_SERVICE"];
         PrivateUsers = lib.mkForce false;
       };
     };
