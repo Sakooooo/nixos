@@ -54,6 +54,7 @@ in {
           START_SSH_SERVER = true;
           SSH_PORT = 22;
           SSH_LISTEN_PORT = 22;
+          LANDING_PAGE = "login";
         };
         session = {
           PROVIDER = "redis";
