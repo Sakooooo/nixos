@@ -49,6 +49,8 @@ in {
           WOODPECKER_SERVER_ADDR = ":3007";
           WOODPECKER_FORGEJO = "TRUE";
           WOODPECKER_FORGEJO_URL = "https://git.sako.lol";
+          WOODPECKER_FORGE_TIMEOUT = "30s";
+          WOODPECKER_FORGE_RETRY = "10";
           WOODPECKER_OPEN = "TRUE";
           WOODPECKER_ADMIN = "sako";
           WOODPECKER_DATABASE_DRIVER = "postgres";
