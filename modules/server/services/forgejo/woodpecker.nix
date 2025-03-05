@@ -1,6 +1,9 @@
-{ config, lib, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.void.server.services.forgejo.woodpecker;
   domain = "ci.sako.lol";
 in {
@@ -8,7 +11,6 @@ in {
     enable = mkEnableOption false;
   };
   config = mkIf cfg.enable {
-
     security.acme.certs."ci.sako.lol" = {
       credentialsFile = "/srv/secrets/porkbun";
       dnsProvider = "porkbun";
@@ -41,6 +43,8 @@ in {
           WOODPECKER_FORGEJO_URL = "https://git.sako.lol";
           WOODPECKER_OPEN = "TRUE";
           WOODPECKER_ADMIN = "sako";
+          WOODPECKER_DATABASE_DRIVER = "postgres";
+          WOODPECKER_DATABASE_DATASOURCE = "postgres://woodpecker@/woodpecker?host=/run/postgresql";
         };
         # /srv/secrets/woodpecker-server.env
         # WOODPECKER_AGENT_SECRET=XXXXXXXXXXXXXXXXXXXXXX
@@ -51,7 +55,7 @@ in {
       woodpecker-agents.agents."sakoserver-agent" = {
         enable = true;
         # We need this to talk to the podman socket
-        extraGroups = [ "docker" ];
+        extraGroups = ["docker"];
         environment = {
           WOODPECKER_SERVER = "localhost:9000";
           WOODPECKER_MAX_WORKFLOWS = "1";
@@ -61,14 +65,13 @@ in {
         };
         # Same as with woodpecker-server
         # WOODPECKER_AGENT_SECRET goes here too idiot
-        environmentFile = [ "/srv/secrets/woodpecker.env" ];
+        environmentFile = ["/srv/secrets/woodpecker.env"];
       };
       nginx.virtualHosts."${domain}" = {
         enableACME = true;
         forceSSL = true;
-        locations."/" = { proxyPass = "http://localhost:3007"; };
+        locations."/" = {proxyPass = "http://localhost:3007";};
       };
     };
-
   };
 }
