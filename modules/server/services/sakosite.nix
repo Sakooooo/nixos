@@ -1,8 +1,12 @@
-{ config, lib, ... }:
-with lib;
-let cfg = config.void.server.services.sakosite;
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.void.server.services.sakosite;
 in {
-  options.void.server.services.sakosite = { enable = mkEnableOption false; };
+  options.void.server.services.sakosite = {enable = mkEnableOption false;};
 
   config = mkIf cfg.enable {
     security.acme.certs."sako.lol" = {
@@ -14,9 +18,11 @@ in {
       nginx.virtualHosts."sako.lol" = {
         enableACME = true;
         forceSSL = true;
+        extraConfig = ''
+          error_page 404 = /404.html;
+        '';
         root = "/srv/static/sakosite";
       };
     };
-
   };
 }
