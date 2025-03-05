@@ -36,10 +36,28 @@ in {
           # rocksdb_optimize_for_spinning_disks = true;
         };
       };
-      nginx.virtualHosts."matrix.sako.lol" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/".proxyPass = "http://localhost:6167";
+      nginx.virtualHosts = {
+        "matrix.sako.lol" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/".proxyPass = "http://localhost:6167";
+        };
+        "sako.lol" = {
+          locations."/.well-known/matrix/client" = {
+            extraConfig = ''
+              return 200 '{"m.homeserver": {"base_url": "https://matrix.sako.lol"}}';
+              add_header Content-Type application/json;
+              add_header Access-Control-Allow-Origin *;
+            '';
+          };
+          locations."/.well-known/matrix/server" = {
+            extraConfig = ''
+              return 200 '{"m.server": "matrix.sako.lol:443"}';
+              add_header Content-Type application/json;
+              add_header Access-Control-Allow-Origin *;
+            '';
+          };
+        };
       };
     };
   };
