@@ -17,6 +17,14 @@ in {
       webroot = null;
     };
 
+    users = {
+      groups.woodpecker = {};
+      users.woodpecker = {
+        group = "woodpecker";
+        isSystemUser = lib.mkDefault true;
+      };
+    };
+
     # LOL get it, a man is in a pod LMAO XDDDDD ROFL
     # virtualisation.podman = {
     #   enable = true;
@@ -44,7 +52,7 @@ in {
           WOODPECKER_OPEN = "TRUE";
           WOODPECKER_ADMIN = "sako";
           WOODPECKER_DATABASE_DRIVER = "postgres";
-          WOODPECKER_DATABASE_DATASOURCE = "postgres://woodpecker@/woodpecker?host=/run/postgresql";
+          WOODPECKER_DATABASE_DATASOURCE = "postgres:///woodpecker?host=/run/postgresql";
         };
         # /srv/secrets/woodpecker-server.env
         # WOODPECKER_AGENT_SECRET=XXXXXXXXXXXXXXXXXXXXXX
@@ -72,6 +80,10 @@ in {
         forceSSL = true;
         locations."/" = {proxyPass = "http://localhost:3007";};
       };
+    };
+    systemd.services.woodpecker-server.serviceConfig = {
+      DynamicUser = lib.mkForce false;
+      User = "woodpecker";
     };
   };
 }

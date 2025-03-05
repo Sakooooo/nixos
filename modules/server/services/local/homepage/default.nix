@@ -130,7 +130,7 @@ in {
                 {
                   "Woodpecker CI" = {
                     description = "Selfhosted CI";
-                    icon = "woodpecker.svg";
+                    icon = "woodpecker-ci.svg";
                     href = "https://ci.sako.lol";
                   };
                 }
