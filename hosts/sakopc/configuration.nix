@@ -70,8 +70,9 @@
         #ardour.enable = true;
         kdenlive.enable = true;
         blender.enable = true;
+        krita.enable = true;
         # feishin.enable = true;
-        jellyfin.enable = false;
+        # jellyfin.enable = false;
       };
     };
     dev = {
