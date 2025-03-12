@@ -14,8 +14,8 @@ Repeater {
     model: workspaceArray
     Rectangle {
 	id: workspace
-	height: 30
-	width: 30
+	height: 25
+	width: 25
 	color: (modelData.active) ? "#0099DD" : (modelData.visible) ? "#227722" : "#AAAAAA"
 
 	MouseArea {

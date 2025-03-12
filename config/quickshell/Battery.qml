@@ -3,6 +3,7 @@ import Quickshell.Services.UPower
 
 Item {
     id: battery
+    height: bar.height
     width: 50
     
     readonly property var chargeState: UPower.displayDevice.state
@@ -12,10 +13,15 @@ Item {
     readonly property bool isLow: percentage <= 0.2
 
     visible: (chargeState)
-    /* visible: false */
 
-    Text {
-	color: isCharging ? "#00FF00" : isLow ? "#FF0000" : "#FFFFFF"
-	text: Math.floor(percentage * 100)
+    Rectangle {
+	width: parent.width
+	height: parent.height
+	Text {
+	    anchors.centerIn: parent
+	    font.pointSize: 13
+	    color: isCharging ? "#00FF00" : isLow ? "#FF0000" : "#000000"
+	    text: Math.floor(percentage * 100) + "%"
+	}
     }
 }

@@ -30,7 +30,7 @@ Item {
    		    const minutes = clock.minutes.toString().padStart(2, '0')
    		    return `${hours} ${minutes}`
    		}
-   		font.pointSize: 15
+   		font.pointSize: 13
    		color: "black"
    	    }
 

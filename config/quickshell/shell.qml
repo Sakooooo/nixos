@@ -2,13 +2,14 @@
 import Quickshell
 import Quickshell.Io
 import Quickshell.Hyprland
+import Quickshell.Services.UPower
 import QtQuick
 import QtQuick.Layouts
 
 // thanks ImNotTwig for giving me your shell.qml as reference
 
 ShellRoot {
-
+    
   id: root
 
   ReloadPopup {}
@@ -47,7 +48,7 @@ ShellRoot {
           right: true;
       }
 
-	height: 40;
+	height: 25;
 
 	// left
 	RowLayout {
@@ -83,7 +84,7 @@ ShellRoot {
 
 
 	    Tray {}
-	    Battery { }
+	    Battery {}
 	    Date {}
 	    Time {}
 	}

@@ -14,7 +14,7 @@ Repeater {
         Layout.preferredWidth: parent.height
         Layout.fillHeight: true
 	Layout.fillWidth: true
-	height: 40
+	height: parent.height
         onHeightChanged: {
             width = height
         }
@@ -22,20 +22,29 @@ Repeater {
         Image {
 	    id: hi
             anchors.fill: parent
-            anchors.margins: 5
+            anchors.margins: 2
             source: parent.modelData.icon
         }
 
 	QsMenuAnchor {
 	    id: opener
 	    anchor.window: bar
-	    anchor.onAnchoring: {
-                this.anchor.rect.x = parent.mapToItem(repeater.parent.contentItem, 0, 0).x
+            anchor {
+		rect.x: 0
+		rect.y: 0
+		onAnchoring: {
+		    if (anchor.window) {
+			let coords = anchor.window.contentItem.mapFromItem(itemRect, 0, 0);
+			anchor.rect.x = coords.x;
+			anchor.rect.y = coords.y + 6;
+		    }
+		}
+		rect.width: hi.width
+		rect.height: hi.height
+		gravity: Edges.Bottom
+		edges: Edges.Bottom
+		adjustment: PopupAdjustment.SlideY
             }
-	    anchor.rect.width: parent.width
-            anchor.rect.height: parent.height
-            anchor.edges: Edges.Top
-            anchor.gravity: Edges.Top
 	}
 
 	MouseArea {

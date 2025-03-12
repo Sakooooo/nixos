@@ -42,7 +42,7 @@ Item {
 	    Text {
    		Layout.alignment: Qt.AlignHCenter
 		anchors.centerIn: parent
-   		font.pointSize: 15
+   		font.pointSize: 13
    		color: "black"
 		text: time
    	    }
