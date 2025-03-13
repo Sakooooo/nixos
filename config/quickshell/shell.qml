@@ -55,7 +55,6 @@ ShellRoot {
 	    anchors.left: parent.left
 	    /* anchors.top: parent.top */
 	    /* anchors.bottom: parent.bottom */
-	    anchors.leftMargin: 5;
 	    /* spacing: 5 */
 	    anchors.verticalCenter: parent.verticalCenter
 
