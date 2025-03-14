@@ -18,6 +18,7 @@ in {
         port = 9543;
         plugins = with pkgs.nodePackages; [
           thelounge-theme-mininapse
+          thelounge-theme-amoled
         ];
       };
       nginx.virtualHosts."irc.sako.box" = {
