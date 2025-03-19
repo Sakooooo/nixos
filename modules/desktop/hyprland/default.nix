@@ -5,6 +5,7 @@
   config,
   lib,
   pkgs,
+  self,
   ...
 }: let
   cfg = config.modules.desktop.hyprland;
@@ -186,9 +187,12 @@ in {
           source = ../../../config/ags;
           recursive = true;
         };
-        quickshell = {
-          source = ../../../config/quickshell;
-          recursive = true;
+        # quickshell = {
+        #   source = ../../../config/quickshell;
+        #   recursive = true;
+        # };
+        "quickshell/manifest.conf".text = lib.generators.toKeyValue {} {
+          shell = "${self.outPath}/config/quickshell";
         };
         "mako/config" = {text = "default-timeout=5000";};
       };

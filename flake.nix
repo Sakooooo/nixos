@@ -81,16 +81,16 @@
     # modules :D
     nixosModules = import ./modules;
 
-    colmenaHive = makeHive (import ./hive.nix {inherit inputs outputs;});
-    colmena = import ./hive.nix {inherit inputs outputs;};
+    colmenaHive = makeHive (import ./hive.nix {inherit inputs outputs self;});
+    colmena = import ./hive.nix {inherit inputs outputs self;};
 
     nixosConfigurations = {
       sakotop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs outputs self;};
         modules = [./default.nix ./hosts/sakotop/configuration.nix];
       };
       sakopc = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs outputs self;};
         modules = [./default.nix ./hosts/sakopc/configuration.nix];
       };
       #sakoserver = nixpkgs.lib.nixosSystem {
