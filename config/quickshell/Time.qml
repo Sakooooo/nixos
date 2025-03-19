@@ -25,11 +25,7 @@ Item {
 	    Text {
    		Layout.alignment: Qt.AlignHCenter
 		anchors.centerIn: parent
-   		text: {
-   		    const hours = clock.hours.toString().padStart(2, '0')
-   		    const minutes = clock.minutes.toString().padStart(2, '0')
-   		    return `${hours} ${minutes}`
-   		}
+		text: Qt.formatDateTime(clock.date, "hh:mm")
    		font.pointSize: 13
    		color: "black"
    	    }

@@ -11,17 +11,22 @@ Item {
     width: 60
     height: bar.height
 
-    property string time;
-    Process {
-	id: dateProc
-	command: ["date", "+%d/%m"]
-	running: true
-
-	stdout: SplitParser {
-	    // update the property instead of the clock directly
-	    onRead: data => root.time = data
-	}
+    SystemClock {
+	id: clock
+	precision: SystemClock.Minutes
     }
+
+    /* property string time; */
+    /* Process { */
+    /* 	id: dateProc */
+    /* 	command: ["date", "+%d/%m"] */
+    /* 	running: true */
+
+    /* 	stdout: SplitParser { */
+    /* 	    // update the property instead of the clock directly */
+    /* 	    onRead: data => root.time = data */
+    /* 	} */
+    /* } */
 
     Timer {
 	interval: 86400000
@@ -44,9 +49,8 @@ Item {
 		anchors.centerIn: parent
    		font.pointSize: 13
    		color: "black"
-		text: time
+		text: Qt.formatDateTime(clock.date, "dd/MM")
    	    }
-
 	}
     }
 }
