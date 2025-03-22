@@ -13,5 +13,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     hardware.opentabletdriver.enable = true;
+    hardware.opentabletdriver.daemon.enable = true;
   };
 }
