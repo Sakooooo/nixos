@@ -343,7 +343,7 @@
   (setq-default format-all-formatters
                 '(("Nix"     (alejandra))
                   ("Rust" (rustfmt "--edition" "2021"))
-		   "C++" (clang-format))))
+		   ("C++" (clang-format)))))
 
 ;; --- LSP ---
 (use-package eglot
@@ -351,7 +351,6 @@
   :bind (:map eglot-mode-map
 	      ("C-c C-a" . eglot-code-actions)
 	      ("C-c C-r" . eglot-rename))
-
   :config
   (setq eglot-autoshutdown t
 	eglot-confirm-server-initiated-edits nil))
