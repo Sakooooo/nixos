@@ -73,24 +73,24 @@
     (package-install 'use-package)))
 
 ;; --- Theme ---
-;; (use-package gruber-darker-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'gruber-darker t))
+(use-package gruber-darker-theme
+  :ensure t
+  :config
+  (load-theme 'gruber-darker t))
 
 ;; (use-package modus-themes
 ;;   :ensure t
 ;;   :config
 ;;   (load-theme 'modus-vivendi t))
 
-(use-package flexoki-themes
-  :ensure t
-  :config
-  (load-theme 'flexoki-themes-dark t)
-  :custom
-  (flexoki-themes-use-bold-keywords t)
-  (flexoki-themes-use-bold-builtins t)
-  (flexoki-themes-use-italic-comments t))
+;; (use-package flexoki-themes
+;;   :ensure t
+;;   :config
+;;   (load-theme 'flexoki-themes-dark t)
+;;   :custom
+;;   (flexoki-themes-use-bold-keywords t)
+;;   (flexoki-themes-use-bold-builtins t)
+;;   (flexoki-themes-use-italic-comments t))
 
 ;; --- no-littering ---
 
