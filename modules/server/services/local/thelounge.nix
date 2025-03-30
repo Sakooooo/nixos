@@ -19,6 +19,7 @@ in {
         plugins = with pkgs.nodePackages; [
           thelounge-theme-mininapse
           thelounge-theme-amoled
+          thelounge-theme-monokai-console
         ];
       };
       nginx.virtualHosts."irc.sako.box" = {
