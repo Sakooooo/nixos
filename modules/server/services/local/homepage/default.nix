@@ -14,7 +14,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    systemd.services.
     services = {
       nginx.virtualHosts."sako.box" = {
         forceSSL = true;
