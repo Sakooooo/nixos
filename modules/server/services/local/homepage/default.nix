@@ -24,9 +24,9 @@ in {
       homepage-dashboard = {
         enable = true;
         # ?????????????????????????
-        environmentFile = ''
+        environmentFile = "${pkgs.writeText "homepage-environmentfile" ''
           HOMEPAGE_ALLOWED_HOSTS=sako.box
-        '';
+        ''}";
         settings = {
           title = "sakoserver";
           description = "sakoserver";
