@@ -7,7 +7,7 @@
 with lib; let
   cfg = config.void.server.fedi.akkoma;
 
-  inherit ((pkgs.formats.elixirConf {}).lib) mkRaw mkMap;
+  inherit ((pkgs.formats.elixirConf {}).lib) mkRaw mkTuple;
 in {
   options.void.server.fedi.akkoma = {enable = mkEnableOption false;};
 
@@ -124,9 +124,9 @@ in {
             ":mrf_simple" = let
               blocklist = import ./blocklist.nix;
             in {
-              # media_nsfw = mkMap blocklist.media_nsfw;
-              reject = mkMap blocklist.reject;
-              followers_only = mkMap blocklist.followers_only;
+              # media_nsfw = mkTuple blocklist.media_nsfw;
+              reject = mkTuple blocklist.reject;
+              followers_only = mkTuple blocklist.followers_only;
             };
           };
         };
