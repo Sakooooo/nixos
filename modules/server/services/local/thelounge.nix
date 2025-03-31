@@ -16,11 +16,11 @@ in {
         enable = true;
         public = false;
         port = 9543;
-        plugins = with pkgs.nodePackages; [
-          thelounge-theme-mininapse
-          thelounge-theme-amoled
-          thelounge-theme-monokai-console
-        ];
+        # plugins = with pkgs.nodePackages; [
+        #   thelounge-theme-mininapse
+        #   thelounge-theme-amoled
+        #   thelounge-theme-monokai-console
+        # ];
       };
       nginx.virtualHosts."irc.sako.box" = {
         forceSSL = true;
