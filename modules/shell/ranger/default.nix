@@ -5,8 +5,7 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.modules.shell.ranger;
 in {
   options.modules.shell.ranger = {
@@ -17,7 +16,7 @@ in {
     users.users.sako.packages = with pkgs; [
       ranger
       # pdf viewer
-      okular
+      kdePackages.okular
     ];
 
     home-manager.users.sako = {pkgs, ...}: {
