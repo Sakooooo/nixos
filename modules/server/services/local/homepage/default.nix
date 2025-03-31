@@ -14,6 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    systemd.services.
     services = {
       nginx.virtualHosts."sako.box" = {
         forceSSL = true;
@@ -23,6 +24,10 @@ in {
       };
       homepage-dashboard = {
         enable = true;
+        # ?????????????????????????
+        environmentFile = pkgs.writeText "homepage-environment" ''
+          HOMEPAGE_ALLOWED_HOSTS=sako.box
+        '';
         settings = {
           title = "sakoserver";
           description = "sakoserver";
