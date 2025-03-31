@@ -116,17 +116,25 @@ in {
               ];
             };
 
+            ":mrf_simple" = let
+              blocklist = import ./blocklist.nix;
+              processMap = m:
+                map (
+                  k:
+                    mkTuple [
+                      k
+                      m.${k}
+                    ]
+                ) (builtins.attrNames m);
+            in {
+              # media_nsfw = processMap blocklist.media_nsfw;
+              reject = processMap blocklist.reject;
+              followers_only = processMap blocklist.followers_only;
+            };
             ":mrf" = {
               policies =
                 map mkRaw ["Pleroma.Web.ActivityPub.MRF.SimplePolicy"];
               transparency = true;
-            };
-            ":mrf_simple" = let
-              blocklist = import ./blocklist.nix;
-            in {
-              # media_nsfw = mkTuple blocklist.media_nsfw;
-              reject = mkTuple blocklist.reject;
-              followers_only = mkTuple blocklist.followers_only;
             };
           };
         };
