@@ -24,7 +24,7 @@ in {
       homepage-dashboard = {
         enable = true;
         # ?????????????????????????
-        environmentFile = pkgs.writeText "homepage-environment" ''
+        environmentFile = ''
           HOMEPAGE_ALLOWED_HOSTS=sako.box
         '';
         settings = {

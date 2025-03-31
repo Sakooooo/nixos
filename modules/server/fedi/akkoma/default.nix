@@ -30,7 +30,7 @@ in {
         enable = true;
         package = pkgs.akkoma;
         extraStatic = {
-          "emoji/blobs.gg" = pkgs.akkoma-emoji.blobs_gg;
+          "emoji/blobs.gg" = pkgs.blobs_gg;
           # TODO Change this lmao
           "favicon.png" = pkgs.fetchurl {
             url = "https://sako.lol/icon.png";
@@ -67,12 +67,12 @@ in {
           builtins.attrValues {inherit (pkgs) ffmpeg exiftool imagemagick;};
         frontends = {
           primary = {
-            package = pkgs.akkoma-frontends.akkoma-fe;
+            package = pkgs.akkoma-fe;
             name = "akkoma-fe";
             ref = "stable";
           };
           admin = {
-            package = pkgs.akkoma-frontends.admin-fe;
+            package = pkgs.akkoma-admin-fe;
             name = "admin-fe";
             ref = "stable";
           };
