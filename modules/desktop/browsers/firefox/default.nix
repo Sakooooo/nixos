@@ -35,7 +35,7 @@ in {
             # userChrome = ''
             # '';
 
-            search.default = "DuckDuckGo";
+            search.default = "ddg";
             search.force = true;
             search.engines = {
               "Nix Packages" = {
