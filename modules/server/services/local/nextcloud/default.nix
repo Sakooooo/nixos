@@ -1,6 +1,11 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let cfg = config.void.server.services.local.nextcloud;
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.void.server.services.local.nextcloud;
 in {
   options.void.server.services.local.nextcloud = {
     enable = mkEnableOption false;
@@ -11,11 +16,11 @@ in {
     services = {
       nextcloud = {
         enable = true;
-        package = pkgs.nextcloud30;
+        package = pkgs.nextcloud31;
 
         https = true;
         hostName = "nextcloud.sako.box";
-        nginx = { recommendedHttpHeaders = true; };
+        nginx = {recommendedHttpHeaders = true;};
         database.createLocally = true;
 
         autoUpdateApps = {
@@ -37,8 +42,8 @@ in {
         };
         settings = {
           maintenance_window_start = 1;
-          trusted_domains = [ "https://nextcloud.sako.box" ];
-          trusted_proxies = [ "https://nextcloud.sako.box" ];
+          trusted_domains = ["https://nextcloud.sako.box"];
+          trusted_proxies = ["https://nextcloud.sako.box"];
           default_phone_region = "AE";
           lost_password_link = "disabled";
         };
@@ -72,10 +77,10 @@ in {
       };
     };
     systemd.services = {
-      phpfpm-nextcloud.aliases = [ "nextcloud.service" ];
+      phpfpm-nextcloud.aliases = ["nextcloud.service"];
       "nextcloud-setup" = {
-        requires = [ "postgresql.service" "redis-nextcloud.service" ];
-        after = [ "postgresql.service" "redis-nextcloud.service" ];
+        requires = ["postgresql.service" "redis-nextcloud.service"];
+        after = ["postgresql.service" "redis-nextcloud.service"];
         serviceConfig = {
           Restart = "on-failure";
           RestartSec = "10s";
@@ -83,5 +88,4 @@ in {
       };
     };
   };
-
 }
