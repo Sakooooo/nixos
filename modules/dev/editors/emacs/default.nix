@@ -134,6 +134,8 @@ in {
       # hydroxide
       # send mail
       # msmtp
+      # email
+      fetchmail
       # org to pdf
       tex
       # lsp

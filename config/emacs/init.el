@@ -538,4 +538,6 @@
   (emms-player-mpd-connect)
   (add-hook 'emms-playlist-cleared-hook 'emms-player-mpd-clear))
 
+;; mail
+
 ;;; init.el ends here
